@@ -28,14 +28,20 @@ TESTS = [
     ("ما هي نسبة امتزاز الصوديوم وكيف تؤثر على التربة؟", ["glossary.csv", "FAO_29_Water_Quality_for_Agriculture_ch1-5.txt"]),
 ]
 
-store = InMemoryVectorStore.load(str(VECTOR_FILE), embedding=OllamaEmbeddings(model="bge-m3"))
-passed = 0
-for question, expected in TESTS:
-    results = store.similarity_search(question, k=K)
-    ranks = [i for i, doc in enumerate(results, start=1) if doc.metadata["file"] in expected]
-    ok = bool(ranks)
-    passed += ok
-    rank = f"first right result at rank {ranks[0]}" if ok else f"not in the top {K}"
-    top = ", ".join(f"{d.metadata['file']} p.{d.metadata['page']}" for d in results[:3])
-    print(f"{'PASS' if ok else 'FAIL'}  {question}\n      {rank}; top 3: {top}")
-print(f"\n{passed}/{len(TESTS)} found the right file in the top {K}")
+
+def main():
+    store = InMemoryVectorStore.load(str(VECTOR_FILE), embedding=OllamaEmbeddings(model="bge-m3"))
+    passed = 0
+    for question, expected in TESTS:
+        results = store.similarity_search(question, k=K)
+        ranks = [i for i, doc in enumerate(results, start=1) if doc.metadata["file"] in expected]
+        ok = bool(ranks)
+        passed += ok
+        rank = f"first right result at rank {ranks[0]}" if ok else f"not in the top {K}"
+        top = ", ".join(f"{d.metadata['file']} p.{d.metadata['page']}" for d in results[:3])
+        print(f"{'PASS' if ok else 'FAIL'}  {question}\n      {rank}; top 3: {top}")
+    print(f"\n{passed}/{len(TESTS)} found the right file in the top {K}")
+
+
+if __name__ == "__main__":
+    main()
