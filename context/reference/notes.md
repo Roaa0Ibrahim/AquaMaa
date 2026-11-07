@@ -1,4 +1,4 @@
-# AquaMa research notes
+# AquaMaa research notes
 
 Background for our decisions. Source details are in [sources.csv](sources.csv), and water limits are in [limits.csv](limits.csv).
 
@@ -163,7 +163,7 @@ All five required stages are there, in the right order, and the suitability engi
 | Suitability engine | irrigation, cooling, industrial | irrigation, landscaping, non-potable | Matches the profiles so far. No cooling or industrial criteria were found. |
 | Web application | Municipal Dashboard | Role workspaces: Kahramaa, Municipality, MECC | This is your core idea, and it's missing from the picture |
 | Stage 1 | Sensors are the only input | Add simulated stations through the same API, and official statistics as national context | Otherwise the diagram hides where most demo data comes from |
-| Between stages 4 and 5 | Website and robot connect straight to the analysis | Add one "AquaMa API" box | Both must use the same backend, and the robot must fetch live data from it |
+| Between stages 4 and 5 | Website and robot connect straight to the analysis | Add one "AquaMaa API" box | Both must use the same backend, and the robot must fetch live data from it |
 | Whole diagram | No labels on data | Add provenance: measured, lab, research, synthetic | It's a key part of your evidence-graded promise |
 
 **Smaller changes**

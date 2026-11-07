@@ -1,6 +1,6 @@
-# AquaMa data contract v1.0 (working draft)
+# AquaMaa data contract v1.0 (working draft)
 
-The shared format for every part of AquaMa. It is a draft that we can change together. The exact format is in [schema.json](schema.json), and sample data for each name below is in [examples.json](examples.json).
+The shared format for every part of AquaMaa. It is a draft that we can change together. The exact format is in [schema.json](schema.json), and sample data for each name below is in [examples.json](examples.json).
 
 ## Who uses what
 
@@ -149,7 +149,7 @@ The suitability engine is plain code, and it alone decides the outcome. The LLM 
 - Each answer has two versions: `web_answer` for the website and phone, and `robot_speech` for text-to-speech. Both use the same evidence.
 - Every number in `answer` must trace to an `evidence` item.
 - Each answer has an `audit_id`, and the question, role and tools used are logged under it.
-- `policy_links` connects an answer to goals in [policy-goals.csv](policy-goals.csv). Links are AquaMa's own mapping, never an official endorsement.
+- `policy_links` connects an answer to goals in [policy-goals.csv](policy-goals.csv). Links are AquaMaa's own mapping, never an official endorsement.
 - Tools are read-only with fixed parameters, and there is no free-form SQL: `get_latest`, `get_history`, `compare_stations`, `get_alerts`, `get_suitability`, `get_national_context`, `get_policy_goals`.
 
 ## Robot

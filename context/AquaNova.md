@@ -1,4 +1,4 @@
-# AquaMa
+# AquaMaa
 
 Our working file, last updated 7 November 2026.
 
@@ -37,10 +37,12 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 - Routes by question type, following Meta's CRAG benchmark ([arXiv 2406.04744](https://arxiv.org/abs/2406.04744)):
   - simple, simple with a condition, set, comparison, aggregation, multi-hop, post-processing, false premise
 - Retrieval methods the routes use: structured lookup, keyword search (BM25), vector search, hybrid
-- Out-of-scope questions get a general answer, labeled as outside AquaMa's sources, not a refusal
+- Out-of-scope questions get a general answer, labeled as outside AquaMaa's sources, not a refusal
 - **Done when:**
   - 24 labeled questions, 3 per type, are routed correctly in at least 22 of 24
   - the right file is in the top 3 for at least 19 of 24
+  - faithfulness, answer relevancy, context precision and context recall are reported, so results compare with WaterCopilot ([similar projects](reference/similar-projects.md))
+- Optional: test general hydrology knowledge of `qwen3:14b` against `qwen2.5:3b` with the [HydroLLM benchmark](https://github.com/uihilab/HydroLLM-Benchmark) (MIT)
 
 ### [ ] Milestone 4: Agentic ReAct loops in place
 - The model picks a tool or route, reads the result, and decides to continue or stop, with a step limit and a saved trace
@@ -54,11 +56,13 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
   - too little evidence, where the answer says so
   - the model being down, with a clear message
 - **Done when:** each failure, forced on purpose, takes its route, and none produces an invented answer
+  - faithfulness is reported again, before and after the error routes, to show what they change
 
 ### [ ] Milestone 6: Simplification prompting
 - The checked answer is rewritten for non-technical officers, with the same numbers and conclusion
 - For decisions, it gives 2 or 3 options with trade-offs, and the officer chooses
 - **Done when:** the numbers match before and after, and 3 non-technical readers restate the main finding correctly
+  - the same readers rate completeness on a 1–5 scale (can they understand and act on it?), following Nakarmi et al. 2026 ([arXiv 2609.06222](https://arxiv.org/abs/2609.06222))
 
 ### [ ] Milestone 7: Arabic text-to-speech deployed to the website
 - Diacritics are added (tashkeel), numbers are spoken as words, and a local voice (Piper `ar_JO`) speaks, after we check its licence
@@ -75,14 +79,14 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 
 ## Decided together
 
-- **Names:** the product is **AquaMa**. The team stays **AquaNova**, to avoid registration problems.
-- **Concept, accepted by the team:** AquaMa is a groundwater decision-support platform for Qatar. It combines live monitoring, research data and national statistics to show how groundwater is changing, which uses each source could support, and how confident the evidence is, with a tailored view for each institution.
+- **Names:** the product is **AquaMaa**. The team stays **AquaNova**, to avoid registration problems.
+- **Concept, accepted by the team:** AquaMaa is a groundwater decision-support platform for Qatar. It combines live monitoring, research data and national statistics to show how groundwater is changing, which uses each source could support, and how confident the evidence is, with a tailored view for each institution.
 - **Future work, not in the demo:** forecasting and climate scenarios.
 - **Product:** groundwater decisions and water-use matching together, with evidence-graded insights. It says "insufficient data" when the evidence is thin.
 - **Main view:** Kahramaa, for now.
 - **Demo data:** one live station, labeled synthetic stations based on published statistics, and national context from official datasets.
 - **UDST research:** cited as background, with no partnership claim. We won't ask that team about it.
-- **National goals:** AquaMa links its findings to Qatar Vision, NDS3, ministry goals and the SDGs. The links are our own mapping, not an official endorsement.
+- **National goals:** AquaMaa links its findings to Qatar Vision, NDS3, ministry goals and the SDGs. The links are our own mapping, not an official endorsement.
 - **Agent:** a 16-component LangGraph pipeline with fast, standard and deep lanes, using an open model. Design is in [agent-design.md](reference/agent-design.md). Diagrams: [agent pipeline](reference/diagrams/agent-pipeline.pdf) and [system overview](reference/diagrams/system-overview.pdf).
 - **Roaa also owns:** the suitability engine.
 - **QR explainer:** visitors scan a dashboard QR code with a phone, and the robot explains that chart. Start with three or four charts.
@@ -99,13 +103,13 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 | Decision | My recommendation | Why |
 |---|---|---|
 | Problem statement | The draft below | It covers both parts of the product and uses current official numbers |
-| Subtitle | AquaMa: Groundwater Decision Support for Qatar | It matches the accepted concept. "Resource allocation" overclaims, because Kahramaa makes those decisions. |
+| Subtitle | AquaMaa: Groundwater Decision Support for Qatar | It matches the accepted concept. "Resource allocation" overclaims, because Kahramaa makes those decisions. |
 | Backend API and login | Mais | It sits next to the database |
 | Robot | Munira, with the robot expert | It needs hands-on time in A25 |
 | Tech stack | FastAPI, Supabase, Next.js, Leaflet | It matches Deema's diagram. Test first that Supabase stays awake while unattended. |
 | Qatar_MWDVF data | Use it for realistic station values, and credit it clearly. Don't present it as current or as your own. | It has 201 real locations from 2020, but no open licence, and one of its authors may be reviewing you |
 | Which robot | The one whose software can reach the backend | Older robot software may fail on HTTPS, so one test call would decide this |
-| Deema's diagram | Change the name to AquaMa, and make the seven bigger changes in [notes](reference/notes.md#review-of-deemas-architecture-diagram) | The chain is right, but it misses "insufficient data", role views and non-sensor data |
+| Deema's diagram | Change the name to AquaMaa, and make the seven bigger changes in [notes](reference/notes.md#review-of-deemas-architecture-diagram) | The chain is right, but it misses "insufficient data", role views and non-sensor data |
 | 15 November | Find out who can attend, and prepare a recorded demo either way | The deck puts external reviewers on the 15th, but our plan is built around the 12th |
 
 ### Final problem statement (team, 7 November)
@@ -139,7 +143,7 @@ Resources: [Hukoomi, water and desalination](https://hukoomi.gov.qa/en/articles/
 
 ## National goals
 
-All 41 goals, with sources, are in [policy-goals.csv](reference/policy-goals.csv). The ones closest to AquaMa:
+All 41 goals, with sources, are in [policy-goals.csv](reference/policy-goals.csv). The ones closest to AquaMaa:
 
 - **[Qatar National Vision 2030](reference/source-documents/Qatar_National_Vision_2030.pdf), p.32:** "Preserving and protecting the environment, including air, land, water and biological diversity." It also names "diminishing water" resources as a local issue (p.30).
 - **[NDS3](reference/source-documents/Qatar_NDS3.pdf), p.27:** "Groundwater extraction reduced by 70%" by 2030. No baseline is given.

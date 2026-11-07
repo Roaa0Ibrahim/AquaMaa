@@ -4,7 +4,7 @@ Read 7 November 2026. Each entry says how much was read. "Full" means the paper'
 
 ## Summary
 
-| # | Project | Read | Open resources | Closest to AquaMa in |
+| # | Project | Read | Open resources | Closest to AquaMaa in |
 |---|---|---|---|---|
 | 1 | WaterCopilot (IWMI and Microsoft Research) | Full | None | Documents plus live data, RAGAS evaluation |
 | 2 | Relevance is not enough (Nakarmi et al., NJIT) | Full | None | Plain answers for non-experts, completeness |
@@ -49,7 +49,7 @@ Vickneswaran, Dickens, Garcia Andarcia, Silva and Retief. *WaterCopilot: An AI-D
   - It's tied to GPT models, so switching to Llama would need a redesign.
   - Accuracy in other languages depends on the GPT model.
   - It was evaluated with RAGAS only, with no human evaluation.
-- **Lessons for AquaMa:**
+- **Lessons for AquaMaa:**
   - It has the same two-part design: documents plus live data.
   - Its three difficulty levels map onto our question types.
   - Its table limitation supports our plan to keep tables as tables.
@@ -83,7 +83,7 @@ Nakarmi, Battula, Diaz and Dasgupta (NJIT and Newark Water Coalition). *Relevanc
   - It depends on proprietary models.
   - The gap-check questions are specific to water quality.
   - Most test questions were direct, so multi-step questions are untested.
-- **Lessons for AquaMa:**
+- **Lessons for AquaMaa:**
   - The strongest support for contribution 3, plain answers. It also gives us a measure to adopt, completeness, rather than relevance alone.
   - Its two personas match our executive and operational views.
   - Its 0–3 relevance score and gap check are an alternative to our quote check, so worth comparing.
@@ -103,7 +103,7 @@ Mounce, Mounce and Boxall. *AI-Augmented Water Quality Event Response: The Role 
   - **Under-representation of non-English documents and local contexts,** which leads to bias.
   - **Quality standards that differ by region.**
   - **The need for human oversight, explainability and audit trails.**
-- **Lessons for AquaMa:**
+- **Lessons for AquaMaa:**
   - A peer-reviewed precedent for grounding answers in official reports, with an audit trail.
   - The language-bias point supports contribution 2, Arabic.
   - The finding that it helps new staff most fits our non-technical officers.
@@ -133,7 +133,7 @@ Kizilkaya, Sajja, Sermet and Demir. *Toward HydroLLM: a benchmark dataset for hy
   - Questions may have leaked into the models' training data.
   - There's no real-world validation.
 - **Companion paper:** about 8,800 question-answer pairs, with models from 1.5B to 32B parameters fine-tuned using LoRA. The best was an 8B model, and the 32B model overfit. This is from a search summary only.
-- **Lessons for AquaMa:**
+- **Lessons for AquaMaa:**
   - Textbook knowledge is a recognised data type, which supports the glossary.
   - The models' weakness with numbers supports doing calculations in Python.
   - The ambiguous-term problem applies to Arabic water terms too.
@@ -144,7 +144,7 @@ Goldshtein, Perelman, Schuster and Ostfeld (Technion). *Large Language Models fo
 
 - **What it does:** multiple agents with RAG turn natural-language questions into code for EPANET, a water pipe network simulator, run it, and return structured results.
 - **Evaluation:** 69 benchmark questions, scoring 56–81% depending on the model, and over 90% on simpler questions.
-- **Lessons for AquaMa:** the gap between simple and complex questions is what our question types are meant to measure.
+- **Lessons for AquaMaa:** the gap between simple and complex questions is what our question types are meant to measure.
 - **Open resource:** [github.com/yinon-gold/LLMs-in-WDS-Modeling](https://github.com/yinon-gold/LLMs-in-WDS-Modeling), MIT, with code and the benchmark questions.
 - **Not read:** the full text. I only read the abstract page and checked the repository.
 
@@ -157,7 +157,7 @@ Paneru and Paneru. *AI for Water Sustainability: Global Water Quality Assessment
   - **Reported results:** an RMSE of 1.2 and an R² of 0.99 for the water quality index, and 99% classification accuracy.
 - **Chatbot:** RAG over one PDF of water quality and model information, using the OpenAI API. It has no evaluation of its own.
 - **Limitations the authors state:** a fuller assessment needs chemical and microbiological analysis. Later work could add Internet of Things sensors, edge devices and real-time monitoring.
-- **Lessons for AquaMa:** a thin chatbot built on top of a model. It's useful as an example of what we go beyond. Its near-perfect scores on a general global dataset also show why we report honest, unfiltered results.
+- **Lessons for AquaMaa:** a thin chatbot built on top of a model. It's useful as an example of what we go beyond. Its near-perfect scores on a general global dataset also show why we report honest, unfiltered results.
 - **Open resources:** none.
 
 ## 7. WaterGPT
@@ -178,13 +178,13 @@ Nityandal. *LLM and Digital Twin–Aided Decision Making for Water Governance.* 
   - Bayesian optimisation to search simulation settings
   - a RAG pipeline answering regulatory and policy questions
   - natural-language input that fills in simulation settings
-- **Lessons for AquaMa:** the closest subject: groundwater governance with regulatory questions and answers. Unlike AquaMa, it's built on simulation, not monitoring data.
+- **Lessons for AquaMaa:** the closest subject: groundwater governance with regulatory questions and answers. Unlike AquaMaa, it's built on simulation, not monitoring data.
 - **Open resources:** none. Only the talk abstract is available.
 
 ---
 
 ## Open resources found
-| Resource | Licence | Possible use in AquaMa |
+| Resource | Licence | Possible use in AquaMaa |
 |---|---|---|
 | [HydroLLM-Benchmark](https://github.com/uihilab/HydroLLM-Benchmark) | MIT | Test general hydrology knowledge: Qwen 14B against 3B |
 | [LLMs-in-WDS-Modeling](https://github.com/yinon-gold/LLMs-in-WDS-Modeling) | MIT | Example of an agent that writes and runs code, and a benchmark format |

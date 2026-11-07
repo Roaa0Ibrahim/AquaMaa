@@ -1,6 +1,6 @@
 # Context
 
-Background material for the AquaMa agent, copied from Roaa's working folder on 7 November 2026. This is a snapshot: the working copies may change.
+Background material for the AquaMaa agent, copied from Roaa's working folder on 7 November 2026. This is a snapshot: the working copies may change.
 
 | Path | What it is |
 |---|---|
