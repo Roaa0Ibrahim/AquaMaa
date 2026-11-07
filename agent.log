@@ -1,0 +1,115 @@
+12:43:11 INFO Loaded https://lilianweng.github.io/posts/2024-11-28-reward-hacking/ (51116 characters)
+12:43:12 INFO Loaded https://lilianweng.github.io/posts/2024-07-07-hallucination/ (42507 characters)
+12:43:12 INFO Loaded https://lilianweng.github.io/posts/2024-04-12-diffusion-video/ (31227 characters)
+12:43:13 INFO Split 3 documents into 534 chunks
+12:43:14 INFO Embedded 50/534 chunks
+12:43:15 INFO Embedded 100/534 chunks
+12:43:16 INFO Embedded 150/534 chunks
+12:43:16 INFO Embedded 200/534 chunks
+12:43:17 INFO Embedded 250/534 chunks
+12:43:18 INFO Embedded 300/534 chunks
+12:43:18 INFO Embedded 350/534 chunks
+12:43:19 INFO Embedded 400/534 chunks
+12:43:20 INFO Embedded 450/534 chunks
+12:43:23 INFO Embedded 500/534 chunks
+12:43:23 INFO Embedded 534/534 chunks
+12:43:23 INFO Embedding finished in 9.7 s
+12:43:34 INFO QUESTION: hello!
+12:43:37 INFO DECIDE: answer directly, no search (3.5 s)
+12:43:37 INFO QUESTION: What does Lilian Weng say about types of reward hacking?
+12:43:39 INFO DECIDE: search, args={'query': 'types of reward hacking'} (1.3 s)
+12:45:33 INFO Loaded https://lilianweng.github.io/posts/2024-11-28-reward-hacking/ (51116 characters)
+12:45:33 INFO Loaded https://lilianweng.github.io/posts/2024-07-07-hallucination/ (42507 characters)
+12:45:34 INFO Loaded https://lilianweng.github.io/posts/2024-04-12-diffusion-video/ (31227 characters)
+12:45:34 INFO Split 3 documents into 534 chunks
+12:45:37 INFO Embedded 50/534 chunks
+12:45:38 INFO Embedded 100/534 chunks
+12:45:38 INFO Embedded 150/534 chunks
+12:45:39 INFO Embedded 200/534 chunks
+12:45:40 INFO Embedded 250/534 chunks
+12:45:40 INFO Embedded 300/534 chunks
+12:45:41 INFO Embedded 350/534 chunks
+12:45:42 INFO Embedded 400/534 chunks
+12:45:42 INFO Embedded 450/534 chunks
+12:45:43 INFO Embedded 500/534 chunks
+12:45:44 INFO Embedded 534/534 chunks
+12:45:44 INFO Embedding finished in 7.2 s
+12:45:44 INFO QUESTION: hello!
+12:45:47 INFO DECIDE: answer directly, no search (3.0 s)
+12:45:47 INFO QUESTION: What does Lilian Weng say about types of reward hacking?
+12:45:48 INFO DECIDE: search, args={'query': 'types of reward hacking'} (1.1 s)
+12:45:48 INFO RETRIEVE query='types of reward hacking' -> 4 chunks
+12:45:49 INFO GRADE: 'no'
+12:45:52 INFO REWRITE: 'An improved question could be:\n\n**"What are Lilian Weng\'s views on different types of reward hacking in the context of AI systems?"** \n\nThis version is more specific and clarifies the context (AI systems), making it clearer what kind of information is being sought.'
+12:46:03 INFO DECIDE: answer directly, no search (11.3 s)
+13:05:08 INFO Loaded https://lilianweng.github.io/posts/2024-11-28-reward-hacking/ (51116 characters)
+13:05:09 INFO Loaded https://lilianweng.github.io/posts/2024-07-07-hallucination/ (42507 characters)
+13:05:09 INFO Loaded https://lilianweng.github.io/posts/2024-04-12-diffusion-video/ (31227 characters)
+13:05:09 INFO Split 3 documents into 534 chunks
+13:05:15 INFO Embedded 50/534 chunks
+13:05:16 INFO Embedded 100/534 chunks
+13:05:16 INFO Embedded 150/534 chunks
+13:05:17 INFO Embedded 200/534 chunks
+13:05:17 INFO Embedded 250/534 chunks
+13:05:18 INFO Embedded 300/534 chunks
+13:05:19 INFO Embedded 350/534 chunks
+13:05:19 INFO Embedded 400/534 chunks
+13:05:20 INFO Embedded 450/534 chunks
+13:05:20 INFO Embedded 500/534 chunks
+13:05:21 INFO Embedded 534/534 chunks
+13:05:21 INFO Embedding finished in 10.6 s
+13:05:21 INFO QUESTION: hello!
+13:05:25 INFO DECIDE: answer directly, no search (3.3 s)
+13:05:25 INFO QUESTION: What does Lilian Weng say about types of reward hacking?
+13:05:26 INFO DECIDE: search, args={'query': 'types of reward hacking'} (1.2 s)
+13:05:26 INFO RETRIEVE query='types of reward hacking' -> 4 chunks
+13:05:27 INFO GRADE: 'no'
+13:05:29 INFO REWRITE: 'An improved question could be:\n\n**"What are Lilian Weng\'s views on different types of reward hacking in the context of AI systems?"** \n\nThis version is more specific and clarifies the context (AI systems), making it clearer what kind of information is being sought.'
+13:05:41 INFO DECIDE: answer directly, no search (11.3 s)
+13:08:35 INFO Loaded https://lilianweng.github.io/posts/2024-11-28-reward-hacking/ (51116 characters)
+13:08:36 INFO Loaded https://lilianweng.github.io/posts/2024-07-07-hallucination/ (42507 characters)
+13:08:36 INFO Loaded https://lilianweng.github.io/posts/2024-04-12-diffusion-video/ (31227 characters)
+13:08:36 INFO Split 3 documents into 534 chunks
+13:08:38 INFO Embedded 50/534 chunks
+13:08:38 INFO Embedded 100/534 chunks
+13:08:39 INFO Embedded 150/534 chunks
+13:08:39 INFO Embedded 200/534 chunks
+13:08:40 INFO Embedded 250/534 chunks
+13:08:41 INFO Embedded 300/534 chunks
+13:08:41 INFO Embedded 350/534 chunks
+13:08:42 INFO Embedded 400/534 chunks
+13:08:42 INFO Embedded 450/534 chunks
+13:08:43 INFO Embedded 500/534 chunks
+13:08:43 INFO Embedded 534/534 chunks
+13:08:43 INFO Embedding finished in 6.5 s
+13:10:15 INFO Loaded https://lilianweng.github.io/posts/2024-11-28-reward-hacking/ (51116 characters)
+13:10:15 INFO Loaded https://lilianweng.github.io/posts/2024-07-07-hallucination/ (42507 characters)
+13:10:16 INFO Loaded https://lilianweng.github.io/posts/2024-04-12-diffusion-video/ (31227 characters)
+13:10:16 INFO Split 3 documents into 534 chunks
+13:10:17 INFO Embedded 50/534 chunks
+13:10:18 INFO Embedded 100/534 chunks
+13:10:19 INFO Embedded 150/534 chunks
+13:10:19 INFO Embedded 200/534 chunks
+13:10:20 INFO Embedded 250/534 chunks
+13:10:20 INFO Embedded 300/534 chunks
+13:10:21 INFO Embedded 350/534 chunks
+13:10:22 INFO Embedded 400/534 chunks
+13:10:22 INFO Embedded 450/534 chunks
+13:10:23 INFO Embedded 500/534 chunks
+13:10:23 INFO Embedded 534/534 chunks
+13:10:23 INFO Embedding finished in 6.6 s
+13:10:24 INFO QUESTION: hello!
+13:10:24 INFO DECIDE: answer directly, no search (0.4 s)
+13:10:24 INFO QUESTION: What does Lilian Weng say about types of reward hacking?
+13:10:25 INFO DECIDE: search, args={'query': 'types of reward hacking'} (1.1 s)
+13:10:25 INFO RETRIEVE query='types of reward hacking' -> 4 chunks
+13:10:27 INFO QUOTE verified=True: 'At a high level, reward hacking can be categorized into two types: environment or goal misspecification, and reward tampering.'
+13:10:30 INFO ANSWER generated (3.3 s)
+13:10:30 INFO QUESTION: What does Lilian Weng say about cooking pasta?
+13:10:31 INFO DECIDE: search, args={'query': 'cooking pasta'} (1.1 s)
+13:10:31 INFO RETRIEVE query='cooking pasta' -> 4 chunks
+13:10:32 INFO QUOTE verified=False: 'None'
+13:10:33 INFO REWRITE: 'What does Lilian Weng say about cooking pasta?'
+13:10:35 INFO RETRIEVE query='What does Lilian Weng say about cooking pasta?' -> 4 chunks
+13:10:36 INFO QUOTE verified=False: 'None'
+13:10:38 INFO ANSWER generated (2.2 s)
