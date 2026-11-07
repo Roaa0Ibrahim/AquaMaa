@@ -1,0 +1,9 @@
+﻿crop,system,average_yield_ton_ha,blue_wf_m3_ton,average_wf_m3_ton,average_production_ton_y,note,period,source,source_url
+Fodder,Cereals and fodder,82,2,2,515000,Use with caution: 2 m3/ton looks very low against official farm abstraction.,2010-2020,"Higazy et al. 2024, Water 16, 1185, Table 1 (CC BY)",https://doi.org/10.3390/w16081185
+Cucumber,Greenhouse,101,18,21,13700,,2010-2020,"Higazy et al. 2024, Water 16, 1185, Table 1 (CC BY)",https://doi.org/10.3390/w16081185
+Tomatoes,Greenhouse and open field,44,130,136,17100,,2010-2020,"Higazy et al. 2024, Water 16, 1185, Table 1 (CC BY)",https://doi.org/10.3390/w16081185
+Pumpkins,Open field,20,183,196,3430,,2010-2020,"Higazy et al. 2024, Water 16, 1185, Table 1 (CC BY)",https://doi.org/10.3390/w16081185
+Marrows,Open field,16,117,133,4320,,2010-2020,"Higazy et al. 2024, Water 16, 1185, Table 1 (CC BY)",https://doi.org/10.3390/w16081185
+Eggplant,Open field,25,309,320,3990,,2010-2020,"Higazy et al. 2024, Water 16, 1185, Table 1 (CC BY)",https://doi.org/10.3390/w16081185
+Sugar melons,Open field,11,164,187,1270,,2010-2020,"Higazy et al. 2024, Water 16, 1185, Table 1 (CC BY)",https://doi.org/10.3390/w16081185
+Dates,Open field,11,900,955,26300,,2010-2020,"Higazy et al. 2024, Water 16, 1185, Table 1 (CC BY)",https://doi.org/10.3390/w16081185

@@ -1,0 +1,1126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aquanova-contract-1.0",
+  "title": "AquaNova shared data contract v1.0",
+  "$defs": {
+    "timestamp": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$"
+    },
+    "stationId": {
+      "type": "string",
+      "pattern": "^ST-(LIVE|SYN)-\\d{2}$"
+    },
+    "parameter": {
+      "enum": [
+        "temperature_c",
+        "tds_mg_l",
+        "ph",
+        "turbidity_ntu",
+        "water_level_cm",
+        "sar",
+        "chloride_mg_l",
+        "boron_mg_l",
+        "nitrate_mg_l",
+        "ec_us_cm"
+      ]
+    },
+    "unit": {
+      "enum": [
+        "degC",
+        "mg/L",
+        "pH",
+        "NTU",
+        "cm",
+        "ratio",
+        "uS/cm"
+      ]
+    },
+    "provenance": {
+      "enum": [
+        "measured",
+        "lab",
+        "official",
+        "research_synthetic",
+        "scenario_synthetic"
+      ]
+    },
+    "flag": {
+      "enum": [
+        "uncalibrated",
+        "estimated",
+        "out_of_range",
+        "stuck",
+        "drift_suspected",
+        "sensor_fault",
+        "time_estimated"
+      ]
+    },
+    "role": {
+      "enum": [
+        "kahramaa_planner",
+        "municipality_agri",
+        "mecc_environment",
+        "admin"
+      ]
+    },
+    "profile": {
+      "enum": [
+        "irrigation",
+        "landscaping",
+        "non_potable"
+      ]
+    },
+    "outcome": {
+      "enum": [
+        "suitable",
+        "conditional",
+        "not_recommended",
+        "insufficient_data"
+      ]
+    },
+    "connection": {
+      "enum": [
+        "online",
+        "stale",
+        "offline"
+      ]
+    },
+    "measurementIn": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sensor_id",
+        "parameter",
+        "value",
+        "unit",
+        "flags"
+      ],
+      "properties": {
+        "raw": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "sensor_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parameter": {
+          "$ref": "#/$defs/parameter"
+        },
+        "value": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "unit": {
+          "$ref": "#/$defs/unit"
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/flag"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "measurementOut": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sensor_id",
+        "parameter",
+        "value",
+        "unit",
+        "flags",
+        "provenance",
+        "recorded_at"
+      ],
+      "properties": {
+        "sensor_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parameter": {
+          "$ref": "#/$defs/parameter"
+        },
+        "value": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "unit": {
+          "$ref": "#/$defs/unit"
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/flag"
+          },
+          "uniqueItems": true
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        },
+        "recorded_at": {
+          "$ref": "#/$defs/timestamp"
+        }
+      }
+    },
+    "ingestRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "station_id",
+        "boot_id",
+        "provenance",
+        "readings"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "1.0"
+        },
+        "station_id": {
+          "$ref": "#/$defs/stationId"
+        },
+        "boot_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        },
+        "readings": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "seq",
+              "recorded_at",
+              "measurements"
+            ],
+            "properties": {
+              "seq": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "recorded_at": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/timestamp"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "measurements": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "$ref": "#/$defs/measurementIn"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ingestResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "accepted",
+        "duplicates",
+        "rejected",
+        "server_time"
+      ],
+      "properties": {
+        "accepted": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "duplicates": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rejected": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "seq",
+              "reason"
+            ],
+            "properties": {
+              "seq": {
+                "type": "integer"
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "server_time": {
+          "$ref": "#/$defs/timestamp"
+        }
+      }
+    },
+    "loginRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "username",
+        "password"
+      ],
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "loginResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "access_token",
+        "expires_at",
+        "user"
+      ],
+      "properties": {
+        "access_token": {
+          "type": "string"
+        },
+        "expires_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "user": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "username",
+            "display_name",
+            "role",
+            "category"
+          ],
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "display_name": {
+              "type": "string"
+            },
+            "role": {
+              "$ref": "#/$defs/role"
+            },
+            "category": {
+              "$ref": "#/$defs/userCategory"
+            }
+          }
+        }
+      }
+    },
+    "sensor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sensor_id",
+        "parameter",
+        "model",
+        "calibrated",
+        "calibrated_at"
+      ],
+      "properties": {
+        "sensor_id": {
+          "type": "string"
+        },
+        "parameter": {
+          "$ref": "#/$defs/parameter"
+        },
+        "model": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "calibrated": {
+          "type": "boolean"
+        },
+        "calibrated_at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/timestamp"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "station": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "station_id",
+        "name",
+        "kind",
+        "scenario",
+        "source_type",
+        "location",
+        "municipality",
+        "aquifer",
+        "provenance",
+        "expected_interval_s",
+        "sensors"
+      ],
+      "properties": {
+        "station_id": {
+          "$ref": "#/$defs/stationId"
+        },
+        "name": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "live",
+            "simulated"
+          ]
+        },
+        "scenario": {
+          "enum": [
+            "stable",
+            "coastal_intrusion",
+            "recharge_improving",
+            "frozen_sensor",
+            "drifting_sensor",
+            null
+          ]
+        },
+        "source_type": {
+          "enum": [
+            "bench_sample",
+            "well",
+            "recharge_well"
+          ]
+        },
+        "location": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "lat",
+            "lon",
+            "is_illustrative"
+          ],
+          "properties": {
+            "lat": {
+              "type": "number",
+              "minimum": -90,
+              "maximum": 90
+            },
+            "lon": {
+              "type": "number",
+              "minimum": -180,
+              "maximum": 180
+            },
+            "is_illustrative": {
+              "type": "boolean"
+            }
+          }
+        },
+        "municipality": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "aquifer": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        },
+        "expected_interval_s": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sensors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/sensor"
+          }
+        }
+      }
+    },
+    "stationList": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stations"
+      ],
+      "properties": {
+        "stations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/station"
+          }
+        }
+      }
+    },
+    "latestResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "station_id",
+        "as_of",
+        "age_seconds",
+        "connection",
+        "measurements"
+      ],
+      "properties": {
+        "station_id": {
+          "$ref": "#/$defs/stationId"
+        },
+        "as_of": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/timestamp"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "age_seconds": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "connection": {
+          "$ref": "#/$defs/connection"
+        },
+        "measurements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/measurementOut"
+          }
+        }
+      }
+    },
+    "historyResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "station_id",
+        "parameter",
+        "unit",
+        "from",
+        "to",
+        "points"
+      ],
+      "properties": {
+        "station_id": {
+          "$ref": "#/$defs/stationId"
+        },
+        "parameter": {
+          "$ref": "#/$defs/parameter"
+        },
+        "unit": {
+          "$ref": "#/$defs/unit"
+        },
+        "from": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "to": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "points": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "recorded_at",
+              "value",
+              "flags"
+            ],
+            "properties": {
+              "recorded_at": {
+                "$ref": "#/$defs/timestamp"
+              },
+              "value": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "flags": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/flag"
+                },
+                "uniqueItems": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "suitabilityResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "station_id",
+        "profile",
+        "outcome",
+        "confidence",
+        "reasons",
+        "missing_parameters",
+        "based_on",
+        "rule_set_version",
+        "evaluated_at"
+      ],
+      "properties": {
+        "station_id": {
+          "$ref": "#/$defs/stationId"
+        },
+        "profile": {
+          "$ref": "#/$defs/profile"
+        },
+        "outcome": {
+          "$ref": "#/$defs/outcome"
+        },
+        "confidence": {
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "rule_id",
+              "parameter",
+              "observed",
+              "effect",
+              "message",
+              "source"
+            ],
+            "properties": {
+              "rule_id": {
+                "type": "string"
+              },
+              "parameter": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/parameter"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "observed": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "effect": {
+                "enum": [
+                  "pass",
+                  "caution",
+                  "fail",
+                  "unknown"
+                ]
+              },
+              "message": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "missing_parameters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/parameter"
+          }
+        },
+        "based_on": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/provenance"
+          },
+          "uniqueItems": true
+        },
+        "rule_set_version": {
+          "type": "string"
+        },
+        "evaluated_at": {
+          "$ref": "#/$defs/timestamp"
+        }
+      }
+    },
+    "alertList": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "alerts"
+      ],
+      "properties": {
+        "alerts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "alert_id",
+              "station_id",
+              "type",
+              "severity",
+              "status",
+              "parameter",
+              "opened_at",
+              "resolved_at",
+              "message",
+              "provenance"
+            ],
+            "properties": {
+              "alert_id": {
+                "type": "string"
+              },
+              "station_id": {
+                "$ref": "#/$defs/stationId"
+              },
+              "type": {
+                "enum": [
+                  "salinity_jump",
+                  "out_of_range",
+                  "stuck_sensor",
+                  "drift_suspected",
+                  "station_offline"
+                ]
+              },
+              "severity": {
+                "enum": [
+                  "info",
+                  "warning",
+                  "critical"
+                ]
+              },
+              "status": {
+                "enum": [
+                  "open",
+                  "resolved"
+                ]
+              },
+              "parameter": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/parameter"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "opened_at": {
+                "$ref": "#/$defs/timestamp"
+              },
+              "resolved_at": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/timestamp"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "message": {
+                "type": "string"
+              },
+              "provenance": {
+                "$ref": "#/$defs/provenance"
+              }
+            }
+          }
+        }
+      }
+    },
+    "agentRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "question"
+      ],
+      "properties": {
+        "question": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "station_id": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/stationId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "agentResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "status",
+        "confidence",
+        "evidence",
+        "provenance",
+        "warnings",
+        "audit_id",
+        "policy_links",
+        "web_answer",
+        "robot_speech"
+      ],
+      "properties": {
+        "role": {
+          "$ref": "#/$defs/role"
+        },
+        "status": {
+          "enum": [
+            "answered",
+            "insufficient_data",
+            "refused"
+          ]
+        },
+        "confidence": {
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "ref",
+              "summary"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "tool_result",
+                  "document"
+                ]
+              },
+              "ref": {
+                "type": "string"
+              },
+              "summary": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "provenance": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/provenance"
+          },
+          "uniqueItems": true
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "audit_id": {
+          "type": "string"
+        },
+        "policy_links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "goal_id",
+              "framework",
+              "relevance"
+            ],
+            "properties": {
+              "goal_id": {
+                "type": "string",
+                "pattern": "^G-\\d{2}$"
+              },
+              "framework": {
+                "type": "string"
+              },
+              "relevance": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "web_answer": {
+          "type": "string"
+        },
+        "robot_speech": {
+          "type": "string",
+          "pattern": "^[\\x20-\\x7E]+$",
+          "maxLength": 300
+        }
+      }
+    },
+    "robotResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "intent",
+        "station_id",
+        "speech",
+        "gesture",
+        "connection",
+        "age_seconds",
+        "as_of"
+      ],
+      "properties": {
+        "intent": {
+          "enum": [
+            "current_readings",
+            "irrigation_check",
+            "alerts"
+          ]
+        },
+        "station_id": {
+          "$ref": "#/$defs/stationId"
+        },
+        "speech": {
+          "type": "string",
+          "pattern": "^[\\x20-\\x7E]+$",
+          "maxLength": 300
+        },
+        "gesture": {
+          "enum": [
+            "none",
+            "explain",
+            "warn",
+            "nod"
+          ]
+        },
+        "connection": {
+          "$ref": "#/$defs/connection"
+        },
+        "age_seconds": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "as_of": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/timestamp"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "errorResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "message"
+          ],
+          "properties": {
+            "code": {
+              "enum": [
+                "bad_request",
+                "unauthorized",
+                "forbidden",
+                "not_found",
+                "conflict",
+                "rate_limited",
+                "server_error"
+              ]
+            },
+            "message": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "nationalContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "indicators"
+      ],
+      "properties": {
+        "indicators": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "indicator",
+              "year",
+              "value",
+              "unit",
+              "provenance",
+              "source_publisher",
+              "source_url"
+            ],
+            "properties": {
+              "indicator": {
+                "type": "string"
+              },
+              "year": {
+                "type": "integer"
+              },
+              "value": {
+                "type": "number"
+              },
+              "unit": {
+                "type": "string"
+              },
+              "provenance": {
+                "const": "official"
+              },
+              "source_publisher": {
+                "type": "string"
+              },
+              "source_url": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          }
+        }
+      }
+    },
+    "userCategory": {
+      "enum": [
+        "executive",
+        "technical",
+        "operational"
+      ]
+    },
+    "dashboardResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "category",
+        "generated_at",
+        "panels"
+      ],
+      "properties": {
+        "role": {
+          "$ref": "#/$defs/role"
+        },
+        "category": {
+          "$ref": "#/$defs/userCategory"
+        },
+        "generated_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "panels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "panel_id",
+              "chart",
+              "title",
+              "insight",
+              "provenance",
+              "as_of"
+            ],
+            "properties": {
+              "panel_id": {
+                "type": "string"
+              },
+              "chart": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "insight": {
+                "type": "string"
+              },
+              "provenance": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/provenance"
+                },
+                "uniqueItems": true
+              },
+              "as_of": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/timestamp"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

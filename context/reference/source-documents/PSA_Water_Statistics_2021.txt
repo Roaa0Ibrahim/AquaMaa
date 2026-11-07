@@ -1,0 +1,2410 @@
+  WATER
+STATISTICS
+
+                  In the state of Qatar
+
+    2021
+
+                             www.psa.gov.qa
+WATER STATISTICS
+     In the State of Qatar, 2021
+                          November 2022
+H H Sheikh Tamim Bin Hamad Al Thani
+
+             Emir of the State of Qatar
+All rights reserved to the Planning and Statistics Authority – November 2022
+For citation, please refer to this publication as follows:
+Planning and Statistics Authority, Qatar Water Statistics, 2021
+Doha - Qatar
+Correspondence to be forwarded to:
+Planning and Statistics Authority,
+P.O. Box: 1855, Doha - Qatar
+Tel: +974 4495 8888
+Fax: +974 4495 9999
+To request statistical data, please send email to: MDR@psa.gov.qa
+
+Deposit number at the Qatari Books House:
+ISBN:
+
+Follow us on:
+Preface
+
+                 Allah the Exalted said in Holy Quran: “We made from water every
+                 living thing” *. Hence, water is life!
+
+                 The protection of our national natural freshwater resources is part of
+                 our National Development Strategy.
+                 Qatar relies on seawater desalination as the main source for drinking
+                 water and on groundwater abstraction for agricultural purposes. The
+                 re-use of treated wastewater has become an important alternative
+                 source of water for agricultural and green spaces irrigation.
+                 Water policies of Qatar have achieved several successes, including
+                 safe drinking water for all population, minimum water loss, high-level
+                 treatment of urban wastewater and re-use of large proportions of
+                 treated wastewater. Statistics show that water use efficiency has
+                 increased in most economic sectors.
+                 However, our fresh groundwater reserves are still being
+                 overexploited, which leads to lower groundwater levels and increased
+                 salinity. This, in turn, makes it difficult to use the groundwater for
+                 irrigation and drinking water purposes in the future.
+                 According to available statistics, there is still the potential to increase
+                 the re-use of treated wastewater, so that household and economic
+                 activities will become more efficient in water consumption and
+                 reduction of water loss.
+                 All these measures will together contribute to water and food security
+                 and to sustainable development as per Qatar National Vision 2030.
+                 This Water Statistics Report gives a comprehensive overview on
+                 water sources and uses. Publishing these statistics is an important
+                 step to support knowledge-based decision-making in the water sector.
+
+                   Dr. Saleh M. Al-Nabit
+
+                 President of the Planning and Statistics Authority
+Water Statistics In the state of Qatar 2021
+
+ Acknowledgement
+
+   The Planning and Statistics Authority extends its sincere thanks and appreciation to the
+   ministries and government institutions and agencies for their cooperation in providing the
+   necessary data, which had a significant effect in preparing the report and measuring the
+   progress of water indicators in the State of Qatar. The Planning and Statistics Authority
+   also extends its thanks to everyone who has contributed to the preparation of the Water
+   Statistics Report in all its stages
+
+      6
+          Water Statistics In the state of Qatar 2021
+
+Contents
+
+Preface
+Acknowledgement
+Table of Contents
+
+      1- General information
+      2- Water Indicators in the 2030 SDGs
+      3- Water resources
+
+            3-1 Rationale
+            3-2 Key Messages
+            3-3 Statistics and Indicators
+
+                  3-3-1 Rainfall
+                  3-3-2 Groundwater Balance
+
+      4- Water production, Abstraction and Use
+
+            4-1 Rationale
+            4-2 Key Messages
+            4-3 Statistics and Indicators
+
+                  4-3-1 Water production and re-use
+                  4-3-2 Water use by economic activity
+                  4-3-3 Water loss
+                  4-3-4 Water use in agricultural activity
+                  4-3-5 Water use in industrial and construction activity
+                  4-3-6 Water use in commercial activity
+                  4-3-7 Water use in government activity
+                  4-3-8 Water use in domestic activity
+                  4-3-9 Demand for water
+                  4-3-10 Water use balance
+
+                                                                           7
+Water Statistics In the state of Qatar 2021
+
+          5- Urban Wastewater Production, Collection, Treatment and Discharge
+
+                 5-1 Rationale
+                 5-2 Key Messages
+                 5-3 Statistics and Indicators
+
+                       5-3-1 Urban wastewater collection and treatment infrastructure
+                       5-3-2 Treatment efficiency of urban wastewater treatment plants
+                       5-3-3 Sewage sludge generation
+                       5-3-4 Urban generated, collected and treated wastewater
+                       5-3-5 Discharge and re-use of Treated Sewage Effluent (TSE)
+
+          6- Annexes
+
+                      • Definitions
+                      • List of Acronyms
+                      • References and Data Sources
+                      • Tables
+
+      8
+GENERAL
+INFORMATION
+                        Water Statistics In the state of Qatar 2021
+
+1. General Information
+
+Qatar is situated midway along the western coast of the Arabian Gulf between latitudes
+24.27˚-26.10˚ North and longitudes 50.45˚–51.40˚ East. Its surface area is 11,636.8 km2,
+which includes several small islands in the Arabian Gulf such as Halul, Shira’who, Ashat
+and Al-Bishiria.
+
+The peninsula is approximately 185 km in length and 85 km in width. The waters of the
+Arabian Gulf surround the majority of the country, while the only land border of about 60
+km separates the country from the Kingdom of Saudi Arabia. The United Arab Emirates
+lie to the east and Bahrain to the northwest of the country.
+
+Qatar, in general, consists of flat rocky surfaces. It does, however, include some hills
+which reach an altitude of 100 m above sea level. Most of the country’s land is sandy
+desert covered with scrub plants and loose gravel. Moving sand dunes, with an average
+height of about 40 meters, are found in the southern part of the country and in the
+northeastern coast near Ras Laffan. The northern part of Qatar is relatively low and rises
+gradually to the west and southwest (See Map1-1).
+
+                                                                                            11
+Water Statistics In the state of Qatar 2021
+                                          Map 1-1: Relief Map of Qatar
+
+    Source: Planning and Statistics Authority
+      12
+                                                                                          Water Statistics In the state of Qatar 2021
+
+Qatar’s main groundwater basins include the Northern Basin, Southern Basin, Doha basin
+and the Allat Basin (See Map 2-1).
+
+                              Map 2-1: Groundwater Basins in the State of Qatar
+
+                                                                                    Al Ruwais
+
+320000 340000 360000 380000 400000 420000 440000 460000 480000             Arabian                  Gulf
+
+                                                                                    NORTHERN BASIN         Al Khor
+
+                                                                Dukhan
+
+                                                                                                   DOHA    Doha
+                                                                                                   BASIN   Al Wakra
+
+                                                                                  SOUTHERN BASIN
+
+                                                                                                           Umm Said
+
+                                                                Salwa
+
+                                                                Gulf
+
+                                                                           ALLAT
+                                                                           BASIN
+
+                                                                Abu Samra         ARUMA
+                                                                                  AQUIFER
+
+                                                                160000     180000          200000  220000  240000
+
+Source: Ministry of Environment and Climate Change
+
+                                                                                                                     13
+WATER INDICATORS
+     IN 2030 SDGS
+                                                                             Water Statistics In the state of Qatar 2021
+
+   2. Water Indicators in the 2030 SDGs
+
+          Table 2-1: Water indicators in sustainable developments (2016-2021)
+
+Goal Target Indicator  Indicator Name               2016 2017 2018 2019 2020 2021
+
+                       Mortality rate attributed
+
+                       to unsafe water, unsafe
+
+                       sanitation and lack of
+
+3  3.9    3.9.2        hygiene (exposure to         0    0    0     0          0      0
+
+                       unsafe Water, Sanitation
+
+                       and Hygiene for All
+
+                       (WASH) services)
+
+                       Unsafe water                 0    0    0     0          0      0
+
+3  3.9.2  3.9          Unsafe sanitation            0    0    0     0          0      0
+
+                       Lack of hygiene              0    0    0     0          0      0
+
+                       materials
+
+                       Proportion of population
+
+6  6.1    6.1.1        using safely managed         100% 100% 100%  100%       100%   100%
+                       drinking water services
+
+                       Proportion of population
+
+                       using safely managed
+
+6  6.2    6.2.1        sanitation services,
+                       including a hand-
+                                                    100% 100% 100% 100% 100% 100%
+                       washing facility with
+
+                       soap and water
+
+                       Proportion of
+
+6  6.3    6.3.1        wastewater safely            99.1% 98.9% 99.4% 99.6% 99.7% 99.7%
+
+                       treated
+
+                       Proportion of bodies of
+
+6  6.3    6.3.2        water with good ambient      ...  ...  ...   ...        ...    ...
+
+                       water quality
+
+6  6.4    6.4.1        Change in water-use          Water Efficiency in the Agricultural, Industrial and
+                       efficiency over time                        Commercial Sector (QR/L)
+
+                       Value added of               0.004 0.004 0.005 0.005    0.005  0.006
+                       agricultural activities (at
+                       constant prices 2018)
+                       (QR)/ amount of water
+                       used in the agricultural
+                       sector (liters)
+
+                                                                                                          17
+Water Statistics In the state of Qatar 2021
+
+Goal Target Indicator  Indicator Name             2016 2017 2018 2019 2020 2021
+
+6   6.4  6.4.2         Value added of industrial  16.8        33.9  15.6  11.6  13.2  12.8
+         6.5.1         activities (at constant     0.9         3.2   7.2   2.3   2.0   2.3
+6   6.5  6.b.1         prices 2018) (QR)/         229%        247%  247%  280%  396%  236%
+                       amount of water used in    80%         82%   82%   81%   90.5   9.7
+6   6.b                the industrial sector
+                       (liters)                   100%        100%  100%  100%  100%  100%
+                       Value added of
+                       commercial activities (at
+                       constant prices 2018)
+                       (QR)/ amount of water
+                       used in the commercial
+                       sector (liters)
+                       Level of water stress:
+                       freshwater withdrawal as
+                       a proportion of available
+                       freshwater resources
+                       Degree of integrated
+                       water resources
+                       management
+                       implementation (0-
+                       100%)
+                       Proportion of local
+                       administrative units with
+                       established and
+                       operational policies and
+                       procedures for
+                       participation of local
+                       communities in water
+                       and sanitation
+                       management
+
+...: Unavailable from source
+Source: Qatar Sustainable Development Goals Report 2016-2021
+
+18
+WATER
+RESOURCES
+                                                                         Water Statistics In the state of Qatar 2021
+
+   3.Water Resources
+
+   2.
+
+3.1 Rationale
+
+Qatar’s only natural freshwater resources are rainfall and groundwater. The conservation
+of the quality and quantity of the country’s groundwater resources is one of the targets of
+Qatar’s National Development Strategy.
+
+Table 3-1 shows the natural long-term water balance (1998–2021) of Qatar’s groundwater
+basins. The groundwater safe yield amounted to 54.2 million m3 per year. However, the
+current groundwater abstraction reached 250 million m3 per year, leading to depletion of
+aquifers, low groundwater levels and increased salinity.
+
+There are several ongoing projects to artificially increase the water recharge into aquifers
+(e.g. via recharge wells) and the artificial injection of TSE and distilled water. The
+irrigation return flow plays a significant role the overall water balance
+
+   Table 3-1: Natural water balance of Qatar’s aquifers
+                    (Annual average 1998-2021)
+
+No. Water Balance                     Million  Data Source
+                                      M3/Year
+                                               Qatar General Electricity and Water
+1 Recharge of aquifers from rainfall  72.2     Corporation (Long-term annual average 1998-
+                                               2021)
+2 Total renewable water resources*    72.2
+                                               Qatar General Electricity and Water
+3  Groundwater outflow into sea and   18.0     Corporation (Long-term annual average 1998-
+   deep saline aquifers                        2021)
+                                               Subtraction result (2-3)
+4  Average annual water balance       54.2
+   (groundwater safe yield) **
+
+   * FAO Aquastat, OECD, UNSD and Eurostat
+   ** Without the returns from irrigation
+
+     Source: Qatar General Electricity and Water Corporation (Kahramaa)
+
+                                                                                              21
+Water Statistics In the state of Qatar 2021
+
+ 3.2 Key Messages
+
+      a) During the period 2016-2021, the total rainfall (monitored at Doha International
+            Airport) was lower than the long-term average rainfall (1962-2021). The total
+            rainfall in 2021 in Doha International Airport made up 19% of the long-term
+            average.
+
+      b) Water abstraction from fresh groundwater is mainly for agricultural purposes (about
+            230 million m3 per year in recent years, i.e. 92% of total abstracted groundwater).
+
+      c) The annual water deficit (mainly caused by groundwater abstraction) varied
+            between 57 million m3/year and 184 million m3/year during the period 2016-2021.
+
+      d) Artificial recharge of groundwater aquifers by TSE injection, recharge wells and
+            recharge from irrigation are the main source for the national groundwater reserve
+            (22% of the annual additions to groundwater reserves from irrigation water, 65%
+            from artificial recharge and 13% from rainfall).
+
+3.3 Statistics and Indicators
+
+3.3.1 Rainfall
+
+Compared to the long-term average rainfall (1962-2021), the year 2021 is considered
+relatively dry with a total rainfall of 11.0 mm at Doha International Airport Station, i.e. 19%
+of the long-term average rainfall. In 2021, the highest annual rainfall was recorded at Al-
+Ruwais Station vis-à-vis the other monitoring stations, whereas the lowest rainfall (1.1 mm)
+was recorded in Dukhan Station (See Table 3-2).
+
+    Table 3-2: Rainfall average (mm) at selected monitoring stations in Qatar
+                                                2016-2021
+
+    Station (mm)        2016 2017 2018 2019 2020 2021
+
+    Mesaieed            69.7  92.2  42.7            101.4 34.6  10.4
+
+    Al-Ruwais           49.8  129.7 67.3            64.5  69.8  25.8
+
+    Dukhan              66.4  90.8  53.1            57.2  34.3  1.1
+
+    Doha Intl. Airport  101.1 78.4  119.9 83.4            70.6  11.0
+
+    Al-Karaana          33.6  66.2  47.1            43.3  42.9  7.9
+
+    Source: Civil Aviation General Authority – QMD
+
+22
+                                                                                 Water Statistics In the state of Qatar 2021
+   Map 2-2: Rainfall rate by years and selected stations (mm) 2016-2021
+
+Source: Planning and Statistics Authority
+                                                                                                                        23
+Water Statistics In the state of Qatar 2021
+
+  Figure 3-1 below shows that the annual rainfall for all years during the period (2016-2021)
+  was higher than the long-term annual average rainfall (1962-2021), except for the year
+  2021, where the annual rainfall rate reached 19% compared to the long-term annual rate
+  (1962-2021).
+
+Figure 3-1: Annual rainfall rate at Doha International Airport Station 2016-2021, compared
+
+mm                  101.1  78.4                  119.9  83.4  70.6   11
+140                 2016   2017                  2018   2019  2020  2021
+
+120
+
+100
+
+ 80
+              58.2
+
+ 60
+
+ 40
+
+ 20
+
+   0
+         1962-2021
+
+    Source: Qatar Civil Aviation Authority, QMD
+
+3.3.2 Groundwater Balance
+
+below displays the groundwater balance during the period (2016-2021). The total
+groundwater reserve (total recharge from rainfall, artificial recharge and irrigation returns)
+decreased from 212 million m3 in 2116 to 85 million m3 in 2021. However, the decline in
+the aquifer (which includes municipal, industrial and agricultural withdrawals and flow to
+the sea) was relatively constant at about 269 million m3 per year for the same period. This,
+in turn, led to an annual groundwater deficit ranging between 57 million m3 and 184 million
+m3 for the period (2016-2021).
+
+24
+                                                                                      Water Statistics In the state of Qatar 2021
+
+Figure 3-2: The Increase and decrease in ground water reserve as a percentage of the total
+                                               Water balance 2016-2021
+
+       Million m3
+                           400
+
+Increases in groundwater  300
+
+       stocks             200
+
+                          100
+
+                          0
+
+                          -100       -57     8          -4       -11    -64
+
+Decreases in groundwater  -200      2,016  2,017       2,018    2,019  2,020     -184
+             stocks                  -21    -21         -21      -21    -21
+                                    -230   -230        -230     -230   -230   2,021
+                          -300       -18    -18         -18      -18    -18    -21
+                                      96    135         126      113     80   -230
+Municipal and industrial              60     64          67       80     78    -18
+        abstractions                  55     77          72       65     46     19
+                                     -57     8           -4      -11    -64     55
+Agricultural abstractions                                                       11
+                                                                              -184
+Outflow (to sea)
+
+Recharge wells and irrigation
+              recharge
+
+TSE injection
+
+Recharge from rainfall
+
+Water balance
+
+Source: Ashghal, Kahramaa and computations by PSA
+
+The artificial and irrigation recharge wells represent the largest source of additions to
+groundwater reserve. The decrease in groundwater reserve is attributed to water
+withdrawal for agricultural purposes. Figure 3-3 below shows the increase and decrease in
+water reserve in 2021.
+
+               Figure 3-3: Increase and decrease in groundwater
+                   reserve as a percentage of total water 2021
+
+100%                                0.1%   4% 4%                Industrial abstractions
+ 90%                                                            Domestic abstractions
+ 80%                                                   0.1%
+ 70%
+ 60%           65%                                              Municipal abstractions
+ 50%                                                            Kahramaa abstractions
+ 40%                                              86%           Agricultural abstractions
+ 30%
+ 20%                     22%                           7%       Outflow (to sea)
+ 10%                     13%               Decreases in stocks  Artificial recharge
+   0%          Increases in stocks                              Recharge from irrigation
+                                                                Recharge from rainfall
+
+                                                                                           25
+WATER PRODUCTION
+ABSTRACTION AND USE
+                                                                               Water Statistics In the state of Qatar 2021
+
+4. Water Production, Abstraction and Use
+
+4.1 Rationale
+
+Qatar’s economy is rapidly growing with an ongoing population growth. Figure 4-1 below
+shows that during the period 2016-2021, the population rose from 2.6 million to 2.7 million
+people (4% growth rate). The annual GDP, however, decreased from QR 669 billion to QR
+658 billion (-1% growth rate) for the same period. The measures taken to meet the water
+needs of Qatar’s growing economy include the production of more water, increased water
+reuses and increased water use efficiency.
+
+Figure 4-1: Population and GDP Growth (at constant price for 2018) 2016-2021
+
+Population        Number of Population  GDP (constant prices, basis 218) GDP (million Q.R)
+2,850,000         669,221                                                                        675,000
+2,800,000
+2,750,000                                                           2,748,162 670,000
+2,700,000
+2,650,000                                                                 665,000
+2,600,000
+2,550,000                                                                 660,000
+2,500,000
+                  2,617,634                                         657,802 655,000
+                                                                                 650,000
+
+                                                                          645,000
+
+                                                                          640,000
+
+                                                                          635,000
+
+            2016  2017       2018       2019  2020                  2021
+
+                   Source: Planning and Statistics Authority
+
+The water available for use originates from the following sources:
+
+     1. Abstraction of fresh and saline groundwater.
+     2. Seawater desalination.
+     3. Re-use of Treated Sewage Effluent.
+
+The potential future water sources include water generated by the GTL process, which is
+currently recycled in industries, where excess water is discharged without use. Data about
+the quantity of freshwater produced by the GTL process are currently not available.
+
+                                                                                                          29
+Water Statistics In the state of Qatar 2021
+
+ 4.2 Key Messages
+
+      a) Total water production (desalination + fresh groundwater abstraction + re-use of
+            TSE) rose from 914 million m3 in 2016 to 1,104 million m3 in 2021.
+
+      b) Water demand is accompanied with economic and population growth.
+      c) Since 2011, abstraction from groundwater aquifers has remained at the same
+
+            annual level and has not shown a remarkable growth.
+      d) Real water loss of desalinated water was increased from 4% in 2016 to 6% in 2021.
+      e) In 2017 and 2018, productivity of water used in all economic activities has
+
+            increased, while it decreased slightly during the period 2019-2021.
+
+4.3 Statistics and Indicators
+
+4.3.1 Water Production and Re-Use
+
+Figure 4-2 below shows that in 2016, Qatar’s only sources of water were groundwater
+abstraction (27%) and desalinated seawater (61%). In 2016, treated wastewater for
+agriculture and green spaces irrigation purposes reached 11%, and increased to 17% in
+2021. It is noteworthy that in 2021 the main source of total water production was sea water
+desalination (61%), followed by groundwater abstraction (23%), and then reused TSE
+(16%).
+
+      Figure 4-2: Total water production and re-use by source of water (million m3)
+                                                      2016-2021
+
+million m3  Desalination from sea  Groundwater                         Reused TSE
+1200
+
+1000
+
+800
+
+600
+
+400
+
+200
+
+    0       2017  2018             2019                                2020          2021
+    2016
+
+          Source: Ashghal and Kahramaa
+          * Data for previous years have been changed from the source
+
+30
+                                                                                        Water Statistics In the state of Qatar 2021
+
+Figure 4-3 below shows that the total water production is closely related to the economic
+and population growth. There is a clear divergence between GDP growth rate and total
+water production rate (abstracted groundwater + desalinated seawater + reused TSE).
+
+Figure 4-3: Growth rates of GDP, population, total water production and groundwater
+                         abstraction (index base year 2006=100) 2006-2021
+
+    Index     GDP                     Population
+(2006 = 100)  Total water production  Groundwater abstraction
+
+    500                                                                       420
+    450
+
+400
+
+350
+
+300                                                          263
+
+250
+
+200                                                           215
+150 100                                                      101
+100
+
+ 50
+
+0
+
+     Source: PSA, Ashghal and Kahramaa; computations by PSA
+
+4.3.2 Water Use by Economic Sector
+
+Statistics indicate that used water quantity (net of loss/ after deducting the amount of water
+loss) decreased from 987 million m3 to 898 million m3 per year during the period 2016–
+2021. Figure 4-4 below shows that most of the water uses were allocated for agricultural
+and domestic purposes. However, the highest growth rates during the same period was in
+the industrial sector (18%), followed by the government sector (8%), whereas the growth
+of water use in the agricultural sector amounted to 1.4% (see Figure 4-5).
+
+                                                                                   31
+Water Statistics In the state of Qatar 2021
+       Figure 4-4: Water use by economic activity (million m3) (excluding loss) 2016-2021
+
+                      1200
+
+                  1000
+
+million m3        800
+
+                  600
+
+                  400
+
+                  200
+
+                          0   2016   2017   2018         2019                              2020       2021
+                              24.1   11.8   25.8         34.0                             29.00        30
+            Industry         195.53  57.7   25.8         85.0                             90.00        84
+            Commercial       133.34  107.0  122.0        156.7                            147.60      181
+            Government       291.70  299.6  310.0        316.1                            322.00      311
+            Agriculture      342.3   247.1  265.9        291.0                            295.00      293
+            Households
+
+                  *Industry includes water supplied by Kahramaa and by artificial wells.
+
+                   Source: Ashghal, Kahramaa and computations by PSA.
+
+                  Figure 4-5: Growth rates of water use by economic activity 2006-2021*
+                                                (Index base year 2006=100)
+
+    Index                    Households     Agriculture                                   Government
+(2006 = 100)                 Commercial     Industry
+
+      1600
+
+            1400
+
+            1200
+
+            1000                                                                                      984
+
+            800
+
+            600                                                                                       545
+
+            400                                                                                       341
+
+            200                                                                                       208
+
+                                                                                                      121
+
+            0
+
+                  *There are some differences in domestic used water from previous years due to the different
+                      method of computation from the source.
+
+                  Source: Ashghal, Kahramaa and computations by PSA
+
+32
+                         Water Statistics In the state of Qatar 2021
+
+As for water use in different sectors (domestic, industrial, commercial and government
+
+sectors) except for the agricultural sector, an increase was noted in the per capita share of
+total amount of water produced, reaching 249 m3 per year in 2021.
+
+Table 4-1: Per capita water consumption for different usages (m3/year/per capita)
+                                                   2016-2021
+
+Year   Per capita total     Per capita total          Per capita
+      water production   water transported to     consumption of
+2016                                           water transported to
+2017           216             the network
+2018           224          (including water         the network
+2019           231                                (excluding real
+2020           242                  loss)
+2021           246                   208             water loss)
+               249                                         199
+                                     217
+                                                           208
+                                     223
+                                                           214
+                                     234
+                                                           224
+                                     240
+                                                           226
+                                     245
+                                                           230
+
+Source: Kahramaa
+
+4.3.3 Water Loss
+
+Water loss occurs during the transport of drinking water, in wastewater sewers, in septic
+tanks or during evacuation and transport of septic tank's wastewater. As for the desalinated
+water, Kahramaa has statistics for the so-called “apparent loss and real loss” (according to
+the classification of the International Water Association (IWA)). Apparent loss and real loss
+are defined by IWA as follows:
+
+          Apparent loss consists of unauthorized consumption (theft or illegal use), and all
+          types of inaccuracies associated with production metering and customer metering.
+          Under-registration of production meters or over-registration of customer meters
+          leads to under-estimation of real losses. Over-registration of production meters and
+          under-registration of customer meters lead to over-estimation of real loss.
+
+          Real loss is the physical water loss from the pressurized system, up to the point
+          of customer metering. The volume lost through all types of leaks, bursts and
+          overflows depends on frequencies, flow rates, and average durations of individual
+          leaks.
+
+          Total loss is the sum of both apparent and real losses.
+
+With respect to analysis and indicators, it is extremely important to be explicitly clear which
+loss (total, real, apparent) is in discussion. The following Figure 4-6 presents the
+development of real loss and total loss from 2016 to 2021. Total loss increased from 10%
+to 26%, and real loss from 4% to 6%. The figure also shows that the total volume of net
+user supplies increased from 560 million m3 in 2016 to 669 million m3 in 2021. Total loss
+increased from 10% to 26%, and real loss from 4% to 6%. The figure also shows that the
+total volume of net user supplies increased from 560 million m3 in 2016 to 669 million m3 in
+2021.
+
+                                                                                   33
+Water Statistics In the state of Qatar 2021
+
+    Figure 4-6: Loss in distribution of drinking water 2016-2021
+
+                       System volume                                             Losses in % of
+                      input (million m3)                                         system volume
+
+                            800                                                         input 30%
+
+                            700                                                                      25%
+
+                            600                                                                      20%
+
+                            500
+
+                              400                                                        15%
+
+                              300                                                        10%
+
+                              200
+
+                              100                                                        5%
+
+                                          0  2008   2009   2010   2011    2012   2013    0%
+                                             504.4  473.0  489.5  536.8  497.62
+    Net supply to users (million                                                 492.39
+                     m3)
+
+    Real losses (million m3)                 21.8   23.5   24.5   25.94  39.21   40.8
+
+    Apparent losses (million m3)             33.8   108.6  123.0  108.3  152.2   135.81
+                                             10%    22%    23%    20%    28%      26%
+    Total losses (% of system                4%      4%     4%     4%     6%       6%
+            volume input)
+
+    Real losses (% of system
+            volume input)
+
+    Source: Kahramaa
+
+There are currently no statistics on water loss in wastewater sewers in Qatar; however,
+only estimates exist. In terms of water quantity, the issue of groundwater leakage into the
+sewer seems to be of a larger concern than the actual water loss. Leakage into the sewer
+may be responsible for the relatively high salinity of TSE of around 1,000 mg/l measured
+at Doha wastewater treatment plants (see Ashghal & Schlumberger study, 2013).
+
+4.3.4. Water Use in Agricultural Activity
+
+For the sake of simplicity (and in line with available data), the economic activity "agriculture,
+forestry and fishery" has been included under "agricultural activity".
+
+Groundwater and treated wastewater are the main sources of water for agricultural activity.
+The statistics in Table 4-2 indicate that the amount of treated wastewater used for
+agricultural purpose increased from 61.7 million m3 in 2016 to 77.2 million m3 in 2021. The
+percentage of treated wastewater used in agricultural activity was 24.8% of total water used
+in agricultural activity. According to Ashghal and Schlumberger study in 2013, water salinity
+at Doha wastewater treatment plants attained 1,000 mg/l, which is a major concern for
+water re-use in agriculture. The table also shows that from 2016 to 2021, the agricultural
+GDP increased from QR 1,043 million to QR 1,785 million.
+
+34
+                                                         Water Statistics In the state of Qatar 2021
+
+Table 4-2: Water used in agricultural activity by water source and agricultural GDP
+                               (at constant prices of 2018) 2016-2021
+
+Year         Abstracted      Productive         TSE          Total                  GDP
+2016        groundwater    farms (million  (Million m3)  (Million m3)  (Million QR at constant
+             (Million m3)
+                                  m3)          61.70        291.82          prices of 2018)
+                  230
+                                  0.12                                              1043
+
+2017        230            0.13            69.51         299.64              1258
+
+2018        230            0.3             79.67         309.97              1456
+
+2019        230            0.2             86.1          316.4               1499
+
+2020        230            3               88.96         321.96              1519
+
+2021        230            4               77.16         311.16              1785
+
+         Source: PSA, Kahramaa and Ashghal
+
+The Figure 4-7 below shows that the annual total water used in agricultural activity rose
+from 291.8 million m3 in 2016 to 311.2 million m3 in 2021. However, groundwater
+abstraction for agricultural purposes remained at the same level since 2016 (230 million
+m3/year).
+
+Figure 4-7: Water use in agricultural activity by water source (million m3) 2016-2021
+
+million m3                       TSE                     Groundwater
+
+    350
+
+300
+
+250
+
+200
+
+150
+
+100
+
+50
+
+0                2017            2018             2019                 2020        2021
+2016
+
+      Source: Kahramaa and Ashghal
+
+Figure (4-8) shows the efficiency of water used in agricultural activity: the 2016
+statistics indicate that 280 liters of water were needed to produce QR 1 of agricultural GDP,
+while in 2021, this amount decreased to 174 liters. As for productivity of water used in
+agricultural activity: in 2021, water productivity increased from its level in 2016, as one liter
+of water contributed to QR 0.006 of agricultural GDP, while it was QR 0.004 in 2016 (See
+Figure 4-9).
+
+                                                                                       35
+Water Statistics In the state of Qatar 2021
+
+       Figure 4-8: Growth rate of water used in agricultural activity and agricultural GDP (at
+                       constant prices of 2018) 2006-2021 (index base year 2006=100)
+
+   Index                Total water use (Agriculture)                   GDP (Agriculture)
+(2006=100)                                                                                              616
+
+   700
+
+   600
+
+500
+
+400
+
+300
+
+200         100
+
+100                                                                                             119
+
+    0
+         2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020 2021
+
+           Sources: PSA, Ashghal and Kahramaa and computations by PSA
+
+Figure 4-9: Water use efficiency (liter/QR of GDP) and water use productivity (GDP per each
+        liter of water used) in agricultural activity 2016-2021 (at constant prices of 2018)
+
+    QR/liter            GDP generated per liter water used (QR/liter)          liters/QR
+                        Water use per GDP (liters/QR)                             300
+
+    0.007        279.7
+
+    0.006               238.2                                                  250
+
+                               212.7  210.8            212.0
+
+    0.005                                                               174.3  200
+
+    0.004
+
+                                                                               150
+
+    0.003
+
+    0.002                                                                      100
+
+    0.001        0.004  0.004  0.005  0.005            0.005                           50
+    0.000        2016   2017   2018   2019             2020
+                                                                        0.006
+                                                                                       0
+
+                                                                        2021
+
+            Sources: PSA, Ashghal and Kahramaa and Computations by PSA
+
+36
+                                                   Water Statistics In the state of Qatar 2021
+
+4.3.5 Water Use in the Industrial Activity
+
+For the sake of simplification (and in line with the actual data available), the following
+economic activities are aggregated under the “industrial activity” category:
+
+• Mining and quarrying (including oil & gas)
+• Manufacturing
+• Supply of electricity, gas, steam and air conditioning.
+• Water supply, sewage activities and waste management and treatment.
+• Building and construction
+
+Industries in Qatar rely on three main sources of freshwater, namely:
+
+       1. Water supplied by Kahramaa
+       2. Water from groundwater wells for industrial purposes
+       3. Seawater desalinated in industrial plants. For this type (desalination), data is
+
+            unavailable. thus, analysis can only be done for that part of water which originates
+            from groundwater (self-abstraction by industries) and water statistics supplied by
+            Kahramaa.
+
+Statistics in Table 4-3 below indicate an increase in the annual water used in the industrial
+activity from 24.1 million m3 in 2016 to 30.2 million m3 in 2021. The GDP of the industrial
+activity also rose from QR 404.9 million in 2016 to QR 387.2 million in 2021.
+
+Table 4-3: Water used in industrial activity by water source and industrial GDP
+                             (at constant prices of 2018) 2016-2021
+
+Year  Water supplied    Industrial          Total water use               GDP
+2016   by Kahramaa    groundwater            (Million m3) *  (Million QR at constant
+        (million m3)                               24.08
+                           wells                                 prices of 2018) **
+             23.9      (Million m3)
+                                                                        404.877
+                            0.18
+
+2017  11.62           0.18                  11.8             399.921
+
+2018  25.6            0.18                  25.78            402.950
+
+2019  34              0.18                  34.18            397.269
+
+2020  29              0.18                  29.18            386.000
+
+2021  30              0.18                  30.18            387.217
+
+*Excluding desalinated industrial water.
+
+**Including mining and quarrying (including oil and gas), manufacturing, electricity and water and
+   building and construction.
+  Sources: PSA and Kahramaa
+
+                                                                                                    37
+Water Statistics In the state of Qatar 2021
+         Figure 4-10: Water used in industrial activity by water source (million m3) 2016-2021
+
+Million M3                 Water supplied by Kahramaa          Groundwater
+     40
+     35       2017         2018                          2019  2020            2021
+     30
+     25
+     20
+     15
+     10
+      5
+      0
+       2016
+
+         Source: Kahramaa
+
+Figure 4-11 below shows that GDP growth rate in the industrial activity is related to the
+amount of water used, even with improved water use efficiency and productivity. In 2016,
+about 0.06 liter of water was needed to produce QR 1 of industrial GDP, whereas 0.08 liter
+of water was needed to produce QR 1 of the same GDP in 2021. In other words, this means
+that the productivity of one liter of water was worth QR 16.8 of industrial GDP, whereas, in
+2021, the water productivity value decreased to QR 12.8 of industrial GDP per liter.
+
+Figure 4-11: Growth rate of water use in industrial activity and GDP at constant prices of
+                                2018 (index base year 2006=100) 2006-2021
+
+    Index                  Total water use (industry)          GDP (industry)
+(2006 = 100)
+
+    600
+
+    500                                                                        480
+
+    400                                                                        387
+
+    300
+
+    200
+
+    100
+
+    0
+
+              Source: Kahramaa and Computations by PSA.
+
+38
+                                                                                       Water Statistics In the state of Qatar 2021
+
+Figure 4-12: Water use efficiency (GDP liter/QR) and water use productivity (GDP per liter of
+               water used) in industrial activity (at constant prices of 2018) 2016-2021
+
+QR/liter             GDP generated per liter water used (QR/liter)         liters/QR
+                     Water use per GDP (liters/QR)
+  40
+  35                                                                       0.10
+  30
+                                           0.086                    0.078  0.09
+              0.059
+  25                                              0.076                    0.08
+  20
+  15                        0.064                                          0.07
+  10
+                                                                           0.06
+   5
+               16.8                                                        0.05
+
+   0                 0.030                                                 0.04
+              2016
+                                                                           0.03
+
+                                                                           0.02
+
+                     33.9   15.6           11.6   13.2              12.8   0.01
+                     2017   2018           2019   2020
+                                                                           0.00
+
+                                                                    2021
+
+Source: Kahramaa and Computations by PSA.
+
+4.3.6 Water Use in Commercial Activity
+For the sake of simplification (and in line with the actual data available), the following
+economic activities are aggregated under the “commercial activity” category:
+
+        • Wholesale and retail trade; Repair of motor vehicles and motorcycles.
+        • Transport and storage.
+        • Accommodation and food service activities.
+        • Information and communication.
+        • Financial and insurance activities.
+        • Real estate activities.
+        • Activities of households that employ personnel, and household activities in the
+
+             production of unmarked goods and services for their own use.
+
+The water supplied by Qatar General Electricity and Water Corporation "Kahramaa" is the
+only known source of water in commercial activity. Statistics in Figure 4-13 indicate an
+increase in total amount of water used in commercial activity in 2018 and 2021 from 25
+million m3 to 84 million m3.
+
+                                                                                                                              39
+Water Statistics In the state of Qatar 2021
+
+                     Table 4-4: Water used in commercial activity
+          and commercial GDP (at constant prices of 2018) 2016-2021
+
+          Year        Total water use (i.e.,                     GDP
+          2016          water supplied by           (Million QR at constant
+
+                      Kahramaa) million m3               prices of 2018)
+
+                                195.53                         179,624
+
+          2017                               57.68        182,748
+
+          2018                               25.8         186,751
+
+          2019                               85           190,149
+
+          2020                               90           181,347
+
+          2021                               84           190,575
+
+          * Trade, restaurants and hotels, transport and storage, information and communications,
+
+          finance and insurance, real estate services, household business and services.
+
+          Sources: PSA and Kahramaa
+
+           Figure 4-13: Water used in commercial activity (million m3) 2016-2021
+
+    Million M3
+     250
+
+    200
+
+    150
+
+    100
+
+    50
+
+    0           2017                         2018   2019  2020                           2021
+    2016
+
+                      Source: Kahramaa
+
+Figure 4-14 below shows that the GDP growth rate in the commercial activity is related to
+the water use quantity since 2016. Figure 4-15 below shows that about 1.1 liters of water
+were needed to produce QR 1 of commercial GDP in 2016, whereas only 0.43 liter of water
+was needed to achieve the same GDP in 2021. In other words, one liter of water used for
+commercial activities produced QR 0.92 of GDP in 2016, while one liter of water produced
+QR 2.27 of GDP in 2021.
+
+40
+                                                                                      Water Statistics In the state of Qatar 2021
+
+Figure 4-14: Growth rate of water used in commercial activity and commercial GDP (index
+                                          base year 2006=100) 2016-2021
+
+    Index           Total water use (commercial)         GDP (commercial)
+(2006 = 100)
+                                                                           490
+     900                                                                   341
+     800
+     700
+     600
+     500
+     400
+     300
+     200
+     100
+
+         0
+
+          Source: PSA and Kahramaa. Computaions by PSA.
+
+Figure 4-15: Water use efficiency (GDP liter/ QR) and water use productivity (GDP per liter of
+             water used) in commercial activity (at constant prices of 2018) 2016-2021
+
+QR/liter            GDP generated per liter water used (QR/liter)               liters/QR
+                    Water use per GDP (liters/QR)
+                                                                                  1.2
+8             1.09
+                                                                                  1.0
+7
+                                                                                  0.8
+6
+                                                                                  0.6
+5                                                                  0.44
+
+4                                   0.44                 0.50                     0.4
+
+3                      0.32         2.24                 2.01                     0.2
+                                    2019                 2020      2.27
+2                   3.17      0.14
+                    2017                                                          0.0
+1                             7.24                                 2021
+           0.92               2018
+
+0
+
+          2016
+
+   Source: PSA and Kahramaa.
+
+                                                                           41
+Water Statistics In the state of Qatar 2021
+
+  4.3.7 Water Use in Government Activity
+
+  For the sake of simplification (and in line with the actual data available), the following
+  economic activities are aggregated under “government activity” category:
+
+• Public administration and defence; and social security.
+• Education.
+• Activities in the field of human health and social work.
+• Arts, entertainment and leisure.
+
+Water supplied by Kahramaa and TSE used for irrigation of green spaces are the main
+water source for government activity. The statistics in Table 4-5 and Figure 4-16 below
+show that the water used in government activity increased from 133 million m3 in 2016 to
+around 181 million m3 in 2021. The percentage of 60% of water used in government activity
+originated from re-used TSE in 2021 (used for the irrigation of green spaces).
+
+As the government activity is mainly a consumer of goods and services, a comparison-
+based analysis of GDP with water use in government activity (as analyzed in agricultural,
+industrial and service activities) would not be useful, even if there are certain government
+services which are included in the GDP computation
+
+    Table 4-5: Water used in government activity by water source (million m3/year)
+                                                     2016-2021
+
+    Year  Water supplied by       TSE (for irrigation       Total water used
+    2016       Kahramaa           of green spaces)                 133.34
+    2017                                                           107.03
+                90.86                      42.48
+
+                46.00                      61.03
+
+    2018  50.80                   71.21                     122.01
+
+    2019  80.00                   76.65                     156.65
+    2020  61.00                   86.57                     147.60
+    2021  73.00                   107.86                    180.86
+
+    Source: Ashghal and Kahramaa
+
+42
+                                                     Water Statistics In the state of Qatar 2021
+
+              Figure 4-16: Water used in government activity by water source
+                                           (Million m3) 2016-2021
+
+Million M3    TSE (irrigation of greenspaces)  Water supplied by Kahramaa
+    200
+
+180
+
+160
+
+140
+
+120
+
+100
+
+80
+
+60
+
+40
+
+20
+
+0             2017                       2018  2019  2020                     2021
+2016
+
+            Source: Ashghal and Kahramaa.
+
+Figure 4-17: Growth rate of water used in government activity and GDP (index base year
+                                                   2006) 2006-2021
+
+    Index     Total water use (governmental)         GDP (governmental)
+(2006 = 100)
+
+1200
+
+                                                                                                                                984
+1000
+
+800
+
+600                                                                           428
+
+400
+
+200 100
+
+0
+
+              Source: PSA and Kahramaa.
+
+                                                                                                                                     43
+Water Statistics In the state of Qatar 2021
+
+ 4.3.8 Water Use in Domestic Activity
+
+ The water used by households depends mainly on Kahramaa water supply. However, there
+ are also domestic wells and municipal wells, which mainly provide water for domestic use.
+ Data of water supplied by Kahramaa in Table 4-6 and Figure 4-18 show that water used
+ by household decreased during the period 2016-2021. In 2016, the households used about
+ 304 million m3, whereas they used about 293 million m3 in 2021.
+
+Table 4-6: Water used in domestic activity by water source (million m3/year) 2016-2021
+
+         Year  Water supplied       Domestic wells  Municipal wells  Total water use
+                by Kahramaa
+                                            9.7             10.4            303.5
+         2016              283.43           9.7             10.4            247.2
+         2017              227.06           9.7             10.4            266.0
+         2018              245.9            9.7             10.4            291.1
+         2019                               9.7             10.4            295.1
+         2020                271            9.7             10.4            293.1
+         2021                275
+                             273
+
+    Data source: Kahramaa
+
+Figure 4-18: Water used in domestic activity by water source (million m3) 2016-2021
+
+Million M3     Water supplied by Kahramaa  Municipal wells Domestic wells
+   350
+
+    300
+
+    250
+
+    200
+
+    150
+
+    100
+
+    50
+
+    0          2017                 2018   2019     2020                   2021
+    2016
+
+            Data sources: Kahramaa
+
+44
+                                                                                        Water Statistics In the state of Qatar 2021
+
+4.3.9 Demand for Water
+
+The table below shows that the demand for water decreased in 2021 from 2020 by 2%.
+However, the prevailing trend for water demand shows an annual increase in general since
+2016 by an annual average of 5%. With regard to the number of subscribers, it increased
+from 297.2 thousand in 2016 to 406.7 thousand subscribers in 2021.
+
+Table 4-7: Demand for water by type, number and growth rate of subscribers
+                                              (2016-2021(
+
+Year    Average          Average     Average              No. of        Annual
+      demand for        demand in   demand in         subscribers   growth rate of
+2016  distribution      industrial  residential                      subscribers
+2017
+2018       314            activity    activity        297,261       7.10%
+2019       343               20          294          317,215       6.70%
+2020                                                  329,832       4.00%
+2021       359               22          321          363,338       10.20%
+                                                      382,932       5.40%
+           379               23          336          406,745       6.20%
+
+           393               23          356
+           386
+                             23          370
+
+                             24          362
+
+Data sources: Kahramaa
+
+4.3.10 Water Use Balance
+
+In 2021, the water quantity available for use amounted to 1,173.49 million m3, including
+desalinated water (prior to computation of loss), abstracted groundwater and treated and
+untreated urban wastewater.
+
+The amount of water used by final consumers (including agricultural, industrial,
+commercial, government and domestic activities) consists of the water available for use
+less water losses and wastewater discharged without re-use. The process of injecting TSE
+into aquifers is a way to compensate over-exploitation, but not a final use. Thus, it is shown
+separately in the aggregate water balance (Table 4-8).
+
+                        Table 4-8: Aggregate Water Use Balance (million m3), 2021
+
+                                     Description          Million m3/year
+Water potentially available for use (a)               1173.49
+Water loss (b)                                        176.61
+Amount of discharged wastewater without reuse (c)     114.42
+Amount of water injected into aquifers                69.21
+Amount of water used by final consumers (=a – b – c)  882.46
+
+The following Table 4-8 displays the details of water use balance.
+
+                                                                            45
+Water Statistics In the state of Qatar 2021
+
+     Table 4-8: Details of water use balance (water balance/ million m3), 2021
+
+                Description     Water potentially   Water use                       Remarks
+Desalinated water                available for use  and losses  Water supplied by Kahramaa
+
+                                669
+
+Fresh groundwater               250.28                          Including data on agricultural,
+abstraction                                                     municipal, domestic and industrial
+                                                                wells.
+
+TSE                             253.21                          Wastewater discharged by urban
+                                                                wastewater treatment plants
+
+Wastewater discharged           1                               Discharge of untreated wastewater
+without treatment                                               into lagoons
+
+Total water potentially         1173.49                         Water available before loss
+available for use
+
+Untreated wastewater                                1
+
+Apparent amount of distilled                        135.81      Total losses
+water loss
+                                                    40.80
+Real amount of distilled water                      13.40
+loss                                                0.11
+                                                    54.70
+TSE discharged into lagoons
+
+TSE discharged into sea
+
+TSE injected into deep
+aquifers
+
+Water used in agricultural                          311.156     Groundwater and TSE
+activity                                            114.18
+                                                                Water supplied by Kahramaa, and
+Water used in industrial and                        293.1       water supplied by industrial wells,
+commercial activities                               180.86      including big industrial complexes
+                                                    28.39       and hotels.
+Water used in domestic                              1173.056
+activity                                                        Water supplied by Kahramaa,
+Water used in government                                        domestic wells and municipal
+activity                                                        wells.
+
+Uses or losses of desalinated                                   Water supplied by Kahramaa and
+water not indicated                                             TSE for irrigation of green spaces
+
+Total water uses and losses                                     Such differences between water
+                                                                input to the system and uses or
+                                                                losses from the source are not
+                                                                indicated
+
+46
+   URBAN WASTEWATER
+PRODUCTION, COLLECTION
+TREATMENT AND DISCHARGE
+                                                                                           Water Statistics In the state of Qatar 2021
+
+ 5. Urban Wastewater Production, Collection,
+ Treatment and Discharge
+
+5.1 Rationale
+
+In the State of Qatar, the collection and treatment of urban wastewater is an important
+measure to re-use this water for irrigation, cooling and groundwater recharge and to protect
+the environment from adverse impacts of water-borne pollution. Furthermore, this
+infrastructure is essential to provide appropriate sanitation services for all individuals
+across the State.
+Since rainfall rates in Qatar are one of the world’s lowest and with Qatar moving towards
+integrated water resource management, treated wastewater is a “significant alternative to
+desalinated seawater” and abstraction of Qatar’s limited fresh groundwater resources. The
+use of TSE is an important measure to achieve more sustainable water use.
+
+5.2 Key Messages
+
+     a) The design capacity of urban wastewater treatment plants increased from 827
+          m3/day in 2016 to 1,022 m3/day in 2021.
+
+     b) In terms of type of treatment, all wastewater treatment plants in Qatar are equipped
+          with at least a secondary treatment.
+
+     c) Urban wastewater treatment plants remove more than 99% of organic pollution.
+     d) In 2021, 99% of urban wastewater generated was treated at treatment plants.
+     e) In 2021, 30% of TSE was used for agriculture irrigation and 42% for green space
+
+          irrigation.
+
+5.3 Statistics and Indicators
+
+5.3.1 Urban Wastewater Collection and Treatment Infrastructure
+According to statistics from the Population, Housing and Establishment Census (1986–
+2020), the number of completed buildings connected to public sewage increased from 127
+thousand (87.7% of total completed buildings) in 2015 to 157 thousand (94.7% of total
+completed buildings) in 2020 (see Figure 5-1)
+As for buildings not connected to public sewage yet, they are served by tankers that
+transport wastewater to treatment plants and sewage lagoons.
+
+                                                                                                                                 49
+Water Statistics In the state of Qatar 2021
+
+ Figure 5-2 shows that the highest percentage of buildings connected to public sewage
+ according to Census 2020 was in the municipalities of Al Rayyan, Doha, Al Shamal and al
+ Khor (100%), whereas the lowest percentage was in Al Dhaayen Municipality (67.5%).
+
+    Figure 5-1: Number of completed buildings connected to public sewage, Census
+                                                       1986-2020
+
+Completed                         Connected to sewer      Not connected to sewer
+Buildings
+                                                                   17,698          8,829
+   180,000                                                                        156,790
+   160,000                                                29,559
+   140,000                                                                          2020
+   120,000                         23,872         27,853           126,549
+   100,000                         40,528         57,952
+                                    1997           2004   98,515
+     80,000
+     60,000     24,553
+     40,000     25,037
+     20,000      1986
+
+             0
+
+                                                          2010     2015
+
+                Source: PSA
+
+    Figure 5-2: Number of completed buildings by connection to public sewage and
+                                          municipality, Census 2020
+
+    Completed Buildings                    Not connected to sewer  Connected to sewer
+
+    Al Sheehaniya         42 4036
+
+          Al Dayyan       3772
+
+          Al Shamal                  7839
+    Al Khor and Al        0
+
+        Thakhira            1751
+           Umm Slal       5
+
+            Al Wakra                  8972
+                          7
+          Al Rayyan
+                                          11950
+                 Doha
+                          5003             13222
+
+                          0                                                       61893
+
+                          0                                          47127
+                                                                   50,000 60,000
+                       0        10,000 20,000     30,000  40,000                  70,000
+
+                             Source: PSA
+
+50
+                                                                                       Water Statistics In the state of Qatar 2021
+Map 5-1: Percentage of completed buildings connected to public utilities by municipality
+
+                                                      Census 2020
+
+      Source: PSA
+                                                                                                                              51
+Water Statistics In the state of Qatar 2021
+   Map 5-2: Percentage of completed buildings connected to water and sewage network by
+                                        municipality, 2015 and 2020 censuses
+
+            Source: PSA
+      52
+                                                          Water Statistics In the state of Qatar 2021
+Table 5-1: Wastewater at Sewage Plants 2016-2021
+
+Description                        2016     2017 2018      2019   2020      2021
+
+Number of sewage plants            23       24   24    26         26    27
+                                   827
+Total design capacity of           209,518  828  965   966        1,022 994
+wastewater treatment plants (1000  204,392
+m3/day)                                     231,473 257,829 278,216 291.5 255,049
+Amount of collected wastewater
+(1000 m3 /year)                             228,668 256,467 276,114 285.8 253.2
+
+Amount of treated wastewater
+(1000 m3 /year)
+
+Percentage of treated wastewater   97.6%    98.8% 99.5% 99.2% 99.7 99.7
+to total wastewater                61,699   69,508 79,669 86,056 88,957 77,156
+                                   42,480
+Treated wastewater used for        60,364   61,029 71,208 76,648 86,568 107,862
+agriculture irrigation (1000 m3    39,168
+/year)                             681      63,859 66,892 79,706 78,034 54,697
+                                   41,551
+Amount of treated wastewater       197      33,817 38,161 33,001 32,313 13,401
+used for green space irrigation    1.9
+(1000 m3/year)                     89.7     455  546   713        55    107
+
+Amount of treated water used for            41,554 37,688 39,096  40,960 41,349
+injecting groundwater (1000
+m3/year)                                    224  202   191        203   210
+
+Amount of treated water                     2.4  1.62 0.995       0.825 0.678
+discharged into lagoons (1000
+m3/year)                                    95.4 100.9 90.9       98.5 81.1
+
+Amount of treated water
+discharged into the sea (1000
+m3/year)
+
+Dry sludge from wastewater
+(ton/year)
+
+Sludge from wastewater (1000
+m3/year)
+Amount of wastewater not
+collected at sewage plant and is
+discharged into lagoons without
+treatment (million m3/ year)
+Total surface groundwater
+discharged into the sea (million
+m3/year)
+
+     Data source: Ashghal
+
+By 2021, the number of wastewater treatment plants reached 27. The statistics in Table 5-
+2 and Figure 5-3 indicate an increase in the design capacity of urban wastewater treatment
+from 827 m3/day in 2016 to 994 m3/day in 2021 (an annual growth rate of 4%). All urban
+wastewater treatment plants are equipped with at least secondary treatment methods,
+ensuring, to a large extent, the elimination of organic pollution.
+
+                                                                                 53
+Water Statistics In the state of Qatar 2021
+
+    Figure 5-3: Hydraulic design capacity of wastewater treatment plants by type of treatment
+                                                             2016-2021
+
+1,000 m3/day         Secondary treatment                     Tertiary Treatment (Disinfection)
+ 1,200               Tertiary treatment (N + P removal)
+
+1,000
+
+    800
+
+    600
+
+    400
+
+    200
+
+    0                      2017    2018                2019  2020            2021
+               2016
+
+          Source: Ashghal
+
+Table 5-2: Hydraulic design capacity of operating wastewater treatment plants by type of
+                                     treatment, (1,000 m3/day) 2016-2021
+
+    Year             Secondary     Tertiary treatment    Tertiary treatment  Total treatment
+                     treatment        (disinfection)       (N+P removal)         capacity
+    2016
+    2017                      2.1             141.8                 683.5              827.4
+    2018                      2.1             142.3                 683.5              827.9
+    2019                    1.95                                                       964.6
+    2020                    1.95                175                   788              965.9
+    2021                    1.95                176                   788            1,022.1
+                            1.95                232                   788              994.1
+                                                204                   788
+
+    Source: Ashghal
+
+54
+                                                                                        Water Statistics In the state of Qatar 2021
+
+The statistics in Table 5-3 refer to all urban wastewater treatment plants in Qatar by type
+of treatment, design capacity and amount of wastewater received.
+
+Table 5-3: Urban wastewater treatment plants by type of treatment, design capacity
+                             and amount of wastewater received, 2021
+
+                Treatment Plant     Type of            Hydraulic Design          Amount of
+                                  Treatment                  Capacity    Wastewater Received
+Al-Jamiliyah PTP                  Secondary
+Al-Khuraib PTP                   (sterilization)   (1,000      (1,000         (1,000 m3/year)
+Slaughterhouse PTP                                m3/day)     m3/year)
+Ras bu Fontas PTP                   Tertiary                             90
+Al-Dhakhira PTP                  (disinfection)   0.54     71941.5       29
+New Al-Dhakhira PTP                                                      36
+Al-Khor PTP                       Tertiary (N     0.06     7993.5        112
+Al Shamal PTP (3)                    and P                               0
+Barwa Al Baraha PTP                               0.18     107912.3      5,879
+Barwa City STW                     removal)                              1,552
+Barwa Msaimeer PTP                                0.54     71941.5       226
+Barwa Siliyah PTP                                                        3,532
+Barwa Village PTP                                 0        426320        2,921
+Duhail PTP                                                               335
+Industrial Area STW                               56.2     0             270
+Al Ghazal                                                                199
+Al Shihaniyah                                     9.72     1294947       0
+Al Karaanah                                                              23278
+Jeryan (2)                                        0.6      79935         144
+North Camp Mobile Station (2)                                            648
+Barzan (1)                                        12       1598700       2,945
+North Camp                                                               85
+                                                  15       1998375       266
+Doha North STW                                                           214
+Doha West STW (1)                                 1.5      199837.5      98
+Doha South STW                                                           47035
+Lusail                                            1.5      199837.5      88925
+Total (1)                                                                68,778
+                                                  1        133225        11177
+                                                                         258774
+                                                  0        107912.3
+
+                                                  90       7993500
+
+                                                  0.44     58619
+
+                                                  1.345    179187.6
+
+                                                  10       1332250
+
+                                                  0.25     33306.25
+
+                                                  1        133225
+
+                                                  3.3      439642.5
+
+                                                  0.245    32640125
+
+                                                  244
+
+                                                  280
+
+                                                  204
+
+                                                  60
+
+                                                  993.42
+
+(1) Total does not include Slaughterhouse
+      Source: Ashghal
+
+                                                                                    55
+Water Statistics In the state of Qatar 2021
+
+   5.3.2 Treatment Efficiency of Urban Wastewater Treatment Plants
+
+   Figure 5-4 and Figure 5-5 show that Organic pollution in terms of BOD5 has been
+   removed by 99% in most of the years during the period 2016-2021. In terms of COD, the
+   removal rates reached 96% in most of the years during the same period.
+
+                        Figure 5-4: Treatment of BOD5, 2016-2021
+
+            BOD incoming load       BOD discharged load         BOD treatment efficiency
+
+Ton            98.8%       98.7%       98.8%       98.9%        98.9%                     Removal
+60,000                                          46,511                          99.2% Rate )٪(
+50,000      39,926      40,288      42,412
+40,000                                                 530                                      100%
+30,000             485         529         513      2019
+20,000          2016        2017        2018                    50,702          50,163   80%
+10,000                                                                                   60%
+
+        0                                                                                40%
+
+                                                                   560             422   20%
+                                                                2020            2021     0%
+
+            Data source: Ashghal and computations by PSA
+
+                        Figure 5-5: Treatment of COD, 2016-2021
+
+            COD incoming load       COD discharged load         COD treatment efficiency
+
+  Ton                                                                                    Removal
+
+140,000     95.9%       95.9%       96.2%           96.2%           96.4%                  Rate )٪(
+120,000                                         114,982         117,456         96.9%
+100,000
+                                                         4,354           4,257                  100%
+ 80,000                                             2019            2020
+ 60,000                                                                                  90%
+ 40,000
+ 20,000                                                                                  80%
+
+         0  101,649     103,636     105,637                                     103,668  70%
+                                                                                         60%
+
+                                                                                         50%
+
+                                                                                         40%
+
+                                                                                         30%
+
+                                                                                         20%
+
+                 4,169       4,275      4,056                                   3,262 10%
+            2016        2017        2018
+                                                                                         0%
+
+                                                                                2021
+
+            Data source: Ashghal and computations by PSA
+
+56
+                                                                                      Water Statistics In the state of Qatar 2021
+
+Figure 5-6: Rates of BOD5, COD, total nitrogen and phosphorus removal at UWWTP Doha
+                                                     West 2016-2021
+
+Removal Rate        Nitrogen  Phosphorus                  BOD5        COD
+                                                                2020     2021
+100%
+
+90%
+
+80%
+
+70%
+
+60%
+
+50%
+
+40%
+
+30%
+
+20%
+
+10%
+
+0%                  2017      2018                  2019
+              2016
+
+      Data source: Ashghal and computations by PSA
+
+5.3.3 Sewage Sludge Generation
+
+With the increase of treatment design capacity of the UWWTPs, the generation of sewage
+sludge also increased. In 2016, 197,000 m3 of sewage sludge were generated, amounting
+to 42 thousand tons of dry solids (water content was about 83%). Whereas in 2021, urban
+wastewater treatment plants in Qatar produced 210,000 m3 of sewage sludge, which
+included 41,000 tons. Its water content was approximately 84%, including 41,000 tons of
+dry solids (see Figures 5-7 and 5-8).
+
+                                                                               57
+Water Statistics In the state of Qatar 2021
+
+     Figure 5-7: Generation of sewage sludge at urban wastewater treatment plants by mass
+                                               (tons of dry solids) 2016-2021
+
+   Ton       41,551           41,554  37,688  39,096  40,960  41,349
+42,000       2016             2017    2018    2019    2020    2021
+41,000
+40,000
+39,000
+38,000
+37,000
+36,000
+35,000
+
+             Data source: Ashghal
+
+Figure 5-8: Generation of sewage sludge at urban wastewater treatment plants by volume
+                                                 (1,000 m3) 2016-2021
+
+    1000 m3
+
+230                  224
+
+220
+
+210                                   202             203     210
+                                      2018            2020    2021
+200          197
+
+190                                           191
+                                              2019
+180
+
+170                  2017
+               2016
+
+        Data source: Ashghal
+
+58
+                                                                                        Water Statistics In the state of Qatar 2021
+
+5.3.4 Urban Generated, Collected and Treated Wastewater
+
+In Qatar, the urban wastewater is collected by sewage network and by tankers. All of the
+wastewater connected to sewage network and most of the wastewater generated by
+households and collected by tankers are both treated at UWWTPs. However, some of the
+wastewater collected by tankers is discharged into lagoons (lakes) without treatment, which
+are mainly collected from non-household sources.
+
+Table 5-4 shows that the collected wastewater increased from 209.5 million m3 in 2016 to
+255 million m3 in 2021, where about 5.3% (0.7 million m3) of total wastewater generated
+was discharged into lagoons without any treatment.
+
+Table 5-4: Urban wastewater generated by method of handling and discharge without
+                                      treatment (million m3) 2016-2021
+
+     Urban Wastewater      2016   2017   2018   2019   2020   2021
+
+Total collected            209.5  231.5  257.8  278.2  291.5  255.0
+wastewater
+
+Total treated wastewater 204.4    228.7  256.5  276.1  285.8  253.2
+
+Secondary treated          0.29   0.31   0.41   0.36   0.37   0.26
+wastewater                 204.1  228.4  256.1  275.7  285.4  253.0
+                           1.9    2.4    1.6    1.0    0.8    0.7
+Tertiary treated
+wastewater
+
+Wastewater without
+treatment
+
+     Data source: Ashghal
+
+                                                                     59
+Water Statistics In the state of Qatar 2021
+          Map 5-3: Percentage of treated wastewater to total wastewater by UWWTPs, 2021
+
+         Source: PSA
+     60
+                                                                                        Water Statistics In the state of Qatar 2021
+
+5.3.5 Discharge and Re-Use of Treated Sewage Effluent (TSE)
+
+With the expansion of the wastewater treatment capacity since 2016, the production of
+wastewater increased from 204.5 million m3 in 2016 to around 255 million m3 in 2021. The
+government activity became the most important user of TSE (41.5% of TSE was used for
+green space irrigation), followed by the agricultural activity (29.7% in 2021). About 21.1%
+of TSE was used for deep injection into aquifers and about 5.2% was not used and
+discharged into lagoons. (See Figure 5-9 and Figure 5-10).
+
+Figure 5-9: Use and discharge of treated sewage effluent (TSE) (million m3) 2016-2021
+
+      Agriculture  Greenspaces  Aquifers      Lagoons      Sea  District Cooling
+million m3              2017     2018              2019
+                                                                2020    2021
+       300
+       250
+       200
+       150
+       100
+
+        50
+          0
+           2016
+
+Source: Ashghal and PSA
+
+Figure 5-10: Percentage distribution of use and discharge of TSE, 2021
+
+                                Sea           District Cooling
+                                0.0%                 2.5%
+
+                                     Lagoons
+                                        5.2%
+
+                                Aquifers      Agriculture
+                                 21.1%           29.7%
+
+                          Greenspaces
+                                41.5%
+
+Source: Ashghal and Computations by PSA
+
+                                                                                  61
+                               Water Statistics In the state of Qatar 2021
+
+Annexes
+
+                                                                      63
+Water Statistics In the state of Qatar 2021
+
+ Definitions
+
+ISIC Classification  Economic                ISIC Rev. 4
+       Code/s         Activity
+
+      E 36           Water supply            This includes the collection, treatment and distribution of water
+      E 37           industry                for domestic and industrial needs. Collection of water from
+                                             various sources, as well as distribution by various means is
+    A 01-03          Wastewater              included.
+    C 10-33          treatment
+    D 351            (sewage)                Sewage includes:
+
+                                             - Operation of sewage network facilities or sewage treatment
+                                               facilities.
+
+                                             - Collection and transportation of human or industrial wastewater
+                                               from one or several users, as well as rainwater through sewage
+                                               networks, collectors, tanks and other means (sewage vehicles,
+                                               etc.
+
+                                             - Release and cleaning of cesspools and contaminated
+                                               reservoirs, drains and wells from sewage; maintenance of
+                                               toilets with chemical sterilization.
+
+                                             - Wastewater treatment (including human and industrial
+                                               wastewater, swimming pool water, etc.) through physical,
+                                               chemical or biological processes, such as dissolution,
+                                               screening, filtration, settling, etc.
+
+                                             - Maintenance and cleaning of collectors and sewerage
+                                               networks, including cleaning of collectors.
+
+                     Agriculture,            The agriculture, forestry and fishing sector covers crop and
+                     forestry and            animal production, fishing and related services; forestry and
+                     fishing                 logging; and fishing and aquaculture. This section includes
+                                             operations related to the exploitation of natural crop and animal
+                                             resources. It also includes growing crops, raising and breeding
+                                             of animals, harvesting of timber and other plants, and
+                                             exploitation of animals or animal products from a farm or their
+                                             natural habitats.
+
+                       Manufacturing           Manufacturing includes the physical or chemical transformation
+                                               of materials or components into new products. The materials or
+                     Electricity               components transformed are raw materials from products of
+                     Industry                  agriculture, forestry, fishing, mining or quarrying, as well as
+                                               products of other manufacturing industries. In general, the
+                                               processes of modification, renovation or basic transformation of
+                                               some materials are considered to be manufacturing industries.
+
+                                             Electricity generation, transmission and distribution.
+
+64
+Term                                                                            Water Statistics In the state of Qatar 2021
+
+Precipitation            Definition
+
+Actual                   The total volume of wet precipitation (rain, snow, hail, dew, etc.) that falls on the
+evapotranspiration       territory of a country over a year, in million cubic metres.
+
+Internal flow            The total actual volume of evaporation from the ground, wetlands, natural water
+                         bodies and vegetation transpiration. According to the definition of this concept in
+                         hydrology, evapotranspiration resulting from all human interventions is excluded,
+                         except for unirrigated agriculture and forestry. The actual evapotranspiration is
+                         calculated using different types of mathematical models, ranging from very simple
+                         logarithms (Budyko, Turn Pyke, etc.), to schemes that represent the hydrological
+                         cycle in detail.
+
+                         The total volume of river runoff and groundwater generated exclusively from
+                         precipitation into a territory over a period of a year under natural conditions. The
+                         inflow is equal to precipitation less actual evapotranspiration and can be calculated
+                         or measured. If river runoff and groundwater generation are to be measured
+                         separately, transfers between surface water and groundwater should be filtered out
+                         to avoid double counting.
+
+Inflow of surface water  Total volume of actual inflow of rivers and groundwater from neighboring territories.
+and groundwater from     The border waters should be divided equally between the two riverine territories,
+neighboring territories  unless there are other water-sharing agreements.
+
+Renewable freshwater     = inflows of surface water + groundwater and inflows from neighboring territories.
+resources
+
+Outflows of surface      Actual outflows of rivers and groundwater to neighboring territories.
+water and groundwater
+into neighboring
+countries
+
+Water secured by         The volume of surface water and groundwater secured by formal agreements that
+treaties                 outflow from a given territory to neighboring territories annually.
+
+Water not secured by     The volume of surface water and groundwater not secured by formal agreements
+treaties                 that outflow from a given territory into neighboring territories annually.
+
+Outflow of surface       The actual outflow of rivers and groundwater into the seas.
+water and groundwater
+into the seas
+
+Long term annual         Arithmetic average over a period of at least 30 consecutive years. Please indicate
+average                  the average over the available period and the length of the period in the footnotes.
+
+                                                                                                65
+Water Statistics In the state of Qatar 2021
+
+Term                      Definition
+
+Fresh surface water       fresh water that flows or settles on the surface of a landmass; It forms natural
+                          waterways such as rivers, canals, fairway, lakes, etc., as well as artificial waterways
+Fresh surface water       such as irrigation canals, industrial or navigational channels, drainage networks and
+Abstracted fresh          artificial reservoirs. For the purposes of this questionnaire, the water obtained from
+surface water             filtration is included under (fresh) surface water. Sea water and transitional waters
+Abstracted fresh          such as semi-saline swamps, ponds and estuaries are not considered as fresh
+groundwater               surface water.
+Abstracted fresh water
+                          The water obtained from filtration is the result of using the geological formations
+                          located near the surface water masses in the filtration of drinking water. Wells are
+                          drilled in the sandy sediments adjacent to water masses, and water is abstracted
+                          from these wells. The water in the water masses is filtered by passing through the
+                          sediments, in order to remove pollutants.
+                          Freshwater contained in underground formations that can usually be recovered
+                          from or through such formations, and all permanent or temporary sediments of
+                          water, artificially or naturally entrained into the subsoil, of sufficient quality for at
+                          least seasonal use. This category includes the water-bearing layer and the deep
+                          layer that is or is not under pressure contained in the porous or loose soil. For the
+                          purposes of this questionnaire, groundwater includes concentrated springs and
+                          springs distributed under surface water.
+                          Water taken from any surface water source such as rivers, lakes, reservoirs or
+                          rainwater, whether permanent or temporary.
+
+                          Water taken from any underground water source, whether permanent or temporary.
+
+                          Water taken from any water source (surface water sources such as rivers, lakes,
+                          reservoirs or rainwater, and groundwater sources), whether permanent or
+                          temporary. It includes abstraction by the water supply industry for distribution
+                          purposes, and direct abstraction by other activities for self-use. The volume of water
+                          abstracted is distributed according to the major categories of economic activity of
+                          the extractor (according to ISIC Rev.4) and the households.
+
+Fresh water abstracted    The amount of water abstracted from surface water sources (rivers, lakes,
+by the water supply       reservoirs, etc., including the amount of rainfall collected) and from groundwater
+industry (ISIC 36)        sources by economic units whose main activities are the collection, treatment and
+                          distribution of water to households and other users (ISIC 36: Water Collection,
+                          Treatment and Supply). This calculation excludes the amount of water abstracted
+                          by the water supply industry for the operation of irrigation canals and should be
+                          reported as freshwater abstracted by agriculture, forestry and fishing activities.
+
+Fresh water abstracted    The amount of water abstracted directly from surface water sources (rivers, lakes,
+by households             reservoirs, etc., including the amount of rainfall collected), and from groundwater
+                          sources, by households for their own uses.
+
+Fresh water abstracted    The amount of water abstracted directly from surface water sources (rivers, lakes,
+by agriculture, forestry  reservoirs, etc., including the amount of rainfall collected) and from groundwater
+and fishing (ISIC 01-     sources, by economic units under the category (ISIC 01-03) for their own uses. It
+03)                       includes water abstracted by the water supply industry (ISIC 36) for the operation of
+                          irrigation canals.
+
+66
+                                     Water Statistics In the state of Qatar 2021
+
+Term                     Definition
+
+Fresh water abstracted   The amount of water abstracted directly from surface water sources (rivers, lakes,
+by manufacturing         reservoirs, etc., including rainfall collected) and from groundwater sources, by units
+industry (ISIC 01-33)    under ISIC Category 01-33 for their own use.
+
+Fresh water abstracted   The amount of water abstracted directly from surface water sources (rivers, lakes,
+by electricity industry  reservoirs, etc., including the amount of rainfall collected) and from groundwater
+(ISIC 351)               sources, by economic units under category (ISIC 351), for their own uses. Water
+                         used for hydroelectric purposes (such as water behind dams) is excluded from this
+                         calculation.
+
+Fresh water abstracted   The amount of water abstracted directly from surface water sources (rivers, lakes,
+by other economic        reservoirs, etc., including the amount of rainfall collected), and from groundwater
+activities               sources, by economic units under all other ISIC categories not specified above, for
+                         their own uses.
+
+Desalinated water        Total amount of water obtained from desalination of sea and brackish water.
+
+Reused water             Used water obtained directly from another user, whether treated or not, for use in
+                         other purposes. It also includes treated wastewater obtained from treatment plants
+Water imports            for use in other purposes. It does not include water that is discharged into
+Water exports            waterways and used again downstream. It excludes water recycling at industrial
+Total fresh water        sites.
+available for use
+Loss during transport    The total volume of fresh water imported from other countries as a commodity
+                         through pipelines or on ships or trucks. It does not include bottled water.
+
+                         The total volume of fresh water that is exported to other countries as a commodity
+                         through pipelines or on ships or trucks. It does not include bottled water.
+
+                         = Net Fresh Water Abstracted + Desalinated Water + Reused Water + Water
+                         Imports - Water Exports
+
+                         Volume of fresh water lost during transport, between point of abstraction and point
+                         of use, and between points of use and points of reuse. It includes water lost by
+                         leakage and evaporation.
+
+Total fresh water use    Water use is the total volume of water self-abstracted or obtained through water
+                         suppliers that has been used by end users, including households or economic
+                         activities, for processes related to production or consumption. The volume of used
+                         water is distributed according to the main categories of economic activity of end
+                         users (according to ISIC Rev.4) and households.
+
+Fresh water used by      The volume of water used in households, whether obtained from the water supply
+households               industry or abstracted directly by households for their own use, which is included in
+                         the normal household use (such as drinking and washing), and may include
+                         irrigation of a home garden, but should not include water used for commercial
+                         agriculture .
+
+                                                                                                      67
+Water Statistics In the state of Qatar 2021
+
+Term                      Definition
+
+Freshwater abstraction    The volume of water used by economic activities under the categories of
+by agriculture, forestry  agriculture, forestry and fishing (ISIC 01-03) whether abstracted directly from water
+and fishing (ISIC 01-     sources for own use or obtained from the water supply industry.
+03)
+                          The artificial application of water to land to help grow crops and pastures.
+Agricultural irrigation
+
+Fresh water abstracted    The amount of water used in economic activities involved in the manufacturing
+by manufacturing          industry (ISIC 01-33), whether abstracted directly from water sources for self-use or
+industry (ISIC 01-33)     obtained from the water supply industry.
+
+Fresh water abstracted    The volume of water used in economic activities involved in the generation,
+by electricity industry   transmission and distribution of electricity (ISIC 351), whether abstracted directly
+(ISIC 351)                from water sources for self-use or obtained from the water supply industry. Water
+                          used for hydroelectric power generation (eg water behind dams) is excluded from
+Fresh water abstracted    this calculation.
+by other economic
+activities                The volume of water used in all other economic activities not specified above,
+                          whether abstracted directly from water sources for self-use, or obtained from the
+Total fresh water         water supply industry.
+supplied by the water
+supply industry (ISIC     Water supplied by the water supply industry to users. This includes losses during
+36)                       transport, but excludes water supplied by the water supply industry for the operation
+                          of irrigation canals.
+
+Net fresh water           The total fresh water supplied by the public water supply industry less freshwater
+supplied by the water     losses during transport. Distributions of net volume of fresh water supplied by the
+supply industry (ISIC     water supply industry to end users are based on households and by major
+36)                       categories of economic activity of end users (according to ISIC Rev.4)
+
+Total population          Percentage of the resident population connected to water supply from the water
+obtaining water from      supply industry (ISIC 36)
+the water supply
+industry (ISIC 36)        Percentage of the urban population using water supplied by the water supply
+                          industry (ISIC 36)
+Urban population
+obtaining water from
+the water supply
+industry (ISIC 36)
+
+Rural population          Percentage of the rural population using water supplied by the water supply industry
+obtaining water from      (ISIC 36)
+the water supply
+industry (ISIC 36)
+
+Total wastewater          Wastewater is water that has no other value for the purposes for which it was used
+produced                  because of its quality, quantity or time of production. Gross wastewater produced is
+                          the total amount of wastewater produced by economic activities (agriculture,
+Wastewater produced       forestry and fishing, manufacturing, electricity industry, other economic activities
+by other economic         and households). However, water used for cooling is excluded.
+activities
+                          Excluding wastewater produced under classification category ISIC 37 (Sewage)
+
+68
+Term                                                                          Water Statistics In the state of Qatar 2021
+
+Urban wastewater      Definition
+treatment
+                      Urban wastewater treatment is all the treatment processes for wastewater in
+                      treatment plants located in urban areas. This treatment is usually carried out by the
+                      public authorities or private companies operating under the instructions of public
+                      authorities. It includes wastewater transported to treatment plants by tankers. These
+                      plants are classified under ISIC Class 37 (Sewage)
+
+Other wastewater      Wastewater treatment includes any other non-public treatment plant, such as
+treatment             industrial wastewater treatment plants. Wastewater treated in sewage tanks is
+                      excluded from “other wastewater treatment”. Industrial wastewater treatment plants
+                      may also be classified under ISIC Category 37 (Sewage), or under the main activity
+                      category of the facilities to which these plants belong.
+
+Primary wastewater    Primary treatment is a mechanical, physical or chemical process involving
+treatment             settlement of suspended solids, or other process in which the Biochemical Oxygen
+                      Demand (BOD5) of the incoming water is reduced by at least 20% before discharge
+                      and the total suspended solids of the incoming water are reduced by at least 50%.
+                      To avoid double calculation, water subjected to more than one type of treatment
+                      should be reported at the top treatment level only.
+
+Secondary wastewater  Secondary treatment is a process, following primary treatment of water, generally
+treatment             involving biological or other treatment with a secondary settlement or other process,
+                      resulting in a Biochemical Oxygen Demand (BOD5) removal of at least 70% and a
+                      Chemical Oxygen Demand (COD) removal of at least 75%. To avoid double
+                      calculation, water subjected to more than one type of treatment should be reported
+                      at the top level only.
+
+Tertiary wastewater   Tertiary treatment is a process, following secondary treatment, of removing
+treatment             nitrogen, phosphorous or any other pollutant affecting the quality or a specific use of
+                      water, for example microbiological pollution, colour etc. For organic pollution in
+Independent           water the treatment efficiencies that define a tertiary treatment are the following:
+wastewater treatment  organic pollution removal of at least 95% for BOD and 85% for COD, and at least
+                      one of the following: nitrogen removal of at least 70%, phosphorus removal of at
+Fecal sludge          least 80%, or microbiological removal. This is an exclusive treatment. To avoid
+production (dry       double calculation, water subjected to more than one type of treatment should be
+substance)            reported only at the highest level of treatment.
+
+population connected  Collection, pre-treatment, treatment, filtration, or disposal of domestic wastewater
+to a wastewater       from residential places whose population generally ranges between 1 and 50, and
+collection network    which are not connected to a wastewater collection network, e.g. septic tanks. This
+                      does not include systems of storage tanks from which wastewater is regularly
+                      transported by tankers to a wastewater treatment plant.
+
+                      The accumulated settled solids, wet or mixed with a liquid component as a result of
+                      natural or artificial processes and have been separated from various types of
+                      wastewaters during treatment. Dry weight data should be provided. If only wet
+                      weight data is available, please fill in the wet weight data and indicate this
+                      specifically in the footnote.
+
+                      Percentage of resident population connected to wastewater collection networks
+                      (sewerage). Wastewater collection networks may transport water to treatment
+                      plants or discharge it into the environment without treatment.
+
+                      69
+Water Statistics In the state of Qatar 2021
+
+Term                  Definition
+
+Population connected  Percentage of resident population whose wastewater is treated in wastewater
+to a wastewater       treatment plants.
+treatment network
+                      Percentage of resident population whose wastewater is treated in independent
+Population connected  facilities, often private facilities, such as septic tanks.
+to independent
+wastewater treatment  Percentage of resident population whose wastewater is not treated in independent
+(eg septic tanks)     treatment plants or facilities.
+
+Population not        Fresh water is water that contains only minimal amounts of dissolved salts,
+connected to          especially sodium chloride, to distinguish it from sea water or semi-saline water.
+wastewater treatment  It is water that is more salty than fresh water but less salty than seawater.
+network               Technically, this water contains between 500 and 30,000 milligrams of salt per liter.
+                      However, the concentration of dissolved salts in most semi-saline waters is in the
+Fresh water           range of 1,000 to 10,000 milligrams per liter (mg/l).
+                      Seawater is water brought from the sea or ocean. On average, seawater in the
+Semi-saline water     world's oceans has a salinity of less than 35,000 milligrams per liter.
+
+Seawater
+
+70
+                                                   Water Statistics In the state of Qatar 2021
+
+Glossary
+
+‫الاختصار‬      English                                                                      ‫عربي‬
+Abbreviation  Million Cubic Meters
+Mm3                                                                             ‫مليون متر مكعب‬
+                                                              5 ‫الطلب البيولوجي على الأكسجين‬
+BOD5          Biological Oxygen Demand
+                                                                  ‫الطلب الكيميائي على الأكسجين‬
+COD           Chemical Oxygen Demand                                      ‫الناتج المحلي الإجمالي‬
+
+GDP           Gross Domestic Product                                 ‫المتوسط السنوي طويل الأمد‬
+                                                                        ‫جهاز التخطيط والإحصاء‬
+LTAA          Long-term Annual Average                                      ‫إدارة الأرصاد الجوية‬
+
+PSA           Planning and Statistics Authority          ‫المؤسسة العامة القطرية للكهرباء والماء‬
+                                                                              ‫هيئة الاشغال العامة‬
+QMD           Qatar Meteorological Department
+Kahramaa                                           ‫محطة معالجة مياه الصرف الصحي في المناطق‬
+Ashghal       Qatar General Electricity and Water                                       ‫الحضرية‬
+              Corporation
+                                                                    ‫مياه الصرف الصحي المعالجة‬
+              Public Works Authority                                                  ‫ريال قطري‬
+
+UWWTP         Urban Wastewater Treatment Plant
+
+TSE           Treated Sewage Effluent
+
+Q.R           Qatari Riyal
+
+                                                   71
+Water Statistics In the state of Qatar 2021
+
+References and Data Sources
+
+     • Civil Aviation Authority - Meteorology Department
+      • Qatar General Electricity and Water Corporation (KAHRAMAA).
+      • Public Works Authority (Ashghal).
+      • Ministry of Environment and Climate Change
+      • Kahramaa: Annual Statistics Report.
+     • Planning and Statistics Authority: Qatar Population and Housing General Census.
+     • Planning and Statistics Authority: Sustainable Development Goals in Qatar.
+     • Ashghal & Schlumberger (2013): Shallow Groundwater Monitoring in Greater Doha, Al
+
+            Wakra and Al Khor (CP761). Final Hydrogeological Report.
+     • Planning and Statistics Authority (2011): Qatar National Development Strategy 2018-2022.
+     • Planning and Statistics Authority (2012): Qatar, Leaving a Legacy for Future Generations.
+     • World Meteorological Organization (2013): World Weather Information Service.
+
+            http://www.worldweather.org/116/c00221.htm.
+
+      72
+                            Water Statistics In the state of Qatar 2021
+
+Tables
+
+                                                                  73
+

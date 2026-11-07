@@ -1,0 +1,389 @@
+{
+  "agent-request": {
+    "question": "Is the coastal well getting saltier, and which station should we investigate first?",
+    "station_id": "ST-SYN-02"
+  },
+  "agent-response": {
+    "role": "kahramaa_planner",
+    "status": "answered",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "kind": "tool_result",
+        "ref": "get_history:ST-SYN-02:tds_mg_l",
+        "summary": "Three points, 6020 to 6120 mg/L"
+      },
+      {
+        "kind": "tool_result",
+        "ref": "get_alerts:AL-0007",
+        "summary": "Open salinity_jump warning"
+      }
+    ],
+    "provenance": [
+      "research_synthetic"
+    ],
+    "warnings": [
+      "Synthetic data. Not a real well."
+    ],
+    "audit_id": "AUD-000123",
+    "policy_links": [
+      {
+        "goal_id": "G-04",
+        "framework": "NDS3",
+        "relevance": "Supports regular monitoring of water sources."
+      }
+    ],
+    "web_answer": "Yes. Salinity at the coastal well rose from 6,020 to 6,120 mg/L across the three latest readings, and an alert is open. Investigate this station first. This is synthetic data based on published study statistics.",
+    "robot_speech": "Salinity at the coastal well is rising, and an alert is open. This is synthetic demo data, so confidence is medium."
+  },
+  "alerts": {
+    "alerts": [
+      {
+        "alert_id": "AL-0007",
+        "station_id": "ST-SYN-02",
+        "type": "salinity_jump",
+        "severity": "warning",
+        "status": "open",
+        "parameter": "tds_mg_l",
+        "opened_at": "2026-11-04T09:02:00Z",
+        "resolved_at": null,
+        "message": "Salinity rose faster than this station's recent trend.",
+        "provenance": "research_synthetic"
+      }
+    ]
+  },
+  "error": {
+    "error": {
+      "code": "forbidden",
+      "message": "This key cannot send readings for this station."
+    }
+  },
+  "history": {
+    "station_id": "ST-SYN-02",
+    "parameter": "tds_mg_l",
+    "unit": "mg/L",
+    "from": "2026-11-04T09:00:00Z",
+    "to": "2026-11-04T09:03:00Z",
+    "points": [
+      {
+        "recorded_at": "2026-11-04T09:00:00Z",
+        "value": 6020,
+        "flags": []
+      },
+      {
+        "recorded_at": "2026-11-04T09:01:00Z",
+        "value": 6075,
+        "flags": []
+      },
+      {
+        "recorded_at": "2026-11-04T09:02:00Z",
+        "value": 6120,
+        "flags": []
+      }
+    ]
+  },
+  "ingest-request": {
+    "schema_version": "1.0",
+    "station_id": "ST-LIVE-01",
+    "boot_id": "7f3a91c2",
+    "provenance": "measured",
+    "readings": [
+      {
+        "seq": 1042,
+        "recorded_at": "2026-11-04T09:15:02Z",
+        "measurements": [
+          {
+            "sensor_id": "ST-LIVE-01-TEMP",
+            "parameter": "temperature_c",
+            "value": 24.6,
+            "unit": "degC",
+            "flags": []
+          },
+          {
+            "sensor_id": "ST-LIVE-01-TDS",
+            "parameter": "tds_mg_l",
+            "value": 812,
+            "unit": "mg/L",
+            "flags": [
+              "uncalibrated",
+              "estimated"
+            ],
+            "raw": 1490
+          },
+          {
+            "sensor_id": "ST-LIVE-01-PH",
+            "parameter": "ph",
+            "value": 7.42,
+            "unit": "pH",
+            "flags": [
+              "uncalibrated"
+            ],
+            "raw": 2104
+          },
+          {
+            "sensor_id": "ST-LIVE-01-TURB",
+            "parameter": "turbidity_ntu",
+            "value": null,
+            "unit": "NTU",
+            "flags": [
+              "sensor_fault"
+            ]
+          },
+          {
+            "sensor_id": "ST-LIVE-01-LEVEL",
+            "parameter": "water_level_cm",
+            "value": 12.5,
+            "unit": "cm",
+            "flags": [
+              "uncalibrated"
+            ],
+            "raw": 1033
+          }
+        ]
+      }
+    ]
+  },
+  "ingest-response": {
+    "accepted": 1,
+    "duplicates": 0,
+    "rejected": [],
+    "server_time": "2026-11-04T09:15:03Z"
+  },
+  "latest": {
+    "station_id": "ST-LIVE-01",
+    "as_of": "2026-11-04T09:15:02Z",
+    "age_seconds": 1.4,
+    "connection": "online",
+    "measurements": [
+      {
+        "sensor_id": "ST-LIVE-01-TEMP",
+        "parameter": "temperature_c",
+        "value": 24.6,
+        "unit": "degC",
+        "flags": [],
+        "provenance": "measured",
+        "recorded_at": "2026-11-04T09:15:02Z"
+      },
+      {
+        "sensor_id": "ST-LIVE-01-TDS",
+        "parameter": "tds_mg_l",
+        "value": 812,
+        "unit": "mg/L",
+        "flags": [
+          "uncalibrated",
+          "estimated"
+        ],
+        "provenance": "measured",
+        "recorded_at": "2026-11-04T09:15:02Z"
+      },
+      {
+        "sensor_id": "ST-LIVE-01-PH",
+        "parameter": "ph",
+        "value": 7.42,
+        "unit": "pH",
+        "flags": [
+          "uncalibrated"
+        ],
+        "provenance": "measured",
+        "recorded_at": "2026-11-04T09:15:02Z"
+      },
+      {
+        "sensor_id": "ST-LIVE-01-TURB",
+        "parameter": "turbidity_ntu",
+        "value": null,
+        "unit": "NTU",
+        "flags": [
+          "sensor_fault"
+        ],
+        "provenance": "measured",
+        "recorded_at": "2026-11-04T09:15:02Z"
+      },
+      {
+        "sensor_id": "ST-LIVE-01-LEVEL",
+        "parameter": "water_level_cm",
+        "value": 12.5,
+        "unit": "cm",
+        "flags": [
+          "uncalibrated"
+        ],
+        "provenance": "measured",
+        "recorded_at": "2026-11-04T09:15:02Z"
+      }
+    ]
+  },
+  "login-request": {
+    "username": "demo.kahramaa",
+    "password": "set-in-environment"
+  },
+  "login-response": {
+    "access_token": "example-token-not-real",
+    "expires_at": "2026-11-04T17:15:03Z",
+    "user": {
+      "username": "demo.kahramaa",
+      "display_name": "Utility planner (demo)",
+      "role": "kahramaa_planner",
+      "category": "technical"
+    }
+  },
+  "robot-say": {
+    "intent": "current_readings",
+    "station_id": "ST-LIVE-01",
+    "speech": "The live station reads 812 milligrams per liter of dissolved solids, pH 7.4, and 24.6 degrees Celsius. The turbidity sensor has a fault.",
+    "gesture": "explain",
+    "connection": "online",
+    "age_seconds": 1.4,
+    "as_of": "2026-11-04T09:15:02Z"
+  },
+  "stations": {
+    "stations": [
+      {
+        "station_id": "ST-LIVE-01",
+        "name": "A25 bench station",
+        "kind": "live",
+        "scenario": null,
+        "source_type": "bench_sample",
+        "location": {
+          "lat": 25.37,
+          "lon": 51.49,
+          "is_illustrative": true
+        },
+        "municipality": null,
+        "aquifer": null,
+        "provenance": "measured",
+        "expected_interval_s": 2,
+        "sensors": [
+          {
+            "sensor_id": "ST-LIVE-01-TDS",
+            "parameter": "tds_mg_l",
+            "model": null,
+            "calibrated": false,
+            "calibrated_at": null
+          },
+          {
+            "sensor_id": "ST-LIVE-01-PH",
+            "parameter": "ph",
+            "model": null,
+            "calibrated": false,
+            "calibrated_at": null
+          }
+        ]
+      },
+      {
+        "station_id": "ST-SYN-02",
+        "name": "Coastal well (synthetic)",
+        "kind": "simulated",
+        "scenario": "coastal_intrusion",
+        "source_type": "well",
+        "location": {
+          "lat": 25.68,
+          "lon": 51.5,
+          "is_illustrative": true
+        },
+        "municipality": "Al Khor",
+        "aquifer": null,
+        "provenance": "research_synthetic",
+        "expected_interval_s": 60,
+        "sensors": [
+          {
+            "sensor_id": "ST-SYN-02-TDS",
+            "parameter": "tds_mg_l",
+            "model": null,
+            "calibrated": true,
+            "calibrated_at": null
+          }
+        ]
+      }
+    ]
+  },
+  "suitability-insufficient": {
+    "station_id": "ST-SYN-04",
+    "profile": "irrigation",
+    "outcome": "insufficient_data",
+    "confidence": "low",
+    "reasons": [
+      {
+        "rule_id": "data.stuck_sensor",
+        "parameter": "tds_mg_l",
+        "observed": 3400,
+        "effect": "unknown",
+        "message": "This sensor has stopped changing, so its value cannot support a conclusion.",
+        "source": "AquaNova data-quality rule"
+      }
+    ],
+    "missing_parameters": [
+      "sar",
+      "chloride_mg_l",
+      "boron_mg_l"
+    ],
+    "based_on": [
+      "scenario_synthetic"
+    ],
+    "rule_set_version": "draft-0",
+    "evaluated_at": "2026-11-04T09:15:05Z"
+  },
+  "suitability": {
+    "station_id": "ST-SYN-02",
+    "profile": "irrigation",
+    "outcome": "not_recommended",
+    "confidence": "medium",
+    "reasons": [
+      {
+        "rule_id": "irrigation.salinity",
+        "parameter": "tds_mg_l",
+        "observed": 6120,
+        "effect": "fail",
+        "message": "Salinity is above the irrigation limit in the current rule set.",
+        "source": "FAO 29"
+      }
+    ],
+    "missing_parameters": [
+      "sar",
+      "chloride_mg_l",
+      "boron_mg_l"
+    ],
+    "based_on": [
+      "research_synthetic"
+    ],
+    "rule_set_version": "draft-0",
+    "evaluated_at": "2026-11-04T09:15:05Z"
+  },
+  "national-context": {
+    "indicators": [
+      {
+        "indicator": "Total groundwater abstraction",
+        "year": 2024,
+        "value": 200,
+        "unit": "million m3",
+        "provenance": "official",
+        "source_publisher": "KAHRAMAA",
+        "source_url": "https://www.data.gov.qa/explore/dataset/total-abstraction-from-ground-water/"
+      },
+      {
+        "indicator": "Abstraction from agricultural wells",
+        "year": 2024,
+        "value": 180,
+        "unit": "million m3",
+        "provenance": "official",
+        "source_publisher": "KAHRAMAA",
+        "source_url": "https://www.data.gov.qa/explore/dataset/total-water-storage-2023/"
+      }
+    ]
+  },
+  "dashboard": {
+    "role": "kahramaa_planner",
+    "category": "technical",
+    "generated_at": "2026-11-04T09:15:05Z",
+    "panels": [
+      {
+        "panel_id": "salinity-month-heatmap",
+        "chart": "heatmap",
+        "title": "Salinity by station and month",
+        "insight": "Salinity rose at the coastal station across the three latest readings. This is synthetic demo data.",
+        "provenance": [
+          "research_synthetic"
+        ],
+        "as_of": "2026-11-04T09:02:00Z"
+      }
+    ]
+  }
+}
