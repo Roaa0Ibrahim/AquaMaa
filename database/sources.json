@@ -509,6 +509,45 @@
   "note": "Covers the groundwater law and licensing"
  },
  {
+  "id": "PL-11",
+  "folder": "05-policy-law-goals",
+  "files": [
+   "NPC_NDS3_Strategic_Outcomes.txt"
+  ],
+  "title": "NDS3 strategic national outcomes",
+  "publisher": "National Planning Council",
+  "published": "2024",
+  "data_period": "2024-2030",
+  "url": "https://www.npc.qa/en/planning/nds3/Pages/strategicalnationaloutcome.aspx",
+  "authority": "official",
+  "evidence_status": "targets",
+  "licence": "public web page, cite",
+  "topics": [
+   "policy"
+  ],
+  "note": "Plain list of NDS3 targets, including groundwater extraction reduced by 70%"
+ },
+ {
+  "id": "PG-1",
+  "folder": "05-policy-law-goals",
+  "files": [
+   "policy-goals.csv"
+  ],
+  "title": "AquaMaa table of national and ministry water goals (41 goals)",
+  "publisher": "AquaMaa team, compiled from cited sources",
+  "published": "2026",
+  "data_period": "",
+  "url": "",
+  "authority": "official",
+  "evidence_status": "compiled; each row cites its source",
+  "licence": "ours",
+  "topics": [
+   "policy",
+   "institutions"
+  ],
+  "note": "One chunk per goal"
+ },
+ {
   "id": "KM-07",
   "folder": "06-institutions",
   "files": [

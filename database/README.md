@@ -13,7 +13,7 @@ Built 7 November 2026. Files are in folders by **data type**, and each source is
 | 02-quality-measurements | 5 | The 201-well survey from 2020, as raw values and as indicators: the only well-level groundwater data we have. Three official tables add pollution, drinking-water compliance and coastal water |
 | 03-standards | 5 | Our limits table, plus its four sources: Kahramaa 2014, FAO 29 (chapters 1-5, including crop salt tolerance), the WHO tables and GSO 149 |
 | 04-research | 5 | QEERI 2022 (the problem statement's source), Higazy 2024, Mohieldeen 2021, Elobaid 2017 (salinity trends, preliminary), and the MWDVF methods |
-| 05-policy-law-goals | 5 | NDS3, QNV 2030, NDC 3.0, the food security strategy, and ANND for the law and licensing |
+| 05-policy-law-goals | 7 | Our table of 41 national water goals, NDS3 and its plain-text outcomes list, QNV 2030, NDC 3.0, the food security strategy, and ANND for the law and licensing |
 | 06-institutions | 5 | Two Fanack summaries of who does what, and three 2025 news items on Kahramaa's programmes |
 | 07-geography | 5 | Municipality boundaries, well coordinates, farms and wells by municipality, population by municipality, and FAO AQUASTAT |
 | 08-sensors | 5 | Datasheets for the TDS, pH, turbidity and temperature sensors, and the ESP32 ADC reference |

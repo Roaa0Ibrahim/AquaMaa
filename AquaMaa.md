@@ -28,10 +28,14 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 - Carried to Milestone 2: page clutter in chunks, and no minimum similarity score
 - Carried to Milestone 3: a rewrite can return the question unchanged
 
-### [ ] Milestone 2: Add the knowledge base
-- Our sources (Kahramaa, NPC, PSA, NDS3, census, ANND), plus `limits.csv` and `facts.json`
-- Chunked and embedded with `bge-m3`, which handles Arabic, and stored in Chroma, with the file and page on every chunk
+### [x] Milestone 2: Add the knowledge base (v2, 7 Nov)
+- `database/`: 46 sources in 10 data-type folders, each tagged with topics in `sources.json`
+- `build_kb.py`: cleans each file page by page, splits pages into chunks of about 400 tokens, labels every chunk with its source and page, and embeds them with `bge-m3`, which handles Arabic
+- Stored in LangChain's built-in vector store (`vector_store.json`), not Chroma: Windows Application Control blocks a DLL Chroma needs. At 1,406 chunks it loads in 0.35 s and searches in about 40 ms
+- Glossary, misconceptions and policy goals: one chunk per row. Data tables stay out of the chunks, for the structured lookup
 - **Done when:** every source is indexed, and a search returns the right file for 10 test questions
+- **Result:** 34 text sources, 1,406 chunks. All 10 test questions, including one in Arabic, find the right file in the top 10, and 9 of 10 in the top 3 (`eval_kb_v2.txt`)
+- Carried to Milestone 3: the FAO 29 irrigation question ranks its file 6th with vector search, but keyword search (BM25) puts it first
 
 ### [ ] Milestone 3: Retrieval pipeline with proper routing and different types of retrieval
 - Routes by question type, following Meta's CRAG benchmark ([arXiv 2406.04744](https://arxiv.org/abs/2406.04744)):

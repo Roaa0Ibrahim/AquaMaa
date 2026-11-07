@@ -1,2 +1,4 @@
 .venv/
 __pycache__/
+vector_store.json
+chunks.jsonl
