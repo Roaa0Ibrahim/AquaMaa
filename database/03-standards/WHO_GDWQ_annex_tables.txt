@@ -1,0 +1,238 @@
+     Guidelines for
+Drinking-water Quality
+
+             FOURTH EDITION
+                            GUIDELINES FOR DRINKING-WATER QUALITY
+
+Table A3.2 (continued)
+
+Chemical                    Reason for not establishing a guideline value
+
+Spinosad                    Not considered appropriate to set guideline values for pesticides
+                            used for vector control in drinking-water
+
+Sulfate                     Not of health concern at levels found in drinking-watera
+
+Temephos                    Not considered appropriate to set guideline values for pesticides
+                            used for vector control in drinking-water
+
+Total dissolved solids      Not of health concern at levels found in drinking-watera
+
+Trichloramine               Available data inadequate to permit derivation of health-based
+                            guideline value
+
+Trichloroacetonitrile       Available data inadequate to permit derivation of health-based
+                            guideline value
+
+Trichlorobenzenes (total)   Occur in drinking-water at concentrations well below those of
+                            health concern, and health-based value would exceed lowest
+                            reported odour threshold
+
+1,1,1-Trichloroethane       Occurs in drinking-water at concentrations well below those of
+                            health concern
+
+Zinc                        Not of health concern at levels found in drinking-watera
+
+a May affect acceptability of drinking-water (see chapter 10).
+b Aminomethylphosphonic acid.
+c An important operational water quality parameter.
+
+Table A3.3Guideline values for chemicals that are of health significance in drinking-water
+                                             Guideline value
+
+Chemical                       mg/l       µg/l                  Remarks
+                            0.000 5a
+Acrylamide                  0.02a           0.5a                Applies to aldicarb sulfoxide and
+Alachlor                    0.01           20a                  aldicarb sulfone
+Aldicarb                                   10
+                            0.000 03                            For combined aldrin plus dieldrin
+Aldrin and dieldrin         0.02             0.03
+Antimony                    0.01 (A, T)    20
+Arsenic                     0.1            10 (A, T)
+Atrazine and its chloro-s-                100
+triazine metabolites        0.7
+Barium                      0.01a           700
+Benzene                     0.000 7a         10a
+Benzo[a]pyrene              2.4                0.7a
+Boron                       0.01a (A, T)
+Bromate                     0.06a         2 400
+Bromodichloromethane        0.1              10a (A, T)
+Bromoform                   0.003            60a
+Cadmium                     0.007           100
+Carbofuran                  0.004              3
+Carbon tetrachloride                           7
+                                               4
+
+                                          472
+                            ANNEX 3. Chemical summary tables
+
+Table A3.3 (continued)      Guideline value
+
+ Chemical                      mg/l          µg/l    Remarks
+ Chlorate
+ Chlordane                  0.7 (D)         700 (D)  For effective disinfection, there should
+ Chlorine                   0.000 2            0.2   be a residual concentration of free
+                            5 (C)                    chlorine of  0.5 mg/l after at least
+ Chlorite                                 5 000 (C)  30 min contact time at pH < 8.0. A
+ Chloroform                                          chlorine residual should be maintained
+ Chlorotoluron              0.7 (D)         700 (D)  throughout the distribution system.
+ Chlorpyrifos               0.3             300      At the point of delivery, the minimum
+ Chromium                   0.03                     residual concentration of free chlorine
+ Copper                     0.03             30      should be 0.2 mg/l.
+                            0.05 (P)         30
+ Cyanazine                  2                50 (P)  For total chromium
+ 2,4-Db                                   2 000      Staining of laundry and sanitary ware
+ 2,4-DBc                    0.000 6                  may occur below guideline value
+ DDTd and metabolites       0.03               0.6
+ Dibromoacetonitrile        0.09             30      Applies to free acid
+ Dibromochloromethane       0.001            90
+ 1,2-Dibromo-3-             0.07
+ chloropropane              0.1                1
+ 1,2-Dibromoethane          0.001a           70
+ Dichloroacetate                            100
+ Dichloroacetonitrile
+ 1,2-Dichlorobenzene                           1a
+ 1,4-Dichlorobenzene
+ 1,2-Dichloroethane         0.000 4a (P)  0.4a (P)
+ 1,2-Dichloroethene         0.05a (D)
+ Dichloromethane            0.02 (P)      50a (D)
+ 1,2-Dichloropropane        1 (C)
+ 1,3-Dichloropropene        0.3 (C)       20 (P)
+ Dichlorprop                0.03a
+ Di(2-ethylhexyl)phthalate  0.05          1 000 (C)
+ Dimethoate                 0.02
+ 1,4-Dioxane                0.04 (P)      300 (C)
+                            0.02a
+                            0.1           30a
+                            0.008
+                            0.006         50
+                            0.05a
+                                          20
+
+                                          40 (P)
+
+                                          20a
+
+                                          100
+
+                                          8
+
+                                          6
+
+                                          50a        Derived using tolerable daily intake
+
+                                                     approach as well as linearized
+
+                                                     multistage modelling
+
+                                          473
+                         GUIDELINES FOR DRINKING-WATER QUALITY
+
+Table A3.3 (continued)   Guideline value
+
+ Chemical                     mg/l     µg/l            Remarks
+ Edetic acid              0.6
+ Endrin                   0.000 6          600         Applies to the free acid
+ Epichlorohydrin          0.000 4 (P)        0.6
+ Ethylbenzene             0.3 (C)            0.4 (P)   Volume of water consumed and
+ Fenoprop                 0.009                        intake from other sources should be
+ Fluoride                 1.5             300 (C)      considered when setting national
+                                             9         standards
+ Hexachlorobutadiene      0.000 6                      Atrazine metabolite
+ Hydroxyatrazine          0.2           1 500
+ Isoproturon              0.009                        For inorganic mercury
+ Lead                     0.01 (A, T)        0.6       For total microcystin-LR (free plus cell-
+ Lindane                  0.002           200          bound)
+ MCPAe                    0.002
+ Mecoprop                 0.01               9         Short-term exposure
+ Mercury                  0.006             10 (A, T)  Short-term exposure
+ Methoxychlor             0.02               2
+ Metolachlor              0.01               2         As sodium dichloroisocyanurate
+ Microcystin-LR           0.001 (P)         10         As cyanuric acid
+                                             6
+ Molinate                 0.006             20
+ Monochloramine           3                 10
+ Monochloroacetate        0.02
+ Nickel                   0.07               1 (P)
+ Nitrate (as NO3-)       50
+ Nitrilotriacetic acid    0.2                6
+ Nitrite (as NO2-)        3             3 000
+ N-Nitrosodimethylamine   0.000 1
+ Pendimethalin            0.02              20
+ Pentachlorophenol        0.009a (P)        70
+ Selenium                 0.04 (P)     50 000
+ Simazine                 0.002           200
+ Sodium                  50             3 000
+ dichloroisocyanurate    40
+                          0.02 (C)           0.1
+ Styrene                  0.009             20
+ 2,4,5-Tf                 0.007
+ Terbuthylazine           0.04               9a (P)
+ Tetrachloroethene                          40 (P)
+
+                                             2
+                                       50 000
+                                       40 000
+
+                                            20 (C)
+                                             9
+                                             7
+                                            40
+
+                                       474
+                       GUIDELINES FOR DRINKING-WATER QUALITY
+
+                              Guideline value
+
+Chemical               mg/l                    µg/l      Remarks
+
+Simazine               0.002                   2
+
+Sodium                 50                      50 000    As sodium dichloroisocyanurate
+                                               40 000    As cyanuric acid
+dichloroisocyanurate   40
+
+Styrene                0.02 (C)                20 (C)
+2,4,5-Tf                0.009                     9
+
+Terbuthylazine         0.007                   7
+
+Tetrachloroethene      0.04                    40
+
+Toluene                0.7 (C)                 700 (C)
+
+Trichloroacetate       0.2                     200
+
+Trichloroethene        0.02 (P)                 20 (P)
+2,4,6-Trichlorophenol  0.2a (C)                200a (C)
+
+Trifluralin            0.02                    20
+
+Trihalomethanes                                          The sum of the ratio of the
+                                                         concentration of each to its respective
+                                                         guideline value should not exceed 1
+
+Uranium                0.03 (P)                30 (P)    Only chemical aspects of uranium
+Vinyl chloride         0.0003a                  0.3a     addressed
+
+Xylenes                0.5 (C)                 500 (C)
+
+A, provisional guideline value because calculated guideline value is below the achievable quantification level; C,
+concentrations of the substance at or below the health-based guideline value may affect the appearance, taste or
+odour of the water, leading to consumer complaints; D, provisional guideline value because disinfection is likely
+to result in the guideline value being exceeded; P, provisional guideline value because of uncertainties in the
+health database; T, provisional guideline value because calculated guideline value is below the level that can be
+achieved through practical treatment methods, source protection, etc.
+a For substances that are considered to be carcinogenic, the guideline value is the concentration in drinking-
+
+   water associated with an upper-bound excess lifetime cancer risk of 10-5 (one additional case of cancer per
+   100 000 of the population ingesting drinking-water containing the substance at the guideline value for 70
+   years). Concentrations associated with upper-bound estimated excess lifetime cancer risks of 10-4 and 10-6
+   can be calculated by multiplying and dividing, respectively, the guideline value by 10.
+b 2,4-Dichlorophenoxyacetic acid.
+c 2,4-Dichlorophenoxybutyric acid.
+d Dichlorodiphenyltrichlorethane.
+e 4-(2-Methyl-4-chlorophenoxy)acetic acid.
+
+                                 24
+

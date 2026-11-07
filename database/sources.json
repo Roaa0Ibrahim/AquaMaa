@@ -1,0 +1,887 @@
+[
+ {
+  "id": "RP-10",
+  "folder": "01-national-statistics",
+  "files": [
+   "NPC_Water_Statistics_2023.pdf",
+   "NPC_Water_Statistics_2023.txt"
+  ],
+  "title": "Water Statistics in the State of Qatar 2023",
+  "publisher": "National Planning Council",
+  "published": "2024",
+  "data_period": "2023, long-term averages 1998-2023",
+  "url": "https://www.npc.qa/en/statistics/Statistical%20Releases/Environmental/Water/Water_Statistics_2023_EN.pdf",
+  "authority": "official",
+  "evidence_status": "official statistics; abstraction is a modelled estimate",
+  "licence": "public, cite",
+  "topics": [
+   "water_situation",
+   "institutions",
+   "suitability"
+  ],
+  "note": "Newest official water report"
+ },
+ {
+  "id": "RP-04",
+  "folder": "01-national-statistics",
+  "files": [
+   "Kahramaa_Statistics_Report_2023.pdf",
+   "Kahramaa_Statistics_Report_2023.txt"
+  ],
+  "title": "Annual Statistics Report 2023",
+  "publisher": "Kahramaa",
+  "published": "2024",
+  "data_period": "2023",
+  "url": "https://km.qa/MediaCenter/Publications/SR2023-English.pdf",
+  "authority": "official",
+  "evidence_status": "official statistics; abstraction revised by modelling (p.81)",
+  "licence": "public, cite",
+  "topics": [
+   "water_situation",
+   "institutions"
+  ],
+  "note": "Don't compare 2023 abstraction with earlier years"
+ },
+ {
+  "id": "RP-01",
+  "folder": "01-national-statistics",
+  "files": [
+   "PSA_Water_Statistics_2021.pdf",
+   "PSA_Water_Statistics_2021.txt"
+  ],
+  "title": "Water Statistics in the State of Qatar 2021",
+  "publisher": "Planning and Statistics Authority",
+  "published": "2021",
+  "data_period": "to 2021",
+  "url": "https://www.npc.qa/en/statistics/Statistical%20Releases/Environmental/Water/Water_Statistics_2021_EN.pdf",
+  "authority": "official",
+  "evidence_status": "official statistics",
+  "licence": "public, cite",
+  "topics": [
+   "water_situation"
+  ],
+  "note": "Earlier method, for comparison"
+ },
+ {
+  "id": "DS-01",
+  "folder": "01-national-statistics",
+  "files": [
+   "total-abstraction-from-ground-water.csv"
+  ],
+  "title": "Total abstraction from groundwater",
+  "publisher": "Kahramaa via Qatar Open Data",
+  "published": "2026",
+  "data_period": "2019-2024",
+  "url": "https://www.data.gov.qa/explore/dataset/total-abstraction-from-ground-water/",
+  "authority": "official",
+  "evidence_status": "modelled estimate",
+  "licence": "CC BY 4.0",
+  "topics": [
+   "water_situation"
+  ],
+  "note": "Table for structured lookup"
+ },
+ {
+  "id": "DS-04",
+  "folder": "01-national-statistics",
+  "files": [
+   "water-production-abstraction-losses-and-uses.csv"
+  ],
+  "title": "Water production, abstraction, losses and uses",
+  "publisher": "National Planning Council via Qatar Open Data",
+  "published": "2026",
+  "data_period": "multi-year",
+  "url": "https://www.data.gov.qa/explore/dataset/water-production-abstraction-losses-and-uses/",
+  "authority": "official",
+  "evidence_status": "official statistics",
+  "licence": "CC BY 4.0",
+  "topics": [
+   "water_situation",
+   "suitability"
+  ],
+  "note": "Table for structured lookup"
+ },
+ {
+  "id": "MW-GEO",
+  "folder": "02-quality-measurements",
+  "files": [
+   "Geochemistry_Dataset.xlsx"
+  ],
+  "title": "Geochemistry dataset, 201 wells",
+  "publisher": "Kagiso S. More (Qatar_MWDVF), from Shomar and Sankaran 2024, doi:10.1111/gwat.13411",
+  "published": "2026",
+  "data_period": "2020",
+  "url": "https://github.com/Kagiso-S-More/Qatar_MWDVF",
+  "authority": "research",
+  "evidence_status": "measured",
+  "licence": "no open licence: cite, private use only",
+  "topics": [
+   "quality_science",
+   "suitability",
+   "glossary"
+  ],
+  "note": "Same file as Mais's sample and the team's datasets folder"
+ },
+ {
+  "id": "MW-HYD",
+  "folder": "02-quality-measurements",
+  "files": [
+   "Hydrochemistry_Indicators.xlsx"
+  ],
+  "title": "Hydrochemistry indicators (SAR, KR and more), 201 wells",
+  "publisher": "Kagiso S. More (Qatar_MWDVF)",
+  "published": "2026",
+  "data_period": "2020",
+  "url": "https://github.com/Kagiso-S-More/Qatar_MWDVF",
+  "authority": "research",
+  "evidence_status": "derived from measurements",
+  "licence": "no open licence: cite, private use only",
+  "topics": [
+   "quality_science",
+   "suitability"
+  ],
+  "note": ""
+ },
+ {
+  "id": "DS-09",
+  "folder": "02-quality-measurements",
+  "files": [
+   "water-pollution-indicators.csv"
+  ],
+  "title": "Water pollution indicators",
+  "publisher": "Ministry of Environment and Climate Change via Qatar Open Data",
+  "published": "2026",
+  "data_period": "multi-year",
+  "url": "https://www.data.gov.qa/explore/dataset/water-pollution-indicators/",
+  "authority": "official",
+  "evidence_status": "measured",
+  "licence": "CC BY 4.0",
+  "topics": [
+   "quality_science"
+  ],
+  "note": ""
+ },
+ {
+  "id": "DS-16",
+  "folder": "02-quality-measurements",
+  "files": [
+   "biological-water-quality-compliance-by-year.csv"
+  ],
+  "title": "Biological water quality compliance by year",
+  "publisher": "Kahramaa via Qatar Open Data",
+  "published": "2026",
+  "data_period": "multi-year",
+  "url": "https://www.data.gov.qa/explore/dataset/biological-water-quality-compliance-by-year/",
+  "authority": "official",
+  "evidence_status": "measured",
+  "licence": "CC BY 4.0",
+  "topics": [
+   "quality_science",
+   "standards"
+  ],
+  "note": "Drinking-water network, not groundwater"
+ },
+ {
+  "id": "DS-17",
+  "folder": "02-quality-measurements",
+  "files": [
+   "quality-of-coastal-waters-in-qatar-by-location.csv"
+  ],
+  "title": "Quality of coastal waters by location",
+  "publisher": "National Planning Council via Qatar Open Data",
+  "published": "2026",
+  "data_period": "multi-year",
+  "url": "https://www.data.gov.qa/explore/dataset/quality-of-coastal-waters-in-qatar-by-location/",
+  "authority": "official",
+  "evidence_status": "measured",
+  "licence": "CC BY 4.0",
+  "topics": [
+   "quality_science"
+  ],
+  "note": "Coastal water, context for seawater intrusion"
+ },
+ {
+  "id": "LIM",
+  "folder": "03-standards",
+  "files": [
+   "limits.csv"
+  ],
+  "title": "AquaMaa limits table (FAO 29, WHO, GSO, Kahramaa)",
+  "publisher": "AquaMaa team, compiled from cited sources",
+  "published": "2026",
+  "data_period": "",
+  "url": "",
+  "authority": "standard",
+  "evidence_status": "compiled; each row cites its source",
+  "licence": "ours",
+  "topics": [
+   "standards",
+   "suitability"
+  ],
+  "note": "Used by the structured lookup"
+ },
+ {
+  "id": "ST-01",
+  "folder": "03-standards",
+  "files": [
+   "Kahramaa_Drinking_Water_Quality_Requirements_2014.pdf",
+   "Kahramaa_Drinking_Water_Quality_Requirements_2014.txt"
+  ],
+  "title": "Overview on: Kahramaa Drinking Water Quality Requirements",
+  "publisher": "Kahramaa",
+  "published": "2014",
+  "data_period": "",
+  "url": "https://www.km.qa/MediaCenter/Publications/KAHRAMAA%20Drinking%20Water%20Quality%20Requirment.pdf",
+  "authority": "standard",
+  "evidence_status": "requirement",
+  "licence": "public, cite",
+  "topics": [
+   "standards",
+   "institutions"
+  ],
+  "note": "Applies to desalinated supply, not groundwater"
+ },
+ {
+  "id": "ST-02",
+  "folder": "03-standards",
+  "files": [
+   "FAO_29_Water_Quality_for_Agriculture_ch1-5.txt"
+  ],
+  "title": "FAO Irrigation and Drainage Paper 29, chapters 1-5",
+  "publisher": "FAO (Ayers and Westcot)",
+  "published": "1985, rev. 1994",
+  "data_period": "",
+  "url": "https://www.fao.org/4/t0234e/T0234E00.htm",
+  "authority": "standard",
+  "evidence_status": "guideline",
+  "licence": "FAO copyright, cite",
+  "topics": [
+   "standards",
+   "suitability",
+   "glossary"
+  ],
+  "note": "Text from the web version; the PDF is a scan"
+ },
+ {
+  "id": "ST-04",
+  "folder": "03-standards",
+  "files": [
+   "WHO_GDWQ_annex_tables.pdf",
+   "WHO_GDWQ_annex_tables.txt"
+  ],
+  "title": "WHO Guidelines for Drinking-water Quality, 4th ed., annex tables",
+  "publisher": "WHO (third-party copy by EarthSoft EQuIS/ESdat)",
+  "published": "2017",
+  "data_period": "",
+  "url": "https://support.esdat.net/Environmental%20Standards/who/who_4th_edition_tables.pdf",
+  "authority": "standard",
+  "evidence_status": "guideline",
+  "licence": "WHO, cite",
+  "topics": [
+   "standards"
+  ],
+  "note": "Third-party copy of the official tables"
+ },
+ {
+  "id": "ST-05",
+  "folder": "03-standards",
+  "files": [
+   "GSO_149_Unbottled_Drinking_Water.pdf",
+   "GSO_149_Unbottled_Drinking_Water.txt"
+  ],
+  "title": "GSO 149 Unbottled drinking water",
+  "publisher": "GCC Standardization Organization",
+  "published": "",
+  "data_period": "",
+  "url": "https://old.fsvps.gov.ru/fsvps-docs/ru/importExport/ssagpz/files/gso_149.pdf",
+  "authority": "standard",
+  "evidence_status": "standard",
+  "licence": "copy hosted by a third party, cite",
+  "topics": [
+   "standards"
+  ],
+  "note": "Check against the current GSO edition"
+ },
+ {
+  "id": "QEERI",
+  "folder": "04-research",
+  "files": [
+   "QEERI_2022_Qatar_Groundwater_Challenges.txt"
+  ],
+  "title": "World Water Day: Qatar's groundwater challenges",
+  "publisher": "Jenny Lawler, QEERI, HBKU",
+  "published": "2022",
+  "data_period": "not stated",
+  "url": "https://www.hbku.edu.qa/en/news/QEERI-SUST-WWDQGC",
+  "authority": "research",
+  "evidence_status": "expert article; sample counts not stated",
+  "licence": "public web page, cite",
+  "topics": [
+   "quality_science",
+   "water_situation"
+  ],
+  "note": "Source of the problem statement's 3-5x, 95%, 60% and 226-230 figures"
+ },
+ {
+  "id": "RS-11",
+  "folder": "04-research",
+  "files": [
+   "Higazy_2024_Water_Footprint_Qatar.pdf",
+   "Higazy_2024_Water_Footprint_Qatar.txt"
+  ],
+  "title": "Water footprint assessment and virtual water trade in Qatar",
+  "publisher": "Higazy et al., Water 16(8), 1185",
+  "published": "2024",
+  "data_period": "",
+  "url": "https://www.mdpi.com/2073-4441/16/8/1185",
+  "authority": "research",
+  "evidence_status": "peer-reviewed",
+  "licence": "CC BY 4.0",
+  "topics": [
+   "water_situation",
+   "suitability"
+  ],
+  "note": ""
+ },
+ {
+  "id": "RS-06",
+  "folder": "04-research",
+  "files": [
+   "Mohieldeen_2021_GIS_aquifer_recharge_Qatar_SciRep.pdf",
+   "Mohieldeen_2021_GIS_aquifer_recharge_Qatar_SciRep.txt"
+  ],
+  "title": "GIS-based framework for artificial aquifer recharge in Qatar",
+  "publisher": "Mohieldeen, Elobaid and Abdalla, Scientific Reports",
+  "published": "2021",
+  "data_period": "",
+  "url": "https://www.nature.com/articles/s41598-021-97593-w",
+  "authority": "research",
+  "evidence_status": "peer-reviewed",
+  "licence": "CC BY 4.0",
+  "topics": [
+   "quality_science",
+   "policy",
+   "glossary"
+  ],
+  "note": ""
+ },
+ {
+  "id": "EGU17",
+  "folder": "04-research",
+  "files": [
+   "Elobaid_2017_EGU_saline_front_Qatar.pdf",
+   "Elobaid_2017_EGU_saline_front_Qatar.txt"
+  ],
+  "title": "Saline front and salinity trends in Qatar's aquifers (conference abstract)",
+  "publisher": "Elobaid et al., EGU General Assembly",
+  "published": "2017",
+  "data_period": "1980-2009",
+  "url": "https://meetingorganizer.copernicus.org/EGU2017/EGU2017-11658.pdf",
+  "authority": "research",
+  "evidence_status": "conference abstract, preliminary",
+  "licence": "EGU abstract, check licence",
+  "topics": [
+   "quality_science"
+  ],
+  "note": "Treat figures as preliminary"
+ },
+ {
+  "id": "MWDVF",
+  "folder": "04-research",
+  "files": [
+   "More_2026_Qatar_MWDVF_README.md"
+  ],
+  "title": "Qatar MWDVF research repository: methods and data",
+  "publisher": "Kagiso S. More",
+  "published": "2026",
+  "data_period": "",
+  "url": "https://github.com/Kagiso-S-More/Qatar_MWDVF",
+  "authority": "research",
+  "evidence_status": "research documentation",
+  "licence": "no open licence: cite, private use only",
+  "topics": [
+   "quality_science",
+   "suitability"
+  ],
+  "note": "Explains how the 201-well indicators were made"
+ },
+ {
+  "id": "PL-01",
+  "folder": "05-policy-law-goals",
+  "files": [
+   "Qatar_NDS3.pdf",
+   "Qatar_NDS3.txt"
+  ],
+  "title": "Third National Development Strategy 2024-2030",
+  "publisher": "National Planning Council",
+  "published": "2024",
+  "data_period": "2024-2030",
+  "url": "https://www.npc.qa/en/planning/nds3/Documents/QNDS3_EN.pdf",
+  "authority": "official",
+  "evidence_status": "targets",
+  "licence": "public, cite",
+  "topics": [
+   "policy"
+  ],
+  "note": ""
+ },
+ {
+  "id": "PL-02",
+  "folder": "05-policy-law-goals",
+  "files": [
+   "Qatar_National_Vision_2030.pdf",
+   "Qatar_National_Vision_2030.txt"
+  ],
+  "title": "Qatar National Vision 2030",
+  "publisher": "General Secretariat for Development Planning",
+  "published": "2008",
+  "data_period": "to 2030",
+  "url": "https://www.npc.qa/en/QNV/Documents/QNV2030_English_v2.pdf",
+  "authority": "official",
+  "evidence_status": "vision",
+  "licence": "public, cite",
+  "topics": [
+   "policy"
+  ],
+  "note": ""
+ },
+ {
+  "id": "PL-10",
+  "folder": "05-policy-law-goals",
+  "files": [
+   "Qatar_NDC_3.pdf",
+   "Qatar_NDC_3.txt"
+  ],
+  "title": "Nationally Determined Contribution 3.0",
+  "publisher": "State of Qatar via UNFCCC",
+  "published": "2025",
+  "data_period": "",
+  "url": "https://unfccc.int/sites/default/files/2025-11/Qatar%20NDC%203.0.pdf",
+  "authority": "official",
+  "evidence_status": "targets and plans",
+  "licence": "public, cite",
+  "topics": [
+   "policy",
+   "institutions"
+  ],
+  "note": "370 recharge wells (p.18)"
+ },
+ {
+  "id": "RP-08",
+  "folder": "05-policy-law-goals",
+  "files": [
+   "National_Food_Security_Strategy_2018_2023.pdf",
+   "National_Food_Security_Strategy_2018_2023.txt"
+  ],
+  "title": "Qatar National Food Security Strategy 2018-2023",
+  "publisher": "Food Security Department, via FAOLEX",
+  "published": "2020",
+  "data_period": "2018-2023",
+  "url": "https://faolex.fao.org/docs/pdf/qat219196E.pdf",
+  "authority": "official",
+  "evidence_status": "targets",
+  "licence": "public, cite",
+  "topics": [
+   "policy",
+   "suitability"
+  ],
+  "note": ""
+ },
+ {
+  "id": "LW-01",
+  "folder": "05-policy-law-goals",
+  "files": [
+   "ANND_Right_to_Water_in_Qatar.pdf",
+   "ANND_Right_to_Water_in_Qatar.txt"
+  ],
+  "title": "The Right to Water in Qatar",
+  "publisher": "ANND, Arab Watch Report (M. Abu Hawash)",
+  "published": "2026",
+  "data_period": "",
+  "url": "https://www.annd.org/uploads/publications/QATAR_Report_(EN).pdf",
+  "authority": "ngo",
+  "evidence_status": "analysis of laws and policy",
+  "licence": "public, cite",
+  "topics": [
+   "policy",
+   "institutions"
+  ],
+  "note": "Covers the groundwater law and licensing"
+ },
+ {
+  "id": "KM-07",
+  "folder": "06-institutions",
+  "files": [
+   "Fanack_Water_Management_in_Qatar.txt"
+  ],
+  "title": "Water management in Qatar",
+  "publisher": "Fanack Water",
+  "published": "undated",
+  "data_period": "",
+  "url": "https://water.fanack.com/qatar/water-management-in-qatar/",
+  "authority": "reference",
+  "evidence_status": "secondary summary",
+  "licence": "check Fanack terms, cite",
+  "topics": [
+   "institutions",
+   "policy"
+  ],
+  "note": ""
+ },
+ {
+  "id": "KM-08",
+  "folder": "06-institutions",
+  "files": [
+   "Fanack_Water_Resources_in_Qatar.txt"
+  ],
+  "title": "Water resources in Qatar",
+  "publisher": "Fanack Water",
+  "published": "undated",
+  "data_period": "",
+  "url": "https://water.fanack.com/qatar/water-resources-in-qatar/",
+  "authority": "reference",
+  "evidence_status": "secondary summary",
+  "licence": "check Fanack terms, cite",
+  "topics": [
+   "water_situation",
+   "institutions"
+  ],
+  "note": ""
+ },
+ {
+  "id": "KM-02",
+  "folder": "06-institutions",
+  "files": [
+   "Peninsula_2025_Kahramaa_water_reserves.txt"
+  ],
+  "title": "Kahramaa's water reserves increase many folds",
+  "publisher": "The Peninsula",
+  "published": "2025",
+  "data_period": "",
+  "url": "https://thepeninsulaqatar.com/article/16/03/2025/kahramaas-water-reserves-increase-many-folds",
+  "authority": "news",
+  "evidence_status": "news",
+  "licence": "news article, cite only",
+  "topics": [
+   "institutions",
+   "water_situation"
+  ],
+  "note": ""
+ },
+ {
+  "id": "KM-03",
+  "folder": "06-institutions",
+  "files": [
+   "Peninsula_2025_Water_security_strategic_planning.txt"
+  ],
+  "title": "Qatar strengthens water security through strategic planning",
+  "publisher": "The Peninsula",
+  "published": "2025",
+  "data_period": "",
+  "url": "https://thepeninsulaqatar.com/article/28/07/2025/qatar-strengthens-water-security-through-strategic-planning-global-partnerships",
+  "authority": "news",
+  "evidence_status": "news",
+  "licence": "news article, cite only",
+  "topics": [
+   "institutions",
+   "policy"
+  ],
+  "note": ""
+ },
+ {
+  "id": "KM-04",
+  "folder": "06-institutions",
+  "files": [
+   "Peninsula_2025_Kahramaa_IAEA_groundwater_isotopes.txt"
+  ],
+  "title": "Kahramaa and IAEA groundwater isotope training",
+  "publisher": "The Peninsula",
+  "published": "2025",
+  "data_period": "",
+  "url": "https://thepeninsulaqatar.com/article/26/07/2025/kahramaa-iaea-launch-training-workshop-on-groundwater-isotope-studies",
+  "authority": "news",
+  "evidence_status": "news",
+  "licence": "news article, cite only",
+  "topics": [
+   "institutions"
+  ],
+  "note": ""
+ },
+ {
+  "id": "GEO-1",
+  "folder": "07-geography",
+  "files": [
+   "geoBoundaries_QAT_ADM1.geojson"
+  ],
+  "title": "Qatar municipality boundaries (ADM1)",
+  "publisher": "geoBoundaries (William & Mary)",
+  "published": "",
+  "data_period": "",
+  "url": "https://www.geoboundaries.org/",
+  "authority": "open data",
+  "evidence_status": "boundaries",
+  "licence": "CC BY 4.0",
+  "topics": [
+   "water_situation"
+  ],
+  "note": "For maps by municipality"
+ },
+ {
+  "id": "MW-GIS",
+  "folder": "07-geography",
+  "files": [
+   "GIS_Indicators.xlsx"
+  ],
+  "title": "GIS indicators with coordinates, 201 wells",
+  "publisher": "Kagiso S. More (Qatar_MWDVF)",
+  "published": "2026",
+  "data_period": "2020",
+  "url": "https://github.com/Kagiso-S-More/Qatar_MWDVF",
+  "authority": "research",
+  "evidence_status": "derived",
+  "licence": "no open licence: cite, private use only",
+  "topics": [
+   "quality_science",
+   "water_situation"
+  ],
+  "note": "Well locations"
+ },
+ {
+  "id": "DS-30",
+  "folder": "07-geography",
+  "files": [
+   "number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv"
+  ],
+  "title": "Farms and wells by farm type and municipality",
+  "publisher": "Ministry of Municipality via Qatar Open Data",
+  "published": "2026",
+  "data_period": "",
+  "url": "https://www.data.gov.qa/explore/dataset/number-of-farms-and-wells-by-type-of-the-farm-and-municipality/",
+  "authority": "official",
+  "evidence_status": "census",
+  "licence": "CC BY 4.0",
+  "topics": [
+   "water_situation",
+   "suitability"
+  ],
+  "note": ""
+ },
+ {
+  "id": "DS-67",
+  "folder": "07-geography",
+  "files": [
+   "total-population-and-population-density-by-municipality-in-census-2010-2020.csv"
+  ],
+  "title": "Population and density by municipality, census 2010-2020",
+  "publisher": "National Planning Council via Qatar Open Data",
+  "published": "2026",
+  "data_period": "2010, 2015, 2020",
+  "url": "https://www.data.gov.qa/explore/dataset/total-population-and-population-density-by-municipality-in-census-2010-2020/",
+  "authority": "official",
+  "evidence_status": "census",
+  "licence": "CC BY 4.0",
+  "topics": [
+   "water_situation"
+  ],
+  "note": ""
+ },
+ {
+  "id": "AQ-1",
+  "folder": "07-geography",
+  "files": [
+   "FAO_AQUASTAT_Qatar_water_resources.pdf",
+   "FAO_AQUASTAT_Qatar_water_resources.txt"
+  ],
+  "title": "AQUASTAT water resources factsheet, Qatar",
+  "publisher": "FAO AQUASTAT",
+  "published": "",
+  "data_period": "",
+  "url": "https://storage.googleapis.com/fao-aquastat.appspot.com/countries_regions/factsheets/water_resources/en/QAT-WRS.pdf",
+  "authority": "official",
+  "evidence_status": "international statistics",
+  "licence": "FAO, cite",
+  "topics": [
+   "water_situation",
+   "glossary"
+  ],
+  "note": ""
+ },
+ {
+  "id": "HW-01",
+  "folder": "08-sensors",
+  "files": [
+   "DFRobot_SEN0244_TDS.txt"
+  ],
+  "title": "Gravity analog TDS sensor (SEN0244)",
+  "publisher": "DFRobot",
+  "published": "",
+  "data_period": "",
+  "url": "https://wiki.dfrobot.com/sen0244/",
+  "authority": "manufacturer",
+  "evidence_status": "datasheet",
+  "licence": "DFRobot, cite",
+  "topics": [
+   "sensors"
+  ],
+  "note": "Range 0-1000 ppm"
+ },
+ {
+  "id": "HW-02",
+  "folder": "08-sensors",
+  "files": [
+   "DFRobot_SEN0161_V2_pH.txt"
+  ],
+  "title": "Gravity analog pH sensor kit V2 (SEN0161-V2)",
+  "publisher": "DFRobot",
+  "published": "",
+  "data_period": "",
+  "url": "https://wiki.dfrobot.com/Gravity__Analog_pH_Sensor_Meter_Kit_V2_SKU_SEN0161-V2",
+  "authority": "manufacturer",
+  "evidence_status": "datasheet",
+  "licence": "DFRobot, cite",
+  "topics": [
+   "sensors"
+  ],
+  "note": ""
+ },
+ {
+  "id": "HW-03",
+  "folder": "08-sensors",
+  "files": [
+   "DFRobot_SEN0189_Turbidity.txt"
+  ],
+  "title": "Turbidity sensor (SEN0189)",
+  "publisher": "DFRobot",
+  "published": "",
+  "data_period": "",
+  "url": "https://wiki.dfrobot.com/Turbidity_sensor_SKU__SEN0189",
+  "authority": "manufacturer",
+  "evidence_status": "datasheet",
+  "licence": "DFRobot, cite",
+  "topics": [
+   "sensors"
+  ],
+  "note": ""
+ },
+ {
+  "id": "HW-04",
+  "folder": "08-sensors",
+  "files": [
+   "DS18B20_datasheet.pdf",
+   "DS18B20_datasheet.txt"
+  ],
+  "title": "DS18B20 temperature sensor datasheet",
+  "publisher": "Maxim Integrated (via SparkFun)",
+  "published": "",
+  "data_period": "",
+  "url": "https://cdn.sparkfun.com/datasheets/Sensors/Temp/DS18B20.pdf",
+  "authority": "manufacturer",
+  "evidence_status": "datasheet",
+  "licence": "manufacturer, cite",
+  "topics": [
+   "sensors"
+  ],
+  "note": ""
+ },
+ {
+  "id": "HW-05",
+  "folder": "08-sensors",
+  "files": [
+   "ESP32_ADC_reference.txt"
+  ],
+  "title": "ESP32 ADC reference (ESP-IDF)",
+  "publisher": "Espressif",
+  "published": "",
+  "data_period": "",
+  "url": "https://docs.espressif.com/projects/esp-idf/en/v3.2.3/api-reference/peripherals/adc.html",
+  "authority": "manufacturer",
+  "evidence_status": "documentation",
+  "licence": "Espressif docs, cite",
+  "topics": [
+   "sensors"
+  ],
+  "note": "ADC limits affect sensor accuracy"
+ },
+ {
+  "id": "GL-1",
+  "folder": "09-glossary",
+  "files": [
+   "USGS_Dictionary_of_Water_Terms.txt"
+  ],
+  "title": "Dictionary of water terms",
+  "publisher": "USGS Water Science School",
+  "published": "",
+  "data_period": "",
+  "url": "https://www.usgs.gov/special-topics/water-science-school/science/dictionary-water-terms",
+  "authority": "official",
+  "evidence_status": "glossary",
+  "licence": "US public domain",
+  "topics": [
+   "glossary"
+  ],
+  "note": ""
+ },
+ {
+  "id": "GL-2",
+  "folder": "09-glossary",
+  "files": [
+   "WHO_TDS_background_document.pdf",
+   "WHO_TDS_background_document.txt"
+  ],
+  "title": "Total dissolved solids in drinking-water, background document",
+  "publisher": "WHO",
+  "published": "2003",
+  "data_period": "",
+  "url": "https://cdn.who.int/media/docs/default-source/wash-documents/wash-chemicals/tds.pdf",
+  "authority": "standard",
+  "evidence_status": "guideline background",
+  "licence": "WHO, cite",
+  "topics": [
+   "glossary",
+   "standards"
+  ],
+  "note": ""
+ },
+ {
+  "id": "GL-3",
+  "folder": "09-glossary",
+  "files": [
+   "glossary.csv"
+  ],
+  "title": "AquaMaa glossary, English and Arabic (draft)",
+  "publisher": "AquaMaa team",
+  "published": "2026",
+  "data_period": "",
+  "url": "",
+  "authority": "ours",
+  "evidence_status": "draft; Arabic to be checked",
+  "licence": "ours",
+  "topics": [
+   "glossary"
+  ],
+  "note": "25 terms, each with a source file"
+ },
+ {
+  "id": "MC-1",
+  "folder": "10-misconceptions",
+  "files": [
+   "misconceptions.csv"
+  ],
+  "title": "Common wrong assumptions and their corrections (draft)",
+  "publisher": "AquaMaa team",
+  "published": "2026",
+  "data_period": "",
+  "url": "",
+  "authority": "ours",
+  "evidence_status": "draft; to be checked by Roaa",
+  "licence": "ours",
+  "topics": [
+   "water_situation",
+   "quality_science",
+   "standards",
+   "sensors",
+   "suitability"
+  ],
+  "note": "8 entries, each with a source file"
+ }
+]

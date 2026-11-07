@@ -37,11 +37,12 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 - Routes by question type, following Meta's CRAG benchmark ([arXiv 2406.04744](https://arxiv.org/abs/2406.04744)):
   - simple, simple with a condition, set, comparison, aggregation, multi-hop, post-processing, false premise
 - Retrieval methods the routes use: structured lookup, keyword search (BM25), vector search, hybrid
+- Search headings first, then full text, and rerank results with `bge-reranker-v2-m3` (check its licence)
 - Out-of-scope questions get a general answer, labeled as outside AquaMaa's sources, not a refusal
 - **Done when:**
   - 24 labeled questions, 3 per type, are routed correctly in at least 22 of 24
   - the right file is in the top 3 for at least 19 of 24
-  - faithfulness, answer relevancy, context precision and context recall are reported, so results compare with WaterCopilot ([similar projects](reference/similar-projects.md))
+  - faithfulness, answer relevancy, context precision and context recall are reported, so results compare with WaterCopilot ([similar projects](similar-projects.md))
 - Optional: test general hydrology knowledge of `qwen3:14b` against `qwen2.5:3b` with the [HydroLLM benchmark](https://github.com/uihilab/HydroLLM-Benchmark) (MIT)
 
 ### [ ] Milestone 4: Agentic ReAct loops in place
@@ -77,6 +78,18 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 - Check Pepper's NAOqi version and Arabic support first
 - **Done when:** at least 8 of 10 spoken questions per language work in a noisy room, and the website still works when Pepper is off
 
+### [ ] Milestone 11: Sensor-fault and trend statistics
+- Python checks whether readings can be trusted before the agent uses them:
+  - stuck sensor: the same value repeated over a set window
+  - drift: a slow, steady change with no matching change at neighbouring stations
+  - spike: a single jump, using rolling statistics
+  - change points: PELT, from the `ruptures` library (check its licence first)
+- Trends use the Mann-Kendall test with Sen's slope. Too few readings gives "not enough readings", never a trend
+- Results feed Milestone 5's "too little evidence" route, so a doubtful reading is reported as doubtful
+- **Done when:**
+  - on simulated series with injected faults (stuck, drift, spike, real rise, no fault), each fault is flagged correctly in at least 9 of 10 cases per type
+  - the trend test matches a hand-checked answer on 5 series, including one with too few readings
+
 ## Decided together
 
 - **Names:** the product is **AquaMaa**. The team stays **AquaNova**, to avoid registration problems.
@@ -87,7 +100,14 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 - **Demo data:** one live station, labeled synthetic stations based on published statistics, and national context from official datasets.
 - **UDST research:** cited as background, with no partnership claim. We won't ask that team about it.
 - **National goals:** AquaMaa links its findings to Qatar Vision, NDS3, ministry goals and the SDGs. The links are our own mapping, not an official endorsement.
-- **Agent:** a 16-component LangGraph pipeline with fast, standard and deep lanes, using an open model. Design is in [agent-design.md](reference/agent-design.md). Diagrams: [agent pipeline](reference/diagrams/agent-pipeline.pdf) and [system overview](reference/diagrams/system-overview.pdf).
+- **Stack (adopted 7 November, after the review in [similar-projects.md](similar-projects.md)):** one LangGraph graph built on v1, running locally.
+  - Models: `qwen3:14b` for the agent, router and answers, with `qwen3:8b` tested for voice speed. Native-speaker review for Arabic, and an Arabic model such as ALLaM only if needed. No fine-tuning
+  - Retrieval: `bge-m3` embeddings, hybrid BM25 plus vector search with reciprocal rank fusion, the `bge-m3` reranker, headings searched first, tables kept as data, and the v1 quote check
+  - Statistics: sensor-fault checks and Mann-Kendall trends (Milestone 11), a TF-IDF router baseline, and calculations in Python
+  - Speech: faster-whisper, tashkeel, and Piper `ar_JO` once its licence is checked
+  - Evaluation: CRAG question types, faithfulness, answer relevancy, context precision and recall, and human completeness ratings
+  - Not adopted: fine-tuning, multiple agents, a deep-learning quality predictor, proprietary models
+  - Replaces the earlier 16-component design ([agent-design.md](context/reference/agent-design.md), kept as a record)
 - **Roaa also owns:** the suitability engine.
 - **QR explainer:** visitors scan a dashboard QR code with a phone, and the robot explains that chart. Start with three or four charts.
 - **Dashboard first:** it shows charts and insights without waiting for a question. Questions are for more specialized answers.
@@ -109,7 +129,7 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 | Tech stack | FastAPI, Supabase, Next.js, Leaflet | It matches Deema's diagram. Test first that Supabase stays awake while unattended. |
 | Qatar_MWDVF data | Use it for realistic station values, and credit it clearly. Don't present it as current or as your own. | It has 201 real locations from 2020, but no open licence, and one of its authors may be reviewing you |
 | Which robot | The one whose software can reach the backend | Older robot software may fail on HTTPS, so one test call would decide this |
-| Deema's diagram | Change the name to AquaMaa, and make the seven bigger changes in [notes](reference/notes.md#review-of-deemas-architecture-diagram) | The chain is right, but it misses "insufficient data", role views and non-sensor data |
+| Deema's diagram | Change the name to AquaMaa, and make the seven bigger changes in [notes](context/reference/notes.md#review-of-deemas-architecture-diagram) | The chain is right, but it misses "insufficient data", role views and non-sensor data |
 | 15 November | Find out who can attend, and prepare a recorded demo either way | The deck puts external reviewers on the 15th, but our plan is built around the 12th |
 
 ### Final problem statement (team, 7 November)
@@ -133,8 +153,8 @@ Resources: [Hukoomi, water and desalination](https://hukoomi.gov.qa/en/articles/
 - **Abstraction:** Kahramaa estimated 250 million m³ a year, then revised it to [200 using groundwater modeling](https://km.qa/MediaCenter/Publications/SR2023-English.pdf). These are estimates, so don't say pumping fell. Wells aren't metered yet, and flowmeters are planned within three years.
 - **Safe yield:** [49.6 million m³ a year](https://www.npc.qa/en/statistics/Statistical%20Releases/Environmental/Water/Water_Statistics_2023_EN.pdf), a 1998-2023 average from NPC's newest report. The 2021 edition said 54.2.
 - **Groundwater balance:** -49 million m³ in 2023 and -184 in 2021. 2023 uses a new modeling method and was a wet year, so don't present this as improvement.
-- **Existing systems:** [Law 23 of 2025](https://www.almeezan.qa/LawView.aspx?opt=&LawID=10163&language=ar) requires a water resources database linked to geographic information, and a [2025 report](reference/source-documents/ANND_Right_to_Water_in_Qatar.pdf) says Kahramaa keeps a central one. So we shouldn't claim that no shared system exists. [TASMU's Smart Water Network](https://tasmu.gov.qa/the-playbook/smart-water-network) covers network operations and leaks.
-- **Kahramaa's legal role:** [Amiri Decision 46 of 2015](reference/source-documents/Amiri_Decision_46_2015.pdf) tasks it with building a water resources database and running monitoring networks, and with analyzing their data for assessing and managing resources "for different uses" (my translation).
+- **Existing systems:** [Law 23 of 2025](https://www.almeezan.qa/LawView.aspx?opt=&LawID=10163&language=ar) requires a water resources database linked to geographic information, and a [2025 report](context/reference/source-documents/ANND_Right_to_Water_in_Qatar.pdf) says Kahramaa keeps a central one. So we shouldn't claim that no shared system exists. [TASMU's Smart Water Network](https://tasmu.gov.qa/the-playbook/smart-water-network) covers network operations and leaks.
+- **Kahramaa's legal role:** [Amiri Decision 46 of 2015](context/reference/source-documents/Amiri_Decision_46_2015.pdf) tasks it with building a water resources database and running monitoring networks, and with analyzing their data for assessing and managing resources "for different uses" (my translation).
 - **Law:** Law No. 23 of 2025 is in force, with 90 articles. I've confirmed only Articles 2 and 76 from the official portal, so check any other article before quoting it.
 - **What Kahramaa wants:** its [Aqua-Intelligence challenge](https://qoi.qrdi.org.qa/en/challenges/aqua-intelligence-the-smart-water-quality-innovation-challenge/pages/challenge-statements?lang=en) seeks continuous quality monitoring with alerts and dashboards, but for the drinking network, not groundwater.
 - **UDST research:** the [2026 review](https://doi.org/10.1007/s12665-026-13023-y) comes from a project behind this challenge, and three authors are on the committee.
@@ -143,13 +163,13 @@ Resources: [Hukoomi, water and desalination](https://hukoomi.gov.qa/en/articles/
 
 ## National goals
 
-All 41 goals, with sources, are in [policy-goals.csv](reference/policy-goals.csv). The ones closest to AquaMaa:
+All 41 goals, with sources, are in [policy-goals.csv](context/reference/policy-goals.csv). The ones closest to AquaMaa:
 
-- **[Qatar National Vision 2030](reference/source-documents/Qatar_National_Vision_2030.pdf), p.32:** "Preserving and protecting the environment, including air, land, water and biological diversity." It also names "diminishing water" resources as a local issue (p.30).
-- **[NDS3](reference/source-documents/Qatar_NDS3.pdf), p.27:** "Groundwater extraction reduced by 70%" by 2030. No baseline is given.
+- **[Qatar National Vision 2030](context/reference/source-documents/Qatar_National_Vision_2030.pdf), p.32:** "Preserving and protecting the environment, including air, land, water and biological diversity." It also names "diminishing water" resources as a local issue (p.30).
+- **[NDS3](context/reference/source-documents/Qatar_NDS3.pdf), p.27:** "Groundwater extraction reduced by 70%" by 2030. No baseline is given.
 - **NDS3:** groundwater metering, protection zones, and "regular and effective monitoring" of all water sources with consistent quality standards.
 - **NDS3:** water use per ton of crop improved by 40%.
-- **[Qatar NDC 3.0](reference/source-documents/Qatar_NDC_3.pdf), p.18 (proposed):** real-time monitoring "through a national water database". It also proposes AI in monitoring tools (p.13).
+- **[Qatar NDC 3.0](context/reference/source-documents/Qatar_NDC_3.pdf), p.18 (proposed):** real-time monitoring "through a national water database". It also proposes AI in monitoring tools (p.13).
 - **[Environment strategy](https://www.gulf-times.com/story/703337/pm-launches-qatars-national-environment-climate-strategy):** reduce groundwater extraction by 60%. NDS3 says 70%. The NDC says this strategy was later aligned with NDS3, but I haven't seen the update, so name the source each time.
 - **[Kahramaa 2026-2030](https://www.km.qa/MediaCenter/Pages/NewsDetails.aspx?ItemID=508):** water security, resource sustainability and digital transformation.
 - **[NDS3 outcomes](https://www.npc.qa/en/planning/nds3/Pages/strategicalnationaloutcome.aspx):** "Launch centralized data/AI/cloud capabilities" and "drive cross-policy collaboration."
@@ -162,15 +182,15 @@ I found no separate published visions for individual municipalities, so they fal
 
 Show these as national context only, never as one well's condition:
 
-- [Total groundwater abstraction](reference/datasets/total-abstraction-from-ground-water.csv)
-- [Abstraction by well type](reference/datasets/total-water-storage-2023.csv) (the source title is misleading)
-- [Aquifer water balance](reference/datasets/natural-water-balance-of-qatar-s-aquifers-annual-average-2014-2021.csv)
-- [Farms and wells](reference/datasets/number-of-farms-and-wells-by-farm-status-and-number-of-wells-class.csv)
-- [Wells by municipality](reference/datasets/number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv), 2016-2025: real figures for the Municipality view, such as 1,482 wells on working farms in Al Khor
+- [Total groundwater abstraction](context/reference/datasets/total-abstraction-from-ground-water.csv)
+- [Abstraction by well type](context/reference/datasets/total-water-storage-2023.csv) (the source title is misleading)
+- [Aquifer water balance](context/reference/datasets/natural-water-balance-of-qatar-s-aquifers-annual-average-2014-2021.csv)
+- [Farms and wells](context/reference/datasets/number-of-farms-and-wells-by-farm-status-and-number-of-wells-class.csv)
+- [Wells by municipality](context/reference/datasets/number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv), 2016-2025: real figures for the Municipality view, such as 1,482 wells on working farms in Al Khor
 
 ## Research data on hand
 
-[Qatar_MWDVF](reference/Qatar_MWDVF/SOURCE.txt) is downloaded for reference. The main file is [Geochemistry_Dataset.xlsx](reference/Qatar_MWDVF/Data/Geochemistry_Dataset.xlsx), with 201 locations from 2020, including coordinates, EC, TDS, pH and major ions. Its TDS is exactly half its EC in every row, so TDS looks calculated. It has no boron or nitrate.
+[Qatar_MWDVF](context/reference/Qatar_MWDVF/SOURCE.txt) is downloaded for reference. The main file is [Geochemistry_Dataset.xlsx](context/reference/Qatar_MWDVF/Data/Geochemistry_Dataset.xlsx), with 201 locations from 2020, including coordinates, EC, TDS, pH and major ions. Its TDS is exactly half its EC in every row, so TDS looks calculated. It has no boron or nitrate.
 
 ## Hardware checks
 
@@ -181,4 +201,4 @@ The exact sensor models aren't confirmed, so these depend on what's in the kit:
 
 ## Where things are
 
-Everything else is in [reference/](reference/), which I keep up to date, so you don't need to open it.
+Everything else is in [reference/](context/reference/), which I keep up to date, so you don't need to open it.

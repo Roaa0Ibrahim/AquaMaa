@@ -1,0 +1,69 @@
+                                                                                                  AQUASTAT
+
+                                                                                                   Global Water Information System
+
+Computation of long-term annual renewable water resources (RWR) by country (in km³/year, average)
+
+                                Qatar
+
+Internal RWR                                    [1]  74     (a)
+
+ Precipitation (mm/year)                        [2]  1 161
+ Area of the country (1000 ha)
+ Precipitation (km³/year)                       [3]  0.     =([1]/1000000)x([2]x10)
+
+ Surface water: produced internally             [4]  0
+
+ Groundwater: produced internally               [5]  0.056
+
+ Overlap between surface water and groundwater  [6]  0      (b)
+
+ Total internal renewable water resources       [7]  0.056 =[4]+[5]-[6]
+External RWR
+                                                     Total                           Accounted
+Surface water
+ Surface water entering the country                  0
+   Inflow not submitted to treaties
+   Inflow submitted to treaties                                          [8]                      0
+   Inflow secured through treaties
+ Flow in border rivers                                                                            0
+ Accounted inflow
+                                                                         [9]                      0
+
+                                                     0                   [10]                     0
+
+                                                                         [11]                     0                                             =[8]+[9]+[10]
+
+ Surface water leaving the country                   0                                            0
+   Outflow not submitted to treaties
+   Outflow submitted to treaties                     0.002 (c)                                    0
+   Outflow secured through treaties                  0
+                                                                         [12]                     0
+ Total external renewable surface water
+                                                                         [13]                     0                                             =[11]-[12]
+Groundwater
+ Groundwater entering the country                                        [14]                     0.002
+
+ Groundwater leaving the country                                                                  0
+
+ Total external renewable water resources                                [15]                     0.002 =[13]+[14]
+
+Total RWR                                                                [16]                     0                                             =[4]+[13]
+ Surface water
+ Groundwater                                                             [17]                     0.058 =[5]+[14]
+ Overlap between surface water and groundwater
+ Total renewable water resources                                         [6]                      0                                             (b)
+ Dependency ratio (%)
+                                                                         [18]                     0.058 =[16]+[17]-[6]
+
+                                                                         [19]                     3.448 =100*([11]+[14])
+
+                                                                                                                                                /([11]+[14]+[7])
+
+Metadata:
+  (a) Abu Sukar,H.K.et al.2007. Agro-hydro-meteorological data book for the State of Qatar->average (1972-2005) 80.2 mm/y. IPCC 1961-90->74 mm
+  (b) Overlap between surface water and groundwater is negligible.
+  (c) From Saudi Arabia
+
+Generated: 07 Feb 2019 at 13:55 CET                              http://www.fao.org/nr/aquastat/
+

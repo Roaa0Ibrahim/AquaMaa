@@ -1,0 +1,9 @@
+﻿wrong_assumption,correction,source_file,checked_by_roaa
+Qatar's drinking water comes mostly from groundwater.,"Drinking water is desalinated. Desalination supplied 63% of all water produced in 2023, with groundwater going mostly to farms.",NPC_Water_Statistics_2023.txt; Kahramaa_Statistics_Report_2023.txt,no
+"Abstraction fell in 2023, so pumping went down.","Kahramaa revised its estimate from 250 to 200 million m3 using modelling. The change is in the estimate, not proven pumping.",Kahramaa_Statistics_Report_2023.txt (p.81),no
+Abstraction figures are meter readings.,They are estimates. Kahramaa says flowmeters will be installed in every well within three years.,Kahramaa_Statistics_Report_2023.txt (p.81),no
+Abstraction is 3-5 times recharge (current figure).,3-5 times matches the 2019-2022 estimate and QEERI 2022. With 2023 official figures it is about 2.7 times recharge and 4 times safe yield.,QEERI_2022_Qatar_Groundwater_Challenges.txt; NPC_Water_Statistics_2023.txt,no
+Recharge and safe yield are the same thing.,Safe yield is recharge minus natural outflow: 74.7 - 25.1 = 49.6 million m3 a year.,NPC_Water_Statistics_2023.txt,no
+Low TDS means the water is safe to drink.,WHO sets no health-based value for TDS. Safety needs microbiological and chemical tests.,WHO_TDS_background_document.txt,no
+A TDS sensor reading can show groundwater is drinkable.,"The SEN0244 probe reads up to 1,000 ppm, while the 2020 well survey averaged several thousand mg/L, and TDS alone never shows safety.",DFRobot_SEN0244_TDS.txt; Geochemistry_Dataset.xlsx,no
+Salty groundwater is useless.,"Brackish water can still irrigate salt-tolerant crops with management, under FAO 29's restriction levels.",FAO_29_Water_Quality_for_Agriculture_ch1-5.txt; limits.csv,no

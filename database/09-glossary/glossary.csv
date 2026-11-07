@@ -1,0 +1,26 @@
+﻿term_en,term_ar,plain_definition_en,source_file,arabic_checked_by_native_speaker
+groundwater,المياه الجوفية,"Water held underground in soil and rock, pumped up through wells.",USGS_Dictionary_of_Water_Terms.txt,no
+aquifer,الخزان الجوفي (طبقة حاملة للمياه),A layer of rock or sediment that holds and passes groundwater. Qatar's main ones are Rus and Umm er Radhuma.,USGS_Dictionary_of_Water_Terms.txt; NPC_Water_Statistics_2023.txt,no
+recharge,التغذية,"Water that refills an aquifer, mainly from rain soaking into the ground.",USGS_Dictionary_of_Water_Terms.txt; NPC_Water_Statistics_2023.txt,no
+safe yield,الإنتاجية الآمنة,"How much can be pumped each year without depleting the aquifer. In Qatar, recharge minus natural outflow: 74.7 - 25.1 = 49.6 million m3 a year.",NPC_Water_Statistics_2023.txt,no
+abstraction,السحب (الضخ),"Water pumped out of an aquifer. In Qatar the figures are estimates, because wells aren't metered yet.",Kahramaa_Statistics_Report_2023.txt,no
+salinity,الملوحة,How much salt is dissolved in water. High salinity harms crops and soil.,FAO_29_Water_Quality_for_Agriculture_ch1-5.txt,no
+total dissolved solids (TDS),إجمالي المواد الصلبة الذائبة,"The total amount of dissolved minerals and salts, in mg/L. It describes taste and salinity, not whether water is safe to drink.",WHO_TDS_background_document.txt,no
+electrical conductivity (EC),التوصيلية الكهربائية,"How well water conducts electricity, which rises with dissolved salt. Sensors measure EC and estimate TDS from it.",FAO_29_Water_Quality_for_Agriculture_ch1-5.txt,no
+sodium adsorption ratio (SAR),نسبة امتزاز الصوديوم,Compares sodium with calcium and magnesium. High SAR makes soil seal up so water soaks in poorly.,FAO_29_Water_Quality_for_Agriculture_ch1-5.txt,no
+pH,الرقم الهيدروجيني,"How acidic or alkaline water is, from 0 to 14, where 7 is neutral.",USGS_Dictionary_of_Water_Terms.txt,no
+turbidity,العكارة,"How cloudy water is, measured in NTU.",USGS_Dictionary_of_Water_Terms.txt; Kahramaa_Drinking_Water_Quality_Requirements_2014.txt,no
+brackish water,المياه قليلة الملوحة (المسوس),Water saltier than fresh water but less salty than seawater. Most of Qatar's groundwater is brackish.,USGS_Dictionary_of_Water_Terms.txt,no
+desalination,تحلية المياه,Removing salt from seawater or brackish water. It supplies Qatar's drinking water.,Kahramaa_Statistics_Report_2023.txt,no
+treated sewage effluent (TSE),مياه الصرف الصحي المعالجة,"Wastewater cleaned at treatment plants, reused for irrigation, landscaping and aquifer recharge.",NPC_Water_Statistics_2023.txt,no
+seawater intrusion,تداخل مياه البحر,Seawater moving into a coastal aquifer when pumping lowers the fresh water level.,QEERI_2022_Qatar_Groundwater_Challenges.txt,no
+managed aquifer recharge,التغذية الاصطناعية المُدارة,"Deliberately putting water into an aquifer through recharge wells or basins, to store it or improve it.",Mohieldeen_2021_GIS_aquifer_recharge_Qatar_SciRep.txt,no
+water table,منسوب المياه الجوفية,"The top of the groundwater, below which the ground is fully saturated.",USGS_Dictionary_of_Water_Terms.txt,no
+guideline value,القيمة الإرشادية,A concentration below which a substance is not expected to harm health. WHO sets none for TDS.,WHO_GDWQ_annex_tables.txt; WHO_TDS_background_document.txt,no
+leaching,غسيل التربة,Applying extra water so salts are washed below the root zone.,FAO_29_Water_Quality_for_Agriculture_ch1-5.txt,no
+crop salt tolerance,تحمّل المحاصيل للملوحة,How much salinity a crop can take before its yield drops. Date palms tolerate far more than most vegetables.,FAO_29_Water_Quality_for_Agriculture_ch1-5.txt,no
+hardness,عسر الماء,Mainly calcium and magnesium in water. It causes scale and affects taste.,WHO_GDWQ_annex_tables.txt,no
+nitrate,النترات,A nitrogen compound from fertiliser or sewage. WHO's drinking-water guideline is 50 mg/L.,WHO_GDWQ_annex_tables.txt,no
+water stress,الإجهاد المائي,Freshwater taken out as a share of the freshwater available (SDG 6.4.2).,FAO_AQUASTAT_Qatar_water_resources.txt,no
+sensor calibration,معايرة المستشعر,Adjusting a sensor against known standard solutions so its readings are accurate.,DFRobot_SEN0244_TDS.txt; DFRobot_SEN0161_V2_pH.txt,no
+sensor drift,انحراف قراءة المستشعر,"A slow change in a sensor's readings that does not come from the water, such as fouling or ageing.",DFRobot_SEN0161_V2_pH.txt,no

@@ -1,0 +1,43 @@
+Gravity: Analog pH Sensor V2
+
+Gravity: Analog pH Sensor V2 is designed for precise measurement of solution pH, reflecting its acidity or alkalinity, and is ideal for applications like aquaponics, aquaculture, and environmental water testing. This upgraded version offers improved precision and user experience, featuring an onboard voltage regulator chip for wide voltage supply compatibility, hardware-filtered output signal with low jitter, and a software library using a two-point calibration method that automatically identifies standard buffer solutions. This product is easy to implement with a main control board and software library, requiring no soldering or modifications.
+
+This article offers a comprehensive guide to calibrating and measuring pH using Arduino, featuring example code and essential maintenance tips for optimal sensor performance.
+
+Signal Conditioner Board V2
+
+>0.5 year (depending on frequency of use)
+
+Analog Signal Output(0~3.0V)
+
+In this blog, we will introduce you to all of DFRobot’s liquid sensors and list all their parameters so that you can make a purchase.
+
+Explore DFRobot liquid sensors for water quality, hydroponics, aquaculture, wastewater, liquid level, flow, rainfall and leak monitoring. Compare sensing parameters and find the right guide for your project.
+
+DFRobot provides pH sensors for Arduino hobbyists to industrial use. Explore our detailed comparison to find the perfect sensor for your needs.
+
+DF, how long does the probe need to be calibrated? The calibration interval is determined by the frequency of use. Normally, you can calibrate it once a month. If used frequently, it can be calibrated once a week. When calibrating, fresh standard buffer solution is recommended.
+
+During the calibration, is it necessary to complete two points calibration? Can I complete only one point calibration? In the case of low demand, you can use neutral standard buffer solution (7.0) for calibration, which is called single-point calibration and is used to confirm the actual zero point of the pH probe. At this point, the slope is the theoretical value. Then the actual slope of the pH probe can be confirmed by calibration with standard buffer solution (4.0) after signal-point calibration. Therefore, in order to ensure the measurement accuracy, it is recommended to use two-point calibration.
+
+What might be the reason for the first calibration that always fails to calibrate, or prints the unexception value? When calibrating, the relevant parameters are stored in the specified position in EEPROM. If other data previously saved in the same position in EEPROM, there may be a conflict, resulting in an inability to calibrate properly. Use the following code to erase the contents in the specified position in EEPROM. Run it once, then upload the sample code again to restart the calibration. /* This code will reset the corresponding EEPROM used by DFRobot Gravity pH Meter V2, SKU: SEN0161-V2. When uploaded this code, please open the serial monitor of the Ardino IDE. The correct value of the EEPROM block should be 255. */ #include <EEPROM.h> #define PHADDR 0x00 void setup() { Serial.begin(115200); for(int i = 0;i < 8; i++ ) { EEPROM.write(PHADDR+i, 0xFF);// write defaullt value to the EEPROM delay(10); } } void loop() { static int a = 0, value = 0; value = EEPROM.read(PHADDR+a); Serial.print(PHADDR+a,HEX); Serial.print(":"); Serial.print(value);// print the new value of EEPROM block used by EC meter. The correct is 255. Serial.println(); delay(10); a = a + 1; if (a == 8) while(1); }
+
+When calibrating, the relevant parameters are stored in the specified position in EEPROM. If other data previously saved in the same position in EEPROM, there may be a conflict, resulting in an inability to calibrate properly. Use the following code to erase the contents in the specified position in EEPROM. Run it once, then upload the sample code again to restart the calibration.
+
+This code will reset the corresponding EEPROM used by DFRobot Gravity pH Meter V2, SKU: SEN0161-V2.
+
+When uploaded this code, please open the serial monitor of the Ardino IDE. The correct value of the EEPROM block should be 255.
+
+for(int i = 0;i < 8; i++ )
+
+EEPROM.write(PHADDR+i, 0xFF);// write defaullt value to the EEPROM
+
+static int a = 0, value = 0;
+
+value = EEPROM.read(PHADDR+a);
+
+Serial.print(PHADDR+a,HEX);
+
+Serial.print(value);// print the new value of EEPROM block used by EC meter. The correct is 255.
+
+Explore More Related Questions >

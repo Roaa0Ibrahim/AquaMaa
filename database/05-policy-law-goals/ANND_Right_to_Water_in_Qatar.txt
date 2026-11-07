@@ -1,0 +1,710 @@
+ATH2NED0R2CILG5IHMTATTEOCWHAATNEGRE
+
+2025
+
+THE ARAB WATCH REPORT ON ECONOMIC AND SOCIAL RIGHTS
+
+THE RIGHT TO WATER IN QATAR
+BALANCING GROUNDWATER CONSERVATION, WASTEWATER TREATMENT, AND DESALINATION
+CASE STUDY
+
+Mohammad Abu Hawash
+Senior Research Assistant, Middle East Council for Global Affairs
+
+This report is published as part of the Arab NGO Network for Development’s Arab Watch Report on Economic and Social Rights (AWR) series. The AWR is a periodic publication by the Network and each edition focuses on a specific right and on the national, regional and international policies and factors that lead to its violation. The AWR is developed through a participatory process which brings together relevant stakeholders, including civil society, experts in the field, academics, and representatives from the government in each of the countries represented in the report, as a means of increasing ownership among them and ensuring its localization and relevance to the context.
+The seventh edition of the Arab Watch Report focuses on the right to water. It was developed to provide a comprehensive and critical analysis of the status of this right across the region, particularly in the context of climate change and its growing impacts. The information and analyses presented aim to serve as a platform for advocacy toward the realization of this fundamental right for all.
+The views expressed in this publication are solely those of the author and do not necessarily reflect the positions of the Arab NGO Network for Development (ANND), Brot für die Welt, or Norwegian People’s Aid.
+Beirut, © 2025. All rights reserved.
+The report is published by the Arab NGO Network for Development (ANND). It can be obtained from ANND or can be downloaded from the following website
+http://www.annd.org
+This report or any portion thereof may not be reproduced or used in any manner whatsoever without the express written permission of the publisher except for the use of brief quotations.
+SUPPORTED BY
+
+TAH2NED0R2CILG5IHMTATTEOCWHAATNEGRE
+
+2025
+
+THE ARAB WATCH REPORT ON ECONOMIC AND SOCIAL RIGHTS
+
+THE RIGHT TO WATER IN QATAR
+BALANCING GROUNDWATER CONSERVATION, WASTEWATER TREATMENT, AND DESALINATION
+CASE STUDY
+
+Mohammad Abu Hawash
+Senior Research Assistant, Middle East Council for Global Affairs
+
+CONTENTS
+
+ABSTRACT									 05
+
+ABBREVIATIONS 								 05
+
+ACKNOWLEDGMENT 								 05
+
+INTRODUCTION									 06
+
+RESEARCH DESIGN, OBJECTIVES, AND METHODOLOGY		
+
+08
+
+WATER USE IN QATAR: AN OVERVIEW					
+
+10
+
+INSTITUTIONAL FRAMEWORK: WATER GOVERNANCE			
+
+AND MANAGEMENT IN QATAR					
+
+12
+
+THE CORE OF THE PROBLEM: QATAR’S GROUNDWATER AND		 THE FOOD SECURITY DILEMMA						 16
+
+• Qatar’s Groundwater Deficit: How did we get here?		
+
+16
+
+• Increasing brackishness of groundwater: risks to future		
+
+generations							
+
+18
+
+THE ROLE OF TREATED SEWAGE EFFLUENT (TSE) IN			
+
+REDUCING DEPENDENCE ON GROUNDWATER				
+
+20
+
+• Artificial aquifer recharge (AAR) in Qatar: opportunities			
+
+and risks									
+
+21
+
+• District cooling and TSE						
+
+22
+
+DESALINATED SEAWATER: THE OTHER SIDE OF QATAR’S		 WATER STORY									 23
+
+• Perceptions of undrinkable tap water and questions on		
+
+unequal access								
+
+24
+
+RECOMMENDATIONS								 26
+
+CONCLUSION									 29
+
+REFERENCES								
+
+30
+
+6      The Right to Water in 
+
+| ABSTRACT
+This report explores the right to water in Qatar, with a focus on how this right can be safeguarded for the country’s future generations. The country's water sector is divided between the municipal and agricultural sectors. The former relies on desalinated seawater, and the latter depends primarily on groundwater. The report celebrates Qatar’s notable achievements in recent decades, which have ensured abundant water resources despite the country's natural water scarcity. At the same time, it presents a somber view of the future. It identifies groundwater over-abstraction as the key node of unsustainability that threatens the longevity of natural freshwater resources and proposes a new agricultural strategy to confront this problem. The report also identifies key vulnerabilities and deficiencies in the water sector overall and proposes a water strategy, capacity building, improved data collection, and transparency as solutions.
+
+| ABBREVIATIONS
+
+AAR: 		
+
+Artificial aquifer recharge, also known as “TSE injection”
+
+Ashghal: Public Works Authority
+
+DC: 		
+
+District cooling
+
+Kahramaa: Qatar General Electricity and Water Corporation
+
+l/d:		
+
+Liters per day
+
+MCM:		
+
+Million Cubic Meters
+
+NPC:		
+
+National Planning Council (formerly Planning & Statistics Authority, or PSA)
+
+PWRC:
+
+Permanent Water Resources Committee
+
+QEWC:
+
+Qatar Electricity and Water Company
+
+R&D:		
+
+Research and Development
+
+TSE:		
+
+Treated Sewage Effluent
+
+| ACKNOWLEDGMENT
+The author expresses his sincere gratitude to the experts and stakeholders who shared their expertise—formally and informally—throughout this report's research process. Capturing the nuances of Qatar’s water sector would not have been possible without their insights and advice.
+
+ABU HAWASH , M. 7
+
+01
+INTRODUCTION
+
+Like its peers in the GCC, Qatar utilizes its plentiful hydrocarbon resources to create an artificial abundance of water through desalination,1 overcoming the extreme scarcity of natural freshwater resources in the country. Thus, the government has provided universal access to water for the country's population, ensuring the right to water for citizens and residents, whether in urban or rural communities. However, due to the decades-long over-abstraction2 of groundwater, the country’s only natural source of freshwater, Qatar’s aquifers have been severely depleted. This situation threatens Qatar’s future generations’ right to access freshwater, especially in emergencies where the country’s desalination facilities are rendered inoperable due to natural or political events. Such ‘nightmare scenarios’ have received increased attention recently due to regional instability (Mills, 2025). Qatar was also the target of two attacks by Iran and Israel in 2025, which raised concerns about the water sector’s vulnerabilities and the importance of safeguarding natural freshwater as an emergency reserve (Al-Jazeera, 2025a; Al-Jazeera, 202.
+Acknowledging this danger, Qatar's government responded in several ways, including short-term measures like the construction of large reservoirs for use during emergencies or long-term measures like reforming the agricultural sector and
+
+investing in improved wastewater treatment as an alternative source of water. Indeed, one of the most notable measures taken by Qatar since the early 2000s is the ramping up of treated sewage effluent (TSE) production, which has grown to become another major source of water for the country. Some of the current uses for TSE in Qatar include artificial aquifer recharge (AAR), district cooling, irrigating urban green spaces, and limited agricultural applications. This has alleviated pressure on the country’s groundwater aquifers.
+Nonetheless, a lot more remains to be done to safeguard the right of Qatar’s future generations to access freshwater. The key challenges that remain are:
+• The massive groundwater deficit: The
+annual abstraction rate of groundwater in Qatar remains far above the annual natural recharge rate of ~54 million cubic meters (MCM).
+• Vulnerabilities in the desalination
+sector: The desalination facilities in the country are vulnerable to supply chain disruptions, as key equipment, parts, and materials used in them are imported.
+• Competence gaps: Public and private
+institutions in Qatar continue to struggle with awareness and understanding
+
+1 This includes seawater desalination for the municipal sector, and brackish groundwater desalination for the agricultural sector. 2 “Water abstraction” is also referred to as water extraction, intake, or withdrawal. However, “abstraction” tends to be used in regulatory contexts where water is withdrawn from natural sources (i.e. rivers, lakes, aquifers, the sea/ocean, etc.) specifically for human use (as opposed to flood control or energy generation, for example). Nonetheless, these terms are used interchangeably.
+
+8      The Right to Water in 
+of the country’s water issues, which inhibits progress.
+• Data collection and reporting chal-
+lenges: While data reporting in Qatar’s water sector is better than many of its peers in the Arab region, there are persistent data transparency gaps that inhibit research and development (R&D) efforts.
+Despite these challenges, experts often marvel at Qatar’s ability to overcome its hyper-arid environment to provide water for its population. The passage of a new water law on October 19, 2025, signals that policymakers are serious about continuing to improve the water sector and resolving persistent challenges (particularly illegal well digging and unlicensed withdrawals). However, the country’s water challenges have more to do with agricultural policy than water policy, as farms are the primary consumers of groundwater. Thus, Qatar can ensure that its future generations have a natural reserve of fresh groundwater by reforming its agricultural policies, improving competence and awareness, and enhancing data collection and reporting.
+
+ABU HAWASH , M. 9
+
+02
+RESEARCH DESIGN, OBJECTIVES, AND METHODOLOGY
+
+The research process for this case study report took place in the state of Qatar between January and November of 2025. It aimed to conduct applied research3 to provide actionable recommendations on how Qatar can safeguard its natural freshwater resources for future generations. The overarching research question is: What are the factors4 affecting availability, access, quality, and sustainable management of water resources in Qatar in the long term?5
+The study utilizes qualitative data analysis as a methodology. Grounded theory serves as the main method of analysis.6 This method was chosen because it stays closest to the data without using a theoretical framework as a medium for interpretation. This accelerates the process of comparison and pattern recognition, which is useful considering the short time frame for research, which is limited to under a year. To collect data, the study utilizes desk research, semi-structured interviews,7 and stakeholder feedback. The research process began with desk research to synthesize insights from academic liter-
+
+ature, official reports, news articles, civil society activities, and verified statistical data repositories. Some of the sources include peer-reviewed journals by Qatarbased experts, annual reports from the Qatar General Electricity and Water Corporation (Kahramaa), the Qatar Electricity and Water Company (QEWC), the National Planning Council (NPC; formerly Planning and Statistics Authority, or PSA), the Ministry of Municipality (MM), and publications by relevant organizations based in Qatar.
+The next step was to validate the data and insights by discussing them in semi-structured expert interviews. In addition to validating data and insights, the interviews also generated significant amounts of new data and corrected mistaken assumptions. In addition to that, the utilization of expert interviews also provided a degree of reflexivity and triangulation of information, which further strengthened the report’s recommendations. The key insights and recommendations were validated by examining their credibility, transferability, dependability, and confirmability.
+
+3 “Applied research” serves to shed light on a societal concern or problem as solutions are explored. For details of this type of research, see: Ravtich and Mittenfelner Carl, 2021. 4 “Factors” here can be institutional, financial, infrastructural and socio-economic, or otherwise. 5 This wider question is broken down into a series of more targeted questions, such as: What are the main legal and institutional instruments involved in the governance and management of water resources in Qatar, particularly concerning groundwater? What are the institutional challenges in the water sector and how do they affect the right to water in Qatar, especially for future generations? What is the status of access, availability, and quality of water resources in Qatar? What are the implications of depleting groundwater resources? What is being done to ameliorate the depletion of natural freshwater resources in the country, and how effective are these efforts? What are alternative models of water use and allocation that Qatar can adopt to conserve and sustainably manage its groundwater resources? 6 Grounded theory serves to generate insights without necessarily testing them against existing theories. This is useful in contexts where theoretical frameworks/models are lacking or need to be validated. 7 To learn more about semi-structured interviews, see: Given, 2008; Guthrie, 2010.
+
+10      The Right to Water in 
+The interviews were followed by a presentation of the draft report (including policy recommendations) in a stakeholder meeting on July 10, 2025. The stakeholder meeting generated additional data and feedback, which was then incorporated into the final report. The stakeholder meeting took place under the Chatham House rule, which dictates that “participants are free to use the information received, but neither the identity nor the affiliation of the speaker(s), nor that of any other participant, may be revealed (Chatham House, 2025)." In other words, the rule allows for participants to be named (as long as that is done in good faith), but it does not permit the attribution of any quotes or insights from the meeting to any individual who attended it. By using this rule, participants were encouraged to share their honest opinions about the right to water in Qatar, and the report’s findings and recommendations.
+Institutional review board (IRB) approval was not pursued for this project as the research process did not involve the study of human subjects. As for the semi-structured expert interviews, all interviewees were asked to provide their verbal and written consent to be interviewed. Before consenting, interviewees were briefed on the topic of this research project, the theme of the interview, and the pre-determined questions that they could expect to be asked. Interviewees were also asked to consent to being recorded and quoted by name (or not). In instances where interviewees did not consent to being recorded, handwritten or typed notes were taken during the discussion, and all references were anonymized to protect the nonconsenting interviewee’s anonymity. Lastly, all drafts of the report were subject to review by staff at the Arab NGO Network for Development (ANND), who monitored progress and funded this research project.
+
+ABU HAWASH , M. 11
+
+03
+WATER USE IN QATAR: AN OVERVIEW
+
+In 2023, the direct per capita water consumption rate in Qatar stood at 202 liters/ day (l/d), or 190 l/d when excluding losses in the water distribution system (Kahramaa, 2024). This was down from a peak of 230 l/d in 2021 (Kahramaa, 2024). However, it does not include indirect water used for non-household consumption or farming, which would approximately double the per capita water consumption rate if included (Kahramaa, 2024).
+The high quality of life that many in Qatar enjoy is supported by a high per capita water footprint. However, there are notable inequalities in water consumption, which can be seen when looking at water consumption by household type. For example, families residing in villas, which constitute a third of all households in the country (Ministry of Municipality, 2021), consume
+
+around 14,000 l/d (Luomi, 2012). Qatar’s hundreds of palaces, on the other hand, consume a whopping 20-35,000 l/d (Luomi, 2012). On the other hand, those residing in apartments consume water at rates close to the OECD average.
+In Qatar, desalinated seawater largely supplies the municipal water sector, while groundwater primarily supplies the agricultural sector (Higazy, 2024). On the other hand, the industrial sector uses a minuscule amount of water (about 2.7% of total water consumption in 2021), which is supplied from a variety of sources (PSA, 2023). As seen in Figure 1 below, households and agriculture are traditionally the biggest consumers of water in Qatar, followed by government, commercial enterprises, and industry, respectively.
+
+Figure 1: Annual Water Consumption by Sector in Qatar, 2016-2021
+
+Million Cubic Meters (MCM) Millions
+
+1200 1000
+800 600 400 200
+0
+Year 2016
+Industry
+
+2017
+
+2018
+
+2019
+
+2020
+
+2021
+
+Commercial
+
+Government
+
+Agriculture
+
+Households
+
+|  Source: Water Statistics in the State of Qatar 2021 Report.
+
+12      The Right to Water in 
+The universal access to water that Qatar’s population enjoys today was made possible by the large public investments in infrastructure, subsidies, and social programs that have spanned the past few decades (Hashim, 2009). The mains water distribution network was expanded by a staggering 1804% between 1971 and 2014 (BMI, 2015). It has grown even more since then with the completion of Lusail City, Mesaieed Industrial City, and other master-planned districts, and the natural growth of built areas in the country. On the other hand, the size of irrigated farmland in the country declined during the 2000s before rising again in recent years, which will be discussed in more detail in subsequent sections. Today, there are 1,016 active farms in the country and another 6,815 ʿIzbah (i.e., rural estates) (Ministry of Municipality, 2021), consuming most of Qatar's abstracted groundwater.
+Water utility customer services are provided in English and Arabic, which could create accessibility issues for a significant portion of Qatar’s population who are not fluent in either of these two languages if they want to submit complaints or report concerns about their access to water (although most residents speak English with a moderate to high fluency).
+Ultimately, Qatar’s residents enjoy plentiful, easily accessible, and relatively affordable water resources. The government invests heavily in the sector to ensure high-quality services. However, the most difficult challenge facing the country today is reducing the agricultural sector’s reliance on groundwater, which is essential to ensure long-term water security and the right of future generations of Qataris to access fresh groundwater.
+
+ABU HAWASH , M. 13
+
+04
+INSTITUTIONAL FRAMEWORK: WATER GOVERNANCE AND MANAGEMENT IN QATAR
+
+A patchwork of laws, decrees, and ministerial or Amiri resolutions govern Qatar’s water sector. The government has recently attempted to streamline this legal framework, culminating in the passage of law no. 23 of 2025 (Emirate of Qatar, 2025). This new law retains the key institutions that govern and manage the country’s water resources while simultaneously adding a higher degree of granularity to remove “grey areas” that existed in the old law (which was introduced back in 1988). The new law also introduces harsher penalties for violations and ensures violators are held accountable. That being said, the new law continues to be complemented by a patchwork of other pieces of legislation, decrees, and resolutions that pertain to specific issues.
+Formed in 2004, the Permanent Water Resource Committee (PWRC)8 is the highest governmental authority responsible for water resources in Qatar (Fanack Water, 2021). The Minister of State for Energy Affairs chairs the PWRC. Its responsibilities include developing and preserving water resources in the country and coordinating with relevant stakeholders to draft and propose water-related legislation to the
+
+Council of Ministers. The PWRC also liaises with the National Planning Council (NPC) to set long-term strategies and goals for the water sector.
+The three key entities of Qatar’s water management structure are the Qatar Electricity and Water Company (QEWC), the Qatar General Electricity and Water Corporation (Kahramaa), and the Public Works Authority (Asghal). QEWC was established in 1990 by an Amiri decree, Kahramaa was established in 2000 by law, and Ashghal was created in 2004 by law (Fanack Water, 2021). Despite the different nature and structure of these three entities, they all answer directly to the government, the PWRC playing a key role in their governance (alongside other official actors). Qatari law dictates that the Minister of State for Energy Affairs serves as the chairman of QEWC’s board of directors, while the Emir directly appoints the presidents of Kahramaa and Asghal. New laws and decrees are regularly passed to dictate the structure, operations, and functions of these three entities.
+
+8 Also known as the Standing Water Resources Committee, or SWRC.
+
+14      The Right to Water in 
+Figure 2: Institutional Framework of Water Management in Qatar
+
+Production: QEWC
+Owns and operates most desalination facilities in Qatar. Invests in facilities abroad to generate
+revenues.
+
+Distribution: Kahramaa
+Receives water from desalination & treatment facilities
+and distributes it through its own
+network. Monitors water
+resources. Manages reserves.
+
+Treatment: Ashghal
+Receives water from desalination & treatment facilities
+and distributes it through its own
+network. Monitors water
+resources. Manages reserves.
+
+ GROUNDWATER MANAGEMENT
+
+Amiri Decree no. 46 of 2015 handed responsibility for groundwater management, development, and control to Kahramaa (Amiri Diwan, 2015). The decree also granted Kahramaa the power to issue licenses to dig and operate wells and search for groundwater resources. It is assisted by the Public Works Authority (Ashghal) in building, operating, and maintaining the country’s groundwater pumping, distribution, and drainage network. On the other hand, the Agricultural Affairs Department at the Ministry of Municipality supervises the agricultural sector under the leadership of the Assistant Undersecretary for Agriculture and Food Security Affairs. This department issues farming licenses, monitors farms to ensure compliance, and conducts the periodic agricultural census (Ministry of Municipality, 2025).
+Qatari law safeguards farmers’ rights to continue withdrawing groundwater free of charge. However, law no. 23 of 2025 places strict rules and regulations on the use of
+
+groundwater and imposes severe penalties for violations.9 For example, all wells must be licensed (Article 10) and have a maximum permitted withdrawal rate (Article 7.2). Furthermore, each well has a permitted area that it may irrigate (Article 13), which cannot be increased without a license. Additionally, wells must be at least 300 meters apart to mitigate over-abstraction (Article 11).
+The new law significantly increased penalties for violations. The most severe penalties were reserved for actions that pollute natural water resources, which can reach up to 15 years in prison and a million Qatari riyals in fines (Article 76). Digging an unlicensed well or exceeding the permitted withdrawal rate in a licensed well (without prior permission) is punishable by up to three years in prison and up to 500,000 Qatari riyals in fines (Article 77). Meanwhile, exceeding the licensed irrigated area carries no prison sentence but is punishable by a hefty fine of up to
+
+9 Qatar, Shura Council, Qānūn Raqm (23) li-Sanat 2025 bi-shaʾn al-Miyāh [Law No. (23) of 2025 Concerning Water], law no. 23, Adopted on October 19, 2025, Link
+
+ABU HAWASH , M. 15
+
+200,000 Qatari riyals (Article 79). Penalties can also be doubled for repeat violators. The severity of these penalties reflects the newfound importance that the Qatari government is placing on the sustainability of its groundwater resources, which have been significantly depleted after decades of overuse.
+The new law also places newfound importance on the extremely limited amounts of fresh (i.e., drinkable) groundwater that remain in Qatar’s aquifers; Article 20.2 completely bans its use in agriculture without a specific license. Violators are punished by up to a year in prison and up to
+
+300,000 Qatari riyals in fines (Article 78).
+As part of its responsibility to manage the country’s groundwater, Kahramaa also monitors the water levels in all of Qatar’s aquifers, and all efforts to recharge them through TSE injection. The data that Kahramaa collects on groundwater resources is used to update a central database that assists policymakers in making informed decisions on water policies. The new law also permits members of the general public to request access to the contents of this database if they can make a legitimate case for it (Article 2.2).
+
+ DESALINATION MANAGEMENT
+
+The Qatar Electricity and Water Company (QEWC) owns and operates most of the desalination facilities in Qatar,10 while the Qatar General Electricity and Water Corporation (Kahramaa) owns and manages the country's water distribution network.11 Furthermore, the wastewater drainage and treatment network is under the purview of the Public Works Authority (Ashghal).12
+QEWC and Kahramaa have signed a series of agreements dictating each party's responsibilities and liabilities. As the front-facing service provider, Kahramaa
+
+handles complaints from water consumers who experience service interruptions. Both parties also coordinate with the Public Works Authority (Ashghal) on the construction of new facilities, pipelines, grids, wells, and other key infrastructure. Major desalination facilities in Qatar are typically constructed by international private companies with expertise in the field.
+It is worth noting as well that desalinated water in Qatar cannot be used by the construction or industrial sectors without a license,13 as it is produced almost exclusively for human consumption.
+
+ WATER AND AIR CONDITIONING SERVICES
+
+Air conditioning is an essential part of life in Qatar due to the high temperatures the country endures from May until October of every year. Air conditioning uses large amounts of water, which is remedied through the deployment of high-capacity
+
+and efficient District Cooling (DC) plants across the country. Kahramaa is the primary provider of water for air conditioning and DC services, although other private companies, such as Qatar Cool, control a sizable share of the market.
+
+ WASTEWATER AND DRAINAGE MANAGEMENT The Drainage Networks Operations & Maintenance Department at the Public
+
+10 According to its website, QEWC claims to control 73% of the desalinated water market in Qatar. See: “About,” Qatar Electricity & Water Co. Q.P.S.C, accessed November 16, 2025, Link 11 “About Us, Water Sector,” Qatar General Electricity and Water Corporation (Kahramaa), accessed March 20, 2025, Link 12 “Overview of Ashghal,” Ashghal, accessed November 16, 2025, Link 13 Qānūn Raqm (23) li-Sanat 2025 bi-shaʾn al-Miyāh [Law No. (23) of 2025 Concerning Water], Articles 31 and 32.
+
+16      The Right to Water in 
+Works Authority (Ashghal) is responsible for constructing, operating, and managing drainage networks and sewage/wastewater treatment in Qatar.14 Ashghal was established in 2004. Since then, it quintupled the amount of treated sewage effluent (TSE) produced annually in the country (see section on TSE below). It coordinates with other departments, agencies, and companies in the country to deliver TSE to establishments that are licensed to use it, such as farms and district cooling facilities
+14 Ashghal, “Overview of Ashghal.”
+
+ABU HAWASH , M. 17
+
+05
+THE CORE OF THE PROBLEM: QATAR’S GROUNDWATER AND THE FOOD SECURITY DILEMMA
+
+According to the NPC (frmr. PSA) and Kahramaa, the abstraction rate of groundwater in Qatar remained at around 250 million cubic meters (MCM) per year until 2022. This amount includes 230 MCM [+/5] for the agricultural sector,15 and 20 MCM for “other economic activities.”16 However, the abstraction rate declined significantly in 2023, with Kahramaa registering 200 MCM of abstracted groundwater that year.17 In contrast, the net average natural recharge rate of Qatar’s groundwater is approximately 54.2 MCM per year.18 Thus, there is a massive deficit in Qatar’s annual
+
+groundwater consumption.
+To offset this deficit, Qatar has been artificially recharging its aquifers with TSE since 2003. This has reduced the deficit, but did not eliminate it. AAR has also raised new concerns, as new research suggests that it runs the risk of “damaging the aquifers’ structural integrity” if done excessively or improperly.19 especially since the country’s soil and aquifers are not accustomed to receiving large amounts of water in a short period of time due to the country’s hyperarid environment.20
+
+ QATAR’S GROUNDWATER DEFICIT: HOW DID WE GET HERE?
+
+Due to its scarce arable land, short growing season, and increasingly saline groundwater resources, Qatar struggles to balance between water and food security.21
+During the 1980s and 1990s, Qatar invested heavily in agriculture to improve its food security, which came at the expense of its groundwater resources. During that period, the country nearly tripled
+
+the size of its cultivated agricultural lands, rising from 2256 hectares in 1980 to 8312 hectares in 1994.22
+To enable this expansion, Qatar began abstracting groundwater at rates far above the natural recharge rate. This caused groundwater levels to decline by as much as 0.5 – 1.1 meters per year for around two decades.23 Additionally, groundwater was
+
+15 Planning and Statistics Authority (PSA), Water Statistics in the State of Qatar 2021 (Doha, Qatar: PSA, 2023), 35. 16 Planning, and Statistics Authority (PSA), “Infographic of Water Statistics in Qatar 2021,” 2023, Link 17 Kahramaa, Annual Statistics Report 2023 (Doha, Qatar: Kahramaa, 2024), 81, Link 18 PSA, Water Statistics in the State of Qatar 2021, 21. Note: This average was calculated using data on natural recharge rates from 1998 until 2021. 19 Laurent Lambert (Non-resident fellow at Center for Conflict and Humanitarian Studies and Associate Professor at the Doha Institute for Graduate Studies), interview by author, Doha, Qatar, May 26, 2025. 20 Laurent Lambert, interview.
+
+18      The Right to Water in 
+
+used to irrigate green spaces in urban environments (such as lawns and parks), which demand large amounts of water to survive in Qatar’s extreme heat.
+Since then, the Qatari government has acknowledged the harms caused by the short-sighted agricultural policies of the 1980s and 1990s and has begun to explore solutions. These solutions have also evolved and become more realistic over time. For example, one unusual solution that the Qatari government considered in the 1990s was importing water from Iran through an underwater pipeline. This planned pipeline would have delivered 160 MCM of water per year from the Karun River in southwest Iran to Qatar’s rural farms.24 However, the project was abandoned shortly thereafter due to concerns about cost, feasibility, and resistance from local communities in Iran.
+Instead, the Qatari government chose to take a more realistic and domestically-focused approach by reducing the size of cultivated land and investing heavily in domestic wastewater treatment. As a result, Qatar’s total cultivated area was reduced by ~27% in the 2000s compared to its peak in the mid-1990s, declining to 6063 hectares in 2009.25 Although this figure has since increased to 14,158 hectares by 2021,26 the amount of abstracted groundwater has remained steady due to the introduction of new farming technologies, alternative water sources, stronger regulation, and stricter enforcement. For example, the introduction of new farm-
+
+ing technologies like climate-controlled greenhouses, hydroponics, and aquaponics to Qatar in recent years has helped to reduce relative water withdrawals in farms.27 Furthermore, the new water law passed in October 2025 will cause stricter enforcement of groundwater withdrawal allocations.
+Qatar’s progress towards more sustainable agriculture was slowed by the 2017-2021 Gulf diplomatic crisis, which revived the food security concerns of the past. This situation is evident in the priorities of the 2018-2023 national food security strategy, which was oriented towards increasing efficiency and reducing reliance on food imports.28 This direction necessitated increased water consumption for new livestock and growing essential produce (namely alfalfa, tomatoes, eggplants, cucumbers, and bell peppers—the most grown crops in Qatar).29
+With the resolution of the diplomatic crisis, the pendulum is now swinging back in the other direction. The latest national food security strategy—which will span from 2024 until 2030—emphasizes sustainability and efficient resource use.30 This reflects a longer-term view that will hopefully ameliorate the effects that the previous food security strategy had on groundwater resources. Indeed, the 2024-2030 national food security strategy aligns closely with what local water experts recommend, such as adapting the agricultural sector to the country’s hyper-arid environment and stra-
+
+21 Raha Hakimdavar (Hydrologist and advisor to the Dean of Georgetown University in Qatar), interview by author, June 5, 2025; Hira Fatima, Interview. 22 Hussein A. Amery, “The Geopolitics of Water Scarcity,” in Water & Food Security in the Arabian Gulf, edited by the Emirates Center for Strategic Studies and Research (Abu Dhabi, UAE: ECSSR, 2013), 76. 23 Hussein A. Amery, “The Geopolitics of Water Scarcity,” 76. 24 Hussein A. Amery, “The Geopolitics of Water Scarcity,” 76-77. 25 Mahmoud Ahmed Hashim, Water, Agriculture, and Environment in Arid Lands, 8. 26 Ministry of Municipality and Qatar University, The Agriculture Census in Qatar 2021, 103. Note: the source lists the size of cultivated land as “utilized area” and gives the figure in square meters (sqm), not hectares. The exact figure listed is 141,580,512 sqm. This figure was converted to hectares for ease of reference. 27 Hira Fatima (Senior Associate at Global Counsel – advisory firm). Interview by author, Doha, Qatar, June 5, 2025. 28 Food Security Department, Qatar National Food Security Strategy 2018 –2023, presentation (Doha, Qatar: Ministry of Municipalities and Environment, January 2020), Link 29 Hira Fatima, interview. 30 “Prime Minister launches the National Food Security Strategy 2030,” Governmmakeuphalf-centuryent Communications Officer – State of Qatar, December 12, 2024, Link
+
+ABU HAWASH , M. 19
+
+tegically choosing what to plant and what to import.31 The new strategy also bodes well for the future of new technologies like hydroponics, aquaponics, and vertical farming.
+Still, Qatar could benefit from developing targeted strategies for the water and agriculture sectors, as experts have
+
+pointed to solutions for water scarcity that require a focused policy-based approach that would not fall under its food security strategy. Some of these solutions include the deployment of more TSE in agriculture and investing in rainwater harvesting,32 rainfall seeding (if feasible),33 and atmospheric generation.34
+
+ INCREASING BRACKISHNESS OF GROUNDWATER: RISKS TO FUTURE GENERATIONS
+
+Most of Qatar’s natural freshwater is found at shallow depths in a groundwater lens located in the north of the country, which has supplied the area’s population since at least the Neolithic times (starting around the mid-Holocene period around 6000 years ago).35 However, human activity in the form of over-abstraction and AAR during the past half-century has significantly transformed the makeup of this groundwater lens. This activity has caused an increase in saltwater intrusion, introduced pollutants, and possibly damaged the structural integrity of some aquifers.
+Over-abstraction of groundwater continues to be the main cause of the challenges facing the water sector. It is the primary reason why the quality of groundwater has failed to recover to historic levels, making it less suitable for human and agricultural consumption. From a human rights perspective, over-abstraction of groundwater could infringe on the rights of future generations of Qatar’s citizens who may not be able to utilize this resource for drinking or farming if the current rate of over-abstraction persists.
+
+Unfortunately, despite the government’s attempts to limit the use of groundwater and revitalize aquifers, the quality of groundwater continues to decline, forcing the Qatari agricultural sector to increasingly rely on brackish water desalination facilities to treat groundwater and make it suitable for agricultural use. A recent study found that just 2.7% of Qatar’s groundwater today has “excellent” suitability for drinking and 6.4% has “good” suitability (see figure 3).36 Another 15.2% has “poor” suitability and 14.6% has “very poor” suitability, while 61.1% is entirely unsuitable for human consumption.37 These figures mark a catastrophic decline compared to the 1970s (although exact data from that time period is difficult to find).
+The same study found that just 6.2% of Qatar’s groundwater today has “very high suitability” for agriculture, while 24.9% has “high suitability.”38 A further 40.6% has “medium suitability” while 18.8% and 9.5% have “low” and “very low” suitability, respectively. Groundwater with medium (or lower) suitability requires treatment in brackish water desalination facilities before being used for agricultural purposes. The
+
+31 Raha Hakimdavar, interview. 32 Laurent Lambert, interview. 33 Raha Hakimdavar, interview. 34 Environmental scientist and policy researcher, interview by author, June 17, 2025 35 Phillip G. Macumber, The Role of Water and Landscape in the Occupation of Qatar (Doha, Qatar: Qatar University Press, July 2021). 36 Sarra Aloui, Adel Zghibi, Annamaria Mazzoni, Ahmad S. Abushaikha, and Adel Elomri, “Assessing groundwater quality and suitability in Qatar: Strategic insights for sustainable water management and environmental protection,” Environmental and Sustainability Indicators 25, (February 2025): 100582, 11, Link 37 It is worth noting that the study referenced here conducted spatial analysis, which measures the surface area of Qatar that has groundwater below it that is suitable for drinking and the surface area where groundwater is not suitable. 38 Sarra Aloui et. al, “Assessing groundwater quality and suitability in Qatar,” 13.
+
+20      The Right to Water in 
+
+new water law recognizes the importance of the country’s scarce high-quality fresh groundwater as an emergency source of drinking water, and has instituted a ban on
+
+using it for irrigation and farming without governmental approval.39
+
+Figure 3
+Figure 3.1: Suitability Rating of Qatar's Groundwater for Drinking, 2024
+Excellent 3% Good 6%
+Poor 15%
+
+Figure 3.2: Suitability of Qatar's Groundwater for Agriculture, 2024
+Low 19% Very Low
+9% Very High
+6%
+High 25%
+
+Very Poor 15%
+Unsuitable 61%
+
+Medium 41%
+
+|  Source: Sarra Aloui et. al. (2025).
+
+Another risk to the quality of groundwater in Qatar is the discharge/injection of processed water from the country’s hydrocarbon (oil & gas) sector—which is highly polluted—into deep aquifers.40 This is done as it causes relatively less damage than discharging such processed water into the sea or onto the land surface.41
+The question that water experts in Qatar have posited is “when will the cost of groundwater abstraction become too
+
+high?”42 From a rights perspective, one may argue that the cost is already too high— especially when considering how continued over-abstraction will affect future generations. However, Qatar’s agricultural sector will determine that the cost is too high only when the cost of pumping (and partially treating) groundwater exceeds the cost of desalinated seawater or TSE.43 By then, it may already be too late to save the country’s fresh groundwater resources from total destruction.
+
+39 Qānūn Raqm (23) li-Sanat 2025 bi-sha'n al-Miyāh [Law No. (23) of 2025 Concerning Water], Article 20. 40 Laurent Lambert, interview 41 Laurent Lambert, interview 42 Mohammad Al-Saidi (Associate professor at Hamad Bin Khalifa University), interview by author, Doha, Qatar, June 11, 2025. 43 Mohammad Al-Saidi, interview
+
+ABU HAWASH , M. 21
+
+06
+THE ROLE OF TREATED SEWAGE EFFLUENT (TSE) IN REDUCING DEPENDENCE ON GROUNDWATER
+
+Due to large investments in tertiary wastewater treatment, TSE’s share of the water consumed by the agricultural sector has increased incrementally since the mid2000s—surpassing 25% in 2018 (see figure 4 below). However, many farmers are resisting the use of TSE for growing fruits and vegetables due to a cultural taboo against it.44 Hence, it is primarily being used to grow fodder for livestock.45 Still,
+
+some owners of livestock have even complained about fodder that is grown using TSE, arguing that it caused some animals to grow sick or even die (as of this writing, there is no reported evidence proving these claims).46 Today, just 18 farms in Qatar are licensed to use TSE to irrigate their crops, compared to 977 that use groundwater and 83 that use desalinated seawater.47
+
+Figure 4: TSE used in the Agricultural Sector as a Percentage of Total, 2005-2021
+
+30% 25% 20% 15% 10%
+5% 0%
+2006
+
+2007
+
+2009
+
+2011
+
+2013
+
+2015
+
+2017
+
+|  Source: Qatar Water Statistics Reports, National Planning Council, 2013, 2018, 2021.
+
+2019
+
+2021
+
+44 Mohammad Al-Saidi, interview. 45 Environmental scientist and policy researcher, interview; Hira Fatima, interview. 46 Environmental scientist and policy researcher, interview. 47 Ministry of Municipality and Qatar University, The Agriculture Census in Qatar 2021, 63.
+
+22      The Right to Water in 
+
+One expert noted that in the mid-2010s, much of the TSE produced in Qatar was unused due to the absence of a distribution network to deliver it to areas where it might be utilized.48 This has changed drastically since then, as high-quality TSE is now distributed around Qatar to irrigate urban green spaces, stadiums, and more. TSE has
+
+also been used to support national forestation initiatives like the manmade forest that was recently developed around the Doha North Sewage Treatment Works.49 Furthermore, TSE is injected into aquifers to artificially recharge the groundwater resources, which is discussed further in the next section.
+
+ ARTIFICIAL AQUIFER RECHARGE (AAR) IN QATAR: OPPORTUNITIES AND RISKS
+
+To offset the over-abstraction of groundwater, Qatar began to artificially recharge its groundwater in 2003 by injecting TSE deep into its aquifers.50 According to the latest publicly available data (and presented in Figure 5 below), AAR peaked in
+
+2019 when 79.7 MCM of TSE was injected into the country’s aquifers. However, even at the peak of artificial recharge, the deficit of groundwater consumption vs. recharge was over 110 MCM.
+
+Million Cubic Meters
+
+Figure 5: Amount of TSE Used to Artificially Recharge Aquifers in Qatar, 2011-2021
+
+100 80 60 40 20 0% 2011
+
+2012
+
+2013
+
+2014
+
+2015
+
+2016
+
+2017
+
+2018
+
+2019
+
+2020
+
+2021
+
+Year
+
+|  Source: Qatar Water Statistics Reports, National Planning Council, 2017-2021.
+
+To reduce this deficit, more TSE could be diverted from the irrigation of green spaces and towards the recharging of groundwater. In 2021, approximately 107 MCM of TSE was used to irrigate green spaces in urban environments, such as parks and gardens.51 This would have nearly eliminated the entire deficit of groundwater consumed vs. recharged that year if that water had been artificially injected into
+
+aquifers instead.
+However, AAR is not a panacea and could have concerning side effects. When done excessively or improperly, AAR could damage the structural integrity of aquifers.52 Additionally, recent research has shown that the injection of processed water from oil & gas production facilities has resulted in land subsidence of 2-5 millimeters per year
+
+48 Mohammad Al-Saidi, interview. 49 Laurent Lambert, interview; Lesley Walker, “The region’s largest manmade forest is coming up in Qatar’s desert,” Doha News, October 26, 2016, Link 50 MDPS, Water Statistics in the State of Qatar 2013, 19 51 PSA, Water Statistics in the State of Qatar 2021, 42. 52 Laurent Lambert, interview.
+
+ABU HAWASH , M. 23
+
+in some areas.53 Although more research is needed to confirm this, one argument to explain this outcome is the “dissolutive impact of the injected TSE on the soluble layers in the subsurface.”54 Considering that Qatar is a very low-lying country, land
+
+subsidence would have a potentially disastrous effect in the long term. The country would lose precious coastline as a result, which would also jeopardize the livelihoods of future generations.
+
+ DISTRICT COOLING AND TSE
+
+Another key use for TSE in Qatar is in district cooling (DC) plants, which are essential for meeting air conditioning demand in the country’s hot climate. Up until 2017, potable water was the primary source of water for the country’s DC plants, most of which were not equipped to handle non-potable water. However, major investments have been made in the last decade to construct DC plants that are able to use non-pota-
+
+ble water. As a result, non-potable water (either TSE or seawater) is increasingly being used instead, which helps in saving costs and conserving valuable and scarce potable water resources.55 As shown in Figure 6 below, the amount of potable water used in DC plants has remained steady since 2017, while the use of non-potable water has increased massively.
+
+Million Cubic Meters (MCM)
+
+Figure 6: Potable Vs. Non-Potable Water Used in Qatar's District Cooling (DC) Plants (2011-2023)
+
+12.2
+
+14.4
+
+16.3
+
+8.2
+
+8.8
+
+6.98
+
+6.69
+
+4.42
+
+3.54
+
+3.79
+
+5.38
+
+5.4
+
+4.31
+
+4.1
+
+4.2
+
+4.1
+
+4.7
+
+4.4
+
+2.82
+
+0.94
+
+1.05
+
+1.48
+
+1.56
+
+1.6
+
+4.23 3.7
+
+Year 2011 2012 2013 2014 2015 2016
+Portable Water (MCM) Non Portable Water (MCM)
+|  Source: Kahramaa Annual Statistics Reports, 2015-2023.
+
+2017
+
+2018
+
+2019
+
+2020
+
+2021
+
+2022
+
+2023
+
+53 Yosef Darge, Esayas Gebremichael, John Holbrook, and Mohamed Ahmed, “Detecting active sinkholes through combination of morphometric-cluster assessment and deformation precursors,” Science of The Total Environment 955, (December 2024): 177061, Link 54 Laurent Lambert, “Mapping All Unknowns: Protecting Groundwater & Mitigating Emissions,” Workshop Presentation, Doha, Qatar, September 30, 2024. 55 Kahramaa, Annual Statistics Report 2018 (Doha, Qatar: Kahramaa, 2020), 16, Link
+
+24      The Right to Water in 
+
+07
+DESALINATED SEAWATER: THE OTHER SIDE OF QATAR’S WATER STORY
+
+Groundwater’s share in Qatar’s water mix fell below 50% for the first time (49.7%) in 2005 as the municipal water sector (which uses desalinated seawater) expanded due to Qatar’s growing population.56
+Qatar also constantly upgrades its desalination facilities with the latest technologies to increase efficiency and manage the high salinity of the Gulf, high temperatures, and growing demand for water.57 To reduce reliance on desalinated seawater in the municipal sector, the government has incentivized the deployment of greywater recycling, which is used extensively in new developments such as Education City, Lusail City, and Musheireb.58 Additionally, the government has incentivized the tourism sector to obtain “green key” certification, which has had a marked effect on the amount of water consumed during large tourist-focused events such as the 2022 World Cup.59
+However, aside from these large centralized initiatives, Qatar has relatively few community-based or decentralized initiatives to reduce water consumption in the municipal sector (largely as a result of a lack of awareness about the urgency of the
+
+issue).60 Additionally, the country’s desalination facilities rely primarily on imported technologies that are vulnerable to supply chain disruptions. During geopolitical or natural crises, when interruptions to international shipping tend to happen, the resilience of Qatar’s desalination facilities is put to the test.
+For citizen households, access to water is free-of-charge (for the primary home, whereas any secondary homes are chargeable).61 Meanwhile, for foreign residents, who constitute the overwhelming majority of the population, access to water is subsidized by the government. Some experts have argued that these generous subsidies have contributed to the abnormally high rate of per capita water consumption in Qatar, as citizens and residents have no financial incentive to conserve water.62 However, it is also worth noting that the consumption rate of water is highly unequal and depends on wealth levels, with the wealthiest citizens and residents consuming water at rates that eclipse their poorer counterparts.
+
+56 Mahmoud Ahmed Hashim, Water, Agriculture, and Environment in Arid Lands, 113. 57 Expert on green development and sustainability in Qatar. Interview by author, Doha, Qatar, May 28, 2025. 58 Expert on green development and sustainability in Qatar, interview. 59 Expert on green development and sustainability in Qatar, interview. 60 Expert on green development and sustainability in Qatar, interview. 61 Hamish R. Mackey, Huda Alkandari, and Gordon Mckay, “The Role of Tariffs in Reducing Residential Water Demand in Qatar,” Qatar Foundation Annual Research Conference Proceedings 1, (March 2018): 1059, Link 62 Hamish R. Mackey, Huda Alkandari, and Gordon Mckay, “The Role of Tariffs in Reducing Residential Water Demand in Qatar.”
+
+Million Cubic Meters
+
+ABU HAWASH , M. 25
+
+Figure 7 : Qatar DesaFliignuaretio7n: QOautatpr Duet,sa2l0in0a4ti-o2n0O2u3tput, 2004-2023
+
+606 560 533 494 465 437 374 401 341 312
+226 251 195 178
+
+637 671 691 671 672 669
+
+2023 2022 2021 2020 2019 2018 2017 2016 2015 2014 2013 2012 2011 2010 2009 2008 2007 2006 2005 2004
+Year
+
+|  Source: Kahramaa Annual Statistics Reports, 2015-2023.
+
+Aside from the financial cost of wasteful water consumption, there is also an environmental cost to desalinated seawater. Large amounts of natural gas are consumed to power the desalination process. Most of Qatar’s seawater desalination facilities utilize the Multi-State Flash (MSF) and Multi-Effect Distillation (MED) methods, which require heat that is generated from burning natural gas to power the desalination process.63 To increase efficiency in these desalination facilities, Qatar has constructed them as part of integrated/independent water and power plants (IWPPs) where the heat byproduct from electricity
+
+generation is used in the production of desalinated water.64 Several reverse osmosis facilities have also been constructed in Qatar, which require relatively less energy than their MSF and MED counterparts.
+It is also worth noting that desalination facilities need to re-mineralize desalinated seawater before it enters the municipal water grid to make it suitable for human consumption.65 The re-mineralization process requires the addition of essential minerals such as calcium, magnesium, iodide, fluoride, and other elements in minuscule (but vital) amounts.66
+
+ PERCEPTIONS OF UNDRINKABLE TAP WATER AND QUESTIONS ON UNEQUAL ACCESS
+
+Residents and citizens in Qatar tend to spend a considerable amount of money on drinking water due to perceptions about the undrinkability of tap water.67 This perception compels many to install filtration systems/modules in their homes or to purchase expensive mineral water. Kahramaa has attempted to combat this perception
+
+through media campaigns, such as the one seen below on the Doha metro in early 2025.
+
+63 Deema Almasri and Mohammad Abu Hawash, “A Pathway to Cutting Carbon Emissions from Desalination in Qatar,” in Carbon Emissions Reduction Strategies for Qatar, ed. Nader Kabbani and Muez Ali (Doha, Qatar: Middle East Council on Global Affairs, 2025), Link. 64 Deema Almasri and Mohammad Abu Hawash, “A Pathway to Cutting Carbon Emissions from Desalination in Qatar.” 65 Alain Lesimple, Farah Ejaz Ahmed, and Nidal Hilal, “Remineralization of desalinated water: Methods and environmental impact,” Desalination 496, (December 2020): 114692, Link. 66 Alain Lesimple, Farah Ejaz Ahmed, and Nidal Hilal, “Remineralization of desalinated water: Methods and environmental impact.” 67 “Tap water as safe as bottled water: QF study,” The Peninsula, February 12, 2015, Link.
+
+26      The Right to Water in 
+Figure 8.1 and 8.2: Media Campaign on Doha Metro to combat public perceptions of polluted water in the municipal supply, January 2025 [credit: Mohammad Abu Hawash]
+
+Another persistent concern about the right to water is the inequality of access to water between Qatar’s large population of foreign blue-collar workers and the country’s smaller population of white-collar workers (who earn significantly higher wages and enjoy a much higher quality of life). Although they enjoy access to subsidized water from the municipal water grid, blue-collar workers often live in crowded domiciles that suffer from neglect, which breeds unhygienic conditions. They also struggle to cover their living costs and have fewer avenues to register complaints about their access to water with Kahramaa due to language barriers.
+To ensure ease of access for consumers who want to report access issues, Kahramaa has provided six avenues for water consumers to submit complaints,68 which are:
+• Visiting Kahramaa’s service center in the Al-Hilal area of Doha.
+• Calling by phone.
+• Sending emails.
+• Filling in a complaint form online.
+• Contacting Kahramaa’s WhatsApp business account via instant text message.
+
+However, the ease of access to these services is negatively affected by language barriers, as Kahramaa’s support services are primarily provided in Arabic and English. This adversely affects a large share of Qatar’s lower-income residents, whose first language is typically neither Arabic nor English.69 This language barrier can make it harder for residents whose first language is Hindi, Urdu, Bengali, Swahili, or Yoruba, who constitute a large share of the population. This forces many to seek the help of an intermediary, which is an impediment that can be avoided by providing customer service in more languages.
+Many cases of water inaccessibility may go unreported due to this language barrier. What makes this issue more concerning, however, is that the non-Arabic and non-English speaking demographic in Qatar is potentially more likely to suffer from interruptions to water services or other issues, as they tend to reside in older and less-maintained domiciles. However, no recent research on this issue has been done to verify or provide more insights.
+
+68 “Customer Service,” Kahramaa, accessed March 15, 2025, Link. 69 Many of them originate from South Asia, Southeast Asia, and parts of East and West Africa.
+
+ABU HAWASH , M. 27
+
+08
+RECOMMENDATIONS
+
+Qatar has made significant progress in recent years to rectify its water challenges. From limiting groundwater abstraction to increasing production of TSE, the situation today looks far better than it did in the early 2000s. Additionally, the passing of law no. 23 of 2025, which replaces the outdated law no. 1 of 1988 is a sign that the
+
+Qatari government is serious about closing all loopholes and ensuring the long-term sustainability of the water sector. Still, there is plenty of room for improvement when it comes to water sustainability. To that end, this report makes the following recommendations.
+
+ 1.DEVELOPING A TARGETED AGRICULTURAL STRATEGY TO REDUCE GROUNDWATER ABSTRACTION AND INCREASE THE SUPPLY OF NONCONVENTIONAL WATER SOURCES.
+
+Qatar’s successive food security strategies were designed to increase the amount of food produced in the country, which often came at the expense of the country’s agricultural sustainability. Therefore, a targeted agricultural strategy can be formulated that complements the 2024-2030 food security strategy. The objective of this agricultural strategy would be to chart a pathway for the agricultural sector to:
+1) Introduce new farming technologies and methods that help farms increase production efficiency and resource utilization.
+2) Reduce reliance on groundwater by aggressively ramping up the utilization of non-conventional water sources like high-quality TSE, rainwater harvesting, and atmospheric generation.
+3) Achieve near universal compliance with laws regulating groundwater use through training, awareness campaigns,
+
+and strict enforcement.
+This agricultural strategy should be formulated in consultation with relevant stakeholders in the agricultural sector to take their needs into account and prepare for new technologies that can benefit farmers. As expert interviews revealed, agricultural grants and subsidies in Qatar are geared towards antiquated practices instead of modern and efficient technologies.70 This has made it difficult for farmers to adopt new technologies that are less wasteful. Additionally, the absence of strong enforcement has encouraged abuse and wasteful irrigation practices in the agricultural sector.71
+An agricultural strategy can respond to these challenges by introducing new grants and subsidy programs to incentivize farmers to deploy hydroponic, aquaponic, and vertical farming technologies—while mak-
+
+70 Hira Fatima, interview. 71 Environmental scientist and policy researcher, interview.
+
+28      The Right to Water in 
+
+ing sure to only support technologies that are suited for the local environment. A similar model can be implemented to incentivize farmers to increase their utilization of TSE, rainwater harvesting, atmospheric generation, and other non-conventional methods of sourcing water. The agricultural strategy could also institute policies that support research and development efforts to adapt these technologies in a way that optimizes them for Qatar’s environment. Indeed, as the cost of these technologies declines over time, it will be more likely that farmers in Qatar will want to use them.72
+
+Furthermore, the strategy should aim to increase legal compliance in the agricultural sector, which is plagued by violations due to enforcement gaps. This can be achieved through a “carrot-andstick” approach that rewards compliance while continuing to penalize violations. The newly passed water law significantly increased penalties for violations related to unlicensed wells, over-abstraction, and irrigation. This can be complemented with rewards for farmers who follow water laws and avoid violations year after year.
+
+ 2.DEVELOPING A TARGETED WATER SECURITY STRATEGY TO DIVERSIFY NONCONVENTIONAL SOURCES OF WATER
+
+Besides addressing the agricultural sector's challenges to groundwater resources, Qatar should continue to invest in increasing the resilience of its non-conventional water resources. This includes investing in homegrown, sustainable, and resilient desalination technologies and alternative sources of water, such as large-scale atmospheric generation.
+Qatar’s reliance on imported desalination technologies makes its municipal water sector vulnerable to supply chain disruptions that could prove catastrophic if they continue for an extended period. Hence, investing in the production of key parts such as RO membranes or materials such as anti-scalants can prove lifesaving during emergencies. Additionally, devel-
+
+oping a homegrown desalination industry can lead to innovations that are suitable for Qatar’s environment and climate. This could increase the sustainability of the sector, reducing the energy burden that it places on the country (as well as carbon emissions).
+The country could also invest in creating a strategic reserve of these parts and materials that could be tapped into during periods of prolonged supply chain disruption. Furthermore, investing in emerging technologies like atmospheric generation could be highly beneficial for the country in the long term. Qatar’s humid climate also makes it particularly suited for atmospheric generation.
+
+ 3.TRAINING AND EDUCATING OFFICIALS AND THE PUBLIC ABOUT THE RIGHT TO WATER AND ITS IMPACT ON FUTURE GENERATIONS.
+
+Experts who were interviewed as part of researching this report have noted that competence gaps among relevant officials in government have impacted the velocity of reform in Qatar’s water sector. To alleviate this challenge, the Qatari government
+
+could deploy its public training institutions and partner with local non-governmental organizations such as Earthna: Center for a Sustainable Future, the Qatar Environment and Energy Research Institute (QEERI), Qatar University, the Doha Institute, and
+
+72 Mohammad Al-Saidi, interview.
+
+ABU HAWASH , M. 29
+
+others to create courses for public sector professionals to increase their competence and understanding of existing water policies as well as important concepts such as the water-energy-food-ecosystems nexus. This will serve to improve the agility of key institutions in addressing the increasingly urgent challenges facing groundwater in the country.
+
+The Qatari Ministry of Education and Higher Education should also take measures to increase awareness among the country’s youth about the realities of water scarcity. This can be done through applied education and training teachers to incorporate awareness of water scarcity into their syllabi and classroom rules.
+
+ 4.IMPROVING DATA COLLECTION AND REPORTING TRANSPARENCY TO SUPPORT RESEARCHERS.
+
+Qatar is among the most consistent countries in the MENA region when it comes to reporting data from its water sector. However, it also has the potential to go beyond and achieve global standards on data collection and reporting/transparency. Experts have noted that there are persistent monitoring gaps in some wells in the country, affecting the reliability of some reported data. Additionally, the public sector could be more transparent and engaged with academics and researchers to ensure that they have access to the data they need to generate valuable insights.
+
+For example, while the new law (no. 23 of 2025) allows members of the general public to request access to data on the country’s water resources, making that data readily available through a public database could positively impact knowledge production around water issues in the country.
+Additionally, by building bridges with the academic community through water-focused research grants and programs, Qatar can develop and implement better data collection and reporting standards.
+
+30      The Right to Water in 
+09
+CONCLUSION
+Through long-term thinking and good governance, Qatar has achieved a truly remarkable feat by overcoming its severe water scarcity. It has done so by improving its water governance and management framework, revising the unsustainable agricultural practices of the 1980s and 1990s, and investing in nonconventional water sources like desalination and wastewater treatment. However, despite this impressive progress, groundwater resources continue to be rapidly depleted, which endangers the rights of future generations to access freshwater resources. Additionally, the desalination sector remains vulnerable to external factors, and there are persistent gaps in competence, awareness, and data collection in the water sector.
+In the coming years, Qatar should double down on its efforts to achieve complete sustainability in its water sector. This can be done by ending over-abstraction of groundwater in the agricultural sector, increasing the resilience of desalination facilities, developing new technologies like atmospheric generation, strictly enforcing penalties on water law violations, increasing the competence of public sector officials, and improving data collection and reporting mechanisms. Considering current trends, those objectives are certainly achievable.
+
+ABU HAWASH , M. 31
+REFERENCES
+• Business Monitor International (BMI) Research, Qatar Water Report 2015 (London, UK: BMI Research, 2015), 17, Link.
+• Chatham House, “Chatham House Rule,” Chatham House, accessed October 29, 2025, Link.
+• Fanack Water, “Water Management in Qatar,” Fanack Water, August 9, 2021, Link.
+• Given, Lisa M., "Semi-Structured Interview." In The SAGE Encyclopedia of Qualitative Research Methods, 811-12. Thousand Oaks, CA: SAGE Publications, Inc., 2008. Link.
+• Guthrie, Gerard, Basic Research Methods: An Entry to Social Science Research (New Delhi: SAGE, 2010), 121-122.
+• Hashim, Mahmoud Ahmed, Water, Agriculture and Environment in Arid Lands: Water and Agricultural Vision for Qatar by 2020 (Doha, Qatar: Al Rayah Printing Press, October 2009), 6-9.
+• Higazy, Neyla et. al, “Water Footprint Assessment and Virtual Water Trade in the Globally Most Water-Stressed Country, Qatar.” 2024, Link.
+• Al-Jazeera, “Israel attacks Hamas leadership in Qatar: What we know,” Aljazeera, last updated September 10, 2025a, Link.
+• Al-Jazeera, “Iran attacks US airbase in Qatar: What we know so far,” Aljazeera, June 23, 2025b, Link.
+• Kahramaa - Qatar General Electricity and Water Corporation, Annual Statistics Report 2023 (Doha, Qatar: Kahramaa, 2024), 71, Link.
+• Luomi, Mari, The Gulf Monarchies and Climate Change: Abu Dhabi and Qatar in an Era of Natural Unsustainability (London: Hurst & Company, 2012) 178.
+• Mills, Andrew, “Attack on Iran's nuclear sites would contaminate Gulf water supply, Qatar PM says,” Reuters, March 9, 2025, Link.
+• Ministry of Municipality and Qatar University, The Agriculture Census in Qatar 2021: The Agricultural Statistics, Census Report (Doha: Ministry of Municipality, 2021) 19, Link.
+• Ministry of Municipality, “Agricultural Affairs Department,” Ministry of Municipality, accessed November 15, 2025, Link.
+• Planning and Statistics Authority (PSA), Water Statistics in the State of Qatar 2021 (Doha, Qatar: PSA, 2023), 32.
+• Qatar, Amiri Diwan, Qarār Amīrī raqam (46) li-sanat 2015 bi-taʿdīl baʿḍ aḥkām al-qarār al-amīrī raqam (35) li-sanat 2014 bi-tanẓīm al-muʾassasa al-ʿāmma al-qaṭariyya lil-kahrabāʾ wa-l-māʾ [Amiri Decision no. (46) for the Year 2015 to Amend Some Provisions of Amiri Decision no. (35) for free the year 2014 to Organize the Qatar Electricity and Water Company], Amiri Decision no. 46, Adopted on September 10, 2015, Article 4, https://www.almeezan.qa/LawPage.aspx?id=6725&language=ar.
+• Qatar, Amiri Diwan, Law 23 of 2025
+• Ravtich, Sharon M. and Nicole Mittenfelner Carl, Qualitative Research: Bridging the Conceptual, Theoretical and Methodological (London: SAGE, 2021), 301.
+
+The Arab NGO Network for Development works in 12 Arab countries, with 9 national networks (with an extended membership of 250 CSOs from different backgrounds) and 25 NGO members.
+P.O.Box Mazraa 5792/14 Beirut, Lebanon
+
+

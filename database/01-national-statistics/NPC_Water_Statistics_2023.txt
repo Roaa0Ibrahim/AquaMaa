@@ -1,0 +1,3103 @@
+Water Statistics in the
+State of Qatar 2023
+
+                                                                                                                          1
+ Water
+Statistics
+
+In the State of Qatar
+
+       2023
+
+           November 2024
+H H Sheikh Tamim Bin Hamad Al Thani
+
+             Emir of the State of Qatar
+©All rights reserved to the National Planning Council – November 2024
+In case of quote, please refer to this publication as follows:
+National Planning Council, 2024, Qatar Water Statistics Report 2023.
+Doha – Qatar
+Correspondence to be forwarded to:
+National Planning Council
+P.O. Box: 1855, Doha – Qatar
+Telephone: +974 44958888
+Fax: +974 44839999
+
+To request statistical data, please send eamil to: PDR@npc.qa
+Preface
+
+                         Allah the Exalted said in Holy Quran: “We made from water every
+                         living thing”*. Hence, water is life!
+
+                         The conservation of Qatar's natural freshwater resources is
+                         therefore a critical aspect of the National Development Strategy.
+
+                         Qatar relies on seawater desalination as the primary source of
+                         drinking water and on groundwater abstraction for agricultural
+                         purposes. The reuse of treated wastewater has emerged as a
+                         significant alternative source for irrigation in agriculture and
+                         landscaping.
+
+                         Qatar's water policies have yielded significant successes,
+                         including the provision of safe drinking water for all population,
+                         minimum water loss, high-level treatment of urban wastewater
+                         and re-use of substantial amounts of treated wastewater.
+                         Statistics show that water use efficiency has increased in most
+                         economic sectors.
+
+                         However, freshwater reserves continue to be overexploited,
+                         leading to lower groundwater levels and higher salinity. This, in
+                         turn, makes it difficult to use groundwater for irrigation and
+                         potable water purposes in the future.
+
+                         According to available statistics, there is still potential for
+                         increased reuse of treated wastewater, which would further
+                         enhance water efficiency across domestic and economic activities
+                         while reducing water losses.
+
+                         Collectively, these measures will contribute to achieving water
+                         security, food security and sustainable development, in alignment
+                         with the Qatar National Vision 2030. The Qatar Water Statistics
+                         Report provides a comprehensive overview on water sources and
+                         usages. Publishing these statistics is a crucial step to support
+                         knowledge-based decision-making in the water sector.
+
+                       Dr.Abdulaziz bin Nasser bin Mubarak Al Khalifa
+                       Secretary-General of the National Planning Council
+
+                                                                    (*) Sura Al-Anbiyaa– Verse 30
+
+                                                                                                                              5
+Acknowledgements
+
+The National Planning Council (NPC) extends its sincere gratitude and appreciation
+to the ministries, institutions and government agencies for their cooperation in
+providing the necessary data, which greatly contributed to the preparation of the
+report and the measurement of the progress in Qatar’s water indicators. Besides,
+NPC would like to express its heartfelt thanks to all those who contributed to the
+preparation of the Water Statistics Report at all stages.
+
+ 6
+Table of Contents                                                   5
+                                                                    6
+ Preface                                                            7
+ Acknowledgements
+ Table of Content                                                  11
+ Water infographics                                                17
+ 1- General information                                            21
+ 2- Water Indicators in 2030 SDGs                                  21
+ 3- Water Resources                                                22
+                                                                   22
+     3-1 Rationale                                                 22
+     3-2 Key messages                                              24
+     3-3 Statistics and Indicators                                 29
+                                                                   29
+          3-3-1 Precipitation                                      30
+          3-3-2 Groundwater Balance                                30
+                                                                   30
+ 4- Water Production, Abstraction and Use                          31
+     4-1 Rationale                                                 33
+     4-2 Key messages                                              34
+     4-3 Statistics and Indicators                                 37
+                                                                   39
+          4-3-1 Water production and reuse                         42
+          4-3-2 Water Use by economic activity                     44
+          4-3.3 Water Loss                                         45
+          4-3-4 Water Use in Agricultural Activity                 45
+          4-3-5 Water Use in Industrial and Construction Activity
+          4-3-6 Water Use in Commercial Activity                                 7
+          4-3-7 Water Use in Government Activity
+          4-3-8 Water Use in Household Activity
+          4-3-9 Water Demand
+          4-3-10 Water Use Balance
+5- Urban Wastewater Production, Collection, Treatment          49
+
+   and Discharge
+
+   5-1 Rationale                                               49
+
+   5-2 Key messages                                            49
+
+   5-3 Statistics and Indicators                               49
+
+   5-3-1 Urban Wastewater Collection and Treatment             49
+
+   Infrastructure
+
+   5-3-2 Treatment Efficiency of Urban Wastewater Treatment    56
+
+   Plants
+
+   5-3-3 Sewage Sludge Production                              57
+
+   5-3-4 Produced, Collected and Treated Urban Wastewater      59
+
+   5-3-5 Discharge and Reuse of Treated Sewage Effluent (TSE)  61
+
+   6- Annexes                                                  63
+
+   • Definitions                                               64
+
+   • List of abbreviations                                     71
+
+   • References and Data Sources                               72
+
+   • Tables                                                    73
+
+8
+INFOGRAPHIC OF WATER
+STATISTIC IN QATAR 2023
+RENEWABLE FRESHWATER RESOURCES
+
+    Precipitation (Million m3 per year)
+
+145.5                                          87.4
+
+DOHA INTERNATIONAL AIRPORT Long-term annual average rainfall (1962-2021)
+
+150.5 (Million m3 per year)
+
+Renewable freshwater resources
+
+Water production (water available for use) (Million m3 per year)
+
+669    Desalination of sea water
+200      Fresh groundwater
+196        Reuse of treated wastewater
+37.7    Real Losses
+
+WATER SUPPLY INDUSTRY (ISIC 36)                669 (Million m3 per year)
+
+        214 (Thousand m3 per year)             Gross water supplied by
+                                               water supply industry
+                  Average water per capita     (ISIC 36)
+                  consumption based on autho-
+                  rized consumption of system
+                  input volume, net of losses
+Water uses by sector
+
+(Million m3 per year)
+
+Industry  Government   Commercial Domestic Agriculture
+
+ 35         204                   94  299 255
+
+FRESHWATER ABSTRACTION AND USE
+
+                             10 (Million m3 per year)
+
+                                                        Household activities
+
+180 (Million m3 per year)             200 (Million m3 per year)
+
+Agriculture, forestry and ﬁshing      Groundwater abstracted
+           (ISIC 01-03)
+WASTEWATER GENERATION AND TREATMENT
+
+283 (Million m3 per year)              0.63 (Million m3 per year)
+
+Volume of wastewater                   Amount of wastewater not collected
+collected                              at sewage plant and is discharged
+                                       into lakes
+282 (Million m3 per year)
+                                       248 (1000 Ton)
+Volume of wastewater
+treated                                 Sewage sludge production
+
+WASTEWATER TREATED USES
+
+                                   Agriculture
+
+                71
+
+                                                      (Million m3 per Year)
+
+  Discharged                                                                 Green spaces
+   to the sea
+                                                                             126
+  109
+                                                                             (Million m3 per Year)
+(Million m3 per Year)
+
+Discharged to lagoons                  Deep injection into aquifers
+
+        38                             46
+
+                (Million m3 per Year)  (Million m3 per Year)
+WATER INFRASTRUCTURE
+Water stations and design capacity of stations (Thousand m3 per Day)
+
+         Desalination Multi-Stage Flash Reservoirs  Reverse Osmose Multiple E ect
+           stations Distillation (MSF)
+                                                    (RO)  Distillation(MED)
+
+Numbers  9              25 145                      35 10
+                                                    712 286
+2444 Capacity 1446      11
+
+         WWTP stations
+
+                        22
+
+                        Numbers
+
+                        1,053
+
+                        Design Capacity (Thousand m3 per Day)
+WATER
+RESOURCES
+
+                                                                          15
+1. General Information
+
+  Qatar is situated midway along the western coast of the Arabian Gulf, between
+  latitudes 24.27˚-26.10˚ North and longitudes 50.45˚ – 51.40˚ East. Covering an area of
+  11,587 km², the country includes several small islands in the Arabian Gulf such as Halul,
+  Shira’who, Ashat and Al-Bishiria.
+  The peninsula spans approximately 185 km in length and 85 km in width. Surrounded
+  by the Arabian Gulf on most sides, Qatar shares its only land border of about 60 km
+  with the Kingdom of Saudi Arabia. The United Arab Emirates lies to the east and
+  Bahrain to the northwest of the country.
+  Qatar generally consists of flat rocky surfaces, though it does feature some hills that
+  reach an altitude of 100 meters above sea level. Most of the country’s terrain consists
+  of a sandy desert interspersed with scrub vegetation and loose gravel. Moving sand
+  dunes, averaging about 40 meters in height, are found in the southern part and along
+  the northeastern coast near Ras Laffan. The northern part of Qatar is relatively low-
+  lying, gradually rising toward the west and southwest. (See Map 1.1).
+
+                                                                                                                                    17
+                                 Map 1.1: Relief Map of Qatar
+
+                            Source: National Planning Council
+18
+Qatar’s main groundwater basins include the Northern Basin, Southern Basin, Doha
+basin and the Allat Basin. (See Error! Reference source not found.).
+
+                    Map 1.2: Groundwater Basins in the State of Qatar
+
+                             Source: Ministry of Environment and Climate Change
+  Source: Ministry of Environment and Climate Change
+
+                                                                                                                                 19
+WATER
+RESOURCES
+
+                                                                          21
+2. Water Indicators in 2030 SDGs
+
+     Table 2.1: Water Indicators in Sustainable Development (2018-2023)
+
+SDG  Pur  Indic  Indicator Name 2018 2019 2020 2021 2022 2023
+     pos  ator
+      e
+
+                 Mortality rate
+
+                 attributed to unsafe
+
+                 water, unsafe
+
+                 sanitation and lack of
+
+3    3.9 3.9.2 hygiene (exposure to      0    0    0    0    0           0
+
+                 unsafe Water,
+
+                 Sanitation and
+
+                 Hygiene for All
+
+                 (WASH) services).
+
+                 Unclean water           0    0    0    0    0           0
+
+3    3.9 3.9.2 Unsafe sanitation         0    0    0    0    0           0
+
+                 Lack of hygiene         0    0    0    0    0           0
+
+                 materials
+
+                 Proportion of
+
+                 population using
+
+6    6.1 6.1.1 safely managed            100% 100% 100% 100% 100% 100%
+
+                 drinking-water
+
+                 services (%)
+
+                 Proportion of
+
+                 population using
+
+                 safely managed
+
+6    6.2 6.2.1 sanitation services,      100% 100% 100% 100% 100% 100%
+
+                 including a hand-
+
+                 washing facility with
+
+                 soap and water (%)
+
+                 Proportion of
+
+6    6.3 6.3.1 wastewater safely         99.4% 99.6% 99.7% 99.7% 99.7% 99.7%
+
+                 treated (%)
+
+                 Proportion of bodies
+
+6    6.3 6.3.2 of water with good        ...  ...  ...  ...  ...         ...
+
+                 ambient water quality
+
+6    6.4  6.4.1 Change in water use      Water Efficiency in the Agricultural, Industrial
+                   efficiency over time  and Commercial Sector (QR/L)
+                   (CWUE)
+
+                                                                                           23
+SDG  Pur  Indic  Indicator Name 2018 2019                           2020   2021   2022   2023
+     pos  ator
+      e                                                             0.005  0.006    ...    ...
+                                                                     15.6   11.6   13.2   12.8
+                 Value added of                                      7.2    2.3    2.0    2.3
+                                                                    247%   280%   396%   236%
+                 agricultural activities                             82%    81%    90.5   9.7
+                                                                    100%   100%   100%   100%
+                 (at constant prices
+
+                 2018) (QR)/ amount 0.005 0.005
+
+                 of water used in the
+
+                 agricultural sector
+
+                 (liters)
+
+                 Value added of
+
+                 industrial activities (at
+
+                 constant prices 2018)
+
+                 (QR)/ amount of            16.8 33.9
+
+                 water used in the
+
+                 industrial sector
+
+                 (liters)
+
+                 Value added of
+
+                 commercial activities
+
+                 (at constant prices
+
+                 2018) (QR)/ amount         0.9                3.2
+
+                 of water used in the
+
+                 commercial sector
+
+                 (liters)
+
+                 Level of water stress:
+
+                 freshwater
+
+6    6.4  6.4.2  withdrawal as a            229% 247%
+                 proportion of
+
+                 available freshwater
+
+                 resources (%)
+
+                 Degree of integrated
+
+                 water resources
+
+6    6.5 6.5.1 management                   80% 82%
+
+                 implementation (0-
+
+                 100 %)
+
+                 Proportion of local
+
+                 administrative units
+
+                 with established and
+
+                 operational policies
+
+6    6.b 6.b.1 and procedures for           100% 100%
+
+                 participation of local
+
+                 communities in water
+
+                 and sanitation
+
+                 management (%)
+
+...: Unavailable from the source
+Source: Qatar Sustainable Development Goals Report 2018 –2023
+
+24
+WATER
+RESOURCES
+
+                                                                          25
+3. Water Resources
+
+3-1 Rationale
+
+    Qatar’s only natural freshwater resources are rainfall and groundwater. The
+conservation of the quality and quantity of the country’s groundwater resources is one
+of the targets of Qatar’s National Development Strategy.
+
+Table 3.1 shows the long-term natural water balance (1998-2023) of Qatar's
+groundwater basins. The safe yield of groundwater amounted to 49.6 million m3 per
+
+year. The rate of groundwater withdrawal during the period (1998-2022) was about
+250 million m3 per year, causing the depletion of aquifers, low groundwater levels and
+
+increased salinity. In 2023, groundwater abstraction amounted to about 180 million
+m3 per year, with the abstracted volume changing due to the Regional Groundwater
+
+Modeling Project in Qatar (Kahramaa Project).
+
+Several projects are also in place to raise the rate of artificial recharge of groundwater
+basins (e.g. through recharge wells) and the artificial injection of treated wastewater
+and distilled water. The return of irrigation water plays an important role in the overall
+water balance.
+
+               Table 3.1: Natural Water Balance in Qatar's Aquifers
+                       (Average Annual Values for 1998-2023)
+
+No.            Water Balance       Mm3/year  Data Source
+
+1    Recharge of aquifers from     74.7      Kahramaa (Long-term annual
+     rainfall                                average 1998-2023)
+
+2    Total renewable water         74.7
+     resources (*)
+
+     Groundwater outflows into               Kahramaa (Long-term annual
+                                             average 1998-2023)
+3 sea and deep saline              25.1
+                                             Subtraction result (2-3)
+     groundwater (**)
+
+     Annual rate of water balance
+
+4 (groundwater safe yield)         49.6
+
+     (***)
+
+(*): FAO Aquastat, OECD, UNSD and Eurostat.
+
+(**): Variation of long-term annual average data (1998-2023) of groundwater flow to the sea and
+deep saline aquifers from the source
+(***): Without the yields from irrigation.
+Source: Qatar General Electricity and Water Corporation (KAHRAMAA)
+
+                                                                                                 27
+3-2 Key messages
+
+   A) In 2018-2023, the total rainfall at Doha International Airport was higher than
+        the long-term average (1962-2023). In 2023, the total rainfall at the Doha
+        International Airport station was 166% of the long-term average.
+
+   B) Water abstraction from fresh groundwater is mainly for agricultural purposes
+        (about 180 million m3 per year in 2023; i.e. 90% of total abstracted
+        groundwater).
+
+   C) The annual water deficit (mainly caused by groundwater withdrawal) ranges
+        from 3 million m3 to 49 million m3 for the years (2018 and 2023).
+
+   D) Artificial recharge of groundwater aquifers by TSE injection, recharge wells and
+        recharge from irrigation are the main source for the national groundwater
+        reserve (55% of the annual additions to groundwater reserves from irrigation
+        water, 13% from artificial recharge and 32% from rainfall).
+
+3-3 Statistics and Indicators
+
+3-3-1 Precipitation
+
+Compared to the long-term average rainfall (1962-2023), the year 2023 is relatively
+rainy. The total rainfall at Doha International Airport Station was 145.5 mm: i.e.
+166% of the long-term average rainfall. In 2023, Doha International Airport Station
+reported the highest rainfall among all monitoring stations, whereas the lowest
+rainfall was recorded at the Karaana Station (71.8 mm). (See Table 3.2).
+
+Table 3.2: Annual rainfall rates (mm) at selected monitoring stations in Qatar
+
+                                   2018 - 2023
+
+Selected
+
+Monitoring           2018   2019   2020         2021                        2022  2023
+
+Stations
+
+Mesaieed             42.7   101.4  34.6         10.4                        21.9  134.1
+
+Al-Ruwais            67.3   64.5   69.8         25.8                        50.3  86.8
+
+Dukhan               53.1   57.2   34.3         1.1                         61.8  115.9
+                                                                                  145.5
+Doha International   119.9  83.4   70.6         11.0                        58.5  71.8
+Airport
+
+Al-Karaana           47.1   43.3   42.9         7.9                         15.4
+
+Source: Qatar Civil Aviation Authority (QCAA) – Department of Meteorology.
+
+    Figure 3.1 shows that the average annual rainfall for 2018 and 2023 was higher
+  than the long-term average annual rainfall (1962- 2023), with 2023's rainfall
+
+28
+reaching 166% of the long-term annual average. In contrast, the average annual
+rainfall for the years (2019-2022) was either within or below the long-term annual
+average rainfall (1962-2023).
+
+Figure 3.1: Average annual rainfall at Doha International Airport Station 2018–2023 compared to long-
+                              term annual average rainfall (1962-2023)
+
+mm
+
+160                                                                           145.5
+                                                                              2023
+140             119.9
+                2018
+120
+
+100  87.4              83.4
+                       2019
+80                           70.6        58.5
+                             2020        2022
+60
+
+40
+
+20                                  11
+                                   2021
+0
+     1962-2023
+
+  Source: Qatar Civil Aviation Authority (QCAA) – Department of Meteorology.
+
+3-3-2 Groundwater Balance
+
+Figure 3.2 presents the groundwater balance during the period from 2018 to 2023. The
+
+total increase in groundwater stocks—comprising rainfall recharge, artificial recharge,
+and irrigation returns—rose from 265 million m3 in 2018 to 347 million m3 in 2023.
+
+However, the decrease in underground stocks (which include municipal and industrial
+
+withdrawals, agricultural withdrawals and flow to the sea) was relatively stable at
+about 269 million m3 per year during the period (2018-2022,) while it reached 395
+million m3 in 2023. This resulted in an annual groundwater deficit ranging between 3
+million m3 and 49 million m3 for the years (2018 and 2023).
+
+                                                                                                       29
+                   Figure 3.2: Water Balance 2018-2023
+
+           Mm3     400
+
+                   300
+
+                   200
+
+    Increases in groundwater 100
+
+           stocks                       0
+
+                   -100                    -3    -11                                               -49
+                                                                -64                 -99
+    Decreases in groundwater -200                                             -184
+                   -300
+           stocks
+
+                   -400
+
+                                 -500      2018  2019  2020                2021     2022               2023
+                                            -20   -20   -20                 -20      -20                 -20
+    Municipal and industrial
+            abstractions                   -230  -230  -230                -230     -230                -180
+                                            -18   -18   -18                 -18      -18               -195.0
+    Agricultural abstractions
+    Outflow (to sea)                       126   113    80                  19       75                 192
+    Recharge wells and irrigation
+                                            67    80    78                  55       51                  46
+                  recharge                  72    65    46                  11       43                 109
+    TSE injection                            -3   -11   -64                -184      -99                 -49
+    Recharge from rainfall
+    Water balance
+
+Source: Public Works Authority, Qatar General Electricity and Water Corporation, computations by NPC.
+
+The artificial recharge wells and irrigation recharge represent the largest source of
+additions to groundwater reserves, while most of the decline in groundwater reserves
+is due to agricultural water withdrawal. Figure 3.3 shows the proportions of increase
+and decrease in groundwater stock for 2023.
+
+    Figure 3.3: Increase and decrease in groundwater stock as a percentage of total water in 2023
+
+    100%                 13%                                         5.1%  Municipal, Domestic and
+     90%                 55%                           46%                 Industrial abstractions
+     80%                                                                   Agricultural abstractions
+     70%                 32%                           49%
+     60%           Increases in stocks           Decreases in stocks       Outflow (to sea)
+     50%
+     40%                                                                   Artificial recharge
+     30%
+     20%                                                                   Recharge from irrigation
+     10%
+       0%                                                                  Recharge from rainfall
+
+Source: Public Works Authority, Qatar General Electricity and Water Corporation, NPC calculations.
+
+30
+WATER
+RESOURCES
+
+                                                                          31
+4. Water Production, Abstraction and Use
+
+4-1 Rationale
+
+Qatar is experiencing a rapid economic growth coupled with a continuous population
+growth. As shown in Figure 4.1, the population grew from 2.8 million to 3.0 million
+between 2018 and 2023, reflecting a growth rate of 2.1%. Over the same period, the
+annual Gross Domestic Product (GDP) increased from QAR 667 billion to QAR 694
+billion (marking a growth rate of 0.8%). The measures taken to meet the water needs
+of this growing economy include boosting water production, enhancing water reuse,
+and improving water use efficiency.
+
+                 Figure 4.1: Population growth and GDP (constant 2018)
+                                            2018-2023
+
+     Population  Number of Population        GDP (constant prices, basis 218)              GDP (million Q.R)
+
+3,100,000                                                                      3,063,005
+3,050,000                                                                            700,000
+3,000,000
+2,950,000                                                                      694,276.5 690,000
+2,900,000                                                                                     680,000
+2,850,000
+2,800,000              667,339                                                       670,000
+2,750,000              2,760,170
+2,700,000                                                                            660,000
+2,650,000
+2,600,000                                                                            650,000
+2,550,000
+                                                                                     640,000
+
+                                                                                     630,000
+
+                                                                                     620,000
+
+                 2018  2019            2020  2021  2022                        2023
+
+Source: National Planning Council.
+
+* Previous data changed from source
+
+Water available for use originates from the following sources:
+
+    1. Abstraction of fresh and saline groundwater.
+    2. Distillation of seawater.
+    3. Reuse of treated wastewater.
+The potential future water sources include water generated by the GTL process, which
+is currently recycled in industries, where excess water is discharged without use.
+Currently, there is no available data regarding the volume of freshwater produced
+from the GTL process.
+
+                                                                                                                                 33
+4-2 Key messages
+
+    A) The amount of water production (which includes desalinated water + fresh
+        groundwater abstraction + reuse of TSE) increased from 1038 million m3 in
+        2018 to 1065 million m3 in 2023.
+
+    B) Water demand has been accompanied by economic and population growth.
+    C) The percentage of real water losses increased from 4% in 2018 to 6% in 2023.
+    D) During the years 2018 and 2019, the productivity of water used in all economic
+
+        activities increased. It also increased during 2022 and 2023, except for the
+
+        domestic sector, which witnessed a slight decline.
+
+4-3 Statistics and Indicators
+
+4-3-1 Water Production and Reuse
+
+As shown in Figure 4.2, in 2018, Qatar relied on groundwater abstraction (24%) and
+seawater desalination (61%), which are the only source of water. In 2018, the
+percentage of treated wastewater used for agriculture and green spaces irrigation
+purposes accounted for 15% and increased to 18% in 2023. Notably, in 2023, the main
+source of total water production was seawater desalination (63%), followed by
+groundwater abstraction (19%), then by reuse of treated wastewater (18%).
+
+         Figure 4.2: Total water production and reuse by water source (Mm3)
+                                             2018-2023
+
+Mm3               Desalination from sea  Groundwater  Reused TSE
+1200
+
+1000
+
+    800
+
+    600
+
+    400
+
+    200
+
+    0     2019                 2020      2021         2022                   2023
+    2018
+
+Source: Public Works Authority (Ashghal) and Qatar General Electricity and Water Corporation (KAHRAMAA)
+   * Data for previous years changed from source
+
+34
+Error! Reference source not found. below shows that the total water production is
+closely related to economic and population growth. There is a clear divergence
+between the GDP growth rate curve and the growth rate of total water production
+(which includes groundwater abstraction + seawater desalination + wastewater
+reuse).
+
+Figure 4.3: GDP growth rates, population, total water production and groundwater
+                         abstraction (indicator base year 2008=100)
+                                             2008-2023
+
+    Index     GDP                                      Population
+(2008 = 100)  Total water production                   Groundwater abstraction
+
+    500                                                                                      319
+    450                                                                                       211
+    400
+    350                                                                                        177
+    300                                                                                         80
+    250
+    200
+    150 100
+    100
+
+      50
+       0
+
+Source: NPC, Ashghal, KAHRAMAA, and NPC calculations.
+
+4-3-2 Water Uses by Economic Activity
+
+Statistics reveal an increase in the volume of used water (net water, free of waste /
+after deducting water loss) from 749.3 to 906.4 million m3 per year in 2018 and 2023.
+Figure 4.4 shows that the largest portion of water usage is attributed to agricultural
+and domestic activities. The highest annual growth rates for water use were in
+commercial activity (30%), followed by government activity (11%), whereas annual
+growth rate of water use in agricultural activity was (-4%) (see Figure 4.5).
+
+                                                                                                    35
+     Figure 4.4: Water Used by Economic Activity (Mm3) (excluding losses)
+
+                                         2018 -2023
+
+         1200
+
+          1000
+
+Mm3       800
+
+          600
+
+          400
+
+          200
+
+               0  2018   2019        2020         2021  2022        2023
+
+     Industry     35.6   44.0        39.00        40    41                 45
+
+     Commercial   25.8   85.0        90.0         84.0  93.0        94.0
+
+     Government 122.0    156.7       147.6   180.9      196.3       203.7
+
+     Agriculture  310.0  316.1       322.00       311   311                255
+
+     Households   255.9  281.0       285.00       283   317.0       309.0
+
+* Industry includes Kahramaa water and industrial wells.
+*: There are some variations in household water usage compared to previous years due to the difference in the
+method of calculation from the source
+Source: Ashghal, KAHRAMAA, and NPC calculations.
+
+Figure 4.5: Annual Growth Rates of Water Used by Economic Activity (2008-2023)
+                                 (Index base year 2008=100)
+
+    Index                Households  Agriculture        Government
+(2008 = 100)             Commercial  Industry
+
+       800
+
+     700
+
+     600
+
+     500                                                                        525
+
+     400                                                                        345097
+
+     300
+
+     200                                                                        163
+
+     100                                                                        103
+
+     0
+
+*: There are some variations in household water usage compared to previous years due to the difference in the
+method of calculation from the source
+Source: Ashghal, KAHRAMAA, and NPC calculations.
+
+36
+As for the per-capita water use across different sectors (household, industrial,
+commercial, and governmental) except for agricultural activity, it is noted that there
+has been a decrease in the per capita share of total water production. In 2023, the per
+capita water usage was 217 cubic meters annually.
+
+Table 4.1: Annual per capita water consumption for various uses (m3/year/per
+
+                                     capita)
+
+                       2018 - 2023
+
+                                     Per capita total               Per capita
+
+                   Per capita total  water transported     consumption of
+                  water production     to the network   water transported to
+                                      (including water
+Year                                         loss)           the network
+                                                        (excluding real loss)
+
+2018              231                         223                   214
+
+2019              242                         234                   224
+
+2020              246                         240                   226
+
+2021              249                         245                   230
+
+2022              250                         246                   232
+
+2023              217                         214                   202
+
+Source: Qatar General Electricity and Water Corporation (KAHRAMAA)
+
+4-3-3 Water Loss
+
+Water loss occurs during the transportation of drinking water, in wastewater sewers,
+within septic tanks or during evacuation and transport of septic tanks’ wastewater. As
+for desalinated water, Kahramaa has statistics for the so-called apparent loss and real
+loss (according to the classification of the International Water Association (IWA)).
+Apparent loss and real loss are defined by IWA as follows:
+
+    • Apparent loss consists of unauthorized consumption (theft or illegal use), and
+         all types of inaccuracies associated with production metering and customer
+         metering. Under-registration of production meters or over-registration of
+         customer meters leads to under-estimation of real losses. Over-registration of
+         production meters and under-registration of customer meters lead to over-
+         estimation of real loss.
+
+    • Real loss is physical water loss from the pressurized system, up to the point of
+         customer metering. The volume lost through all types of leaks, bursts and
+         overflows depends on frequencies, flow rates, and average durations of
+         individual leaks.
+
+    • Total loss is the sum of apparent loss and real loss.
+
+With respect to analysis and indicators, it is extremely important to be explicitly clear
+which losses (total, apparent, or real) which are currently under discussion. Figure 4.6
+illustrates the distribution of water losses, showing the development of real and total
+
+                                                                                           37
+losses during the period 2018-2023. The total water loss decreased from 23 % to 19%,
+and real water losses increased from 4% to 6%. The figure also shows that the total
+volume of net supplies to users increased from 637 million m3 in 2018 to 669 million
+m3 in 2023.
+
+                Figure 4.6: Loss of drinking water distribution, 2018-2023
+
+System volume                                                              Losses as % of
+                                                                           system volume
+input (million m3)
+                          800                                                    input 30%
+
+                          700                                                                  25%
+
+                          600                                                      20%
+
+                          500
+
+                          400                                                      15%
+
+                          300                                                      10%
+
+                          200                                                      5%
+
+                          100
+
+                           0   2018   2019    2020    2021          2022   2023    0%
+                                      536.8  497.62  492.39
+Net supply to users (million   489.5  25.9                          547.34 539.11
+                 m3)                  108.3   39.2    40.8
+                                      20%    152.2   135.81
+Real losses (million m3)       24.5           28%                   38.0   37.7
+                                       4%             26%           84.66  92.21
+Apparent losses (million m3) 123.0             6%
+                                                       6%
+Total losses (% of system      23%                                  18%    19%
+        volume input)
+
+Real losses (% of system       4%                                   6%     6%
+        volume input)
+
+Source: Qatar General Electricity and Water Corporation (KAHRAMAA)
+
+Currently, there are no statistics on loss in wastewater sewers in Qatar; however, only
+estimates are available. In terms of water volume, the issue of groundwater leakage
+into the sewer system is of greater concern than the actual water loss. Leakage into
+the sewer mains may be responsible for the relatively high salinity of TSE of around
+1,000 mg/L measured at Doha wastewater treatment plants (see Ashghal &
+Schlumberger study, 2013).
+
+4-3-4 Water Use in Agricultural Activity
+
+For simplicity (and in line with data availability), economic activity "Agriculture,
+Forestry, and Fishing" has been categorized as "Agricultural Activity".
+Groundwater and treated wastewater are the primary sources of water for agricultural
+activity. Statistics from Table 4.2 indicate that the volume of treated wastewater used
+in agriculture decreased from 79.7 million m3 in 2018 to 70.7 million m3 in 2023, with
+treated wastewater accounting for 27.8% of the total water used in agricultural
+activity. According to the study carried out by Ashghal and Schlumberger (2013), the
+water salinity at Doha wastewater treatment plants reached 1,000 mg/L, which posed
+a major concern for water re-use in agriculture. The table also notes that the GDP
+generated from agricultural activity grew from QAR 1,457 million in 2018 to QAR 2,026
+million in 2023.
+
+ 38
+Table 4.2: Water used in agricultural activity by water source and GDP of
+             agriculture (at constant prices of 2018) 2018 - 2023
+
+Year         Abstracted  Productive        TSE        Total            GDP
+           groundwater   farms       (million m3)  (million     (million QR,
+           (million m3)  (million                  m3)          constant prices
+                         m3)                                    of 2018)
+
+2018        230          0.3         79.67         309.97       1,457
+
+2019        230          0.2         86.06         316.06       1,700
+
+2020        230          3           88.96         321.96       1,777
+
+2021        230          4           77.16         311.16       1,785
+
+2022        230          5           76.13         311.13       1,923
+
+2023        180          4           70.73         254.73       2,026
+
+• The amount of groundwater abstracted for 2023 has changed due to the Regional Underground Modeling
+      Project in the State of Qatar (KAHRAMAA Project)
+
+• GDP data for previous years changed from the source.
+      Source: NPC, KAHRAMAA, Ashghal
+
+Figure (4.7) illustrates a decline in the volume of water used for agricultural activities,
+dropping from 309.7 million m³ in 2018 to 254.7 million m³ in 2023. Notably, the
+amount of groundwater abstracted for agricultural purposes changed in 2023 (180
+million m3 per year) due to the recently completed Regional Underground Modeling
+Project in the State of Qatar (Kahramaa Project).
+
+Figure 4-7: Water used in agricultural activity by water source (Mm3) 2018-2023
+
+Mm3                           TSE                  Groundwater
+  350
+
+      300
+
+      250
+
+      200
+
+      150
+
+      100
+
+      50
+
+      0          2019         2020          2021   2022         2023
+      2018
+
+ Source: Qatar General Electricity & Water Corporation (KAHRAMAA), Public Works Authority (Ashghal)
+
+Figure (4.9) shows the Water efficiency in agriculture, as statistics in 2018 indicate that
+about (213) liters of water were needed to produce (1) Qatari riyals of GDP in
+agriculture, while this quantity decreased in 2023 to (126) liters. In terms of the Water
+productivity in agriculture, water productivity for 2023 showed a significant
+
+                                                                                                      39
+improvement compared to 2018, with one liter of water contributing to the production
+of QAR 0.008 of GDP in agriculture, compared to QAR 0.005 in 2018.
+
+    Figure 4.8: Growth rate of water used in agriculture and GDP of agriculture (at
+
+           constant prices of 2018) (Index base year 2008=100) 2008-2023
+
+    Index            Total water use in Agriculture                  GDP of Agriculture
+(2008=100)
+
+    500                                                                                  465
+
+    450
+
+    400
+
+    350
+
+    300
+
+    250
+
+    200
+
+    150 100
+
+    100                                                                                  103
+
+    50
+
+    0
+        2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020 2021 2022 2023
+
+Source: NPC, Ashghal, Kahramaa, and NPC calculations.
+
+Figure 4-9: Water use efficiency (liter/QR of GDP) and water use productivity (GDP
+   per liter of water used) in agriculture 2018-2023 (at constant prices for 2018)
+
+    QR/liter         GDP generated per liter water used (QR/liter)          liters/QR
+                     Water use per GDP (liters/QR)                             250
+
+    0.009     212.8  186.1  181.2                      174.3                200
+    0.008
+    0.007     0.005                                           161.8
+    0.006     2018
+    0.005                                                            125.8  150
+    0.004
+    0.003                                                                   100
+    0.002
+    0.001            0.005  0.006                      0.006  0.006                 50
+    0.000            2019   2020                       2021   2022
+                                                                     0.008
+                                                                                    0
+
+                                                                     2023
+
+Source: NPC, Ashghal, Kahramaa, and NPC calculations.
+
+40
+4-3-5 Water Use in Industrial Activity
+
+For simplicity (and in line with the availability of data), the following economic
+activities have been aggregated under the category of "Industrial Activity":
+
+• Mining and quarrying.
+• Manufacturing.
+• Electricity, gas, steam and air conditioning supply.
+• Water supply, sewerage, waste management and remediation.
+• Construction.
+
+Industries in the State of Qatar depend on three sources of freshwater:
+
+1- Water provided by Qatar General Electricity and Water Corporation
+    "Kahramaa".
+
+2- Groundwater for industrial purposes.
+3- Seawater desalinated in industrial facilities. For this latter type (desalination),
+
+    data is unavailable. Therefore, analysis can only be done for that part of water
+    which originates from groundwater (self-abstraction by industries) and water
+    supplied by Kahramaa.
+
+Statistics from Table 4.3 indicate an increase in the annual amount of water used
+in industrial activity during 2018 and 2023, from 35.6 million m3 to 45.0 million m3.
+However, the GDP of industrial activity dropped from QAR 402.9 million in 2018 to
+QAR 394.9 million in 2023.
+
+Table 4.3: Water Used in Industrial Activity by Water Source and GDP of Industry
+
+            (at constant prices of 2018) 2018 - 2023
+
+Year     Water       Industrial         Total water   GDP (Million QAR at
+                                        used (Mm3)*    constant prices of
+      supplied by  groundwater                               2018) **
+
+      Kahramaa          wells
+         (Mm3)         (Mm3)
+
+2018  25.6         10                   35.6          402,950
+
+2019  34           10                   44            396,641
+
+2020  29           10                   39            384,659
+
+2021  30           10                   40            387,217
+
+2022  31           10                   41            393,759
+
+2023  35           10                   45            394,993
+
+Previous years' data changed from source
+
+* Excluding desalinated industrial water.
+** Includes mining and quarrying (including oil and gas), manufacturing, electricity and water, building and
+construction.
+Source: National Planning Council, Qatar General Electricity and Water Corporation (KAHRAMAA).
+
+                                                                                                              41
+Figure 4.10: Water used in industrial activity by water source (million cubic meters)
+                                            2018 - 2023
+
+Million M3                           Water supplied by Kahramaa     Groundwater
+     40
+     35         2019                 2020  2021                     2022            2023
+     30
+    25
+     20
+     15
+     10
+      5
+      0
+       2018
+
+Source: Qatar General Electricity and Water Corporation (KAHRAMAA)
+
+Figure 4.12 below demonstrates that the GDP growth rate in industrial activity is
+linked to the amount of water used, even with improvements in water use efficiency
+and productivity. In 2018, 0.09 liters of water were required to produce 1 Qatari Riyal
+of industrial GDP, whereas in 2023, 0.11 liters were needed to produce the same
+amount of industrial GDP. In other words, this means that the productivity of one liter
+of water was 11.3 Qatari Riyal of industrial GDP in 2018, while water productivity in
+2023 decreased to 8.8 Qatari Riyal of industrial GDP per liter.
+
+Figure 4.11: Growth rate of water used in industrial activity and GDP (constant
+                    prices 2018) (Base year 2008=100) 2008-2023
+
+    Index                            Total water use (Industry)     GDP (Industry)
+(2008 = 100)
+
+       600
+
+500                                                                                 507
+
+400
+
+300                                                                                 280
+
+200
+
+100
+
+             0
+
+Source: KAHRAMAA, NPC calculations.
+ 42
+Figure 4.12: Water use efficiency (liter/QR of GDP) and water use productivity (GDP
+  per liter of water used) in industrial activity (at constant prices 2018) 2018-2023
+
+QR/liter        GDP generated per liter water used (QR/liter)        liters/QR
+
+                Water use per GDP (liters/QR)                  0.11
+
+12              0.11                           0.10                  0.12
+
+                      0.10  0.10
+
+10        0.09                                                       0.10
+
+8                                                                    0.08
+
+6                                                                    0.06
+
+4                                                                    0.04
+
+2                9.0   9.9   9.7                9.6                          0.02
+                2019  2020  2021               2022
+         11.3                                                   8.8
+0                                                                            0.00
+
+         2018                                                  2023
+
+Source: KAHRAMAA, NPC calculations.
+
+4-3-6 Water Use in Commercial Activity
+
+For simplicity (and in line with data availability), the following economic activities have
+been aggregated under the “commercial sector” category:
+
+    • Wholesale and retail trade; repair of motor vehicles and motorcycles.
+    • Transportation and storage.
+    • Accommodation and food service activities.
+    • Information and communication.
+    • Financial and insurance activities.
+    • Real estate activities.
+    • Activities of households as employers of domestic personnel.
+
+The water supplied by Qatar General Electricity and Water Corporation (KAHRAMAA)
+is the only known source of water for commercial activities. Statistics from Figure 4.13
+reveal that the total amount of water used in commercial activity rose from 26 million
+m3 in 2018 to 94 million m3 in 2023.
+
+                                                                                             43
+Table 4.4: Quantity of water used in commercial activity and GDP in commercial
+
+                      activities
+
+                (Constant prices 2018) 2018 - 2023
+
+    Year              Amount of water used     GDP (QAR million, at
+                        (water provided by  constant prices of 2018) *
+                       KAHRAMAA) million
+                                  m3
+
+    2018              26                            186,751
+
+    2019              85                            190,149
+
+    2020              90                            181,347
+
+    2021              84                            190,808
+
+    2022              93                            206,973
+
+    2023              94                            209,569
+
+    * Trade, restaurants, hotels, transportation, storage, information and communication, money, insurance, real
+
+    estate services, business and home services.
+    Source: National Planning Council, Qatar General Electricity and Water Corporation (KAHRAMAA)
+
+    Figure 4.13: Quantity of water used in commercial activity (Mm3) 2018-2023
+
+    Million M3  2019  2020        2021              2022     2023
+     100
+      90
+      80
+      70
+      60
+      50
+      40
+      30
+      20
+      10
+
+        0
+         2018
+
+                Source: Qatar General Electricity and Water Corporation (KAHRAMAA)
+
+According to Figure 4.14 below, GDP growth rates in commercial activity since 2018
+have been linked to the amount of water used. As shown in Figure 4.15, in 2018, 0.14
+liters of water were required to generate 1 Qatari Riyal in commercial GDP, whereas
+only 0.45 liters of water were needed to reach the same GDP in 2023. In other words,
+one liter of water used in commercial activities in 2018 produced 7.24 Qatari Riyal of
+GDP, while a liter of water produced 2.23 Qatari Riyal of GDP in 2023.
+
+44
+Figure 4.14: Growth rate of water used in commercial activity and GDP of
+           commercial activities (Base year 2008=100) 2008 - 2023
+
+    Index                 Total water use (commercial)   GDP (commercial)
+(2008 = 100)
+                                                                               359
+    800                                                                        368
+    700
+    600
+    500
+    400
+    300
+    200
+    100
+
+       0
+
+Source: NPC, KAHRAMAA, and NPC calculations.
+
+Figure 4.15: Water use efficiency (liter/QR of GDP) and water use productivity (GDP
+per liter of water used) in commercial activities (constant prices 2018) 2018 – 2023
+
+QR/liter                  GDP generated per liter water used (QR/liter)        liters/QR
+                                                                                 0.6
+8                         Water use per GDP (liters/QR)                          0.5
+                                                                                 0.4
+7                               0.50                     0.45            0.45    0.3
+                                                                                 0.2
+                          0.45        0.44                               2.23    0.1
+                                                                         2023    0.0
+6
+
+5
+
+4
+
+3         0.14
+
+2
+
+1         7.24            2.24  2.01  2.27               2.23
+                          2019  2020  2021               2022
+0
+
+          2018
+
+Source: NPC and KAHRAMAA
+
+                                                                                          45
+4-3-7 Water Use in Government Activity
+
+For simplicity (and in line with data availability), the following economic activities have
+been grouped under the "government activity" category:
+
+    • Public administration and defense; compulsory social security.
+    • Education.
+    • Human health and social work activities.
+    • Arts, entertainment and recreation.
+The water supplied by KAHRAMAA and the TSE reused for irrigating green spaces are
+the main sources of water in government activity. Statistics in Table 4.5 and Figure 4.16
+show that the water used in government activity picked up from 122 million m3 in 2018
+to about 203 million m3 in 2023. In 2023, water resulting from re-used TSE (used for
+the irrigation of green spaces) accounted for 62% of the water used by government
+activity.
+Since government activity is considered a consumer of goods and services, an analysis
+based on comparing GDP and water use in government activity (as done for
+agricultural, industrial and commercial activities) would not be useful, even though
+certain government services are included in the GDP computation.
+
+   Table 4.5: Water Used in Government Activity by Water Source (Mm3 per Year)
+                                             2018 - 2023
+
+    Year  Water supplied by            TSE          Total water used
+             KAHRAMAA         (irrigation of green
+                                                            122.01
+    2018  50.80                      spaces)                156.65
+                                                            147.60
+    2019  80.00                          71.21              180.86
+                                                            196.34
+    2020  61.00                          76.65              203.66
+
+    2021  73.00                          86.57
+
+    2022  83.00                         107.86
+
+    2023  78.00                         113.34
+
+                                        125.66
+
+Source: Ashghal and KAHRAMAA
+
+46
+Figure 4.16: Amount of Water Used in Government Activity by Water Source (Mm3)
+                                             2018-2023
+
+Million M3                TSE (irrigation of greenspaces)        Water supplied by Kahramaa
+   200
+   180         2019       2020                             2021  2022                        2023
+   160
+   140
+   120
+   100
+     80
+     60
+     40
+     20
+      0
+       2018
+
+    Source: Ashghal and KAHRAMAA
+
+Figure 4-17: Growth rate of water used in government activity and GDP (Base year
+                                         2008) 2008-2023
+
+    Index      Total water use (government activity)             GDP (government activity)
+(2008 = 100)                                                                                     525
+                                                                                                 388
+      600
+
+      500
+
+      400
+
+      300
+
+      200 100
+      100
+
+         0
+
+Source: NPC and KAHRAMAA
+
+                                                                                                      47
+4-3-8 Water Use in Household Activity
+
+Households rely mainly on the water supplied by Kahramaa, although private wells are
+
+also used, primarily by individual households. Statistics on the water supplied by
+
+Kahramaa, as shown in Table 4.6 and Figure 4.18, indicate an increase in water used in
+households between 2018 and 2023. In 2018, households used 256 million m3 of water,
+while in 2023, this amount reached about 309 million m3.
+
+    Table 4.6: Water Used in Household Activity by Water Source (Mm3 per Year)
+
+                        2018 - 2023
+
+        Year      Water supplied by    Household wells              Total water used
+                     KAHRAMAA
+        2018                                      10                          256
+        2019                  246                 10                          281
+        2020                  271                 10                          285
+        2021                  275                 10                          283
+        2022                  273                 10                          317
+        2023                  307                 10                          309
+                              299
+
+* Data for previous years has been changed from the source due to a change in the calculation methodology.
+
+Source: KAHRAMAA
+
+Figure 4.18: Water Used in Household Activity by Water Source (Mm3) 2018-2023
+
+Mm3                     Water supplied by Kahramaa                  Household wells
+  350
+
+300
+
+250
+
+200
+
+150
+
+100
+
+    50
+
+    0             2019  2020           2021                         2022             2023
+    2018
+
+Source: Qatar General Electricity and Water Corporation (KAHRAMAA)
+
+48
+4-3-9 Water Demand
+
+It can be observed from the table that water demand in 2023 and 2022 remained
+stable and unchanged. However, the prevailing trend of water demand has shown an
+overall annual increase of an average of 2% since 2018. As for the number of
+subscribers, it increased from 329.800 subscribers in 2018 to 441.200 subscribers in
+2023.
+
+Table 4-7: Water Demand by Type, Number and Percentage of Growth of
+
+                    Subscribers in the Period (2018-2023)
+
+Year    Average             Average      Average                    Number of      Annual
+      demand for          demand for   demand for                   subscribers   growth in
+      distribution         industrial  residential                               number of
+                                                                                 subscribers
+                            activity     activity
+
+2018  359                 23             336                        329,832      10%
+
+2019  379                 23             356                        363,338      5%
+
+2020  393                 23             370                        382,932      6%
+
+2021  386                 24             362                        406,745      5%
+
+2022  387                 26             361                        426,738      5%
+
+2023  387                 26             361                        441,202      3%
+
+Source: Qatar General Electricity and Water Corporation (KAHRAMAA)
+
+4-3-10 Water Use Balance
+
+The amount of water available for use in 2023 reached 1152.09 million m3, including
+desalinated water (prior to the loss computation), abstracted groundwater, and urban
+wastewater (treated and untreated).
+
+The amount of water consumed by the end user (including agricultural, industrial,
+commercial, governmental and household activities) consists of water accessible and
+available for use, minus water loss and the wastewater discharged without reuse.
+Injection of TSE into aquifers serves as a method of compensating for overexploitation,
+rather than a final use. Thus, it appears separately in the aggregated water balance
+(see Table 4.9).
+
+                   Table 4-8: Aggregate Water Use Balance (Mm3) 2023
+
+                    Statement                                       Mm3 per year
+
+Water potentially available for use (A)                             1152.09
+Water loss (B)                                                      129.91
+Wastewater discharged without reuse (C)                             85.7
+
+                                                                                              49
+Water injected into aquifers                                    45.62
+
+Water used by the end consumer = (a - b - c)                    882.46
+
+Details of the water use balance are shown in Table 4.9 below.
+
+     Table 4.9: Details of water use balance (water balance in million M3) 2023
+
+                                Water
+
+     Statement               potentially Water use              Remarks
+                                available     and loss
+
+                                for use
+
+Desalinated water            669                        Water supplied by Kahramaa
+
+Fresh groundwater            200                        It includes data on agricultural
+abstraction                                             wells, municipal wells, domestic
+                                                        and industrial wells.
+
+TSE                          282.09                     Wastewater discharged by urban
+                                                        wastewater treatment plants
+
+Untreated wastewater         1                          Discharge of untreated wastewater
+                                                        into lagoons
+
+Total water potentially      1152.09                    Water available before loss
+available for use
+
+Untreated wastewater                       1
+
+Apparent distilled water                   92.21
+loss
+
+Real desalinated water                     37.7         Total water losses.
+losses
+
+TSE discharged into lagoons                38.17
+
+TSE discharged into sea                    1.95
+
+TSE injected into deep                     45.62
+aquifers
+
+Water used in agriculture                  311.156      Groundwater and TSE.
+                                           139.00
+Water used in industries                                Water supplied by KAHRAMAA,
+and commercial activities                  309.00       water supplied by industrial wells,
+                                           203.66       including large industrial
+Water used in household                                 complexes and hotels.
+activity                                                Water supplied by KAHRAMAA and
+                                                        water supplied by household wells
+Water used in government                                and municipal wells.
+activity
+                                                        Water supplied by Kahramaa and
+                                                        TSE for irrigation of green spaces
+
+50
+          Statement           Water      Water use                  Remarks
+                            potentially   and loss
+Undisclosed use or loss of   available              These differences between
+desalinated water                                   incoming water inputs to the
+Total water uses and loss     for use               system and uses or losses from the
+                                                    source are not indicated.
+                                         29.05
+
+                                         1152.09
+
+                                                    51
+WATER
+RESOURCES
+
+                                                                          53
+        5. Urban Wastewater Production, Collection,
+          Treatment and Discharge
+
+5-1 Rationale
+
+In the State of Qatar, the collection and treatment of urban wastewater is an important
+measure for its reuse for irrigation, cooling and groundwater recharge and for
+protecting the environment from the adverse impact of waterborne pollution.
+Furthermore, this infrastructure is essential to provide appropriate sanitation services
+for all individuals across the country.
+Since rainfall in Qatar is one of the world’s lowest, and with the country’s focus on
+integrated water resources management, treated wastewater represents an
+important alternative to desalinated seawater and the abstraction of fresh
+groundwater from Qatar's limited resources. Its use is a crucial step toward achieving
+greater sustainability in water consumption.
+
+5-2 Key messages
+
+    A) The design capacity of wastewater treatment plants increased from 965 m3
+         per day in 2018 to 1,053 m3 per day in 2023.
+
+    B) In terms of type of treatment, all wastewater treatment plants in Qatar are
+         equipped with at least secondary level of treatment.
+
+    C) Urban wastewater treatment plants remove more than 99% of organic
+         pollution.
+
+    D) In 2023, 99% of urban wastewater was treated in treatment plants.
+    E) In 2023, 24% of TSE was used for irrigation purposes in agricultural activity and
+
+         43% for landscaping.
+
+5-3 Statistics and Indicators
+
+5-3-1 Urban Wastewater Collection and Treatment Infrastructure
+According to data available from the Population, Housing and Establishments Censuses
+(1986-2020), the number of completed buildings connected to the sewage network
+increased from 127,000 (87.7% of total completed buildings) in 2015 to 157,000
+(94.7% of total completed buildings) in 2020 (see Figure 5.1).
+
+                                                                                                                                 55
+Buildings not connected to the sewage network are serviced by tankers that transport
+wastewater to treatment plants and sewage lagoons
+
+Figure 5.2 presents data from the 2020 Census on the connection of buildings to the
+sewage network by municipality. The highest percentage of buildings connected to the
+sewage network was in Al-Rayyan, Doha, and Al Shamal, with a 100% connection rate.
+In contrast, Al Daayen had the lowest connection rate, at 67.5%.
+
+Figure 5.1: Number of Completed Buildings by Connection to the Sewer Network
+
+                        Censuses 1986 - 2020
+
+    Completed           Connected to sewer Not connected to sewer
+     Buildings
+
+      180,000
+
+    160,000                                                         8,829
+                                                                   156,790
+    140,000                                             17,698
+    120,000                                                          2020
+    100,000                                     29,559
+
+    80,000                              27,853
+                                        57,952
+    60,000              23,872           2004           126,549
+    40,000
+                24,553                          98,515
+
+    20,000      25,037  40,528
+           0     1986    1997
+
+                                                2010    2015
+
+    Source: National Planning Council.
+
+56
+Figure 5.2: Number of completed buildings by connection to public sewage and
+                            municipality, Census, 2020 census
+
+Completed Buildings                          Not connected to sewer
+                                             Connected to sewer
+
+Al Sheehaniya        42 4036
+
+      Al Dayyan      3772    7839
+
+      Al Shamal      0        8972
+Al Khor and Al         1751        11950
+                                      13222
+    Thakhira         5
+       Umm Slal
+                     7
+        Al Wakra
+                     5003
+      Al Rayyan
+                     0                                                               61893
+
+Doha 0                                                                47127
+                                                                     50,000
+                  0          10,000  20,000  30,000  40,000                  60,000  70,000
+
+Source: National Planning Council.
+
+                                                                                            57
+   Map 5.1: Percentage of Completed Residential Buildings Connected to Public
+                          Networks by Municipality, Census 2020
+
+  Source: National Planning Council.
+58
+Map 5.2: Percentage of Completed Buildings Connected to the Water and Sewage
+                   Networks by Municipality, 2015 and 2020 Censuses
+
+ Source: National Planning Council.
+                                                                                                                               59
+    Table 5.1: Amount of wastewater at sewage plants, 2018 - 2023
+
+               Statement                     2018     2019     2020     2021      2022    2023
+                                          24       26       26       23       21        22
+Number of wastewater treatment            965      966      1,022    994      982       1053
+plants                                    0.0      0.0      0.0      0.0      0.0       0.0
+Total design capacity of wastewater
+treatment plants (1000 m3/ day)           2.0      2.0      1.14     1.95     1.1       1.1
+Total design capacity of wastewater
+treatment plants with primary             936.0    964.0    1,020.0  992.1    981.0     1,053
+treatment - mechanical treatment          257,829  278,216  285,816  253,210  264,326   283,258
+(1000 m3/ day)                            256,467  276,114  285.8    253.2    264.3     282.09
+Total design capacity of wastewater       99.5%    99.3%    98.0%    99.2%    99.75%    99.6%
+treatment plants with – biological        79,669   86,056   88,957   77,156   76,132    70,734
+treatment (1000 m3/ day)                  71,208   76,648   86,568   107,862  113,344   125,659
+Total design capacity of wastewater       66,892   79,706   78,034   54,697   50,599    45,620
+treatment plants with tertiary            38,161   33,001   32,313   13,401   23,353    38,171
+treatment - advanced treatment            546      713      55       107      884       1,948
+(1000 m3/ day)                            37,688   39,096   40,960   41,349   49,049    46,246
+The amount of collected wastewater                                                      248
+(1000 m3/yr)                                                                            0.629
+                                                                                        122.2
+Amount of wastewater treated (1000
+m3/yr)
+
+Proportion of treated wastewater to
+total wastewater
+
+Treated wastewater used to irrigate
+agriculture (1000 m3/yr)
+
+Treated wastewater used to irrigate
+green spaces (1000 m3/yr)
+
+Treated wastewater used for
+groundwater injection (1000 m3/yr)
+
+Treated wastewater discharged into
+lagoons (1000 m3/yr)
+
+Treated wastewater discharged into
+the sea (1000 m3/yr)
+
+Dry sludge from wastewater (tons
+/yr)
+
+Sludge from sewage (1000 m3/yr)           202      191      203      208      261
+
+Wastewater not collected at the                    0.995    0.825    0.678    0.661
+sewage plant and untreated discharge 1.62          90.9     98.5     81.5     138.5
+into lagoons (Mm3/yr)
+
+Total surface groundwater discharged      100.9
+into the sea (Mm3/yr)
+
+Source: Public Works Authority (Ashghal)
+
+60
+The number of sewage treatment plants reached 22 plants in 2023. According to Table
+5.1 statistics, the design capacity for the treatment of wastewater generated from
+urban areas increased from 965 m3/day in 2018 to 1,053 m3/day in 2023 (an annual
+growth rate of 2%). All urban wastewater treatment plants are equipped with (at least
+secondary) treatment methods, ensuring that organic pollution is largely eliminated.
+
+5.3 Treatment Efficiency of Urban Wastewater Treatment Plants
+
+Figures 5.3 and 5.4 indicate that 99% of organic contamination, in terms of biochemical
+oxygen demand (BOD), was eliminated in most years during the period from 2018 to
+2023. In terms of chemical oxygen demand (COD), the removal rates reached 97% in
+most years during the same period (2018-2023).
+
+         Figure 5-3: Treatment of Biological Oxygen Demand, 2018-2023
+
+         BOD incoming load                 BOD discharged load
+
+         BOD treatment efficiency                                                   Removal
+                                                                                    Rate )٪(
+metric tons \ yr  98.9%            98.9%      99.2%      99.10%             98.9%
+                                           50,163      50,535                            100%
+60000    98.8%
+                                                  422         401
+                                               2021        2022                     90%
+
+50000                       50,702                                          47,446  80%
+40000 42,412                                                                        70%
+30000             46,511
+
+                                                                                    60%
+
+                                                                                    50%
+
+                                                                                    40%
+
+20000                                                                               30%
+
+10000                                                                               20%
+      0
+            513      530              560                                      507  10%
+         2018     2019             2020                                     2023    0%
+
+Source: Public Works Authority and National Planning Council Calculations.
+
+                                                                                               61
+           Figure 5.4: Treatment of Chemical Oxygen Demand, 2018–2023
+
+                      COD incoming load ‫الطلب الكيميائي على الأكسجين الحمولة الواردة‬
+                      COD discharged load ‫الطلب الكيميائي على الأكسجين الحمولة الخارجة‬
+
+metric tons \ yr                                                                              Removal
+
+140000     96.2%      96.2%      96.4%             96.9%          97.00%          96.51%Rate )٪(
+                                                103,668        104,264                        100%
+
+120000                                                  3,262           3,405                 90%
+100000                                              2021           2022
+                      114,982    117,456                                                      80%
+ 80000
+           105,637                                                                            70%
+
+                                                                                 96,665       60%
+
+60000                                                                                         50%
+
+                                                                                              40%
+
+40000                                                                                         30%
+
+20000          4,056      4,354      4,257                                                    20%
+      0    2018       2019       2020
+                                                                                        3,372 10%
+
+                                                                                              0%
+
+                                                                                        2023
+
+Source: Public Works Authority and National Planning Council.
+
+ Figure 5.5: Rates of BOD, COD, total nitrogen and phosphorus removal at UWWTP
+                                      Doha West, 2018-2023
+
+    Removal Rate      Nitrogen            Phosphorus                        BOD               COD
+                         2019                                                                     2023
+    100%
+     90%
+     80%
+     70%
+     60%
+     50%
+     40%
+     30%
+     20%
+     10%
+       0%
+
+           2018                           2020  2021                        2022
+
+Source: Public Works Authority and National Planning Council Calculations.
+
+62
+5-3-2 Sewage Sludge Production
+
+As the treatment design capacity of the UWWTPs has increased, so has the generation
+of sewage sludge. In 2018, 202,000 m3of sewage sludge were produced, with dry solid
+contents reaching 38,000 tons (where water content accounts for about 83%). In 2023,
+UWWTPs in Qatar produced 248,000 m3 of sewage sludge, which included 46,000 tons
+of dry solids (with water content making up about 84%). (see Figures 5.7 and 5.8).
+
+Figure 5.6: Sewage Sludge Production in Wastewater Treatment Plants by Mass
+                             (tons of dry solids), 2018 – 2023
+
+      Ton
+
+  60,000
+
+50,000                                           49049  46246
+40,000
+        37,688    39,096         40,960  41,349
+
+30,000
+
+20,000
+
+10,000
+
+-                 2019           2020    2021    2022   2023
+            2018
+
+Source: Public Works Authority.
+
+                                                                                      63
+Figure 5.7: Quantity of Sewage Sludge Production in Wastewater Treatment Plants
+                     by volume (thousand cubic meters), 2018 - 2023
+
+    1000 m3
+
+    300                                    261
+
+    250                                          248
+
+                    202  191   203   210
+    200
+
+    150
+
+    100
+
+    50
+
+    -                    2019  2020  2021  2022  2023
+                2018
+
+        Source: Public Works Authority.
+
+5-3-3 Discharge and Reuse of Treated Wastewater
+
+With the increase in wastewater treatment capacity since 2018, the production of
+treated wastewater grew from 256 million m3 (2018) to around 282 million m3 (2023).
+The government activity became the largest user of treated wastewater (43% of
+treated wastewater is used to irrigate green spaces), followed by agricultural activity
+(24.2% in 2023). Moreover, about 15.6% of treated wastewater was used for deep
+injection into underground basins, while 13.1% was discharged into open artificial
+lagoons without use in 2023, and approximately 3.5% was used for district cooling (see
+Figures 5.8 and 5.9).
+
+64
+Figure 5.8: Use and discharge of treated wastewater (Mm3) 2018–2023
+
+  Agriculture Greenspaces Injection into aquifers Lagoons Sea District Cooling
+Mm3
+
+      300
+
+250
+
+200
+
+150
+
+100
+
+50
+
+0     2019        2020                                        2021         2022  2023
+2018
+
+Source: Public Works Authority and National Planning Council
+
+Figure 5.9: Percentage distribution of treated wastewater use and discharge, 2023
+
+            Sea         District
+            0.7%        Cooling
+
+                          3.4%
+
+               Lagoons                                        Agriculture
+                 13.1%                                           24.2%
+
+      Injection into
+         aquifers
+           15.6%
+
+                        Greenspaces
+                             43.0%
+
+      Source: Public Works Authority and National Planning Council Calculations
+
+                                                                                       65
+Annexes
+Definitions
+
+ISIC Code(s)  Economic       ISIC Rev. 4
+    E 36       Activity
+
+    E 37      Water supply   Water collection, treatment and supply includes water
+              industry       collection, treatment and distribution activities for
+  A 01-03                    domestic and industrial needs. Collection of water from
+  C 10-33     Wastewater     various sources, as well as distribution by various means is
+   D 351      Treatment      included.
+              (Sewerage)     Sewerage includes:
+                             - Operation of sewer systems or sewer treatment facilities
+              Agriculture,   - Collection and transport of human and industrial sewage
+              forestry and   from one or more users, as well as rainwater collection by
+              fishing        means of sewerage networks, collectors, tanks and other
+                             means of transport (sewage vehicles, etc.)
+              Manufacturing  - Emptying and cleaning of cesspools and septic tanks,
+                             sinks and pits from sewage; and servicing chemical toilets
+              Electricity    - Treatment of wastewater (including human and
+              Industry       industrial wastewater, water from swimming pools etc.) by
+                             means of physical, chemical and biological processes like
+                             dilution, screening, filtering, sedimentation etc.
+                             - Maintenance and cleaning of sewers and sinks including
+                             drainage pipes.
+                             Agriculture, forestry and fishing cover: crop and animal
+                             production, hunting and related service activities; forestry
+                             and logging; and fishing and aquaculture. This section
+                             includes the exploitation of vegetal and animal natural
+                             resources, comprising the activities of crop cultivation,
+                             raising and breeding of animals, harvesting of timber and
+                             other plants, animals or animal products from a farm or
+                             their natural habitats.
+                             Manufacturing includes the physical or chemical
+                             transformation of materials, substances, or components
+                             into new products. The materials, substances, or
+                             components transformed are raw materials that are
+                             products of agriculture, forestry, fishing, mining or
+                             quarrying as well as products of other manufacturing
+                             activities. Substantial alteration, renovation or
+                             reconstruction of goods is generally considered to be
+                             manufacturing.
+
+                             Electricity generation, transmission and distribution.
+
+                                          67
+Term                Definitions
+
+Precipitation       Total volume of atmospheric wet precipitation (rain, snow, hail, dew,
+Actual              etc.) falling on the territory of the country over one year, in millions
+evapotranspiration  of cubic metres.
+
+Internal flow       Total actual volume of evaporation from the ground, wetlands and
+                    natural water bodies and transpiration of plants. According to the
+                    definition of this concept in hydrology, the evapotranspiration
+                    generated by all human interventions is excluded, except unirrigated
+                    agriculture and forestry. The 'actual evapotranspiration' is calculated
+                    using different types of mathematical models, ranging from very
+                    simple algorithms (Budyko, Turn Pyke, etc.) to schemes that
+                    represent the hydrological cycle in detail.
+
+                    Total volume of river run-off and groundwater generated over the
+                    period of a year, in natural conditions, exclusively by precipitation
+                    into a country. The internal flow is equal to precipitation, less actual
+                    evapotranspiration and can be calculated or measured. If the river
+                    and groundwater generation are measured separately, transfers
+                    between surface and groundwater should be netted out to avoid
+                    double counting.
+
+Inflow of surface   Total volume of actual external inflow of rivers and groundwater,
+and groundwaters    coming from neighboring countries. Boundary waters should be
+from neighbouring   divided 50/50 between the two riparian countries, unless other
+countries           water-sharing agreements exist.
+
+Renewable           = Internal flow + Inflow of surface and groundwaters from
+freshwater          neighboring countries.
+resources
+                    Actual outflow of rivers and groundwater into neighboring countries.
+Outflow of surface
+and groundwaters
+to neighboring
+countries
+
+Secured by          The volume of surface water and groundwater that moves out of the
+treaties            country of reference that is guaranteed by formal agreements to
+                    adjacent countries per year.
+
+Not secured by      The volume of surface water and groundwater that moves out of the
+treaties            country of reference that is not guaranteed by formal agreements to
+                    adjacent countries per year
+Outflow of surface
+and groundwater     Actual outflow of rivers and groundwater into the sea.
+into the seas
+
+68
+Term               Definitions
+
+Long-term annual   Arithmetic average over at least 30 consecutive years. Please provide
+average            average over available period and indicate the length of the time
+                   period in the footnotes.
+Fresh surface      Water which flows over, or rests on, the surface of a land mass;
+water              natural watercourses such as rivers, streams, brooks, lakes, etc., as
+                   well as artificial watercourses such as irrigation, industrial and
+Fresh groundwater  navigation canals, drainage systems and artificial reservoirs. For
+                   purposes of this questionnaire, water obtained through bank
+Fresh surface      filtration is included under (fresh) surface water. Seawater, and
+water abstracted   transitional waters, such as brackish swamps, lagoons and estuarine
+Fresh groundwater  areas are not considered fresh surface water.
+abstracted         Bank filtration is the use of existing geologic formations adjacent to
+Fresh water        surface water bodies to filter drinking water. Wells are dug in fine,
+abstracted         sandy sediments next to water bodies and water is extracted from
+                   these wells. Water in the water bodies filters through the sediments,
+                   removing contaminants.
+                   Water, which is being held in, and can usually be recovered from, or
+                   via, an underground formation. All permanent and temporary
+                   deposits of water, both artificially charged and naturally, in the
+                   subsoil, of sufficient quality for at least seasonal use. This category
+                   includes phreatic water-bearing strata, as well as deep strata under
+                   pressure or not, contained in porous or fracture soils. For purposes of
+                   this questionnaire, groundwater includes springs, both concentrated
+                   and diffused, which may be subaqueous.
+                   Water removed from any surface water sources, such as rivers, lakes,
+                   reservoirs or rainwater, either permanently or temporarily.
+
+                   Water removed from any groundwater sources, either permanently
+                   or temporarily.
+
+                   Water removed from any water source (surface water sources, such
+                   as rivers, lakes, reservoirs or rainwater; and groundwater sources)
+                   either permanently or temporarily. This includes abstraction by the
+                   water supply industry for distribution and direct abstraction by other
+                   activities for own use. The volume of water abstracted is broken
+                   down by main groups of economic activity of the abstractors
+                   (according to ISIC Rev.4) and households.
+
+                                                                                            69
+Term                  Definitions
+
+(Freshwater           The volume of water abstracted from surface water sources (rivers,
+abstracted by)        lakes, reservoirs etc., including the volume of rainwater collected)
+Water supply          and groundwater sources, by economic units whose main activities
+industry (ISIC 36)    are the collection and treatment of water and its distribution to
+                      households and other users (ISIC 36: Water collection, treatment and
+Freshwater            supply). The volume of water abstracted by the water supply industry
+abstracted by         for the operation of irrigation canals is excluded here and should be
+households            reported under Freshwater abstracted by agriculture, forestry and
+Freshwater            fishing.
+abstracted by
+agriculture,          The volume of water abstracted directly from surface water sources
+forestry and          (rivers, lakes, reservoirs etc., including the volume of rainwater
+fishing (ISIC 01-03)  collected) and groundwater sources by households for own use.
+Freshwater
+abstracted by         The volume of water abstracted directly from surface water sources
+manufacturing         (rivers, lakes, reservoirs etc., including the volume of rainwater
+(ISIC 01-33)          collected) and groundwater sources by economic units belonging to
+                      ISIC 01-03 for own use. It includes water abstracted by the water
+Freshwater            supply industry (ISIC 36) for the operation of irrigation canals.
+abstracted by
+Electricity Industry  The volume of water directly abstracted from surface water sources
+                      (rivers, lakes, reservoirs etc., including the volume of rainwater
+Freshwater            collected) and groundwater sources by economic units belonging to
+abstracted by         ISIC 10-33 for own use.
+other economic
+activities            The volume of water abstracted directly from surface water sources
+Desalinated water     (rivers, lakes, reservoirs etc., including the volume of rainwater
+                      collected) and groundwater sources by economic units belonging to
+Reused water          ISIC 35 for own use. Water for hydroelectricity generation (e.g., water
+                      behind dams) is excluded.
+Imports of water      The volume of water abstracted directly from surface water sources
+                      (rivers, lakes, reservoirs etc., including the volume of rainwater
+                      collected) and groundwater sources by economic units belonging to
+                      all other ISIC categories not specified above for own use.
+                      The total volume of water obtained from the desalination of
+                      seawater and brackish water.
+                      Used water directly received from another user with or without
+                      treatment for further use. It also includes treated wastewater
+                      received for further use from treatment plants. It excludes water
+                      discharged into a watercourse and used again downstream. It also
+                      excludes the recycling of water within industrial sites.
+                      Total volume of bulk water that is imported from other countries as a
+                      commodity through pipelines or on ships or trucks. It excludes
+                      bottled water.
+
+70
+Term                  Definitions
+
+Exports of water      Total volume of bulk water that is exported to other countries as a
+                      commodity through pipelines or on ships or trucks. It excludes
+Total freshwater      bottled water.
+available for use     = Net freshwater abstracted + Desalinated water + Reused water +
+Loss during           Imports of water - Exports of water.
+transportation        The volume of water lost during transport between a point of
+                      abstraction and a point of use, and between points of use and reuse.
+Total freshwater      It includes evaporation and leakages.
+use                   Water use is the total volume of water, either self-abstracted or
+                      received from a water supplier, which is used by final users, such as
+Freshwater used       households or economic activities for their production or
+by households         consumption processes. The volume of water used is broken down
+                      by main groups of economic activity of the final users (according to
+Freshwater used       ISIC Rev. 4) and households.
+by agriculture,       The volume of water used by households, either supplied by the
+forestry and          water supply industry or directly abstracted by households for own
+fishing (ISIC 01-03)  use. Water used in the normal functioning of households (e.g.,
+Agricultural          drinking or washing). It includes watering of household gardens but
+Irrigation            should not include water used for commercial agriculture.
+Freshwater used       The volume of water used for economic activities belonging to
+by Manufacturing      agriculture, forestry and fishing (ISIC 01-03), either directly
+(ISIC 01-33)          abstracted from water sources for own use or supplied by the water
+                      supply industry.
+Freshwater used       Artificial application of water on land to help grow crops and
+by Electricity        pastures.
+Industry (ISIC 351)   The volume of water used for economic activities belonging to
+                      manufacturing (ISIC 10-33), either directly abstracted from water
+Freshwater used       sources for own use or supplied by the water supply industry.
+by other economic     The volume of water used in economic activities involved in the
+activities            generation, transmission and distribution of electricity (ISIC 351),
+Gross freshwater      either directly abstracted from water sources for own use or supplied
+supplied by water     by the water supply industry. Water used for hydroelectric power
+supply industry       generation (such as water behind dams) is excluded.
+(ISIC 36)             The volume of water used for all other economic activities not
+Net fresh water       specified above, either directly abstracted from water sources for
+supplied by the       own use or supplied by the water supply industry.
+
+                      Water supplied by the water supply industry to the user. It includes
+                      losses during transport. The water supplied by water supply industry
+                      for the operation of irrigation canals is excluded.
+
+                      Gross freshwater supplied by water supply industry minus freshwater
+                      losses during transport. The net volume of freshwater supplied by
+                      the water supply industry to final users is broken down by
+
+                                                                                             71
+Term                Definitions
+
+water supply        households and by main groups of the economic activity of the final
+industry (ISIC 36)  users (according to ISIC Rev. 4).
+Total population
+supplied by water   Percentage of the total resident population using water supplied by
+supply industry     the water supply industry (ISIC 36).
+(ISIC 36)
+Urban population    Percentage of the urban resident population using water supplied by
+supplied by water   the water supply industry (ISIC 36).
+supply industry
+(ISIC 36)           Percentage of rural resident population using water supplied by the
+Rural population    water supply industry (ISIC 36).
+supplied by water
+supply industry     Wastewater is water which is of no further value to the purpose for
+(ISIC 36)           which it was used because of its quality, quantity or time of
+                    occurrence. Total wastewater generated is the total volume of
+Total wastewater    wastewater generated by economic activities (agriculture, forestry
+generated           and fishing; mining and quarrying; manufacturing; electricity; and
+                    other economic activities) and households. Cooling water is excluded.
+Wastewater
+generated by        Excluding wastewater generated by ISIC 37 (Sewerage).
+other economic
+activities          Urban wastewater treatment is all treatment of wastewater in urban
+                    wastewater treatment plants (UWWTP’s). UWWTP’s are usually
+Urban wastewater    operated by public authorities or by private companies working by
+treatment           order of public authorities. It includes wastewater delivered to
+                    treatment plants by trucks. UWWTP's are classified under ISIC 37
+Other wastewater    (Sewerage).
+treatment           Treatment of wastewater in any non-public treatment plant, i.e.,
+                    industrial wastewater treatment plants (IWWTP). Excluded from
+Primary             "other wastewater treatment" is the treatment in septic tanks.
+wastewater          IWWTPs may also be classified under ISIC 37 (Sewerage) or under the
+treatment           main activity class of the industrial establishment they belong to.
+                    Treatment of wastewater by a physical and/or chemical process
+                    involving settlement of suspended solids, or other process in which
+                    the Biochemical Oxygen Demand (BOD5) of the incoming wastewater
+                    is reduced by at least 20% before discharge and the total suspended
+                    solids of the incoming wastewater are reduced by at least 50%. To
+                    avoid double counting, water subjected to more than one type of
+
+72
+Term               Definitions
+
+                   treatment should be reported under the highest level of treatment
+                   only.
+
+Secondary          Post-primary treatment of wastewater by a process generally
+wastewater         involving biological or other treatment with a secondary settlement
+treatment          or other process, resulting in a Biochemical Oxygen Demand (BOD5)
+                   removal of at least 70% and a Chemical Oxygen Demand (COD)
+Tertiary           removal of at least 75%. To avoid double counting, water subjected
+wastewater         to more than one type of treatment should be reported under the
+treatment          highest level of treatment only.
+                   Treatment (additional to secondary treatment) of nitrogen and/or
+Independent        phosphorous and/or any other pollutant affecting the quality or a
+wastewater         specific use of water: microbiological pollution, color, etc. The
+treatment          different possible treatment efficiencies ('organic pollution removal'
+                   of at least 95% for BOD5, 85% for COD, 'nitrogen removal' of at least
+Sewage sludge      70%, 'phosphorous removal' of at least 80% and 'microbiological
+production (dry    removal') cannot be added and are exclusive. To avoid double
+matter)            counting, water subjected to more than one type of treatment
+                   should be reported under the highest level of treatment only.
+Population         Collection, preliminary treatment, treatment, infiltration or discharge
+connected to       of domestic wastewater from dwellings generally between 1 and 50
+wastewater         population equivalents, not connected to a wastewater collection
+collecting system  system. An example is septic tanks. This excludes systems with
+Population         storage tanks from which the wastewater is transported periodically
+connected to       by trucks to a wastewater treatment plant.
+wastewater         The accumulated settled solids, either moist or mixed, with a liquid
+treatment          component as a result of natural or artificial processes, that have
+network            been separated from various types of wastewater during treatment.
+                   Data on dry weight should be provided. If data is only available for
+                   wet weight, please fill in the data for wet weight and specify in a
+                   footnote.
+                   Percentage of the resident population connected to wastewater
+                   collecting systems (sewerage). Wastewater collecting systems may
+                   deliver wastewater to treatment plants or may discharge it without
+                   treatment to the environment.
+
+                   Percentage of the resident population whose wastewater is treated
+                   at wastewater treatment plants.
+
+                                                                                            73
+Term              Definitions
+
+Population with   Percentage of the resident population whose wastewater is treated
+independent       in individual, often private facilities such as septic tanks.
+wastewater
+treatment (e.g.,  Percentage of the resident population whose wastewater is neither
+septic tanks)     treated in treatment plants nor in independent treatment facilities.
+Population not
+connected to      Freshwater is water that contains only minimal quantities of
+wastewater        dissolved salts, especially sodium chloride, thus distinguishing it from
+treatment         sea water or brackish water.
+network           Water that is saltier than freshwater and less salty than sea water.
+                  Technically, brackish water contains between 500 and 30,000
+Freshwater        milligrams of salt per liter, but most brackish water has a
+                  concentration of total dissolved salts in the range of 1,000-10,000
+Brackish water    milligrams per liter (mg/l).
+                  Seawater is water from a sea or ocean. On average, seawater in the
+Seawater          world's oceans has a salinity of 35,000 milligrams per liter.
+
+74
+List of abbreviations
+
+Abbreviation  English                              Arabic
+
+Mm3           Million Cubic Meters                                        ‫مليون مترمكعب‬
+BOD5                                                       5 ‫الطلب البيولوجي على الأكسجين‬
+COD           Biological Oxygen Demand
+GDP           Chemical Oxygen Demand                       ‫الطلب الكيميائي على الأكسجين‬
+LTAA
+NPC           Gross Domestic Product                              ‫الناتج المحلي الإجمالي‬
+QMD           Long-term Annual Average                     ‫المتوسط السنوي طويل الأمد‬
+
+Kahramaa      National Planning Council                    ‫المجلس الوطني للتخطيط‬
+              Qatar Meteorological Department
+Ashghal       Qatar General Electricity and Water          ‫إدارة الأرصاد الجوية‬
+              Corporation
+              Public Works Authority                       ‫المؤسسة العامة القطرية للكهرباء والماء‬
+
+UWWTP         Urban Wastewater Treatment Plant                          ‫هيئة الاشغال العامة‬
+                                                   ‫محطة معالجة مياه الصرف الصحي في المناطق‬
+TSE           Treated Sewage Effluent
+                                                                                  ‫الحضرية‬
+Q.R           Qatari Riyal                                       ‫مياه الصرف الصحي المعالجة‬
+
+                                                                                 ‫ريال قطري‬
+
+                                                                                                   75
+References and data sources
+
+   • Qatar Civil Aviation Authority - Meteorological Department.
+   • Qatar General Electricity and Water Corporation (KAHRAMAA).
+   • Public Works Authority (Ashghal).
+   • Ministry of Environment and Climate Change.
+   • Qatar General Electricity & Water Corporation "KAHRAMAA": Annual
+
+        Statistical Report.
+   • National Planning Council: Qatar Population and Housing Census
+   • National Planning Council: Sustainable Development Goals in Qatar
+   • Ashghal, Schlumberger, 2013. Shallow Groundwater Monitoring in Greater
+
+        Doha, Wakrah and Al Khor (Cp761) (Final Hydrogeological Report).
+   • National Planning Council (2011): Qatar National Development Strategy
+
+        2018-2022
+   • National Planning Council (2012): Qatar Leaving a Legacy for Future
+
+        Generations.
+   • World Weather Organization (2013): World Weather Information Service.
+
+        http://www.worldweather.org/116/c00221.htm.
+
+76
+Tables
+‫‪Table (1): Renewable Freshwater Resources‬‬                                                            ‫جدول (‪ :)1‬موارد المياه العذبة المتجددة‬
+
+‫‪Line‬‬  ‫‪Category‬‬                       ‫‪Unit‬‬  ‫‪2018‬‬     ‫‪2019‬‬     ‫‪2020‬‬      ‫‪2021‬‬      ‫‪2022‬‬      ‫‪2023‬‬      ‫الوحدة‬        ‫الفئة‬                    ‫الخط‬
+                                                                 ‫‪574‬‬     ‫‪134.8‬‬     ‫‪537.8‬‬   ‫‪1368.2‬‬
+                                     ‫‪mio‬‬                         ‫‪511‬‬       ‫‪120‬‬     ‫‪478.6‬‬   ‫‪1217.7‬‬    ‫مليون م رت‬
+                                     ‫‪m3/y‬‬                         ‫‪63‬‬      ‫‪14.8‬‬      ‫‪59.2‬‬     ‫‪150.5‬‬
+‫‪1 Precipitation‬‬                            ‫‪901‬‬      ‫‪810‬‬             ‫‪0‬‬         ‫‪0‬‬         ‫‪0‬‬            ‫مكعب يف‬              ‫‪ 1‬الهطول‬
+                                                                ‫‪63.0‬‬      ‫‪14.8‬‬      ‫‪59.4‬‬          ‫‪0‬‬      ‫السنة‬
+                                     ‫‪mio‬‬                            ‫‪0‬‬         ‫‪0‬‬         ‫‪0‬‬    ‫‪150.5‬‬
+                                     ‫‪m3/y‬‬                           ‫‪0‬‬         ‫‪0‬‬         ‫‪0‬‬            ‫مليون م رت‬
+                                                                    ‫‪0‬‬         ‫‪0‬‬         ‫‪0‬‬         ‫‪0‬‬
+‫‪2 Actual evapotranspiration‬‬          ‫‪mio‬‬   ‫‪802‬‬      ‫‪720‬‬           ‫‪18‬‬        ‫‪18‬‬        ‫‪18‬‬          ‫‪0‬‬  ‫مكعب يف‬       ‫‪ 2‬البخر الفعل‬
+                                     ‫‪m3/y‬‬                                                         ‫‪0‬‬      ‫السنة‬
+‫‪3‬‬     ‫‪Internal flow‬‬                        ‫‪99‬‬       ‫‪89‬‬                                         ‫‪195‬‬                 ‫التدفق الداخل‬            ‫‪3‬‬
+      ‫)‪(=1-2‬‬                                                                                         ‫مليون م رت‬           ‫(=‪)2-1‬‬
+                                                                                                     ‫مكعب يف‬
+
+                                                                                                         ‫السنة‬
+
+       ‫‪Inflow of surface and‬‬         ‫‪mio‬‬         ‫‪0‬‬        ‫‪0‬‬                                          ‫مليون م رت‬    ‫التدفق الداخل للمياه‬     ‫‪4‬‬
+‫‪4 groundwater from‬‬                   ‫‪m3/y‬‬                                                            ‫مكعب يف‬          ‫السطحية والمياه‬
+
+       ‫‪neighboring countries‬‬                                                                             ‫السنة‬      ‫الجوفية من البلدان‬
+                                                                                                                               ‫المجاورة‬
+
+       ‫‪Renewable freshwater‬‬          ‫‪mio‬‬   ‫‪99.0‬‬     ‫‪89.0‬‬                                             ‫مليون م رت‬    ‫موارد المياه العذبة‬      ‫‪5‬‬
+‫‪5 resources‬‬                          ‫‪m3/y‬‬                                                            ‫مكعب يف‬       ‫المتجددة (=‪)4+3‬‬
+
+        ‫)‪(=3+4‬‬                                                                                           ‫السنة‬
+
+‫‪6‬‬     ‫‪Outflow of surface and‬‬         ‫‪mio‬‬         ‫‪0‬‬        ‫‪0‬‬                                          ‫مليون م رت‬         ‫التدفقات الخارجة‬    ‫‪6‬‬
+      ‫‪groundwaters to neighboring‬‬    ‫‪m3/y‬‬                                                            ‫مكعب يف‬       ‫للمياه السطحية والمياه‬
+      ‫‪countries‬‬
+                                                                                                         ‫السنة‬         ‫الجوفية إلى البلدان‬
+                                                                                                                                 ‫المجاورة‬
+                                                                                                     ‫مليون م رت‬
+‫‪7‬‬     ‫‪Of which: Secured by treaties‬‬  ‫‪mio‬‬         ‫‪0‬‬        ‫‪0‬‬                                          ‫مكعب يف‬       ‫ومنها‪ :‬المكفول‬           ‫‪7‬‬
+                                     ‫‪m3/y‬‬                                                                              ‫بمعاهدات‬
+                                                                                                         ‫السنة‬
+                                                                                                     ‫مليون م رت‬
+                                     ‫‪mio‬‬
+‫‪8‬‬     ‫‪Not secured by treaties‬‬        ‫‪m3/y‬‬        ‫‪0‬‬        ‫‪0‬‬                                          ‫غ ري المكفول بمعاهدات مكعب يف‬          ‫‪8‬‬
+
+                                                                                                     ‫السنة‬
+                                                                                                     ‫مليون م رت‬
+      ‫‪Outflow of surface and‬‬         ‫‪mio‬‬                                                                           ‫التدفق الخارج للمياه‬
+      ‫‪groundwaters to the sea‬‬        ‫‪m3/y‬‬
+‫‪9‬‬                                          ‫‪18‬‬       ‫‪18‬‬                                               ‫مكعب يف‬        ‫‪ 9‬السطحية والمياه‬
+                                                                                                        ‫السنة‬      ‫الجوفية إلى البحار‬
+
+‫‪Table (2): Renewable Freshwater Resources‬‬                                                  ‫جدول (‪ :)2‬استخراج المياه العذبة واستخدامها‬
+
+‫‪Line‬‬  ‫‪Category‬‬                       ‫‪Unit‬‬  ‫‪2018‬‬     ‫‪2019‬‬     ‫‪2020‬‬      ‫‪2021‬‬      ‫‪2022‬‬      ‫‪2023‬‬      ‫الوحدة‬        ‫الفئة‬                    ‫الخط‬
+                                                 ‫‪0‬‬        ‫‪0‬‬        ‫‪0‬‬         ‫‪0‬‬         ‫‪0‬‬         ‫‪0‬‬
+‫‪1‬‬     ‫‪Fresh surface water‬‬            ‫‪mio‬‬                                                               ‫مليون م رت‬     ‫المياه السطحية‬        ‫‪1‬‬
+      ‫‪abstracted‬‬                     ‫‪m3/y‬‬     ‫‪250‬‬      ‫‪250‬‬      ‫‪250‬‬       ‫‪250‬‬       ‫‪250‬‬       ‫‪200‬‬       ‫مكعب يف‬    ‫العذبة المستخرجة‬
+
+‫‪2‬‬     ‫‪Fresh groundwater‬‬              ‫‪mio‬‬                                                                   ‫السنة‬   ‫المياه الجوفية العذبة‬    ‫‪2‬‬
+      ‫‪abstracted‬‬                     ‫‪m3/y‬‬                                                              ‫مليون م رت‬           ‫المستخرجة‬
+                                                                                                        ‫مكعب يف‬
+      ‫‪• Fresh Groundwater‬‬            ‫‪mio‬‬                                                                           ‫• المياه الجوفية‬
+          ‫‪abstracted‬‬                 ‫‪m3/y‬‬                                                                  ‫السنة‬          ‫العذبة‬
+                                                                                                       ‫مليون م رت‬
+      ‫‪• Brackish Groundwater‬‬         ‫‪mio‬‬                                                                ‫مكعب يف‬    ‫• المياه الجوفية‬
+          ‫‪abstracted‬‬                 ‫‪m3/y‬‬                                                                          ‫قليلة الملوحة‬
+                                                                                                           ‫السنة‬
+      ‫‪• Saline Groundwater‬‬           ‫‪mio‬‬                                                               ‫مليون م رت‬  ‫• المياه الجوفية‬
+          ‫‪abstracted‬‬                 ‫‪m3/y‬‬                                                               ‫مكعب يف‬          ‫المالحة‬
+
+      ‫‪• From renewable groundwater mio‬‬                                                                     ‫السنة‬   ‫• من مصادر مياه‬
+                                                                                                       ‫مليون م رت‬  ‫جوفية متجددة‬
+      ‫‪resources‬‬                      ‫‪m3/y‬‬                                                               ‫مكعب يف‬
+                                                                                                                   ‫• من مصادر مياه‬
+      ‫‪• From non-renewable‬‬           ‫‪mio‬‬                                                                   ‫السنة‬       ‫جوفية غ ري‬
+          ‫‪groundwater resources‬‬      ‫‪m3/y‬‬                                                              ‫مليون م رت‬         ‫متجددة‬
+                                                                                                        ‫مكعب يف‬
+
+                                                                                                           ‫السنة‬
+                                                                                                       ‫مليون م رت‬
+                                                                                                        ‫مكعب يف‬
+
+                                                                                                           ‫السنة‬
+
+‫‪78‬‬
+‫‪Line‬‬  ‫‪Category‬‬                           ‫‪Unit‬‬      ‫‪2018‬‬     ‫‪2019‬‬     ‫‪2020‬‬     ‫‪2021‬‬     ‫‪2022‬‬     ‫‪2023‬‬     ‫الوحدة‬             ‫الفئة‬                     ‫الخط‬
+                                                      ‫‪250‬‬      ‫‪250‬‬      ‫‪250‬‬      ‫‪250‬‬      ‫‪250‬‬      ‫‪200‬‬
+                                              ‫‪mio‬‬                                                          ‫مليون م رت‬    ‫• المياه المسحوبة‬               ‫‪3‬‬
+      ‫‪• Water abstracted for own use m3/y‬‬               ‫‪10‬‬       ‫‪10‬‬       ‫‪10‬‬       ‫‪10‬‬       ‫‪10‬‬       ‫‪10‬‬     ‫مكعب يف‬         ‫(المستخرجة‬                   ‫‪4‬‬
+                                                      ‫‪230‬‬      ‫‪230‬‬      ‫‪230‬‬      ‫‪230‬‬      ‫‪230‬‬      ‫‪180‬‬                                                   ‫‪5‬‬
+      ‫‪• Water abstracted for‬‬             ‫‪mio‬‬                                                                   ‫السنة‬   ‫للاستخدام الذات)‬
+          ‫‪distribution‬‬                   ‫‪m3/y‬‬           ‫‪10‬‬       ‫‪10‬‬       ‫‪10‬‬       ‫‪10‬‬       ‫‪10‬‬       ‫‪10‬‬    ‫مليون م رت‬    ‫• المياه المسحوبة‬               ‫‪6‬‬
+                                                                                                            ‫مكعب يف‬         ‫(المستخرجة‬
+‫‪3‬‬     ‫‪Gross freshwater abstracted‬‬        ‫‪mio‬‬             ‫‪0‬‬        ‫‪0‬‬        ‫‪0‬‬        ‫‪0‬‬        ‫‪0‬‬        ‫‪0‬‬                          ‫للتوزي ع)‬
+      ‫)‪(=1+2‬‬                             ‫‪m3/y‬‬         ‫‪637‬‬    ‫‪668.4‬‬      ‫‪691‬‬      ‫‪669‬‬      ‫‪670‬‬      ‫‪669‬‬         ‫السنة‬            ‫المياه العذبة‬
+                                                                                                           ‫مليون م رت‬
+‫‪4‬‬     ‫‪Water returned without use‬‬         ‫‪mio‬‬                                                                ‫مكعب يف‬    ‫المستخرجة = (‪)2+1‬‬
+                                         ‫‪m3/y‬‬
+                                                                                                               ‫السنة‬      ‫المياه المعادة دون‬
+‫‪5‬‬     ‫‪Net freshwater abstracted‬‬          ‫‪mio‬‬                                                                                        ‫استخدام‬
+      ‫)‪(=3-4‬‬                             ‫‪m3/y‬‬                                                              ‫مليون م رت‬
+                                                                                                            ‫مكعب يف‬       ‫صاف المياه العذبة‬
+      ‫‪Of which abstracted by:‬‬            ‫‪mio‬‬                                                                            ‫المستخرجة (=‪)4-3‬‬
+                                         ‫‪m3/y‬‬                                                                  ‫السنة‬
+      ‫‪• Water supply industry (ISIC‬‬                                                                                                   ‫ومنها‪:‬‬
+          ‫)‪36‬‬                            ‫‪mio‬‬                                                               ‫مليون م رت‬
+                                         ‫‪m3/y‬‬                                                               ‫مكعب يف‬       ‫• صناعة إمدادات‬
+      ‫‪• Households‬‬                                                                                                       ‫المياه )‪(ISIC 36‬‬
+                                         ‫‪mio‬‬                                                                   ‫السنة‬
+      ‫‪• Agriculture, forestry and‬‬        ‫‪m3/y‬‬                                                                             ‫• الأسر المعيشية‬
+          ‫)‪fishing (ISIC 01-03‬‬                                                                             ‫مليون م رت‬
+                                         ‫‪mio‬‬                                                                ‫مكعب يف‬     ‫• الزراعة والحراجة‬
+      ‫‪• Of which for: Irrigation in‬‬      ‫‪m3/y‬‬                                                                             ‫وصيد الأسماك‬
+          ‫‪agriculture‬‬                                                                                          ‫السنة‬       ‫• ا(‪3‬س ُت‪-0‬خ‪1‬د‪0‬م‪C‬م‪I‬ن‪S‬ه‪I‬ا)‬
+                                         ‫‪mio‬‬                                                               ‫مليون م رت‬       ‫بواسطة الري‬
+      ‫‪• Mining and quarrying (ISIC‬‬       ‫‪m3/y‬‬                                                               ‫مكعب يف‬                ‫الزراع‬
+          ‫)‪05-09‬‬
+                                         ‫‪mio‬‬                                                                   ‫السنة‬   ‫• التعدين واستغلال‬
+      ‫‪• Manufacturing‬‬                    ‫‪m3/y‬‬                                                              ‫مليون م رت‬            ‫المحاجر‬
+      ‫)‪• (ISIC 10-33‬‬                                                                                        ‫مكعب يف‬
+                                                                                                                       ‫• الصناعة التحويلية‬
+      ‫‪• Electricity, gas, steam and air‬‬  ‫‪mio‬‬                                                                   ‫السنة‬      ‫(‪)ISIC 10-33‬‬
+          ‫)‪conditioning supply (ISIC 35‬‬  ‫‪m3/y‬‬                                                              ‫مليون م رت‬
+                                                                                                            ‫مكعب يف‬      ‫• إمدادات الكهرباء‬
+      ‫‪• Of which for: Electric power‬‬     ‫‪mio‬‬                                                                               ‫والغاز والبخار‬
+          ‫‪generation, transmission and‬‬   ‫‪m3/y‬‬                                                                  ‫السنة‬       ‫وتكييف الهواء‬
+          ‫)‪distribution (ISIC 351‬‬                                                                          ‫مليون م رت‬          ‫• )‪(ISIC 35‬‬
+                                                                                                            ‫مكعب يف‬          ‫• توليد الطاقة‬
+      ‫)‪• Construction (ISIC 41-43‬‬        ‫‪mio‬‬
+                                         ‫‪m3/y‬‬                                                                  ‫السنة‬     ‫الكهربائية ونقلها‬
+                                                                                                           ‫مليون مي‬        ‫وتوزيعه ‪(ISIC‬‬
+      ‫‪• Other economic activities‬‬        ‫‪mio‬‬                                                                ‫مكعب ف‬                  ‫)‪351‬‬
+                                         ‫‪m3/y‬‬
+                                                                                                               ‫السنة‬   ‫• التشييد (‪ISIC 41-‬‬
+‫‪6 Desalinated water‬‬                      ‫‪mio‬‬                                                                                         ‫‪)43‬‬
+                                         ‫‪m3/y‬‬                                                              ‫مليون مي‬
+                                                                                                            ‫مكعب ف‬               ‫• الأنشطة‬
+      ‫‪• Water abstraction from the‬‬       ‫‪mio‬‬                                                                           ‫الاقتصادية الأخرى‬
+          ‫‪sea‬‬                            ‫‪m3/y‬‬                                                                  ‫السنة‬
+                                                                                                                       ‫المياه المزالة ملوحتها‬
+      ‫‪• Groundwater before mixing‬‬        ‫‪mio‬‬                                                               ‫مليون مي‬
+                                         ‫‪m3/y‬‬                                                               ‫مكعب ف‬     ‫• سحب (استخراج)‬
+                                                                                                                          ‫المياه من البحر‬
+                                                                                                               ‫السنة‬
+                                                                                                                       ‫• المياه الجوفية قبل‬
+                                                                                                           ‫مليون مي‬                ‫الخلط‬
+                                                                                                            ‫مكعب ف‬
+
+                                                                                                               ‫السنة‬
+                                                                                                           ‫مليون مي‬
+                                                                                                            ‫مكعب ف‬
+
+                                                                                                               ‫السنة‬
+                                                                                                           ‫مليون مي‬
+                                                                                                            ‫مكعب ف‬
+
+                                                                                                               ‫السنة‬
+                                                                                                           ‫مليون مي‬
+                                                                                                            ‫مكعب ف‬
+
+                                                                                                               ‫السنة‬
+                                                                                                           ‫مليون مي‬
+                                                                                                            ‫مكعب ف‬
+
+                                                                                                               ‫السنة‬
+
+                                                                                                                                                      ‫‪79‬‬
+‫‪Line‬‬  ‫‪Category‬‬                       ‫‪Unit‬‬  ‫‪2018‬‬     ‫‪2019‬‬     ‫‪2020‬‬     ‫‪2021‬‬     ‫‪2022‬‬     ‫‪2023‬‬     ‫الوحدة‬     ‫الفئة‬                   ‫الخط‬
+
+        ‫‪• Groundwater after mixing‬‬   ‫‪mio‬‬    ‫‪150.9‬‬    ‫‪162.7‬‬    ‫‪175.5‬‬    ‫‪185.1‬‬    ‫‪189.5‬‬    ‫‪196.4‬‬   ‫مليون مي‬   ‫• المياه الجوفية بعد‬
+‫‪7 Reused water‬‬                       ‫‪m3/y‬‬                                                        ‫مكعب ف‬                 ‫الخلط‬
+                                              ‫‪N\A‬‬      ‫‪N\A‬‬      ‫‪N\A‬‬      ‫‪N\A‬‬      ‫‪N\A‬‬      ‫‪N\A‬‬
+       ‫‪Rainwater collection‬‬          ‫‪mio‬‬      ‫‪N\A‬‬      ‫‪N\A‬‬      ‫‪N\A‬‬      ‫‪N\A‬‬      ‫‪N\A‬‬      ‫‪N\A‬‬       ‫السنة‬
+‫‪8 Imports of water‬‬                   ‫‪m3/y‬‬
+‫‪9 Exports of water‬‬                           ‫‪1038‬‬     ‫‪1084‬‬     ‫‪1117‬‬     ‫‪1104‬‬     ‫‪1110‬‬     ‫‪1065‬‬   ‫مليون مي‬
+                                     ‫‪mio‬‬        ‫‪25‬‬       ‫‪26‬‬       ‫‪39‬‬       ‫‪41‬‬       ‫‪38‬‬       ‫‪38‬‬
+       ‫‪Returns of water‬‬              ‫‪m3/y‬‬                                                        ‫‪ 7‬المياه المعاد استعمالها مكعب ف‬
+                                             ‫‪1010‬‬     ‫‪1055‬‬     ‫‪1076‬‬     ‫‪1063‬‬     ‫‪1071‬‬
+                                     ‫‪mio‬‬      ‫‪256‬‬      ‫‪281‬‬      ‫‪285‬‬      ‫‪283‬‬      ‫‪317‬‬            ‫السنة‬
+                                     ‫‪m3/y‬‬
+                                                                                                 ‫مليون مي‬
+                                     ‫‪mio‬‬
+                                     ‫‪m3/y‬‬                                                        ‫مكعب ف‬     ‫جمع مياه الأمطار‬
+
+                                     ‫‪mio‬‬                                                         ‫السنة‬
+                                     ‫‪m3/y‬‬
+                                                                                                 ‫مليون مي‬
+
+                                                                                                 ‫مكعب ف‬     ‫‪ 8‬واردات المياه‬
+
+                                                                                                 ‫السنة‬
+
+                                                                                                 ‫مليون مي‬
+
+                                                                                                 ‫مكعب ف‬     ‫‪ 9‬صادرات المياه‬
+
+                                                                                                 ‫السنة‬
+
+                                                                                                 ‫مليون مي‬   ‫إعادة مرتجعات (المياه‬
+                                                                                                 ‫مكعب ف‬         ‫الى المصدر البيئة)‬
+
+                                                                                                     ‫السنة‬
+
+      ‫‪Total water available for use‬‬  ‫‪mio‬‬                                                         ‫اجمالى المياه العذبة مليون مي‬
+      ‫)‪(=5+6+7+8-9‬‬                   ‫‪m3/y‬‬
+‫‪10‬‬                                                                                               ‫‪ 10‬المتاحة للاستخدام مكعب ف‬
+
+                                                                                                 ‫السنة‬      ‫(=‪)9-8+7+6+5‬‬
+
+                                     ‫‪mio‬‬                                                         ‫مليون مي‬
+                                     ‫‪m3/y‬‬
+‫‪11 Losses during transport‬‬                                                                       ‫مكعب ف‬     ‫‪ 11‬الفاقد أثناء النقل‬
+
+                                                                                                 ‫السنة‬
+
+‫‪12‬‬    ‫‪Total freshwater use (=20-‬‬     ‫‪mio‬‬                                                ‫‪1028‬‬     ‫مليون مي‬   ‫إجمالى استخدام المياه‬   ‫‪12‬‬
+      ‫)‪21‬‬                            ‫‪m3/y‬‬                                                        ‫مكعب ف‬         ‫العذبة = (‪)21-20‬‬
+
+                                                                                                     ‫السنة‬
+
+                                     ‫‪mio‬‬                                                         ‫مليون مي‬
+                                     ‫‪m3/y‬‬
+‫‪13 Households‬‬                                                                           ‫‪309‬‬      ‫مكعب ف‬     ‫‪ 13‬الأسر المعيشية‬
+
+                                                                                                 ‫السنة‬
+
+      ‫‪Public Network - Drinking‬‬      ‫‪mio‬‬                                                         ‫مليون مي‬   ‫الشبكة العامة ‪ -‬مياه‬
+      ‫‪Water‬‬                          ‫‪m3/y‬‬                                                        ‫مكعب ف‬                  ‫ال رشب‬
+
+                                                                                                     ‫السنة‬
+
+      ‫‪Public Network - Other use‬‬     ‫‪mio‬‬                                                         ‫مليون مي‬     ‫الشبكة العامة ‪-‬‬
+                                     ‫‪m3/y‬‬                                                        ‫مكعب ف‬     ‫استخدامات أخرى‬
+
+                                                                                                     ‫السنة‬
+
+      ‫‪Water Truck - Drinking Water‬‬   ‫‪mio‬‬                                                         ‫مليون مي‬   ‫سيارات وصهاري ج ‪-‬‬
+                                     ‫‪m3/y‬‬                                                        ‫مكعب ف‬             ‫مياه ال رشب‬
+
+                                                                                                     ‫السنة‬
+
+      ‫‪Water Truck - Other use‬‬        ‫‪mio‬‬                                                         ‫مليون مي‬   ‫سيارات وصهاري ج ‪-‬‬
+                                     ‫‪m3/y‬‬                                                        ‫مكعب ف‬      ‫استخدامات أخرى‬
+
+                                                                                                     ‫السنة‬
+
+      ‫‪Wells - Drinking Water‬‬         ‫‪mio‬‬                                                         ‫مليون مي‬   ‫ب ري ‪ -‬مياه ال رشب‬
+                                     ‫‪m3/y‬‬                                                        ‫مكعب ف‬
+
+                                                                                                 ‫السنة‬
+
+      ‫‪Wells - Other use‬‬              ‫‪mio‬‬                                                         ‫مليون مي‬   ‫ب ري ‪ -‬استخدامات‬
+                                     ‫‪m3/y‬‬                                                        ‫مكعب ف‬                ‫أخرى‬
+
+                                                                                                     ‫السنة‬
+
+      ‫‪Other - Drinking Water‬‬         ‫‪mio‬‬                                                         ‫مليون مي‬   ‫أخرى ‪ -‬مياه ال رشب‬
+                                     ‫‪m3/y‬‬                                                        ‫مكعب ف‬
+
+                                                                                                 ‫السنة‬
+
+      ‫‪Other - Other use‬‬              ‫‪mio‬‬                                                         ‫مليون مي‬   ‫أخرى ‪ -‬استخدامات‬
+                                     ‫‪m3/y‬‬                                                        ‫مكعب ف‬                   ‫أخرى‬
+
+                                                                                                     ‫السنة‬
+
+      ‫‪Agriculture, forestry and‬‬      ‫‪mio‬‬                                                         ‫مليون مي‬   ‫الزراعة والحراجة‬
+      ‫)‪fishing (ISIC 01-03‬‬           ‫‪m3/y‬‬
+‫‪14‬‬                                                                                               ‫‪ 14‬وصيد الأسماك ( ‪ ISIC‬مكعب ف‬
+
+                                                                                                 ‫السنة‬             ‫‪) 01-03‬‬
+
+‫‪80‬‬
+Line  Category                        Unit  2018  2019  2020                     2021  2022  2023                     ‫الوحدة‬            ‫الفئة‬              ‫الخط‬
+
+15    of which for: Irrigation in   mio     310   316   322                      311   311   255                        ‫مليون مي‬   ‫اس ُتخدم منها بواسطة‬      15
+      agriculture                   m3/y                                                                                 ‫مكعب ف‬              ‫الري الزراع‬     16
+                                                                                                                                                             17
+16    Mining and quarrying          mio                                                                                     ‫السنة‬      ‫التعدين واستغلال‬      18
+      (ISIC 05-09)                  m3/y                                                                                                        ‫المحاجر‬      19
+                                                                                                                        ‫مليون مي‬                             20
+17    Manufacturing                 mio     25.8  34.2  29                       30    41    45                          ‫مكعب ف‬           )ISIC 05-09 (      21
+      (ISIC 10-33)                  m3/y
+                                                                                                                            ‫السنة‬     ‫الصناعة التحويلية‬
+18    Electricity, gas, steam and air mio   Unavailable Unavailable Unavailable  Unavailable Unavailable Unavailable                       (ISIC 10-33)
+      conditioning supply (ISIC 35) m3/y                                                                                ‫مليون مي‬
+                                                                                                                         ‫مكعب ف‬         ‫إمدادات الكهرباء‬
+19    of which for: Electric power  mio                                                                                            ‫والغاز والبخار وتكييف‬
+      generation, transmission and  m3/y                                                                                    ‫السنة‬
+      distribution (ISIC 351)                                                                                                                      ‫الهواء‬
+                                                                                                                        ‫مليون مي‬               (ISIC 35)
+20 Construction (ISIC 41-43)        mio                                                                                  ‫مكعب ف‬              ‫توليد الطاقة‬
+                                    m3/y                                                                                                ‫الكهربائية ونقلها‬
+                                                                                                                            ‫السنة‬    (ISIC 351)‫وتوزيعه‬
+21 Other economic activities        mio     148   242   238                      265   289   298
+                                    m3/y                                                                                ‫مليون مي‬                 ‫التشييد‬
+                                                                                                                         ‫مكعب ف‬            (ISIC 41-43)
+
+                                                                                                                            ‫السنة‬    ‫الأنشطة الاقتصادية‬
+                                                                                                                        ‫مليون مي‬                  ‫الأخرى‬
+                                                                                                                         ‫مكعب ف‬
+
+                                                                                                                            ‫السنة‬
+                                                                                                                        ‫مليون مي‬
+                                                                                                                         ‫مكعب ف‬
+
+                                                                                                                            ‫السنة‬
+
+                                                                                                                                                           81
+‫)‪Table 3: Water Supply Industry (ISIC 36‬‬                                            ‫جدول (‪ :)3‬صناعة إمدادات المياه (‪)ISIC 36‬‬
+
+‫‪Line‬‬               ‫‪Category‬‬               ‫‪Unit‬‬  ‫‪2018‬‬     ‫‪2019‬‬     ‫‪2020‬‬     ‫‪2021‬‬     ‫‪2022‬‬     ‫‪2023‬‬     ‫الوحدة‬     ‫الفئة‬                   ‫الخط‬
+                                                   ‫‪637‬‬      ‫‪671‬‬      ‫‪689‬‬      ‫‪669‬‬      ‫‪670‬‬      ‫‪669‬‬
+‫‪1‬‬       ‫‪Gross freshwater supplied by‬‬   ‫‪mio‬‬           ‫‪25‬‬       ‫‪26‬‬       ‫‪39‬‬       ‫‪41‬‬       ‫‪38‬‬       ‫‪38‬‬  ‫مليون مي‬   ‫إجمالى المياه العذبة‬    ‫‪1‬‬
+        ‫‪water supply industry (ISIC‬‬    ‫‪m3/y‬‬        ‫‪612‬‬      ‫‪645‬‬      ‫‪652‬‬      ‫‪628‬‬      ‫‪632‬‬      ‫‪631‬‬   ‫مكعب ف‬      ‫الت توفرها صناعة‬
+        ‫)‪36‬‬                                        ‫‪246‬‬      ‫‪271‬‬      ‫‪275‬‬      ‫‪273‬‬      ‫‪307‬‬      ‫‪299‬‬
+                                                    ‫‪0.3‬‬      ‫‪0.2‬‬        ‫‪3‬‬        ‫‪4‬‬        ‫‪5‬‬        ‫‪4‬‬      ‫السنة‬       ‫إمدادات المياه‬
+                                                     ‫‪26‬‬       ‫‪34‬‬       ‫‪29‬‬       ‫‪30‬‬       ‫‪31‬‬       ‫‪35‬‬
+                                                                                                                 ‫)‪(ISIC 36‬‬
+                                                     ‫‪77‬‬     ‫‪165‬‬      ‫‪151‬‬      ‫‪157‬‬      ‫‪176‬‬      ‫‪172‬‬
+        ‫‪Losses during transport by‬‬     ‫‪mio‬‬                                                            ‫فاقد المياه العذبة أثناء مليون مي‬
+        ‫‪ISIC 36‬‬                        ‫‪m3/y‬‬      ‫‪100%‬‬     ‫‪100%‬‬     ‫‪100%‬‬     ‫‪100%‬‬     ‫‪100%‬‬     ‫‪100%‬‬
+‫‪2‬‬                                                ‫‪100%‬‬     ‫‪100%‬‬     ‫‪100%‬‬     ‫‪100%‬‬     ‫‪100%‬‬     ‫‪100%‬‬    ‫‪ 2‬النقل بواسطة ( ‪ ISIC‬مكعب ف‬
+
+                                                                                                      ‫السنة‬             ‫‪) 36‬‬
+
+                                                                                                                 ‫صاف المياه العذبة الت‬
+
+        ‫‪Net freshwater supplied by‬‬                                                                               ‫توفرها صناعة‬
+
+        ‫‪water supply industry (ISIC‬‬    ‫‪mio‬‬                                                            ‫إمدادات المياه ‪ (ISIC‬مليون مي‬
+        ‫)‪36‬‬                            ‫‪m3/y‬‬
+‫‪3‬‬                                                                                                     ‫مكعب ف‬               ‫‪36) 3‬‬
+                                                                                                         ‫السنة‬          ‫)‪(=1-2‬‬
+        ‫)‪(=1-2) (=4+5+6+7+8+10+11‬‬
+                                                                                                                 ‫‪(=4+5+6+7+8+10+‬‬
+
+                                                                                                                        ‫)‪11‬‬
+
+‫‪4‬‬       ‫‪Households‬‬                     ‫‪mio‬‬                                                            ‫مليون مي‬   ‫‪ 4‬الأسر المعيشية‬
+                                       ‫‪m3/y‬‬                                                           ‫مكعب ف‬
+
+                                       ‫‪mio‬‬                                                                ‫السنة‬
+                                       ‫‪m3/y‬‬
+        ‫‪Agriculture, forestry and‬‬                                                                     ‫مليون مي‬   ‫الزراعة والحراجة‬
+        ‫)‪fishing (ISIC 01-03‬‬           ‫‪mio‬‬
+‫‪5‬‬                                      ‫‪m3/y‬‬                                                           ‫مكعب ف‬     ‫‪ 5‬وصيد الأسماك‬
+                                                                                                         ‫السنة‬    ‫)‪(ISIC 01-03‬‬
+                                       ‫‪mio‬‬
+‫‪6‬‬       ‫‪Mining and quarrying‬‬           ‫‪m3/y‬‬                                                           ‫مليون مي‬   ‫التعدين واستغلال‬
+        ‫)‪(ISIC 05-09‬‬                                                                                  ‫مكعب ف‬              ‫‪ 6‬المحاجر‬
+
+                                                                                                          ‫السنة‬      ‫)‪(ISIC 05-09‬‬
+
+‫‪7‬‬       ‫‪Manufacturing‬‬                                                                                 ‫مليون مي‬   ‫الصناعة التحويلية‬       ‫‪7‬‬
+        ‫)‪(ISIC 10-33‬‬                                                                                  ‫مكعب ف‬         ‫)‪)ISIC 10-33‬‬
+
+                                                                                                          ‫السنة‬
+
+‫‪8‬‬       ‫‪Electricity, gas, steam and air mio‬‬                                                           ‫مليون مي‬        ‫إمدادات الكهرباء‬   ‫‪8‬‬
+        ‫‪conditioning supply (ISIC 35) m3/y‬‬                                                            ‫مكعب ف‬     ‫والغاز والبخار وتكييف‬
+
+                                                                                                          ‫السنة‬                  ‫الهواء‬
+
+                                                                                                                 ‫)‪(ISIC 35‬‬
+
+        ‫‪Electric power generation,‬‬     ‫‪mio‬‬                                                            ‫مليون مي‬   ‫توليد الطاقة‬
+        ‫‪transmission and distribution‬‬  ‫‪m3/y‬‬
+‫‪9‬‬       ‫)‪(ISIC 351‬‬                                                                                    ‫مكعب ف‬     ‫‪ 9‬الكهربائية ونقلها‬
+
+                                                                                                      ‫وتوزيعه )‪ (ISIC 351‬السنة‬
+
+‫‪10‬‬      ‫‪Construction‬‬                   ‫‪mio‬‬                                                            ‫مليون مي‬         ‫التشييد‬           ‫‪10‬‬
+        ‫)‪(ISIC 41-43‬‬                   ‫‪m3/y‬‬                                                           ‫مكعب ف‬     ‫)‪(ISIC 41-43‬‬
+
+                                                                                                          ‫السنة‬
+
+‫‪11 Other economic activities‬‬           ‫‪mio‬‬                                                            ‫مليون مي‬   ‫الأنشطة الاقتصادية‬      ‫‪11‬‬
+                                       ‫‪m3/y‬‬                                                           ‫مكعب ف‬                  ‫الأخرى‬
+
+                                                                                                          ‫السنة‬
+
+        ‫‪Population supplied by water‬‬                                                                             ‫السكان الذين يزودون‬
+        ‫‪supply industry‬‬
+        ‫)‪(ISIC 36‬‬                                                                                                ‫من صناعة إمدادات‬
+
+                                                                                                                        ‫المياه‬
+
+                                                                                                                 ‫(‪)ISIC 36‬‬
+
+                                                                                                                 ‫إجمالى السكان الذين‬
+
+         ‫‪Total population supplied by‬‬                                                                            ‫يحصلون عل المياه‬
+‫‪12 water supply industry (ISIC %‬‬
+                                                                                                      ‫‪ 12‬من صناعة إمدادات ‪%‬‬
+         ‫)‪36‬‬
+                                                                                                                        ‫المياه‬
+
+                                                                                                                 ‫(‪)ISIC 36‬‬
+
+                                                                                                                 ‫سكان الحض الذين‬
+
+        ‫‪Urban population supplied‬‬                                                                                ‫يحصلون عل المياه‬
+
+‫‪13 by water supply industry‬‬            ‫‪%‬‬                                                              ‫‪ 13‬من صناعة إمدادات ‪%‬‬
+
+        ‫)‪(ISIC 36‬‬                                                                                                       ‫المياه‬
+
+                                                                                                                 ‫(‪)ISIC 36‬‬
+
+    ‫‪82‬‬
+Line  Category                         Unit  2018  2019  2020  2021  2022  2023 ‫الوحدة‬  ‫الفئة‬             ‫الخط‬
+
+         Rural population supplied by                                                   ‫سكان الريف الذين‬
+14 water supply industry (ISIC %
+                                             N\A   N\A   N\A   N\A   N\A   N\A  %       ‫يحصلون عل المياه‬  14
+         36)                                                                            ‫من صناعة إمدادات‬
+
+                                                                                               ‫المياه‬
+
+                                                                                                          83
+‫‪Table 4: Wastewater Generation and Treatment‬‬                                                ‫جدول (‪ :)4‬إنتاج المياه العادمة ومعالجتها‬
+
+‫‪Line‬‬    ‫‪Category‬‬                         ‫‪Unit‬‬  ‫‪2018‬‬     ‫‪2019‬‬     ‫‪2020‬‬     ‫‪2021‬‬     ‫‪2022‬‬     ‫‪2023‬‬     ‫الوحدة‬      ‫الفئة‬                  ‫الخط‬
+
+‫‪1‬‬       ‫‪Total wastewater generated‬‬     ‫‪1000‬‬       ‫‪706‬‬      ‫‪762‬‬      ‫‪799‬‬      ‫‪699‬‬      ‫‪727‬‬      ‫‪776‬‬       ‫ألف مي‬  ‫إجمالى المياه العادمة‬  ‫‪1‬‬
+                                       ‫‪m3/d‬‬       ‫‪703‬‬      ‫‪757‬‬      ‫‪783‬‬      ‫‪694‬‬      ‫‪724‬‬      ‫‪773‬‬   ‫مكعب يوميا‬              ‫المنتجة‬
+                                                  ‫‪703‬‬      ‫‪757‬‬      ‫‪783‬‬      ‫‪694‬‬      ‫‪724‬‬      ‫‪773‬‬
+                                                                                                         ‫ألف مي‬  ‫بواسطة‪ :‬الزراعة‬
+                                                     ‫‪0‬‬        ‫‪0‬‬        ‫‪0‬‬        ‫‪0‬‬        ‫‪0‬‬        ‫‪0‬‬  ‫مكعب يوميا‬
+‫‪2‬‬       ‫‪by: agriculture, forestry and‬‬  ‫‪1000‬‬          ‫‪1‬‬        ‫‪1‬‬        ‫‪1‬‬      ‫‪0.8‬‬      ‫‪0.7‬‬      ‫‪0.7‬‬              ‫والحراجة وصيد‬          ‫‪2‬‬
+        ‫)‪fishing (ISIC 01-03‬‬           ‫‪m3/d‬‬       ‫‪702‬‬      ‫‪756‬‬      ‫‪782‬‬      ‫‪693‬‬      ‫‪723‬‬      ‫‪772‬‬       ‫ألف مي‬         ‫الأسماك‬
+                                                                                                     ‫مكعب يوميا‬
+                                                     ‫‪4‬‬        ‫‪3‬‬        ‫‪2‬‬        ‫‪2‬‬        ‫‪2‬‬        ‫‪2‬‬              ‫(‪)ISIC 01-03‬‬
+                                                                                                         ‫ألف مي‬
+        ‫‪Mining and quarrying (ISIC‬‬     ‫‪1000‬‬                                                          ‫مكعب يوميا‬  ‫التعدين واستغلال‬
+        ‫)‪05-09‬‬                         ‫‪m3/d‬‬
+‫‪3‬‬                                                                                                        ‫ألف مي‬  ‫‪ 3‬المحاجر‬
+                                                                                                     ‫مكعب يوميا‬
+                                                                                                                 ‫(‪)ISIC 05-09‬‬
+                                                                                                         ‫ألف مي‬
+‫‪4‬‬       ‫)‪Manufacturing (ISIC 10-33‬‬     ‫‪1000‬‬                                                          ‫مكعب يوميا‬  ‫الصناعة التحويلية‬      ‫‪4‬‬
+                                       ‫‪m3/d‬‬                                                                         ‫(‪)ISIC 10-33‬‬
+                                                                                                         ‫ألف مي‬
+                                                                                                     ‫مكعب يوميا‬  ‫إمدادات الكهرباء‬
+
+‫‪5‬‬       ‫‪Electricity, gas, steam and air 1000‬‬                                                             ‫ألف مي‬  ‫والغاز والبخار‬         ‫‪5‬‬
+        ‫‪conditioning supply (ISIC 35) m3/d‬‬                                                           ‫مكعب يوميا‬  ‫وتكييف الهواء‬
+
+                                                                                                         ‫ألف مي‬  ‫(‪)ISIC 35‬‬
+                                                                                                     ‫مكعب يوميا‬
+        ‫‪Electric power generation,‬‬     ‫‪1000‬‬                                                                      ‫توليد الطاقة‬
+        ‫‪transmission and distribution‬‬  ‫‪m3/d‬‬                                                              ‫ألف مي‬
+‫‪6‬‬       ‫)‪(ISIC 351‬‬                                                                                   ‫مكعب يوميا‬  ‫‪ 6‬الكهربائية ونقلها‬
+
+                                                                                                         ‫ألف مي‬  ‫وتوزيعه (‪)ISIC 351‬‬
+                                                                                                     ‫مكعب يوميا‬
+‫‪7‬‬       ‫)‪Construction (ISIC 41-43‬‬      ‫‪1000‬‬                                                                      ‫التشييد (‪ISIC 41-‬‬      ‫‪7‬‬
+                                       ‫‪m3/d‬‬                                                              ‫ألف مي‬                ‫‪) 43‬‬
+                                                                                                     ‫مكعب يوميا‬
+‫‪8‬‬       ‫‪Other economic activities‬‬      ‫‪1000‬‬                                                                      ‫الأنشطة الاقتصادية‬     ‫‪8‬‬
+                                       ‫‪m3/d‬‬                                                              ‫ألف مي‬               ‫الأخرى‬
+                                                                                                     ‫مكعب يوميا‬
+‫‪9‬‬       ‫‪Households‬‬                     ‫‪1000‬‬                                                                      ‫‪ 9‬الأسر المعيشية‬
+                                       ‫‪m3/d‬‬                                                              ‫ألف مي‬
+        ‫‪Volume of Wastewater‬‬                                                                         ‫مكعب يوميا‬  ‫حجم المياه العادمة‬
+        ‫‪collected‬‬                      ‫‪1000‬‬
+                                       ‫‪m3/d‬‬                                                              ‫ألف مي‬  ‫المجمعة‬
+                                                                                                     ‫مكعب يوميا‬
+        ‫‪Volume of Wastewater‬‬           ‫‪1000‬‬                                                                      ‫حجم المياه العادمة‬
+        ‫‪treated‬‬                        ‫‪m3/d‬‬                                                              ‫ألف مي‬
+                                                                                                     ‫مكعب يوميا‬  ‫المعالجة‬
+
+                                                                                                         ‫ألف مي‬  ‫المياه العادمة‬
+                                                                                                     ‫مكعب يوميا‬
+‫‪10‬‬      ‫‪Wastewater treated in urban 1000‬‬                                                                         ‫المعالجة ف محطات‬       ‫‪10‬‬
+        ‫‪wastewater treatment plants m3/d‬‬                                                                 ‫ألف مي‬         ‫معالجة المياه‬
+                                                                                                     ‫مكعب يوميا‬
+                                                                                                                 ‫العادمة ف الحض‬
+                                                                                                         ‫ألف مي‬
+‫‪11‬‬      ‫‪Of which: Primary treatment‬‬    ‫‪1000‬‬                                                          ‫مكعب يوميا‬  ‫‪ 11‬ومنها‪ :‬معالجة أولية‬
+                                       ‫‪m3/d‬‬
+                                                                                                         ‫ألف مي‬
+‫‪12 Secondary treatment‬‬                 ‫‪1000‬‬                                                          ‫مكعب يوميا‬  ‫‪ 12‬معالجة ثانوية‬
+                                       ‫‪m3/d‬‬
+                                                                                                         ‫ألف مي‬
+‫‪13 Tertiary treatment‬‬                  ‫‪1000‬‬                                                          ‫مكعب يوميا‬        ‫‪ 13‬معالجة ثالثية‬
+                                       ‫‪m3/d‬‬
+                                                                                                                        ‫المياه العادمة‬
+‫‪14‬‬      ‫‪Wastewater treated in other 1000‬‬                                                                         ‫‪ 14‬المعالجة ف محطات‬
+
+        ‫‪treatment plants‬‬               ‫‪m3/d‬‬                                                                            ‫معالجة أخرى‬
+
+‫‪15‬‬      ‫‪Of which: Primary treatment‬‬    ‫‪1000‬‬                                                                      ‫‪ 15‬ومنها‪ :‬معالجة أولية‬
+                                       ‫‪m3/d‬‬
+
+‫‪16 Secondary treatment‬‬                 ‫‪1000‬‬                                                                      ‫‪ 16‬معالجة ثانوية‬
+                                       ‫‪m3/d‬‬
+
+‫‪17 Tertiary treatment‬‬                  ‫‪1000‬‬                                                                      ‫‪ 17‬معالجة ثالثية‬
+                                       ‫‪m3/d‬‬
+
+         ‫‪Wastewater treated in‬‬         ‫‪1000‬‬                                                                      ‫المياه العادمة‬
+‫‪18 independent treatment‬‬               ‫‪m3/d‬‬
+                                                                                                                 ‫‪ 18‬المعالجة ف مرافق‬
+         ‫‪facilities‬‬
+                                                                                                                 ‫معالجة مستقلة‬
+
+‫‪19 Non-treated wastewater‬‬              ‫‪1000‬‬                                                                      ‫مياه عادمة غ ري‬        ‫‪19‬‬
+                                       ‫‪m3/d‬‬                                                                             ‫معالجة‬
+
+    ‫‪84‬‬
+Line  Category                    Unit  2018  2019  2020  2021  2022  2023 ‫الوحدة‬  ‫الفئة‬              ‫الخط‬
+                                1000 t
+20    Sewage sludge production          38    39    41    41    49    46  ‫ألف طن‬   ‫إنتاج حمأة الغائط‬  20
+      (dry matter)                                                                   )‫(المادة الجافة‬
+
+                                                                                                      85
+Table 4: Population Connected to Wastewater                             ‫ السكان الموصولون بمعالجة المياه العادمة‬:)5( ‫جدول‬
+Treatment
+
+Line                Category           Unit  2018     2019     2020     2021     2022     2023 ‫الوحدة‬                 ‫الفئة‬                ‫الخط‬
+                                                                100%     100%     100%
+      Population connected to                                   100%     100%     100%                             %  ‫السكان الموصولون‬
+      wastewater collecting system
+1                                   %                                0        0        0                              ‫ بشبكة لجمع المياه‬1
+
+                                                                                                                             ‫العادمة‬
+
+      Population connected to                                                                                         ‫السكان الموصولون‬
+      wastewater treatment
+2                                   %        100% 100%                                    100%  %                     ‫ بشبكة لمعالجة‬2
+
+                                                                                                                      ‫المياه العادمة‬
+
+      Of which: at least secondary                                                                                    ‫ومنهم الموصولون‬
+      treatment
+3                                   %        100% 100%                                    100%  %                     ‫ بمعالجة ثانوية عل‬3
+
+                                                                                                                             ‫الأقل‬
+
+      Population with independent                                                                                     ‫السكان الموصولون‬
+
+4     wastewater treatment (e.g., %                                                             %                       ‫بمعالجة مستقلة‬     4
+                                                                                                                      ‫للمياه العادمة (مثل‬
+      septic tanks)
+                                                                                                                      )‫خزانات المجارير‬
+
+                                                                                                                      ‫السكان غ ري‬
+
+      Population not connected to                                                                                     ‫الموصول ري بشبكة‬
+
+5     wastewater treatment (100% %                 0        0                             0     %                     ‫ لمعالجة المياه‬5
+
+      - (2) - (4))                                                                                                    -%100( ‫العادمة‬
+
+                                                                                                                      ))4(-)2(
+
+86
+Table 6: Water Sector Infrastructure                                                       ‫ البنية التحتية لمصادر المياه‬:)6( ‫جدول‬
+
+Line         Category                   Unit  2018     2019     2020     2021     2022     2023      ‫الوحدة‬      ‫الفئة‬                  ‫الخط‬
+                                      Number                                                     61
+1     Precipitation stations -        Number  42       50       50       70       70             22  ‫عدد‬         ‫محطات هطول‬             1
+      Number                          Number                                                      0               ‫ عدد‬- ‫الأمطار‬
+                                      Number                                                      3
+2     WWTP stations - Number          Number  25       27       26       23       21             19  ‫عدد‬            ‫محطات معالجة‬        2
+                                      1000                                                                       ‫ عدد‬- ‫المياه العادمة‬
+                                      m3/d                                                    1052
+3     Primary treatment -                           0        0        0        0        0            ‫عدد‬         - ‫المعالجة الأولية‬     3
+      Mechanical treatment                                                                        0                      ‫الميكانيك‬
+
+4     Secondary treatment -                         5        7        3        4        3     1.14   ‫عدد‬           - ‫المعالجة الثانوية‬  4
+      Biological treatment                                                                                       ‫المعالجة البيولوجية‬
+                                                                                              1051
+5     Tertiary treatment -                    20       20       23       19       18                 ‫عدد‬         - ‫المعالجة الثلاثية‬    5
+      Advanced treatment                                                                   277262                   ‫العلاج المتقدم‬
+                                                                                                  0
+      WWTP stations - Design                                                                         ‫م رت‬1000    ‫محطات معالجة‬
+      Capacity                                                                                 228
+6                                             965      966      1022     994      982      277034    / ‫ سعة مكعب‬- ‫ المياه العادمة‬6
+
+                                                                                                  9  ‫يوم‬         ‫التصميم‬
+                                                                                                 25  ‫م رت‬1000
+7     Primary treatment -             1000          0        0        0        0        0        35    / ‫مكعب‬    - ‫المعالجة الأولية‬     7
+      Mechanical treatment            m3/d                                                       10                      ‫الميكانيك‬
+                                                                                                            ‫يوم‬
+                                                                                                  0  ‫م رت‬1000
+8     Secondary treatment -           1000    1.95     1.95     1.95     1.95     1.14        2444     / ‫مكعب‬      - ‫المعالجة الثانوية‬  8
+      Biological treatment            m3/d                                                                       ‫المعالجة البيولوجية‬
+                                                                                              1446          ‫يوم‬
+                                                                                                     ‫م رت‬1000
+9     Tertiary treatment -            1000    963      964      1021     992      981          712     / ‫مكعب‬    - ‫المعالجة الثلاثية‬    9
+      Advanced treatment              m3/d                                                                          ‫العلاج المتقدم‬
+                                                                                               286          ‫يوم‬
+
+10    WWTP stations - Design          BOD     258248 258248 247448 279643 275762                                  ‫محطات معالجة‬
+      Capacity                                                                                       BOD ‫ سعة‬- ‫ المياه العادمة‬10
+
+                                                                                                                 ‫التصميم‬
+
+11    Primary treatment -             BOD           0        0        0        0        0            BOD         - ‫المعالجة الأولية‬     11
+      Mechanical treatment                                                                                               ‫الميكانيك‬
+
+12    Secondary treatment -           BOD     390      390      390      390      228                BOD           - ‫المعالجة الثانوية‬  12
+      Biological treatment                                                                                       ‫المعالجة البيولوجية‬
+
+13    Tertiary treatment -            BOD     257858 258208 282003 279253 275534                     BOD         - ‫المعالجة الثلاثية‬    13
+      Advanced treatment                                                                                            ‫العلاج المتقدم‬
+
+14    Desalination stations -         Number        9        9        9        9        9            ‫عدد‬         ‫محطات تحلية المياه‬     14
+      Number                                                                                                                    ‫ عدد‬-
+
+15    Multi-Stage Flash Distillation  Number        7        7        7  25       25                 ‫عدد‬         ‫التبخ ري الوميض‬        15
+      (MSF)                                                                                                      ‫المتعدد المراحل‬
+
+16 Reverse Osmose (RO)                Number        1        1        1  35       35                 ‫عدد‬         ‫ التناضح العكس‬16
+                                      Number
+17    Multiple effect distillation    Number        1        1        1  10       10                 ‫ التقط ري متعدد التأث ري عدد‬17
+      (MED)
+
+18 Other                                            0        0        0        0        0            ‫عدد‬                ‫ أخرى‬18
+
+19    Desalination Stations -         1000    2165     2165     2165 2444         2444               ‫م رت‬1000    ‫محطات تحلية المياه‬     19
+      Design Capacity                 m3/d                                                             / ‫مكعب‬         ‫ سعة التصميم‬-
+
+                                                                                                            ‫يوم‬
+                                                                                                     ‫م رت‬1000
+20    Multi-Stage Flash Distillation 1000     1446     1446     1446     1446     1446                 / ‫مكعب‬    ‫التبخ ري الوميض‬        20
+                                                                                                                 ‫المتعدد المراحل‬
+      (MSF)                           m3/d                                                                  ‫يوم‬
+
+                                      1000                                                           ‫م رت‬1000
+                                      m3/d
+21 Reverse Osmose (RO)                        433      433      433      712      712                / ‫مكعب‬      ‫ التناضح العكس‬21
+
+      Multiple effect distillation    1000                                                                  ‫يوم‬
+      (MED)                           m3/d                                                           ‫م رت‬1000
+
+22                                            286      286      286      286      286                / ‫ التقط ري متعدد التأث ري مكعب‬22
+
+                                                                                                     ‫يوم‬
+
+                                                                                                                                        87
+Line      Category               Unit    2018       2019       2020       2021       2022      2023       ‫الوحدة‬            ‫الفئة‬             ‫الخط‬
+
+23 Other                         1000          0          0          0          0          0         0    ‫م رت‬1000                    ‫أخرى‬      23
+                                 m3/d                                                                       / ‫مكعب‬
+                                                                                                                 ‫يوم‬   ‫محطات جودة المياه‬        24
+24    Water Quality Stations -   Number                                                                                               ‫ عدد‬-
+      Number                                                                                                    ‫عدد‬                             25
+                                                                                                                       ‫محطات جودة المياه‬
+25    Water Quality Stations -   1000                                                                     ‫م رت‬1000          ‫ سعة التصميم‬-       26
+      Design Capacity            m3/d                                                                       / ‫مكعب‬                              27
+                                                                                                                 ‫يوم‬        ‫ عدد‬- ‫البح ريات‬     28
+26 Lakes - Number                Number  N\A        N\A        N\A        N\A        N\A       N\A                                              29
+27 Lakes - Surface area                                                                                         ‫عدد‬    ‫ المساحة‬- ‫البح ريات‬      30
+                                 Ha      N\A        N\A        N\A        N\A        N\A       N\A                         ‫ سعة‬- ‫البح ريات‬      31
+28 Lakes - Volume capacity                                                                                     ‫هكتار‬         ‫وحدة التخزين‬       32
+29 Reservoirs - Number           Mm³     N\A        N\A        N\A        N\A        N\A       N\A         ‫مليون م رت‬       ‫ عدد‬- ‫الخزانات‬      33
+30 Reservoirs - Design Capacity                                                                                            ‫ سعة‬- ‫الخزانات‬       34
+31 Dams - Number                 Number  117        124        131        134        143       145            ‫مكعب‬                 ‫التصميم‬      35
+32 Dams - Surface                                                                                               ‫عدد‬          ‫السدود – عدد‬       36
+33 Dams - Design Capacity        Mm³     1478       1678       2204       2331       2396      2417                       ‫ السطح‬- ‫السدود‬        37
+34 Aflag - Number                                                                                          ‫مليون م رت‬        ‫ سعة‬- ‫السدود‬       38
+35 Aflag - Length                Number  N\A        N\A        N\A        N\A        N\A       N\A            ‫مكعب‬                 ‫التصميم‬
+36 Springs - Number                                                                                             ‫عدد‬          ‫الافلاج – عدد‬
+37 Springs - Location            Ha      N\A        N\A        N\A        N\A        N\A       N\A                           ‫الافلاج – طول‬
+38 Water distribution Network                                                                                  ‫هكتار‬         ‫الينابيع – عدد‬
+                                 Mm³     N\A        N\A        N\A        N\A        N\A       N\A         ‫مليون م رت‬
+                                                                                                                           ‫ الموقع‬- ‫الينابيع‬
+                                 Number  N\A        N\A        N\A        N\A        N\A       N\A            ‫مكعب‬
+                                 km                                                                             ‫عدد‬      ‫شبكة توزي ع المياه‬
+                                 Number  N\A        N\A        N\A        N\A        N\A       N\A
+                                 XY                                                                               ‫كم‬
+                                 coord   N\A        N\A        N\A        N\A        N\A       N\A
+                                 Length                                                                         ‫عدد‬
+                                         N\A        N\A        N\A        N\A        N\A       N\A               XY
+                                 Number                                                                    ‫احداثيات‬
+                                             7900       8136       8189       8366       8427      8696         ‫طول‬
+                                 Number
+39 Household Connections                 Connecti   Connecti   Connecti   Connecti   Connecti  Connecti   ‫ التوصيلات الميلية عدد‬39
+                                         ons:       ons:       ons:       ons:       ons:      ons:
+
+                                          186000     136347     141275     150770      154606     172376
+                                           Meters:    Meters:    Meters:    Meters:
+                                          329832     349037     381558     406112    Meters:   Meters:
+                                                                                     428727    481131
+
+40 Water Truck - Number                  53         44         48         49         52        52         ‫عدد‬            ‫شاحنات المياه‬        40
+41 Water Truck - Volume                                                                                                ‫الصهاري ج – عدد‬
+42 Wells                                                                                                  ‫مليون م رت‬
+                                 Mm³     35.2       30.3       23.2       23.2       21.4      16.0          ‫مكعب‬      ‫حجم شاحنة المياه‬       41
+                                 Number  7000       7427       7833       7865       8023      8023
+                                                                                                          ‫عدد‬          ‫ الآبار‬42
+
+88
+

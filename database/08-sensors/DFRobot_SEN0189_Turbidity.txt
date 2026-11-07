@@ -1,0 +1,23 @@
+Gravity: Analog Turbidity Sensor
+
+This article provides an in-depth look at the Gravity Analog Turbidity Sensor, explaining its specifications, functionalities, and setup. Operating at 5V DC with a max current of 40mA, the sensor ensures precise turbidity measurements in liquids. It features a quick response time of under 500ms, offering both analog and digital outputs. Users can switch output modes and adjust digital signal thresholds for flexible use. Suitable for temperatures from 5℃ to 90℃, its compact and durable design is ideal for various environments. A detailed pinout diagram aids in correct setup, making it a versatile tool for accurate turbidity readings.
+
+Example 1 uses Analog output mode
+
+This guide offers example code for Arduino digital output control, demonstrating how to connect an LED and turbidity sensor, prepare wiring, and utilize signal switches for effective sensor management.
+
+The article focuses on the gravity arduino turbidity sensor, explaining how it measures water quality by detecting turbidity levels through light transmittance and scattering rate changes as total suspended solids in water increase.
+
+- Analog output: 0-4.5V - Digital Output: High/Low level signal (you can adjust the threshold value by adjusting the potentiometer)
+
+38mm 28mm 10mm/1.5inches 1.1inches 0.4inches
+
+In this blog, we will introduce you to all of DFRobot’s liquid sensors and list all their parameters so that you can make a purchase.
+
+Hi, I always get 0.04 in the serial port, and there is no change, even I block the transmit tube. Please check the probe connection cable, if you plug it with a wrong side, it won't work.
+
+Hi, I always get 0.04 in the serial port, and there is no change, even I block the transmit tube.
+
+Please check the probe connection cable, if you plug it with a wrong side, it won't work.
+
+Explore More Related Questions >

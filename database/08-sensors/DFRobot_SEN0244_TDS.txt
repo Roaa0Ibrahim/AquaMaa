@@ -1,0 +1,17 @@
+Gravity: Analog TDS Sensor
+
+Gravity: Analog TDS Sensor (SEN0244) is an affordable, waterproof-probe sensor for real-time water quality monitoring on Arduino (3.3-5.5V input, 0-1000ppm range). It comes with a pinout diagram, schematics, and step-by-step Arduino code — from basic TDS readings to full calibration — for applications like hydroponics and domestic water testing.
+
+This article demonstrates how to measure Total Dissolved Solids (TDS) using Arduino by providing detailed hardware and software preparations, a wiring diagram, cautions, and sample code for accurate readings.
+
+The article offers a detailed guide on how to calibrate and measure TDS values using Arduino with the analog TDS sensor. It includes hardware and software setup, wiring instructions, sample code, and step-by-step calibration procedures, ensuring accurate sensor readings and effective temperature compensation.
+
+Analog Signal Output(0 ~ 2.3V)
+
+In this blog, we will introduce you to all of DFRobot’s liquid sensors and list all their parameters so that you can make a purchase.
+
+A few people at Public Lab have expressed interest in the DFRobot TDS sensor for Arduino data loggers. This sensor measures the electrical conductivity of water and the analog result can be converted to an estimate of total dissolved solids (TDS).
+
+Does this sensor have a temperature sensor? How to make the temperature compensation? This TDS probe has no temperature sensor, but the temperature compensation algorithm is reserved in the sample code. The temperature variable in the sample code will default to 25 °C without a temperature sensor. You can add a waterproof temperature sensor to read the temperature,then update the temperature variable, to make automatic temperature compensation.
+
+Explore More Related Questions >

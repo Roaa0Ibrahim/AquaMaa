@@ -1,0 +1,41 @@
+World Water Day: Qatar’s Groundwater Challenges
+
+In line with this year’s World Water Day theme, Making the Invisible Visible, QEERI’s Senior Research Director for Water discusses Qatar’s groundwater challenges
+
+Before the 1950s, when the first seawater desalination plant was established, groundwater was the sole provider of water for drinking and irrigation. The population of Qatar relied on wells from which freshwater was extracted, which catered to all of their water needs. Similar to other arid and desert countries, Qatar’s environment is characterized by a lack of renewable freshwater resources such as rivers and lakes. The aquifers containing Qatar’s natural fresh groundwater resources are extremely limited, and the depth to the water table varies between less than 1 meter near the coastline to more than 70 meters in some areas.
+
+Low on groundwater resources
+
+Since the 1970s, Qatar’s groundwater has not been replaced to the same extent to which it has been extracted. This has meant that, over time, the quality of the groundwater has been deteriorating, because as the fresh water is taken out, the seawater is pulled in from underground to fill the gap. Qatar was classified as the most water-stressed country in the world in 2019, due to a combination of low rainfall and low fresh groundwater levels, with natural renewable water resources far below the water poverty line.
+
+Abstraction of groundwater is estimated to be approximately three to five times the rate of natural recharge. The annual total water use in agriculture rose from 140 million m3 in 1990 to 296 million m3 in 2016. However, groundwater abstraction for agricultural purposes has roughly remained unchanged at the same level since 2005 (226 – 230 million m3 /year) and additional demand has been covered by treated sewage effluent (TSE) since 2004. While treated sewage effluent is not typically used for crop irrigation, it is used to grow fodder for feeding animals.
+
+Desalinating irrigation water
+
+Irrigation hazard analysis - a measurement tool for the quality of water used to irrigate crops - performed on various wells located around Qatar indicated that up to 95% of samples are not suitable for agricultural irrigation, with over 60% having salinity levels which would likely cause harm to agriculture.
+
+As such, this water is only suitable for growing very salt-tolerant crops. Thirty-four percent of the irrigation water was found to be of very high salinity hazard and medium sodium hazard, and not suitable for irrigation in almost all types of soils.
+
+Because of this challenge of salty (“brackish”) groundwater, farms need to establish a desalination system on-site to be able to use the wells. This is typically done through a reverse osmosis, membrane-based system. Similar to the seawater desalination systems which provide the water to houses and businesses in Qatar, chemicals such as anti-scalants have to be added to the well water to help the system function correctly over time. The waste product from this process is called “brine”. The brine contains the salts and other contaminants, and chemicals, which have been removed from the well water. Brine is an environmentally challenging issue for Qatar. For seawater plants, brine is discharged off-shore, but for farms where there is no obvious disposal route, the brine is more problematic.
+
+So how can groundwater in Qatar be sustainably managed? Kahramaa is actively rehabilitating and activating over 300 existing recharge wells around Qatar, to increase the direct recharge to the aquifer system in the country from the rain and subsequently improve the groundwater condition and increase its availability for water security, while at the same time extending efforts to drill and develop about 60 recharge/injection and observation wells to increase the direct recharge to storage zone and to increase the productivity of the aquifer system from the rain. Managed aquifer recharge (MAR) is not easy or straightforward in Qatar due to the karstic nature of the sub-surface, but Kahramaa’s Water Projects Department budgeted 2.6 billion QAR for projects in 2019 to improve the groundwater storage zones and increase the recharge to the groundwater water aquifer system.
+
+An even more serious issue than the decrease in quality of the groundwater is the issue of land subsidence due to the changes in the water table. For a very flat and low-lying country like Qatar, land changes can actually influence shifts along the coastline of Qatar, exacerbating any issues of sea level rise by changing the level of the land also. Research such as that ongoing at Qatar Environment and Energy Research Institute ( QEERI ), part of Hamad Bin Khalifa University, a member of Qatar Foundation (QF), can help. QEERI’s Earth Science Program partnered with NASA’s Jet Propulsion Laboratory in the OASIS project, which intends to use satellites to help map groundwater, land subsidence and sea level changes in this region and beyond. At the same time, QEERI is developing better options for agricultural water and brine management, which can help to protect the groundwater and the environment. Research to allow more crops to be grown with less water, and better greenhouse or other cooler environment options for indoor farming can extend the growing season and reduce the burden on the groundwater system.
+
+Dr. Jenny Lawler is a Senior Research Director at Hamad Bin Khalifa University’s Qatar Environment and Energy Research Institute.
+
+This article is submitted on behalf of the author by the HBKU Communications Directorate. The views expressed are the author’s own and do not necessarily reflect the University’s official stance.
+
+QEERI Presents Solar Energy Innovation at International Photovoltaic Conference
+
+QEERI’s New ICSEWEN19 Book in High Demand
+
+QEERI Experts Discuss Carbon Emissions at Science Majlis
+
+Flagship ICSEWEN21 Conference Sees High-Level Stakeholders
+
+Tackling Corrosion Challenges: A Decade of Qatar Environment and Energy Research Institute
+
+Scientific Research Raises Level of Urban Air Quality Management: A Decade of Qatar Environment and Energy Research Institute
+
+Helping the Nation Harness its Sustainable Energy Resources: A Decade of Qatar Environment and Energy Research Institute

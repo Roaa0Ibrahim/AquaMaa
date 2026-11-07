@@ -1,0 +1,417 @@
+Here's a list of water-related terms, compiled from several different resources, that might help you understand our site better.
+
+A | B | C | D | E | F | G | H | I | K | L | M | N | O | P | R | S | T | U | W | X | Y
+
+• Water Science School HOME • Water Basics topics •
+
+acequia --acequias are gravity-driven waterways, similar in concept to a flume. Most are simple ditches with dirt banks, but they can be lined with concrete. They were important forms of irrigation in the development of agriculture in the American Southwest. The proliferation of cotton, pecans and green chile as major agricultural staples owe their progress to the acequia system.
+
+acid --a substance that has a pH of less than 7, which is neutral. Specifically, an acid has more free hydrogen ions (H + ) than hydroxyl ions (OH - ).
+
+acre-foot (acre-ft) --the volume of water required to cover 1 acre of land (43,560 square feet) to a depth of 1 foot. Equal to 325,851 gallons or 1,233 cubic meters.
+
+adhesion --the process of water being attracted or adhering to other substances
+
+alkaline --sometimes water or soils contain an amount of alkali (strongly basic) substances sufficient to raise the pH value above 7.0 and be harmful to the growth of crops.
+
+alkalinity --the capacity of water for neutralizing an acid solution.
+
+alluvium --deposits of clay, silt, sand, gravel, or other particulate material that has been deposited by a stream or other body of running water in a streambed, on a flood plain, on a delta, or at the base of a mountain.
+
+animal-specialties water use –water use associated with the production of fish in captivity except for fish hatcheries which were in Commercial, and the raising of horses and such fur-bearing animals as rabbits and pets.
+
+appropriation doctrine --the system for allocating water to private individuals used in most Western states. The doctrine of Prior Appropriation was in common use throughout the arid west as early settlers and miners began to develop the land. The prior appropriation doctrine is based on the concept of "First in Time, First in Right." The first person to take a quantity of water and put it to Beneficial Use has a higher priority of right than a subsequent user. Under drought conditions, higher priority users are satisfied before junior users receive water. Appropriative rights can be lost through nonuse; they can also be sold or transferred apart from the land. Contrasts with Riparian Water Rights.
+
+aquaculture --farming of plants and animals that live in water, such as fish, shellfish, and algae.
+
+aquaculture water use –water use associated with the farming of finfish, shellfish, and other organisms that live in water, and offstream water use associated with fish hatcheries.
+
+aqueduct --a pipe, conduit, or channel designed to transport water from a remote source, usually by gravity.
+
+aquifer --a geologic formation(s) that is water bearing. A geological formation or structure that stores and/or transmits water, such as to wells and springs . Use of the term is usually restricted to those water-bearing formations capable of yielding water in sufficient quantity to constitute a usable supply for people's uses.
+
+aquifer (confined) --soil or rock below the land surface that is saturated with water. There are layers of impermeable material both above and below it and it is under pressure so that when the aquifer is penetrated by a well , the water will rise above the top of the aquifer.
+
+aquifer (unconfined) --an aquifer whose upper water surface ( water table ) is at atmospheric pressure, and thus is able to rise and fall.
+
+artesian water -- groundwater that is under pressure when tapped by a well and is able to rise above the level at which it is first encountered. It may or may not flow out at ground level. The pressure in such an aquifer commonly is called artesian pressure, and the formation containing artesian water is an artesian aquifer or confined aquifer.
+
+artificial recharge --an process where water is put back into groundwater storage from surface-water supplies such as irrigation , or induced infiltration from streams or wells .
+
+atmosphere --layers of gases which surround the Earth. Although the atmosphere may not be a great storehouse of water, it is the superhighway used to move water around the globe.
+
+base flow --sustained flow of a stream in the absence of direct runoff . It includes natural and human-induced streamflows. Natural base flow is sustained largely by groundwater discharges .
+
+base --a substance that has a pH of more than 7, which is neutral. A base has less free hydrogen ions (H + ) than hydroxyl ions (OH - ).
+
+basin --an area of land that drains all the streams and rainfall to a common outlet such as the outflow of a reservoir , mouth of a bay , or any point along a stream channel.
+
+bay --a body of water that is partly surrounded by land and partly surrounded by another body of water.
+
+bedrock --the solid rock beneath the soil and superficial rock. A general term for solid rock that lies beneath soil, loose sediments , or other unconsolidated material.
+
+capillary action --the means by which liquid moves through the porous spaces in a solid, such as soil, plant roots, and the capillary blood vessels in our bodies due to the forces of adhesion , cohesion, and surface tension . Capillary action is essential in carrying substances and nutrients from one place to another in plants and animals.
+
+closed-loop cooling system – see recirculating cooling system.
+
+commercial water use --water used for motels, hotels, restaurants, office buildings, other commercial facilities, and institutions. Water for commercial uses comes both from public-supplied sources, such as a county water department, and self-supplied sources, such as local wells .
+
+condensation --the process of water vapor in the air turning into liquid water. Water drops on the outside of a cold glass of water are condensed water. Condensation is the opposite process of evaporation .
+
+consumptive use --that part of water withdrawn that is evaporated , transpired by plants, incorporated into products or crops, consumed by humans or livestock, or otherwise removed from the immediate water environment. Also referred to as water consumed.
+
+conveyance loss --water that is lost in transit from a pipe, canal, or ditch by leakage or evaporation . Generally, the water is not available for further use; however, leakage from an irrigation ditch, for example, may percolate to a groundwater source and be available for further use.
+
+cooling-system type –an equipment system that provides water for cooling purposes, such as to condensers at power plants or at factories, subdivided into once-through or recirculating cooling system
+
+creek --a natural stream of water normally smaller than and often tributary to a river .
+
+cubic feet per second (cfs) --a rate of the flow, in streams and rivers , for example. It is equal to a volume of water one foot high and one foot wide flowing a distance of one foot in one second. One "cfs" is equal to 7.48 gallons of water flowing each second. As an example, if your car's gas tank is 2 feet by 1 foot by 1 foot (2 cubic feet), then gas flowing at a rate of 1 cubic foot/second would fill the tank in two seconds.
+
+desalination --the removal of salts from saline water to provide freshwater . This method is becoming a more popular way of providing freshwater to populations.
+
+dew --liquid water droplets that form by means of condensation on grass, spider webs, and other cool surfaces in the early morning or late evening.
+
+discharge --the volume of water that passes a given location within a given period of time. Usually expressed in cubic feet per second .
+
+domestic water use --water used for household purposes, such as drinking, food preparation, bathing, washing clothes, dishes, and dogs, flushing toilets, and watering lawns and gardens. About 85% of domestic water is delivered to homes by a public-supply facility, such as a county water department. About 15% of the Nation's population supply their own water, mainly from wells .
+
+drainage basin --land area where precipitation runs off into streams , rivers , lakes , and reservoirs . It is a land feature that can be identified by tracing a line along the highest elevations between two areas on a map, often a ridge. Large drainage basins, like the area that drains into the Mississippi River contain thousands of smaller drainage basins. Also called a " watershed ."
+
+drawdown --a lowering of the groundwater surface caused by pumping.
+
+drought --a period of drier-than-normal conditions that results in water-related problems.
+
+drip irrigation --a common irrigation method where pipes or tubes filled with water slowly drip onto crops. Drip irrigation is a low-pressure method of irrigation and less water is lost to evaporation than high-pressure spray irrigation.
+
+effluent --water that flows from a sewage treatment plant after it has been treated.
+
+erosion --the process in which a material is worn away by a stream of liquid (water) or air, often due to the presence of abrasive particles in the stream.
+
+estuary --a place where fresh and salt water mix, such as a bay , salt marsh , or where a river enters an ocean .
+
+evaporation --the process of liquid water becoming water vapor , including vaporization from water surfaces, land surfaces, and snow fields, but not from leaf surfaces.
+
+evapotranspiration --the sum of evaporation and transpiration .
+
+fish-hatchery water use– See aquaculture water use, commercial water use, and animal specialities water use.
+
+flood --An overflow of water onto lands that are used or usable by man and not normally covered by water. Floods have two essential characteristics: The inundation of land is temporary; and the land is adjacent to and inundated by overflow from a river , stream , lake , or ocean .
+
+flood, 100-year --A 100-year flood does not refer to a flood that occurs once every 100 years, but to a flood level with a 1 percent chance of being equaled or exceeded in any given year.
+
+flood plain --a strip of relatively flat and normally dry land alongside a stream , river , or lake that is covered by water during a flood.
+
+flood stage --The elevation at which overflow of the natural banks of a stream or body of water begins in the reach or area in which the elevation is measured.
+
+floodway --The channel of a river or stream and the parts of the floodplain adjoining the channel that are reasonably required to efficiently carry and discharge the flood water or flood flow of a river or stream.
+
+flowing well/spring --a well or spring that taps groundwater under pressure so that water rises without pumping. If the water rises above the surface, it is known as a flowing well.
+
+freshwater, fresh water --water that contains less than 1,000 milligrams per liter (mg/L) of dissolved solids; generally, more than 500 mg/L of dissolved solids is undesirable for drinking and many industrial uses .
+
+fuel-electric power – see thermoelectric power water use .
+
+gage height --the height of the water surface above the gage datum (zero point). Gage height is often used interchangeably with the more general term, stage , although gage height is more appropriate when used with a gage reading.
+
+gaging station --a site on a stream , lake , reservoir or other body of water where observations and hydrologic data are obtained. The U.S. Geological Survey measures stream discharge at gaging stations.
+
+geyser --a geothermal feature of the Earth where there is an opening in the surface that contains superheated water that periodically erupts in a shower of water and steam .
+
+giardiasis --a disease that results from an infection by the protozoan parasite Giardia Intestinalis, caused by drinking water that is either not filtered or not chlorinated. The disorder is more prevalent in children than in adults and is characterized by abdominal discomfort, nausea, and alternating constipation and diarrhea.
+
+glacier --a huge mass of ice , formed on land by the compaction and recrystallization of snow , that moves very slowly downslope or outward due to its own weight.
+
+greywater -- wastewater from clothes washing machines, showers, bathtubs, hand washing, lavatories and sinks.
+
+groundwater --(1) water that flows or seeps downward and saturates soil or rock, supplying springs and wells . The upper surface of the saturate zone is called the water table . (2) Water stored underground in rock crevices and in the pores of geologic materials that make up the Earth's crust.
+
+groundwater, confined --groundwater under pressure significantly greater than atmospheric, with its upper limit the bottom of a bed with hydraulic conductivity distinctly lower than that of the material in which the confined water occurs.
+
+groundwater recharge --inflow of water to a groundwater reservoir from the surface. Infiltration of precipitation and its movement to the water table is one form of natural recharge . Also, the volume of water added by this process.
+
+groundwater, unconfined --water in an aquifer that has a water table that is exposed to the atmosphere .
+
+hardness --a water-quality indication of the concentration of alkaline salts in water, mainly calcium and magnesium. If the water you use is "hard" then more soap, detergent or shampoo is necessary to raise a lather.
+
+headwater(s) --(1) the source and upper reaches of a stream ; also the upper reaches of a reservoir . (2) the water upstream from a structure or point on a stream. (3) the small streams that come together to form a river . Also may be thought of as any and all parts of a river basin except the mainstream river and main tributaries .
+
+hydroelectric power water use --the use of water in the generation of electricity at plants where the turbine generators are driven by falling water.
+
+hydrologic cycle --the cyclic transfer of water vapor from the Earth's surface via evapotranspiration into the atmosphere, from the atmosphere via precipitation back to earth, and through runoff into streams , rivers , and lakes , and ultimately into the oceans .
+
+ice --water in it's solid state. Water turns to ice at 32 degrees Fahrenheit.
+
+impermeable layer --a layer of solid material, such as rock or clay, which does not allow water to pass through.
+
+industrial water use --water used for industrial purposes in such industries as steel, chemical, paper, and petroleum refining. Nationally, water for industrial uses comes mainly (80%) from self-supplied sources , such as a local wells or withdrawal points in a river , but some water comes from public-supplied sources , such as the county/city water department.
+
+infiltration --flow of water from the land surface into the subsurface.
+
+injection well --refers to a well constructed for the purpose of injecting treated wastewater directly into the ground. Wastewater is generally forced (pumped) into the well for dispersal or storage into a designated aquifer . Injection wells are generally drilled into aquifers that don't deliver drinking water, unused aquifers, or below freshwater levels.
+
+instream use-- water that is used, but not withdrawn, from a surface-water source for such purposes as hydroelectric-power generation, navigation, water-quality improvement, fish propagation, and recreation.
+
+interbasin transfer --A transfer of water from one river basin to another. Interbasin transfers may be tracked or regulated for different levels of watersheds such as a hydrologic unit level or a set of basin delineations made by a regulatory authority.
+
+irrigation --the controlled application of water for agricultural purposes through manmade systems to supply water requirements not satisfied by rainfall.
+
+irrigation water use --water application on lands to assist in the growing of crops and pastures or to maintain vegetative growth in recreational lands, such as parks and golf courses.
+
+kilogram --one thousand grams.
+
+kilowatthour (KWH) --a power demand of 1,000 watts for one hour. Power company utility rates are typically expressed in cents per kilowatt-hour.
+
+lake --where surface-water runoff (and maybe some groundwater seepage ) have accumulated in a low spot, relative to the surrounding countryside.
+
+leaching --the process by which soluble materials in the soil, such as salts, nutrients, pesticide chemicals or contaminants, are washed into a lower layer of soil or are dissolved and carried away by water.
+
+lentic waters --ponds or lakes (standing water).
+
+levee --a natural or manmade earthen barrier along the edge of a stream , lake , or river . Land alongside rivers can be protected from flooding by levees.
+
+livestock water use --water used for livestock watering, feed lots, dairy operations, fish farming, and other on-farm needs.
+
+lotic waters --flowing waters, as in streams and rivers .
+
+marsh --a primarily grassy area where water covers the ground most of the time. A marsh may be prone to flooding during wet seasons.
+
+maximum contaminant level (MCL) --the designation given by the U.S. Environmental Protection Agency (EPA) to water-quality standards promulgated under the Safe Drinking Water Act. The MCL is the greatest amount of a contaminant that can be present in drinking water without causing a risk to human health.
+
+microirrigation system-- an irrigation system that wets only a discrete portion of the soil surface in the vicinity of the plant by means of applicators (such as orifices, emitters, porous tubing, or perforated pipe) and operated under low pressure.
+
+milligram (mg) --One-thousandth of a gram.
+
+milligrams per liter (mg/l) --a unit of the concentration of a constituent in water or wastewater . It represents 0.001 gram of a constituent in 1 liter of water. It is approximately equal to one part per million (PPM).
+
+million gallons per day (Mgal/d) --a rate of flow of water equal to 133,680.56 cubic feet per day, or 1.5472 cubic feet per second, or 3.0689 acre-feet per day. A flow of one million gallons per day for one year equals 1,120 acre-feet (365 million gallons).
+
+mining water use --water use during quarrying rocks and extracting minerals from the land.
+
+municipal water system --a water system that has at least five service connections or which regularly serves 25 individuals for 60 days; also called a public water system
+
+municipal water use --public supply water use. Term used in 1950 water-use circular.
+
+nephelometric turbidity unit (NTU) --unit of measure for the turbidity of water. Essentially, a measure of the cloudiness of water as measured by a nephelometer. Turbidity is based on the amount of light that is reflected off particles in the water.
+
+NAICS --North American Industry Classification System –classification system used by Federal statistical agencies to classify establishments according to type of production or other economic activity. NAICS was adopted in 1997 to replace the Standard Industrial Classification system.
+
+NAVD --The North American Vertical Datum of 1988 (NAVD 88) is the vertical control datum established in 1991 by the minimum-constraint adjustment of the Canadian-Mexican-United States leveling observations. It held fixed the height of the primary tidal bench mark, referenced to the new International Great Lakes Datum of 1985 local mean sea level height value, at Father Point/Rimouski, Quebec, Canada.
+
+NGVD --National Geodetic Vertical Datum. (1) As corrected in 1929, a vertical control measure used as a reference for establishing varying elevations. (2) Elevation datum plane previously used by the Federal Emergency Management Agency (FEMA) for the determination of flood elevations. FEMA current uses the North American Vertical Datum Plane.
+
+NGVD of 1929 --National Geodetic Vertical Datum of 1929. A geodetic datum derived from a general adjustment of the first order level nets of the United States and Canada. It was formerly called "Sea Level Datum of 1929" or "mean sea level" in the USGS series of reports. Although the datum was derived from the average sea level over a period of many years at 26 tide stations along the Atlantic, Gulf of America, and Pacific Coasts, it does not necessarily represent local mean sea level at any particular place.
+
+non-point source (NPS) pollution --pollution discharged over a wide land area, not from one specific location. These are forms of diffuse pollution caused by sediment , nutrients, organic and toxic substances originating from land-use activities, which are carried to lakes and streams by surface runoff . Non-point source pollution is contamination that occurs when rainwater, snowmelt, or irrigation washes off plowed fields, city streets, or suburban backyards. As this runoff moves across the land surface, it picks up soil particles and pollutants, such as nutrients and pesticides.
+
+ocean --Earth's largest bodies of water are called oceans. They divide Earth's continents and contain saline water .
+
+offstream use –water withdrawn or diverted from a groundwater or surface-water source for aquaculture, commercial, domestic self-supply, industrial, irrigation, livestock, mining, public supply, thermoelectric power, and other uses .
+
+once-through cooling system –also known as open-loop cooling system. Cooling system in which the water is withdrawn from a source, circulated through the heat exchangers, and then returned to a body of water at a higher temperature.
+
+organic matter --plant and animal residues, or substances made by living organisms. All are based upon carbon compounds.
+
+osmosis --the movement of water molecules through a thin membrane. The osmosis process occurs in our bodies and is also one method of desalinating saline water .
+
+outfall --the place where a sewer , drain, or stream discharges ; the outlet or structure through which reclaimed water or treated effluent is finally discharged to a receiving water body.
+
+oxygen demand --the need for molecular oxygen to meet the needs of biological and chemical processes in water. Even though very little oxygen will dissolve in water, it is extremely important in biological and chemical processes.
+
+pH --a measure of the relative acidity or alkalinity of water. Water with a pH of 7 is neutral; lower pH levels indicate increasing acidity, while pH levels higher than 7 indicate increasingly basic solutions.
+
+particle size --the diameter, in millimeters, of suspended sediment or bed material. Particle-size classifications are: [1] Clay—0.00024-0.004 millimeters (mm); [2] Silt—0.004-0.062 mm; [3] Sand—0.062-2.0 mm; and [4] Gravel—2.0-64.0 mm.
+
+parts per billion --the number of "parts" by weight of a substance per billion parts of water. Used to measure extremely small concentrations.
+
+parts per million --the number of "parts" by weight of a substance per million parts of water. This unit is commonly used to represent pollutant concentrations.
+
+pathogen --a disease-producing agent; usually applied to a living organism. Generally, any viruses, bacteria, or fungi that cause disease.
+
+peak flow --the maximum instantaneous discharge of a stream or river at a given location. It usually occurs at or near the time of maximum stage .
+
+per capita use --the average amount of water used per person during a standard time period, generally per day.
+
+percentile --The value below which a given percentage of observations in a group of observations fall. For example, the 20th percentile is the value below which 20 percent of the observations may be found.
+
+percolation --(1) The movement of water through the openings in rock or soil. (2) the entrance of a portion of the streamflow into the channel materials to contribute to groundwater replenishment.
+
+permeability --the ability of a material to allow the passage of a liquid, such as water through rocks. Permeable materials, such as gravel and sand, allow water to move quickly through them, whereas impermeable material, such as clay, don't allow water to flow freely.
+
+point-source pollution --water pollution coming from a single point, such as a sewage -outflow pipe.
+
+polychlorinated biphenyls (PCBs) --a group of synthetic, toxic industrial chemical compounds once used in making paint and electrical transformers, which are chemically inert and not biodegradable. PCBs were frequently found in industrial wastes, and subsequently found their way into surface and groundwaters . As a result of their persistence, they tend to accumulate in the environment. In terms of streams and rivers , PCBs are drawn to sediment , to which they attach and can remain virtually indefinitely. Although virtually banned in 1979 with the passage of the Toxic Substances Control Act, they continue to appear in the flesh of fish and other animals.
+
+porosity --a measure of the water-bearing capacity of subsurface rock. With respect to water movement, it is not just the total magnitude of porosity that is important, but the size of the voids and the extent to which they are interconnected, as the pores in a formation may be open, or interconnected, or closed and isolated. For example, clay may have a very high porosity with respect to potential water content, but it constitutes a poor medium as an aquifer because the pores are usually so small.
+
+potable water --water of a quality suitable for drinking.
+
+potentiometric surface/piezometric surface --the imaginary line where a given reservoir of fluid will "equalize out to" if allowed to flow; a potentiometric surface is based on hydraulic principles.
+
+precipitation --rain, snow , hail, sleet, dew , and frost.
+
+primary wastewater treatment --the first stage of the wastewater-treatment process where mechanical methods, such as filters and scrapers, are used to remove pollutants. Solid material in sewage also settles out in this process.
+
+prior appropriation doctrine --the system for allocating water to private individuals used in most Western states. The doctrine of Prior Appropriation was in common use throughout the arid West as early settlers and miners began to develop the land. The prior appropriation doctrine is based on the concept of "First in Time, First in Right." The first person to take a quantity of water and put it to beneficial use has a higher priority of right than a subsequent user. The rights can be lost through nonuse; they can also be sold or transferred apart from the land. Contrasts with riparian water rights.
+
+public supply --water withdrawn by public governments and agencies, such as a county water department, and by private companies that is then delivered to users. Public suppliers provide water for domestic, commercial, thermoelectric power, industrial, and public water users. Most people's household water is delivered by a public water supplier . The systems have at least 15 service connections (such as households, businesses, or schools) or regularly serve at least 25 individuals daily for at least 60 days out of the year.
+
+public-supply water use –water withdrawn by public and private water suppliers that furnish water to at least 25 people or have a minimum of 15 connections. Public suppliers provide water for a variety of uses, such as domestic, commercial, industrial, thermoelectric-power, and public water use. See also commercial water use, domestic water use, industrial water use, public-supply deliveries, public water use, and thermoelectric-power water use.
+
+public-supply deliveries –amount of water delivered from a public supplier to users for domestic, commercial, industrial, thermoelectric-power, or public-use purposes.
+
+public water use --water supplied from a public-water supply and used for such purposes as firefighting, street washing, and municipal parks and swimming pools.
+
+rating curve --A drawn curve showing the relation between gage height and discharge of a stream at a given gaging station.
+
+reach --any length of a stream or river . The term is often used by hydrologists when they’re referring to a small section of a stream or river rather than its entire length.
+
+recharge --water added to an aquifer . For instance, rainfall that seeps into the ground.
+
+recirculating cooling system –also known as closed-loop cooling system. Water is withdrawn from a source, circulated through heat exchangers, cooled, and then re-used in the same process. Recirculating cooling systems may use induced draft cooling towers, forced draft cooling towers, natural draft cooling towers, cooling ponds, or canals.
+
+reclaimed wastewater -- wastewater-treatment plant effluent that has been diverted for beneficial uses such as irrigation , industry, or thermoelectric cooling instead of being released to a natural waterway or aquifer .
+
+recycled water --water that is used more than one time before it passes back into the natural hydrologic system.
+
+reservoir --a pond, lake , or basin , either natural or artificial, for the storage, regulation, and control of water.
+
+return flow --(1) That part of a diverted flow that is not consumptively used and returned to its original source or another body of water. (2) ( Irrigation ) Drainage water from irrigated farmlands that re-enters the water system to be used further downstream.
+
+return flow (irrigation) -- irrigation water that is applied to an area and which is not consumed in evaporation or transpiration and returns to a surface stream or aquifer .
+
+reverse osmosis --(1) ( Desalination ) The process of removing salts from water using a membrane. With reverse osmosis, the product water passes through a fine membrane that the salts are unable to pass through, while the salt waste (brine) is removed and disposed. This process differs from electrodialysis, where the salts are extracted from the feedwater by using a membrane with an electrical current to separate the ions. The positive ions go through one membrane, while the negative ions flow through a different membrane, leaving the end product of freshwater . (2) (Water Quality) An advanced method of water or wastewater treatment that relies on a semi-permeable membrane to separate waters from pollutants. An external force is used to reverse the normal osmotic process resulting in the solvent moving from a solution of higher concentration to one of lower concentration.
+
+riparian water rights --the rights of an owner whose land abuts water. They differ from state to state and often depend on whether the water is a river , lake , or ocean . The doctrine of riparian rights is an old one, having its origins in English common law. Specifically, persons who own land adjacent to a stream have the right to make reasonable use of the stream. Riparian users of a stream share the streamflow among themselves, and the concept of priority of use (Prior Appropriation Doctrine) is not applicable. Riparian rights cannot be sold or transferred for use on nonriparian land.
+
+river --A natural stream of water of considerable volume , larger than a brook or creek .
+
+runoff --(1) That part of the precipitation , snow melt, or irrigation water that appears in uncontrolled surface streams , rivers , drains or sewers . Runoff may be classified according to speed of appearance after rainfall or melting snow as direct runoff or base runoff, and according to source as surface runoff, storm interflow, or groundwater runoff. (2) The total discharge described in (1), above, during a specified period of time. (3) Also defined as the depth to which a drainage area would be covered if all of the runoff for a given period of time were uniformly distributed over it.
+
+rural water use –self-supplied water used in suburban or farm areas for domestic and livestock needs, and includes domestic use, drinking water for livestock, and other uses such as dairy sanitation, cleaning, and waste disposal.
+
+saline water --water that contains significant amounts of dissolved solids.
+
+Here are our parameters for saline water: Fresh water - Less than 1,000 parts per million (ppm) Slightly saline water - From 1,000 ppm to 3,000 ppm Moderately saline water - From 3,000 ppm to 10,000 ppm Highly saline water - From 10,000 ppm to 35,000 ppm
+
+sea --a body of water that is smaller than an ocean and usually located where the land and ocean meet.
+
+secondary wastewater treatment --treatment (following primary wastewater treatment) involving the biological process of reducing suspended, colloidal, and dissolved organic matter in effluent from primary treatment systems and which generally removes 80 to 95 percent of the Biochemical Oxygen Demand (BOD) and suspended matter. Secondary wastewater treatment may be accomplished by biological or chemical-physical methods. Activated sludge and trickling filters are two of the most common means of secondary treatment. It is accomplished by bringing together waste, bacteria, and oxygen in trickling filters or in the activated sludge process. This treatment removes floating and settleable solids and about 90 percent of the oxygen-demanding substances and suspended solids. Disinfection is the final stage of secondary treatment.
+
+sediment --usually applied to material in suspension in water or recently deposited from suspension. In the plural the word is applied to all kinds of deposits from the waters of streams , lakes , or seas.
+
+sedimentary rock --rock formed of sediment, and specifically: (1) sandstone and shale, formed of fragments of other rock transported from their sources and deposited in water; and (2) rocks formed by or from secretions of organisms, such as most limestone. Many sedimentary rocks show distinct layering, which is the result of different types of sediment being deposited in succession.
+
+sedimentation tanks --wastewater tanks in which floating wastes are skimmed off and settled solids are removed for disposal.
+
+self-supplied water use --water withdrawn from a surface- or groundwater source by a user rather than being obtained from a public supply . An example would be homeowners getting their water from their own well .
+
+seepage --(1) The slow movement of water through small cracks, pores, Interstices, etc., of a material into or out of a body of surface or subsurface water. (2) The loss of water by infiltration into the soil from a canal, ditches, laterals, watercourse, reservoir , storage facilities, or other body of water, or from a field.
+
+septic tank --a tank used to detain domestic wastes to allow the settling of solids prior to distribution to a leach field for soil absorption. Septic tanks are used when a sewer line is not available to carry them to a treatment plant. A settling tank in which settled sludge is in immediate contact with sewage flowing through the tank, and wherein solids are decomposed by anaerobic bacterial action.
+
+settling pond (water quality) --an open lagoon into which wastewater contaminated with solid pollutants is placed and allowed to stand. The solid pollutants suspended in the water sink to the bottom of the lagoon and the liquid is allowed to overflow out of the enclosure.
+
+sewage treatment plant --a facility designed to receive the wastewater from domestic sources and to remove materials that damage water quality and threaten public health and safety when discharged into receiving streams or bodies of water. The substances removed are classified into four basic areas: [1] greases and fats; [2] solids from human waste and other sources; [3] dissolved pollutants from human waste and decomposition products; and [4] dangerous microorganisms. Most facilities employ a combination of mechanical removal steps and bacterial decomposition to achieve the desired results. Chlorine is often added to discharges from the plants to reduce the danger of spreading disease by the release of pathogenic bacteria.
+
+sewer --a system of underground pipes that collect and deliver wastewater to treatment facilities or streams.
+
+sinkhole --a depression in the Earth's surface caused by dissolving of underlying limestone, salt, or gypsum. Drainage is provided through underground channels that may be enlarged by the collapse of a cavern roof.
+
+snow --precipitation in the form of ice crystals. Snow forms when the air temperature is at or below 32 degrees Fahrenheit.
+
+solute --a substance that is dissolved in another substance, thus forming a solution.
+
+solution --a mixture of a solvent and a solute. In some solutions, such as sugar water, the substances mix so thoroughly that the solute cannot be seen. But in other solutions, such as water mixed with dye, the solution is visibly changed.
+
+solvent --a substance that dissolves other substances, thus forming a solution. Water dissolves more substances than any other, and is known as the "universal solvent".
+
+specific conductance --a measure of the ability of water to conduct an electrical current as measured using a 1-cm cell and expressed in units of electrical conductance, i.e., Siemens per centimeter at 25 degrees Celsius. Specific conductance can be used for approximating the total dissolved solids content of water by testing its capacity to carry an electrical current. In water quality, specific conductance is used in groundwater monitoring as an indication of the presence of ions of chemical substances that may have been released by a leaking landfill or other waste storage or disposal facility. A higher specific conductance in water drawn from downgradient wells when compared to upgradient wells indicates possible contamination from the facility.
+
+sprain --an archaic term (1600's) referring to a spring or branch of a river . Spelling was "sprayne".
+
+spray irrigation --an common irrigation method where water is shot from high-pressure sprayers onto crops. Because water is shot high into the air onto crops, some water is lost to evaporation .
+
+spring --a water body formed when the side of a hill, a valley bottom or other excavation intersects a flowing body of groundwater at or below the local water table , below which the subsurface material is saturated with water.
+
+sprinkler irrigation system– an irrigation system in which water is applied by means of perforated pipes or nozzles operated under pressure so as to form a spray pattern.
+
+stage --the water level above some arbitrary point in the river and is commonly measured in feet.
+
+Standard Industrial Classification (SIC) codes –codes established by the Office of Management and Budget in 1987 and used in the classification of establishments by type of activity in which they are engaged. Largely replaced by the North American Industry Classification System (NAICS).
+
+steam --water in a gas state. See vapor
+
+storm sewer --a sewer that carries only surface runoff , street wash, and snow melt from the land. In a separate sewer system, storm sewers are completely separate from those that carry domestic and commercial wastewater (sanitary sewers).
+
+stream --a general term for a body of flowing water; natural water course containing water at least part of the year. In hydrology, it is generally applied to the water flowing in a natural channel as distinct from a canal.
+
+streamflow --the water discharge that occurs in a natural channel. A more general term than runoff , streamflow may be applied to discharge whether or not it is affected by diversion or regulation.
+
+subsidence --a dropping of the land surface as a result of groundwater being pumped. Cracks and fissures can appear in the land. Subsidence is virtually an irreversible process.
+
+supernatum --the top level of a fluid at rest; important in many applications of water and wastewater treatment. In particular, it is of concern and often measured in settling tanks and skimmers.
+
+surface irrigation system– irrigation by means of flood, furrow, or gravity. Flood irrigation is the application of irrigation water in which the entire soil surface is covered by ponded water. Furrow is a partial surface-flooding method of irrigation normally used with clean-tilled crops in which water is applied in furrows or rows of sufficient capacity to contain the design irrigation stream. Gravity is an irrigation method in which water is not pumped, but flows in ditches or pipes and is distributed by gravity.
+
+surface tension --the attraction of molecules to each other on a liquid's surface. Thus, a barrier is created between the air and the liquid.
+
+surface water --water that is on the Earth's surface, such as in a stream, river , lake , or reservoir .
+
+suspended sediment --very fine soil particles that remain in suspension in water for a considerable period of time without contact with the bottom. Such material remains in suspension due to the upward components of turbulence and currents and/or by suspension.
+
+suspended-sediment concentration --the ratio of the mass of dry sediment in a water-sediment mixture to the mass of the water-sediment mixture. Typically expressed in milligrams of dry sediment per liter of water-sediment mixture.
+
+suspended-sediment discharge --the quantity of suspended sediment passing a point in a stream over a specified period of time. When expressed in tons per day, it is computed by multiplying water discharge (in cubic feet per second) by the suspended-sediment concentration (in milligrams per liter) and by the factor 0.0027.
+
+suspended solids --solids that are not in true solution and that can be removed by filtration. Such suspended solids usually contribute directly to turbidity. Defined in waste management, these are small particles of solid pollutants that resist separation by conventional methods.
+
+tertiary wastewater treatment --selected biological, physical, and chemical separation processes to remove organic and inorganic substances that resist conventional treatment practices; the additional treatment of effluent beyond that of primary and secondary treatment methods to obtain a very high quality of effluent. The complete wastewater treatment process typically involves a three-phase process: (1) First, in the primary wastewater treatment process, which incorporates physical aspects, untreated water is passed through a series of screens to remove solid wastes; (2) Second, in the secondary wastewater treatment process, typically involving biological and chemical processes, screened wastewater is then passed a series of holding and aeration tanks and ponds; and (3) Third, the tertiary wastewater treatment process consists of flocculation basins, clarifiers, filters, and chlorine basins or ozone or ultraviolet radiation processes.
+
+thermal pollution --a reduction in water quality caused by increasing its temperature, often due to disposal of waste heat from industrial or power generation processes. Thermally polluted water can harm the environment because plants and animals can have a hard time adapting to it.
+
+thermoelectric power water use --water used in the process of the generation of thermoelectric power. Power plants that burn coal and oil are examples of thermoelectric-power facilities.
+
+transmissibility (groundwater) --the capacity of a rock to transmit water under pressure. The coefficient of transmissibility is the rate of flow of water, at the prevailing water temperature, in gallons per day, through a vertical strip of the aquifer one foot wide, extending the full saturated height of the aquifer under a hydraulic gradient of 100-percent. A hydraulic gradient of 100-percent means a one foot drop in head in one foot of flow distance.
+
+transpiration --process by which water that is absorbed by plants, usually through the roots, is evaporated into the atmosphere from the plant surface, such as leaf pores. See evapotranspiration .
+
+tributary --a smaller river or stream that flows into a larger river or stream. Usually, a number of smaller tributaries merge to form a river.
+
+turbidity --the amount of solid particles that are suspended in water and that cause light rays shining through the water to scatter. Thus, turbidity makes the water cloudy or even opaque in extreme cases. Turbidity is measured in nephelometric turbidity units (NTU).
+
+unsaturated zone --the zone immediately below the land surface where the pores contain both water and air, but are not totally saturated with water. These zones differ from an aquifer , where the pores are saturated with water.
+
+vapor --created when a substance (such as water) is in a gas state. Particles of the substance will be suspended or diffused in the air. See evaporation
+
+volume --the amount of space that a substance (such as water) occupies.
+
+wastewater --water that has been used in homes, industries, and businesses that is not for reuse unless it is treated.
+
+wastewater-treatment return flow --water returned to the environment by wastewater-treatment facilities.
+
+water cycle --the circuit of water movement from the oceans to the atmosphere and to the Earth and return to the atmosphere through various stages or processes such as precipitation , interception, runoff , infiltration , percolation, storage, evaporation , and transportation.
+
+water year --a continuous 12-month period selected to present data relative to hydrologic or meteorological phenomena during which a complete annual hydrologic cycle normally occurs. The water year used by the U.S. Geological Survey runs from October 1 through September 30, and is designated by the year in which it ends.
+
+water power, waterpower –hydroelectric power water use
+
+water quality --a term used to describe the chemical, physical, and biological characteristics of water, usually in respect to its suitability for a particular purpose.
+
+water table --the top of the water surface in the saturated part of an aquifer .
+
+water use --water that is used for a specific purpose, such as for domestic use, irrigation , or industrial processing. Water use pertains to human's interaction with and influence on the hydrologic cycle , and includes elements, such as water withdrawal from surface- and groundwater sources, water delivery to homes and businesses, consumptive use of water, water released from wastewater-treatment plants, water returned to the environment, and instream uses, such as using water to produce hydroelectric power .
+
+watershed --the land area that drains water to a particular stream , river , or lake . It is a land feature that can be identified by tracing a line along the highest elevations between two areas on a map, often a ridge. Large watersheds, like the Mississippi River basin contain thousands of smaller watersheds.
+
+watthour (Wh) --an electrical energy unit of measure equal to one watt of power supplied to, or taken from, an electrical circuit steadily for one hour.
+
+well (water) --an artificial excavation put down by any method for the purposes of withdrawing water from the underground aquifers . A bored, drilled, or driven shaft, or a dug hole whose depth is greater than the largest surface dimension and whose purpose is to reach undergroundwater supplies or oil, or to store or bury fluids below ground.
+
+withdrawal --water removed from a ground- or surface-water source for use.
+
+xeriscaping --a method of landscaping that uses plants that are well adapted to the local area and are drought-resistant. Xeriscaping is becoming more popular as a way of saving water at home.
+
+yield --mass per unit time per unit area
+
+Some of this information is courtesy of the Nevada Division of Water Resources.

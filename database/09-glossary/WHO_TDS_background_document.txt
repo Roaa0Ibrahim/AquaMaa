@@ -1,0 +1,279 @@
+                                                                                WHO/SDE/WSH/03.04/16
+
+                                                                                                             English only
+
+     Total dissolved solids in Drinking-water
+
+             Background document for development of
+           WHO Guidelines for Drinking-water Quality
+
+__________________
+
+Originally published in Guidelines for drinking-water quality, 2nd ed. Vol. 2. Health criteria and
+other supporting information. World Health Organization, Geneva, 1996.
+© World Health Organization 2003
+
+All rights reserved. Publications of the World Health Organization can be obtained from Marketing and
+Dissemination, World Health Organization, 20 Avenue Appia, 1211 Geneva 27, Switzerland (tel: +41
+22 791 2476; fax: +41 22 791 4857; email: bookorders@who.int).
+
+Requests for permission to reproduce or translate WHO publications - whether for sale or for
+noncommercial distribution - should be addressed to Publications, at the above address (fax: +41 22
+791 4806; email: permissions@who.int).
+
+The designations employed and the presentation of the material in this publication do not imply the
+expression of any opinion whatsoever on the part of the World Health Organization concerning the
+legal status of any country, territory, city or area or of its authorities, or concerning the delimitation of
+its frontiers or boundaries.
+
+The mention of specific companies or of certain manufacturers' products does not imply that they are
+endorsed or recommended by the World Health Organization in preference to others of a similar nature
+that are not mentioned. Errors and omissions excepted, the names of proprietary products are
+distinguished by initial capital letters.
+
+The World Health Organization does not warrant that the information contained in this publication is
+complete and correct and shall not be liable for any damages incurred as a result of its use
+                                               Preface
+
+One of the primary goals of WHO and its member states is that "all people, whatever
+their stage of development and their social and economic conditions, have the right to
+have access to an adequate supply of safe drinking water." A major WHO function to
+achieve such goals is the responsibility "to propose regulations, and to make
+recommendations with respect to international health matters ...."
+
+The first WHO document dealing specifically with public drinking-water quality was
+published in 1958 as International Standards for Drinking-Water. It was subsequently
+revised in 1963 and in 1971 under the same title. In 1984­1985, the first edition of the
+WHO Guidelines for drinking-water quality (GDWQ) was published in three
+volumes: Volume 1, Recommendations; Volume 2, Health criteria and other
+supporting information; and Volume 3, Surveillance and control of community
+supplies. Second editions of these volumes were published in 1993, 1996 and 1997,
+respectively. Addenda to Volumes 1 and 2 of the second edition were published in
+1998, addressing selected chemicals. An addendum on microbiological aspects
+reviewing selected microorganisms was published in 2002.
+
+The GDWQ are subject to a rolling revision process. Through this process, microbial,
+chemical and radiological aspects of drinking-water are subject to periodic review,
+and documentation related to aspects of protection and control of public drinking-
+water quality is accordingly prepared/updated.
+
+Since the first edition of the GDWQ, WHO has published information on health
+criteria and other supporting information to the GDWQ, describing the approaches
+used in deriving guideline values and presenting critical reviews and evaluations of
+the effects on human health of the substances or contaminants examined in drinking-
+water.
+
+For each chemical contaminant or substance considered, a lead institution prepared a
+health criteria document evaluating the risks for human health from exposure to the
+particular chemical in drinking-water. Institutions from Canada, Denmark, Finland,
+France, Germany, Italy, Japan, Netherlands, Norway, Poland, Sweden, United
+Kingdom and United States of America prepared the requested health criteria
+documents.
+
+Under the responsibility of the coordinators for a group of chemicals considered in the
+guidelines, the draft health criteria documents were submitted to a number of
+scientific institutions and selected experts for peer review. Comments were taken into
+consideration by the coordinators and authors before the documents were submitted
+for final evaluation by the experts meetings. A "final task force" meeting reviewed the
+health risk assessments and public and peer review comments and, where appropriate,
+decided upon guideline values. During preparation of the third edition of the GDWQ,
+it was decided to include a public review via the world wide web in the process of
+development of the health criteria documents.
+
+During the preparation of health criteria documents and at experts meetings, careful
+consideration was given to information available in previous risk assessments carried
+out by the International Programme on Chemical Safety, in its Environmental Health
+Criteria monographs and Concise International Chemical Assessment Documents, the
+International Agency for Research on Cancer, the joint FAO/WHO Meetings on
+Pesticide Residues, and the joint FAO/WHO Expert Committee on Food Additives
+(which evaluates contaminants such as lead, cadmium, nitrate and nitrite in addition to
+food additives).
+
+Further up-to-date information on the GDWQ and the process of their development is
+available on the WHO internet site and in the current edition of the GDWQ.
+                                       Acknowledgements
+
+The work of the following coordinators was crucial in the development of this
+background document for development of WHO Guidelines for drinking-water
+quality:
+
+         J.K. Fawell, Water Research Centre, United Kingdom
+         (inorganic constituents)
+         U. Lund, Water Quality Institute, Denmark
+         (organic constituents and pesticides)
+         B. Mintz, Environmental Protection Agency, USA
+         (disinfectants and disinfectant by-products)
+
+The WHO coordinators were as follows:
+
+         Headquarters:
+         H. Galal-Gorchev, International Programme on Chemical Safety
+         R. Helmer, Division of Environmental Health
+
+         Regional Office for Europe:
+         X. Bonnefoy, Environment and Health
+         O. Espinoza, Environment and Health
+
+Ms Marla Sheffer of Ottawa, Canada, was responsible for the scientific editing of the
+document.
+
+The efforts of all who helped in the preparation and finalization of this document,
+including those who drafted and peer reviewed drafts, are gratefully acknowledged.
+
+The convening of the experts meetings was made possible by the financial support afforded to
+WHO by the Danish International Development Agency (DANIDA), Norwegian Agency for
+Development Cooperation (NORAD), the United Kingdom Overseas Development
+Administration (ODA) and the Water Services Association in the United Kingdom, the
+Swedish International Development Authority (SIDA), and the following sponsoring
+countries: Belgium, Canada, France, Italy, Japan, Netherlands, United Kingdom of Great
+Britain and Northern Ireland and United States of America.
+GENERAL DESCRIPTION
+
+Identity
+
+Total dissolved solids (TDS) is the term used to describe the inorganic salts and small
+amounts of organic matter present in solution in water. The principal constituents are usually
+calcium, magnesium, sodium, and potassium cations and carbonate, hydrogencarbonate,
+chloride, sulfate, and nitrate anions.
+
+Organoleptic properties
+
+The presence of dissolved solids in water may affect its taste (1). The palatability of drinking-
+water has been rated by panels of tasters in relation to its TDS level as follows: excellent, less
+than 300 mg/litre; good, between 300 and 600 mg/litre; fair, between 600 and 900 mg/litre;
+poor, between 900 and 1200 mg/litre; and unacceptable, greater than 1200 mg/litre (1). Water
+with extremely low concentrations of TDS may also be unacceptable because of its flat,
+insipid taste.
+
+ANALYTICAL METHODS
+
+The method of determining TDS in water supplies most commonly used is the measurement
+of specific conductivity with a conductivity probe that detects the presence of ions in water.
+Conductivity measurements are converted into TDS values by means of a factor that varies
+with the type of water (2,3). The practical quantitation limit for TDS in water by this method
+is 10 mg/litre (M. Forbes, personal communication, 1988). High TDS concentrations can also
+be measured gravimetrically, although volatile organic compounds are lost by this method
+(4). The constituents of TDS can also be measured individually.
+
+ENVIRONMENTAL LEVELS AND HUMAN EXPOSURE
+
+Water
+
+TDS in water supplies originate from natural sources, sewage, urban and agricultural run-off,
+and industrial wastewater. Salts used for road de-icing can also contribute to the TDS loading
+of water supplies.
+
+Concentrations of TDS from natural sources have been found to vary from less than 30
+mg/litre to as much as 6000 mg/litre (5), depending on the solubilities of minerals in different
+geological regions. Thus values, expressed as the sum of the constituents, were below 500
+mg/litre in 36 of 41 rivers monitored in Canada (6), while, in a survey of the Great Lakes,
+levels ranged from 65 to 227 mg/litre (7). The levels of TDS in all of the Great Lakes except
+Lake Superior have increased in the last 70 years, by 50­60 mg/litre in Lakes Erie and
+Ontario (7­10). Between 1960 and 1980, a threefold increase in TDS was observed in the
+Kent River, Australia (5). Between 1955 and 1970, a tenfold increase in the salinity of the
+groundwater at Burlington, MA, was noted, resulting from road de-icing. The use of de-icing
+chemicals was prohibited thereafter (5).
+
+EFFECTS ON HUMANS
+
+No recent data on health effects associated with the ingestion of TDS in drinking-water
+appear to exist; however, associations between various health effects and hardness, rather
+than TDS content, have been investigated in many studies (see Hardness).
+
+In early studies, inverse relationships were reported between TDS concentrations in drinking-
+water and the incidence of cancer (11), coronary heart disease (12), arteriosclerotic heart
+
+                                                              1
+disease (13), and cardiovascular disease (14,15). Total mortality rates were reported to be
+inversely correlated with TDS levels in drinking-water (15,16).
+
+It was reported in a summary of a study in Australia that mortality from all categories of
+ischaemic heart disease and acute myocardial infarction was increased in a community with
+high levels of soluble solids, calcium, magnesium, sulfate, chloride, fluoride, alkalinity, total
+hardness, and pH when compared with one in which levels were lower (17). No attempts were
+made to relate mortality from cardiovascular disease to other potential confounding factors.
+
+The results of a limited epidemiological study in the former Soviet Union indicated that the
+average number of "cases" of inflammation of the gallbladder and gallstones over a 5-year
+period increased with the mean level of dry residue in the groundwater (18). It should be
+noted, however, that the number of "cases" varied greatly from year to year in one district, as
+did the concentration of dry residue in each district, and no attempt was made to take possible
+confounding factors into account.
+
+OTHER CONSIDERATIONS
+
+Certain components of TDS, such as chlorides, sulfates, magnesium, calcium, and carbonates,
+affect corrosion or encrustation in water-distribution systems (4). High TDS levels (>500
+mg/litre) result in excessive scaling in water pipes, water heaters, boilers, and household
+appliances such as kettles and steam irons (19). Such scaling can shorten the service life of
+these appliances (20).
+
+CONCLUSIONS
+
+Reliable data on possible health effects associated with the ingestion of TDS in drinking-
+water are not available. The results of early epidemiological studies suggest that even low
+concentrations of TDS in drinking-water may have beneficial effects, although adverse effects
+have been reported in two limited investigations.
+
+Water containing TDS concentrations below 1000 mg/litre is usually acceptable to
+consumers, although acceptability may vary according to circumstances. However, the
+presence of high levels of TDS in water may be objectionable to consumers owing to the
+resulting taste and to excessive scaling in water pipes, heaters, boilers, and household
+appliances (see also the section on Hardness). Water with extremely low concentrations of
+TDS may also be unacceptable to consumers because of its flat, insipid taste; it is also often
+corrosive to water-supply systems.
+
+In areas where the TDS content of the water supply is very high, the individual constituents
+should be identified and the local public health authorities consulted. No health-based
+guideline value is proposed for TDS. However, drinking-water guidelines are available for
+some of its constituents, including boron, fluoride, and nitrate.
+
+REFERENCES
+
+1. Bruvold WH, Ongerth HJ. Taste quality of mineralized water. Journal of the American
+Water Works Association, 1969, 61:170.
+2. International Organization for Standardization. Water quality--determination of electrical
+conductivity. Geneva, 1985 (ISO 7888:1985).
+3. Singh T, Kalra YP. Specific conductance method for in situ estimation of total dissolved
+solids. Journal of the American Water Works Association, 1975, 67(2):99.
+4. Sawyer CN, McCarty PL. Chemistry for sanitary engineers, 2nd ed. New York, McGraw-
+Hill, 1967 (McGraw-Hill Series in Sanitary Science and Water Resources Engineering).
+5. WHO/UNEP, GEMS. Global freshwater quality. Oxford, Alden Press, 1989.
+
+                                                              2
+6. Department of Fisheries and Environment (Canada), Water Quality Branch. Surface water
+quality in Canada. An overview. Ottawa, 1977.
+7. Upper Lakes Reference Group. The waters of Lake Huron and Lake Superior. Report to the
+International Joint Commission, Vols. I-III, Parts A and B. Windsor, Canada, International
+Joint Commission, 1977.
+8. Beeton AM. Indices of Great Lakes eutrophication. Ann Arbor, MI, University of
+Michigan, Great Lakes Research Division, 1966:1-8 (Publication No. 15).
+9. Kormondy EJ. Concepts of ecology. Englewood Cliffs, NJ, Prentice-Hall, 1969:182-183.
+10. Vaughn JC, Reed PA. Quality status of southern Lake Michigan. Journal of the American
+Water Works Association, 1972, 62:103.
+11. Burton AC, Cornhill JF. Correlation of cancer death rates with altitude and with the
+quality of water supply of the 100 largest cities in the United States. Journal of toxicology and
+environmental health, 1977, 3(3):465-478.
+12. Schroeder HA. Relation between mortality from cardiovascular disease and treated water
+supplies. Variation in states and 163 largest municipalities. Journal of the American Medical
+Association, 1960, 172:1902.
+13. Schroeder HA. Municipal drinking water and cardiovascular death rates. Journal of the
+American Medical Association, 1966, 195:81-85.
+14. Sauer HI. Relationship between trace element content of drinking water and chronic
+disease. In: Trace metals in water supplies: occurrence, significance and control. University of
+Illinois bulletin, 1974, 71(108):39.
+15. Craun GF, McGabe LJ. Problems associated with metals in drinking water. Journal of the
+American Water Works Association, 1975, 67:593.
+16. Crawford M, Gardner MJ, Morris JN. Mortality and hardness of water. Lancet, 1968,
+1:1092.
+17. Meyers D. Mortality and water hardness. Lancet, 1975, 1:398-399.
+18. Popov VV. [On the question of a possible relationship between morbidity of the
+population with cholelithiasis and cholecystitis and the salt content and hardness of drinking-
+water.] Gigiena i sanitarija, 1968, 33(6):104-105 (in Russian).
+19. Tihansky DP. Economic damages from residential use of mineralized water supply. Water
+resources research, 1974, 10(2):145.
+20. McQuillan RG, Spenst PG. The addition of chemicals to apartment water supplies.
+Journal of the American Water Works Association, 1976, 68:415.
+
+                                                              3
+
