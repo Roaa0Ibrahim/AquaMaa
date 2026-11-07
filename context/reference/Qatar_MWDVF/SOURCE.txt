@@ -1,0 +1,8 @@
+Source: https://github.com/Kagiso-S-More/Qatar_MWDVF
+Author: Kagiso S. More
+Commit: 8870cf9c3f9c6ef70256ae486266559681e1cb23 (1 November 2026)
+Downloaded: 4 November 2026
+Contents: the Data folder, README.md and CITATION.cff, unchanged
+Licence: none. The README says no blanket open-source licence is specified.
+Citation: the repository asks users to cite it. See CITATION.cff.
+Original data: the README attributes the groundwater observations to original sources, including Shomar and Sankaran (2024).

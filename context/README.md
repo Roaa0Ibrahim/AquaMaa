@@ -17,6 +17,7 @@ Background material for the AquaMa agent, copied from Roaa's working folder on 7
 | `reference/diagrams/` | System overview diagram, and the earlier agent pipeline diagram (outdated) |
 | `reference/agent-design.md` | Earlier 16-component agent design (outdated, kept as a record) |
 | `reference/research-plan.md` | Earlier hypothesis-testing research plan (partly outdated, kept as a record) |
+| `reference/Qatar_MWDVF/` | Copy of Kagiso S. More's Qatar_MWDVF repository (https://github.com/Kagiso-S-More/Qatar_MWDVF). It has no open licence: cite it with its CITATION.cff and don't redistribute it outside this private repo |
 | `team-data/Mais_sample_dataset_2020.xlsx` | Sample dataset shared by Mais (201 rows, 2020). Team data: credit Mais when used |
 
-Not included: the earlier agent prototype code, and the Qatar_MWDVF repository data, which has no open licence (see https://github.com/Kagiso-S-More/Qatar_MWDVF).
+Not included: the earlier agent prototype code.
