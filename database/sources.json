@@ -921,6 +921,6 @@
    "sensors",
    "suitability"
   ],
-  "note": "8 entries, each with a source file"
+  "note": "9 entries, each with a source file. Entry 9 (drinkable groundwater) was added on 7 Nov after the Milestone 3 test missed that false premise"
  }
 ]

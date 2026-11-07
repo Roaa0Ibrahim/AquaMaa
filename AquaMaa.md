@@ -37,16 +37,24 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 - **Result:** 34 text sources, 1,406 chunks. All 10 test questions, including one in Arabic, find the right file in the top 10, and 9 of 10 in the top 3 (`eval_kb_v2.txt`)
 - Carried to Milestone 3: the FAO 29 irrigation question ranks its file 6th with vector search, but keyword search (BM25) puts it first
 
-### [ ] Milestone 3: Retrieval pipeline with proper routing and different types of retrieval
-- Routes by question type, following Meta's CRAG benchmark ([arXiv 2406.04744](https://arxiv.org/abs/2406.04744)):
-  - simple, simple with a condition, set, comparison, aggregation, multi-hop, post-processing, false premise
-- Retrieval methods the routes use: structured lookup, keyword search (BM25), vector search, hybrid
-- Search headings first, then full text, and rerank results with `bge-reranker-v2-m3` (check its licence)
-- Out-of-scope questions get a general answer, labeled as outside AquaMaa's sources, not a refusal
-- **Done when:**
-  - 24 labeled questions, 3 per type, are routed correctly in at least 22 of 24
-  - the right file is in the top 3 for at least 19 of 24
-  - faithfulness, answer relevancy, context precision and context recall are reported, so results compare with WaterCopilot ([similar projects](similar-projects.md))
+### [x] Milestone 3: Retrieval pipeline with proper routing and different types of retrieval (v3, 7 Nov)
+- Routes by question type, following Meta's CRAG benchmark ([arXiv 2406.04744](https://arxiv.org/abs/2406.04744)), plus a ninth type, explanation:
+  - simple, simple with a condition, set, comparison, aggregation, multi-hop, post-processing, false premise, explanation
+- `routing.py`: Qwen labels the type, conditions and stand-alone sub-questions. Known misconceptions from the database are in its prompt, and its examples are not test questions
+- `retrieval.py`: structured lookup (table rows as exact facts, filtered by year, matched on rare words), keyword search (BM25), vector search, and hybrid (reciprocal rank fusion)
+- Scope follows the knowledge base: when the router says out of scope but a data table clearly matches, the question goes ahead
+- Out-of-scope questions get a general answer, labelled as outside AquaMaa's sources, not a refusal
+- **Done when** (27 questions, 3 per type, as the ninth type was added):
+  - the type is right for at least 25 of 27: **26 of 27**
+  - the right file is in the top 3 for at least 22 of 27: **26 of 27**
+  - context recall **0.96**, context precision **0.83**, measured against labelled files (`eval_routing.py`)
+  - faithfulness **0.854** (84 of 98 claims) and answer relevancy **0.688**, on a baseline answer step (`answer_baseline.py`), judged claim by claim by Claude in the chat; relevancy scored with bge-m3, RAGAS method (`judgements_v3.json`). Answer score 3.26 of 5. These came from the run before the fixes below
+- Comparison: hybrid search found the right file in the top 3 for 10 of 10 Milestone 2 questions, against 9 for vector and 9 for keyword search (`compare_retrieval.py`)
+- Fixes after judging: units written out (million m3), rare-word matching for tables, stand-alone sub-questions, evidence limit by type, and one misconception added after the test (noted in `sources.json`). Every answer run is logged in `logs/answers_log.jsonl`
+- Not done, by decision: reranker (PyTorch DLLs may be blocked, and the targets were met without it) and searching headings first (chunks don't record headings)
+- Carried to Milestone 4: the recharge-wells multi-hop question needs step 1's answer in step 2; calculations (averages, ratios) must move from the LLM to Python; question 20 misses the farm-wells figure
+- Carried to Milestone 5: conflicts between sources (180 vs 200), false premises the answer still accepts, and claims that stretch their source
+- Still to do: Roaa hand-checks 10 of Claude's verdicts to measure agreement with the judge
 - Optional: test general hydrology knowledge of `qwen3:14b` against `qwen2.5:3b` with the [HydroLLM benchmark](https://github.com/uihilab/HydroLLM-Benchmark) (MIT)
 
 ### [ ] Milestone 4: Agentic ReAct loops in place
@@ -72,6 +80,7 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 ### [ ] Milestone 7: Arabic text-to-speech deployed to the website
 - Diacritics are added (tashkeel), numbers are spoken as words, and a local voice (Piper `ar_JO`) speaks, after we check its licence
 - **Done when:** a native Arabic speaker rates 10 spoken answers as clear, and it works with no robot
+  - at least 3 of the 10 test questions are in Qatari dialect, and the answers are understood by a Qatari listener
 
 ### [ ] Milestone 8: Reading the dashboard from the website and integrating it into the pipeline
 - The agent reads the same data the dashboard shows, through Deema's data endpoint
@@ -81,6 +90,7 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 - Pepper hears the question, the laptop transcribes it (faster-whisper), the pipeline answers, and Pepper speaks
 - Check Pepper's NAOqi version and Arabic support first
 - **Done when:** at least 8 of 10 spoken questions per language work in a noisy room, and the website still works when Pepper is off
+  - the 10 Arabic questions include Qatari dialect, spoken by a Qatari speaker
 
 ### [ ] Milestone 11: Sensor-fault and trend statistics
 - Python checks whether readings can be trusted before the agent uses them:
@@ -93,6 +103,15 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 - **Done when:**
   - on simulated series with injected faults (stuck, drift, spike, real rise, no fault), each fault is flagged correctly in at least 9 of 10 cases per type
   - the trend test matches a hand-checked answer on 5 series, including one with too few readings
+
+### [ ] Milestone 12: Search the web when the knowledge base lacks the answer
+- When retrieval finds no supported evidence, even after one rewrite, the agent searches the web
+- Trusted domains first, from an allowlist: Qatari government (gov.qa, km.qa, npc.qa, mecc.gov.qa, mm.gov.qa), WHO, FAO, UN agencies, and peer-reviewed publishers
+- The whole source is downloaded and added to `database/` in its data-type folder, with a full `sources.json` entry: publisher, year, URL, licence, topics, retrieval date, and status "added from the web, not yet reviewed"
+- The knowledge base is rebuilt, and the answer cites the new source, labelled as newly added
+- Safeguards: nothing from outside the allowlist, no existing file is overwritten, the licence is recorded, and each new source waits for Roaa's review
+- Needs a web search service (such as Tavily, Brave or a self-hosted SearXNG), so search queries leave the laptop. Decide which before starting
+- **Done when:** for 5 questions the knowledge base can't answer, the agent finds a trusted source, adds it with full metadata, rebuilds, and answers with a citation, and a question that would need an untrusted site adds nothing
 
 ## Decided together
 
@@ -119,6 +138,13 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 - **Two answers:** one for the website and one for robot text-to-speech, from the same evidence.
 - **Analysis first, then options:** the dashboard shows analysis. The assistant can recommend, with evidence and trade-offs, and the officer decides.
 - **Language:** English and Arabic, including Arabic speech.
+- **Qatari dialect (noted 7 November):** Arabic questions may come in Qatari dialect, not Modern Standard Arabic (MSA). This affects:
+  - speech to text: Whisper is trained mostly on MSA, so its accuracy on Qatari speech must be tested, not assumed
+  - routing and retrieval: dialect words such as ماي (water) must still match MSA sources such as مياه
+  - planned fix, a rewrite step before routing: Qwen rewrites a dialect question into MSA and into an English search query, and keeps the original for the answer. Tested with the dialect questions
+  - the glossary: add common dialect words beside each MSA term
+  - the test sets: include dialect questions, not only MSA
+  - answers: decided (7 November): replies are in MSA, in simple wording. Only the questions are expected in dialect
 - **Team:** Mais on data, Munira on sensors and hardware, Roaa on the agent, Deema on the website and integration, and Mohammed on visuals and video.
 - **Freeze:** 15:00 on Thursday 5 November.
 

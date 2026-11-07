@@ -1,0 +1,1070 @@
+{
+ "summary": {
+  "judge": "Claude Opus 5.5 (claude-opus-5-5), in the chat session, 7 Nov 2026",
+  "method": "Faithfulness: claims split from each answer and checked against its retrieved evidence. Answer relevancy: 3 questions written from each answer, mean bge-m3 cosine similarity to the original question; noncommittal answers score 0 (RAGAS method).",
+  "answers_scored": 27,
+  "claims": 98,
+  "claims_supported": 84,
+  "faithfulness_mean": 0.854,
+  "answer_relevancy_mean": 0.688,
+  "score_rubric": {
+   "5": "correct, complete and grounded",
+   "4": "correct with a minor gap or overstatement",
+   "3": "partly answers, or one notable inconsistency",
+   "2": "a major error, or fails to do what was asked",
+   "1": "wrong, or unhelpful when the answer was available",
+   "0": "harmful or invented"
+  },
+  "error_types": {
+   "retrieval_miss": "The right evidence was in the knowledge base but not retrieved",
+   "evidence_cut": "Retrieved, but cut by the 6-item evidence limit",
+   "misread_evidence": "Says something is missing or different when the evidence shows it",
+   "unit_error": "Number right, unit wrong",
+   "llm_arithmetic": "The model rounded or calculated itself, instead of Python",
+   "conflict_not_flagged": "Two sources disagree and the answer doesn't say so",
+   "false_premise_accepted": "Accepts or misses a wrong assumption in the question",
+   "distortion": "A claim stretches or misattributes what the source says",
+   "incomplete": "Leaves out relevant evidence it was given",
+   "no_calculation": "Asked for a total or average, but none was given"
+  },
+  "score_mean_0_5": 3.26,
+  "score_distribution": {
+   "5": 8,
+   "4": 7,
+   "3": 2,
+   "2": 4,
+   "1": 6
+  },
+  "error_counts": {
+   "retrieval_miss": 5,
+   "misread_evidence": 3,
+   "no_calculation": 3,
+   "distortion": 3,
+   "unit_error": 2,
+   "incomplete": 2,
+   "llm_arithmetic": 2,
+   "conflict_not_flagged": 2,
+   "false_premise_accepted": 2,
+   "evidence_cut": 1
+  }
+ },
+ "answers": [
+  {
+   "q": 1,
+   "question": "What is the groundwater safe yield?",
+   "type": "simple",
+   "answer": "The groundwater safe yield is 49.6 million cubic meters per year [1]. This is calculated as recharge minus natural outflow: 74.7 - 25.1 = 49.6 million m3 a year [2]. The definition of safe yield is how much can be pumped each year without depleting the aquifer [3].",
+   "faithfulness": 1.0,
+   "answer_relevancy": 0.847,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "Safe yield is 49.6 million m3 a year",
+     "verdict": "supported",
+     "note": "[1] NPC 2023 p.29"
+    },
+    {
+     "claim": "Recharge minus outflow, 74.7 - 25.1 = 49.6",
+     "verdict": "supported",
+     "note": "[2]"
+    },
+    {
+     "claim": "Definition of safe yield",
+     "verdict": "supported",
+     "note": "[3] glossary"
+    }
+   ],
+   "reverse_questions": [
+    "What is Qatar's groundwater safe yield?",
+    "How is the groundwater safe yield calculated?",
+    "What does safe yield mean?"
+   ],
+   "score_0_5": 5,
+   "error_types": []
+  },
+  {
+   "q": 2,
+   "question": "What is the WHO guideline value for nitrate in drinking water?",
+   "type": "simple",
+   "answer": "The WHO guideline value for nitrate in drinking water is 50 mg/L as NO3 [1].",
+   "faithfulness": 1.0,
+   "answer_relevancy": 0.856,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "WHO guideline for nitrate is 50 mg/L as NO3",
+     "verdict": "supported",
+     "note": "[1]"
+    }
+   ],
+   "reverse_questions": [
+    "What is the WHO nitrate limit for drinking water?",
+    "What concentration of nitrate does WHO allow?",
+    "Which unit is the WHO nitrate guideline given in?"
+   ],
+   "score_0_5": 5,
+   "error_types": []
+  },
+  {
+   "q": 3,
+   "question": "What is the measurement range of the DFRobot TDS sensor?",
+   "type": "simple",
+   "answer": "The measurement range of the DFRobot TDS sensor (SEN0244) is 0-1000ppm [1].",
+   "faithfulness": 1.0,
+   "answer_relevancy": 0.725,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "SEN0244 range is 0-1000 ppm",
+     "verdict": "supported",
+     "note": "[1]"
+    }
+   ],
+   "reverse_questions": [
+    "What range can the DFRobot TDS sensor measure?",
+    "What is the maximum reading of the SEN0244?",
+    "Which TDS sensor model is used?"
+   ],
+   "score_0_5": 5,
+   "error_types": []
+  },
+  {
+   "q": 4,
+   "question": "What was total groundwater abstraction in 2019?",
+   "type": "simple_with_condition",
+   "answer": "The total groundwater abstraction in 2019 was 250.0 cubic meters [2]. This figure is also confirmed by another source which reports the same value for the same year [1].",
+   "faithfulness": 0.5,
+   "answer_relevancy": 0.773,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "2019 abstraction was 250.0 cubic meters",
+     "verdict": "unsupported",
+     "note": "Unit wrong: the table says mm3, meaning million m3. Off by a factor of a million"
+    },
+    {
+     "claim": "A second source gives the same value",
+     "verdict": "supported",
+     "note": "[1] and [2] both 250"
+    }
+   ],
+   "reverse_questions": [
+    "How much groundwater was abstracted in 2019?",
+    "Do two sources agree on 2019 abstraction?",
+    "What was abstraction in 2019 in cubic metres?"
+   ],
+   "score_0_5": 2,
+   "error_types": [
+    "unit_error"
+   ]
+  },
+  {
+   "q": 5,
+   "question": "What was the population of Al Rayyan in the 2020 census?",
+   "type": "simple_with_condition",
+   "answer": "The population of Al Rayyan in the 2020 census was 826,786 [1].",
+   "faithfulness": 1.0,
+   "answer_relevancy": 0.972,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "Al Rayyan population 826,786 in 2020",
+     "verdict": "supported",
+     "note": "[1]"
+    }
+   ],
+   "reverse_questions": [
+    "What was Al Rayyan's population in 2020?",
+    "How many people lived in Al Rayyan at the 2020 census?",
+    "What does the 2020 census give for Al Rayyan?"
+   ],
+   "score_0_5": 5,
+   "error_types": []
+  },
+  {
+   "q": 6,
+   "question": "What was biological water quality compliance in 2021?",
+   "type": "simple_with_condition",
+   "answer": "In 2021, biological water quality compliance was 98.9% [1]. This exceeded the WHO target percentage of 95.0% [1].",
+   "faithfulness": 1.0,
+   "answer_relevancy": 0.796,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "2021 compliance 98.9%",
+     "verdict": "supported",
+     "note": "[1]"
+    },
+    {
+     "claim": "Above the WHO target of 95.0%",
+     "verdict": "supported",
+     "note": "[1]"
+    }
+   ],
+   "reverse_questions": [
+    "What was biological water quality compliance in 2021?",
+    "Did 2021 compliance meet the WHO target?",
+    "What is the WHO target for biological compliance?"
+   ],
+   "score_0_5": 5,
+   "error_types": []
+  },
+  {
+   "q": 7,
+   "question": "Which national goals concern groundwater?",
+   "type": "set",
+   "answer": "The national goals that concern groundwater include:\n\n- Implementation of groundwater metering, protection zones, and Water Act regulations to safeguard groundwater and limit its use in fodder cultivation [1].\n- Groundwater extraction reduced by 70% [2].\n- Enhancing groundwater recharge and strengthening sustainable water management so groundwater remains a reliable buffer against climate change [4].\n- Water Resource Management and Ecosystem Restoration Measures, including assessing groundwater resources [6].\n- Preserving and protecting the environment, including air, land, water and biological diversity [5].",
+   "faithfulness": 1.0,
+   "answer_relevancy": 0.812,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "G-03 groundwater metering, protection zones, Water Act",
+     "verdict": "supported",
+     "note": "[1]"
+    },
+    {
+     "claim": "G-02 extraction reduced by 70%",
+     "verdict": "supported",
+     "note": "[2]"
+    },
+    {
+     "claim": "G-36 recharge and sustainable management",
+     "verdict": "supported",
+     "note": "[4]"
+    },
+    {
+     "claim": "G-33 assessing groundwater resources",
+     "verdict": "supported",
+     "note": "[6]"
+    },
+    {
+     "claim": "G-20 protecting the environment including water",
+     "verdict": "supported",
+     "note": "[5]"
+    }
+   ],
+   "reverse_questions": [
+    "Which national goals relate to groundwater?",
+    "What groundwater targets does NDS3 set?",
+    "Which national plans mention groundwater recharge?"
+   ],
+   "score_0_5": 4,
+   "error_types": [
+    "incomplete"
+   ]
+  },
+  {
+   "q": 8,
+   "question": "Which parameters does FAO use to judge irrigation water quality?",
+   "type": "set",
+   "answer": "The FAO emphasizes the importance of the chemical and physical characteristics of water when evaluating its quality for irrigation [1]. Specific parameters such as salinity and trace elements are considered important for irrigation water quality [3]. The FAO also mentions that the suitability of water for irrigation is influenced by its salinity, which can affect crop yield [4]. However, the exact parameters used by the FAO to judge irrigation water quality are not explicitly listed in the provided evidence.",
+   "faithfulness": 1.0,
+   "answer_relevancy": 0.777,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "FAO emphasises chemical and physical characteristics",
+     "verdict": "supported",
+     "note": "[1] full text"
+    },
+    {
+     "claim": "Salinity and trace elements matter",
+     "verdict": "supported",
+     "note": "[3]"
+    },
+    {
+     "claim": "Salinity affects crop yield",
+     "verdict": "supported",
+     "note": "[4]"
+    },
+    {
+     "claim": "Exact parameters not listed in the evidence",
+     "verdict": "supported",
+     "note": "True of the retrieved evidence: FAO Table 1 was not retrieved"
+    }
+   ],
+   "reverse_questions": [
+    "What does FAO consider when judging irrigation water?",
+    "Does salinity affect irrigation water quality?",
+    "Are trace elements part of FAO's irrigation guidelines?"
+   ],
+   "score_0_5": 2,
+   "error_types": [
+    "retrieval_miss"
+   ]
+  },
+  {
+   "q": 9,
+   "question": "Which heavy metals are measured in Qatar's marine water?",
+   "type": "set",
+   "answer": "The heavy metals measured in Qatar's marine water include Mercury, Lead, Cadmium, and Nickel. Mercury concentration was measured at 0.05 in 2020 [1] and 0.06 in 2021 [4]. Lead concentration was measured at 0.44 in 2020 [2] and 0.21 in 2021 [5]. Cadmium concentration was measured at 0.06 in 2020 [3]. Nickel concentration was measured at 1.74 in 2021 [6].",
+   "faithfulness": 1.0,
+   "answer_relevancy": 0.726,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "Metals measured: mercury, lead, cadmium, nickel",
+     "verdict": "supported",
+     "note": "[1]-[6]"
+    },
+    {
+     "claim": "Mercury 0.05 in 2020",
+     "verdict": "supported",
+     "note": "[1]"
+    },
+    {
+     "claim": "Mercury 0.06 in 2021",
+     "verdict": "supported",
+     "note": "[4]"
+    },
+    {
+     "claim": "Lead 0.44 in 2020",
+     "verdict": "supported",
+     "note": "[2]"
+    },
+    {
+     "claim": "Lead 0.21 in 2021",
+     "verdict": "supported",
+     "note": "[5]"
+    },
+    {
+     "claim": "Cadmium 0.06 in 2020",
+     "verdict": "supported",
+     "note": "[3]"
+    },
+    {
+     "claim": "Nickel 1.74 in 2021",
+     "verdict": "supported",
+     "note": "[6]"
+    }
+   ],
+   "reverse_questions": [
+    "Which heavy metals are measured in Qatar's marine water?",
+    "What were mercury and lead levels in marine water?",
+    "How did heavy metal concentrations change from 2020 to 2021?"
+   ],
+   "score_0_5": 4,
+   "error_types": [],
+   "score_note": "Values have no units, but neither does the evidence"
+  },
+  {
+   "q": 10,
+   "question": "Compare groundwater abstraction in 2019 and 2023.",
+   "type": "comparison",
+   "answer": "In 2019, the total abstraction from groundwater was 250 cubic meters [1]. In 2023, the total abstraction from groundwater was 200 cubic meters [2]. The data for 2019 is also confirmed by another source, which reports the same value of 250.0 cubic meters [3]. The data for 2023 is also confirmed by another source, which reports the same value of 200.0 cubic meters [4]. There is no data provided for 2022 in this comparison.",
+   "faithfulness": 0.0,
+   "answer_relevancy": 0.758,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "2019 abstraction 250 cubic meters",
+     "verdict": "unsupported",
+     "note": "Unit wrong: million m3"
+    },
+    {
+     "claim": "2023 abstraction 200 cubic meters",
+     "verdict": "unsupported",
+     "note": "Unit wrong"
+    },
+    {
+     "claim": "2019 confirmed at 250.0 cubic meters",
+     "verdict": "unsupported",
+     "note": "Value right, unit wrong"
+    },
+    {
+     "claim": "2023 confirmed at 200.0 cubic meters",
+     "verdict": "unsupported",
+     "note": "Value right, unit wrong"
+    },
+    {
+     "claim": "No data for 2022",
+     "verdict": "unsupported",
+     "note": "Contradicted: [5] gives 2022 = 250"
+    }
+   ],
+   "reverse_questions": [
+    "How much groundwater was abstracted in 2019 and 2023?",
+    "Do sources agree on abstraction in 2019 and 2023?",
+    "Is there abstraction data for 2022?"
+   ],
+   "score_0_5": 1,
+   "error_types": [
+    "unit_error",
+    "misread_evidence"
+   ]
+  },
+  {
+   "q": 11,
+   "question": "How does the FAO irrigation TDS limit compare with the GSO drinking-water TDS limit?",
+   "type": "comparison",
+   "answer": "The FAO irrigation TDS limit for no restriction is < 450 mg/L [2], while the GSO drinking-water TDS limit ranges from 100-1000 mg/L [4]. Therefore, the GSO drinking-water TDS limit is higher than the FAO irrigation TDS limit for no restriction. The FAO irrigation TDS limit for slight to moderate restriction is 450-2000 mg/L [3], which is higher than the GSO drinking-water TDS limit. The FAO irrigation TDS limit for severe restriction is > 2000 mg/L [1], which is also higher than the GSO drinking-water TDS limit.",
+   "faithfulness": 1.0,
+   "answer_relevancy": 0.88,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "FAO no-restriction limit < 450 mg/L",
+     "verdict": "supported",
+     "note": "[2]"
+    },
+    {
+     "claim": "GSO drinking range 100-1000 mg/L",
+     "verdict": "supported",
+     "note": "[4]"
+    },
+    {
+     "claim": "GSO limit higher than FAO no-restriction limit",
+     "verdict": "supported",
+     "note": "Inference from [2] and [4]"
+    },
+    {
+     "claim": "FAO slight-to-moderate 450-2000 higher than GSO",
+     "verdict": "supported",
+     "note": "Inference; the ranges overlap"
+    },
+    {
+     "claim": "FAO severe > 2000 higher than GSO",
+     "verdict": "supported",
+     "note": "Inference"
+    }
+   ],
+   "reverse_questions": [
+    "How do the FAO irrigation TDS limits compare with the GSO drinking TDS limit?",
+    "What TDS levels does FAO set for irrigation?",
+    "What is the GSO TDS standard for drinking water?"
+   ],
+   "score_0_5": 4,
+   "error_types": [],
+   "score_note": "Correct values; comparing overlapping ranges is worded loosely"
+  },
+  {
+   "q": 12,
+   "question": "Compare the population of Al Rayyan and Al Wakra in 2020.",
+   "type": "comparison",
+   "answer": "In 2020, the population of Al Rayyan was 826,786 [1], while the population of Al Wakra was 265,102 [2]. Therefore, Al Rayyan had a significantly larger population than Al Wakra in 2020. The population density of Al Rayyan was 337.5 people per square kilometer [1], compared to 103.6 people per square kilometer for Al Wakra [2]. The population percentage of Al Rayyan was approximately 30% [1], whereas Al Wakra's population percentage was 9.3% [2].",
+   "faithfulness": 0.833,
+   "answer_relevancy": 0.764,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "Al Rayyan 826,786",
+     "verdict": "supported",
+     "note": "[1]"
+    },
+    {
+     "claim": "Al Wakra 265,102",
+     "verdict": "supported",
+     "note": "[2]"
+    },
+    {
+     "claim": "Al Rayyan much larger",
+     "verdict": "supported",
+     "note": "Inference"
+    },
+    {
+     "claim": "Al Rayyan density 337.5",
+     "verdict": "supported",
+     "note": "[1]"
+    },
+    {
+     "claim": "Al Wakra density 103.6",
+     "verdict": "supported",
+     "note": "[2]"
+    },
+    {
+     "claim": "Al Rayyan about 30% of population",
+     "verdict": "unsupported",
+     "note": "Evidence says 29.0%; the model rounded on its own"
+    }
+   ],
+   "reverse_questions": [
+    "How do the populations of Al Rayyan and Al Wakra compare in 2020?",
+    "What were the population densities of Al Rayyan and Al Wakra?",
+    "What share of Qatar's population lives in Al Rayyan?"
+   ],
+   "score_0_5": 4,
+   "error_types": [
+    "llm_arithmetic"
+   ]
+  },
+  {
+   "q": 13,
+   "question": "What was the average groundwater abstraction from 2019 to 2024?",
+   "type": "aggregation",
+   "answer": "The average groundwater abstraction from 2019 to 2024 is calculated by summing the values for each year and dividing by the number of years. The values are as follows: 2019: 250 [2], 2021: 250 [6], 2022: 250 [5], 2023: 200 [4], 2024: 200 [1]. The value for 2020 is not provided in the evidence. Therefore, the average cannot be calculated precisely.",
+   "faithfulness": 1.0,
+   "answer_relevancy": 0.753,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "Method: sum and divide by years",
+     "verdict": "supported",
+     "note": "Procedure, no fact"
+    },
+    {
+     "claim": "2019: 250",
+     "verdict": "supported",
+     "note": "[2]"
+    },
+    {
+     "claim": "2021: 250",
+     "verdict": "supported",
+     "note": "[6]"
+    },
+    {
+     "claim": "2022: 250",
+     "verdict": "supported",
+     "note": "[5]"
+    },
+    {
+     "claim": "2023 and 2024: 200",
+     "verdict": "supported",
+     "note": "[4], [1]"
+    },
+    {
+     "claim": "2020 not in the evidence",
+     "verdict": "supported",
+     "note": "True: the 6-item evidence limit cut the 2020 row and kept a duplicate 2019 row"
+    }
+   ],
+   "reverse_questions": [
+    "What were yearly groundwater abstraction values from 2019 to 2024?",
+    "Can the average abstraction from 2019 to 2024 be calculated?",
+    "Which year's abstraction is missing?"
+   ],
+   "score_0_5": 2,
+   "error_types": [
+    "evidence_cut",
+    "no_calculation"
+   ]
+  },
+  {
+   "q": 14,
+   "question": "How many wells are there in total across all municipalities?",
+   "type": "aggregation",
+   "answer": "The evidence only provides information about the number of wells in Doha for specific years, but it does not mention the total number of wells across all municipalities [1][2][3][4][5][6].",
+   "faithfulness": 1.0,
+   "answer_relevancy": 0.0,
+   "noncommittal": true,
+   "claims": [
+    {
+     "claim": "Evidence covers Doha only, not the total",
+     "verdict": "supported",
+     "note": "True of the retrieved rows"
+    }
+   ],
+   "reverse_questions": [],
+   "score_0_5": 1,
+   "error_types": [
+    "retrieval_miss",
+    "no_calculation"
+   ]
+  },
+  {
+   "q": 15,
+   "question": "What was the average biological compliance from 2020 to 2025?",
+   "type": "aggregation",
+   "answer": "The average biological compliance from 2020 to 2025 cannot be calculated as the evidence only provides data from 2020 to 2023. The available data is as follows: 99.3% in 2020 [1], 98.9% in 2021 [2], 99.5% in 2022 [4], and 99.36% in 2023 [5]. Data for 2024 and 2025 is not provided in the evidence. Therefore, the question cannot be answered with the given information.",
+   "faithfulness": 0.667,
+   "answer_relevancy": 0.75,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "2020: 99.3%",
+     "verdict": "supported",
+     "note": "[1]"
+    },
+    {
+     "claim": "2021: 98.9%",
+     "verdict": "supported",
+     "note": "[2]"
+    },
+    {
+     "claim": "2022: 99.5%",
+     "verdict": "supported",
+     "note": "[4]"
+    },
+    {
+     "claim": "2023: 99.36%",
+     "verdict": "supported",
+     "note": "[5]"
+    },
+    {
+     "claim": "Evidence only covers 2020-2023",
+     "verdict": "unsupported",
+     "note": "Contradicted: [3] gives 2024 = 99.36"
+    },
+    {
+     "claim": "No data for 2024",
+     "verdict": "unsupported",
+     "note": "Contradicted by [3]"
+    }
+   ],
+   "reverse_questions": [
+    "What was biological compliance each year from 2020 to 2023?",
+    "Can average compliance from 2020 to 2025 be calculated?",
+    "Which years of compliance data are missing?"
+   ],
+   "score_0_5": 2,
+   "error_types": [
+    "misread_evidence",
+    "no_calculation"
+   ]
+  },
+  {
+   "q": 16,
+   "question": "Which body owns the national goal on groundwater extraction, and what is its target?",
+   "type": "multi_hop",
+   "answer": "The national goal on groundwater extraction is owned by the National Planning Council [1]. The target is a 70% reduction in groundwater extraction [1]. This goal is part of the NDS3 framework and is aimed to be achieved by 2030 [1]. Another goal, G-08, set by the Ministry of Environment and Climate Change, targets a 60% reduction, but its target year is not stated [2]. The National Planning Council also owns another goal, G-03, which focuses on implementing groundwater metering and protection measures [3].",
+   "faithfulness": 1.0,
+   "answer_relevancy": 0.779,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "Owner is the National Planning Council",
+     "verdict": "supported",
+     "note": "[1]"
+    },
+    {
+     "claim": "Target is a 70% reduction",
+     "verdict": "supported",
+     "note": "[1]"
+    },
+    {
+     "claim": "NDS3 goal, by 2030",
+     "verdict": "supported",
+     "note": "[1]"
+    },
+    {
+     "claim": "MECC goal G-08: 60%, no target year",
+     "verdict": "supported",
+     "note": "[2]"
+    },
+    {
+     "claim": "NPC also owns G-03 on metering",
+     "verdict": "supported",
+     "note": "[3]"
+    }
+   ],
+   "reverse_questions": [
+    "Who owns the national groundwater extraction goal?",
+    "What is the groundwater extraction reduction target?",
+    "Do different strategies set different extraction targets?"
+   ],
+   "score_0_5": 5,
+   "error_types": []
+  },
+  {
+   "q": 17,
+   "question": "Which aquifers supply Qatar's groundwater, and what is their safe yield?",
+   "type": "multi_hop",
+   "answer": "The safe yield of Qatar's groundwater is 49.6 million m³ per year [4]. The evidence does not specify which aquifers supply Qatar's groundwater.",
+   "faithfulness": 1.0,
+   "answer_relevancy": 0.78,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "Safe yield 49.6 million m3 a year",
+     "verdict": "supported",
+     "note": "[4]"
+    },
+    {
+     "claim": "Evidence doesn't name the aquifers",
+     "verdict": "supported",
+     "note": "True of the retrieved evidence: the glossary's aquifer entry was not retrieved"
+    }
+   ],
+   "reverse_questions": [
+    "What is the safe yield of Qatar's groundwater?",
+    "Which aquifers supply Qatar's groundwater?",
+    "How much groundwater can be pumped sustainably?"
+   ],
+   "score_0_5": 3,
+   "error_types": [
+    "retrieval_miss"
+   ]
+  },
+  {
+   "q": 18,
+   "question": "Which plan sets the target for recharge wells, and how many wells does it plan?",
+   "type": "multi_hop",
+   "answer": "The plan proposed in [1] sets the target for recharge wells, aiming to restore groundwater levels to those of the 1980s through artificial recharge. However, the evidence does not specify the number of wells planned for this initiative.",
+   "faithfulness": 0.667,
+   "answer_relevancy": 0.701,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "The plan in [1] sets the target for recharge wells",
+     "verdict": "unsupported",
+     "note": "Mohieldeen 2021 is a research proposal, not a plan setting a well target; the NDC's 370 wells was not retrieved"
+    },
+    {
+     "claim": "Aim: restore 1980s groundwater levels",
+     "verdict": "supported",
+     "note": "[1]"
+    },
+    {
+     "claim": "Number of wells not in the evidence",
+     "verdict": "supported",
+     "note": "True of the retrieved evidence"
+    }
+   ],
+   "reverse_questions": [
+    "Which study proposes artificial aquifer recharge in Qatar?",
+    "What is the aim of the artificial recharge plan?",
+    "How many recharge wells are planned?"
+   ],
+   "score_0_5": 1,
+   "error_types": [
+    "retrieval_miss",
+    "distortion"
+   ]
+  },
+  {
+   "q": 19,
+   "question": "How many times the safe yield is the 2023 groundwater abstraction?",
+   "type": "post_processing",
+   "answer": "The 2023 groundwater abstraction is 4 times the safe yield [1]. The safe yield of groundwater is 49.6 million m3 per year [2]. In 2023, groundwater abstraction amounted to about 180 million m3 per year [2]. The recharge of aquifers from rainfall is 74.7 Mm3/year [2]. The natural outflow of groundwater into the sea and deep saline aquifers is 25.1 Mm3/year [2].",
+   "faithfulness": 1.0,
+   "answer_relevancy": 0.756,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "2023 abstraction is 4 times the safe yield",
+     "verdict": "supported",
+     "note": "[1] misconceptions"
+    },
+    {
+     "claim": "Safe yield 49.6",
+     "verdict": "supported",
+     "note": "[2]"
+    },
+    {
+     "claim": "2023 abstraction about 180 million m3",
+     "verdict": "supported",
+     "note": "[2], but it conflicts with the 200 used for the 4 times, and isn't flagged"
+    },
+    {
+     "claim": "Recharge 74.7",
+     "verdict": "supported",
+     "note": "In the retrieved evidence"
+    },
+    {
+     "claim": "Outflow 25.1",
+     "verdict": "supported",
+     "note": "[4]"
+    }
+   ],
+   "reverse_questions": [
+    "How many times the safe yield was groundwater abstraction in 2023?",
+    "What was groundwater abstraction in 2023?",
+    "What are Qatar's groundwater recharge and outflow?"
+   ],
+   "score_0_5": 3,
+   "error_types": [
+    "conflict_not_flagged"
+   ]
+  },
+  {
+   "q": 20,
+   "question": "What percentage of groundwater abstraction came from farm wells in 2023?",
+   "type": "post_processing",
+   "answer": "The evidence does not provide the percentage of groundwater abstraction that came from farm wells in 2023.",
+   "faithfulness": 0.0,
+   "answer_relevancy": 0.0,
+   "noncommittal": true,
+   "claims": [
+    {
+     "claim": "Evidence doesn't give the farm-well percentage",
+     "verdict": "unsupported",
+     "note": "Contradicted: [5] gives 230 of 250 for agriculture, and [1] shows 180 agricultural in 2023"
+    }
+   ],
+   "reverse_questions": [],
+   "score_0_5": 1,
+   "error_types": [
+    "misread_evidence"
+   ]
+  },
+  {
+   "q": 21,
+   "question": "By what percentage did the abstraction estimate change between 2022 and 2023?",
+   "type": "post_processing",
+   "answer": "The abstraction estimate changed from 250 million m3 in 2022 to 200 million m3 in 2023 [4]. To calculate the percentage change, we use the formula: ((New Value - Old Value) / Old Value) * 100. Substituting the values, we get ((200 - 250) / 250) * 100 = -20%. Therefore, the abstraction estimate decreased by 20% between 2022 and 2023 [4].",
+   "faithfulness": 1.0,
+   "answer_relevancy": 0.793,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "250 in 2022 to 200 in 2023",
+     "verdict": "supported",
+     "note": "[4]"
+    },
+    {
+     "claim": "Formula for percentage change",
+     "verdict": "supported",
+     "note": "Procedure"
+    },
+    {
+     "claim": "A 20% decrease",
+     "verdict": "supported",
+     "note": "Correct, but calculated by the LLM, not Python"
+    }
+   ],
+   "reverse_questions": [
+    "By what percentage did the abstraction estimate fall from 2022 to 2023?",
+    "How is percentage change calculated?",
+    "What were the abstraction estimates for 2022 and 2023?"
+   ],
+   "score_0_5": 4,
+   "error_types": [
+    "llm_arithmetic",
+    "incomplete"
+   ]
+  },
+  {
+   "q": 22,
+   "question": "Where can we find the greatest amount of drinkable groundwater in Qatar?",
+   "type": "simple_with_condition",
+   "answer": "The evidence does not provide specific information about where the greatest amount of drinkable groundwater can be found in Qatar.",
+   "faithfulness": 1.0,
+   "answer_relevancy": 0.0,
+   "noncommittal": true,
+   "claims": [
+    {
+     "claim": "Evidence doesn't say where the most drinkable groundwater is",
+     "verdict": "supported",
+     "note": "True of the retrieved evidence"
+    }
+   ],
+   "reverse_questions": [],
+   "score_0_5": 1,
+   "error_types": [
+    "false_premise_accepted",
+    "retrieval_miss"
+   ]
+  },
+  {
+   "q": 23,
+   "question": "Since pumping fell in 2023, is the aquifer recovering?",
+   "type": "false_premise",
+   "answer": "The evidence indicates that groundwater abstraction in Qatar fell from 250 million m3 per year in 2022 to 180 million m3 per year in 2023 [4]. However, the natural recharge rate of groundwater is approximately 54.2 million m3 per year [4]. Despite the decrease in abstraction, the evidence does not provide direct information on whether the aquifer is recovering. Artificial recharge efforts, such as the injection of treated wastewater into aquifers, are being used to offset the groundwater deficit [4]. The long-term depletion of aquifers and increased salinity remain concerns [5].",
+   "faithfulness": 0.8,
+   "answer_relevancy": 0.527,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "Abstraction fell from 250 in 2022 to 180 in 2023",
+     "verdict": "unsupported",
+     "note": "Accepts the false premise. [1] says the change is a revised estimate, not proven pumping. Also cites [4], which says 200, not 180"
+    },
+    {
+     "claim": "Natural recharge about 54.2",
+     "verdict": "supported",
+     "note": "[4]"
+    },
+    {
+     "claim": "Evidence doesn't say whether the aquifer is recovering",
+     "verdict": "supported",
+     "note": "Fair"
+    },
+    {
+     "claim": "Artificial recharge with treated wastewater offsets the deficit",
+     "verdict": "supported",
+     "note": "[4]"
+    },
+    {
+     "claim": "Depletion and salinity remain concerns",
+     "verdict": "supported",
+     "note": "[5]"
+    }
+   ],
+   "reverse_questions": [
+    "Did groundwater abstraction fall in 2023?",
+    "What is Qatar's natural groundwater recharge rate?",
+    "How is Qatar offsetting its groundwater deficit?"
+   ],
+   "score_0_5": 1,
+   "error_types": [
+    "false_premise_accepted",
+    "conflict_not_flagged"
+   ]
+  },
+  {
+   "q": 24,
+   "question": "Since low TDS means water is safe, can we drink from a well with 400 mg/L TDS?",
+   "type": "false_premise",
+   "answer": "No, we cannot conclude that water with 400 mg/L TDS is safe to drink based solely on the TDS level. Low TDS does not necessarily mean the water is safe to drink [1]. TDS alone does not indicate safety; microbiological and chemical tests are required to determine if water is safe for consumption [1]. The TDS level of 400 mg/L falls within the \"good\" palatability range (300-600 mg/L), but this does not equate to safety [3]. The WHO does not set a health-based guideline value for TDS, and safety must be determined through additional testing [4].",
+   "faithfulness": 1.0,
+   "answer_relevancy": 0.766,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "Can't conclude 400 mg/L water is safe",
+     "verdict": "supported",
+     "note": "[1]"
+    },
+    {
+     "claim": "Low TDS doesn't mean safe",
+     "verdict": "supported",
+     "note": "[1]"
+    },
+    {
+     "claim": "Microbiological and chemical tests are needed",
+     "verdict": "supported",
+     "note": "[1]"
+    },
+    {
+     "claim": "400 mg/L is in the 'good' taste range, 300-600",
+     "verdict": "supported",
+     "note": "[3]"
+    },
+    {
+     "claim": "WHO sets no health-based TDS value",
+     "verdict": "supported",
+     "note": "[1], [4]"
+    }
+   ],
+   "reverse_questions": [
+    "Is water with 400 mg/L TDS safe to drink?",
+    "Does low TDS mean water is safe?",
+    "What tests show drinking water is safe?"
+   ],
+   "score_0_5": 5,
+   "error_types": []
+  },
+  {
+   "q": 25,
+   "question": "Why is Qatar's groundwater getting saltier?",
+   "type": "explanation",
+   "answer": "Qatar's groundwater is getting saltier because the rate of groundwater abstraction is much higher than the rate of natural recharge, leading to seawater intrusion [1]. The abstraction rate of groundwater in Qatar has remained around 250 million cubic meters (MCM) per year, while the natural recharge rate is approximately 54.2 MCM per year [2]. This over-extraction has caused aquifers to deplete, leading to increased salinity [4]. Additionally, the discharge of highly polluted processed water from the hydrocarbon sector into deep aquifers also contributes to the degradation of groundwater quality [3]. The increased salinity is further exacerbated by the fact that the country's aquifers are not accustomed to receiving large amounts of water in a short period, which can damage their structural integrity [2].",
+   "faithfulness": 0.833,
+   "answer_relevancy": 0.835,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "Abstraction above recharge pulls seawater in",
+     "verdict": "supported",
+     "note": "[1]"
+    },
+    {
+     "claim": "Abstraction about 250 MCM a year",
+     "verdict": "supported",
+     "note": "[2]"
+    },
+    {
+     "claim": "Natural recharge about 54.2 MCM",
+     "verdict": "supported",
+     "note": "[2]"
+    },
+    {
+     "claim": "Over-extraction depletes aquifers, raising salinity",
+     "verdict": "supported",
+     "note": "[4]"
+    },
+    {
+     "claim": "Hydrocarbon wastewater injected into deep aquifers degrades quality",
+     "verdict": "supported",
+     "note": "[3]"
+    },
+    {
+     "claim": "Salinity is worsened because aquifers aren't used to large water volumes",
+     "verdict": "unsupported",
+     "note": "Distorted: [2] says this about the risk of artificial recharge damaging aquifer structure, not salinity"
+    }
+   ],
+   "reverse_questions": [
+    "Why is Qatar's groundwater becoming saltier?",
+    "How does over-extraction affect groundwater salinity?",
+    "What else degrades Qatar's groundwater quality?"
+   ],
+   "score_0_5": 4,
+   "error_types": [
+    "distortion"
+   ]
+  },
+  {
+   "q": 26,
+   "question": "Why does high SAR damage soil?",
+   "type": "explanation",
+   "answer": "High SAR damages soil because it causes the soil to seal up, making water soak in poorly [4]. This sealing effect is due to the high sodium to calcium and magnesium ratio, which disrupts soil structure [4]. Adding amendments like gypsum can help by increasing calcium content and reducing the sodium to calcium ratio, thus lowering SAR and improving infiltration [1]. However, if infiltration problems are caused by factors other than high SAR, such as soil compaction or texture, gypsum may not be effective [1].",
+   "faithfulness": 0.75,
+   "answer_relevancy": 0.646,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "High SAR seals soil so water soaks in poorly",
+     "verdict": "supported",
+     "note": "[4]"
+    },
+    {
+     "claim": "The sodium ratio disrupts soil structure",
+     "verdict": "unsupported",
+     "note": "'Soil structure' isn't in the evidence"
+    },
+    {
+     "claim": "Gypsum raises calcium, lowers SAR and improves infiltration",
+     "verdict": "supported",
+     "note": "[1]"
+    },
+    {
+     "claim": "Gypsum won't help if poor infiltration has other causes",
+     "verdict": "supported",
+     "note": "[1] full text"
+    }
+   ],
+   "reverse_questions": [
+    "Why does high SAR damage soil?",
+    "How does gypsum help soils affected by sodium?",
+    "When does gypsum not improve infiltration?"
+   ],
+   "score_0_5": 4,
+   "error_types": [
+    "distortion"
+   ]
+  },
+  {
+   "q": 27,
+   "question": "What causes seawater intrusion in coastal aquifers?",
+   "type": "explanation",
+   "answer": "Seawater intrusion in coastal aquifers occurs when pumping lowers the fresh water level, allowing seawater to move into the aquifer [1]. This is often caused by overexploitation of groundwater, which leads to a lowering of the hydraulic heads and facilitates saltwater intrusion [2]. Over-abstraction of groundwater is the main cause of increased saltwater intrusion, as it significantly transforms the makeup of groundwater lenses and introduces pollutants [4].",
+   "faithfulness": 1.0,
+   "answer_relevancy": 0.793,
+   "noncommittal": false,
+   "claims": [
+    {
+     "claim": "Pumping lowers the fresh water level and lets seawater in",
+     "verdict": "supported",
+     "note": "[1]"
+    },
+    {
+     "claim": "Overexploitation lowers hydraulic heads and allows saltwater intrusion",
+     "verdict": "supported",
+     "note": "[2]"
+    },
+    {
+     "claim": "Over-abstraction is the main cause of increased intrusion",
+     "verdict": "supported",
+     "note": "[4] says over-abstraction and artificial recharge increased intrusion. 'Main' is a slight overstatement"
+    }
+   ],
+   "reverse_questions": [
+    "What causes seawater intrusion in coastal aquifers?",
+    "How does over-pumping affect coastal aquifers?",
+    "What has caused saltwater intrusion in Qatar?"
+   ],
+   "score_0_5": 5,
+   "error_types": [],
+   "score_note": "'Main cause' slightly overstates the source"
+  },
+  {
+   "q": 28,
+   "question": "What is the best recipe for machboos?",
+   "note": "Out of scope: labelled general answer, not scored",
+   "score_0_5": 4,
+   "error_types": [],
+   "score_note": "Out of scope: correctly labelled, short general answer"
+  }
+ ]
+}

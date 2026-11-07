@@ -1,0 +1,556 @@
+[
+ {
+  "question": "What is the groundwater safe yield?",
+  "expected_type": "simple",
+  "got_type": "simple",
+  "method": "hybrid",
+  "conditions": [],
+  "sub_questions": [
+   "What is the groundwater safe yield?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "NPC_Water_Statistics_2023.txt",
+   "misconceptions.csv",
+   "glossary.csv"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "What is the WHO guideline value for nitrate in drinking water?",
+  "expected_type": "simple",
+  "got_type": "simple",
+  "method": "structured",
+  "conditions": [],
+  "sub_questions": [
+   "What is the WHO guideline value for nitrate in drinking water?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "limits.csv",
+   "limits.csv",
+   "limits.csv"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "What is the measurement range of the DFRobot TDS sensor?",
+  "expected_type": "simple",
+  "got_type": "simple",
+  "method": "hybrid",
+  "conditions": [],
+  "sub_questions": [
+   "What is the measurement range of the DFRobot TDS sensor?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "DFRobot_SEN0244_TDS.txt",
+   "DFRobot_SEN0161_V2_pH.txt",
+   "misconceptions.csv"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "What was total groundwater abstraction in 2019?",
+  "expected_type": "simple_with_condition",
+  "got_type": "simple_with_condition",
+  "method": "structured",
+  "conditions": [
+   "year: 2019"
+  ],
+  "sub_questions": [
+   "What was total groundwater abstraction in 2019?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "total-abstraction-from-ground-water.csv",
+   "water-production-abstraction-losses-and-uses.csv",
+   "limits.csv"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "What was the population of Al Rayyan in the 2020 census?",
+  "expected_type": "simple_with_condition",
+  "got_type": "simple_with_condition",
+  "method": "structured",
+  "conditions": [
+   "2020",
+   "census",
+   "Al Rayyan"
+  ],
+  "sub_questions": [
+   "What was the population of Al Rayyan in the 2020 census?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "total-population-and-population-density-by-municipality-in-census-2010-2020.csv",
+   "total-population-and-population-density-by-municipality-in-census-2010-2020.csv",
+   "total-population-and-population-density-by-municipality-in-census-2010-2020.csv"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "What was biological water quality compliance in 2021?",
+  "expected_type": "simple_with_condition",
+  "got_type": "simple_with_condition",
+  "method": "structured",
+  "conditions": [
+   "year: 2021"
+  ],
+  "sub_questions": [
+   "What was biological water quality compliance in 2021?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "biological-water-quality-compliance-by-year.csv"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "Which national goals concern groundwater?",
+  "expected_type": "set",
+  "got_type": "set",
+  "method": "hybrid",
+  "conditions": [],
+  "sub_questions": [
+   "Which national goals concern groundwater?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "policy-goals.csv",
+   "policy-goals.csv",
+   "policy-goals.csv"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "Which parameters does FAO use to judge irrigation water quality?",
+  "expected_type": "set",
+  "got_type": "set",
+  "method": "hybrid",
+  "conditions": [],
+  "sub_questions": [
+   "Which parameters does FAO use to judge irrigation water quality?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "FAO_29_Water_Quality_for_Agriculture_ch1-5.txt",
+   "Kahramaa_Drinking_Water_Quality_Requirements_2014.txt",
+   "FAO_29_Water_Quality_for_Agriculture_ch1-5.txt"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "Which heavy metals are measured in Qatar's marine water?",
+  "expected_type": "set",
+  "got_type": "set",
+  "method": "structured",
+  "conditions": [],
+  "sub_questions": [
+   "Which heavy metals are measured in Qatar's marine water?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "water-pollution-indicators.csv",
+   "water-pollution-indicators.csv",
+   "water-pollution-indicators.csv"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "Compare groundwater abstraction in 2019 and 2023.",
+  "expected_type": "comparison",
+  "got_type": "comparison",
+  "method": "per_sub_question",
+  "conditions": [
+   "year: 2019",
+   "year: 2023"
+  ],
+  "sub_questions": [
+   "What was groundwater abstraction in 2019?",
+   "What was groundwater abstraction in 2023?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "total-abstraction-from-ground-water.csv",
+   "water-production-abstraction-losses-and-uses.csv",
+   "limits.csv",
+   "total-abstraction-from-ground-water.csv",
+   "water-production-abstraction-losses-and-uses.csv",
+   "limits.csv"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "How does the FAO irrigation TDS limit compare with the GSO drinking-water TDS limit?",
+  "expected_type": "comparison",
+  "got_type": "comparison",
+  "method": "per_sub_question",
+  "conditions": [],
+  "sub_questions": [
+   "What is the FAO irrigation TDS limit?",
+   "What is the GSO drinking-water TDS limit?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "limits.csv",
+   "limits.csv",
+   "limits.csv",
+   "limits.csv",
+   "limits.csv",
+   "limits.csv"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "Compare the population of Al Rayyan and Al Wakra in 2020.",
+  "expected_type": "comparison",
+  "got_type": "comparison",
+  "method": "per_sub_question",
+  "conditions": [
+   "2020",
+   "Al Rayyan",
+   "Al Wakra"
+  ],
+  "sub_questions": [
+   "What was the population of Al Rayyan in 2020?",
+   "What was the population of Al Wakra in 2020?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "total-population-and-population-density-by-municipality-in-census-2010-2020.csv",
+   "total-population-and-population-density-by-municipality-in-census-2010-2020.csv",
+   "total-population-and-population-density-by-municipality-in-census-2010-2020.csv",
+   "total-population-and-population-density-by-municipality-in-census-2010-2020.csv",
+   "total-population-and-population-density-by-municipality-in-census-2010-2020.csv",
+   "total-population-and-population-density-by-municipality-in-census-2010-2020.csv"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "What was the average groundwater abstraction from 2019 to 2024?",
+  "expected_type": "aggregation",
+  "got_type": "aggregation",
+  "method": "structured",
+  "conditions": [
+   "2019",
+   "2024"
+  ],
+  "sub_questions": [
+   "What was groundwater abstraction in 2019?",
+   "What was groundwater abstraction in 2020?",
+   "What was groundwater abstraction in 2021?",
+   "What was groundwater abstraction in 2022?",
+   "What was groundwater abstraction in 2023?",
+   "What was groundwater abstraction in 2024?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "total-abstraction-from-ground-water.csv",
+   "total-abstraction-from-ground-water.csv",
+   "water-production-abstraction-losses-and-uses.csv"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "How many wells are there in total across all municipalities?",
+  "expected_type": "aggregation",
+  "got_type": "aggregation",
+  "method": "structured",
+  "conditions": [],
+  "sub_questions": [
+   "How many wells are there in total across all municipalities?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv",
+   "number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv",
+   "number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "What was the average biological compliance from 2020 to 2025?",
+  "expected_type": "aggregation",
+  "got_type": "aggregation",
+  "method": "structured",
+  "conditions": [
+   "2020",
+   "2025"
+  ],
+  "sub_questions": [
+   "What was biological compliance in 2020?",
+   "What was biological compliance in 2021?",
+   "What was biological compliance in 2022?",
+   "What was biological compliance in 2023?",
+   "What was biological compliance in 2024?",
+   "What was biological compliance in 2025?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "biological-water-quality-compliance-by-year.csv",
+   "biological-water-quality-compliance-by-year.csv",
+   "biological-water-quality-compliance-by-year.csv"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "Which body owns the national goal on groundwater extraction, and what is its target?",
+  "expected_type": "multi_hop",
+  "got_type": "multi_hop",
+  "method": "per_sub_question",
+  "conditions": [],
+  "sub_questions": [
+   "Which body owns the national goal on groundwater extraction?",
+   "What is its target?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "policy-goals.csv",
+   "policy-goals.csv",
+   "policy-goals.csv"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "Which aquifers supply Qatar's groundwater, and what is their safe yield?",
+  "expected_type": "multi_hop",
+  "got_type": "multi_hop",
+  "method": "per_sub_question",
+  "conditions": [],
+  "sub_questions": [
+   "Which aquifers supply Qatar's groundwater?",
+   "What is their safe yield?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "PSA_Water_Statistics_2021.txt",
+   "Fanack_Water_Resources_in_Qatar.txt",
+   "NPC_Water_Statistics_2023.txt",
+   "misconceptions.csv",
+   "glossary.csv",
+   "NPC_Water_Statistics_2023.txt"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "Which plan sets the target for recharge wells, and how many wells does it plan?",
+  "expected_type": "multi_hop",
+  "got_type": "multi_hop",
+  "method": "per_sub_question",
+  "conditions": [],
+  "sub_questions": [
+   "Which plan sets the target for recharge wells?",
+   "How many recharge wells does the plan include?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "Mohieldeen_2021_GIS_aquifer_recharge_Qatar_SciRep.txt",
+   "Mohieldeen_2021_GIS_aquifer_recharge_Qatar_SciRep.txt",
+   "NPC_Water_Statistics_2023.txt",
+   "Peninsula_2025_Kahramaa_water_reserves.txt",
+   "Mohieldeen_2021_GIS_aquifer_recharge_Qatar_SciRep.txt",
+   "NPC_Water_Statistics_2023.txt"
+  ],
+  "type_right": true,
+  "file_right": false
+ },
+ {
+  "question": "How many times the safe yield is the 2023 groundwater abstraction?",
+  "expected_type": "post_processing",
+  "got_type": "post_processing",
+  "method": "hybrid",
+  "conditions": [
+   "2023"
+  ],
+  "sub_questions": [
+   "What was the 2023 groundwater abstraction?",
+   "What is the safe yield?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "misconceptions.csv",
+   "NPC_Water_Statistics_2023.txt",
+   "Kahramaa_Statistics_Report_2023.txt"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "What percentage of groundwater abstraction came from farm wells in 2023?",
+  "expected_type": "post_processing",
+  "got_type": "post_processing",
+  "method": "hybrid",
+  "conditions": [
+   "2023"
+  ],
+  "sub_questions": [
+   "How much groundwater was abstracted in 2023?",
+   "How much groundwater abstraction came from farm wells in 2023?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "NPC_Water_Statistics_2023.txt",
+   "Kahramaa_Statistics_Report_2023.txt",
+   "NPC_Water_Statistics_2023.txt"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "By what percentage did the abstraction estimate change between 2022 and 2023?",
+  "expected_type": "post_processing",
+  "got_type": "post_processing",
+  "method": "hybrid",
+  "conditions": [
+   "year: 2022",
+   "year: 2023"
+  ],
+  "sub_questions": [
+   "What was the abstraction estimate in 2022?",
+   "What was the abstraction estimate in 2023?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "misconceptions.csv",
+   "misconceptions.csv",
+   "NPC_Water_Statistics_2023.txt"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "Where can we find the greatest amount of drinkable groundwater in Qatar?",
+  "expected_type": "false_premise",
+  "got_type": "simple_with_condition",
+  "method": "hybrid",
+  "conditions": [
+   "Qatar"
+  ],
+  "sub_questions": [
+   "Where can we find the greatest amount of drinkable groundwater in Qatar?"
+  ],
+  "premise_issue": null,
+  "top_files": [
+   "misconceptions.csv",
+   "ANND_Right_to_Water_in_Qatar.txt",
+   "misconceptions.csv"
+  ],
+  "type_right": false,
+  "file_right": true
+ },
+ {
+  "question": "Since pumping fell in 2023, is the aquifer recovering?",
+  "expected_type": "false_premise",
+  "got_type": "false_premise",
+  "method": "hybrid",
+  "conditions": [
+   "2023"
+  ],
+  "sub_questions": [],
+  "premise_issue": "Abstraction fell in 2023, so pumping went down",
+  "top_files": [
+   "misconceptions.csv",
+   "NPC_Water_Statistics_2023.txt",
+   "NPC_Water_Statistics_2023.txt"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "Since low TDS means water is safe, can we drink from a well with 400 mg/L TDS?",
+  "expected_type": "false_premise",
+  "got_type": "false_premise",
+  "method": "hybrid",
+  "conditions": [
+   "TDS level of 400 mg/L"
+  ],
+  "sub_questions": [],
+  "premise_issue": "Low TDS means water is safe",
+  "top_files": [
+   "misconceptions.csv",
+   "misconceptions.csv",
+   "WHO_TDS_background_document.txt"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "Why is Qatar's groundwater getting saltier?",
+  "expected_type": "explanation",
+  "got_type": "explanation",
+  "method": "hybrid",
+  "conditions": [],
+  "sub_questions": [],
+  "premise_issue": null,
+  "top_files": [
+   "QEERI_2022_Qatar_Groundwater_Challenges.txt",
+   "ANND_Right_to_Water_in_Qatar.txt",
+   "ANND_Right_to_Water_in_Qatar.txt"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "Why does high SAR damage soil?",
+  "expected_type": "explanation",
+  "got_type": "explanation",
+  "method": "hybrid",
+  "conditions": [],
+  "sub_questions": [],
+  "premise_issue": null,
+  "top_files": [
+   "FAO_29_Water_Quality_for_Agriculture_ch1-5.txt",
+   "FAO_29_Water_Quality_for_Agriculture_ch1-5.txt",
+   "FAO_29_Water_Quality_for_Agriculture_ch1-5.txt"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "What causes seawater intrusion in coastal aquifers?",
+  "expected_type": "explanation",
+  "got_type": "explanation",
+  "method": "hybrid",
+  "conditions": [],
+  "sub_questions": [],
+  "premise_issue": null,
+  "top_files": [
+   "glossary.csv",
+   "Elobaid_2017_EGU_saline_front_Qatar.txt",
+   "Qatar_NDC_3.txt"
+  ],
+  "type_right": true,
+  "file_right": true
+ },
+ {
+  "question": "What is the best recipe for machboos?",
+  "expected_type": "out_of_scope",
+  "got_type": "out_of_scope",
+  "method": null,
+  "conditions": [],
+  "sub_questions": [],
+  "premise_issue": null,
+  "top_files": [],
+  "type_right": true,
+  "file_right": true
+ }
+]
