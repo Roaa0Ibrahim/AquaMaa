@@ -1,0 +1,84 @@
+{
+  "topics": [
+    {
+      "topic": "water_situation",
+      "questions": [
+        "What is the latest estimate of annual groundwater abstraction in Qatar, and how does it compare with recharge?",
+        "Which sector is the largest consumer of groundwater in Qatar?",
+        "Why is 2023 groundwater abstraction data not directly comparable with earlier PSA reports?",
+        "What is the overall water balance in Qatar, including abstraction, production, losses, and use?",
+        "What are the main reasons groundwater in Qatar is considered under pressure?"
+      ]
+    },
+    {
+      "topic": "suitability",
+      "questions": [
+        "Is Qatar's groundwater generally suitable for drinking, irrigation, or both?",
+        "What indicators are used to decide whether groundwater is suitable for agriculture?",
+        "How does salinity affect the suitability of groundwater for crop irrigation?",
+        "What role do SAR, KR, and EC play in deciding irrigation suitability?",
+        "Which groundwater conditions are likely to make water unsuitable for agricultural use?"
+      ]
+    },
+    {
+      "topic": "quality_science",
+      "questions": [
+        "What is the typical range of groundwater salinity or TDS in Qatar?",
+        "How do salinity, chloride, and electrical conductivity help describe groundwater quality?",
+        "What hydrochemical indicators are used to distinguish fresh groundwater from saline groundwater?",
+        "Why is a saline front or seawater intrusion important in Qatar's aquifers?",
+        "What does the 201-well groundwater dataset tell us about the chemistry of Qatar's aquifers?"
+      ]
+    },
+    {
+      "topic": "institutions",
+      "questions": [
+        "Which government agencies are most involved in water statistics, planning, and regulation in Qatar?",
+        "What is the role of Kahramaa in Qatar's water system and standards?",
+        "Which institution is most directly linked to national development planning and water-related targets?",
+        "Why are Kahramaa drinking-water standards not automatically applied to groundwater?",
+        "Which institutions are most relevant for groundwater governance, licensing, and policy oversight?"
+      ]
+    },
+    {
+      "topic": "standards",
+      "questions": [
+        "What TDS or salinity limits are commonly used for drinking water and irrigation?",
+        "Which FAO guidelines are most relevant for evaluating water quality in agriculture?",
+        "How do WHO drinking-water standards differ from GSO and Kahramaa requirements?",
+        "What are the main standards used in the database for irrigation and drinking-water quality?",
+        "Which standards should be used when evaluating groundwater for crop irrigation versus potable supply?"
+      ]
+    },
+    {
+      "topic": "policy",
+      "questions": [
+        "What are the main water-related goals in Qatar National Vision 2030 and NDS3?",
+        "How does Qatar's policy frame groundwater sustainability and long-term water security?",
+        "What role do recharge wells and managed aquifer recharge play in Qatar's water policy?",
+        "How does food security policy connect to groundwater use and irrigation?",
+        "Which policy documents in the database are most relevant to water rights, governance, and planning?"
+      ]
+    },
+    {
+      "topic": "glossary",
+      "questions": [
+        "What is the difference between groundwater, aquifer, and recharge?",
+        "How is TDS defined, and why is it important in groundwater quality assessments?",
+        "What is sodium adsorption ratio (SAR), and why does it matter for irrigation?",
+        "What does 'brackish water' mean in the context of groundwater in Qatar?",
+        "What is the difference between abstraction, withdrawal, and consumption in water management?"
+      ]
+    },
+    {
+      "topic": "sensors",
+      "questions": [
+        "Which type of sensor is commonly used to measure TDS in a groundwater or field-water setting?",
+        "What are the main parameters measured by pH, turbidity, and temperature sensors?",
+        "Why is calibration important when measuring groundwater quality with field sensors?",
+        "How is an ESP32 ADC relevant to a low-cost water-quality sensing system?",
+        "What practical factors should be considered when selecting sensors for groundwater monitoring in Qatar?"
+      ]
+    }
+  ]
+}
