@@ -1,0 +1,211 @@
+'use strict';
+const path = require('path');
+const express = require('express');
+const { db } = require('./db');
+const auth = require('./auth');
+
+const app = express();
+app.disable('x-powered-by');
+app.use(express.json({ limit: '10kb' }));
+
+// Basic security headers.
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('Referrer-Policy', 'same-origin');
+  next();
+});
+
+const YEAR_MIN = 1998;
+const YEAR_MAX = 2022;
+const SAFE_TDS = 1000; // mg/L, demonstration suitability threshold
+
+// ---------- helpers ----------
+const round = (n, d = 1) => (n == null ? null : Number(Number(n).toFixed(d)));
+
+function parseYear(v) {
+  if (v == null || v === '') return YEAR_MAX;
+  const y = Number(v);
+  if (!Number.isInteger(y) || y < YEAR_MIN || y > YEAR_MAX) return null;
+  return y;
+}
+
+function requireAuth(req, res, next) {
+  const uid = auth.sessionUserId(req);
+  const user = uid && db.prepare('SELECT id,email,name,role,title,institution FROM users WHERE id=?').get(uid);
+  if (!user) return res.status(401).json({ error: 'Authentication required' });
+  req.user = user;
+  next();
+}
+
+const ROLE_INSIGHTS = {
+  admin: 'Platform-wide view. Review the three data integrations that are not yet connected to improve evidence coverage.',
+  kahramaa: 'Supply planning: municipal abstraction is the share most relevant to KAHRAMAA. Compare it with the estimated safe yield before committing groundwater to new supply.',
+  mecc: 'Environmental protection: extraction far exceeds the estimated safe yield for the same period. Prioritise recharge studies and verification of the estimate.',
+  municipality: 'Urban planning: only a small share of registered wells meet the TDS threshold. Treat remaining wells as candidates for treatment or non-potable use.',
+  agriculture: 'Agriculture is the largest abstraction sector. Salinity limits crop suitability; review well TDS before allocating irrigation sources.',
+  researcher: 'Research view: figures are demonstration data. Use the status labels to separate measured, estimated and demonstration values.',
+};
+
+// ---------- auth ----------
+app.post('/api/auth/login', (req, res) => {
+  const email = String((req.body && req.body.email) || '').trim().toLowerCase();
+  const password = String((req.body && req.body.password) || '');
+  if (!email || !password || email.length > 200 || password.length > 200) {
+    return res.status(400).json({ error: 'Email and password are required' });
+  }
+  const key = `${req.ip}|${email}`;
+  if (auth.throttled(key)) return res.status(429).json({ error: 'Too many attempts. Try again later.' });
+  const row = db.prepare('SELECT * FROM users WHERE email=?').get(email);
+  if (!row || !auth.verifyPassword(password, row.password_hash)) {
+    auth.recordFailure(key);
+    return res.status(401).json({ error: 'Invalid email or password' });
+  }
+  auth.clearFailures(key);
+  auth.setSession(res, row.id);
+  const { id, name, role, title, institution } = row;
+  res.json({ user: { id, email: row.email, name, role, title, institution } });
+});
+
+app.post('/api/auth/logout', (req, res) => {
+  auth.clearSession(res);
+  res.json({ ok: true });
+});
+
+app.get('/api/auth/me', requireAuth, (req, res) => res.json({ user: req.user }));
+
+// Public: demo accounts listed on the login page (demo mode only).
+app.get('/api/auth/demo-accounts', (req, res) => {
+  const mode = db.prepare("SELECT value FROM meta WHERE key='mode'").get();
+  if (!mode || mode.value !== 'demonstration') return res.json({ accounts: [] });
+  res.json({ accounts: db.prepare('SELECT email,name,title,institution FROM users ORDER BY id').all() });
+});
+
+// ---------- data ----------
+app.get('/api/dashboard', requireAuth, (req, res) => {
+  const year = parseYear(req.query.year);
+  if (year == null) return res.status(400).json({ error: `year must be an integer between ${YEAR_MIN} and ${YEAR_MAX}` });
+
+  const cur = db.prepare('SELECT * FROM extraction_annual WHERE year=?').get(year);
+  const prev = db.prepare('SELECT total FROM extraction_annual WHERE year=?').get(year - 1);
+  const sy = db.prepare('SELECT * FROM safe_yield WHERE id=1').get();
+  const trend = db.prepare('SELECT year,total FROM extraction_annual ORDER BY year').all();
+
+  const wells = db.prepare('SELECT * FROM wells').all();
+  const stations = db.prepare('SELECT * FROM stations').all();
+  const periodPrefix = `${year}-`;
+  const received = db.prepare('SELECT COUNT(*) c FROM readings WHERE period LIKE ?').get(`${periodPrefix}%`).c;
+  const expected = stations.length * 12;
+  const suitable = wells.filter((w) => w.tds_mgl != null && w.tds_mgl <= SAFE_TDS).length;
+  const sources = db.prepare('SELECT * FROM data_sources').all();
+  const connected = sources.filter((s) => s.connected).length;
+  const meta = Object.fromEntries(db.prepare('SELECT key,value FROM meta').all().map((m) => [m.key, m.value]));
+
+  const yoy = cur && prev ? round(((cur.total - prev.total) / prev.total) * 100, 1) : null;
+  // The safe-yield estimate applies to a single reporting period; only compare like with like.
+  const comparable = cur && sy && String(year) === sy.period;
+  const sectorTotal = cur ? cur.agriculture + cur.municipal + cur.industrial : 0;
+  const pct = (v) => (sectorTotal ? round((v / sectorTotal) * 100, 0) : null);
+
+  res.json({
+    year,
+    mode: meta.mode,
+    updated_at: meta.last_data_update,
+    insight: ROLE_INSIGHTS[req.user.role] || ROLE_INSIGHTS.researcher,
+    extraction: cur && {
+      value: cur.total, unit: cur.unit, yoy_pct: yoy, period: String(year),
+      source: cur.source, status: cur.data_status,
+      spark: trend.filter((t) => t.year <= year).slice(-10).map((t) => t.total),
+    },
+    safe_yield: sy && { value: sy.value, unit: sy.unit, period: sy.period, source: sy.source, status: sy.data_status },
+    ratio: comparable ? round(cur.total / sy.value, 2) : null,
+    wells: { count: wells.length, status: 'demonstration' },
+    stations: {
+      count: stations.length,
+      active: stations.filter((s) => s.status === 'active').length,
+      expected, received,
+      coverage_pct: received ? round((received / expected) * 100, 0) : null,
+    },
+    quality: {
+      suitable_pct: wells.length ? round((suitable / wells.length) * 100, 0) : null,
+      suitable_count: suitable, total: wells.length, threshold_tds_mgl: SAFE_TDS, status: 'demonstration',
+    },
+    integrations: {
+      connected, total: sources.length, pct: sources.length ? round((connected / sources.length) * 100, 0) : 0,
+      sources,
+    },
+    trend,
+    sectors: cur && {
+      total: cur.total, unit: cur.unit, source: cur.source, status: cur.data_status,
+      items: [
+        { key: 'agriculture', value: cur.agriculture, pct: pct(cur.agriculture) },
+        { key: 'municipal', value: cur.municipal, pct: pct(cur.municipal) },
+        { key: 'industrial', value: cur.industrial, pct: pct(cur.industrial) },
+      ],
+    },
+    coverage: {
+      wells: wells.length,
+      stations: stations.length,
+      data_gaps: wells.filter((w) => w.last_measured == null).length,
+    },
+  });
+});
+
+app.get('/api/wells', requireAuth, (req, res) => {
+  const rows = db.prepare(`SELECT w.*, s.code AS station_code FROM wells w LEFT JOIN stations s ON s.id=w.station_id ORDER BY w.code`).all();
+  res.json({
+    threshold_tds_mgl: SAFE_TDS,
+    wells: rows.map((w) => ({
+      ...w,
+      suitable: w.tds_mgl == null ? null : w.tds_mgl <= SAFE_TDS,
+      data_gap: w.last_measured == null,
+    })),
+  });
+});
+
+app.get('/api/stations', requireAuth, (req, res) => {
+  const rows = db.prepare(`
+    SELECT s.*, (SELECT COUNT(*) FROM readings r WHERE r.station_id=s.id AND r.period LIKE '2022-%') AS readings_2022
+    FROM stations s ORDER BY s.code`).all();
+  res.json({ stations: rows });
+});
+
+app.get('/api/stations/:id/readings', requireAuth, (req, res) => {
+  const id = Number(req.params.id);
+  if (!Number.isInteger(id)) return res.status(400).json({ error: 'Invalid station id' });
+  res.json({ readings: db.prepare('SELECT period,water_level_m,tds_mgl FROM readings WHERE station_id=? ORDER BY period').all(id) });
+});
+
+app.get('/api/extraction', requireAuth, (req, res) => {
+  res.json({ series: db.prepare('SELECT * FROM extraction_annual ORDER BY year').all() });
+});
+
+app.get('/api/notifications', requireAuth, (req, res) => {
+  res.json({ notifications: db.prepare('SELECT * FROM notifications ORDER BY created_at DESC').all(),
+    unread: db.prepare('SELECT COUNT(*) c FROM notifications WHERE read=0').get().c });
+});
+
+app.post('/api/notifications/:id/read', requireAuth, (req, res) => {
+  const id = Number(req.params.id);
+  if (!Number.isInteger(id)) return res.status(400).json({ error: 'Invalid id' });
+  db.prepare('UPDATE notifications SET read=1 WHERE id=?').run(id);
+  res.json({ ok: true });
+});
+
+app.use('/api', (req, res) => res.status(404).json({ error: 'Not found' }));
+
+// ---------- static frontend ----------
+app.use(express.static(path.join(__dirname, '..', 'public')));
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, '..', 'public', 'index.html')));
+
+// ---------- errors ----------
+app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
+  console.error(err);
+  res.status(err.status || 500).json({ error: err.status && err.status < 500 ? err.message : 'Internal server error' });
+});
+
+const PORT = Number(process.env.PORT) || 3000;
+if (require.main === module) {
+  app.listen(PORT, () => console.log(`AquaMaa running on http://localhost:${PORT}`));
+}
+module.exports = app;
