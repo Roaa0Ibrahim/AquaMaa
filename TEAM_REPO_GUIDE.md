@@ -6,7 +6,7 @@ Your milestones: [TEAM_PLAN.md](TEAM_PLAN.md).
 ## The rules (everyone)
 1. **Work on your own branch, never on `main`.** `main` is the checked version of the agent; Roaa merges into it.
 2. **Push often.** Your work is then saved on GitHub, and the others can see it.
-3. **Never commit passwords or keys,** such as the database key. Put them in a file called `.env` in your folder; Git ignores it.
+3. **Passwords and keys may be committed this week** (decided by the team to save time; the repository is private). Keep them in one place per folder: `.env` for the website and Python, `secrets.h` for the ESP32. The repository must stay private, and every key and password is changed after the competition.
 4. **Don't commit large build files:** `vector_store.json`, `chunks.jsonl`, `node_modules/`, Android `build/` folders. Git already ignores them.
 5. **When a milestone's check passes,** open a pull request from your branch on GitHub and tell Roaa.
 
@@ -38,12 +38,12 @@ Command-line version, if you prefer: `git pull` · `git add <files>` · `git com
 ## Deema: website
 - **Branch:** keep using `deema-development`. It stays yours.
 - **The chat panel:** the `chat-widget` branch adds the "Ask AquaMaa" chat to your website. Please review it on GitHub (Pull requests → chat-widget) and merge it when you're happy with it.
-- **The database:** keep its link and key in `.env`, never in the code you commit.
+- **The database:** keep its link and key in `.env` (it may be committed this week).
 - You don't need Python, Ollama or the knowledge base. The AI agent runs on Roaa's laptop.
 
 ## Munira: sensors and robot
 - **Branch:** `munira-robot`
-- **The ESP32 code:** put it in a folder called `sensors/`, without the Wi-Fi password or the database key (use a separate `secrets.h`, which Git ignores).
+- **The ESP32 code:** put it in a folder called `sensors/`, with the Wi-Fi password and the database key in `secrets.h` (it may be committed this week).
 - **Pepper:** copy Ala's `PepperWaterQuality` project into a folder called `pepper/`, then open `pepper/PepperWaterQuality` in Android Studio. Commit your changes to the `.kt`, `.top` and `.xml` files; the build folders are ignored.
 - You don't need Python, Ollama or the knowledge base. When Pepper needs the AI agent, it calls Roaa's laptop over the lab Wi-Fi.
 
@@ -53,4 +53,4 @@ Command-line version, if you prefer: `git pull` · `git add <files>` · `git com
 | "Repository not found" | You haven't accepted the invitation yet, or you're signed in with another GitHub account |
 | Push rejected | Pull first, then push again |
 | A conflict when pulling | Don't force anything; send Roaa a screenshot |
-| You committed a key by mistake | Tell Roaa straight away; the key must be changed, as deleting the file doesn't remove it from the history |
+| Someone outside the team may have seen a key | Tell Roaa straight away; the key must be changed |
