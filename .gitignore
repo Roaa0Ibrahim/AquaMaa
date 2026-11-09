@@ -5,8 +5,6 @@ chunks.jsonl
 kb_cache.pkl
 kb_cache.tmp
 # Secrets: database keys, Wi-Fi passwords
-.env
-secrets.h
 # Android (Pepper) and Node build files
 pepper/**/build/
 pepper/**/.gradle/
