@@ -1,0 +1,151 @@
+[
+ {
+  "id": "S01",
+  "question": "How many groundwater wells are there in Qatar?",
+  "context": {
+   "page": "dashboard",
+   "year": 2022
+  },
+  "passed": false,
+  "checks": {
+   "screen": true,
+   "includes": false,
+   "excludes": true,
+   "verifier": false
+  },
+  "screen": "context",
+  "missing": [
+   "[dashboard",
+   "28",
+   "demonstration"
+  ],
+  "unwanted": [],
+  "problems_left": [
+   {
+    "kind": "sentence_without_citation",
+    "detail": [],
+    "sentence": "The information provided does not directly answer the question about the number of groundwater wells in Qatar."
+   }
+  ],
+  "repairs": 1,
+  "seconds": 29.0,
+  "answer": "However, it does mention that Kahramaa is actively rehabilitating and activating over 300 existing recharge wells around Qatar and plans to drill and develop about 60 recharge/injection and observation wells. [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1]\n\nSome points couldn't be confirmed from AquaMaa's sources, so they were left out."
+ },
+ {
+  "id": "S02",
+  "question": "كم عدد آبار المياه الجوفية في قطر",
+  "context": {
+   "page": "dashboard",
+   "year": 2022
+  },
+  "passed": false,
+  "checks": {
+   "screen": true,
+   "includes": false,
+   "excludes": true,
+   "verifier": true
+  },
+  "screen": "context",
+  "missing": [
+   "[dashboard",
+   "28",
+   "SOURCE"
+  ],
+  "unwanted": [],
+  "problems_left": [],
+  "repairs": 1,
+  "seconds": 22.2,
+  "answer": "The sources do not provide the number of groundwater wells in Qatar."
+ },
+ {
+  "id": "S03",
+  "question": "Where is the most number of wells in Qatar?",
+  "context": {
+   "page": "map",
+   "year": 2022
+  },
+  "passed": true,
+  "checks": {
+   "screen": true,
+   "includes": true,
+   "excludes": true,
+   "verifier": true
+  },
+  "screen": "context",
+  "missing": [],
+  "unwanted": [],
+  "problems_left": [],
+  "repairs": 1,
+  "seconds": 29.7,
+  "answer": "The total number of wells in working farms across all municipalities in Qatar in 2023 is 4564 [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.257].\n\nNote on sources: The farm census table counts 4564 wells on farms in 2023 [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv row 91], while kahramaa officials have cited more than 6500 agricultural wells (Gulf Times interview, not yet in AquaMaa's database). The sources count differently; the census counts wells on registered farms, working or not."
+ },
+ {
+  "id": "S04",
+  "question": "Where is the most number of wells in Qatar?",
+  "context": null,
+  "passed": true,
+  "checks": {
+   "screen": true,
+   "includes": true,
+   "excludes": true,
+   "verifier": true
+  },
+  "screen": "none",
+  "missing": [],
+  "unwanted": [],
+  "problems_left": [],
+  "repairs": 0,
+  "seconds": 12.7,
+  "answer": "The municipality with the most number of wells in Qatar is Al Khor, with 1,632 wells [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.234]."
+ },
+ {
+  "id": "S05",
+  "question": "What does the extraction card show for this year?",
+  "context": {
+   "page": "dashboard",
+   "year": 2015
+  },
+  "passed": true,
+  "checks": {
+   "screen": true,
+   "includes": true,
+   "excludes": true,
+   "verifier": true
+  },
+  "screen": "about_dashboard",
+  "missing": [],
+  "unwanted": [],
+  "problems_left": [],
+  "repairs": 0,
+  "seconds": 13.7,
+  "answer": "The dashboard shows that groundwater extraction for 2015 is 217 MCM/year, with a 5.9% increase from the previous year [dashboard overview 2015]. The safe yield is estimated at 49.6 MCM/year for 2022 [dashboard overview 2015]. Extraction by sector is as follows: agriculture accounts for 132 MCM/year (61%), municipal for 51.2 MCM/year (24%), and industrial for 33.8 MCM/year (16%) [dashboard overview 2015]. Of the 28 wells, 5 meet the TDS threshold of 1000 mg/L, which is 18% of the total [dashboard overview 2015]. The data shown on the dashboard is marked as demonstration data [dashboard overview 2015]."
+ },
+ {
+  "id": "S06",
+  "question": "Why is the groundwater in Qatar getting saltier?",
+  "context": {
+   "page": "dashboard",
+   "year": 2022
+  },
+  "passed": false,
+  "checks": {
+   "screen": true,
+   "includes": true,
+   "excludes": true,
+   "verifier": false
+  },
+  "screen": "context",
+  "missing": [],
+  "unwanted": [],
+  "problems_left": [
+   {
+    "kind": "sentence_without_citation",
+    "detail": [],
+    "sentence": "The groundwater in Qatar is facing significant challenges due to overexploitation and climate change."
+   }
+  ],
+  "repairs": 1,
+  "seconds": 49.5,
+  "answer": "In the Northern groundwater province, the saline front has been advancing inland at a rate of 4-5 km per year, and the average annual increase in groundwater salinity has been estimated at about 39% between 1980 and 2009 [Elobaid_2017_EGU_saline_front_Qatar.txt p.2]. Additionally, the area of freshwater lenses has decreased by about 51.3% between 1982 and 2009 [Elobaid_2017_EGU_saline_front_Qatar.txt p.2]. These changes are primarily due to the high rate of groundwater abstraction for agricultural purposes and the low recharge rate from precipitation [Elobaid_2017_EGU_saline_front_Qatar.txt p.1].\n\nSome points couldn't be confirmed from AquaMaa's sources, so they were left out."
+ }
+]

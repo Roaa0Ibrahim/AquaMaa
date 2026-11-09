@@ -45,15 +45,17 @@ def cases():
 
 
 def main():
+    DASHBOARD_TOOLS = ("read_dashboard", "dashboard_screen")
     rows, passed = [], 0
     for question, chart, expected in cases():
         r = ask(question)
         answer_numbers = numbers(CITATION.sub("", r["answer"]))
-        dashboard_text = tool_results_text([s for s in r["trace"] if s.get("tool") == "read_dashboard"])
+        # Since 9 Nov the screen step reads the dashboard before the agent (dashboard_screen); both count as the dashboard
+        dashboard_text = tool_results_text([s for s in r["trace"] if s.get("tool") in DASHBOARD_TOOLS])
         missing = [n for n in expected if n not in answer_numbers]
         foreign = sorted(answer_numbers - numbers(dashboard_text) - numbers(question))
         says_demo = "demonstration" in r["answer"].lower()
-        used_tool = any(s["step"] == "call" and s["tool"] == "read_dashboard" for s in r["trace"])
+        used_tool = any(s["step"] == "call" and s["tool"] in DASHBOARD_TOOLS for s in r["trace"])
         ok = used_tool and not missing and not foreign and says_demo
         passed += ok
         print(f"{'PASS' if ok else 'FAIL'}  {chart}: {question}\n      expected {expected}; missing {missing}; "

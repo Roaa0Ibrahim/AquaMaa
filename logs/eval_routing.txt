@@ -1,0 +1,32 @@
+﻿OK OK  simple                 -> simple                 hybrid            2.2s  What is the groundwater safe yield?
+OK OK  simple                 -> simple                 structured        2.3s  What is the WHO guideline value for nitrate in drinking wate
+OK OK  simple                 -> simple                 hybrid            2.5s  What is the measurement range of the DFRobot TDS sensor?
+OK OK  simple_with_condition  -> simple_with_condition  structured        2.8s  What was total groundwater abstraction in 2019?
+OK OK  simple_with_condition  -> simple_with_condition  structured        3.2s  What was the population of Al Rayyan in the 2020 census?
+OK OK  simple_with_condition  -> simple_with_condition  structured        2.9s  What was biological water quality compliance in 2021?
+OK OK  set                    -> set                    hybrid            2.2s  Which national goals concern groundwater?
+OK OK  set                    -> set                    hybrid            2.3s  Which parameters does FAO use to judge irrigation water qual
+OK OK  set                    -> set                    structured        2.3s  Which heavy metals are measured in Qatar's marine water?
+OK OK  comparison             -> comparison             per_sub_question 10.1s  Compare groundwater abstraction in 2019 and 2023.
+OK OK  comparison             -> comparison             per_sub_question  7.4s  How does the FAO irrigation TDS limit compare with the GSO d
+OK OK  comparison             -> comparison             per_sub_question 10.3s  Compare the population of Al Rayyan and Al Wakra in 2020.
+OK OK  aggregation            -> aggregation            structured        6.7s  What was the average groundwater abstraction from 2019 to 20
+OK OK  aggregation            -> aggregation            structured        2.3s  How many wells are there in total across all municipalities?
+OK OK  aggregation            -> aggregation            structured        5.7s  What was the average biological compliance from 2020 to 2025
+OK OK  multi_hop              -> multi_hop              per_sub_question  7.5s  Which body owns the national goal on groundwater extraction,
+OK OK  multi_hop              -> multi_hop              per_sub_question  7.4s  Which aquifers supply Qatar's groundwater, and what is their
+OK XX  multi_hop              -> multi_hop              per_sub_question  7.7s  Which plan sets the target for recharge wells, and how many 
+        top files: ['Mohieldeen_2021_GIS_aquifer_recharge_Qatar_SciRep.txt', 'Mohieldeen_2021_GIS_aquifer_recharge_Qatar_SciRep.txt', 'NPC_Water_Statistics_2023.txt', 'Peninsula_2025_Kahramaa_water_reserves.txt', 'Mohieldeen_2021_GIS_aquifer_recharge_Qatar_SciRep.txt', 'NPC_Water_Statistics_2023.txt']
+OK OK  post_processing        -> post_processing        hybrid            3.7s  How many times the safe yield is the 2023 groundwater abstra
+OK OK  post_processing        -> post_processing        hybrid            3.9s  What percentage of groundwater abstraction came from farm we
+OK OK  post_processing        -> post_processing        hybrid            4.2s  By what percentage did the abstraction estimate change betwe
+XX OK  false_premise          -> set                    hybrid            3.0s  Where can we find the greatest amount of drinkable groundwat
+OK OK  false_premise          -> false_premise          hybrid            3.2s  Since pumping fell in 2023, is the aquifer recovering?
+OK OK  false_premise          -> false_premise          hybrid            3.3s  Since low TDS means water is safe, can we drink from a well 
+OK OK  explanation            -> explanation            hybrid            1.8s  Why is Qatar's groundwater getting saltier?
+OK OK  explanation            -> explanation            hybrid            2.2s  Why does high SAR damage soil?
+OK OK  explanation            -> explanation            hybrid            1.8s  What causes seawater intrusion in coastal aquifers?
+OK OK  out_of_scope           -> out_of_scope           -                 1.7s  What is the best recipe for machboos?
+
+Type right: 26/27 (target 25).  Right file in the top 3: 26/27 (target 22).
+Context recall (a right file found): 0.96.  Context precision (share of top 3 from right files): 0.81.

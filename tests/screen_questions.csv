@@ -1,0 +1,7 @@
+id,question,page,year,expected_screen,must_include,must_not_include,why
+S01,How many groundwater wells are there in Qatar?,dashboard,2022,context,[dashboard;28;demonstration;SOURCE,,Roaa's question 9 Nov: the card shows 28 wells (demonstration); the answer must give it labelled and also what the sources say
+S02,كم عدد آبار المياه الجوفية في قطر,dashboard,2022,context,[dashboard;28;SOURCE,,The same question in Arabic as asked on the website
+S03,Where is the most number of wells in Qatar?,map,2022,context,number-of-farms-and-wells,,Roaa's question 9 Nov: a table has wells by municipality; the agent gave up after one search
+S04,Where is the most number of wells in Qatar?,,,none,number-of-farms-and-wells,[dashboard,The same question outside the website: no screen
+S05,What does the extraction card show for this year?,dashboard,2015,about_dashboard,[dashboard overview 2015],,About the dashboard itself: answered from the screen for the chosen year
+S06,Why is the groundwater in Qatar getting saltier?,dashboard,2022,context,SOURCE,[dashboard,The screen is read but has nothing on causes: the answer must come from the sources and not use the screen

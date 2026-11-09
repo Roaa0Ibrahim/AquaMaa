@@ -19,6 +19,7 @@ from langchain_core.vectorstores import InMemoryVectorStore
 from langchain_ollama import OllamaEmbeddings
 from rank_bm25 import BM25Okapi
 
+import kb_cache
 from config import EMBED_MODEL, OLLAMA_URL
 
 ROOT = Path(__file__).parent
@@ -68,14 +69,22 @@ def years_in(items):
 
 class Retrievers:
     def __init__(self):
-        self.chunks = [json.loads(line) for line in CHUNKS_FILE.open(encoding="utf-8")]
-        self.bm25_index = BM25Okapi([tokenize(c["text"]) for c in self.chunks])
         if not VECTOR_FILE.exists() or not CHUNKS_FILE.exists():
             raise SystemExit("The knowledge base hasn't been built yet. Run: python build_kb.py")
-        self.vectors = InMemoryVectorStore.load(str(VECTOR_FILE),
-                                                embedding=OllamaEmbeddings(model=EMBED_MODEL, base_url=OLLAMA_URL))
-        self.facts = self._load_facts()
-        self.facts_index = BM25Okapi([tokenize(f["text"]) for f in self.facts])
+        # Built once and saved in kb_cache.pkl; rebuilt only when the knowledge base changes (see kb_cache.py)
+        ready = kb_cache.get("retrieval", self._build)
+        self.chunks, self.bm25_index, self.facts, self.facts_index = (
+            ready["chunks"], ready["bm25_index"], ready["facts"], ready["facts_index"])
+        self.vectors = InMemoryVectorStore(embedding=OllamaEmbeddings(model=EMBED_MODEL, base_url=OLLAMA_URL))
+        self.vectors.store = ready["vector_store"]       # the saved chunk vectors; no re-embedding
+
+    def _build(self):
+        """Everything the searches need, from the files build_kb.py wrote and the data tables."""
+        chunks = [json.loads(line) for line in CHUNKS_FILE.open(encoding="utf-8")]
+        facts = self._load_facts()
+        store = InMemoryVectorStore.load(str(VECTOR_FILE), embedding=None).store
+        return dict(chunks=chunks, bm25_index=BM25Okapi([tokenize(c["text"]) for c in chunks]),
+                    facts=facts, facts_index=BM25Okapi([tokenize(f["text"]) for f in facts]), vector_store=store)
 
     # Document chunks -------------------------------------------------------------------
     def bm25(self, query, k=5):

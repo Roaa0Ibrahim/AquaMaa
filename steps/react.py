@@ -8,7 +8,7 @@ from langgraph.prebuilt import ToolNode
 
 from agent_log import log
 from config import CHAT_MODEL, MAX_TOOL_ROUNDS, OLLAMA_URL
-from prompts import STEP_LIMIT
+from prompts import FIRST_SEARCH, STEP_LIMIT
 from tools import TOOLS
 
 model = ChatOllama(model=CHAT_MODEL, temperature=0, reasoning=False, base_url=OLLAMA_URL)
@@ -28,6 +28,11 @@ def agent_node(state):
         log.info("LIMIT     %d tool rounds reached, answering now (%.1f s)", MAX_TOOL_ROUNDS, time.time() - start)
         return {"messages": [reply]}
     reply = agent_model.invoke(state["messages"])
+    if not reply.tool_calls and state["rounds"] == 0 and state.get("screen") != "about_dashboard":
+        # Rule 1 enforced in code: an answer before any search goes back once with a reminder.
+        # Ready-made results (screen, key statistics) don't count as a search.
+        log.info("REASON    answered before searching: sent back to search first (%.1f s)", time.time() - start)
+        reply = agent_model.invoke(state["messages"] + [HumanMessage(FIRST_SEARCH)])
     if reply.tool_calls:
         for call in reply.tool_calls:
             log.info("REASON    round %d: call %s(%s) (%.1f s)", state["rounds"] + 1, call["name"], call["args"],

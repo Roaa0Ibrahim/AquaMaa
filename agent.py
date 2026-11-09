@@ -1,16 +1,18 @@
 """The AquaMaa agent: connects the steps into one graph, and runs it.
 
-    route -> figures -> agent <-> tools -> verify -(problems, once)-> repair -> agent
-                                          verify -(no problems, or after one repair)-> finalize -> end
+    route -> screen -> figures -> agent <-> tools -> verify -(problems, once)-> repair -> agent
+                                                     verify -(no problems, or after one repair)-> finalize -> end
 
 Each step lives in steps/, and each step's logic in a top-level module:
     steps/route.py    routing.py     the router's reading of the question, and the scope check
+    steps/screen.py   dashboard.py   what the user sees on the dashboard, read on every website question
     steps/figures.py  key_stats.py   up to 2 key statistics, given to the agent before it answers
     steps/react.py    tools.py       the ReAct loop: the agent decides, the tools act
     steps/verify.py   verifier.py    checks, one repair attempt, removal of what still fails, conflict notes
 Settings are in config.py, prompts in prompts.py, the graph's state in state.py, logging in agent_log.py.
 
 Usage: from agent import ask;  result = ask("What is the safe yield?")
+       From the website: ask(question, context={"page": "dashboard", "year": 2022})
 Run:   python agent.py "your question"
 """
 import json
@@ -30,12 +32,14 @@ from state import State, trace_of
 from steps.figures import figures_block, figures_node
 from steps.react import after_agent, agent_node, tools_node
 from steps.route import route_node
+from steps.screen import screen_node
 from steps.verify import after_verify, finalize_node, repair_node, verify_node
 
 TRACE_DIR = Path("logs/traces")
 
 graph = StateGraph(State)
 graph.add_node("route", route_node)
+graph.add_node("screen", screen_node)
 graph.add_node("figures", figures_node)
 graph.add_node("agent", agent_node)
 graph.add_node("tools", tools_node)
@@ -43,7 +47,8 @@ graph.add_node("verify", verify_node)
 graph.add_node("repair", repair_node)
 graph.add_node("finalize", finalize_node)
 graph.add_edge(START, "route")
-graph.add_edge("route", "figures")
+graph.add_edge("route", "screen")
+graph.add_edge("screen", "figures")
 graph.add_edge("figures", "agent")
 graph.add_conditional_edges("agent", after_agent, {"tools": "tools", "verify": "verify"})
 graph.add_edge("tools", "agent")
@@ -53,10 +58,10 @@ graph.add_edge("finalize", END)
 app = graph.compile()
 
 
-def ask(question: str, save_trace: bool = True) -> dict:
+def ask(question: str, save_trace: bool = True, context: dict | None = None) -> dict:
     start = time.time()
     try:
-        final = app.invoke({"question": question, "repairs": 0, "problems": []},
+        final = app.invoke({"question": question, "context": context or {}, "repairs": 0, "problems": []},
                            {"recursion_limit": 2 * (MAX_REPAIRS + 1) * (MAX_TOOL_ROUNDS + 2) + 8})
     except (ConnectionError, OSError, httpx.HTTPError, ollama.ResponseError) as error:
         # Milestone 5: the model is down or failed. A clear message instead of a crash, for the website and Pepper.
@@ -67,7 +72,8 @@ def ask(question: str, save_trace: bool = True) -> dict:
     figures = final.get("figures") or []
     answer = (final.get("final") or final["messages"][-1].content).strip()
     answer += figures_block(figures, answer)
-    result = dict(question=question, route=final["route"], answer=answer, tool_rounds=final["rounds"],
+    result = dict(question=question, context=context or {}, screen=final.get("screen", "none"),
+                  route=final["route"], answer=answer, tool_rounds=final["rounds"],
                   key_figures=[s["stat_id"] for s in figures], repairs=final.get("repairs", 0),
                   problems_left=final.get("problems", []), trace=trace_of(final["messages"]),
                   seconds=round(time.time() - start, 1))

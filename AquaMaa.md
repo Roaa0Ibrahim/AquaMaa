@@ -2,6 +2,16 @@
 
 Our working file, last updated 9 November 2026.
 
+## Frozen idea (9 November 2026)
+Frozen so the team stops reopening it. Changes only by a team decision, written here with the date.
+- **Problem:** farms in Qatar rely on groundwater wells (about 4,500 farm wells in the 2023 farm census), most of them brackish. Sensors already send well readings (Ooredoo, daily), but nobody analyses them, so a salinity rise is noticed too late
+- **What AquaMaa provides:** live well-water readings (TDS, pH, temperature), what each reading means for drinking and irrigation, a robot that speaks the reading with its meaning, and answers to follow-up questions in plain words from verified sources
+- **The chain:** probe → ESP32 over Wi-Fi → shared database (every reading with its time; Munira, done) → website, Pepper and the AI agent
+- **Two accounts only:** the officer (general) account sees the main dashboard: the live sensor readings and the map, real data only. The farmer account (future work) sees its farm's wells and their information, with one example farm
+- **Measurable targets:** a sample change reaches the website and the robot within 5 seconds; every agent answer cites its source
+- **Not in scope before 15 November:** multi-farm management, the Supabase knowledge base, Arabic speech, forecasting beyond a simple early warning, robots outdoors, Pepper's camera (no time for computer vision; decided 9 November)
+- **Order:** the end-to-end chain first, due for the internal evaluation (Wednesday 11 November); then the farm view, the Qatar view with real data and the early warning (by Sunday 15 November). Owners and done-checks: [TEAM_PLAN.md](TEAM_PLAN.md)
+
 ## Checkpoint: 9 November 2026
 Git tag `checkpoint-2026-11-09`. Everything is committed and pushed.
 
@@ -37,6 +47,8 @@ Roaa builds each milestone. Claude explains, reviews and runs the checks.
 Each milestone is frozen as a version once its checks pass. Fixes to earlier milestones go into the next version.
 
 Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.com/oss/python/langgraph/agentic-rag, MIT), running on local Qwen through Ollama.
+
+**Team tracks (9 November):** [TEAM_PLAN.md](TEAM_PLAN.md). Roaa's work for the internal evaluation is making the milestones below work, nothing new. Milestone 9 (the robot) is now Munira's Robot Milestones 1-2. The sensors already send to the shared database (Munira).
 
 ### [x] Milestone 1: Open-source code functioning with the Qwen model (v1, 7 Nov)
 - The tutorial code runs unchanged, except that `qwen3:14b` through Ollama replaces the hosted model
@@ -184,7 +196,14 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 - **UDST research:** cited as background, with no partnership claim. We won't ask that team about it.
 - **National goals:** AquaMaa links its findings to Qatar Vision, NDS3, ministry goals and the SDGs. The links are our own mapping, not an official endorsement.
 - **Architecture (decided 7 November):** one ReAct agent finds the evidence; fixed steps around it check and present it. "Agent plus pipeline": the model decides how to find evidence, fixed steps decide how it is checked and shown.
-  - route → key statistics → ReAct agent ⇄ tools → verifier (Milestone 5) → simplify for the officer (Milestone 6) → Arabic speech (Milestone 7)
+  - route → screen → key statistics → ReAct agent ⇄ tools → verifier (Milestone 5) → simplify for the officer (Milestone 6) → Arabic speech (Milestone 7)
+  - **The screen step (decided 9 November):** the dashboard is read as a fixed step, not left to the agent. Two website questions showed why: "how many wells" missed the 28 on the card, and "where is the most number of wells" had no idea what the map showed
+    - Position: after route (so it knows the scope), before key statistics and the agent (so both know what the user sees)
+    - When: on **every** question from the website (Roaa's choice), using the page and year the chat panel sends; outside the website, only when the question names the dashboard (English or Arabic). No model call, milliseconds
+    - Modes: `about_dashboard` (the dashboard's figure is the answer, key statistics skipped), `context` (the screen is evidence next to the sources), `none`, `unavailable`
+    - How the answer uses it (prompt rule 7): a dashboard figure the question asks about comes first, cited `[dashboard ...]` and labelled demonstration; then what the sources say. Never merged, averaged or used to correct each other. If the screen has nothing on the question, it is ignored. The demonstration note is guaranteed only when the answer cites the dashboard
+    - Code: `steps/screen.py`; the panel sends `{page, year}` (`chat-widget` branch); check: `eval_screen.py` with `tests/screen_questions.csv`
+  - **Search before "not in the sources" (9 November, Milestone 5):** the verifier flags a "not in the sources" sentence after fewer than 2 searches (repair: search again with other words, no year filter), and a file citation on such a sentence (removed if it stays)
   - ReAct stays the only reasoning loop: no planning step, no ReWOO or LLMCompiler, no multi-agent supervisor (slower on a local 14B model, and no evidence yet that it helps). Multi-agent only if a comparison test shows it's worth it
   - Accuracy is designed into the first pass: the agent must call a tool first, may cite only labels from tool results, and must tag its own knowledge
 - **Stack (adopted 7 November, after the review in [similar-projects.md](similar-projects.md)):** one LangGraph graph built on v1, running locally.

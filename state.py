@@ -5,6 +5,8 @@ from langgraph.graph import MessagesState
 
 class State(MessagesState):
     question: str
+    context: dict          # from the website chat: {"page": ..., "year": ...}; empty outside the website
+    screen: str            # what the screen step did: about_dashboard, context, none, unavailable
     route: dict            # the router's reading of the question
     rounds: int            # tool rounds used
     figures: list          # key statistics given to the agent

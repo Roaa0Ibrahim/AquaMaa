@@ -31,9 +31,22 @@ MISSING_INFO = re.compile(r"\b(not (explicitly |directly )?(mentioned|specified|
                           r"no (mention|information|data|evidence)|isn't (in|covered)|aren't (in|covered))\b", re.I)
 
 
+SEARCH_TOOLS = ("search_documents", "lookup_table")
+CONTRAST = re.compile(r"\b(but|however|although|while|whereas)\b", re.I)
+# Kinds that don't make a sentence wrong: after the repair attempt they are fixed in place, not removed
+SOFT_KINDS = ("gave_up_early", "cited_for_missing")
+
+
 def _uncited(sentence):
     """A sentence of more than 4 words with no [citation], unless it says what the sources don't contain."""
     return len(sentence.split()) > 4 and not CITATION.search(sentence) and not MISSING_INFO.search(sentence)
+
+
+def _cited_for_missing(sentence):
+    """Says the sources don't contain something, and cites a file for it (a source can't show its own gap).
+    Sentences that also state a fact ("X isn't given, but Y [file]") are left alone."""
+    files = [c for c in CITATION.findall(sentence) if "general knowledge" not in c.lower()]
+    return bool(MISSING_INFO.search(sentence) and files and not CONTRAST.search(sentence))
 
 
 def find_problems(answer, trace, question):
@@ -42,8 +55,13 @@ def find_problems(answer, trace, question):
     allowed = numbers(tool_text) | numbers(question)
     invented, _ = citation_check(answer, tool_text)
     body = answer.split("\n\nKey figures:")[0]            # the key figures block is generated, not written by the model
+    searches = sum(1 for s in trace if s["step"] == "result" and s["tool"] in SEARCH_TOOLS)
     problems = []
     for s in sentences(body):
+        if MISSING_INFO.search(s) and searches < 2:
+            problems.append(dict(kind="gave_up_early", detail=[f"{searches} search(es)"], sentence=s))
+        if _cited_for_missing(s):
+            problems.append(dict(kind="cited_for_missing", detail=[], sentence=s))
         bad_numbers = sorted(numbers(CITATION.sub("", s)) - allowed)
         bad_cites = [c for c in invented if c in s]
         if bad_numbers:
@@ -65,6 +83,13 @@ def repair_request(problems):
         elif p["kind"] == "cited_file_not_returned":
             lines.append(f'- "{p["sentence"]}" cites {", ".join(p["detail"])}, which no tool returned. '
                          "Cite a label from the tool results, or remove the sentence.")
+        elif p["kind"] == "gave_up_early":
+            lines.append(f'- "{p["sentence"]}" says the sources don\'t have it, after only {p["detail"][0]}. '
+                         "Search again first with different words: other terms (municipality for area), no year "
+                         "filter, or the place, sector or cause behind the question. Then answer.")
+        elif p["kind"] == "cited_for_missing":
+            lines.append(f'- "{p["sentence"]}" says the sources don\'t have something but cites a file. '
+                         "Remove the citation from that sentence, or, if the cited result does answer, use what it says.")
         else:
             lines.append(f'- "{p["sentence"]}" has no citation. Add the label it rests on, '
                          "mark it [general knowledge] if it is general knowledge you are sure of, or remove it.")
@@ -73,8 +98,14 @@ def repair_request(problems):
 
 
 def remove_failing(answer, problems):
-    """Drops every sentence that still has a problem, and adds the note if anything was dropped."""
-    failing = {p["sentence"] for p in problems}
+    """Drops every sentence that still has a problem, and adds the note if anything was dropped.
+    Soft problems are fixed in place instead: a file citation on a "not in the sources" sentence is removed,
+    and a sentence that gave up early stays (it is honest; the repair attempt already asked for another search)."""
+    for p in problems:
+        if p["kind"] == "cited_for_missing":
+            fixed = CITATION.sub("", p["sentence"]).replace(" .", ".").strip()
+            answer = answer.replace(p["sentence"], fixed)
+    failing = {p["sentence"] for p in problems if p["kind"] not in SOFT_KINDS}
     if not failing:
         return answer
     body, _, figures = answer.partition("\n\nKey figures:")

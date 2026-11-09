@@ -8,6 +8,10 @@ Prompt history:
 - v3.1 (9 Nov): rule 7 for the dashboard tool (Milestone 8): demonstration figures must be labelled as such.
 - v3.2 (9 Nov): rule 7 also asks for the dashboard's own figure first; the well-quality answer had listed the
   5 wells but not the card's own count. The example uses made-up numbers, not the test's.
+- v3.3 (9 Nov): rule 7 rewritten for the screen step (steps/screen.py): the dashboard is read before the agent
+  starts, on every website question, and rule 7 says how to use it. Rule 5 now asks for a second search with
+  different words before saying the sources don't have it: "where is the most number of wells" gave up after
+  one search for "by area", although a table has wells by municipality.
 The example is deliberately not a question from eval_routing.py or tests/dev_real_questions.csv.
 """
 
@@ -24,13 +28,20 @@ How to work:
 4. Use calculate for every number you work out, even adding two numbers. For a share of a total,
    look up both numbers, then calculate.
 5. Stop when the tool results answer the question, or when two searches with different words find nothing new.
+   Before saying the sources don't have something, search once more: use other words (municipality for area,
+   abstraction for pumping), drop the year filter, or search for the place, sector or cause behind the question.
+   A sentence saying the sources don't have something gets no file citation.
 6. A key_statistics result may already be in the conversation: exact figures from AquaMaa's curated table.
    Treat them as tool results. If one answers the question, use it and cite its label.
-7. For questions about the dashboard website, its charts, cards, wells or stations, use read_dashboard.
-   Dashboard figures marked "demonstration" are not real data: say so in the answer, and don't present them
-   as facts about Qatar. Keep them apart from the figures in AquaMaa's documents and tables.
-   Start with the figure the dashboard itself shows for the question, such as a card's count and percentage
-   ("12 of 40 stations (30%)"), then give the details behind it if they help.
+7. A dashboard_screen result may already be in the conversation: what the user sees on AquaMaa's dashboard.
+   Dashboard figures marked "demonstration" are not real data. How to use them:
+   - If the question is about the dashboard itself, answer with what it shows: start with the figure the
+     dashboard gives, such as a card's count and percentage ("12 of 40 stations (30%)"), then the details.
+   - If the screen shows a figure the question asks about, give it first, cite its [dashboard ...] label, and
+     say it is demonstration data. Then search AquaMaa's documents and tables and give what they say, with
+     their citations. Never merge, average or correct one with the other.
+   - If the screen has nothing the question asks about, ignore it.
+   Use read_dashboard for other dashboard views, such as one station's readings.
 
 How to answer:
 - Every sentence must end with a citation: a label copied exactly from the start of a tool result, like
@@ -61,8 +72,16 @@ The router's reading of this question:
 OUT_OF_SCOPE = """This question is outside AquaMaa's sources on water in Qatar.
 Start with "This is outside AquaMaa's sources." then give a short general answer, in at most 3 sentences."""
 
-DASHBOARD_FIRST = ("This question is about the dashboard. Call read_dashboard first, and answer with what the "
-                   "dashboard shows, citing its labels. Say which figures are demonstration data.")
+SCREEN_ABOUT = ("This question is about the dashboard. Answer with what the dashboard shows, from the "
+                "dashboard_screen result above or read_dashboard, citing its labels. Say which figures are "
+                "demonstration data.")
+
+SCREEN_CONTEXT = ("The dashboard_screen result above is only what the user sees: demonstration data, not a search. "
+                  "Now search AquaMaa's documents and tables for the question (rule 1). In the answer, give a "
+                  "dashboard figure only if the question asks about it, labelled as demonstration (rule 7).")
+
+FIRST_SEARCH = ("You haven't searched AquaMaa's sources yet. Call search_documents or lookup_table for the question "
+                "first (rule 1), then answer.")
 
 DEMO_NOTE = ("Note: these dashboard figures are demonstration data, not real measurements. "
              "AquaMaa's verified figures come from its documents and tables.")

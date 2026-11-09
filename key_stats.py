@@ -16,6 +16,7 @@ from pathlib import Path
 from langchain_ollama import ChatOllama, OllamaEmbeddings
 from pydantic import BaseModel, Field
 
+import kb_cache
 from config import CHAT_MODEL, EMBED_MODEL, OLLAMA_URL
 
 STATS_FILE = Path(__file__).parent / "database" / "11-key-statistics" / "key_statistics.csv"
@@ -28,13 +29,15 @@ embeddings = OllamaEmbeddings(model=EMBED_MODEL, base_url=OLLAMA_URL)
 gate_model = ChatOllama(model=CHAT_MODEL, temperature=0, reasoning=False, base_url=OLLAMA_URL)
 
 STATS = list(csv.DictReader(STATS_FILE.open(encoding="utf-8-sig")))
-_stat_vectors = []     # embedded on first use, so the program starts even if the model is down
+_stat_vectors = []     # read on first use, so the program starts even if the model is down
 
 
 def stat_vectors():
+    """The 20 statistics' vectors: embedded once and saved in kb_cache.pkl (key_statistics.csv is in database/,
+    so editing it makes the cache rebuild this part once)."""
     if not _stat_vectors:
-        _stat_vectors.extend(embeddings.embed_documents(
-            [f"{s['statistic']}. Helps with {s['when_it_helps']}" for s in STATS]))
+        _stat_vectors.extend(kb_cache.get("key_stats", lambda: embeddings.embed_documents(
+            [f"{s['statistic']}. Helps with {s['when_it_helps']}" for s in STATS])))
     return _stat_vectors
 
 

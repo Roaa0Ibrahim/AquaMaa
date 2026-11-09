@@ -1,0 +1,76 @@
+﻿13:32:24 QUESTION  What does the dashboard show for groundwater extraction compared with the safe yield in 2022?
+13:32:28 ROUTE     type=comparison in_scope=True conditions=['2022'] sub_questions=['What was the groundwater extraction in 2022?', 'What was the safe yield in 2022?'] premise=None (4.1 s)
+13:32:28 SCREEN    about_dashboard: page=None year=None (12 lines)
+13:32:28 KEYSTATS  skipped: the question is about the dashboard
+13:32:33 REASON    round 1: enough evidence, answering (5.4 s)
+13:32:33 VERIFY    no problems
+PASS  overview card: extraction, safe yield and ratio: What does the dashboard show for groundwater extraction compared with the safe yield in 2022?
+      expected ['250', '49.6', '5.04']; missing []; numbers not from the dashboard []; says demonstration: True; used read_dashboard: True
+      A: The dashboard shows that groundwater extraction in 2022 was 250 MCM/year, and the safe yield was 49.6 MCM/year, with extraction being 5.04 times the safe yield [dashboard overview 2022]. These figures are marked as demon
+13:32:33 QUESTION  On the dashboard's sector chart, how much did agriculture extract in 2022 and what share is that?
+13:32:38 ROUTE     type=aggregation in_scope=True conditions=['year: 2022'] sub_questions=['What was the amount of water extracted by agriculture in 2022?', 'What was the percentage share of agriculture in total water extraction in 2022?'] premise=None (4.8 s)
+13:32:38 SCREEN    about_dashboard: page=None year=None (12 lines)
+13:32:38 KEYSTATS  skipped: the question is about the dashboard
+13:32:42 REASON    round 1: enough evidence, answering (4.4 s)
+13:32:42 VERIFY    no problems
+PASS  sector chart: On the dashboard's sector chart, how much did agriculture extract in 2022 and what share is that?
+      expected ['155', '62']; missing []; numbers not from the dashboard []; says demonstration: True; used read_dashboard: True
+      A: The dashboard shows that in 2022, agriculture extracted 155 MCM/year, which is 62% of the total groundwater extraction [dashboard overview 2022]. Both the figure for agriculture's extraction and its share are marked as d
+13:32:42 QUESTION  According to the dashboard's trend chart, what was total extraction in 2010?
+13:32:46 ROUTE     type=simple_with_condition in_scope=True conditions=['year: 2010'] sub_questions=["According to the dashboard's trend chart, what was total extraction in 2010?"] premise=None (3.2 s)
+13:32:46 SCREEN    about_dashboard: page=None year=None (12 lines)
+13:32:46 KEYSTATS  skipped: the question is about the dashboard
+13:32:48 REASON    round 1: enough evidence, answering (2.5 s)
+13:32:48 VERIFY    gave_up_early ['0 search(es)'] <- The dashboard's trend chart does not provide specific data for the year 2010 in the inform
+13:32:48 VERIFY    sentence_without_citation  <- The data provided in the dashboard_screen result is for the year 2022 and is marked as dem
+13:32:48 REPAIR    sending 2 problem(s) back to the agent
+13:32:50 REASON    round 1: call read_dashboard({'year': 2010, 'view': 'extraction_trend'}) (1.7 s)
+13:32:50 OBSERVE   read_dashboard -> dashboard extraction 1998, dashboard extraction 1999, dashboard extraction 2000, dashboard extraction 2001, dashboard extraction 2002, dashboard extraction 2003, dashboard extraction 2004, dashboard extraction 2005, dashboard extraction 2006, dashboard extraction 2007, dashboard extraction 2008, dashboard extraction 2009, dashboard extraction 2010, dashboard extraction 2011, dashboard extraction 2012, dashboard extraction 2013, dashboard extraction 2014, dashboard extraction 2015, dashboard extraction 2016, dashboard extraction 2017, dashboard extraction 2018, dashboard extraction 2019, dashboard extraction 2020, dashboard extraction 2021, dashboard extraction 2022 (0.0 s)
+13:32:53 REASON    round 2: enough evidence, answering (3.5 s)
+13:32:53 VERIFY    sentence_without_citation  <- This figure is marked as demonstration data.
+13:32:53 FINALIZE  fixed or removed sentence(s) with 1 problem(s) left
+13:32:53 FINALIZE  added the demonstration-data note
+PASS  extraction trend chart: According to the dashboard's trend chart, what was total extraction in 2010?
+      expected ['165']; missing []; numbers not from the dashboard []; says demonstration: True; used read_dashboard: True
+      A: According to the dashboard's trend chart, total extraction in 2010 was 165 MCM/year [dashboard extraction 2010].
+
+Some points couldn't be confirmed from AquaMaa's sources, so they were left out.
+
+Note: these dashboard fi
+13:32:53 QUESTION  How many wells on the dashboard meet the TDS threshold?
+13:32:56 ROUTE     type=simple_with_condition in_scope=True conditions=['TDS threshold'] sub_questions=['How many wells on the dashboard meet the TDS threshold?'] premise=None (2.8 s)
+13:32:56 SCREEN    about_dashboard: page=None year=None (12 lines)
+13:32:56 KEYSTATS  skipped: the question is about the dashboard
+13:33:00 REASON    round 1: enough evidence, answering (3.7 s)
+13:33:00 VERIFY    sentence_without_citation  <- This figure is marked as demonstration data.
+13:33:00 REPAIR    sending 1 problem(s) back to the agent
+13:33:02 REASON    round 1: enough evidence, answering (2.4 s)
+13:33:02 VERIFY    no problems
+13:33:02 FINALIZE  added the demonstration-data note
+PASS  well quality card: How many wells on the dashboard meet the TDS threshold?
+      expected ['5', '28']; missing []; numbers not from the dashboard []; says demonstration: True; used read_dashboard: True
+      A: The dashboard shows that 5 of 28 wells meet the TDS threshold of 1000 mg/L, which is 18% of the total wells [dashboard overview 2022].
+
+Note: these dashboard figures are demonstration data, not real measurements. AquaMaa
+13:33:02 QUESTION  What was the latest TDS reading at station ST-01 on the dashboard?
+13:33:06 ROUTE     type=simple_with_condition in_scope=True conditions=['station ST-01', 'dashboard', 'latest'] sub_questions=['What was the latest TDS reading at station ST-01 on the dashboard?'] premise=None (3.4 s)
+13:33:06 SCREEN    about_dashboard: page=None year=None (12 lines)
+13:33:06 KEYSTATS  skipped: the question is about the dashboard
+13:33:12 REASON    round 1: enough evidence, answering (6.3 s)
+13:33:12 VERIFY    gave_up_early ['0 search(es)'] <- The latest TDS reading at station ST-01 is not explicitly mentioned in the provided dashbo
+13:33:12 REPAIR    sending 1 problem(s) back to the agent
+13:33:14 REASON    round 1: call read_dashboard({'view': 'station_readings', 'station_code': 'ST-01'}) (1.8 s)
+13:33:14 OBSERVE   read_dashboard -> dashboard readings ST-01 2022-01, dashboard readings ST-01 2022-02, dashboard readings ST-01 2022-03, dashboard readings ST-01 2022-04, dashboard readings ST-01 2022-05, dashboard readings ST-01 2022-06, dashboard readings ST-01 2022-07, dashboard readings ST-01 2022-08, dashboard readings ST-01 2022-09, dashboard readings ST-01 2022-10 (0.0 s)
+13:33:17 REASON    round 2: enough evidence, answering (3.2 s)
+13:33:17 VERIFY    sentence_without_citation  <- This figure is marked as demonstration data.
+13:33:17 FINALIZE  fixed or removed sentence(s) with 1 problem(s) left
+13:33:17 FINALIZE  added the demonstration-data note
+PASS  station readings chart: What was the latest TDS reading at station ST-01 on the dashboard?
+      expected ['960']; missing []; numbers not from the dashboard []; says demonstration: True; used read_dashboard: True
+      A: The latest TDS reading at station ST-01, according to the dashboard, is 960 mg/L for October 2022 [dashboard readings ST-01 2022-10].
+
+Some points couldn't be confirmed from AquaMaa's sources, so they were left out.
+
+Not
+
+5/5 charts: the agent's numbers match the dashboard
