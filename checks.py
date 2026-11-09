@@ -17,7 +17,8 @@ def numbers(text):
 
 
 ADDED_BLOCKS = ("\n\nKey figures:", "\n\nNote on sources:",
-                "\n\nSome points couldn't be confirmed from AquaMaa's sources")
+                "\n\nSome points couldn't be confirmed from AquaMaa's sources",
+                "\n\nNote: these dashboard figures are demonstration data")
 
 
 def agent_text(answer):

@@ -104,10 +104,18 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 - **Done when:** a native Arabic speaker rates 10 spoken answers as clear, and it works with no robot
   - at least 3 of the 10 test questions are in Qatari dialect, and the answers are understood by a Qatari listener
 
-### [ ] Milestone 8: Reading the dashboard from the website and integrating it into the pipeline
+### [x] Milestone 8: Reading the dashboard from the website and integrating it into the pipeline (v8, 9 Nov)
 - The agent reads the same data the dashboard shows, through Deema's API (`/api/dashboard`, `/api/wells`, `/api/stations/:id/readings`, `/api/extraction`), with its own service account, since the API needs a login
-- Before this works, the dashboard's figures must come from the verified tables (`database/11-key-statistics/key_statistics.csv` and the abstraction tables), not its demonstration series: its demo data gives "5.04x the safe yield" where the official 2023 figure is 4.0
+- Still to do with Deema: the dashboard's figures should come from the verified tables (`database/11-key-statistics/key_statistics.csv` and the abstraction tables), not its demonstration series: its demo data gives "5.04x the safe yield" where the official 2023 figure is 4.0
 - **Done when:** for 5 charts, the agent's numbers match the chart exactly
+- **Result (9 Nov): 5 of 5 charts match** (overview card, sector chart, trend chart, well-quality card, station readings), every number from the dashboard, every answer labelled as demonstration data (`eval_dashboard.py`, `logs/eval_dashboard.json`)
+- Built:
+  - `dashboard.py`: signs in (researcher demo account in demonstration mode), reads 5 views as labelled, citable lines
+  - `read_dashboard` tool in `tools.py`, and prompt rule 7: demonstration figures labelled, kept apart from verified ones, the dashboard's own figure first
+  - Dashboard questions skip the key statistics step, so the agent can't attribute AquaMaa's verified figures to the dashboard (found in testing)
+  - The finalize step adds a fixed demonstration-data note if an answer uses demonstration figures without saying so: guaranteed in Python, not left to the model
+  - `scripts/start_dashboard.ps1`: checks out `deema-development` into `..\aquamaa-dashboard` (a git worktree), seeds and starts it, and prints how to sign in
+- Fixes found on the way: the agent first counted the wells list itself (6) instead of reading the card (5 of 28); the tool description now says to use the overview for counts and shares
 
 ### [ ] Milestone 9: Connection to the robot
 - Pepper hears the question, the laptop transcribes it (faster-whisper), the pipeline answers, and Pepper speaks

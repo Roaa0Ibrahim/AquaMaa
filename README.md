@@ -78,6 +78,9 @@ To use the smaller model, set it for that window first: `$env:AQUAMAA_MODEL = "q
 | Ask the agent | `python agent.py "question"` | Milestone 4: the agent answers, with live logs of each step | 10–20 seconds |
 | Run a question set | `python eval_agent.py tests/dev_real_questions.csv` | Runs 30 real questions through the agent and saves every answer in `runs/` | About 10 minutes |
 | See a run | `python show_run.py` | Lists the latest run's answers with their checks | Seconds |
+| Start the dashboard | `powershell -ExecutionPolicy Bypass -File scripts\start_dashboard.ps1` | Runs Deema's dashboard at http://localhost:3000. Sign in with any demo account on the login page; the password is `AquaMaa-Demo-2026` | About 1 minute |
+| Check the dashboard answers | `python eval_dashboard.py` | Milestone 8 check: 5 dashboard charts, the agent's numbers must match exactly (needs the dashboard running) | About 3 minutes |
+| Check the error routes | `python eval_errors.py` (add `--live` for the tests that need Ollama) | Milestone 5 check: forces each failure and checks its route | Seconds; a few minutes with `--live` |
 | 1. Build the knowledge base | `python build_kb.py` | Reads `database/`, cleans and splits every document, and saves the searchable store (`vector_store.json` and `chunks.jsonl`) | About 1 minute |
 | 2. Check the knowledge base | `python eval_kb.py` | Milestone 2 check: 10 questions, one in Arabic. Each should find its right file | About 30 seconds |
 | 3. Compare search methods | `python compare_retrieval.py` | Compares keyword, meaning and hybrid search, and tries the table lookup | About 30 seconds |

@@ -64,7 +64,10 @@ Start with "This is outside AquaMaa's sources." then give a short general answer
 DASHBOARD_FIRST = ("This question is about the dashboard. Call read_dashboard first, and answer with what the "
                    "dashboard shows, citing its labels. Say which figures are demonstration data.")
 
-STEP_LIMIT ="Step limit reached. Answer now from the tool results above, and say what is still unknown."
+DEMO_NOTE = ("Note: these dashboard figures are demonstration data, not real measurements. "
+             "AquaMaa's verified figures come from its documents and tables.")
+
+STEP_LIMIT = "Step limit reached. Answer now from the tool results above, and say what is still unknown."
 
 MODEL_DOWN = ("AquaMaa's assistant can't reach its AI model right now, so it can't answer. "
               "Please try again in a minute. If this keeps happening, the Ollama service needs restarting.")
