@@ -11,9 +11,9 @@ Git tag `checkpoint-2026-11-09`. Everything is committed and pushed.
 | 2. Knowledge base | done, `v2` | 46 sources in 12 folders, 1,406 chunks; 10 of 10 test questions find their file |
 | 3. Routing and retrieval | done, `v3` | type right 26/27, right file in top 3 26/27, recall 0.96, precision 0.83, baseline faithfulness 0.854 |
 | 4. Agent loop | done, `v4` | every number from a tool; 0 invented citations; uncited sentences in 2 of 30 answers (18 with prompt v1) |
-| 5. Error handling | in progress | verifier built; 5 of 5 offline tests pass; live tests and before-and-after still to run |
+| 5. Error handling | built, testing deferred | verifier built and in use; 5 of 5 offline tests pass; live tests and before-and-after deferred (decided 9 Nov, short of time) |
 | 6. Simplifying for officers | not started | |
-| 7. Arabic speech on the website | not started | |
+| 7. Arabic speech on the website | text chat done, speech not started | text chat working end to end on Deema's dashboard (branch `chat-widget`, for her review); speech not started |
 | 8. Dashboard data | done, `v8` | 5 of 5 dashboard charts match exactly, labelled as demonstration data |
 | 9. Pepper | not started | |
 | 11. Sensor-fault and trend statistics | not started | |
@@ -21,7 +21,7 @@ Git tag `checkpoint-2026-11-09`. Everything is committed and pushed.
 
 - **The system:** route → key statistics → ReAct agent ⇄ tools (documents, tables, calculator, dashboard) → verify → one repair → finalize. Modular: `steps/`, `prompts.py`, `config.py`
 - **Open with others:** Roaa's hand-check of 10 verdicts and review of the drafts marked `checked_by_roaa = no`; native-speaker check of the glossary's Arabic; Deema to remove her session secret and seed the dashboard from verified figures; a teammate to try the setup; a choice of web search service for Milestone 12
-- **Next, in order:** finish Milestone 5; the website chat link to Deema's dashboard (Milestone 7); Milestone 6; Milestones 9, 11 and 12 after the 12 November internal evaluation
+- **Next, in order:** Deema reviews and merges `chat-widget`; finish Milestone 5; Milestone 6; Arabic speech (Milestone 7); Milestones 9, 11 and 12 after the 12 November internal evaluation
 
 ## Core contributions
 
@@ -104,7 +104,9 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 
 - Prompt v2 adapted ScholarQA's citation rules (Apache 2.0): cite only labels from tool results, tag own knowledge as [general knowledge]. Prompt v3 adds: every sentence ends with a citation
 
-### [ ] Milestone 5: Error-handling routing
+### [ ] Milestone 5: Error-handling routing (built, testing deferred)
+- **Status (9 Nov):** built and running in every answer: `verifier.py`, `steps/verify.py`, `database/12-known-conflicts/`, a clear message when the model is down, and the `AQUAMAA_VERIFY` switch. `eval_errors.py` passes 5 of 5 offline tests (unsupported number, invented citation, uncited claim, too little evidence, known conflict)
+- **Deferred to after the internal evaluation (decided 9 Nov, short of time):** `python eval_errors.py --live` (model down, failed tool, missing evidence); the before-and-after run with `$env:AQUAMAA_VERIFY = "0"` on the labelled set; faithfulness judging of both runs and Roaa's hand-check of 10 verdicts; the weak-search threshold, only if the missing-evidence test shows it's needed
 - Each failure gets its own route:
   - a failed tool
   - an empty or weak retrieval, where the agent rewrites the query and retries once
@@ -124,6 +126,12 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 - Diacritics are added (tashkeel), numbers are spoken as words, and a local voice (Piper `ar_JO`) speaks, after we check its licence
 - **Done when:** a native Arabic speaker rates 10 spoken answers as clear, and it works with no robot
   - at least 3 of the 10 test questions are in Qatari dialect, and the answers are understood by a Qatari listener
+- **Step 1 done (9 Nov): the text chat on the website.** Text question in, text answer out, no robot needed
+  - The agent runs as a service: `api.py` (FastAPI) at 127.0.0.1:8000, one question at a time, optional shared key `AQUAMAA_API_KEY`
+  - Deema's server forwards to it: `server/chat.js` adds `POST /api/ask` (sign-in required, sends the user's role for Milestone 6) and `GET /api/ask/health`
+  - The panel: `public/chat.js` and `public/chat.css`, an **Ask AquaMaa** button shown after sign-in, labels in English or Arabic with the dashboard's language button, sources as tags, out-of-scope answers marked
+  - On a new branch `chat-widget` from `deema-development`, for Deema to review and merge; her own files only gain 5 lines (`server/index.js`, `public/index.html`)
+  - Checked: `test_api.py` and `test_website_chat.py` pass (401 without sign-in, 400 for a too-short question, an answer with sources in 8 s)
 
 ### [x] Milestone 8: Reading the dashboard from the website and integrating it into the pipeline (v8, 9 Nov)
 - The agent reads the same data the dashboard shows, through Deema's API (`/api/dashboard`, `/api/wells`, `/api/stations/:id/readings`, `/api/extraction`), with its own service account, since the API needs a login

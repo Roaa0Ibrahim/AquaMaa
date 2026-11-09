@@ -7,15 +7,19 @@
 # Run from the project folder:   powershell -ExecutionPolicy Bypass -File scripts\start_dashboard.ps1
 # Needs Node.js 22.13 or newer. Pull Deema's latest changes first with:  git -C ..\aquamaa-dashboard pull
 
+# For the website chat before Deema merges it:  $env:AQUAMAA_DASHBOARD_BRANCH = "chat-widget"  (then run this script)
+
 $project = Split-Path -Parent $PSScriptRoot
 $dashboard = Join-Path (Split-Path -Parent $project) "aquamaa-dashboard"
+$branch = if ($env:AQUAMAA_DASHBOARD_BRANCH) { $env:AQUAMAA_DASHBOARD_BRANCH } else { "deema-development" }
 
 if (-not (Test-Path $dashboard)) {
-    Write-Host "1. Checking out deema-development into $dashboard"
+    Write-Host "1. Checking out $branch into $dashboard"
     git -C $project fetch origin
-    git -C $project worktree add $dashboard deema-development
+    git -C $project worktree add $dashboard $branch
 } else {
-    Write-Host "1. $dashboard already exists"
+    Write-Host "1. $dashboard already exists (branch: $(git -C $dashboard branch --show-current))"
+    if ($env:AQUAMAA_DASHBOARD_BRANCH) { git -C $dashboard switch $branch }
 }
 
 Push-Location $dashboard

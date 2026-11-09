@@ -80,6 +80,9 @@ To use the smaller model, set it for that window first: `$env:AQUAMAA_MODEL = "q
 | See a run | `python show_run.py` | Lists the latest run's answers with their checks | Seconds |
 | Start the dashboard | `powershell -ExecutionPolicy Bypass -File scripts\start_dashboard.ps1` | Runs Deema's dashboard at http://localhost:3000. Sign in with any demo account on the login page; the password is `AquaMaa-Demo-2026` | About 1 minute |
 | Check the dashboard answers | `python eval_dashboard.py` | Milestone 8 check: 5 dashboard charts, the agent's numbers must match exactly (needs the dashboard running) | About 3 minutes |
+| Start the website chat | `python api.py`, then start the dashboard from the `chat-widget` branch | Runs the agent as a service at http://127.0.0.1:8000. The dashboard's **Ask AquaMaa** button (bottom corner, after signing in) sends questions to it. Leave this window open | Seconds to start; 10–30 seconds per answer |
+| Check the agent service | `python test_api.py` | Health check, one real question, and a rejected empty question (needs `api.py` running) | About 20 seconds |
+| Check the website chat | `python test_website_chat.py` | Signs in to the dashboard and asks through its chat route: checks sign-in is required, the agent is reachable, and an answer comes back with sources (needs both running) | About 20 seconds |
 | Check the error routes | `python eval_errors.py` (add `--live` for the tests that need Ollama) | Milestone 5 check: forces each failure and checks its route | Seconds; a few minutes with `--live` |
 | 1. Build the knowledge base | `python build_kb.py` | Reads `database/`, cleans and splits every document, and saves the searchable store (`vector_store.json` and `chunks.jsonl`) | About 1 minute |
 | 2. Check the knowledge base | `python eval_kb.py` | Milestone 2 check: 10 questions, one in Arabic. Each should find its right file | About 30 seconds |
@@ -107,6 +110,7 @@ python eval_routing.py > results.txt
 | `tools.py`, `key_stats.py`, `verifier.py` | The logic behind the steps: the agent's tools, choosing key statistics, and the answer checks (Milestones 4 and 5) |
 | `prompts.py`, `state.py`, `agent_log.py` | Every prompt in one place, the graph's state, and the live logs |
 | `database/11-key-statistics/`, `database/12-known-conflicts/` | The 20 verified headline figures, and the known disagreements between sources |
+| `api.py`, `test_api.py`, `test_website_chat.py` | The agent as a web service for the website chat, and its two checks. The chat panel itself lives in Deema's dashboard, branch `chat-widget` (`server/chat.js`, `public/chat.js`, `public/chat.css`) |
 | `eval_agent.py`, `checks.py`, `show_run.py` | Run a question set through the agent, check the answers, and list a run |
 | `tests/dev_real_questions.csv` | 30 real development questions, with sources |
 | `requirements.txt` | The packages the code needs. `requirements-full.txt` lists everything on the build laptop |
@@ -138,6 +142,8 @@ To see the code exactly as it was at a version, run `git checkout v2`, for examp
 | `model "..." not found` | That model isn't downloaded | `ollama pull <model name>` |
 | `The knowledge base hasn't been built yet` | `vector_store.json` is missing (it isn't in Git) | `python build_kb.py` |
 | Answers take over a minute | The model is running on the CPU | Use the smaller model: `$env:AQUAMAA_MODEL = "qwen3:8b"` |
+| Chat says "The assistant is offline" | `api.py` isn't running | `python api.py` in this folder, and leave it open |
+| `[Errno 10048] ... address ('127.0.0.1', 8000)` | Something else is using port 8000 (for example an old copy of `api.py`) | Close the other one, or use another port: `$env:AQUAMAA_API_PORT = "8001"` here and `$env:AQUAMAA_AGENT_URL = "http://127.0.0.1:8001"` for the dashboard |
 | Broken characters like `ΓÇö` in a saved file | PowerShell's file encoding | Run `[Console]::OutputEncoding = [Text.Encoding]::UTF8` before saving output |
 
 If it's still not working, run `python check_setup.py` and send Roaa what it prints.
