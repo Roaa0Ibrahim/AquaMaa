@@ -192,6 +192,9 @@ app.post('/api/notifications/:id/read', requireAuth, (req, res) => {
   res.json({ ok: true });
 });
 
+// ---------- AquaMaa chat (forwards to the agent service) ----------
+app.use('/api', require('./chat')(requireAuth));
+
 app.use('/api', (req, res) => res.status(404).json({ error: 'Not found' }));
 
 // ---------- static frontend ----------
