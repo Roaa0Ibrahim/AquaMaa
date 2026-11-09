@@ -4,7 +4,8 @@ import time
 from langchain_core.messages import HumanMessage, SystemMessage
 
 from agent_log import log
-from prompts import OUT_OF_SCOPE, SYSTEM
+from prompts import LANGUAGE_NOTE, OUT_OF_SCOPE, SYSTEM
+from retrieval import is_arabic
 from routing import classify
 from tools import R
 
@@ -21,8 +22,12 @@ def route_node(state):
     log.info("ROUTE     type=%s in_scope=%s conditions=%s sub_questions=%s premise=%s (%.1f s)",
              route.question_type, route.in_scope, route.conditions, route.sub_questions, route.premise_issue,
              time.time() - start)
+    # The answer is in the question's language, stated for this question rather than left to a general rule
+    # (9 Nov: an Arabic question got an English answer once the English sources came back)
+    language = LANGUAGE_NOTE["ar" if is_arabic(question) else "en"]
     if not route.in_scope:
-        return {"route": info, "rounds": 0, "messages": [SystemMessage(OUT_OF_SCOPE), HumanMessage(question)]}
+        return {"route": info, "rounds": 0,
+                "messages": [SystemMessage(f"{OUT_OF_SCOPE}\n{language}"), HumanMessage(question)]}
     system = SYSTEM.format(question_type=route.question_type, conditions=route.conditions or "none",
                            sub_questions=route.sub_questions or "none", premise_issue=route.premise_issue or "none")
-    return {"route": info, "rounds": 0, "messages": [SystemMessage(system), HumanMessage(question)]}
+    return {"route": info, "rounds": 0, "messages": [SystemMessage(f"{system}\n\n{language}"), HumanMessage(question)]}

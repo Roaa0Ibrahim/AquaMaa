@@ -39,7 +39,7 @@
   "says_demonstration": true,
   "used_read_dashboard": true,
   "passed": true,
-  "answer": "According to the dashboard's trend chart, total extraction in 2010 was 165 MCM/year [dashboard extraction 2010]. This figure is marked as demonstration data, sourced from the National water accounts (demonstration series) [dashboard extraction 2010]."
+  "answer": "According to the dashboard's trend chart, the total extraction in 2010 was 165 MCM/year [dashboard extraction 2010]. This figure is marked as demonstration data, sourced from the National water accounts (demonstration series) [dashboard extraction 2010]."
  },
  {
   "question": "How many wells on the dashboard meet the TDS threshold?",
@@ -66,6 +66,6 @@
   "says_demonstration": true,
   "used_read_dashboard": true,
   "passed": true,
-  "answer": "The latest TDS reading at station ST-01 on the dashboard is 960 mg/L [dashboard readings ST-01 2022-10]. This figure is marked as demonstration data [dashboard readings ST-01 2022-10]."
+  "answer": "The latest TDS reading at station ST-01 on the dashboard is 960 mg/L for October 2022 [dashboard readings ST-01 2022-10]. This figure is marked as demonstration data [dashboard readings ST-01 2022-10]."
  }
 ]

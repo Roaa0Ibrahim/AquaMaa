@@ -58,6 +58,15 @@ def tokenize(text):
     return [stem(w) for w in re.findall(r"\w+", text.lower()) if w not in STOPWORDS]
 
 
+# The tables' own words for what questions call something else. 9 Nov: "groundwater wells count" found no row,
+# because the farms-and-wells table says "Number of Wells" and never "groundwater" or "count".
+QUERY_WORDS = [
+    (re.compile(r"\bground\s?water\s+(wells?)\b", re.I), r"\1"),
+    (re.compile(r"\bcounts?\b", re.I), "number"),
+    (re.compile(r"\b(areas?|regions?)\b", re.I), "municipality"),
+]
+
+
 def is_arabic(text):
     return any("؀" <= ch <= "ۿ" for ch in text)
 
@@ -122,6 +131,8 @@ class Retrievers:
         """Exact table rows. Year conditions filter rows; a year range keeps every year in it.
         Returns [] when no row matches, so the caller can try the next method."""
         wanted = years_in(conditions) or years_in([query])
+        for pattern, replacement in QUERY_WORDS:
+            query = pattern.sub(replacement, query)
         terms = {t for t in tokenize(query) if not YEAR.fullmatch(t) and t not in OPERATION_WORDS}
         # Rare words carry the meaning, so coverage is weighted by IDF. A word no table contains
         # gets the highest weight, so a row missing it (e.g. "aquifer") can't pass on common words.

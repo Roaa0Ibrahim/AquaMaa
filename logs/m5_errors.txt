@@ -1,0 +1,17 @@
+﻿PASS  number not found in any tool result
+      route: verifier flags it -> repair -> removed if still there
+      final answer: "Abstraction was 200 million m3 in 2023 [total-abstraction-from-ground-water.csv p.3].\n\nSome points couldn't be confirmed from AquaMaa's sources, so they were left out."
+PASS  citation to a file no tool returned
+      route: verifier flags it -> repair -> removed if still there
+      final answer: "Abstraction was 200 million m3 in 2023 [total-abstraction-from-ground-water.csv p.3].\n\nSome points couldn't be confirmed from AquaMaa's sources, so they were left out."
+PASS  claim without a citation
+      route: verifier flags the claim; the honest 'not in the sources' sentence stays
+      flagged: ['Over-pumping also causes land subsidence across the whole country.']
+PASS  too little evidence
+      route: every sentence fails -> a clear 'not enough evidence' answer
+      final answer: "AquaMaa's sources don't contain enough evidence to answer this question.\n\nSome points couldn't be confirmed from AquaMaa's sources, so they were left out."
+PASS  one side of a known conflict
+      route: a note gives the other side and why they differ
+      notes: ["Total groundwater abstraction in 2023 was 200 million m3 [total-abstraction-from-ground-water.csv row 3], while NPC's report text gives about 180 million m3 for 2023 [NPC_Water_Statistics_2023.txt p.29]. 180 is the agricultural wells' share of the 200 total, so the two figures measure different things."]
+
+5/5 forced failures took their route

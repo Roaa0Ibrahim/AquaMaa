@@ -36,6 +36,9 @@ Rules:
 - Qatar is the default country, so never list "Qatar" as a condition.
 - If premise_issue is not null, the type is false_premise.
 - Sub-questions must stand alone: "How many recharge wells does the plan include?", not "How many does it include?"
+- Sub-questions keep what the question asks for. A "where" or "which place" question stays about places
+  (municipality, region): "Which municipality has the most date palms?" stays that, not "How many date palms are
+  there in each area?". Don't add a year the question doesn't give.
 - in_scope is False for subjects outside water and its context data, even if they are about Qatar.
 
 Known wrong assumptions about water in Qatar, from AquaMaa's misconceptions table:

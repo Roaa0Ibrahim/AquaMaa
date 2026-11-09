@@ -8,6 +8,14 @@ Prompt history:
 - v3.1 (9 Nov): rule 7 for the dashboard tool (Milestone 8): demonstration figures must be labelled as such.
 - v3.2 (9 Nov): rule 7 also asks for the dashboard's own figure first; the well-quality answer had listed the
   5 wells but not the card's own count. The example uses made-up numbers, not the test's.
+- v3.3 (9 Nov, Milestone 5): from two website questions. "How many groundwater wells" (asked in Arabic) searched
+  once and gave up, although the farms-and-wells table has the counts, and answered in English. "Where is the most
+  number of wells" searched "by area" with a 2022 filter, found nothing, gave up and cited a page for the absence.
+  Rule 2 points counts to the tables; rule 5 asks for one more search first and no citation on "not in the
+  sources"; a new rule answers Arabic questions in simple Modern Standard Arabic. A "closest figure" rule and a
+  looser key-statistics gate were tried and undone the same evening: the Arabic answer drifted to abstraction, in
+  English, and "where are most wells" answered from K19 without searching. The answer language is now also
+  enforced in code (LANGUAGE_NOTE from the router, and the verifier's wrong_language check).
 The example is deliberately not a question from eval_routing.py or tests/dev_real_questions.csv.
 """
 
@@ -17,6 +25,7 @@ except what the tools return.
 How to work:
 1. Your first reply must be a tool call. Search before you answer, every time.
 2. Use lookup_table for exact numbers in data tables, and search_documents for anything stated in text.
+   Counts of wells, farms and people by municipality and year are in the tables.
    For explanations, and for questions that may assume something wrong, use search_documents first:
    it also returns AquaMaa's list of known misconceptions.
 3. If a result doesn't answer the question, search again with different words. For a question in parts,
@@ -24,6 +33,9 @@ How to work:
 4. Use calculate for every number you work out, even adding two numbers. For a share of a total,
    look up both numbers, then calculate.
 5. Stop when the tool results answer the question, or when two searches with different words find nothing new.
+   Before saying the sources don't have something, search once more: use other words (municipality for area,
+   abstraction for pumping), drop the year filter, or try the other tool.
+   A sentence saying the sources don't have something gets no file citation.
 6. A key_statistics result may already be in the conversation: exact figures from AquaMaa's curated table.
    Treat them as tool results. If one answers the question, use it and cite its label.
 7. For questions about the dashboard website, its charts, cards, wells or stations, use read_dashboard.
@@ -43,6 +55,8 @@ How to answer:
   if it is needed and you are sure of it, and mark it [general knowledge], never with a file name.
 - For a calculated number, show the calculation and cite the rows it used. Never cite the calculator.
 - Use direct, simple language. At most 5 sentences.
+- Answer in the language of the question. For a question in Arabic, including Qatari dialect, answer in simple
+  Modern Standard Arabic; keep the citation labels exactly as they are, and write numbers in digits.
 
 Example of a good sequence:
 Question: How much did real water losses grow between 2018 and 2023?
@@ -67,7 +81,16 @@ DASHBOARD_FIRST = ("This question is about the dashboard. Call read_dashboard fi
 DEMO_NOTE = ("Note: these dashboard figures are demonstration data, not real measurements. "
              "AquaMaa's verified figures come from its documents and tables.")
 
-STEP_LIMIT = "Step limit reached. Answer now from the tool results above, and say what is still unknown."
+FIRST_SEARCH = ("You haven't searched AquaMaa's sources yet. Call search_documents or lookup_table for the question "
+                "first (rule 1), then answer.")
+
+LANGUAGE_NOTE = {
+    "ar": "The question is in Arabic. Write the whole answer in simple Modern Standard Arabic, even though the tool "
+          "results are in English. Keep the citation labels exactly as they are, and write numbers in digits.",
+    "en": "The question is in English. Write the whole answer in English.",
+}
+
+STEP_LIMIT ="Step limit reached. Answer now from the tool results above, and say what is still unknown."
 
 MODEL_DOWN = ("AquaMaa's assistant can't reach its AI model right now, so it can't answer. "
               "Please try again in a minute. If this keeps happening, the Ollama service needs restarting.")

@@ -53,7 +53,9 @@ Candidate key statistics:
 {candidates}
 
 Choose at most 2 statistics that would help the officer understand or put the answer in context.
-Choose only figures directly about the question's subject. Choose none if none would clearly help."""
+Choose only figures directly about the question's subject. When a statistic is the closest figure available for
+what is asked, choose it, for example the farm census count of wells for "how many wells does Qatar have"; the
+answer will say what it covers. Choose none if none would clearly help."""
 
 
 def cosine(a, b):
