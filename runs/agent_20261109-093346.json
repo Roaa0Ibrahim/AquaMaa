@@ -1,0 +1,1137 @@
+{
+ "run": {
+  "run_id": "20261109-093346",
+  "code_version": "785cfe0-dirty",
+  "questions_from": "tests\\dev_real_questions.csv",
+  "model": "qwen3:14b",
+  "max_tool_rounds": 6,
+  "complete": true,
+  "answered": 30
+ },
+ "answers": [
+  {
+   "id": "D01",
+   "question": "Is tap water in Qatar safe to drink?",
+   "asker": "resident",
+   "origin": "guide article",
+   "verbatim": "yes",
+   "source_url": "https://www.dohaguides.com/is-qatar-tap-water-safe-to-drink/",
+   "expected_type": "simple",
+   "kb_can_answer": "partly",
+   "note": "Kahramaa requirements and compliance only; no tap-water studies in the database",
+   "got_type": "false_premise",
+   "answer": "The biological compliance of drinking water in Qatar is 99.36% in 2023, which exceeds the WHO target of 95% [biological-water-quality-compliance-by-year.csv row 7]. Additionally, 63% of water production in Qatar comes from seawater desalination in 2023 [NPC_Water_Statistics_2023.txt p.36].\n\nNote on sources: Desalination supplied 63% of all water produced in 2023 [NPC_Water_Statistics_2023.txt p.36], while over 99.9% of Qatar's drinking water supply is desalinated [Peninsula_2025_Water_security_strategic_planning.txt p.1]. 63% is of all water production, including groundwater pumped for farms; 99.9% is of drinking water only (news report).",
+   "tools_used": [
+    "key_statistics"
+   ],
+   "tool_rounds": 0,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [
+    "99.9"
+   ],
+   "cited_files_not_in_tool_results": [
+    "Peninsula_2025_Water_security_strategic_planning.txt"
+   ],
+   "general_knowledge_tags": 0,
+   "seconds": 18.4,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "key_statistics",
+     "args": {
+      "question": "Is tap water in Qatar safe to drink?"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "key_statistics",
+     "text": "[biological-water-quality-compliance-by-year.csv row 7] Biological compliance of drinking water: 99.36 % (WHO target 95%) (2023) [biological-water-quality-compliance-by-year.csv row 7]\n[NPC_Water_Statistics_2023.txt p.36] Share of water production from seawater desalination: 63 % (2023) [NPC_Water_Statistics_2023.txt p.36]"
+    }
+   ]
+  },
+  {
+   "id": "D02",
+   "question": "Does Qatar's tap water come from groundwater or desalination?",
+   "asker": "resident",
+   "origin": "guide article",
+   "verbatim": "no",
+   "source_url": "https://www.dohaguides.com/is-qatar-tap-water-safe-to-drink/",
+   "expected_type": "simple",
+   "kb_can_answer": "yes",
+   "note": "",
+   "got_type": "simple",
+   "answer": "Qatar's tap water primarily comes from desalination, which accounted for 63% of water production in 2023 [NPC_Water_Statistics_2023.txt p.36]. Groundwater abstraction was reported at 200 million cubic meters in 2023 [total-abstraction-from-ground-water.csv row 3], but this does not directly indicate the share of groundwater in tap water supply.\n\nNote on sources: Desalination supplied 63% of all water produced in 2023 [NPC_Water_Statistics_2023.txt p.36], while over 99.9% of Qatar's drinking water supply is desalinated [Peninsula_2025_Water_security_strategic_planning.txt p.1]. 63% is of all water production, including groundwater pumped for farms; 99.9% is of drinking water only (news report).",
+   "tools_used": [
+    "key_statistics"
+   ],
+   "tool_rounds": 0,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [
+    "99.9"
+   ],
+   "cited_files_not_in_tool_results": [
+    "Peninsula_2025_Water_security_strategic_planning.txt"
+   ],
+   "general_knowledge_tags": 0,
+   "seconds": 12.3,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "key_statistics",
+     "args": {
+      "question": "Does Qatar's tap water come from groundwater or desalination?"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "key_statistics",
+     "text": "[NPC_Water_Statistics_2023.txt p.36] Share of water production from seawater desalination: 63 % (2023) [NPC_Water_Statistics_2023.txt p.36]\n[total-abstraction-from-ground-water.csv row 3] Groundwater abstraction: 200 million m3 (2023) [total-abstraction-from-ground-water.csv row 3]"
+    }
+   ]
+  },
+  {
+   "id": "D03",
+   "question": "Can I drink the water from a well on my farm?",
+   "asker": "resident",
+   "origin": "forum (UAE thread on garden wells)",
+   "verbatim": "no",
+   "source_url": "https://britishexpats.com/forum/sand-pit-116/well-water-pump-726897/",
+   "expected_type": "false_premise",
+   "kb_can_answer": "partly",
+   "note": "",
+   "got_type": "false_premise",
+   "answer": "No, you cannot assume that water from a well on your farm is safe to drink without proper testing [misconceptions.csv p.7]. Well water can contain harmful contaminants, such as bacteria, heavy metals, or chemicals, which may not be visible or detectable by simple means like taste or smell [misconceptions.csv p.7]. To ensure safety, the water must be tested for microbiological and chemical parameters according to standards like those set by WHO or KAHRAMAA [Kahramaa_Drinking_Water_Quality_Requirements_2014.txt p.7].",
+   "tools_used": [
+    "search_documents"
+   ],
+   "tool_rounds": 1,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 25.3,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "search_documents",
+     "args": {
+      "query": "well water safety for drinking"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "search_documents",
+     "text": "[Kahramaa_Drinking_Water_Quality_Requirements_2014.txt p.7] A safe drinking-water supply is a fundamental pre-requisite of public health. Safe drinking water is a\nmain responsibility of the water supplier and safety imply that water does not represent any significant\nrisk to health over lifetime of consumption and exposure based on present scientific knowledge.\nAcknowledging the tight link between water and health, The World Health Organization has published\nsince 1953 Guidelines for Drinking Water Quality, these guidelines include values for water characteristics\nand constituents that represent reference points for ensuring safety. The guideline is kept up to date\nthrough a process of rolling revision and the latest published was the fourth edition in 2011. Most\ncountries including the Gulf countries commonly use this reference in setting their national drinking\nwater quality standards.\nKAHRAMAA, policy and strategy dictate that water quality should not only be safe to drink but also to\nbe reliable and sustainable and of high aesthetic quality. Accordingly KAHRAMAA developed its own\nDrinking Water Quality Requirements & Conditions, providing an authoritative reference to the water\nsupply industry on what defines safe, good aesthetic quality water and how it can be achieved,\ncontrolled and be assured. The requirements are part of a framework for good management of\ndrinking water supplies from source until customer tap. The requirements address both the health and\naesthetic aspects of supplying good drinking water quality.\nKAHRAMAA continuously update its water quality requirements and conditions for better man-\nagement of drinking water quality in Qatar. The overall objective for the update takes into\naccount:\n1. Advances that are being made internationally in the management of drinking water quality (in\nparticular the risk-based approach to water quality management)\n2. The local conditions that are unique to Qatar, including environmental, legal and economical\nconditions.\nThis document provide an overview on \"Drinking Water Quality Requirement to ensure the water sup-\nply system performance in Qatar\" � and it summarizes the following:\n\n[WHO_GDWQ_annex_tables.txt p.2] GUIDELINES FOR DRINKING-WATER QUALITY\nTable A3.2 (continued)\nChemical  Reason for not establishing a guideline value\nSpinosad  Not considered appropriate to set guideline values for pesticides\nused for vector control in drinking-water\nSulfate  Not of health concern at levels found in drinking-watera\nTemephos  Not considered appropriate to set guideline values for pesticides\nused for vector control in drinking-water\nTotal dissolved solids  Not of health concern at levels found in drinking-watera\nTrichloramine  Available data inadequate to permit derivation of health-based\nguideline value\nTrichloroacetonitrile  Available data inadequate to permit derivation of health-based\nguideline value\nTrichlorobenzenes (total)  Occur in drinking-water at concentrations well below those of\nhealth concern, and health-based value would exceed lowest\nreported odour threshold\n1,1,1-Trichloroethane  Occurs in drinking-water at concentrations well below those of\nhealth concern\nZinc  Not of health concern at levels found in drinking-watera\na May affect acceptability of drinking-water (see chapter 10).\nb Aminomethylphosphonic acid.\nc An important operational water quality parameter.\nTable A3.3Guideline values for chemicals that are of health significance in drinking-water\nGuideline value\nChemical  mg/l  �g/l  Remarks\n0.000 5a\nAcrylamide  0.02a  0.5a  Applies to aldicarb sulfoxide and\nAlachlor  0.01  20a  aldicarb sulfone\nAldicarb  10\n0.000 03  For combined aldrin plus dieldrin\n\n[misconceptions.csv p.8] wrong_assumption: A TDS sensor reading can show groundwater is drinkable.\ncorrection: The SEN0244 probe reads up to 1,000 ppm, while the 2020 well survey averaged several thousand mg/L, and TDS alone never shows safety.\nsource_file: DFRobot_SEN0244_TDS.txt; Geochemistry_Dataset.xlsx\nchecked_by_roaa: no\n\n[misconceptions.csv p.7] wrong_assumption: Low TDS means the water is safe to drink.\ncorrection: WHO sets no health-based value for TDS. Safety needs microbiological and chemical tests.\nsource_file: WHO_TDS_background_document.txt\nchecked_by_roaa: no\n\n[Kahramaa_Drinking_Water_Quality_Requirements_2014.txt p.27] the well is sunk, and can increase over time as\ndrawdown occurs. Arsenic is usually at very low\nlevels in seawater (i.e. <0.002 mg/L) and will\nhave a high rejection in desalination systems\nand hence pose a low risk to the Qatar system.\n27  Overview on: KAHRAMAA Drinking Water Quality Requirements\n\n[Kahramaa_Drinking_Water_Quality_Requirements_2014.txt p.42] deterioration in cleanliness, possibly stagnation\nand the potential development of biofilms. HPC can\ninclude potentially \"opportunistic\" pathogens such\nas Acinetobacter, Aeromonas, Flavobacterium,\nKlebsiella, Moraxella, Serratia, Pseudomonas\nand Xanthomonas. However, there is no evidence\nof an association of any of these organisms with\ngastrointestinal infection through ingestion of\ndrinking-water in the general population. Qatar\nwater is desalinated and there is little potential\nfor microbial regrowth, a maximum level of 100\ncfu/ml has been adopted as a guidance level in\ndistribution system in case of suspecting water\nquality and action required, and 10 cfu/ml for\nwater at desalination plants delivery point.\nBasis for limit: Viruses and pathogenic proto-\nzoa can cause gastro-intestinal illnesses and oth-\ner communicable diseases in humans. Severe\ndoses can result in death. Immuno-compromised\npersons, children and the elderly are most sus-\nceptible.\nThe GSO Standard (Section 4.8) refer to mi-\ncrobes of faecal origin and that they should not be\npresent in the water. However, due to limitations\nin analytical methods sampling alone cannot be\nrelied upon as verification that the water poses an\ninsignificant risk from these microbes.\nWHO (2011) advocates development of a Water\nSafety Plan (a water quality management plan)\nto control harmful microbes such as viruses\nand/or cryptosporidium to a level that delivers a\nnegligible risk of infection due to consumption of\ndrinking water. Although these micro-organisms\nare not required to be routinely tested yet are of\nimportance in cases where water is suspected"
+    }
+   ]
+  },
+  {
+   "id": "D04",
+   "question": "Why is the water from my farm well getting saltier?",
+   "asker": "farmer",
+   "origin": "news",
+   "verbatim": "no",
+   "source_url": "https://www.hortidaily.com/article/9138949/agricultural-push-in-qatar-risks-further-groundwater-depletion/",
+   "expected_type": "explanation",
+   "kb_can_answer": "yes",
+   "note": "",
+   "got_type": "explanation",
+   "answer": "The increase in saltiness of your farm well water could be due to rising salinity levels in groundwater [general knowledge]. Groundwater salinity can increase due to factors such as over-extraction, natural saltwater intrusion, or changes in the hydrological balance [general knowledge]. The observed increase in salinity may be related to these factors [general knowledge]. In 2020, the average total dissolved solids (TDS) in groundwater from a survey of 201 wells was about 4,600 mg/L [misconceptions.csv row 10]. Additionally, there are 4,564 wells on farms (working and not working) in Qatar as of 2023 [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv row 91].\n\nNote on sources: The farm census table counts 4564 wells on farms in 2023 [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv row 91], while kahramaa officials have cited more than 6500 agricultural wells (Gulf Times interview, not yet in AquaMaa's database). The sources count differently; the census counts wells on registered farms, working or not.",
+   "tools_used": [
+    "key_statistics"
+   ],
+   "tool_rounds": 0,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [
+    "6500"
+   ],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 3,
+   "seconds": 26.0,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "key_statistics",
+     "args": {
+      "question": "Why is the water from my farm well getting saltier?"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "key_statistics",
+     "text": "[misconceptions.csv row 10] Average TDS in the 201-well survey: about 4,600 mg/L (2020) [misconceptions.csv row 10]\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv row 91] Wells on farms (working and not working): 4,564 wells (2023) [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv row 91]"
+    }
+   ]
+  },
+  {
+   "id": "D05",
+   "question": "Is bottled water safer than tap water in Qatar?",
+   "asker": "resident",
+   "origin": "news",
+   "verbatim": "no",
+   "source_url": "https://dohanews.co/study-qatar-tap-water-safer-bet-than-bottled-h20/",
+   "expected_type": "comparison",
+   "kb_can_answer": "no",
+   "note": "No bottled-water study in the database",
+   "got_type": "false_premise",
+   "answer": "The question assumes that bottled water is necessarily safer than tap water, but safety depends on testing and regulation, not the source (bottled or tap) [general knowledge]. Both types of water must meet health standards to be considered safe [general knowledge].",
+   "tools_used": [],
+   "tool_rounds": 0,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 2,
+   "seconds": 13.3,
+   "trace": []
+  },
+  {
+   "id": "D06",
+   "question": "Can my building's water tank contaminate the tap water?",
+   "asker": "resident",
+   "origin": "news",
+   "verbatim": "no",
+   "source_url": "https://dohanews.co/study-qatar-tap-water-safer-bet-than-bottled-h20/",
+   "expected_type": "explanation",
+   "kb_can_answer": "no",
+   "note": "Storage tanks not covered",
+   "got_type": "explanation",
+   "answer": "The data provided does not directly address whether a building's water tank can contaminate tap water [general knowledge]. Tap water quality is typically monitored and maintained to meet high standards, as indicated by the 99.36% biological compliance rate in 2023 [biological-water-quality-compliance-by-year.csv row 7]. If a building's water tank is not properly maintained, it could potentially introduce contaminants into the water supply, but this would depend on specific conditions [general knowledge].",
+   "tools_used": [
+    "key_statistics"
+   ],
+   "tool_rounds": 0,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 2,
+   "seconds": 21.2,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "key_statistics",
+     "args": {
+      "question": "Can my building's water tank contaminate the tap water?"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "key_statistics",
+     "text": "[biological-water-quality-compliance-by-year.csv row 7] Biological compliance of drinking water: 99.36 % (WHO target 95%) (2023) [biological-water-quality-compliance-by-year.csv row 7]\n[NPC_Water_Statistics_2023.txt p.36] Real water losses in the network: 6 % (2023) [NPC_Water_Statistics_2023.txt p.36]"
+    }
+   ]
+  },
+  {
+   "id": "D07",
+   "question": "Do I need a licence to dig a well on my land?",
+   "asker": "resident",
+   "origin": "law (FAOLEX)",
+   "verbatim": "no",
+   "source_url": "https://leap.unep.org/en/countries/qa/national-legislation/law-no-1-1988-regulating-drilling-and-digging-underground-wells",
+   "expected_type": "simple",
+   "kb_can_answer": "partly",
+   "note": "Law 1 of 1988 and Water Law No. 23 not in the database; ANND mentions licensing",
+   "got_type": "simple_with_condition",
+   "answer": "According to law no. 23 of 2025, all wells must be licensed, and there are strict rules and regulations on the use of groundwater [ANND_Right_to_Water_in_Qatar.txt p.14].\n\nSome points couldn't be confirmed from AquaMaa's sources, so they were left out.",
+   "tools_used": [
+    "search_documents"
+   ],
+   "tool_rounds": 1,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 20.2,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "search_documents",
+     "args": {
+      "query": "licence to dig a well on private land Qatar"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "search_documents",
+     "text": "[ANND_Right_to_Water_in_Qatar.txt p.14] 14  The Right to Water in\nFigure 2: Institutional Framework of Water Management in Qatar\nProduction: QEWC\nOwns and operates most desalination facilities in Qatar. Invests in facilities abroad to generate\nrevenues.\nDistribution: Kahramaa\nReceives water from desalination & treatment facilities\nand distributes it through its own\nnetwork. Monitors water\nresources. Manages reserves.\nTreatment: Ashghal\nReceives water from desalination & treatment facilities\nand distributes it through its own\nnetwork. Monitors water\nresources. Manages reserves.\n GROUNDWATER MANAGEMENT\nAmiri Decree no. 46 of 2015 handed responsibility for groundwater management, development, and control to Kahramaa (Amiri Diwan, 2015). The decree also granted Kahramaa the power to issue licenses to dig and operate wells and search for groundwater resources. It is assisted by the Public Works Authority (Ashghal) in building, operating, and maintaining the country’s groundwater pumping, distribution, and drainage network. On the other hand, the Agricultural Affairs Department at the Ministry of Municipality supervises the agricultural sector under the leadership of the Assistant Undersecretary for Agriculture and Food Security Affairs. This department issues farming licenses, monitors farms to ensure compliance, and conducts the periodic agricultural census (Ministry of Municipality, 2025).\nQatari law safeguards farmers’ rights to continue withdrawing groundwater free of charge. However, law no. 23 of 2025 places strict rules and regulations on the use of\n\n[QEERI_2022_Qatar_Groundwater_Challenges.txt p.1] So how can groundwater in Qatar be sustainably managed? Kahramaa is actively rehabilitating and activating over 300 existing recharge wells around Qatar, to increase the direct recharge to the aquifer system in the country from the rain and subsequently improve the groundwater condition and increase its availability for water security, while at the same time extending efforts to drill and develop about 60 recharge/injection and observation wells to increase the direct recharge to storage zone and to increase the productivity of the aquifer system from the rain. Managed aquifer recharge (MAR) is not easy or straightforward in Qatar due to the karstic nature of the sub-surface, but Kahramaa’s Water Projects Department budgeted 2.6 billion QAR for projects in 2019 to improve the groundwater storage zones and increase the recharge to the groundwater water aquifer system.\nAn even more serious issue than the decrease in quality of the groundwater is the issue of land subsidence due to the changes in the water table. For a very flat and low-lying country like Qatar, land changes can actually influence shifts along the coastline of Qatar, exacerbating any issues of sea level rise by changing the level of the land also. Research such as that ongoing at Qatar Environment and Energy Research Institute ( QEERI ), part of Hamad Bin Khalifa University, a member of Qatar Foundation (QF), can help. QEERI’s Earth Science Program partnered with NASA’s Jet Propulsion Laboratory in the OASIS project, which intends to use satellites to help map groundwater, land subsidence and sea level changes in this region and beyond. At the same time, QEERI is developing better options for agricultural water and brine management, which can help to protect the groundwater and the environment. Research to allow more crops to be grown with less water, and better greenhouse or other cooler environment options for indoor farming can extend the growing season and reduce the burden on the groundwater system.\n\n[Qatar_NDS3.txt p.22] in skilled & high-skilled jobs  by the private sector). To achieve this ambition, Qatar will\nstimulate the private sector to increase Qatari employment\nin mid to high-skilled positions. This includes:\n>20% Qatari workforce  ◊ Providing incentives and rewards for companies to hire\nQatari workers.\nin private & semi-private sectors\n>18% of students  ◊ Deploying large-scale upskilling programs, crafted and\nco-funded in close cooperation with the private sector.\ngraduating in STEM ﬁelds  This involves a bridge program in partnership with\nnational champions to create an upskilling pathway for\nAverage PISA score of 483  Qatari youth into key targeted economic sectors, a wider\nskilling-credit program enabling Qatari youth to access\nnecessary upskilling courses, and a targeted knowledge\ntransfer program offering opportunities for young,\nemployed Qataris to explore new economic sectors.\nWorkforce Upskilling: Qatar aims to increase the skills of  ◊ Adjusting the value proposition of higher education and\nits labour force and ensure that more than 46% of the total  its attractiveness to Qataris to ensure alignment with\nworkforce is skilled or highly skilled. To this end, Qatar will:  labour market. This will provide more flexibility in higher\neducation pathways, attract specific student groups via\n◊ Reform the labour immigration policy to enhance its  focused scholarships, and stimulate higher employment\nability to attract high-skilled talent, moving towards a  among recent graduates through corporate sponsorship\nskill-based scheme, enhancing the visa issuance and hiring  of educational programs and internships.\nprocess for highly skilled expats, and implementing new\ntypes of visas for entrepreneurs, freelancers, students,  ◊ Establishing an updated governance model for\nand elite talent.  education-labour market alignment, activating a labour\n\n[Mohieldeen_2021_GIS_aquifer_recharge_Qatar_SciRep.txt p.13] Open Access This article is licensed under a Creative Commons Attribution 4.0 International\nLicense, which permits use, sharing, adaptation, distribution and reproduction in any medium or\nformat, as long as you give appropriate credit to the original author(s) and the source, provide a link to the\nCreative Commons licence, and indicate if changes were made. The images or other third party material in this\narticle are included in the article's Creative Commons licence, unless indicated otherwise in a credit line to the\nmaterial. If material is not included in the article's Creative Commons licence and your intended use is not\npermitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from\nthe copyright holder. To view a copy of this licence, visit http://c reativecom mons.org/licens es/b y/4.0/.\n� The Author(s) 2021\nScientific Reports | (2021) 11:18184 |  https://doi.org/10.1038/s41598-021-97593-w  13\n\n[ANND_Right_to_Water_in_Qatar.txt p.14] Qatari law safeguards farmers’ rights to continue withdrawing groundwater free of charge. However, law no. 23 of 2025 places strict rules and regulations on the use of\ngroundwater and imposes severe penalties for violations.9 For example, all wells must be licensed (Article 10) and have a maximum permitted withdrawal rate (Article 7.2). Furthermore, each well has a permitted area that it may irrigate (Article 13), which cannot be increased without a license. Additionally, wells must be at least 300 meters apart to mitigate over-abstraction (Article 11).\nThe new law significantly increased penalties for violations. The most severe penalties were reserved for actions that pollute natural water resources, which can reach up to 15 years in prison and a million Qatari riyals in fines (Article 76). Digging an unlicensed well or exceeding the permitted withdrawal rate in a licensed well (without prior permission) is punishable by up to three years in prison and up to 500,000 Qatari riyals in fines (Article 77). Meanwhile, exceeding the licensed irrigated area carries no prison sentence but is punishable by a hefty fine of up to\n9 Qatar, Shura Council, Qānūn Raqm (23) li-Sanat 2025 bi-shaʾn al-Miyāh [Law No. (23) of 2025 Concerning Water], law no. 23, Adopted on October 19, 2025, Link\n\n[ANND_Right_to_Water_in_Qatar.txt p.15] ABU HAWASH , M. 15\n200,000 Qatari riyals (Article 79). Penalties can also be doubled for repeat violators. The severity of these penalties reflects the newfound importance that the Qatari government is placing on the sustainability of its groundwater resources, which have been significantly depleted after decades of overuse.\nThe new law also places newfound importance on the extremely limited amounts of fresh (i.e., drinkable) groundwater that remain in Qatar’s aquifers; Article 20.2 completely bans its use in agriculture without a specific license. Violators are punished by up to a year in prison and up to\n300,000 Qatari riyals in fines (Article 78).\nAs part of its responsibility to manage the country’s groundwater, Kahramaa also monitors the water levels in all of Qatar’s aquifers, and all efforts to recharge them through TSE injection. The data that Kahramaa collects on groundwater resources is used to update a central database that assists policymakers in making informed decisions on water policies. The new law also permits members of the general public to request access to the contents of this database if they can make a legitimate case for it (Article 2.2).\n DESALINATION MANAGEMENT\nThe Qatar Electricity and Water Company (QEWC) owns and operates most of the desalination facilities in Qatar,10 while the Qatar General Electricity and Water Corporation (Kahramaa) owns and manages the country's water distribution network.11 Furthermore, the wastewater drainage and treatment network is under the purview of the Public Works Authority (Ashghal).12\nQEWC and Kahramaa have signed a series of agreements dictating each party's responsibilities and liabilities. As the front-facing service provider, Kahramaa"
+    }
+   ]
+  },
+  {
+   "id": "D08",
+   "question": "Is it allowed to use fresh groundwater to irrigate fodder?",
+   "asker": "farmer",
+   "origin": "news",
+   "verbatim": "no",
+   "source_url": "https://www.fruitnet.com/eurofruit/water-tops-concerns-in-qatar/179575.article",
+   "expected_type": "simple",
+   "kb_can_answer": "partly",
+   "note": "ANND p.20 covers the ban without approval",
+   "got_type": "explanation",
+   "answer": "The use of fresh groundwater for irrigation depends on its quality [general knowledge]. According to the FAO irrigation threshold for TDS, groundwater with total dissolved solids (TDS) below 450 mg/L is considered suitable for irrigation [limits.csv row 3]. However, studies indicate that up to 95% of groundwater samples in Qatar may be unsuitable for irrigation due to high salinity levels [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1]. Therefore, while fresh groundwater may be allowed for irrigation if it meets quality standards, the majority of groundwater in Qatar may not be suitable for this purpose [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1].",
+   "tools_used": [
+    "key_statistics"
+   ],
+   "tool_rounds": 0,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 1,
+   "seconds": 24.2,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "key_statistics",
+     "args": {
+      "question": "Is it allowed to use fresh groundwater to irrigate fodder?"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "key_statistics",
+     "text": "[limits.csv row 3] FAO irrigation threshold for TDS: 450 / 2,000 mg/L (none / slight to moderate / severe) [limits.csv row 3]\n[QEERI_2022_Qatar_Groundwater_Challenges.txt p.1] Groundwater samples unsuitable for irrigation: up to 95 % (not stated) [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1]"
+    }
+   ]
+  },
+  {
+   "id": "D09",
+   "question": "How deep do I need to drill to reach groundwater in Qatar?",
+   "asker": "resident",
+   "origin": "research news",
+   "verbatim": "no",
+   "source_url": "https://www.hbku.edu.qa/en/node/23604",
+   "expected_type": "simple",
+   "kb_can_answer": "no",
+   "note": "Depth to water table (under 1 m to over 70 m) not in the database",
+   "got_type": "explanation",
+   "answer": "The depth to reach groundwater in Qatar varies between less than 1 meter near the coastline and more than 70 meters in some areas [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1].",
+   "tools_used": [
+    "search_documents"
+   ],
+   "tool_rounds": 1,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 13.3,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "search_documents",
+     "args": {
+      "query": "depth to reach groundwater in Qatar"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "search_documents",
+     "text": "[Peninsula_2025_Kahramaa_water_reserves.txt p.1] Doha, Qatar: Qatar General Electricity and Water Corporation (Kahramaa) has said that strategic water storage is sufficient to meet demand for 5.2 days. “Kahramaa’s water reserves have been quadrupled from 1.3 days in 2010 to 5.2 days in 2024, to maintain a high level of water reserves and mitigate the risks posed by climate change and population growth,” said the corporation on its X platform. Water projects are being planned to include the construction of reservoirs in many existing stations and current plans for constructing more reservoirs and pumping stations to meet the growing demand, according to a report on the water sector shared by Kahramaa on its website. Read Also Qatar Central Bank announces Eidiya ATM locations for Eid Al Fitr Exceptional cancer care at NCCCR receives patients from across region Qatar welcomes peace agreement between Azerbaijan and Armenia In addition, the water storage capacity increased to include 2,417 million gallons after commissioning the Water Strategic Mega Reservoirs Project. The potable desalinated water production in Qatar for the year 2024 stood at 538 million imperial gallons per day (MIGD) following the expansion of Umm Al Houl plant. Production capacity is expected to reach 638 MIGD after commissioning Ras Bu Fontas new plant (Facility E) in 2028. To enhance groundwater availability and replenishment, Kahramaa initiated the rehabilitation of 313 water-harvesting wells and developed 70 new water-harvesting wells within various projects. Additionally, a project was launched to develop 300 water harvesting wells, with the completion of 30 wells of the project. Kahramaa also prioritises the groundwater sector to establish a sustainable and efficient framework for utilising water resources. This involves systematically monitoring groundwater utilisation by granting drilling licenses after thorough assessment of each request directed to Kahramaa. Additionally, it focuses on preserving groundwater resources and storing them through several projects, which include the widespread drilling of\n\n[QEERI_2022_Qatar_Groundwater_Challenges.txt p.1] World Water Day: Qatar’s Groundwater Challenges\nIn line with this year’s World Water Day theme, Making the Invisible Visible, QEERI’s Senior Research Director for Water discusses Qatar’s groundwater challenges\nBefore the 1950s, when the first seawater desalination plant was established, groundwater was the sole provider of water for drinking and irrigation. The population of Qatar relied on wells from which freshwater was extracted, which catered to all of their water needs. Similar to other arid and desert countries, Qatar’s environment is characterized by a lack of renewable freshwater resources such as rivers and lakes. The aquifers containing Qatar’s natural fresh groundwater resources are extremely limited, and the depth to the water table varies between less than 1 meter near the coastline to more than 70 meters in some areas.\nLow on groundwater resources\nSince the 1970s, Qatar’s groundwater has not been replaced to the same extent to which it has been extracted. This has meant that, over time, the quality of the groundwater has been deteriorating, because as the fresh water is taken out, the seawater is pulled in from underground to fill the gap. Qatar was classified as the most water-stressed country in the world in 2019, due to a combination of low rainfall and low fresh groundwater levels, with natural renewable water resources far below the water poverty line.\nAbstraction of groundwater is estimated to be approximately three to five times the rate of natural recharge. The annual total water use in agriculture rose from 140 million m3 in 1990 to 296 million m3 in 2016. However, groundwater abstraction for agricultural purposes has roughly remained unchanged at the same level since 2005 (226 – 230 million m3 /year) and additional demand has been covered by treated sewage effluent (TSE) since 2004. While treated sewage effluent is not typically used for crop irrigation, it is used to grow fodder for feeding animals.\n\n[ANND_Right_to_Water_in_Qatar.txt p.14] Qatari law safeguards farmers’ rights to continue withdrawing groundwater free of charge. However, law no. 23 of 2025 places strict rules and regulations on the use of\ngroundwater and imposes severe penalties for violations.9 For example, all wells must be licensed (Article 10) and have a maximum permitted withdrawal rate (Article 7.2). Furthermore, each well has a permitted area that it may irrigate (Article 13), which cannot be increased without a license. Additionally, wells must be at least 300 meters apart to mitigate over-abstraction (Article 11).\nThe new law significantly increased penalties for violations. The most severe penalties were reserved for actions that pollute natural water resources, which can reach up to 15 years in prison and a million Qatari riyals in fines (Article 76). Digging an unlicensed well or exceeding the permitted withdrawal rate in a licensed well (without prior permission) is punishable by up to three years in prison and up to 500,000 Qatari riyals in fines (Article 77). Meanwhile, exceeding the licensed irrigated area carries no prison sentence but is punishable by a hefty fine of up to\n9 Qatar, Shura Council, Qānūn Raqm (23) li-Sanat 2025 bi-shaʾn al-Miyāh [Law No. (23) of 2025 Concerning Water], law no. 23, Adopted on October 19, 2025, Link\n\n[FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.3] depth of soil required to reclaim\na saline soil by ponding water\nintermittently (Hoffman 1980) The depth of water that must be applied to assure adequate\nreclamation depends on the initial soil salinity and the\nleaching method used. The higher the salinity, the greater the\ndepth of water needed. Intermittent leaching will reduce the\nsoil salinity more efficiently (use less water) than will\ncontinuous leaching (ponding), but the time required to accomplish\nthe leaching will be greater. The influencing factor is\nthe soil-water content during the reclamation leaching. Efficiency\nis increased if the percolating water moves more slowly\n(unsaturated flow) and is occasionally allowed to drain to field\ncapacity as is done in intermittent leaching. Under continuous\nponding a higher proportion of the leaching water moves through\nthe larger soil pores and bypasses smaller pores. Salts trapped\nwithin these smaller pores, therefore, are removed at a slower\nrate per unit of water applied. Sprinklers apply water at a\nrelatively slow rate and are very efficient in leaching. It is not possible to predict with accuracy the depth of water\nthat must be applied to accomplish the reclamation leaching, but\nas a guide for continuous ponding, 70–80 percent of the soluble\nsalts initially present will be removed with a depth of applied\nwater equal to the depth of soil to be reclaimed. For example, a\n1 metre depth of percolated water can be expected to leach 70–80\npercent of the salts from a 1 metre depth of soil. Figure 19\nshows that the percentage removal is highly dependent on soil\ntype but, as a general guide, the 70–80 percent removal should\nbe reasonably representative for most irrigated soils. For\nsprinklers or intermittent ponding, about 80–90 percent of the\n\n[Mohieldeen_2021_GIS_aquifer_recharge_Qatar_SciRep.txt p.4] Figure 3.(a) Map of broad land use and farms distribution in the State of Qatar in 2012. (Source: Public\nStatistics Authority, Qatar http://www.psa.gov.qa)33. (b) Groundwater province boundaries and the distribution\nof annual average rainfall in mm during 1989 and 2007. (Source: Ministry of Environment, Technical\nGovernmental Report Publically Available)21.\nThe spatial extent of groundwater aquifers in Qatar is sub-divided into two major groundwater provinces: the\nNorthern and Southern provinces, and two small ones--namely the Doha and Abu Samra basins as in Fig. 3a.\nMost of the groundwater abstraction occurs in the farming area within the Northern groundwater province, as\nit receives more natural rainfall.\nThe Northern Province recharge from rainfall is 30% more than that of the Southern province, as shown in\nthe rainfall map Fig. 3b.\nThe abstraction of groundwater started to increase year by years since 1975. The continuous and rapid increase\nin the number of farms, along with increased number of wells inside these farms, shown in Fig. 4, caused deple-\ntion and deterioration of groundwater in-terms of quality and quantity.\nRisks and major threats. Oil spill. The fact that Qatar relies heavily on the water desalination from the\nGulf makes the country very vulnerable to pollution events in the Gulf, since it is very shallow10, compared--for\nexample--with the Gulf of Mexico. As a result, in the case of a major oil spill the concentration of oil in the wa-\nter would be very high and would take a long time to clean up. The 2010 oil spill that took place in the Gulf of\nMexico took thirty-six days to clean up using the advanced equipment available in the USA, despite the different\nand more resilient depth and other conditions compared to the Gulf. Oil spills are the major type of disaster that\n\n[USGS_Dictionary_of_Water_Terms.txt p.1] watershed --the land area that drains water to a particular stream , river , or lake . It is a land feature that can be identified by tracing a line along the highest elevations between two areas on a map, often a ridge. Large watersheds, like the Mississippi River basin contain thousands of smaller watersheds.\nwatthour (Wh) --an electrical energy unit of measure equal to one watt of power supplied to, or taken from, an electrical circuit steadily for one hour.\nwell (water) --an artificial excavation put down by any method for the purposes of withdrawing water from the underground aquifers . A bored, drilled, or driven shaft, or a dug hole whose depth is greater than the largest surface dimension and whose purpose is to reach undergroundwater supplies or oil, or to store or bury fluids below ground.\nwithdrawal --water removed from a ground- or surface-water source for use.\nxeriscaping --a method of landscaping that uses plants that are well adapted to the local area and are drought-resistant. Xeriscaping is becoming more popular as a way of saving water at home.\nyield --mass per unit time per unit area\nSome of this information is courtesy of the Nevada Division of Water Resources."
+    }
+   ]
+  },
+  {
+   "id": "D10",
+   "question": "Can I water my garden with treated sewage effluent?",
+   "asker": "resident",
+   "origin": "official",
+   "verbatim": "no",
+   "source_url": "https://www.npc.qa/en/statistics/Statistical%20Releases/Environmental/Water/Water_Statistics_2023_EN.pdf",
+   "expected_type": "simple",
+   "kb_can_answer": "partly",
+   "note": "",
+   "got_type": "explanation",
+   "answer": "It is not recommended to use treated sewage effluent for watering gardens in Qatar, as groundwater samples show that up to 95% of groundwater is unsuitable for irrigation [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1]. Treated wastewater is primarily used for other purposes, such as injection into aquifers, which accounts for 15.6% of treated wastewater use in 2023 [NPC_Water_Statistics_2023.txt p.67].",
+   "tools_used": [
+    "key_statistics"
+   ],
+   "tool_rounds": 0,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 14.8,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "key_statistics",
+     "args": {
+      "question": "Can I water my garden with treated sewage effluent?"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "key_statistics",
+     "text": "[NPC_Water_Statistics_2023.txt p.67] Treated wastewater injected into aquifers: 15.6 % of treated wastewater use (2023) [NPC_Water_Statistics_2023.txt p.67]\n[QEERI_2022_Qatar_Groundwater_Challenges.txt p.1] Groundwater samples unsuitable for irrigation: up to 95 % (not stated) [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1]"
+    }
+   ]
+  },
+  {
+   "id": "D11",
+   "question": "How many agricultural wells are there in Qatar?",
+   "asker": "official",
+   "origin": "news (Kahramaa interview)",
+   "verbatim": "no",
+   "source_url": "https://www.gulf-times.com/story/679621/water-security-is-among-top-priorities-of-qatar-say-kahramaa-officials",
+   "expected_type": "aggregation",
+   "kb_can_answer": "partly",
+   "note": "Farms-and-wells table by municipality; Kahramaa's 6500 figure not in the database",
+   "got_type": "simple_with_condition",
+   "answer": "There are 4,564 agricultural wells in Qatar as of 2023 [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv row 91].\n\nNote on sources: The farm census table counts 4564 wells on farms in 2023 [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv row 91], while kahramaa officials have cited more than 6500 agricultural wells (Gulf Times interview, not yet in AquaMaa's database). The sources count differently; the census counts wells on registered farms, working or not.",
+   "tools_used": [
+    "key_statistics"
+   ],
+   "tool_rounds": 0,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [
+    "6500"
+   ],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 9.5,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "key_statistics",
+     "args": {
+      "question": "How many agricultural wells are there in Qatar?"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "key_statistics",
+     "text": "[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv row 91] Wells on farms (working and not working): 4,564 wells (2023) [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv row 91]"
+    }
+   ]
+  },
+  {
+   "id": "D12",
+   "question": "What does the new Water Law No. 23 change for groundwater users?",
+   "asker": "official",
+   "origin": "news",
+   "verbatim": "no",
+   "source_url": "https://www.qatar-tribune.com/article/200434/nation/kahramaa-committed-to-implementing-new-water-law-for-a-sustainable-future",
+   "expected_type": "explanation",
+   "kb_can_answer": "no",
+   "note": "Water Law No. 23 not in the database",
+   "got_type": "explanation",
+   "answer": "Water Law No. 23 of 2025 imposes strict rules and regulations on groundwater use, including requiring all wells to be licensed, setting maximum permitted withdrawal rates, and defining permitted irrigation areas for each well [ANND_Right_to_Water_in_Qatar.txt p.14]. Additionally, wells must be at least 300 meters apart to prevent over-abstraction [ANND_Right_to_Water_in_Qatar.txt p.14]. The law also increases penalties for violations, with severe penalties for polluting natural water resources, including up to 15 years in prison and fines of up to 1 million Qatari riyals [ANND_Right_to_Water_in_Qatar.txt p.14].\n\nKey figures:\n- Groundwater abstraction before the 2023 revision: 250 million m3 a year (2019-2022) [Kahramaa_Statistics_Report_2023.txt p.80]\n- Groundwater abstraction: 200 million m3 (2023) [total-abstraction-from-ground-water.csv row 3]",
+   "tools_used": [
+    "key_statistics",
+    "search_documents"
+   ],
+   "tool_rounds": 1,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 27.8,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "key_statistics",
+     "args": {
+      "question": "What does the new Water Law No. 23 change for groundwater users?"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "key_statistics",
+     "text": "[Kahramaa_Statistics_Report_2023.txt p.80] Groundwater abstraction before the 2023 revision: 250 million m3 a year (2019-2022) [Kahramaa_Statistics_Report_2023.txt p.80]\n[total-abstraction-from-ground-water.csv row 3] Groundwater abstraction: 200 million m3 (2023) [total-abstraction-from-ground-water.csv row 3]"
+    },
+    {
+     "step": "call",
+     "tool": "search_documents",
+     "args": {
+      "query": "Water Law No. 23 groundwater use"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "search_documents",
+     "text": "[ANND_Right_to_Water_in_Qatar.txt p.14] Qatari law safeguards farmers’ rights to continue withdrawing groundwater free of charge. However, law no. 23 of 2025 places strict rules and regulations on the use of\ngroundwater and imposes severe penalties for violations.9 For example, all wells must be licensed (Article 10) and have a maximum permitted withdrawal rate (Article 7.2). Furthermore, each well has a permitted area that it may irrigate (Article 13), which cannot be increased without a license. Additionally, wells must be at least 300 meters apart to mitigate over-abstraction (Article 11).\nThe new law significantly increased penalties for violations. The most severe penalties were reserved for actions that pollute natural water resources, which can reach up to 15 years in prison and a million Qatari riyals in fines (Article 76). Digging an unlicensed well or exceeding the permitted withdrawal rate in a licensed well (without prior permission) is punishable by up to three years in prison and up to 500,000 Qatari riyals in fines (Article 77). Meanwhile, exceeding the licensed irrigated area carries no prison sentence but is punishable by a hefty fine of up to\n9 Qatar, Shura Council, Qānūn Raqm (23) li-Sanat 2025 bi-shaʾn al-Miyāh [Law No. (23) of 2025 Concerning Water], law no. 23, Adopted on October 19, 2025, Link\n\n[policy-goals.csv p.8] goal_id: G-07\nlevel: National law\nframework: Law No. 23 of 2025\nowner: State of Qatar\ngoal: Monitor water resources and build a water resources database linked to geographic information, available to government bodies and the public under set controls\nwording: Summary of Article 2, seen as a search excerpt\ntarget: \ntarget_year: In force\naquama_feature: Geographic stations and role-based access to shared data\nviews: All\nsource_id: LW-04\nsource_url: https://www.almeezan.qa/LawView.aspx?opt=&LawID=10163&language=ar\n\n[policy-goals.csv p.40] goal_id: G-39\nlevel: National law\nframework: Amiri Decision No. 46 of 2015\nowner: Kahramaa\ngoal: Operate and maintain water resource monitoring networks, record and analyze their data, to use in assessing and managing these resources for different uses\nwording: My translation, Art. 3 item 13\ntarget: \ntarget_year: In force status not checked after Law 23 of 2025\naquama_feature: Monitoring, analysis and water-use matching\nviews: Kahramaa\nsource_id: LW-06\nsource_url: https://www.almeezan.qa/LawPage.aspx?id=6725&language=ar\n\n[ANND_Right_to_Water_in_Qatar.txt p.27] ABU HAWASH , M. 27\nRECOMMENDATIONS\nQatar has made significant progress in recent years to rectify its water challenges. From limiting groundwater abstraction to increasing production of TSE, the situation today looks far better than it did in the early 2000s. Additionally, the passing of law no. 23 of 2025, which replaces the outdated law no. 1 of 1988 is a sign that the\nQatari government is serious about closing all loopholes and ensuring the long-term sustainability of the water sector. Still, there is plenty of room for improvement when it comes to water sustainability. To that end, this report makes the following recommendations.\n 1.DEVELOPING A TARGETED AGRICULTURAL STRATEGY TO REDUCE GROUNDWATER ABSTRACTION AND INCREASE THE SUPPLY OF NONCONVENTIONAL WATER SOURCES.\nQatar’s successive food security strategies were designed to increase the amount of food produced in the country, which often came at the expense of the country’s agricultural sustainability. Therefore, a targeted agricultural strategy can be formulated that complements the 2024-2030 food security strategy. The objective of this agricultural strategy would be to chart a pathway for the agricultural sector to:\n1) Introduce new farming technologies and methods that help farms increase production efficiency and resource utilization.\n2) Reduce reliance on groundwater by aggressively ramping up the utilization of non-conventional water sources like high-quality TSE, rainwater harvesting, and atmospheric generation.\n3) Achieve near universal compliance with laws regulating groundwater use through training, awareness campaigns,\nand strict enforcement.\n\n[policy-goals.csv p.4] goal_id: G-03\nlevel: National\nframework: NDS3\nowner: National Planning Council\ngoal: Implementation of groundwater metering, protection zones, and Water Act regulations to safeguard groundwater and limit its use in fodder cultivation\nwording: Quote, p.27\ntarget: \ntarget_year: 2030\naquama_feature: Data confidence, alerts and national context\nviews: Kahramaa, Municipality\nsource_id: PL-01\nsource_url: https://www.npc.qa/en/planning/nds3/Documents/QNDS3_EN.pdf\n\n[NPC_Water_Statistics_2023.txt p.67] Figure 5.8: Use and discharge of treated wastewater (Mm3) 2018–2023\nAgriculture Greenspaces Injection into aquifers Lagoons Sea District Cooling\nMm3\n0  2019  2020  2021  2022  2023\nSource: Public Works Authority and National Planning Council\nFigure 5.9: Percentage distribution of treated wastewater use and discharge, 2023\nSea  District\n0.7%  Cooling\n3.4%\nLagoons  Agriculture\n13.1%  24.2%\nInjection into\naquifers\n15.6%\nGreenspaces\n43.0%\nSource: Public Works Authority and National Planning Council Calculations"
+    }
+   ]
+  },
+  {
+   "id": "D13",
+   "question": "When is the deadline to comply with Water Law No. 23?",
+   "asker": "official",
+   "origin": "news (QNA)",
+   "verbatim": "no",
+   "source_url": "https://qna.org.qa/en/News-Area/News/2026-6/23/six-month-extension-granted-for-compliance-with-water-law-no-23",
+   "expected_type": "simple_with_condition",
+   "kb_can_answer": "no",
+   "note": "",
+   "got_type": "simple",
+   "answer": "The deadline to comply with Water Law No. 23 is not explicitly mentioned in the provided sources [policy-goals.csv p.8]. However, the law was passed in 2025, and it is currently in force [policy-goals.csv p.8].",
+   "tools_used": [
+    "search_documents"
+   ],
+   "tool_rounds": 1,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 13.3,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "search_documents",
+     "args": {
+      "query": "Water Law No. 23 deadline"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "search_documents",
+     "text": "[policy-goals.csv p.8] goal_id: G-07\nlevel: National law\nframework: Law No. 23 of 2025\nowner: State of Qatar\ngoal: Monitor water resources and build a water resources database linked to geographic information, available to government bodies and the public under set controls\nwording: Summary of Article 2, seen as a search excerpt\ntarget: \ntarget_year: In force\naquama_feature: Geographic stations and role-based access to shared data\nviews: All\nsource_id: LW-04\nsource_url: https://www.almeezan.qa/LawView.aspx?opt=&LawID=10163&language=ar\n\n[policy-goals.csv p.40] goal_id: G-39\nlevel: National law\nframework: Amiri Decision No. 46 of 2015\nowner: Kahramaa\ngoal: Operate and maintain water resource monitoring networks, record and analyze their data, to use in assessing and managing these resources for different uses\nwording: My translation, Art. 3 item 13\ntarget: \ntarget_year: In force status not checked after Law 23 of 2025\naquama_feature: Monitoring, analysis and water-use matching\nviews: Kahramaa\nsource_id: LW-06\nsource_url: https://www.almeezan.qa/LawPage.aspx?id=6725&language=ar\n\n[ANND_Right_to_Water_in_Qatar.txt p.13] ABU HAWASH , M. 13\nINSTITUTIONAL FRAMEWORK: WATER GOVERNANCE AND MANAGEMENT IN QATAR\nA patchwork of laws, decrees, and ministerial or Amiri resolutions govern Qatar’s water sector. The government has recently attempted to streamline this legal framework, culminating in the passage of law no. 23 of 2025 (Emirate of Qatar, 2025). This new law retains the key institutions that govern and manage the country’s water resources while simultaneously adding a higher degree of granularity to remove “grey areas” that existed in the old law (which was introduced back in 1988). The new law also introduces harsher penalties for violations and ensures violators are held accountable. That being said, the new law continues to be complemented by a patchwork of other pieces of legislation, decrees, and resolutions that pertain to specific issues.\nFormed in 2004, the Permanent Water Resource Committee (PWRC)8 is the highest governmental authority responsible for water resources in Qatar (Fanack Water, 2021). The Minister of State for Energy Affairs chairs the PWRC. Its responsibilities include developing and preserving water resources in the country and coordinating with relevant stakeholders to draft and propose water-related legislation to the\nCouncil of Ministers. The PWRC also liaises with the National Planning Council (NPC) to set long-term strategies and goals for the water sector.\n\n[policy-goals.csv p.42] goal_id: G-41\nlevel: National law\nframework: Amiri Decision No. 46 of 2015\nowner: Kahramaa\ngoal: Plans and programs to assess, develop and protect all types of water resources, and prepare studies and research on them\nwording: My translation, Art. 2 items 8 and 11\ntarget: \ntarget_year: In force status not checked after Law 23 of 2025\naquama_feature: Decision briefs and research evidence\nviews: Kahramaa\nsource_id: LW-06\nsource_url: https://www.almeezan.qa/LawPage.aspx?id=6725&language=ar\n\n[policy-goals.csv p.41] goal_id: G-40\nlevel: National law\nframework: Amiri Decision No. 46 of 2015\nowner: Kahramaa\ngoal: Estimate, measure and monitor the water balance of the water basins, and develop and protect them\nwording: My translation, Art. 2 item 9 and Art. 3 item 14\ntarget: \ntarget_year: In force status not checked after Law 23 of 2025\naquama_feature: National context and basin labels\nviews: Kahramaa\nsource_id: LW-06\nsource_url: https://www.almeezan.qa/LawPage.aspx?id=6725&language=ar\n\n[policy-goals.csv p.39] goal_id: G-38\nlevel: National law\nframework: Amiri Decision No. 46 of 2015\nowner: Kahramaa\ngoal: Establish a database for the water resources of the State, in coordination with the competent bodies\nwording: My translation, Art. 2 item 12\ntarget: \ntarget_year: In force status not checked after Law 23 of 2025\naquama_feature: Shared data layer\nviews: Kahramaa\nsource_id: LW-06\nsource_url: https://www.almeezan.qa/LawPage.aspx?id=6725&language=ar"
+    }
+   ]
+  },
+  {
+   "id": "D14",
+   "question": "How much water is stored in Qatar's strategic water reserves?",
+   "asker": "official",
+   "origin": "news",
+   "verbatim": "no",
+   "source_url": "https://thepeninsulaqatar.com/article/16/03/2025/kahramaas-water-reserves-increase-many-folds",
+   "expected_type": "simple",
+   "kb_can_answer": "yes",
+   "note": "",
+   "got_type": "simple",
+   "answer": "The strategic water reserves in Qatar are sufficient to meet demand for 5.2 days, as stated by Kahramaa [Peninsula_2025_Kahramaa_water_reserves.txt p.1]. Additionally, the Water Strategic Mega Reservoirs Project, commissioned by the end of 2018, has a capacity of 1500 MIG and covers the storage requirements up to 2026 [Peninsula_2025_Kahramaa_water_reserves.txt p.1].",
+   "tools_used": [
+    "search_documents"
+   ],
+   "tool_rounds": 1,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 19.8,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "search_documents",
+     "args": {
+      "query": "strategic water reserves Qatar storage"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "search_documents",
+     "text": "[Peninsula_2025_Kahramaa_water_reserves.txt p.1] Doha, Qatar: Qatar General Electricity and Water Corporation (Kahramaa) has said that strategic water storage is sufficient to meet demand for 5.2 days.\n“Kahramaa’s water reserves have been quadrupled from 1.3 days in 2010 to 5.2 days in 2024, to maintain a high level of water reserves and mitigate the risks posed by climate change and population growth,” said the corporation on its X platform.\nWater projects are being planned to include the construction of reservoirs in many existing stations and current plans for constructing more reservoirs and pumping stations to meet the growing demand, according to a report on the water sector shared by Kahramaa on its website.\nQatar Central Bank announces Eidiya ATM locations for Eid Al Fitr\nExceptional cancer care at NCCCR receives patients from across region\nQatar welcomes peace agreement between Azerbaijan and Armenia\nIn addition, the water storage capacity increased to include 2,417 million gallons after commissioning the Water Strategic Mega Reservoirs Project.\nThe potable desalinated water production in Qatar for the year 2024 stood at 538 million imperial gallons per day (MIGD) following the expansion of Umm Al Houl plant. Production capacity is expected to reach 638 MIGD after commissioning Ras Bu Fontas new plant (Facility E) in 2028.\nTo enhance groundwater availability and replenishment, Kahramaa initiated the rehabilitation of 313 water-harvesting wells and developed 70 new water-harvesting wells within various projects. Additionally, a project was launched to develop 300 water harvesting wells, with the completion of 30 wells of the project.\nKahramaa also prioritises the groundwater sector to establish a sustainable and efficient framework for utilising water resources. This involves systematically monitoring groundwater utilisation by granting drilling licenses after thorough assessment of each request directed to Kahramaa.\n\n[Mohieldeen_2021_GIS_aquifer_recharge_Qatar_SciRep.txt p.2] current strategic water reserves in Qatar would only be sufficient for seven d ays1,4. This limited strategic stor-\nage capacity renders Qatar vulnerable to major man-made and natural disasters such as oil spills and red-tides\nrespectively, that might interrupt the operation of the desalination plants or cause them to shut down for a\nconsiderable period of time.\nIncreasing the strategic water reserve in Qatar is a major concern and priority for the authorities in Qatar.\nThe General Electricity and Water Corporation (Kahramaa) has conducted studies on how to address this issue.\nAdopting the national water saving program (TARSHEED); embarking on the construction of seven-day water\nmega scale storage tanks as part of its water strategic plan1,4; and artificial recharge of water attempts are exam-\nples of these efforts.\nThe geographical scope of the study is the State of Qatar, and its upper principal aquifer (Rus, and Umm\ner Radhuma), where changes in groundwater levels between 1980 and 2009 were investigated. Knowing the\nmagnitude of these changes and their spatial distribution is critical to any aquifer recharge plans. The main\nobjective is to determine what is needed to replenish/restore the depleted aquifers to their 1980s levels (a time\nwhen the aquifer was hardly used) and use stored water as a natural strategic water reserve to meet water supply\nemergencies resulting from natural or man-made disasters. The suitability of the proposed zones was verified\nwith hydrological, hydrogeological geotechnical experimental fieldwork and tests obtained from a study by\nStreetly et al. (1998), since their test sites are in close proximity to the zones proposed in this study, and therefore\nrepresentative of these zones. Soil porosity and other geotechnical parameters of these test sites have been used\nfor water volume calculations.\n\n[Mohieldeen_2021_GIS_aquifer_recharge_Qatar_SciRep.txt p.1] www.nature.com/scientificreports\nOPEN GISbased framework for artificial\naquifer recharge to secure\nsustainable strategic water\nreserves in Qatar arid environment\npeninsula\nYasir Elginaid Mohieldeen1, Elnaiem Ali Elobaid2* & Rifaat Abdalla3\nThis study proposes a large-scale artificial aquifer recharge plan to increase the strategic water reserve\nto cope with future emergencies. The main aim of the plan is to restore groundwater levels to those of\nthe 1980s through artificial recharge. Desalinated water or highly treated municipal sewage effluent\ncould be artificially recharged into the aquifer to recharge it. Potentiometric surface of aquifers and\nGeographic Information Systems (GIS) analysis were used to assess change in the groundwater\nlevels between 1980 and 2009. Zones that have experienced considerable decline in groundwater\nlevels from their former \"natural\" status--when the aquifers were barely exploited, were identified.\nThese zones are considered optimum recharge sites as they could provide `natural' ground storage\nchosen by nature. Therefore, working with nature (not against it) by re-filling these natural spaces is\nthe optimum approach. The artificial recharge of the main and principal upper aquifer in Qatar (Rus\nand Um er Radhuma) is targeted and recommended. It is estimated that up to 182.8 Million Cubic\nMeter (mcm) could be recharged and stored in these proposed zones, to increase the strategic water\nreserve of the country. This increase would sustain supplies of high quality for up to three months\nif consumption is maintained at the 2018 level. Moreover, this additional reserve could last for over\none year, if emergency measures were put in place--in case of serious water-shortages, and disaster\npreparedness, for example by reducing the per capita consumption to the global average per capita\n\n[Peninsula_2025_Water_security_strategic_planning.txt p.1] water. The reverse osmosis (RO) method, which uses high-pressure filtration to separate salt and impurities from seawater,” said Al-Marri. He said that both methods are environmentally sound and safe, with RO being particularly favoured for its energy efficiency and future potential across the Gulf region. “One of Qatar’s most notable achievements in water management is the development of the largest strategic water reservoirs in the world, which have earned recognition from the Guinness World Records,” said Al-Marri. He said that these mega-reservoirs significantly enhance the country’s ability to store and distribute water efficiently, allowing for seamless supply across all regions of Qatar. The water supply process is organised in three stages: strategic reservoirs store desalinated water long-term, operational reservoirs manage short-term supply and daily distribution, and water is then delivered to end users, including homes and businesses. This multi-tiered system ensures flexibility, reliability, and resilience in Qatar’s water distribution network. Recognising that water security is a global issue, Qatar actively collaborates with international organizations such as the International Water Association (IWA) and the American Water Works Association (AWWA). Through these partnerships, Qatar gains access to the latest technologies, data, and policy insights. The country also participates in global conferences and exchanges scientific papers, which contribute to the development of advanced solutions in areas like pumping systems, water storage, valves, control technologies, and cybersecurity. Looking ahead, Qatar aims to expand national water storage capacity by constructing additional reservoirs, enhance remote-control systems and digital monitoring of water infrastructure and integrate artificial intelligence (AI) across desalination and distribution facilities — a move already underway within Kahramaa. Qatar’s water security strategy reflects a forward-thinking, sustainable approach that prioritises innovation, resilience, and global cooperation. Through long-term planning, strategic infrastructure, and public engagement, Qatar is not only\n\n[Peninsula_2025_Kahramaa_water_reserves.txt p.1] Kahramaa also prioritises the groundwater sector to establish a sustainable and efficient framework for utilising water resources. This involves systematically monitoring groundwater utilisation by granting drilling licenses after thorough assessment of each request directed to Kahramaa.\nAdditionally, it focuses on preserving groundwater resources and storing them through several projects, which include the widespread drilling of water harvesting wells across the country and the implementation of the Artificial Groundwater Recharge (ASR) project.\nKahramaa actively engages in the strategic and legislative aspects of the water sector through the Water Policy and Strategy project, aligning with Qatar’s Vision 2030.\nAwqaf Ministry launches new digital service ‘FatwaTok’\nQatar registers over four million air passengers in February 2025\nAwqaf offers grants for disabled students at Al Tamkon Comprehensive School\nThe Water Strategic Mega Reservoirs Project was commissioned by the end of 2018 with a capacity of 1500 MIG, which covers the storage requirements up to 2026. It marks the largest expansion of Qatar’s water storage capacity ever.\nThe project promotes Qatar’s water security by providing secure and balanced water storage to ensure water supply to all sectors and meet the increasing needs resulting from population growth and the comprehensive development the State witnesses.\nThe project consists of 15 of the world’s largest concrete reservoirs. Each reservoir is 300m long, 150m wide, and 12m high, at a capacity of around 100 MIG to earn the Guinness World Record for the world’s largest drinking water storage tank and the largest drinking water storage tank network.\nEducation\nGovernment\nCanada drawing lessons from success of FIFA World Cup Qatar 2022: Ambassador\nQatar demonstrates leadership in sustainability\nMozambique eyes stronger ties with Qatar to boost trade, energy and tourism\nTrending News\nQatar strongly condemns terrorist attack that killed security officer in Jordan\nQatar condemns armed attack in Southern Egypt\n\n[Peninsula_2025_Kahramaa_water_reserves.txt p.1] for utilising water resources. This involves systematically monitoring groundwater utilisation by granting drilling licenses after thorough assessment of each request directed to Kahramaa. Additionally, it focuses on preserving groundwater resources and storing them through several projects, which include the widespread drilling of water harvesting wells across the country and the implementation of the Artificial Groundwater Recharge (ASR) project. Kahramaa actively engages in the strategic and legislative aspects of the water sector through the Water Policy and Strategy project, aligning with Qatar’s Vision 2030. Read Also Awqaf Ministry launches new digital service ‘FatwaTok’ Qatar registers over four million air passengers in February 2025 Awqaf offers grants for disabled students at Al Tamkon Comprehensive School The Water Strategic Mega Reservoirs Project was commissioned by the end of 2018 with a capacity of 1500 MIG, which covers the storage requirements up to 2026. It marks the largest expansion of Qatar’s water storage capacity ever. The project promotes Qatar’s water security by providing secure and balanced water storage to ensure water supply to all sectors and meet the increasing needs resulting from population growth and the comprehensive development the State witnesses. The project consists of 15 of the world’s largest concrete reservoirs. Each reservoir is 300m long, 150m wide, and 12m high, at a capacity of around 100 MIG to earn the Guinness World Record for the world’s largest drinking water storage tank and the largest drinking water storage tank network."
+    }
+   ]
+  },
+  {
+   "id": "D15",
+   "question": "How many recharge wells has Qatar rehabilitated?",
+   "asker": "official",
+   "origin": "climate plan",
+   "verbatim": "no",
+   "source_url": "https://unfccc.int/sites/default/files/2025-11/Qatar%20NDC%203.0.pdf",
+   "expected_type": "simple",
+   "kb_can_answer": "yes",
+   "note": "",
+   "got_type": "simple_with_condition",
+   "answer": "Qatar has rehabilitated 313 recharge wells by 2025 [Qatar_NDC_3.txt p.18].",
+   "tools_used": [
+    "key_statistics"
+   ],
+   "tool_rounds": 0,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 10.1,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "key_statistics",
+     "args": {
+      "question": "How many recharge wells has Qatar rehabilitated?"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "key_statistics",
+     "text": "[Qatar_NDC_3.txt p.18] Recharge wells rehabilitated: 313 wells (by 2025) [Qatar_NDC_3.txt p.18]"
+    }
+   ]
+  },
+  {
+   "id": "D16",
+   "question": "What share of groundwater is used by agriculture?",
+   "asker": "official",
+   "origin": "news",
+   "verbatim": "no",
+   "source_url": "https://www.fruitnet.com/eurofruit/water-tops-concerns-in-qatar/179575.article",
+   "expected_type": "post_processing",
+   "kb_can_answer": "yes",
+   "note": "",
+   "got_type": "post_processing",
+   "answer": "From the data provided, the share of groundwater used by agriculture in Qatar is approximately 90% [water-production-abstraction-losses-and-uses.csv row 57].\n\nKey figures:\n- Groundwater abstraction: 200 million m3 (2023) [total-abstraction-from-ground-water.csv row 3]",
+   "tools_used": [
+    "key_statistics",
+    "lookup_table",
+    "search_documents"
+   ],
+   "tool_rounds": 2,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 21.9,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "key_statistics",
+     "args": {
+      "question": "What share of groundwater is used by agriculture?"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "key_statistics",
+     "text": "[water-production-abstraction-losses-and-uses.csv row 57] Share of abstraction from agricultural wells: 90 % (2023) [water-production-abstraction-losses-and-uses.csv row 57]\n[total-abstraction-from-ground-water.csv row 3] Groundwater abstraction: 200 million m3 (2023) [total-abstraction-from-ground-water.csv row 3]"
+    },
+    {
+     "step": "call",
+     "tool": "lookup_table",
+     "args": {
+      "year_to": 2023,
+      "query": "groundwater used by agriculture",
+      "year_from": 2023
+     }
+    },
+    {
+     "step": "result",
+     "tool": "lookup_table",
+     "text": "No results."
+    },
+    {
+     "step": "call",
+     "tool": "search_documents",
+     "args": {
+      "query": "groundwater used by agriculture"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "search_documents",
+     "text": "[PSA_Water_Statistics_2021.txt p.35] For the sake of simplicity (and in line with available data), the economic activity \"agriculture,\nforestry and fishery\" has been included under \"agricultural activity\".\nGroundwater and treated wastewater are the main sources of water for agricultural activity.\nThe statistics in Table 4-2 indicate that the amount of treated wastewater used for\nagricultural purpose increased from 61.7 million m3 in 2016 to 77.2 million m3 in 2021. The\npercentage of treated wastewater used in agricultural activity was 24.8% of total water used\nin agricultural activity. According to Ashghal and Schlumberger study in 2013, water salinity\nat Doha wastewater treatment plants attained 1,000 mg/l, which is a major concern for\nwater re-use in agriculture. The table also shows that from 2016 to 2021, the agricultural\nGDP increased from QR 1,043 million to QR 1,785 million.\n\n[NPC_Water_Statistics_2023.txt p.41] Table 4.2: Water used in agricultural activity by water source and GDP of\nagriculture (at constant prices of 2018) 2018 - 2023\nYear  Abstracted  Productive  TSE  Total  GDP\ngroundwater  farms  (million m3)  (million  (million QR,\n(million m3)  (million  m3)  constant prices\nm3)  of 2018)\n2018  230  0.3  79.67  309.97  1,457\n2019  230  0.2  86.06  316.06  1,700\n2020  230  3  88.96  321.96  1,777\n2021  230  4  77.16  311.16  1,785\n2022  230  5  76.13  311.13  1,923\n2023  180  4  70.73  254.73  2,026\n• The amount of groundwater abstracted for 2023 has changed due to the Regional Underground Modeling\nProject in the State of Qatar (KAHRAMAA Project)\n• GDP data for previous years changed from the source.\nSource: NPC, KAHRAMAA, Ashghal\nFigure (4.7) illustrates a decline in the volume of water used for agricultural activities,\ndropping from 309.7 million m³ in 2018 to 254.7 million m³ in 2023. Notably, the\namount of groundwater abstracted for agricultural purposes changed in 2023 (180\nmillion m3 per year) due to the recently completed Regional Underground Modeling\nProject in the State of Qatar (Kahramaa Project).\nFigure 4-7: Water used in agricultural activity by water source (Mm3) 2018-2023\nMm3  TSE  Groundwater\n\n[NPC_Water_Statistics_2023.txt p.40] into the sewer system is of greater concern than the actual water loss. Leakage into\nthe sewer mains may be responsible for the relatively high salinity of TSE of around\n1,000 mg/L measured at Doha wastewater treatment plants (see Ashghal &\nSchlumberger study, 2013).\n4-3-4 Water Use in Agricultural Activity\nFor simplicity (and in line with data availability), economic activity \"Agriculture,\nForestry, and Fishing\" has been categorized as \"Agricultural Activity\".\nGroundwater and treated wastewater are the primary sources of water for agricultural\nactivity. Statistics from Table 4.2 indicate that the volume of treated wastewater used\nin agriculture decreased from 79.7 million m3 in 2018 to 70.7 million m3 in 2023, with\ntreated wastewater accounting for 27.8% of the total water used in agricultural\nactivity. According to the study carried out by Ashghal and Schlumberger (2013), the\nwater salinity at Doha wastewater treatment plants reached 1,000 mg/L, which posed\na major concern for water re-use in agriculture. The table also notes that the GDP\ngenerated from agricultural activity grew from QAR 1,457 million in 2018 to QAR 2,026\nmillion in 2023.\n\n[Higazy_2024_Water_Footprint_Qatar.txt p.3] nated water; it is the primary source for drinking water [29]. There are currently 12 water\ndesalination plants operating in Qatar, with a daily total capacity of 500 million of Imperial\nGallons per day (MIGD). Umm Al Houl, Ras Qertas, Ras Laffan-b, and Ras Abu Fantas\nplants make up half of seawater desalination capacity of the country. The main technologies\nused for desalination in Qatar are multi-stage flash distillation (MSF) and reverse osmosis\n(RO) [30]. Groundwater is the main natural water resource in Qatar; the primary ground-\nwater aquifers are the Rus aquifer and the Umm er Rhaduma aquifer [25]. Groundwater\nabstraction reaches 250.8 million m3/y, which unfortunately has led to depletion of aquifers,\nlow groundwater levels, and increased salinity. However, groundwater abstraction has\nremained the same since 2005 [28]. The majority of groundwater abstraction is used in\nagriculture approximately 230 million m3/y or 92% of the total water abstracted. Currently,\nthe primary source of the national groundwater reserve is artificial recharge of groundwater\naquifers through TSE injection, recharge wells, and artificial recharge from irrigation [28].\nAs a result of development of the wastewater treatment design and technologies in Qatar,\nTSE production has increased drastically in the last decade. Almost two-thirds of the waste\nwas reused for agriculture and landscaping, with the remainder allocated to lagoons and\naquifers and a very small percentage being discharged into the sea [31].\n\n[QEERI_2022_Qatar_Groundwater_Challenges.txt p.1] World Water Day: Qatar’s Groundwater Challenges\nIn line with this year’s World Water Day theme, Making the Invisible Visible, QEERI’s Senior Research Director for Water discusses Qatar’s groundwater challenges\nBefore the 1950s, when the first seawater desalination plant was established, groundwater was the sole provider of water for drinking and irrigation. The population of Qatar relied on wells from which freshwater was extracted, which catered to all of their water needs. Similar to other arid and desert countries, Qatar’s environment is characterized by a lack of renewable freshwater resources such as rivers and lakes. The aquifers containing Qatar’s natural fresh groundwater resources are extremely limited, and the depth to the water table varies between less than 1 meter near the coastline to more than 70 meters in some areas.\nLow on groundwater resources\nSince the 1970s, Qatar’s groundwater has not been replaced to the same extent to which it has been extracted. This has meant that, over time, the quality of the groundwater has been deteriorating, because as the fresh water is taken out, the seawater is pulled in from underground to fill the gap. Qatar was classified as the most water-stressed country in the world in 2019, due to a combination of low rainfall and low fresh groundwater levels, with natural renewable water resources far below the water poverty line.\nAbstraction of groundwater is estimated to be approximately three to five times the rate of natural recharge. The annual total water use in agriculture rose from 140 million m3 in 1990 to 296 million m3 in 2016. However, groundwater abstraction for agricultural purposes has roughly remained unchanged at the same level since 2005 (226 – 230 million m3 /year) and additional demand has been covered by treated sewage effluent (TSE) since 2004. While treated sewage effluent is not typically used for crop irrigation, it is used to grow fodder for feeding animals.\n\n[ANND_Right_to_Water_in_Qatar.txt p.19] Unfortunately, despite the government’s attempts to limit the use of groundwater and revitalize aquifers, the quality of groundwater continues to decline, forcing the Qatari agricultural sector to increasingly rely on brackish water desalination facilities to treat groundwater and make it suitable for agricultural use. A recent study found that just 2.7% of Qatar’s groundwater today has “excellent” suitability for drinking and 6.4% has “good” suitability (see figure 3).36 Another 15.2% has “poor” suitability and 14.6% has “very poor” suitability, while 61.1% is entirely unsuitable for human consumption.37 These figures mark a catastrophic decline compared to the 1970s (although exact data from that time period is difficult to find).\nThe same study found that just 6.2% of Qatar’s groundwater today has “very high suitability” for agriculture, while 24.9% has “high suitability.”38 A further 40.6% has “medium suitability” while 18.8% and 9.5% have “low” and “very low” suitability, respectively. Groundwater with medium (or lower) suitability requires treatment in brackish water desalination facilities before being used for agricultural purposes. The"
+    }
+   ]
+  },
+  {
+   "id": "D17",
+   "question": "Do farmers pay for the groundwater they use?",
+   "asker": "farmer",
+   "origin": "news",
+   "verbatim": "no",
+   "source_url": "https://www.fruitnet.com/eurofruit/water-tops-concerns-in-qatar/179575.article",
+   "expected_type": "simple",
+   "kb_can_answer": "partly",
+   "note": "",
+   "got_type": "simple_with_condition",
+   "answer": "The information available does not directly address whether farmers pay for the groundwater they use [general knowledge]. Specific data on payment mechanisms for groundwater usage by farmers is not provided in the tool results [general knowledge].\n\nKey figures:\n- Share of abstraction from agricultural wells: 90 % (2023) [water-production-abstraction-losses-and-uses.csv row 57]\n- Groundwater samples unsuitable for irrigation: up to 95 % (not stated) [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1]",
+   "tools_used": [
+    "key_statistics"
+   ],
+   "tool_rounds": 0,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 2,
+   "seconds": 14.6,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "key_statistics",
+     "args": {
+      "question": "Do farmers pay for the groundwater they use?"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "key_statistics",
+     "text": "[water-production-abstraction-losses-and-uses.csv row 57] Share of abstraction from agricultural wells: 90 % (2023) [water-production-abstraction-losses-and-uses.csv row 57]\n[QEERI_2022_Qatar_Groundwater_Challenges.txt p.1] Groundwater samples unsuitable for irrigation: up to 95 % (not stated) [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1]"
+    }
+   ]
+  },
+  {
+   "id": "D18",
+   "question": "What is Kahramaa doing to protect groundwater?",
+   "asker": "council member",
+   "origin": "Shura Council briefing",
+   "verbatim": "no",
+   "source_url": "https://www.shura.qa/en/Pages/MediaCenter/News/08062026",
+   "expected_type": "set",
+   "kb_can_answer": "partly",
+   "note": "",
+   "got_type": "explanation",
+   "answer": "Kahramaa is implementing groundwater metering, establishing protection zones, and enforcing regulations under the Water Act to safeguard groundwater and limit its use in fodder cultivation [policy-goals.csv p.4]. Additionally, Kahramaa monitors groundwater levels in all of Qatar’s aquifers and works on recharging them through TSE injection [ANND_Right_to_Water_in_Qatar.txt p.15]. The corporation also manages groundwater by granting drilling licenses after thorough assessment and focuses on preserving groundwater resources through various projects [ANND_Right_to_Water_in_Qatar.txt p.14].",
+   "tools_used": [
+    "search_documents"
+   ],
+   "tool_rounds": 1,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 21.5,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "search_documents",
+     "args": {
+      "query": "Kahramaa groundwater protection measures"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "search_documents",
+     "text": "[policy-goals.csv p.4] goal_id: G-03\nlevel: National\nframework: NDS3\nowner: National Planning Council\ngoal: Implementation of groundwater metering, protection zones, and Water Act regulations to safeguard groundwater and limit its use in fodder cultivation\nwording: Quote, p.27\ntarget: \ntarget_year: 2030\naquama_feature: Data confidence, alerts and national context\nviews: Kahramaa, Municipality\nsource_id: PL-01\nsource_url: https://www.npc.qa/en/planning/nds3/Documents/QNDS3_EN.pdf\n\n[Peninsula_2025_Water_security_strategic_planning.txt p.1] Doha: Qatar is well-positioned in terms of water security, thanks to the proactive vision of the nation’s leadership, which began planning for water resilience more than two decades ago, said an official.\nQatar operates from a position of strength, with comprehensive risk management frameworks and business continuity systems firmly in place,” said Head of the Water Control Section at Qatar General Electricity and Water Corporation (Kahramaa) Eng Abdulhadi Masoud Al-Marri.\nSpeaking to Qatar TV recently, he said that the key focus areas include ensuring sufficient water availability to meet national needs and maintaining high water quality standards.\nAl-Marri also discussed current and future projects, water sources, the impact of climate change, technological innovations, and Qatar’s role in global cooperation on water sustainability.\nAs a country with no significant groundwater resources, he said Qatar relies almost entirely on seawater desalination for its freshwater supply.\n“Currently, over 99.9% of Qatar’s water comes from desalinated seawater, with less than 0.01% sourced from underground aquifers.\nThe abundance of marine resources not only supports water production but also fuels other sectors such as energy and fisheries,” said Al-Marri.\nHe noted that climate change poses new challenges.\nRising global temperatures and changing weather patterns have led to higher seawater salinity, which in turn increases the energy required for desalination.\nNevertheless, Qatar has anticipated these challenges and is actively implementing sustainability measures and environmental protection initiatives to adapt effectively.\n“Qatar uses two primary desalination technologies: The thermal desalination method, where seawater is heated, condensed, and re-mineralised to produce potable water.\n\n[ANND_Right_to_Water_in_Qatar.txt p.15] ABU HAWASH , M. 15\n200,000 Qatari riyals (Article 79). Penalties can also be doubled for repeat violators. The severity of these penalties reflects the newfound importance that the Qatari government is placing on the sustainability of its groundwater resources, which have been significantly depleted after decades of overuse.\nThe new law also places newfound importance on the extremely limited amounts of fresh (i.e., drinkable) groundwater that remain in Qatar’s aquifers; Article 20.2 completely bans its use in agriculture without a specific license. Violators are punished by up to a year in prison and up to\n300,000 Qatari riyals in fines (Article 78).\nAs part of its responsibility to manage the country’s groundwater, Kahramaa also monitors the water levels in all of Qatar’s aquifers, and all efforts to recharge them through TSE injection. The data that Kahramaa collects on groundwater resources is used to update a central database that assists policymakers in making informed decisions on water policies. The new law also permits members of the general public to request access to the contents of this database if they can make a legitimate case for it (Article 2.2).\n DESALINATION MANAGEMENT\nThe Qatar Electricity and Water Company (QEWC) owns and operates most of the desalination facilities in Qatar,10 while the Qatar General Electricity and Water Corporation (Kahramaa) owns and manages the country's water distribution network.11 Furthermore, the wastewater drainage and treatment network is under the purview of the Public Works Authority (Ashghal).12\nQEWC and Kahramaa have signed a series of agreements dictating each party's responsibilities and liabilities. As the front-facing service provider, Kahramaa\n\n[Peninsula_2025_Kahramaa_water_reserves.txt p.1] Doha, Qatar: Qatar General Electricity and Water Corporation (Kahramaa) has said that strategic water storage is sufficient to meet demand for 5.2 days. “Kahramaa’s water reserves have been quadrupled from 1.3 days in 2010 to 5.2 days in 2024, to maintain a high level of water reserves and mitigate the risks posed by climate change and population growth,” said the corporation on its X platform. Water projects are being planned to include the construction of reservoirs in many existing stations and current plans for constructing more reservoirs and pumping stations to meet the growing demand, according to a report on the water sector shared by Kahramaa on its website. Read Also Qatar Central Bank announces Eidiya ATM locations for Eid Al Fitr Exceptional cancer care at NCCCR receives patients from across region Qatar welcomes peace agreement between Azerbaijan and Armenia In addition, the water storage capacity increased to include 2,417 million gallons after commissioning the Water Strategic Mega Reservoirs Project. The potable desalinated water production in Qatar for the year 2024 stood at 538 million imperial gallons per day (MIGD) following the expansion of Umm Al Houl plant. Production capacity is expected to reach 638 MIGD after commissioning Ras Bu Fontas new plant (Facility E) in 2028. To enhance groundwater availability and replenishment, Kahramaa initiated the rehabilitation of 313 water-harvesting wells and developed 70 new water-harvesting wells within various projects. Additionally, a project was launched to develop 300 water harvesting wells, with the completion of 30 wells of the project. Kahramaa also prioritises the groundwater sector to establish a sustainable and efficient framework for utilising water resources. This involves systematically monitoring groundwater utilisation by granting drilling licenses after thorough assessment of each request directed to Kahramaa. Additionally, it focuses on preserving groundwater resources and storing them through several projects, which include the widespread drilling of\n\n[ANND_Right_to_Water_in_Qatar.txt p.14] 14  The Right to Water in\nFigure 2: Institutional Framework of Water Management in Qatar\nProduction: QEWC\nOwns and operates most desalination facilities in Qatar. Invests in facilities abroad to generate\nrevenues.\nDistribution: Kahramaa\nReceives water from desalination & treatment facilities\nand distributes it through its own\nnetwork. Monitors water\nresources. Manages reserves.\nTreatment: Ashghal\nReceives water from desalination & treatment facilities\nand distributes it through its own\nnetwork. Monitors water\nresources. Manages reserves.\n GROUNDWATER MANAGEMENT\nAmiri Decree no. 46 of 2015 handed responsibility for groundwater management, development, and control to Kahramaa (Amiri Diwan, 2015). The decree also granted Kahramaa the power to issue licenses to dig and operate wells and search for groundwater resources. It is assisted by the Public Works Authority (Ashghal) in building, operating, and maintaining the country’s groundwater pumping, distribution, and drainage network. On the other hand, the Agricultural Affairs Department at the Ministry of Municipality supervises the agricultural sector under the leadership of the Assistant Undersecretary for Agriculture and Food Security Affairs. This department issues farming licenses, monitors farms to ensure compliance, and conducts the periodic agricultural census (Ministry of Municipality, 2025).\nQatari law safeguards farmers’ rights to continue withdrawing groundwater free of charge. However, law no. 23 of 2025 places strict rules and regulations on the use of\n\n[policy-goals.csv p.41] goal_id: G-40\nlevel: National law\nframework: Amiri Decision No. 46 of 2015\nowner: Kahramaa\ngoal: Estimate, measure and monitor the water balance of the water basins, and develop and protect them\nwording: My translation, Art. 2 item 9 and Art. 3 item 14\ntarget: \ntarget_year: In force status not checked after Law 23 of 2025\naquama_feature: National context and basin labels\nviews: Kahramaa\nsource_id: LW-06\nsource_url: https://www.almeezan.qa/LawPage.aspx?id=6725&language=ar"
+    }
+   ]
+  },
+  {
+   "id": "D19",
+   "question": "Will Qatar ban groundwater use for fodder crops?",
+   "asker": "farmer",
+   "origin": "news",
+   "verbatim": "no",
+   "source_url": "https://www.fruitnet.com/eurofruit/water-tops-concerns-in-qatar/179575.article",
+   "expected_type": "simple",
+   "kb_can_answer": "partly",
+   "note": "",
+   "got_type": "false_premise",
+   "answer": "There is no evidence or official statement in the provided data to suggest that Qatar is considering a ban on groundwater use for fodder crops. The available information does not mention any such policy or plan. [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1]\n\nKey figures:\n- Share of water production from seawater desalination: 63 % (2023) [NPC_Water_Statistics_2023.txt p.36]\n- Groundwater samples unsuitable for irrigation: up to 95 % (not stated) [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1]",
+   "tools_used": [
+    "key_statistics"
+   ],
+   "tool_rounds": 0,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 12.6,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "key_statistics",
+     "args": {
+      "question": "Will Qatar ban groundwater use for fodder crops?"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "key_statistics",
+     "text": "[NPC_Water_Statistics_2023.txt p.36] Share of water production from seawater desalination: 63 % (2023) [NPC_Water_Statistics_2023.txt p.36]\n[QEERI_2022_Qatar_Groundwater_Challenges.txt p.1] Groundwater samples unsuitable for irrigation: up to 95 % (not stated) [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1]"
+    }
+   ]
+  },
+  {
+   "id": "D20",
+   "question": "How much treated wastewater is injected into Qatar's aquifers?",
+   "asker": "researcher",
+   "origin": "official",
+   "verbatim": "no",
+   "source_url": "https://www.npc.qa/en/statistics/Statistical%20Releases/Environmental/Water/Water_Statistics_2023_EN.pdf",
+   "expected_type": "simple",
+   "kb_can_answer": "yes",
+   "note": "",
+   "got_type": "simple",
+   "answer": "The percentage of treated wastewater injected into Qatar's aquifers is 15.6% [NPC_Water_Statistics_2023.txt p.67].\n\nKey figures:\n- Share of water production from seawater desalination: 63 % (2023) [NPC_Water_Statistics_2023.txt p.36]",
+   "tools_used": [
+    "key_statistics"
+   ],
+   "tool_rounds": 0,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 8.6,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "key_statistics",
+     "args": {
+      "question": "How much treated wastewater is injected into Qatar's aquifers?"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "key_statistics",
+     "text": "[NPC_Water_Statistics_2023.txt p.67] Treated wastewater injected into aquifers: 15.6 % of treated wastewater use (2023) [NPC_Water_Statistics_2023.txt p.67]\n[NPC_Water_Statistics_2023.txt p.36] Share of water production from seawater desalination: 63 % (2023) [NPC_Water_Statistics_2023.txt p.36]"
+    }
+   ]
+  },
+  {
+   "id": "D21",
+   "question": "What percentage of Qatar's drinking water is desalinated?",
+   "asker": "resident",
+   "origin": "research abstract",
+   "verbatim": "no",
+   "source_url": "https://qspace.qu.edu.qa/handle/10576/14292",
+   "expected_type": "simple",
+   "kb_can_answer": "partly",
+   "note": "63% of all production is in the database; 99% of potable water is not",
+   "got_type": "post_processing",
+   "answer": "The percentage of Qatar's drinking water that is desalinated is 63% [NPC_Water_Statistics_2023.txt p.36].\n\nNote on sources: Desalination supplied 63% of all water produced in 2023 [NPC_Water_Statistics_2023.txt p.36], while over 99.9% of Qatar's drinking water supply is desalinated [Peninsula_2025_Water_security_strategic_planning.txt p.1]. 63% is of all water production, including groundwater pumped for farms; 99.9% is of drinking water only (news report).",
+   "tools_used": [
+    "key_statistics"
+   ],
+   "tool_rounds": 0,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [
+    "99.9"
+   ],
+   "cited_files_not_in_tool_results": [
+    "Peninsula_2025_Water_security_strategic_planning.txt"
+   ],
+   "general_knowledge_tags": 0,
+   "seconds": 7.9,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "key_statistics",
+     "args": {
+      "question": "What percentage of Qatar's drinking water is desalinated?"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "key_statistics",
+     "text": "[NPC_Water_Statistics_2023.txt p.36] Share of water production from seawater desalination: 63 % (2023) [NPC_Water_Statistics_2023.txt p.36]"
+    }
+   ]
+  },
+  {
+   "id": "D22",
+   "question": "How saline were Qatar's wells in 2014?",
+   "asker": "researcher",
+   "origin": "news",
+   "verbatim": "no",
+   "source_url": "https://www.hortidaily.com/article/9138949/agricultural-push-in-qatar-risks-further-groundwater-depletion/",
+   "expected_type": "simple_with_condition",
+   "kb_can_answer": "no",
+   "note": "",
+   "got_type": "simple_with_condition",
+   "answer": "The salinity of Qatar's wells in 2014 was found to be very high, with over 60% of the samples having salinity levels that would likely cause harm to agriculture [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1].",
+   "tools_used": [
+    "search_documents"
+   ],
+   "tool_rounds": 1,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 14.1,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "search_documents",
+     "args": {
+      "query": "salinity of wells in Qatar 2014"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "search_documents",
+     "text": "[QEERI_2022_Qatar_Groundwater_Challenges.txt p.1] Desalinating irrigation water\nIrrigation hazard analysis - a measurement tool for the quality of water used to irrigate crops - performed on various wells located around Qatar indicated that up to 95% of samples are not suitable for agricultural irrigation, with over 60% having salinity levels which would likely cause harm to agriculture.\nAs such, this water is only suitable for growing very salt-tolerant crops. Thirty-four percent of the irrigation water was found to be of very high salinity hazard and medium sodium hazard, and not suitable for irrigation in almost all types of soils.\nBecause of this challenge of salty (“brackish”) groundwater, farms need to establish a desalination system on-site to be able to use the wells. This is typically done through a reverse osmosis, membrane-based system. Similar to the seawater desalination systems which provide the water to houses and businesses in Qatar, chemicals such as anti-scalants have to be added to the well water to help the system function correctly over time. The waste product from this process is called “brine”. The brine contains the salts and other contaminants, and chemicals, which have been removed from the well water. Brine is an environmentally challenging issue for Qatar. For seawater plants, brine is discharged off-shore, but for farms where there is no obvious disposal route, the brine is more problematic.\n\n[GSO_149_Unbottled_Drinking_Water.txt p.3] GSO  GSO 149/2014\n(GSO)  ,\n- GSO.\nGSO  /\n().\nGSO  (5) \"\n\"\n: GSO 149/2009 \"  \".\nGSO\n(20),  12/01 / 1436h (05/11/2014).\nGSO  149/2009.\n\n[Fanack_Water_Resources_in_Qatar.txt p.1] There are no fresh surface water resources in Qatar , which makes rainfall and groundwater recharge the main freshwater resources. The country’s major water resources are desalination, groundwater and reuse of treated sewage effluent (TSE) (Figure 1).\nThe total water production from these three resources rose from 220 million cubic metres (MCM) in 1990 to 912 MCM in 2016, and to 1038.16 MCM in 2019. 1 2\nFigure 1: Breakdown of Qatar’s water resources. 3\nQatar has two main groundwater resources, namely the Rus and Umm er Rhaduma aquifers. Rainfall recharge contributes 43.4% of the groundwater reserve. The inflow from Saudi Arabia , which originates from a shared artesian aquifer, contributes 2%, while the artificial recharge from TSE contributes 54.6%. [4] As shown in Map 1, Qatar has four main groundwater basins, namely the Northern Basin, Southern Basin, Doha Basin and Allat Basin. Table 1 shows the natural long-term water balance of Qatar’s groundwater resources between 1998 and 2016.\nGroundwater abstraction, which currently meets 30% of the total water demand, is above recharge rates. [5] In 2017, groundwater abstraction reached 250.8 MCM/yr, while the safe yield amounted to 55.8 MCM/yr, [6] causing depletion of aquifers, seawater intrusion and increased salinity. About 230 MCM/yr of water abstracted from groundwater – or around 92% of the total withdrawal – is used for agricultural purposes. During the period 2008-2016, the annual water deficit, which was mainly caused by groundwater abstraction, ranged from 97 MCM/yr to 158 MCM/yr. [7]\nTable 1: Natural water balance of Qatar’s aquifers (annual average 1998-2016). [8]\n\n[Mohieldeen_2021_GIS_aquifer_recharge_Qatar_SciRep.txt p.11] inenergy/detail.cfm?id=7830 (2012)\n13. Zhao, J. & Ghedira, H. Monitoring red tide with satellite imagery and numerical models: A case study in the Arabian Gulf. Mar.\nPollut. Bull. 79(2014), 305�313 (2014).\nScientific Reports | (2021) 11:18184 |  https://doi.org/10.1038/s41598-021-97593-w  11\n\n[Kahramaa_Drinking_Water_Quality_Requirements_2014.txt p.27] the well is sunk, and can increase over time as\ndrawdown occurs. Arsenic is usually at very low\nlevels in seawater (i.e. <0.002 mg/L) and will\nhave a high rejection in desalination systems\nand hence pose a low risk to the Qatar system.\n27  Overview on: KAHRAMAA Drinking Water Quality Requirements\n\n[Mohieldeen_2021_GIS_aquifer_recharge_Qatar_SciRep.txt p.11] Figure 11.(a) Proposed sites for potential water-recharge sites (in red color). (b) Proximity of experimental\nsites (green tringles) to the proposed zones (red polygons) identified in this study.\nMoreover, the proposed methodology and framework would achieve water security issues successfully and could\nbe applicable in similar arid environments.\nReceived: 30 March 2021; Accepted: 24 August 2021\nReferences\n1. Darwish, M., Abdulrahim, H. & Mohieldeen, Y. Qatar and GCC water security. Desalin. Water Treat. J. https://doi.org/10.1080/\n19443994.2014.947782 (2014).\n2. Kahramaa. Qatar Has World's Highest Water Consumption: Kahramaa. http://www.siww.com.sg/industry-news/qatar-has-world%\nE2%80%99s-highest-water-consumption-kahramaa. (2013). Accessed 24 Oct 2015.\n3. Kahramaa. Reduction in Qatar's Per Capita Consumption of Electricity and Water; Still a Steep Climb to 2016 Targets. http://www.\njusthere.qa/2014/04/kahramaas-tarsheed-programme-brings-reduction-qatars-per-capita-consumption-electricity-10-water-6/\n(2014)\n4. Al Malki, A. Business Opportunities in Water Industry in Qatar. http://www.siww.com.sg/pdf/Biz_Opps_in_Water_Industry_in_\nQatar.pdf (Qatar General Electricity and Water Corp. (Kahramaa), 2009).\n5. QSA (Qatar Statistics Authority). Qatar National Atlas 2013--Qatar (2013)."
+    }
+   ]
+  },
+  {
+   "id": "D23",
+   "question": "What is the main cause of rising groundwater salinity in Qatar?",
+   "asker": "researcher",
+   "origin": "research news",
+   "verbatim": "no",
+   "source_url": "https://www.hbku.edu.qa/en/news/QEERI-SUST-WWDQGC",
+   "expected_type": "explanation",
+   "kb_can_answer": "yes",
+   "note": "",
+   "got_type": "explanation",
+   "answer": "The main cause of rising groundwater salinity in Qatar is over-abstraction of groundwater, which has led to seawater intrusion and increased salinity [ANND_Right_to_Water_in_Qatar.txt p.19]. This over-extraction is primarily driven by agricultural practices, which account for the majority of groundwater use [Higazy_2024_Water_Footprint_Qatar.txt p.3].",
+   "tools_used": [
+    "search_documents"
+   ],
+   "tool_rounds": 1,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 15.6,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "search_documents",
+     "args": {
+      "query": "main cause of rising groundwater salinity in Qatar"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "search_documents",
+     "text": "[Fanack_Water_Resources_in_Qatar.txt p.1] There are no fresh surface water resources in Qatar , which makes rainfall and groundwater recharge the main freshwater resources. The country’s major water resources are desalination, groundwater and reuse of treated sewage effluent (TSE) (Figure 1).\nThe total water production from these three resources rose from 220 million cubic metres (MCM) in 1990 to 912 MCM in 2016, and to 1038.16 MCM in 2019. 1 2\nFigure 1: Breakdown of Qatar’s water resources. 3\nQatar has two main groundwater resources, namely the Rus and Umm er Rhaduma aquifers. Rainfall recharge contributes 43.4% of the groundwater reserve. The inflow from Saudi Arabia , which originates from a shared artesian aquifer, contributes 2%, while the artificial recharge from TSE contributes 54.6%. [4] As shown in Map 1, Qatar has four main groundwater basins, namely the Northern Basin, Southern Basin, Doha Basin and Allat Basin. Table 1 shows the natural long-term water balance of Qatar’s groundwater resources between 1998 and 2016.\nGroundwater abstraction, which currently meets 30% of the total water demand, is above recharge rates. [5] In 2017, groundwater abstraction reached 250.8 MCM/yr, while the safe yield amounted to 55.8 MCM/yr, [6] causing depletion of aquifers, seawater intrusion and increased salinity. About 230 MCM/yr of water abstracted from groundwater – or around 92% of the total withdrawal – is used for agricultural purposes. During the period 2008-2016, the annual water deficit, which was mainly caused by groundwater abstraction, ranged from 97 MCM/yr to 158 MCM/yr. [7]\nTable 1: Natural water balance of Qatar’s aquifers (annual average 1998-2016). [8]\n\n[Higazy_2024_Water_Footprint_Qatar.txt p.2] Water 2024, 16, 1185  2 of 20\nwater-insecure regions are more vulnerable to the effects of climate change compared to\nother areas [6�8].\nRegionally, Gulf Cooperation Council (GCC) countries are located in the driest area of\nthe world. Due to population growth, unplanned agricultural expansion, rapid urbaniza-\ntion, and the rising living standards, water consumption has substantially increased over\nthe past few decades [9]. The GCC lacks renewable freshwater resources. Groundwater is\nthe main source of freshwater and with the increasing water demand, groundwater levels\nhave significantly decreased and its quality has degraded. Therefore, GCC countries are\nheavily investing in the production of nonconventional water resources such as seawater\ndesalination and treated wastewater [9,10]. In 2019, the World Resources Institute (WRI)\nranked Qatar as the world's most water-stressed country [11]. Qatar is an arid dryland\nwith high evaporation rates and limited natural water resources. It is characterized by\nthe absence of permanent rivers, minute annual rainfall, and a few groundwater aquifers\nwhich comprise the main source of natural water. Over the last decades, groundwater\nlevels and quality have substantially decreased and deteriorated due to extensive pumping\nfor farm irrigation practices [12,13]. Seawater desalination meets 50% of the water supply\ndemand of Qatar, while groundwater and recycled wastewater meet the remaining 36%\nand 14%, respectively [14]. Household water supply relies completely on desalinated\nwater; this overreliance can put Qatar in jeopardy if any disruption occurs in the desali-\nnation process (e.g., oil spills, algal blooms, etc.) Furthermore, desalination has negative\nenvironmental impacts, particularly its large energy footprint and its detriment to marine\necosystems [14,15].\n\n[Higazy_2024_Water_Footprint_Qatar.txt p.3] nated water; it is the primary source for drinking water [29]. There are currently 12 water\ndesalination plants operating in Qatar, with a daily total capacity of 500 million of Imperial\nGallons per day (MIGD). Umm Al Houl, Ras Qertas, Ras Laffan-b, and Ras Abu Fantas\nplants make up half of seawater desalination capacity of the country. The main technologies\nused for desalination in Qatar are multi-stage flash distillation (MSF) and reverse osmosis\n(RO) [30]. Groundwater is the main natural water resource in Qatar; the primary ground-\nwater aquifers are the Rus aquifer and the Umm er Rhaduma aquifer [25]. Groundwater\nabstraction reaches 250.8 million m3/y, which unfortunately has led to depletion of aquifers,\nlow groundwater levels, and increased salinity. However, groundwater abstraction has\nremained the same since 2005 [28]. The majority of groundwater abstraction is used in\nagriculture approximately 230 million m3/y or 92% of the total water abstracted. Currently,\nthe primary source of the national groundwater reserve is artificial recharge of groundwater\naquifers through TSE injection, recharge wells, and artificial recharge from irrigation [28].\nAs a result of development of the wastewater treatment design and technologies in Qatar,\nTSE production has increased drastically in the last decade. Almost two-thirds of the waste\nwas reused for agriculture and landscaping, with the remainder allocated to lagoons and\naquifers and a very small percentage being discharged into the sea [31].\n\n[ANND_Right_to_Water_in_Qatar.txt p.19] ABU HAWASH , M. 19\ntegically choosing what to plant and what to import.31 The new strategy also bodes well for the future of new technologies like hydroponics, aquaponics, and vertical farming.\nStill, Qatar could benefit from developing targeted strategies for the water and agriculture sectors, as experts have\npointed to solutions for water scarcity that require a focused policy-based approach that would not fall under its food security strategy. Some of these solutions include the deployment of more TSE in agriculture and investing in rainwater harvesting,32 rainfall seeding (if feasible),33 and atmospheric generation.34\n INCREASING BRACKISHNESS OF GROUNDWATER: RISKS TO FUTURE GENERATIONS\nMost of Qatar’s natural freshwater is found at shallow depths in a groundwater lens located in the north of the country, which has supplied the area’s population since at least the Neolithic times (starting around the mid-Holocene period around 6000 years ago).35 However, human activity in the form of over-abstraction and AAR during the past half-century has significantly transformed the makeup of this groundwater lens. This activity has caused an increase in saltwater intrusion, introduced pollutants, and possibly damaged the structural integrity of some aquifers.\nOver-abstraction of groundwater continues to be the main cause of the challenges facing the water sector. It is the primary reason why the quality of groundwater has failed to recover to historic levels, making it less suitable for human and agricultural consumption. From a human rights perspective, over-abstraction of groundwater could infringe on the rights of future generations of Qatar’s citizens who may not be able to utilize this resource for drinking or farming if the current rate of over-abstraction persists.\n\n[NPC_Water_Statistics_2023.txt p.21] Qatar’s main groundwater basins include the Northern Basin, Southern Basin, Doha\nbasin and the Allat Basin. (See Error! Reference source not found.).\nMap 1.2: Groundwater Basins in the State of Qatar\nSource: Ministry of Environment and Climate Change\nSource: Ministry of Environment and Climate Change\n\n[PSA_Water_Statistics_2021.txt p.14] Qatar’s main groundwater basins include the Northern Basin, Southern Basin, Doha basin\nand the Allat Basin (See Map 2-1).\nMap 2-1: Groundwater Basins in the State of Qatar\nAl Ruwais\n320000 340000 360000 380000 400000 420000 440000 460000 480000  Arabian  Gulf\nNORTHERN BASIN  Al Khor\nDukhan\nDOHA  Doha\nBASIN  Al Wakra\nSOUTHERN BASIN\nUmm Said\nSalwa\nGulf\nALLAT\nBASIN\nAbu Samra  ARUMA\nAQUIFER\n160000  180000  200000  220000  240000\nSource: Ministry of Environment and Climate Change"
+    }
+   ]
+  },
+  {
+   "id": "D24",
+   "question": "Is managed aquifer recharge a feasible solution in Qatar?",
+   "asker": "researcher",
+   "origin": "research",
+   "verbatim": "yes",
+   "source_url": "https://elmi.hbku.edu.qa/en/publications/is-managed-aquifer-recharge-a-feasible-solution-for-groundwater-d/",
+   "expected_type": "explanation",
+   "kb_can_answer": "partly",
+   "note": "",
+   "got_type": "explanation",
+   "answer": "Managed aquifer recharge is a feasible solution in Qatar, as evidenced by the development of 370 new recharge wells by 2025 [Qatar_NDC_3.txt p.18]. Additionally, rain recharge contributes approximately 74.7 million cubic meters of water annually to the aquifers, indicating the potential for natural and artificial recharge methods [NPC_Water_Statistics_2023.txt p.29].",
+   "tools_used": [
+    "key_statistics"
+   ],
+   "tool_rounds": 0,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 12.4,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "key_statistics",
+     "args": {
+      "question": "Is managed aquifer recharge a feasible solution in Qatar?"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "key_statistics",
+     "text": "[NPC_Water_Statistics_2023.txt p.29] Rain recharge of the aquifers: 74.7 million m3 a year (1998-2023 average) [NPC_Water_Statistics_2023.txt p.29]\n[Qatar_NDC_3.txt p.18] New recharge wells developed: 370 wells (by 2025) [Qatar_NDC_3.txt p.18]"
+    }
+   ]
+  },
+  {
+   "id": "D25",
+   "question": "How much rainfall recharges Qatar's aquifers each year?",
+   "asker": "researcher",
+   "origin": "official",
+   "verbatim": "no",
+   "source_url": "https://www.npc.qa/en/statistics/Statistical%20Releases/Environmental/Water/Water_Statistics_2023_EN.pdf",
+   "expected_type": "simple",
+   "kb_can_answer": "yes",
+   "note": "",
+   "got_type": "simple_with_condition",
+   "answer": "The average annual recharge of Qatar's aquifers from rainfall is 74.7 million cubic meters [NPC_Water_Statistics_2023.txt p.29].\n\nKey figures:\n- Share of water production from seawater desalination: 63 % (2023) [NPC_Water_Statistics_2023.txt p.36]",
+   "tools_used": [
+    "key_statistics"
+   ],
+   "tool_rounds": 0,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 9.2,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "key_statistics",
+     "args": {
+      "question": "How much rainfall recharges Qatar's aquifers each year?"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "key_statistics",
+     "text": "[NPC_Water_Statistics_2023.txt p.29] Rain recharge of the aquifers: 74.7 million m3 a year (1998-2023 average) [NPC_Water_Statistics_2023.txt p.29]\n[NPC_Water_Statistics_2023.txt p.36] Share of water production from seawater desalination: 63 % (2023) [NPC_Water_Statistics_2023.txt p.36]"
+    }
+   ]
+  },
+  {
+   "id": "D26",
+   "question": "Is land subsidence in Qatar linked to groundwater?",
+   "asker": "researcher",
+   "origin": "research news",
+   "verbatim": "no",
+   "source_url": "https://www.hbku.edu.qa/en/node/23604",
+   "expected_type": "explanation",
+   "kb_can_answer": "no",
+   "note": "",
+   "got_type": "explanation",
+   "answer": "The statistics provided do not directly address the link between land subsidence and groundwater in Qatar [general knowledge]. It is likely that further information or studies specifically examining land subsidence and its potential connection to groundwater extraction would be required [general knowledge].\n\nKey figures:\n- Groundwater abstraction before the 2023 revision: 250 million m3 a year (2019-2022) [Kahramaa_Statistics_Report_2023.txt p.80]\n- Share of water production from seawater desalination: 63 % (2023) [NPC_Water_Statistics_2023.txt p.36]",
+   "tools_used": [
+    "key_statistics"
+   ],
+   "tool_rounds": 0,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 2,
+   "seconds": 12.6,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "key_statistics",
+     "args": {
+      "question": "Is land subsidence in Qatar linked to groundwater?"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "key_statistics",
+     "text": "[Kahramaa_Statistics_Report_2023.txt p.80] Groundwater abstraction before the 2023 revision: 250 million m3 a year (2019-2022) [Kahramaa_Statistics_Report_2023.txt p.80]\n[NPC_Water_Statistics_2023.txt p.36] Share of water production from seawater desalination: 63 % (2023) [NPC_Water_Statistics_2023.txt p.36]"
+    }
+   ]
+  },
+  {
+   "id": "D27",
+   "question": "Which crops can tolerate Qatar's brackish groundwater?",
+   "asker": "farmer",
+   "origin": "guideline",
+   "verbatim": "no",
+   "source_url": "https://www.fao.org/4/t0234e/T0234E03.htm",
+   "expected_type": "set",
+   "kb_can_answer": "partly",
+   "note": "FAO 29 crop salt tolerance",
+   "got_type": "set",
+   "answer": "Brackish groundwater in Qatar is used for agricultural purposes after treatment in brackish water desalination facilities [ANND_Right_to_Water_in_Qatar.txt p.19]. While specific crops that can tolerate brackish groundwater are not explicitly listed, it is noted that certain crops can be irrigated with brackish water under proper management, as outlined by FAO 29's restriction levels [misconceptions.csv p.9].",
+   "tools_used": [
+    "search_documents"
+   ],
+   "tool_rounds": 1,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 21.9,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "search_documents",
+     "args": {
+      "query": "crops tolerate brackish groundwater Qatar"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "search_documents",
+     "text": "[misconceptions.csv p.10] wrong_assumption: Qatar has large reserves of drinkable groundwater.\ncorrection: Most of Qatar's groundwater is brackish. The 2020 survey of 201 wells averaged about 4,600 mg/L TDS, and drinking water comes from desalination. Fresh groundwater is limited to lenses in the north, and its use for farming needs approval.\nsource_file: Geochemistry_Dataset.xlsx; ANND_Right_to_Water_in_Qatar.txt (p.20); NPC_Water_Statistics_2023.txt\nchecked_by_roaa: no\n\n[ANND_Right_to_Water_in_Qatar.txt p.19] Unfortunately, despite the government’s attempts to limit the use of groundwater and revitalize aquifers, the quality of groundwater continues to decline, forcing the Qatari agricultural sector to increasingly rely on brackish water desalination facilities to treat groundwater and make it suitable for agricultural use. A recent study found that just 2.7% of Qatar’s groundwater today has “excellent” suitability for drinking and 6.4% has “good” suitability (see figure 3).36 Another 15.2% has “poor” suitability and 14.6% has “very poor” suitability, while 61.1% is entirely unsuitable for human consumption.37 These figures mark a catastrophic decline compared to the 1970s (although exact data from that time period is difficult to find).\nThe same study found that just 6.2% of Qatar’s groundwater today has “very high suitability” for agriculture, while 24.9% has “high suitability.”38 A further 40.6% has “medium suitability” while 18.8% and 9.5% have “low” and “very low” suitability, respectively. Groundwater with medium (or lower) suitability requires treatment in brackish water desalination facilities before being used for agricultural purposes. The\n\n[misconceptions.csv p.9] wrong_assumption: Salty groundwater is useless.\ncorrection: Brackish water can still irrigate salt-tolerant crops with management, under FAO 29's restriction levels.\nsource_file: FAO_29_Water_Quality_for_Agriculture_ch1-5.txt; limits.csv\nchecked_by_roaa: no\n\n[Mohieldeen_2021_GIS_aquifer_recharge_Qatar_SciRep.txt p.1] and other Gulf countries for weeks. In addition, the fossil fresh groundwater resources in the country have been\nexploited heavily during the past few decades, mainly for agricultural purposes. The continuous over-abstraction\nhas negatively affected groundwater quantity and quality, as consequence of seawater intrusion and the upward\nleakage of brackish water. Qatar's current groundwater would be unusable for human consumption in the event\nof water shortage emergency caused by disasters in the Gulf or unexpected failure of the desalination plants.\n1Qatar Environment and Energy Research Institute (QEERI), Hamad Bin Khalifa University (HBKU), Qatar\nFoundation, Doha, Qatar. 2Environmental Science Center (ESC), Qatar University, H10Zone 3B113,\nP.O. Box 2713, Doha, Qatar. 3Department of Earth Sciences, College of Science, Sultan Qaboos University, Muscat,\nOman. *email: elnaiem@qu.edu.qa\nScientific Reports | (2021) 11:18184  | https://doi.org/10.1038/s41598-021-97593-w  1\n\n[Higazy_2024_Water_Footprint_Qatar.txt p.16] contribute to regional water security efforts. Further elaboration on sector-specific analyses\nand initiatives addressing these aspects is provided in subsequent sections.\nThe agricultural sector in Qatar has expanded in recent years, spurred by economic\ngrowth and rapid population increase. The 2017 blockade, imposed by neighboring coun-\ntries, significantly impacted Qatar's food production [17,52]. Prior to the blockade, Qatar\nrelied heavily on food imports from Saudi Arabia and the UAE. However, the blockade cat-\nalyzed a surge in national food production, with production of perishables like vegetables\nand milk nearly tripling, and self-sufficiency in dairy and poultry markedly increasing [17].\nAs a result, the water footprint (WF) of Qatar's agricultural sector rose by 15% in the year\nfollowing the blockade.\nQatar's extreme environmental conditions, such as scarce rainfall and high evaporation\nrates [59], render open field systems particularly water-intensive, further contributing to\nthe sector's WF. Qatar can decrease water resource overexploitation in the agricultural\nsector by focusing on introducing efficient irrigation systems in farms. Several farms have\nbegun using technologies such as hydroponics, brackish water treatment systems, and\ngreenhouses to some extent [53]. The use of water-efficient technologies, as this study\nindicates, could significantly reduce the WF in agriculture. For instance, open field systems,\ndespite being the second highest in production, account for over 90% of the crop WF.\nIdentifying crops with the highest WF in Qatar (like dates, eggplants, and pumpkins) can\naid in strategic decisions about local cultivation versus overseas agricultural investments\nor long-term food import plans.\nIn 2021, direct water use in agriculture, as supplied by KAHRAMAA, accounted for\n\n[QEERI_2022_Qatar_Groundwater_Challenges.txt p.1] World Water Day: Qatar’s Groundwater Challenges\nIn line with this year’s World Water Day theme, Making the Invisible Visible, QEERI’s Senior Research Director for Water discusses Qatar’s groundwater challenges\nBefore the 1950s, when the first seawater desalination plant was established, groundwater was the sole provider of water for drinking and irrigation. The population of Qatar relied on wells from which freshwater was extracted, which catered to all of their water needs. Similar to other arid and desert countries, Qatar’s environment is characterized by a lack of renewable freshwater resources such as rivers and lakes. The aquifers containing Qatar’s natural fresh groundwater resources are extremely limited, and the depth to the water table varies between less than 1 meter near the coastline to more than 70 meters in some areas.\nLow on groundwater resources\nSince the 1970s, Qatar’s groundwater has not been replaced to the same extent to which it has been extracted. This has meant that, over time, the quality of the groundwater has been deteriorating, because as the fresh water is taken out, the seawater is pulled in from underground to fill the gap. Qatar was classified as the most water-stressed country in the world in 2019, due to a combination of low rainfall and low fresh groundwater levels, with natural renewable water resources far below the water poverty line.\nAbstraction of groundwater is estimated to be approximately three to five times the rate of natural recharge. The annual total water use in agriculture rose from 140 million m3 in 1990 to 296 million m3 in 2016. However, groundwater abstraction for agricultural purposes has roughly remained unchanged at the same level since 2005 (226 – 230 million m3 /year) and additional demand has been covered by treated sewage effluent (TSE) since 2004. While treated sewage effluent is not typically used for crop irrigation, it is used to grow fodder for feeding animals."
+    }
+   ]
+  },
+  {
+   "id": "D28",
+   "question": "What share of Qatar's groundwater is suitable for drinking?",
+   "asker": "official",
+   "origin": "NGO report",
+   "verbatim": "no",
+   "source_url": "https://annd.org/uploads/publications/QATAR_Report_(EN).pdf",
+   "expected_type": "simple",
+   "kb_can_answer": "yes",
+   "note": "",
+   "got_type": "post_processing",
+   "answer": "The share of Qatar's groundwater that is suitable for drinking is 9%, with 3% rated as excellent and 6% rated as good [ANND_Right_to_Water_in_Qatar.txt p.20].\n\nKey figures:\n- Share of water production from seawater desalination: 63 % (2023) [NPC_Water_Statistics_2023.txt p.36]",
+   "tools_used": [
+    "key_statistics"
+   ],
+   "tool_rounds": 0,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 26.0,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "key_statistics",
+     "args": {
+      "question": "What share of Qatar's groundwater is suitable for drinking?"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "key_statistics",
+     "text": "[ANND_Right_to_Water_in_Qatar.txt p.20] Groundwater rated excellent or good for drinking: 9 % (3% excellent, 6% good) (2024) [ANND_Right_to_Water_in_Qatar.txt p.20]\n[NPC_Water_Statistics_2023.txt p.36] Share of water production from seawater desalination: 63 % (2023) [NPC_Water_Statistics_2023.txt p.36]"
+    }
+   ]
+  },
+  {
+   "id": "D29",
+   "question": "How does brine from farm desalination affect the land?",
+   "asker": "farmer",
+   "origin": "news",
+   "verbatim": "no",
+   "source_url": "https://www.gulf-times.com/story/674815/QF-team-explores-ways-to-recycle-and-reuse-water-f",
+   "expected_type": "explanation",
+   "kb_can_answer": "no",
+   "note": "",
+   "got_type": "explanation",
+   "answer": "Brine from farm desalination can negatively affect the land by increasing soil salinity, which can harm agricultural productivity and degrade soil quality [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1]. Additionally, the disposal of brine on land can lead to environmental challenges, as it contains high concentrations of salts and other contaminants removed during the desalination process [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1]. This can further exacerbate the already high salinity levels in the region, making it difficult to grow crops and sustain agricultural activities [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1].",
+   "tools_used": [
+    "search_documents"
+   ],
+   "tool_rounds": 1,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 29.9,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "search_documents",
+     "args": {
+      "query": "brine from farm desalination affect the land"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "search_documents",
+     "text": "[QEERI_2022_Qatar_Groundwater_Challenges.txt p.1] Desalinating irrigation water\nIrrigation hazard analysis - a measurement tool for the quality of water used to irrigate crops - performed on various wells located around Qatar indicated that up to 95% of samples are not suitable for agricultural irrigation, with over 60% having salinity levels which would likely cause harm to agriculture.\nAs such, this water is only suitable for growing very salt-tolerant crops. Thirty-four percent of the irrigation water was found to be of very high salinity hazard and medium sodium hazard, and not suitable for irrigation in almost all types of soils.\nBecause of this challenge of salty (“brackish”) groundwater, farms need to establish a desalination system on-site to be able to use the wells. This is typically done through a reverse osmosis, membrane-based system. Similar to the seawater desalination systems which provide the water to houses and businesses in Qatar, chemicals such as anti-scalants have to be added to the well water to help the system function correctly over time. The waste product from this process is called “brine”. The brine contains the salts and other contaminants, and chemicals, which have been removed from the well water. Brine is an environmentally challenging issue for Qatar. For seawater plants, brine is discharged off-shore, but for farms where there is no obvious disposal route, the brine is more problematic.\n\n[Higazy_2024_Water_Footprint_Qatar.txt p.2] Water 2024, 16, 1185  2 of 20\nwater-insecure regions are more vulnerable to the effects of climate change compared to\nother areas [6�8].\nRegionally, Gulf Cooperation Council (GCC) countries are located in the driest area of\nthe world. Due to population growth, unplanned agricultural expansion, rapid urbaniza-\ntion, and the rising living standards, water consumption has substantially increased over\nthe past few decades [9]. The GCC lacks renewable freshwater resources. Groundwater is\nthe main source of freshwater and with the increasing water demand, groundwater levels\nhave significantly decreased and its quality has degraded. Therefore, GCC countries are\nheavily investing in the production of nonconventional water resources such as seawater\ndesalination and treated wastewater [9,10]. In 2019, the World Resources Institute (WRI)\nranked Qatar as the world's most water-stressed country [11]. Qatar is an arid dryland\nwith high evaporation rates and limited natural water resources. It is characterized by\nthe absence of permanent rivers, minute annual rainfall, and a few groundwater aquifers\nwhich comprise the main source of natural water. Over the last decades, groundwater\nlevels and quality have substantially decreased and deteriorated due to extensive pumping\nfor farm irrigation practices [12,13]. Seawater desalination meets 50% of the water supply\ndemand of Qatar, while groundwater and recycled wastewater meet the remaining 36%\nand 14%, respectively [14]. Household water supply relies completely on desalinated\nwater; this overreliance can put Qatar in jeopardy if any disruption occurs in the desali-\nnation process (e.g., oil spills, algal blooms, etc.) Furthermore, desalination has negative\nenvironmental impacts, particularly its large energy footprint and its detriment to marine\necosystems [14,15].\n\n[USGS_Dictionary_of_Water_Terms.txt p.1] return flow (irrigation) -- irrigation water that is applied to an area and which is not consumed in evaporation or transpiration and returns to a surface stream or aquifer .\nreverse osmosis --(1) ( Desalination ) The process of removing salts from water using a membrane. With reverse osmosis, the product water passes through a fine membrane that the salts are unable to pass through, while the salt waste (brine) is removed and disposed. This process differs from electrodialysis, where the salts are extracted from the feedwater by using a membrane with an electrical current to separate the ions. The positive ions go through one membrane, while the negative ions flow through a different membrane, leaving the end product of freshwater . (2) (Water Quality) An advanced method of water or wastewater treatment that relies on a semi-permeable membrane to separate waters from pollutants. An external force is used to reverse the normal osmotic process resulting in the solvent moving from a solution of higher concentration to one of lower concentration.\nriparian water rights --the rights of an owner whose land abuts water. They differ from state to state and often depend on whether the water is a river , lake , or ocean . The doctrine of riparian rights is an old one, having its origins in English common law. Specifically, persons who own land adjacent to a stream have the right to make reasonable use of the stream. Riparian users of a stream share the streamflow among themselves, and the concept of priority of use (Prior Appropriation Doctrine) is not applicable. Riparian rights cannot be sold or transferred for use on nonriparian land.\nriver --A natural stream of water of considerable volume , larger than a brook or creek .\n\n[Qatar_NDC_3.txt p.17] is sensitive to ocean temperature and salinity levels, affecting both water quality and process efficiency. The\nsector’s water storage facilities, and especially underground storage, are also sensitive to sea-level rise and\ncoastal flooding.\nIn Qatar, both water supply and demand are highly exposed to increases in mean temperature and occurrences\nof extreme heat. Water sources and water network infrastructure, including piping and groundwater aquifers,\nare exposed to rising temperatures. Located along Qatar’s coast, desalination plants are exposed to sea-level\nrise, storms, and coastal inundation. On the demand side, with most consumers located in cities, the urban heat\nisland effect exacerbates hot extremes, leaving consumers highly exposed to temperature variability.\nImpact on the Sector\nTable 3. Impacts on the Water Sector\nDirect Impact  Descrip-on of Direct Impact  Type of Impact\nEconomic\nIncrease in opera8onal costs of  Rising ocean temperatures, acidity, and salinity  Economic\nSocial\ndesalina8on.  could increase desalina8on costs by requiring\nEnvironmental\naddi8onal treatment to make the water suitable\nfor use.\nIncrease in government spending to Rising desalina8on costs may lead to higher\nsustain provision of desalinated water. government spending, thereby reducing resources\navailable for other sectors.\nIncrease in demand for drinking  Higher temperatures increase the need for\nwater.  drinking water, while droughts and changes in sea\nconditions reduce water availability. Reduced\nrainfall and rising evaporation rates also decrease\ngroundwater recharge, further limiting freshwater\nsupplies.\nIncrease in greenhouse gas emissions Increased desalination needs may raise energy\ndue to intensifying desalina8on.  consumption, leading to higher emissions.\nSimultaneously, declining groundwater recharges\ndue to higher temperatures and reduced\n\n[Mohieldeen_2021_GIS_aquifer_recharge_Qatar_SciRep.txt p.4] Figure 3.(a) Map of broad land use and farms distribution in the State of Qatar in 2012. (Source: Public\nStatistics Authority, Qatar http://www.psa.gov.qa)33. (b) Groundwater province boundaries and the distribution\nof annual average rainfall in mm during 1989 and 2007. (Source: Ministry of Environment, Technical\nGovernmental Report Publically Available)21.\nThe spatial extent of groundwater aquifers in Qatar is sub-divided into two major groundwater provinces: the\nNorthern and Southern provinces, and two small ones--namely the Doha and Abu Samra basins as in Fig. 3a.\nMost of the groundwater abstraction occurs in the farming area within the Northern groundwater province, as\nit receives more natural rainfall.\nThe Northern Province recharge from rainfall is 30% more than that of the Southern province, as shown in\nthe rainfall map Fig. 3b.\nThe abstraction of groundwater started to increase year by years since 1975. The continuous and rapid increase\nin the number of farms, along with increased number of wells inside these farms, shown in Fig. 4, caused deple-\ntion and deterioration of groundwater in-terms of quality and quantity.\nRisks and major threats. Oil spill. The fact that Qatar relies heavily on the water desalination from the\nGulf makes the country very vulnerable to pollution events in the Gulf, since it is very shallow10, compared--for\nexample--with the Gulf of Mexico. As a result, in the case of a major oil spill the concentration of oil in the wa-\nter would be very high and would take a long time to clean up. The 2010 oil spill that took place in the Gulf of\nMexico took thirty-six days to clean up using the advanced equipment available in the USA, despite the different\nand more resilient depth and other conditions compared to the Gulf. Oil spills are the major type of disaster that\n\n[Qatar_NDC_3.txt p.17] Increase in greenhouse gas emissions Increased desalination needs may raise energy\ndue to intensifying desalina8on.  consumption, leading to higher emissions.\nSimultaneously, declining groundwater recharges\ndue to higher temperatures and reduced\nprecipitation further increases reliance on\ndesalination."
+    }
+   ]
+  },
+  {
+   "id": "D30",
+   "question": "How much groundwater did agriculture use in 2013?",
+   "asker": "official",
+   "origin": "news",
+   "verbatim": "no",
+   "source_url": "https://dohanews.co/?p=49019",
+   "expected_type": "simple_with_condition",
+   "kb_can_answer": "partly",
+   "note": "",
+   "got_type": "simple_with_condition",
+   "answer": "Agriculture used 55.233 million cubic meters of groundwater in 2013 [water-production-abstraction-losses-and-uses.csv p.149].",
+   "tools_used": [
+    "lookup_table"
+   ],
+   "tool_rounds": 1,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 27.6,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "lookup_table",
+     "args": {
+      "query": "groundwater use agriculture",
+      "year_from": 2013,
+      "year_to": 2013
+     }
+    },
+    {
+     "step": "result",
+     "tool": "lookup_table",
+     "text": "[water-production-abstraction-losses-and-uses.csv p.149] Water production, abstraction, losses and uses. year: 2013; item: of which for irrigation in agriculture [10]; value: 55.233; unit: million m3\n\n[water-production-abstraction-losses-and-uses.csv p.146] Water production, abstraction, losses and uses. year: 2013; item: Total abstraction from groundwater [4]=[5]+[6]+[7]+[8]; value: 250.08; unit: million m3"
+    }
+   ]
+  }
+ ]
+}

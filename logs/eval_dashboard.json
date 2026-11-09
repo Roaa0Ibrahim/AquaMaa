@@ -1,0 +1,71 @@
+[
+ {
+  "question": "What does the dashboard show for groundwater extraction compared with the safe yield in 2022?",
+  "chart": "overview card: extraction, safe yield and ratio",
+  "expected": [
+   "250",
+   "49.6",
+   "5.04"
+  ],
+  "missing": [],
+  "numbers_not_from_dashboard": [],
+  "says_demonstration": true,
+  "used_read_dashboard": true,
+  "passed": true,
+  "answer": "The dashboard shows that groundwater extraction in 2022 was 250 MCM/year, while the safe yield was 49.6 MCM/year [dashboard overview 2022]. This means that groundwater extraction was 5.04 times the safe yield [dashboard overview 2022]. These figures are marked as demonstration data [dashboard overview 2022]."
+ },
+ {
+  "question": "On the dashboard's sector chart, how much did agriculture extract in 2022 and what share is that?",
+  "chart": "sector chart",
+  "expected": [
+   "155",
+   "62"
+  ],
+  "missing": [],
+  "numbers_not_from_dashboard": [],
+  "says_demonstration": true,
+  "used_read_dashboard": true,
+  "passed": true,
+  "answer": "In 2022, agriculture extracted 155 MCM/year, which accounted for 62% of the total groundwater extraction [dashboard overview 2022]. These figures are marked as demonstration data [dashboard overview 2022]."
+ },
+ {
+  "question": "According to the dashboard's trend chart, what was total extraction in 2010?",
+  "chart": "extraction trend chart",
+  "expected": [
+   "165"
+  ],
+  "missing": [],
+  "numbers_not_from_dashboard": [],
+  "says_demonstration": true,
+  "used_read_dashboard": true,
+  "passed": true,
+  "answer": "According to the dashboard's trend chart, the total extraction in 2010 was 165 MCM/year [dashboard extraction 2010]. This figure is marked as demonstration data, sourced from the National water accounts (demonstration series) [general knowledge]."
+ },
+ {
+  "question": "How many wells on the dashboard meet the TDS threshold?",
+  "chart": "well quality card",
+  "expected": [
+   "5",
+   "28"
+  ],
+  "missing": [],
+  "numbers_not_from_dashboard": [],
+  "says_demonstration": false,
+  "used_read_dashboard": true,
+  "passed": false,
+  "answer": "The dashboard shows that 5 of 28 wells meet the TDS threshold of 1000 mg/L, which is 18% [dashboard overview 2022]."
+ },
+ {
+  "question": "What was the latest TDS reading at station ST-01 on the dashboard?",
+  "chart": "station readings chart",
+  "expected": [
+   "960"
+  ],
+  "missing": [],
+  "numbers_not_from_dashboard": [],
+  "says_demonstration": true,
+  "used_read_dashboard": true,
+  "passed": true,
+  "answer": "The latest TDS reading at station ST-01 on the dashboard is 960 mg/L for October 2022 [dashboard readings ST-01 2022-10]. This figure is marked as demonstration data [dashboard readings ST-01 2022-10]."
+ }
+]

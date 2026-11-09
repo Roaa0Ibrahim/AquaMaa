@@ -57,24 +57,29 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 - Still to do: Roaa hand-checks 10 of Claude's verdicts to measure agreement with the judge
 - Optional: test general hydrology knowledge of `qwen3:14b` against `qwen2.5:3b` with the [HydroLLM benchmark](https://github.com/uihilab/HydroLLM-Benchmark) (MIT)
 
-### [ ] Milestone 4: Agentic ReAct loops in place
+### [x] Milestone 4: Agentic ReAct loops in place (v4, 9 Nov)
 - The model picks a tool or route, reads the result, and decides to continue or stop, with a step limit and a saved trace
 - **Done when:** in 20 questions, every number comes from a tool, and the drinkable-water question gets a useful, honest answer
-- Built so far (7 Nov):
+- **Result (9 Nov):** every number came from a tool in 27 of 27 labelled answers and 29 of 29 development answers. The drinkable-water answer is honest: the sources don't name locations, and 9% of groundwater is rated excellent or good for drinking (ANND p.20). Weakness: it doesn't correct the false premise as fully as earlier tests did
+- Built:
   - `tools.py`: search_documents (hybrid), lookup_table (structured, year filters), calculate (Python arithmetic with the formula shown)
-  - `agent.py`: route → key statistics → ReAct agent ⇄ tools, step limit 6, live logs (`logs/agent.log`), a saved trace per question (`logs/traces/`)
+  - `agent.py` and `steps/`: route → key statistics → ReAct agent ⇄ tools, step limit 6, live logs (`logs/agent.log`), a saved trace per question (`logs/traces/`). Modular: one file per step, prompts in `prompts.py`, settings in `config.py`
   - `key_stats.py` and `database/11-key-statistics/key_statistics.csv`: 20 headline figures, each quote checked in its source. bge-m3 shortlist, then a Qwen gate keeps at most 2, or none. Chosen before the agent answers and given to it as a tool result, so the answer can use the figures and can't contradict them. Figures the answer leaves out are listed under it
   - `eval_agent.py`, `checks.py`, `show_run.py`: run a question set, log every answer (`logs/agent_answers_log.jsonl`, `runs/agent_*.json`), and check numbers, invented citations and uncited sentences
 - Development set: `tests/dev_real_questions.csv`, 30 real questions with sources (residents, farmers, officials, researchers). Used for building and tuning. A separate set of real questions will be the final test
 - Development results (30 questions):
 
-  | Check | Prompt v1 | Prompt v2 |
-  |---|---|---|
-  | Answers with no tool call | 8 | 1 (tagged [general knowledge]) |
-  | Answers citing a file no tool returned | 7 | 0 |
-  | Answers with a number not in any tool result | 2 | 2 |
-  | Answers with a sentence that has no citation | 18 | 17 |
-  | Average time | 21.1 s | 11.9 s |
+  | Check | Prompt v1 | Prompt v2 | v3 + key statistics + verifier |
+  |---|---|---|---|
+  | Answers with no tool call | 8 | 1 (tagged [general knowledge]) | 1 (tagged [general knowledge]) |
+  | Answers citing a file no tool returned | 7 | 0 | 0 |
+  | Answers with a number not in any tool result | 2 | 2 | 0 |
+  | Answers with a sentence that has no citation | 18 | 17 | 2 |
+  | Average time | 21.1 s | 11.9 s | 17.5 s |
+
+- Labelled questions (28, from Milestone 3), v3 + key statistics + verifier: 0 invented citations, 0 unsupported numbers, 3 answers with an uncited sentence, 34.6 s on average (longer because of repair attempts)
+- The checks judge only what the agent wrote: the key figures, conflict notes and removal note that Python adds afterwards come from curated, verified sources and are excluded (`checks.agent_text`)
+- Runs: `runs/agent_20261109-093346.json` (development), `runs/agent_20261109-094237.json` (labelled). Full claim-by-claim judging of these answers is part of Milestone 5's before-and-after comparison
 
 - Prompt v2 adapted ScholarQA's citation rules (Apache 2.0): cite only labels from tool results, tag own knowledge as [general knowledge]. Prompt v3 adds: every sentence ends with a citation
 

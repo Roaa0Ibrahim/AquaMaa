@@ -3,14 +3,15 @@
 from langchain_core.messages import HumanMessage
 
 from agent_log import log
-from config import MAX_REPAIRS
+from config import MAX_REPAIRS, VERIFY
 from state import trace_of
+from steps.figures import is_about_dashboard
 from verifier import conflict_notes, find_problems, remove_failing, repair_request
 
 
 def verify_node(state):
     """Python checks the answer: numbers in tool results, real citations, a citation per sentence."""
-    if not state["route"]["in_scope"]:
+    if not state["route"]["in_scope"] or not VERIFY:
         return {"problems": []}
     problems = find_problems(state["messages"][-1].content, trace_of(state["messages"]), state["question"])
     for p in problems:
@@ -33,12 +34,13 @@ def repair_node(state):
 def finalize_node(state):
     """Removes sentences that still fail, then adds notes for known conflicts."""
     answer = state["messages"][-1].content.strip()
-    if not state["route"]["in_scope"]:
+    if not state["route"]["in_scope"] or not VERIFY:
         return {"final": answer}
     if state["problems"]:
         answer = remove_failing(answer, state["problems"])
         log.info("FINALIZE  removed %d sentence(s) that still failed", len({p["sentence"] for p in state["problems"]}))
-    notes = conflict_notes(answer)
+    # Conflict notes compare AquaMaa's own sources, so they don't belong on answers about the dashboard
+    notes = [] if is_about_dashboard(state["question"]) else conflict_notes(answer)
     if notes:
         answer += "\n\nNote on sources: " + " ".join(notes)
         log.info("FINALIZE  added %d conflict note(s)", len(notes))

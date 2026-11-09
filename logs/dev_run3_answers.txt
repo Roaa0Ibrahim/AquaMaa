@@ -1,0 +1,159 @@
+Run 20261109-093346  (tests\dev_real_questions.csv, code 785cfe0-dirty)
+
+D01 [partly] false_premise  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Is tap water in Qatar safe to drink?
+   A: The biological compliance of drinking water in Qatar is 99.36% in 2023, which exceeds the WHO target of 95% [biological-water-quality-compliance-by-year.csv row 7]. Additionally, 63% of water production in Qatar comes from seawater desalination in 2023 [NPC_Water_Statistics_2023.txt p.36].
+
+Note on sources: Desalination supplied 63% of all water produced in 2023 [NPC_Water_Statistics_2023.txt p.36
+
+D02 [yes] simple  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Does Qatar's tap water come from groundwater or desalination?
+   A: Qatar's tap water primarily comes from desalination, which accounted for 63% of water production in 2023 [NPC_Water_Statistics_2023.txt p.36]. Groundwater abstraction was reported at 200 million cubic meters in 2023 [total-abstraction-from-ground-water.csv row 3], but this does not directly indicate the share of groundwater in tap water supply.
+
+Note on sources: Desalination supplied 63% of all wa
+
+D03 [partly] false_premise  tools=['search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Can I drink the water from a well on my farm?
+   A: No, you cannot assume that water from a well on your farm is safe to drink without proper testing [misconceptions.csv p.7]. Well water can contain harmful contaminants, such as bacteria, heavy metals, or chemicals, which may not be visible or detectable by simple means like taste or smell [misconceptions.csv p.7]. To ensure safety, the water must be tested for microbiological and chemical paramete
+
+D04 [yes] explanation  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Why is the water from my farm well getting saltier?
+   A: The increase in saltiness of your farm well water could be due to rising salinity levels in groundwater [general knowledge]. Groundwater salinity can increase due to factors such as over-extraction, natural saltwater intrusion, or changes in the hydrological balance [general knowledge]. The observed increase in salinity may be related to these factors [general knowledge]. In 2020, the average tota
+
+D05 [no] false_premise  tools=[]  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Is bottled water safer than tap water in Qatar?
+   A: The question assumes that bottled water is necessarily safer than tap water, but safety depends on testing and regulation, not the source (bottled or tap) [general knowledge]. Both types of water must meet health standards to be considered safe [general knowledge].
+
+D06 [no] explanation  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Can my building's water tank contaminate the tap water?
+   A: The data provided does not directly address whether a building's water tank can contaminate tap water [general knowledge]. Tap water quality is typically monitored and maintained to meet high standards, as indicated by the 99.36% biological compliance rate in 2023 [biological-water-quality-compliance-by-year.csv row 7]. If a building's water tank is not properly maintained, it could potentially in
+
+D07 [partly] simple_with_condition  tools=['search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Do I need a licence to dig a well on my land?
+   A: According to law no. 23 of 2025, all wells must be licensed, and there are strict rules and regulations on the use of groundwater [ANND_Right_to_Water_in_Qatar.txt p.14].
+
+Some points couldn't be confirmed from AquaMaa's sources, so they were left out.
+
+D08 [partly] explanation  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Is it allowed to use fresh groundwater to irrigate fodder?
+   A: The use of fresh groundwater for irrigation depends on its quality [general knowledge]. According to the FAO irrigation threshold for TDS, groundwater with total dissolved solids (TDS) below 450 mg/L is considered suitable for irrigation [limits.csv row 3]. However, studies indicate that up to 95% of groundwater samples in Qatar may be unsuitable for irrigation due to high salinity levels [QEERI_2
+
+D09 [no] explanation  tools=['search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: How deep do I need to drill to reach groundwater in Qatar?
+   A: The depth to reach groundwater in Qatar varies between less than 1 meter near the coastline and more than 70 meters in some areas [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1].
+
+D10 [partly] explanation  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Can I water my garden with treated sewage effluent?
+   A: It is not recommended to use treated sewage effluent for watering gardens in Qatar, as groundwater samples show that up to 95% of groundwater is unsuitable for irrigation [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1]. Treated wastewater is primarily used for other purposes, such as injection into aquifers, which accounts for 15.6% of treated wastewater use in 2023 [NPC_Water_Statistics_2023.tx
+
+D11 [partly] simple_with_condition  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: How many agricultural wells are there in Qatar?
+   A: There are 4,564 agricultural wells in Qatar as of 2023 [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv row 91].
+
+Note on sources: The farm census table counts 4564 wells on farms in 2023 [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv row 91], while kahramaa officials have cited more than 6500 agricultural wells (Gulf Times interview, not yet in AquaMaa's da
+
+D12 [no] explanation  tools=['key_statistics', 'search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: What does the new Water Law No. 23 change for groundwater users?
+   A: Water Law No. 23 of 2025 imposes strict rules and regulations on groundwater use, including requiring all wells to be licensed, setting maximum permitted withdrawal rates, and defining permitted irrigation areas for each well [ANND_Right_to_Water_in_Qatar.txt p.14]. Additionally, wells must be at least 300 meters apart to prevent over-abstraction [ANND_Right_to_Water_in_Qatar.txt p.14]. The law al
+
+D13 [no] simple  tools=['search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=1
+   Q: When is the deadline to comply with Water Law No. 23?
+   A: The deadline to comply with Water Law No. 23 is not explicitly mentioned in the provided sources [policy-goals.csv p.8]. However, the law was passed in 2025, and it is currently in force [policy-goals.csv p.8].
+
+D14 [yes] simple  tools=['search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: How much water is stored in Qatar's strategic water reserves?
+   A: The strategic water reserves in Qatar are sufficient to meet demand for 5.2 days, as stated by Kahramaa [Peninsula_2025_Kahramaa_water_reserves.txt p.1]. Additionally, the Water Strategic Mega Reservoirs Project, commissioned by the end of 2018, has a capacity of 1500 MIG and covers the storage requirements up to 2026 [Peninsula_2025_Kahramaa_water_reserves.txt p.1].
+
+D15 [yes] simple_with_condition  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: How many recharge wells has Qatar rehabilitated?
+   A: Qatar has rehabilitated 313 recharge wells by 2025 [Qatar_NDC_3.txt p.18].
+
+D16 [yes] post_processing  tools=['key_statistics', 'lookup_table', 'search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: What share of groundwater is used by agriculture?
+   A: From the data provided, the share of groundwater used by agriculture in Qatar is approximately 90% [water-production-abstraction-losses-and-uses.csv row 57].
+
+Key figures:
+- Groundwater abstraction: 200 million m3 (2023) [total-abstraction-from-ground-water.csv row 3]
+
+D17 [partly] simple_with_condition  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Do farmers pay for the groundwater they use?
+   A: The information available does not directly address whether farmers pay for the groundwater they use [general knowledge]. Specific data on payment mechanisms for groundwater usage by farmers is not provided in the tool results [general knowledge].
+
+Key figures:
+- Share of abstraction from agricultural wells: 90 % (2023) [water-production-abstraction-losses-and-uses.csv row 57]
+- Groundwater sample
+
+D18 [partly] explanation  tools=['search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: What is Kahramaa doing to protect groundwater?
+   A: Kahramaa is implementing groundwater metering, establishing protection zones, and enforcing regulations under the Water Act to safeguard groundwater and limit its use in fodder cultivation [policy-goals.csv p.4]. Additionally, Kahramaa monitors groundwater levels in all of Qatar’s aquifers and works on recharging them through TSE injection [ANND_Right_to_Water_in_Qatar.txt p.15]. The corporation a
+
+D19 [partly] false_premise  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=2
+   Q: Will Qatar ban groundwater use for fodder crops?
+   A: There is no evidence or official statement in the provided data to suggest that Qatar is considering a ban on groundwater use for fodder crops. The available information does not mention any such policy or plan. [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1]
+
+Key figures:
+- Share of water production from seawater desalination: 63 % (2023) [NPC_Water_Statistics_2023.txt p.36]
+- Groundwater sampl
+
+D20 [yes] simple  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: How much treated wastewater is injected into Qatar's aquifers?
+   A: The percentage of treated wastewater injected into Qatar's aquifers is 15.6% [NPC_Water_Statistics_2023.txt p.67].
+
+Key figures:
+- Share of water production from seawater desalination: 63 % (2023) [NPC_Water_Statistics_2023.txt p.36]
+
+D21 [partly] post_processing  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: What percentage of Qatar's drinking water is desalinated?
+   A: The percentage of Qatar's drinking water that is desalinated is 63% [NPC_Water_Statistics_2023.txt p.36].
+
+Note on sources: Desalination supplied 63% of all water produced in 2023 [NPC_Water_Statistics_2023.txt p.36], while over 99.9% of Qatar's drinking water supply is desalinated [Peninsula_2025_Water_security_strategic_planning.txt p.1]. 63% is of all water production, including groundwater pum
+
+D22 [no] simple_with_condition  tools=['search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: How saline were Qatar's wells in 2014?
+   A: The salinity of Qatar's wells in 2014 was found to be very high, with over 60% of the samples having salinity levels that would likely cause harm to agriculture [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1].
+
+D23 [yes] explanation  tools=['search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: What is the main cause of rising groundwater salinity in Qatar?
+   A: The main cause of rising groundwater salinity in Qatar is over-abstraction of groundwater, which has led to seawater intrusion and increased salinity [ANND_Right_to_Water_in_Qatar.txt p.19]. This over-extraction is primarily driven by agricultural practices, which account for the majority of groundwater use [Higazy_2024_Water_Footprint_Qatar.txt p.3].
+
+D24 [partly] explanation  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Is managed aquifer recharge a feasible solution in Qatar?
+   A: Managed aquifer recharge is a feasible solution in Qatar, as evidenced by the development of 370 new recharge wells by 2025 [Qatar_NDC_3.txt p.18]. Additionally, rain recharge contributes approximately 74.7 million cubic meters of water annually to the aquifers, indicating the potential for natural and artificial recharge methods [NPC_Water_Statistics_2023.txt p.29].
+
+D25 [yes] simple_with_condition  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: How much rainfall recharges Qatar's aquifers each year?
+   A: The average annual recharge of Qatar's aquifers from rainfall is 74.7 million cubic meters [NPC_Water_Statistics_2023.txt p.29].
+
+Key figures:
+- Share of water production from seawater desalination: 63 % (2023) [NPC_Water_Statistics_2023.txt p.36]
+
+D26 [no] explanation  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Is land subsidence in Qatar linked to groundwater?
+   A: The statistics provided do not directly address the link between land subsidence and groundwater in Qatar [general knowledge]. It is likely that further information or studies specifically examining land subsidence and its potential connection to groundwater extraction would be required [general knowledge].
+
+Key figures:
+- Groundwater abstraction before the 2023 revision: 250 million m3 a year (20
+
+D27 [partly] set  tools=['search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Which crops can tolerate Qatar's brackish groundwater?
+   A: Brackish groundwater in Qatar is used for agricultural purposes after treatment in brackish water desalination facilities [ANND_Right_to_Water_in_Qatar.txt p.19]. While specific crops that can tolerate brackish groundwater are not explicitly listed, it is noted that certain crops can be irrigated with brackish water under proper management, as outlined by FAO 29's restriction levels [misconception
+
+D28 [yes] post_processing  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: What share of Qatar's groundwater is suitable for drinking?
+   A: The share of Qatar's groundwater that is suitable for drinking is 9%, with 3% rated as excellent and 6% rated as good [ANND_Right_to_Water_in_Qatar.txt p.20].
+
+Key figures:
+- Share of water production from seawater desalination: 63 % (2023) [NPC_Water_Statistics_2023.txt p.36]
+
+D29 [no] explanation  tools=['search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: How does brine from farm desalination affect the land?
+   A: Brine from farm desalination can negatively affect the land by increasing soil salinity, which can harm agricultural productivity and degrade soil quality [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1]. Additionally, the disposal of brine on land can lead to environmental challenges, as it contains high concentrations of salts and other contaminants removed during the desalination process [QEER
+
+D30 [partly] simple_with_condition  tools=['lookup_table']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: How much groundwater did agriculture use in 2013?
+   A: Agriculture used 55.233 million cubic meters of groundwater in 2013 [water-production-abstraction-losses-and-uses.csv p.149].
+
+In-scope answers that called no tool: 1 ['D05']
+In-scope answers with a number not in any tool result: 0 []
+In-scope answers citing a file no tool returned: 0 []
+In-scope answers with a sentence that has no citation: 2 ['D13', 'D19']

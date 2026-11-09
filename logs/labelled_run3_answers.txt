@@ -1,0 +1,143 @@
+Run 20261109-094237  (eval_routing.TESTS, code 6d6093c-dirty)
+
+ [-] simple  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: What is the groundwater safe yield?
+   A: The groundwater safe yield in Qatar is 49.6 million cubic meters per year, based on the average from 1998 to 2023 [NPC_Water_Statistics_2023.txt p.29]. In 2023, the abstraction from groundwater was 4.0 times the safe yield [total-abstraction-from-ground-water.csv row 3].
+
+Note on sources: The groundwater safe yield is 49.6 million m3 a year (1998-2023 average) [NPC_Water_Statistics_2023.txt p.29],
+
+ [-] simple  tools=['search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: What is the WHO guideline value for nitrate in drinking water?
+   A: The WHO guideline value for nitrate in drinking water is 50 mg/L [WHO_GDWQ_annex_tables.txt p.5].
+
+ [-] simple  tools=['search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: What is the measurement range of the DFRobot TDS sensor?
+   A: The measurement range of the DFRobot TDS sensor (SEN0244) is 0-1000 ppm [DFRobot_SEN0244_TDS.txt p.1].
+
+ [-] simple_with_condition  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: What was total groundwater abstraction in 2019?
+   A: The total groundwater abstraction from 2019 to 2022 was 250 million cubic meters per year [Kahramaa_Statistics_Report_2023.txt p.80].
+
+ [-] simple_with_condition  tools=['search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: What was the population of Al Rayyan in the 2020 census?
+   A: The provided documents do not mention the population of Al Rayyan in the 2020 census [NPC_Water_Statistics_2023.txt p.58].
+
+ [-] simple_with_condition  tools=['search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: What was biological water quality compliance in 2021?
+   A: The biological water quality compliance in 2021 was 99.50% [Kahramaa_Statistics_Report_2023.txt p.57].
+
+ [-] set  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Which national goals concern groundwater?
+   A: The national goal concerning groundwater is a target for reducing groundwater extraction by 70% by 2030 [policy-goals.csv row 3]. In 2023, the groundwater abstraction was 200 million cubic meters [total-abstraction-from-ground-water.csv row 3].
+
+Note on sources: Total groundwater abstraction in 2023 was 200 million m3 [total-abstraction-from-ground-water.csv row 3], while NPC's report text gives a
+
+ [-] set  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Which parameters does FAO use to judge irrigation water quality?
+   A: The FAO uses Total Dissolved Solids (TDS) as a parameter to judge irrigation water quality, with a threshold of 450 mg/L for none to slight effects and 2,000 mg/L for severe effects [limits.csv row 3].
+
+Key figures:
+- Groundwater samples unsuitable for irrigation: up to 95 % (not stated) [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1]
+
+ [-] set  tools=['search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Which heavy metals are measured in Qatar's marine water?
+   A: The heavy metals measured in Qatar's marine water include nickel, manganese, zinc, molybdenum, and antimony [Kahramaa_Drinking_Water_Quality_Requirements_2014.txt p.21]. These metals are monitored to ensure water quality standards are maintained [Kahramaa_Drinking_Water_Quality_Requirements_2014.txt p.21].
+
+ [-] comparison  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Compare groundwater abstraction in 2019 and 2023.
+   A: The groundwater abstraction before the 2023 revision was 250 million m3 a year from 2019 to 2022 [Kahramaa_Statistics_Report_2023.txt p.80]. In 2023, the groundwater abstraction was 200 million m3 [total-abstraction-from-ground-water.csv row 3].
+
+Note on sources: Total groundwater abstraction in 2023 was 200 million m3 [total-abstraction-from-ground-water.csv row 3], while NPC's report text gives 
+
+ [-] comparison  tools=['search_documents', 'search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=1
+   Q: How does the FAO irrigation TDS limit compare with the GSO drinking-water TDS limit?
+   A: The GSO drinking-water TDS limit is not explicitly stated in the provided documents. However, it is mentioned that water with TDS levels below 1000 mg/L is usually acceptable to consumers, although acceptability may vary according to circumstances [WHO_TDS_background_document.txt p.7]. Additionally, Kahramaa's Drinking Water Quality Requirements 2014 indicate that the palatability of water with a 
+
+ [-] comparison  tools=['lookup_table']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Compare the population of Al Rayyan and Al Wakra in 2020.
+   A: The population of Al Rayyan in 2020 was 826,786 [total-population-and-population-density-by-municipality-in-census-2010-2020.csv p.13], while the population of Al Wakra in the same year was 265,102 [total-population-and-population-density-by-municipality-in-census-2010-2020.csv p.6].
+
+ [-] aggregation  tools=['key_statistics', 'calculate']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: What was the average groundwater abstraction from 2019 to 2024?
+   A: The average groundwater abstraction from 2019 to 2024 was (250 + 200) / 2 = 225 million m3 [Kahramaa_Statistics_Report_2023.txt p.80].
+
+Note on sources: Total groundwater abstraction in 2023 was 200 million m3 [total-abstraction-from-ground-water.csv row 3], while NPC's report text gives about 180 million m3 for 2023 [NPC_Water_Statistics_2023.txt p.29]. 180 is the agricultural wells' share of the
+
+ [-] aggregation  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: How many wells are there in total across all municipalities?
+   A: The total number of wells in Qatar, including both working and non-working wells on farms, is 4,564 as of 2023 [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv row 91]. Additionally, by 2025, it is planned to develop 370 new recharge wells [Qatar_NDC_3.txt p.18].
+
+Note on sources: The farm census table counts 4564 wells on farms in 2023 [number-of-farms-and-wells-by-type-of-the-
+
+ [-] aggregation  tools=['search_documents', 'lookup_table', 'calculate']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: What was the average biological compliance from 2020 to 2025?
+   A: The average biological compliance from 2020 to 2025 was 99.3% [biological-water-quality-compliance-by-year.csv p.2], [biological-water-quality-compliance-by-year.csv p.3], [biological-water-quality-compliance-by-year.csv p.5], [biological-water-quality-compliance-by-year.csv p.6], [biological-water-quality-compliance-by-year.csv p.7].
+
+ [-] multi_hop  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Which body owns the national goal on groundwater extraction, and what is its target?
+   A: The national goal on groundwater extraction is owned by the Ministry of Environment, and its target is a 70% reduction in groundwater extraction by 2030 [policy-goals.csv row 3].
+
+Key figures:
+- Share of abstraction from agricultural wells: 90 % (2023) [water-production-abstraction-losses-and-uses.csv row 57]
+
+ [-] multi_hop  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=1
+   Q: Which aquifers supply Qatar's groundwater, and what is their safe yield?
+   A: The safe yield of Qatar's groundwater is 49.6 million cubic meters per year, based on the average from 1998 to 2023 [NPC_Water_Statistics_2023.txt p.29]. However, the specific aquifers that supply Qatar's groundwater are not mentioned in the provided information.
+
+Note on sources: The groundwater safe yield is 49.6 million m3 a year (1998-2023 average) [NPC_Water_Statistics_2023.txt p.29], while t
+
+ [-] multi_hop  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Which plan sets the target for recharge wells, and how many wells does it plan?
+   A: The Qatar NDC (Nationally Determined Contribution) plan sets the target for recharge wells, aiming to develop 370 new wells and rehabilitate 313 wells by 2025 [Qatar_NDC_3.txt p.18].
+
+ [-] post_processing  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: How many times the safe yield is the 2023 groundwater abstraction?
+   A: The 2023 groundwater abstraction is 4.0 times the safe yield [total-abstraction-from-ground-water.csv row 3].
+
+Note on sources: The groundwater safe yield is 49.6 million m3 a year (1998-2023 average) [NPC_Water_Statistics_2023.txt p.29], while the 2021 report gave 54.2 million m3 a year (1998-2021 average) [PSA_Water_Statistics_2021.txt p.22]. The averaging period was extended to 2023, which lowe
+
+ [-] post_processing  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: What percentage of groundwater abstraction came from farm wells in 2023?
+   A: The share of groundwater abstraction from farm wells in 2023 was 90% [water-production-abstraction-losses-and-uses.csv row 57].
+
+Key figures:
+- Groundwater abstraction: 200 million m3 (2023) [total-abstraction-from-ground-water.csv row 3]
+
+ [-] post_processing  tools=['lookup_table', 'search_documents', 'calculate']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: By what percentage did the abstraction estimate change between 2022 and 2023?
+   A: The abstraction estimate decreased by (200 - 250) / 250 x 100 = -20% between 2022 and 2023 [Kahramaa_Statistics_Report_2023.txt p.80].
+
+Note on sources: Total groundwater abstraction in 2023 was 200 million m3 [total-abstraction-from-ground-water.csv row 3], while NPC's report text gives about 180 million m3 for 2023 [NPC_Water_Statistics_2023.txt p.29]. 180 is the agricultural wells' share of the
+
+ [-] simple_with_condition  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=1
+   Q: Where can we find the greatest amount of drinkable groundwater in Qatar?
+   A: The information provided does not specify the exact locations in Qatar where the greatest amount of drinkable groundwater can be found. It only mentions that 9% of groundwater is rated excellent or good for drinking, with 3% excellent and 6% good (2024) [ANND_Right_to_Water_in_Qatar.txt p.20].
+
+ [-] false_premise  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Since pumping fell in 2023, is the aquifer recovering?
+   A: The assumption that pumping fell in 2023 is incorrect [general knowledge]. Groundwater abstraction was 250 million m3 a year from 2019 to 2022 [Kahramaa_Statistics_Report_2023.txt p.80]. Rain recharge of the aquifers averages 74.7 million m3 a year from 1998 to 2023 [NPC_Water_Statistics_2023.txt p.29].
+
+ [-] false_premise  tools=['key_statistics']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Since low TDS means water is safe, can we drink from a well with 400 mg/L TDS?
+   A: The assumption that low TDS means water is safe is incorrect [misconceptions.csv row 10]. The FAO irrigation threshold for TDS is 450 mg/L, which is slightly above the 400 mg/L TDS level of the well in question [limits.csv row 3]. [general knowledge] Drinking water standards typically have stricter limits, and 400 mg/L TDS may still be considered high for safe consumption depending on local regula
+
+ [-] explanation  tools=['search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Why is Qatar's groundwater getting saltier?
+   A: Qatar's groundwater is getting saltier primarily due to over-extraction, which has led to seawater intrusion into the aquifers [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1]. Additionally, the abstraction rate of groundwater is significantly higher than the natural recharge rate, creating a deficit that exacerbates the problem [ANND_Right_to_Water_in_Qatar.txt p.17]. This overuse, combined with
+
+ [-] explanation  tools=['search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: Why does high SAR damage soil?
+   A: High SAR (Sodium Adsorption Ratio) damages soil by causing it to seal up, which reduces water infiltration [glossary.csv p.10]. This sealing effect occurs because sodium ions in the water displace calcium and magnesium ions in the soil, leading to the breakdown of soil structure and poor water penetration [FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.4]. As a result, water cannot easily soak i
+
+ [-] explanation  tools=['search_documents']  numbers not in tool results=[]  invented citations=[]  uncited sentences=0
+   Q: What causes seawater intrusion in coastal aquifers?
+   A: Seawater intrusion in coastal aquifers occurs when excessive groundwater pumping lowers the freshwater level, allowing seawater to move inland [glossary.csv p.16]. This phenomenon is exacerbated by overexploitation of groundwater, which lowers the hydraulic head and facilitates the landward flow of seawater [Elobaid_2017_EGU_saline_front_Qatar.txt p.1]. Additionally, factors such as scanty rainfal
+
+ [-] out_of_scope  tools=[]  numbers not in tool results=[]  invented citations=[]  uncited sentences=3
+   Q: What is the best recipe for machboos?
+   A: This is outside AquaMaa's sources. Machboos is a traditional Qatari dish made with rice, meat (usually lamb or chicken), and a blend of spices. The best recipe includes saffron-infused rice, tender meat, and a mix of onions, tomatoes, and a special spice mix called "za'atar." It is often served with a side of pickled mango or yogurt.
+
+In-scope answers that called no tool: 0 []
+In-scope answers with a number not in any tool result: 0 []
+In-scope answers citing a file no tool returned: 0 []
+In-scope answers with a sentence that has no citation: 3 ['How does the FAO irrigation TDS limit co', "Which aquifers supply Qatar's groundwate", 'Where can we find the greatest amount of']

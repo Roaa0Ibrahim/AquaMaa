@@ -1,17 +1,29 @@
 """Graph step: choose up to 2 key statistics from the question, before the agent answers, and give them to the
 agent as evidence it can use and cite. Chosen before the answer, so the answer can't contradict them.
 Skipped for out-of-scope questions. The selection itself is in key_stats.py."""
+import re
 import time
 
-from langchain_core.messages import AIMessage, ToolMessage
+from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 
 import key_stats
 from agent_log import log
+from prompts import DASHBOARD_FIRST
+
+DASHBOARD_WORDS = re.compile(r"\b(dashboard|chart|graph|card|this (figure|page|screen)|station(s)? ST-\d+|ST-\d+)\b", re.I)
+
+
+def is_about_dashboard(question):
+    return bool(DASHBOARD_WORDS.search(question))
 
 
 def figures_node(state):
     if not state["route"]["in_scope"]:
         return {"figures": []}
+    if is_about_dashboard(state["question"]):
+        # The answer must come from what the dashboard shows, not from AquaMaa's verified figures
+        log.info("KEYSTATS  skipped: the question is about the dashboard")
+        return {"figures": [], "messages": [HumanMessage(DASHBOARD_FIRST)]}
     start = time.time()
     figures = key_stats.select_figures(state["question"], "")
     log.info("KEYSTATS  chose %d (%.1f s)", len(figures), time.time() - start)

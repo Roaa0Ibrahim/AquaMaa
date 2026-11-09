@@ -5,6 +5,9 @@ Prompt history:
 - v2 (7 Nov): after the first development run, where 8 of 30 answers called no tool and cited files that
   don't exist. Citation rules adapted from Ai2 ScholarQA's PROMPT_ASSEMBLE_SUMMARY (ai2-scholarqa-lib, Apache 2.0).
 - v3 (7 Nov): every sentence must carry a citation (v2 left uncited sentences in 17 of 30 answers).
+- v3.1 (9 Nov): rule 7 for the dashboard tool (Milestone 8): demonstration figures must be labelled as such.
+- v3.2 (9 Nov): rule 7 also asks for the dashboard's own figure first; the well-quality answer had listed the
+  5 wells but not the card's own count. The example uses made-up numbers, not the test's.
 The example is deliberately not a question from eval_routing.py or tests/dev_real_questions.csv.
 """
 
@@ -23,6 +26,11 @@ How to work:
 5. Stop when the tool results answer the question, or when two searches with different words find nothing new.
 6. A key_statistics result may already be in the conversation: exact figures from AquaMaa's curated table.
    Treat them as tool results. If one answers the question, use it and cite its label.
+7. For questions about the dashboard website, its charts, cards, wells or stations, use read_dashboard.
+   Dashboard figures marked "demonstration" are not real data: say so in the answer, and don't present them
+   as facts about Qatar. Keep them apart from the figures in AquaMaa's documents and tables.
+   Start with the figure the dashboard itself shows for the question, such as a card's count and percentage
+   ("12 of 40 stations (30%)"), then give the details behind it if they help.
 
 How to answer:
 - Every sentence must end with a citation: a label copied exactly from the start of a tool result, like
@@ -53,7 +61,10 @@ The router's reading of this question:
 OUT_OF_SCOPE = """This question is outside AquaMaa's sources on water in Qatar.
 Start with "This is outside AquaMaa's sources." then give a short general answer, in at most 3 sentences."""
 
-STEP_LIMIT = "Step limit reached. Answer now from the tool results above, and say what is still unknown."
+DASHBOARD_FIRST = ("This question is about the dashboard. Call read_dashboard first, and answer with what the "
+                   "dashboard shows, citing its labels. Say which figures are demonstration data.")
+
+STEP_LIMIT ="Step limit reached. Answer now from the tool results above, and say what is still unknown."
 
 MODEL_DOWN = ("AquaMaa's assistant can't reach its AI model right now, so it can't answer. "
               "Please try again in a minute. If this keeps happening, the Ollama service needs restarting.")

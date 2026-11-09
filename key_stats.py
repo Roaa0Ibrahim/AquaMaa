@@ -16,7 +16,7 @@ from pathlib import Path
 from langchain_ollama import ChatOllama, OllamaEmbeddings
 from pydantic import BaseModel, Field
 
-from config import CHAT_MODEL, EMBED_MODEL
+from config import CHAT_MODEL, EMBED_MODEL, OLLAMA_URL
 
 STATS_FILE = Path(__file__).parent / "database" / "11-key-statistics" / "key_statistics.csv"
 SHORTLIST = 3          # candidates shown to the gate
@@ -24,11 +24,18 @@ MAX_FIGURES = 2
 MIN_SIMILARITY = 0.45  # bge-m3 cosine similarity; below this a statistic is not considered (tune on the dev set)
 
 log = logging.getLogger("agent")
-embeddings = OllamaEmbeddings(model=EMBED_MODEL)
-gate_model = ChatOllama(model=CHAT_MODEL, temperature=0, reasoning=False)
+embeddings = OllamaEmbeddings(model=EMBED_MODEL, base_url=OLLAMA_URL)
+gate_model = ChatOllama(model=CHAT_MODEL, temperature=0, reasoning=False, base_url=OLLAMA_URL)
 
 STATS = list(csv.DictReader(STATS_FILE.open(encoding="utf-8-sig")))
-STAT_VECTORS = embeddings.embed_documents([f"{s['statistic']}. Helps with {s['when_it_helps']}" for s in STATS])
+_stat_vectors = []     # embedded on first use, so the program starts even if the model is down
+
+
+def stat_vectors():
+    if not _stat_vectors:
+        _stat_vectors.extend(embeddings.embed_documents(
+            [f"{s['statistic']}. Helps with {s['when_it_helps']}" for s in STATS]))
+    return _stat_vectors
 
 
 class Choice(BaseModel):
@@ -71,7 +78,7 @@ def as_line(stat):
 def select_figures(question, answer):
     """Returns at most 2 statistics (rows of key_statistics.csv) that help this answer, or []."""
     query = embeddings.embed_query(f"{question} {answer}")
-    scored = sorted(((cosine(query, v), s) for v, s in zip(STAT_VECTORS, STATS)), key=lambda x: x[0], reverse=True)
+    scored = sorted(((cosine(query, v), s) for v, s in zip(stat_vectors(), STATS)), key=lambda x: x[0], reverse=True)
     shortlist = [(score, s) for score, s in scored if score >= MIN_SIMILARITY and not already_stated(s, answer)][:SHORTLIST]
     log.info("KEYSTATS  shortlist: %s", [(s["stat_id"], round(score, 2)) for score, s in shortlist] or "none above threshold")
     if not shortlist:

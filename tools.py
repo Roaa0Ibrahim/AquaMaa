@@ -7,6 +7,7 @@ from typing import Literal, Optional
 
 from langchain_core.tools import tool
 
+import dashboard
 from retrieval import Retrievers
 
 R = Retrievers()     # loaded once, shared by all tools
@@ -68,7 +69,25 @@ def calculate(operation: Literal["sum", "mean", "ratio", "percent_change", "diff
     return f"{formula} = {round(result, 2):g}" + ("%" if operation == "percent_change" else "")
 
 
-TOOLS = [search_documents, lookup_table, calculate]
+@tool
+def read_dashboard(view: Literal["overview", "extraction_trend", "wells", "stations", "station_readings"],
+                   year: Optional[int] = None, station_code: Optional[str] = None) -> str:
+    """Read what AquaMaa's dashboard website shows, for questions about the dashboard, its charts and cards,
+    its monitoring wells and stations, or a station's readings.
+    - overview: the main cards for one year (1998-2022), with the counts and percentages the dashboard shows:
+      extraction, safe yield, their ratio, sectors, how many wells meet the TDS threshold, station coverage.
+      Use it for any "how many" or "what share" question about the dashboard; don't count lists yourself
+    - extraction_trend: extraction by year and sector, as in the trend chart
+    - wells, stations: the individual monitoring wells and stations listed on the dashboard
+    - station_readings: monthly water level and TDS for one station; give station_code, such as ST-01
+    Each line says its status. Figures marked "demonstration" are not real data: always say so."""
+    try:
+        return dashboard.read(view, year=year, station_code=station_code)
+    except dashboard.DashboardError as error:
+        return f"Error: {error}. Answer from the other tools instead, and say the dashboard couldn't be read."
+
+
+TOOLS = [search_documents, lookup_table, calculate, read_dashboard]
 
 
 if __name__ == "__main__":

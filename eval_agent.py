@@ -18,7 +18,7 @@ from pathlib import Path
 from agent import ask
 from agent_log import log
 from answer_baseline import code_version
-from checks import CITATION, citation_check, numbers, tool_results_text
+from checks import CITATION, agent_text, citation_check, numbers, tool_results_text
 from config import CHAT_MODEL, MAX_TOOL_ROUNDS
 from eval_routing import TESTS
 
@@ -52,10 +52,11 @@ def main():
         log.info("========== %d/%d", i, len(questions))
         result = ask(item["question"])
         tool_text = tool_results_text(result["trace"])
-        answer_numbers = numbers(CITATION.sub("", result["answer"]))
+        written = agent_text(result["answer"])      # checks judge the agent's text, not the notes Python adds
+        answer_numbers = numbers(CITATION.sub("", written))
         unsupported = sorted(answer_numbers - numbers(tool_text) - numbers(item["question"]))
         tools_used = [s["tool"] for s in result["trace"] if s["step"] == "call"]
-        invented, general = citation_check(result["answer"], tool_text)
+        invented, general = citation_check(written, tool_text)
         rows.append(dict(item, got_type=result["route"]["question_type"] if result["route"]["in_scope"] else "out_of_scope",
                          answer=result["answer"], tools_used=tools_used, tool_rounds=result["tool_rounds"],
                          hit_step_limit=result["tool_rounds"] >= MAX_TOOL_ROUNDS,

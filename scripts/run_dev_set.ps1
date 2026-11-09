@@ -12,9 +12,9 @@ $python = Join-Path $project ".venv\Scripts\python.exe"
 Push-Location $project
 
 Write-Host "Running tests\dev_real_questions.csv (about 10 minutes). Live steps: logs\agent.log"
-& $python eval_agent.py tests\dev_real_questions.csv *> "logs\dev_$($Name)_console.txt"
+& $python eval_agent.py tests\dev_real_questions.csv 2>&1 | Out-File -Encoding utf8 "logs\dev_$($Name)_console.txt"
 Get-Content "logs\dev_$($Name)_console.txt" -Tail 5
 
-& $python show_run.py > "logs\dev_$($Name)_answers.txt"
+& $python show_run.py | Out-File -Encoding utf8 "logs\dev_$($Name)_answers.txt"
 Get-Content "logs\dev_$($Name)_answers.txt" -Tail 3
 Pop-Location

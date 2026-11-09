@@ -96,15 +96,21 @@ def conflict_notes(answer):
         terms = [t.strip().lower() for t in c["trigger_terms"].split(";") if t.strip()]
         if not any(t in lowered for t in terms):
             continue
+        # Only the numbers that differ between the two sides count (200 vs 180), not shared ones like the year
         a_nums, b_nums = numbers(c["side_a"]), numbers(c["side_b"])
-        gives_a = bool(a_nums & numbers(answer)) if a_nums else False
-        gives_b = bool(b_nums & numbers(answer)) if b_nums else False
+        a_only, b_only = a_nums - b_nums, b_nums - a_nums
+        answer_nums = numbers(CITATION.sub("", answer))
+        gives_a = bool(a_only & answer_nums)
+        gives_b = bool(b_only & answer_nums)
         if gives_a and gives_b:
             continue                              # both sides are already in the answer
         if not (gives_a or gives_b):
             continue                              # the answer doesn't use either figure, so no conflict to flag
-        notes.append(f"{c['side_a']} {_label(c['source_a'])}, while {c['side_b'][0].lower()}{c['side_b'][1:]} "
-                     f"{_label(c['source_b'])}. {c['explanation']}.")
+        side_b = c["side_b"]
+        if len(side_b) > 1 and side_b[1].islower():          # "The 2021 report" -> "the 2021 report", but keep "NPC's"
+            side_b = side_b[0].lower() + side_b[1:]
+        notes.append(f"{c['side_a']} {_label(c['source_a'])}, while {side_b} {_label(c['source_b'])}. "
+                     f"{c['explanation']}.")
     return notes
 
 

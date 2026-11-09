@@ -7,11 +7,11 @@ from langchain_ollama import ChatOllama
 from langgraph.prebuilt import ToolNode
 
 from agent_log import log
-from config import CHAT_MODEL, MAX_TOOL_ROUNDS
+from config import CHAT_MODEL, MAX_TOOL_ROUNDS, OLLAMA_URL
 from prompts import STEP_LIMIT
 from tools import TOOLS
 
-model = ChatOllama(model=CHAT_MODEL, temperature=0, reasoning=False)
+model = ChatOllama(model=CHAT_MODEL, temperature=0, reasoning=False, base_url=OLLAMA_URL)
 agent_model = model.bind_tools(TOOLS)
 tool_node = ToolNode(TOOLS)
 

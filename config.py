@@ -12,5 +12,7 @@ import os
 CHAT_MODEL = os.environ.get("AQUAMAA_MODEL", "qwen3:14b")
 MAX_TOOL_ROUNDS = 6        # tool rounds before the agent must answer
 MAX_REPAIRS = 1            # repair attempts after the verifier finds problems
+# Milestone 5 verifier on or off, to compare answers with and without it:  $env:AQUAMAA_VERIFY = "0"
+VERIFY = os.environ.get("AQUAMAA_VERIFY", "1") != "0"
 EMBED_MODEL = os.environ.get("AQUAMAA_EMBED_MODEL", "bge-m3")
 OLLAMA_URL = os.environ.get("OLLAMA_HOST", "http://127.0.0.1:11434")
