@@ -60,6 +60,23 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 ### [ ] Milestone 4: Agentic ReAct loops in place
 - The model picks a tool or route, reads the result, and decides to continue or stop, with a step limit and a saved trace
 - **Done when:** in 20 questions, every number comes from a tool, and the drinkable-water question gets a useful, honest answer
+- Built so far (7 Nov):
+  - `tools.py`: search_documents (hybrid), lookup_table (structured, year filters), calculate (Python arithmetic with the formula shown)
+  - `agent.py`: route → key statistics → ReAct agent ⇄ tools, step limit 6, live logs (`logs/agent.log`), a saved trace per question (`logs/traces/`)
+  - `key_stats.py` and `database/11-key-statistics/key_statistics.csv`: 20 headline figures, each quote checked in its source. bge-m3 shortlist, then a Qwen gate keeps at most 2, or none. Chosen before the agent answers and given to it as a tool result, so the answer can use the figures and can't contradict them. Figures the answer leaves out are listed under it
+  - `eval_agent.py`, `checks.py`, `show_run.py`: run a question set, log every answer (`logs/agent_answers_log.jsonl`, `runs/agent_*.json`), and check numbers, invented citations and uncited sentences
+- Development set: `tests/dev_real_questions.csv`, 30 real questions with sources (residents, farmers, officials, researchers). Used for building and tuning. A separate set of real questions will be the final test
+- Development results (30 questions):
+
+  | Check | Prompt v1 | Prompt v2 |
+  |---|---|---|
+  | Answers with no tool call | 8 | 1 (tagged [general knowledge]) |
+  | Answers citing a file no tool returned | 7 | 0 |
+  | Answers with a number not in any tool result | 2 | 2 |
+  | Answers with a sentence that has no citation | 18 | 17 |
+  | Average time | 21.1 s | 11.9 s |
+
+- Prompt v2 adapted ScholarQA's citation rules (Apache 2.0): cite only labels from tool results, tag own knowledge as [general knowledge]. Prompt v3 adds: every sentence ends with a citation
 
 ### [ ] Milestone 5: Error-handling routing
 - Each failure gets its own route:
@@ -83,7 +100,8 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
   - at least 3 of the 10 test questions are in Qatari dialect, and the answers are understood by a Qatari listener
 
 ### [ ] Milestone 8: Reading the dashboard from the website and integrating it into the pipeline
-- The agent reads the same data the dashboard shows, through Deema's data endpoint
+- The agent reads the same data the dashboard shows, through Deema's API (`/api/dashboard`, `/api/wells`, `/api/stations/:id/readings`, `/api/extraction`), with its own service account, since the API needs a login
+- Before this works, the dashboard's figures must come from the verified tables (`database/11-key-statistics/key_statistics.csv` and the abstraction tables), not its demonstration series: its demo data gives "5.04x the safe yield" where the official 2023 figure is 4.0
 - **Done when:** for 5 charts, the agent's numbers match the chart exactly
 
 ### [ ] Milestone 9: Connection to the robot
@@ -123,6 +141,10 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 - **Demo data:** one live station, labeled synthetic stations based on published statistics, and national context from official datasets.
 - **UDST research:** cited as background, with no partnership claim. We won't ask that team about it.
 - **National goals:** AquaMaa links its findings to Qatar Vision, NDS3, ministry goals and the SDGs. The links are our own mapping, not an official endorsement.
+- **Architecture (decided 7 November):** one ReAct agent finds the evidence; fixed steps around it check and present it. "Agent plus pipeline": the model decides how to find evidence, fixed steps decide how it is checked and shown.
+  - route → key statistics → ReAct agent ⇄ tools → verifier (Milestone 5) → simplify for the officer (Milestone 6) → Arabic speech (Milestone 7)
+  - ReAct stays the only reasoning loop: no planning step, no ReWOO or LLMCompiler, no multi-agent supervisor (slower on a local 14B model, and no evidence yet that it helps). Multi-agent only if a comparison test shows it's worth it
+  - Accuracy is designed into the first pass: the agent must call a tool first, may cite only labels from tool results, and must tag its own knowledge
 - **Stack (adopted 7 November, after the review in [similar-projects.md](similar-projects.md)):** one LangGraph graph built on v1, running locally.
   - Models: `qwen3:14b` for the agent, router and answers, with `qwen3:8b` tested for voice speed. Native-speaker review for Arabic, and an Arabic model such as ALLaM only if needed. No fine-tuning
   - Retrieval: `bge-m3` embeddings, hybrid BM25 plus vector search with reciprocal rank fusion, the `bge-m3` reranker, headings searched first, tables kept as data, and the v1 quote check
@@ -133,6 +155,7 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
   - Replaces the earlier 16-component design ([agent-design.md](context/reference/agent-design.md), kept as a record)
 - **Roaa also owns:** the suitability engine.
 - **QR explainer:** visitors scan a dashboard QR code with a phone, and the robot explains that chart. Start with three or four charts.
+- **The website is Deema's dashboard (decided 9 November):** the Node.js app on the `deema-development` branch (Express, SQLite, login with roles: admin, kahramaa, mecc, municipality, agriculture, researcher). It replaces the earlier `website-demo` page. The agent connects to it as a separate Python service: her server forwards chat questions to the agent (Milestone 7), and the agent reads her API for dashboard figures (Milestone 8). Deema owns the branch; changes to it go through her
 - **Dashboard first:** it shows charts and insights without waiting for a question. Questions are for more specialized answers.
 - **User categories:** executive, technical and operational, with several view versions of the same information.
 - **Two answers:** one for the website and one for robot text-to-speech, from the same evidence.

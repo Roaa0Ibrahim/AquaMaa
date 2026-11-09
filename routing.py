@@ -43,7 +43,8 @@ Known wrong assumptions about water in Qatar, from AquaMaa's misconceptions tabl
 
 Question: {question}"""
 
-router = ChatOllama(model="qwen3:14b", temperature=0, reasoning=False).with_structured_output(Route)
+from config import CHAT_MODEL
+router = ChatOllama(model=CHAT_MODEL, temperature=0, reasoning=False).with_structured_output(Route)
 
 import csv
 from pathlib import Path

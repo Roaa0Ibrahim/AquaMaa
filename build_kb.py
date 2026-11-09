@@ -19,6 +19,8 @@ from langchain_core.vectorstores import InMemoryVectorStore
 from langchain_ollama import OllamaEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
+from config import EMBED_MODEL
+
 ROOT = Path(__file__).parent
 DATABASE = ROOT / "database"
 VECTOR_FILE = ROOT / "vector_store.json"   # Chroma is blocked by Windows Application Control on this laptop
@@ -123,7 +125,7 @@ def main():
         for doc in chunks:
             f.write(json.dumps({"text": doc.page_content, **doc.metadata}, ensure_ascii=False) + "\n")
 
-    store = InMemoryVectorStore(embedding=OllamaEmbeddings(model="bge-m3"))   # built fresh every run
+    store = InMemoryVectorStore(embedding=OllamaEmbeddings(model=EMBED_MODEL))   # built fresh every run
     batch, start = 64, time.time()
     for i in range(0, len(chunks), batch):
         for attempt in (1, 2):

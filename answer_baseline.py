@@ -33,7 +33,8 @@ def code_version():
     dirty = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True).stdout.strip()
     return commit + ("-dirty" if dirty else "")
 
-model = ChatOllama(model="qwen3:14b", temperature=0, reasoning=False)
+from config import CHAT_MODEL
+model = ChatOllama(model=CHAT_MODEL, temperature=0, reasoning=False)
 
 # 2. The two prompts
 
@@ -98,7 +99,7 @@ def main():
         flag = f"  numbers not in evidence: {unsupported}" if unsupported else ""
         print(f"{time.time() - start:5.1f}s  {result['type']:22} {question[:60]}{flag}")
 
-    run_info = dict(run_id=RUN_ID, code_version=code_version(), model="qwen3:14b",
+    run_info = dict(run_id=RUN_ID, code_version=code_version(), model=CHAT_MODEL,
                     max_evidence=MAX_EVIDENCE, evidence_limit=EVIDENCE_LIMIT)
     json.dump(rows, open("baseline_answers_v3.json", "w", encoding="utf-8"), indent=1, ensure_ascii=False)   # latest run
 

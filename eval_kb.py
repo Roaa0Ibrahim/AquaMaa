@@ -10,6 +10,8 @@ from pathlib import Path
 from langchain_core.vectorstores import InMemoryVectorStore
 from langchain_ollama import OllamaEmbeddings
 
+from config import EMBED_MODEL
+
 sys.stdout.reconfigure(encoding="utf-8")
 VECTOR_FILE = Path(__file__).parent / "vector_store.json"
 K = 10
@@ -30,7 +32,7 @@ TESTS = [
 
 
 def main():
-    store = InMemoryVectorStore.load(str(VECTOR_FILE), embedding=OllamaEmbeddings(model="bge-m3"))
+    store = InMemoryVectorStore.load(str(VECTOR_FILE), embedding=OllamaEmbeddings(model=EMBED_MODEL))
     passed = 0
     for question, expected in TESTS:
         results = store.similarity_search(question, k=K)

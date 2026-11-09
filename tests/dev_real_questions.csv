@@ -1,0 +1,31 @@
+id,question,asker,origin,verbatim,source_url,expected_type,kb_can_answer,note
+D01,Is tap water in Qatar safe to drink?,resident,guide article,yes,https://www.dohaguides.com/is-qatar-tap-water-safe-to-drink/,simple,partly,Kahramaa requirements and compliance only; no tap-water studies in the database
+D02,Does Qatar's tap water come from groundwater or desalination?,resident,guide article,no,https://www.dohaguides.com/is-qatar-tap-water-safe-to-drink/,simple,yes,
+D03,Can I drink the water from a well on my farm?,resident,forum (UAE thread on garden wells),no,https://britishexpats.com/forum/sand-pit-116/well-water-pump-726897/,false_premise,partly,
+D04,Why is the water from my farm well getting saltier?,farmer,news,no,https://www.hortidaily.com/article/9138949/agricultural-push-in-qatar-risks-further-groundwater-depletion/,explanation,yes,
+D05,Is bottled water safer than tap water in Qatar?,resident,news,no,https://dohanews.co/study-qatar-tap-water-safer-bet-than-bottled-h20/,comparison,no,No bottled-water study in the database
+D06,Can my building's water tank contaminate the tap water?,resident,news,no,https://dohanews.co/study-qatar-tap-water-safer-bet-than-bottled-h20/,explanation,no,Storage tanks not covered
+D07,Do I need a licence to dig a well on my land?,resident,law (FAOLEX),no,https://leap.unep.org/en/countries/qa/national-legislation/law-no-1-1988-regulating-drilling-and-digging-underground-wells,simple,partly,Law 1 of 1988 and Water Law No. 23 not in the database; ANND mentions licensing
+D08,Is it allowed to use fresh groundwater to irrigate fodder?,farmer,news,no,https://www.fruitnet.com/eurofruit/water-tops-concerns-in-qatar/179575.article,simple,partly,ANND p.20 covers the ban without approval
+D09,How deep do I need to drill to reach groundwater in Qatar?,resident,research news,no,https://www.hbku.edu.qa/en/node/23604,simple,no,Depth to water table (under 1 m to over 70 m) not in the database
+D10,Can I water my garden with treated sewage effluent?,resident,official,no,https://www.npc.qa/en/statistics/Statistical%20Releases/Environmental/Water/Water_Statistics_2023_EN.pdf,simple,partly,
+D11,How many agricultural wells are there in Qatar?,official,news (Kahramaa interview),no,https://www.gulf-times.com/story/679621/water-security-is-among-top-priorities-of-qatar-say-kahramaa-officials,aggregation,partly,Farms-and-wells table by municipality; Kahramaa's 6500 figure not in the database
+D12,What does the new Water Law No. 23 change for groundwater users?,official,news,no,https://www.qatar-tribune.com/article/200434/nation/kahramaa-committed-to-implementing-new-water-law-for-a-sustainable-future,explanation,no,Water Law No. 23 not in the database
+D13,When is the deadline to comply with Water Law No. 23?,official,news (QNA),no,https://qna.org.qa/en/News-Area/News/2026-6/23/six-month-extension-granted-for-compliance-with-water-law-no-23,simple_with_condition,no,
+D14,How much water is stored in Qatar's strategic water reserves?,official,news,no,https://thepeninsulaqatar.com/article/16/03/2025/kahramaas-water-reserves-increase-many-folds,simple,yes,
+D15,How many recharge wells has Qatar rehabilitated?,official,climate plan,no,https://unfccc.int/sites/default/files/2025-11/Qatar%20NDC%203.0.pdf,simple,yes,
+D16,What share of groundwater is used by agriculture?,official,news,no,https://www.fruitnet.com/eurofruit/water-tops-concerns-in-qatar/179575.article,post_processing,yes,
+D17,Do farmers pay for the groundwater they use?,farmer,news,no,https://www.fruitnet.com/eurofruit/water-tops-concerns-in-qatar/179575.article,simple,partly,
+D18,What is Kahramaa doing to protect groundwater?,council member,Shura Council briefing,no,https://www.shura.qa/en/Pages/MediaCenter/News/08062026,set,partly,
+D19,Will Qatar ban groundwater use for fodder crops?,farmer,news,no,https://www.fruitnet.com/eurofruit/water-tops-concerns-in-qatar/179575.article,simple,partly,
+D20,How much treated wastewater is injected into Qatar's aquifers?,researcher,official,no,https://www.npc.qa/en/statistics/Statistical%20Releases/Environmental/Water/Water_Statistics_2023_EN.pdf,simple,yes,
+D21,What percentage of Qatar's drinking water is desalinated?,resident,research abstract,no,https://qspace.qu.edu.qa/handle/10576/14292,simple,partly,63% of all production is in the database; 99% of potable water is not
+D22,How saline were Qatar's wells in 2014?,researcher,news,no,https://www.hortidaily.com/article/9138949/agricultural-push-in-qatar-risks-further-groundwater-depletion/,simple_with_condition,no,
+D23,What is the main cause of rising groundwater salinity in Qatar?,researcher,research news,no,https://www.hbku.edu.qa/en/news/QEERI-SUST-WWDQGC,explanation,yes,
+D24,Is managed aquifer recharge a feasible solution in Qatar?,researcher,research,yes,https://elmi.hbku.edu.qa/en/publications/is-managed-aquifer-recharge-a-feasible-solution-for-groundwater-d/,explanation,partly,
+D25,How much rainfall recharges Qatar's aquifers each year?,researcher,official,no,https://www.npc.qa/en/statistics/Statistical%20Releases/Environmental/Water/Water_Statistics_2023_EN.pdf,simple,yes,
+D26,Is land subsidence in Qatar linked to groundwater?,researcher,research news,no,https://www.hbku.edu.qa/en/node/23604,explanation,no,
+D27,Which crops can tolerate Qatar's brackish groundwater?,farmer,guideline,no,https://www.fao.org/4/t0234e/T0234E03.htm,set,partly,FAO 29 crop salt tolerance
+D28,What share of Qatar's groundwater is suitable for drinking?,official,NGO report,no,https://annd.org/uploads/publications/QATAR_Report_(EN).pdf,simple,yes,
+D29,How does brine from farm desalination affect the land?,farmer,news,no,https://www.gulf-times.com/story/674815/QF-team-explores-ways-to-recycle-and-reuse-water-f,explanation,no,
+D30,How much groundwater did agriculture use in 2013?,official,news,no,https://dohanews.co/?p=49019,simple_with_condition,partly,

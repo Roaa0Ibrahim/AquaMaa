@@ -19,6 +19,8 @@ from langchain_core.vectorstores import InMemoryVectorStore
 from langchain_ollama import OllamaEmbeddings
 from rank_bm25 import BM25Okapi
 
+from config import EMBED_MODEL
+
 ROOT = Path(__file__).parent
 DATABASE = ROOT / "database"
 VECTOR_FILE = ROOT / "vector_store.json"
@@ -68,7 +70,9 @@ class Retrievers:
     def __init__(self):
         self.chunks = [json.loads(line) for line in CHUNKS_FILE.open(encoding="utf-8")]
         self.bm25_index = BM25Okapi([tokenize(c["text"]) for c in self.chunks])
-        self.vectors = InMemoryVectorStore.load(str(VECTOR_FILE), embedding=OllamaEmbeddings(model="bge-m3"))
+        if not VECTOR_FILE.exists() or not CHUNKS_FILE.exists():
+            raise SystemExit("The knowledge base hasn't been built yet. Run: python build_kb.py")
+        self.vectors = InMemoryVectorStore.load(str(VECTOR_FILE), embedding=OllamaEmbeddings(model=EMBED_MODEL))
         self.facts = self._load_facts()
         self.facts_index = BM25Okapi([tokenize(f["text"]) for f in self.facts])
 

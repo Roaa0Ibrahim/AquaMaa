@@ -2,3 +2,5 @@
 __pycache__/
 vector_store.json
 chunks.jsonl
+logs/agent.log
+logs/traces/
