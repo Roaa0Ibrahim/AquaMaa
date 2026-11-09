@@ -1,6 +1,27 @@
 # AquaMaa
 
-Our working file, last updated 7 November 2026.
+Our working file, last updated 9 November 2026.
+
+## Checkpoint: 9 November 2026
+Git tag `checkpoint-2026-11-09`. Everything is committed and pushed.
+
+| Milestone | Status | Result |
+|---|---|---|
+| 1. Open-source code on Qwen | done, `v1` | LangGraph agentic RAG tutorial on local qwen3:14b, 3 of its faults fixed |
+| 2. Knowledge base | done, `v2` | 46 sources in 12 folders, 1,406 chunks; 10 of 10 test questions find their file |
+| 3. Routing and retrieval | done, `v3` | type right 26/27, right file in top 3 26/27, recall 0.96, precision 0.83, baseline faithfulness 0.854 |
+| 4. Agent loop | done, `v4` | every number from a tool; 0 invented citations; uncited sentences in 2 of 30 answers (18 with prompt v1) |
+| 5. Error handling | in progress | verifier built; 5 of 5 offline tests pass; live tests and before-and-after still to run |
+| 6. Simplifying for officers | not started | |
+| 7. Arabic speech on the website | not started | |
+| 8. Dashboard data | done, `v8` | 5 of 5 dashboard charts match exactly, labelled as demonstration data |
+| 9. Pepper | not started | |
+| 11. Sensor-fault and trend statistics | not started | |
+| 12. Web search when the knowledge base lacks the answer | not started | |
+
+- **The system:** route → key statistics → ReAct agent ⇄ tools (documents, tables, calculator, dashboard) → verify → one repair → finalize. Modular: `steps/`, `prompts.py`, `config.py`
+- **Open with others:** Roaa's hand-check of 10 verdicts and review of the drafts marked `checked_by_roaa = no`; native-speaker check of the glossary's Arabic; Deema to remove her session secret and seed the dashboard from verified figures; a teammate to try the setup; a choice of web search service for Milestone 12
+- **Next, in order:** finish Milestone 5; the website chat link to Deema's dashboard (Milestone 7); Milestone 6; Milestones 9, 11 and 12 after the 12 November internal evaluation
 
 ## Core contributions
 
