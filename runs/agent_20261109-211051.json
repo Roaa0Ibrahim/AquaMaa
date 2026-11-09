@@ -1,0 +1,45 @@
+{
+ "run": {
+  "run_id": "20261109-211051",
+  "code_version": "b9451ef-dirty",
+  "questions_from": "tests\\m5_regression.csv",
+  "model": "qwen3:14b",
+  "max_tool_rounds": 6,
+  "complete": false,
+  "answered": 1
+ },
+ "answers": [
+  {
+   "id": "R01",
+   "question": "كم عدد آبار المياه الجوفية في قطر",
+   "why": "Website 9 Nov: searched once and gave up although the farms-and-wells table has counts; answered in English",
+   "got_type": "simple",
+   "answer": "لحساب عدد آبار المياه الجوفية في قطر، نجمع عدد الآبار في كل بلدية:\n\n- بلدية الخور: 1621 آبار\n- بلدية الدوحة: 0 آبار\n- بلدية الشахانية: 146 آبار\n- بلدية العdaين: 258 آبار\n- بلدية الرaya: 1123 آبار\n- بلدية الشمالة: 423 آبار\n- بلدية الوراق: 194 آبار\n- بلدية أم سلال: 612 آبار\n\nإذن، عدد آبار المياه الجوفية في قطر هو: 1621 + 0 + 146 + 258 + 1123 + 423 + 194 + 612 [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.257].",
+   "tools_used": [
+    "lookup_table"
+   ],
+   "tool_rounds": 1,
+   "hit_step_limit": false,
+   "numbers_not_in_tool_results": [],
+   "cited_files_not_in_tool_results": [],
+   "general_knowledge_tags": 0,
+   "seconds": 36.5,
+   "trace": [
+    {
+     "step": "call",
+     "tool": "lookup_table",
+     "args": {
+      "year_from": 2023,
+      "year_to": 2023,
+      "query": "groundwater wells count"
+     }
+    },
+    {
+     "step": "result",
+     "tool": "lookup_table",
+     "text": "[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.257] Farms and wells by farm type and municipality. year: 2023; municipality: Doha; farm_status: Working Farms; indicator: Number of Wells; value: 0\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.98] Farms and wells by farm type and municipality. year: 2023; municipality: Al Shahaniya; farm_status: Working Farms; indicator: Number of Wells; value: 146\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.104] Farms and wells by farm type and municipality. year: 2023; municipality: Doha; farm_status: Farms Not Working; indicator: Number of Wells; value: 0\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.249] Farms and wells by farm type and municipality. year: 2023; municipality: Al Khor; farm_status: Working Farms; indicator: Number of Wells; value: 1621\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.374] Farms and wells by farm type and municipality. year: 2023; municipality: Al Daayen; farm_status: Working Farms; indicator: Number of Wells; value: 258\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.378] Farms and wells by farm type and municipality. year: 2023; municipality: Al Rayyan; farm_status: Working Farms; indicator: Number of Wells; value: 1123\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.382] Farms and wells by farm type and municipality. year: 2023; municipality: Al Shamal; farm_status: Working Farms; indicator: Number of Wells; value: 423\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.384] Farms and wells by farm type and municipality. year: 2023; municipality: Al Wakra; farm_status: Working Farms; indicator: Number of Wells; value: 194\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.387] Farms and wells by farm type and municipality. year: 2023; municipality: Umm Salal; farm_status: Working Farms; indicator: Number of Wells; value: 612\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.94] Farms and wells by farm type and municipality. year: 2023; municipality: Al Rayyan; farm_status: Farms Not Working; indicator: Number of Wells; value: 83\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.95] Farms and wells by farm type and municipality. year: 2023; municipality: Al Shahaniya; farm_status: Farms Not Working; indicator: Number of Wells; value: 18\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.243] Farms and wells by farm type and municipality. year: 2023; municipality: Al Daayen; farm_status: Farms Not Working; indicator: Number of Wells; value: 10\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.247] Farms and wells by farm type and municipality. year: 2023; municipality: Al Khor; farm_status: Farms Not Working; indicator: Number of Wells; value: 33\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.253] Farms and wells by farm type and municipality. year: 2023; municipality: Al Shamal; farm_status: Farms Not Working; indicator: Number of Wells; value: 8\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.254] Farms and wells by farm type and municipality. year: 2023; municipality: Al Wakra; farm_status: Farms Not Working; indicator: Number of Wells; value: 26\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.259] Farms and wells by farm type and municipality. year: 2023; municipality: Umm Salal; farm_status: Farms Not Working; indicator: Number of Wells; value: 9\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.385] Farms and wells by farm type and municipality. year: 2023; municipality: Doha; farm_status: Working Farms; indicator: Number of Farms; value: 0\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.96] Farms and wells by farm type and municipality. year: 2023; municipality: Al Shahaniya; farm_status: Working Farms; indicator: Number of Farms; value: 32\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.105] Farms and wells by farm type and municipality. year: 2023; municipality: Umm Salal; farm_status: Working Farms; indicator: Number of Farms; value: 132\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.244] Farms and wells by farm type and municipality. year: 2023; municipality: Al Daayen; farm_status: Working Farms; indicator: Number of Farms; value: 58\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.255] Farms and wells by farm type and municipality. year: 2023; municipality: Doha; farm_status: Farms Not Working; indicator: Number of Farms; value: 0\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.256] Farms and wells by farm type and municipality. year: 2023; municipality: Doha; farm_status: Working Farms; indicator: Number of Open Springs; value: 0\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.375] Farms and wells by farm type and municipality. year: 2023; municipality: Al Khor; farm_status: Working Farms; indicator: Number of Farms; value: 334\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.376] Farms and wells by farm type and municipality. year: 2023; municipality: Al Rayyan; farm_status: Working Farms; indicator: Number of Farms; value: 321\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.380] Farms and wells by farm type and municipality. year: 2023; municipality: Al Shamal; farm_status: Working Farms; indicator: Number of Farms; value: 137\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.383] Farms and wells by farm type and municipality. year: 2023; municipality: Al Wakra; farm_status: Working Farms; indicator: Number of Farms; value: 54\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.93] Farms and wells by farm type and municipality. year: 2023; municipality: Al Rayyan; farm_status: Farms Not Working; indicator: Number of Farms; value: 54\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.97] Farms and wells by farm type and municipality. year: 2023; municipality: Al Shahaniya; farm_status: Working Farms; indicator: Number of Open Springs; value: 9\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.99] Farms and wells by farm type and municipality. year: 2023; municipality: Al Shamal; farm_status: Farms Not Working; indicator: Number of Farms; value: 38\n\n[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.100] Farms and wells by farm type and municipality. year: 2023; municipality: Al Wakra; farm_status: Farms Not Working; indicator: Number of Farms; value: 18"
+    }
+   ]
+  }
+ ]
+}
