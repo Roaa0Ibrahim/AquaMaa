@@ -1,10 +1,13 @@
 """Graph step: the router's reading of the question, and the scope check."""
 import time
+from datetime import datetime, timedelta, timezone
 
 from langchain_core.messages import HumanMessage, SystemMessage
 
 from agent_log import log
-from prompts import LANGUAGE_NOTE, OUT_OF_SCOPE, SYSTEM
+from prompts import LANGUAGE_NOTE, OUT_OF_SCOPE, SYSTEM, TIME_NOTE
+
+QATAR_TIME = timezone(timedelta(hours=3), "AST")
 from retrieval import is_arabic
 from routing import classify
 from tools import R
@@ -24,7 +27,9 @@ def route_node(state):
              time.time() - start)
     # The answer is in the question's language, stated for this question rather than left to a general rule
     # (9 Nov: an Arabic question got an English answer once the English sources came back)
-    language = LANGUAGE_NOTE["ar" if is_arabic(question) else "en"]
+    # The current time in Qatar (UTC+3, no daylight saving), from the server clock: nothing is collected from the user
+    now = datetime.now(QATAR_TIME).strftime("%A %d %B %Y, %H:%M")
+    language = LANGUAGE_NOTE["ar" if is_arabic(question) else "en"] + "\n" + TIME_NOTE.format(now=now)
     if not route.in_scope:
         return {"route": info, "rounds": 0,
                 "messages": [SystemMessage(f"{OUT_OF_SCOPE}\n{language}"), HumanMessage(question)]}

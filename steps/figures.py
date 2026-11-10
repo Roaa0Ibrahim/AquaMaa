@@ -9,6 +9,7 @@ from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 import key_stats
 from agent_log import log
 from prompts import DASHBOARD_FIRST
+from retrieval import is_arabic
 
 DASHBOARD_WORDS = re.compile(r"\b(dashboard|chart|graph|card|this (figure|page|screen)|station(s)? ST-\d+|ST-\d+)\b", re.I)
 
@@ -25,7 +26,12 @@ def figures_node(state):
         log.info("KEYSTATS  skipped: the question is about the dashboard")
         return {"figures": [], "messages": [HumanMessage(DASHBOARD_FIRST)]}
     start = time.time()
-    figures = key_stats.select_figures(state["question"], "")
+    # The 20 statistics are written in English, so an Arabic question is matched through the router's English
+    # sub-questions (9 Nov: the Arabic "how many wells" scored too low to be offered the farm wells figure, K19)
+    question = state["question"]
+    if is_arabic(question) and state["route"].get("sub_questions"):
+        question = " ".join(state["route"]["sub_questions"])
+    figures = key_stats.select_figures(question, "")
     log.info("KEYSTATS  chose %d (%.1f s)", len(figures), time.time() - start)
     if not figures:
         return {"figures": []}

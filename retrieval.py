@@ -35,6 +35,7 @@ MIN_COVERAGE = 0.5   # a table row must contain at least half the question's key
 # Units written out, so the model doesn't read "mm3" as cubic millimetres or cubic metres
 UNIT_NAMES = {"ground_water_abstraction_mm3": "groundwater_abstraction_million_m3"}
 VALUE_UNITS = {"DS-04": "million m3"}   # tables whose "value" column has one unit for every row
+ARABIC_NAME_COLUMNS = {"lbldy": "municipality_ar"}   # Open Data's column for the municipality's Arabic name
 # OPERATION_WORDS (below, after stem) say what to do with the data, not what it is about,
 # so they are left out of the coverage check.
 YEAR = re.compile(r"\b(19|20)\d{2}\b")
@@ -119,6 +120,11 @@ class Retrievers:
                 for number, row in enumerate(csv.DictReader(path.open(encoding="utf-8-sig")), start=2):
                     fields = {UNIT_NAMES.get(k, k): v for k, v in row.items()
                               if k not in SKIP_COLUMNS and v and not is_arabic(v)}
+                    # Official Arabic place names are kept, so Arabic answers use them instead of the model's own
+                    # transliterations (9 Nov: الشахانية, العdaين). Other Arabic columns are still left out.
+                    for column, name in ARABIC_NAME_COLUMNS.items():
+                        if row.get(column):
+                            fields[name] = row[column]
                     if source["id"] in VALUE_UNITS and "value" in fields:
                         fields["unit"] = VALUE_UNITS[source["id"]]
                     text = source["title"] + ". " + "; ".join(f"{k}: {v}" for k, v in fields.items())

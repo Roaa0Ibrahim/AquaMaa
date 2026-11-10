@@ -13,5 +13,11 @@ PASS  too little evidence
 PASS  one side of a known conflict
       route: a note gives the other side and why they differ
       notes: ["Total groundwater abstraction in 2023 was 200 million m3 [total-abstraction-from-ground-water.csv row 3], while NPC's report text gives about 180 million m3 for 2023 [NPC_Water_Statistics_2023.txt p.29]. 180 is the agricultural wells' share of the 200 total, so the two figures measure different things."]
+PASS  miscopied citation label
+      route: corrected to the label the tool returned, not removed
+      fixed: 'Qatar has 4,564 wells on farms [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv row 91].'
+PASS  similar but different source
+      route: not swapped: it stays an invented citation for the repair route
+      fixes: []
 
-5/5 forced failures took their route
+7/7 forced failures took their route

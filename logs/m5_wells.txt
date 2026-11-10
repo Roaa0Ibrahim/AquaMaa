@@ -1,0 +1,46 @@
+﻿PASS  number not found in any tool result
+      route: verifier flags it -> repair -> removed if still there
+      final answer: "Abstraction was 200 million m3 in 2023 [total-abstraction-from-ground-water.csv p.3].\n\nSome points couldn't be confirmed from AquaMaa's sources, so they were left out."
+PASS  citation to a file no tool returned
+      route: verifier flags it -> repair -> removed if still there
+      final answer: "Abstraction was 200 million m3 in 2023 [total-abstraction-from-ground-water.csv p.3].\n\nSome points couldn't be confirmed from AquaMaa's sources, so they were left out."
+PASS  claim without a citation
+      route: verifier flags the claim; the honest 'not in the sources' sentence stays
+      flagged: ['Over-pumping also causes land subsidence across the whole country.']
+PASS  too little evidence
+      route: every sentence fails -> a clear 'not enough evidence' answer
+      final answer: "AquaMaa's sources don't contain enough evidence to answer this question.\n\nSome points couldn't be confirmed from AquaMaa's sources, so they were left out."
+PASS  one side of a known conflict
+      route: a note gives the other side and why they differ
+      notes: ["Total groundwater abstraction in 2023 was 200 million m3 [total-abstraction-from-ground-water.csv row 3], while NPC's report text gives about 180 million m3 for 2023 [NPC_Water_Statistics_2023.txt p.29]. 180 is the agricultural wells' share of the 200 total, so the two figures measure different things."]
+
+5/5 forced failures took their route
+20:55:37 QUESTION  ÙƒÙ… Ø¹Ø¯Ø¯ Ø¢Ø¨Ø§Ø± Ø§Ù
+20:55:45 ROUTE     type=simple in_scope=True conditions=[] sub_questions=['What is the WHO guideline value for fluoride?'] premise=None (8.3 s)
+20:55:47 KEYSTATS  shortlist: [('K13', 0.47), ('K09', 0.47), ('K08', 0.46)]
+20:55:51 KEYSTATS  chose none: The question is in Arabic and appears to be asking about a topic related to water management, possibly about water usage, losses, or extraction. However, the exact subject of the question is not clearly stated. The provided statistics relate to groundwater extraction, water losses, and water production, but without knowing the specific question the officer is asking, it is not possible to determine which statistics are most relevant. Therefore, no statistics can be clearly chosen as being directly about the question's subject.
+20:55:51 KEYSTATS  chose 0 (6.6 s)
+20:55:55 REASON    round 1: enough evidence, answering (3.2 s)
+20:55:55 VERIFY    sentence_without_citation  <- ÙƒÙ… Ø¹Ø¯Ø¯ Ø¢Ø¨Ø§Ø± Ø§Ù is not a valid question.
+20:55:55 VERIFY    sentence_without_citation  <- Please rephrase your question in a clear and concise manner.
+20:55:55 REPAIR    sending 2 problem(s) back to the agent
+20:55:57 REASON    round 1: enough evidence, answering (2.1 s)
+20:55:57 VERIFY    no problems
+20:55:57 DONE      0 tool rounds, 1 repair(s), 20.1 s
+
+A: ÙƒÙ… Ø¹Ø¯Ø¯ Ø¢Ø¨Ø§Ø± Ø§Ù [general knowledge].  
+Please rephrase your question in a clear and concise manner [general knowledge].
+
+20:55:57 QUESTION  Ù…ÙŠØ§Ù‡
+20:55:59 ROUTE     type=false_premise in_scope=False conditions=[] sub_questions=[] premise=None (2.2 s)
+20:56:02 ANSWER    out of scope, general answer (2.6 s)
+20:56:02 DONE      0 tool rounds, 0 repair(s), 4.9 s
+
+A: This is outside AquaMaa's sources. "Ù…ÙŠØ§Ù‡" appears to be a string of characters that may be in Arabic script but does not form a recognizable word or phrase. It could be a typo, an encoding error, or a non-standard character sequence.
+
+20:56:02 QUESTION  Ø§ÙØ¬ÙˆÙÙŠØ© ÙÙŠ Ù‚Ø·Ø±
+20:56:04 ROUTE     type=simple in_scope=True conditions=[] sub_questions=['What is the WHO guideline value for fluoride?'] premise=None (2.1 s)
+20:56:04 KEYSTATS  shortlist: none above threshold
+20:56:04 KEYSTATS  chose 0 (0.0 s)
+20:56:05 REASON    round 1: call search_documents({'query': 'WHO guideline value for fluoride'}) (1.2 s)
+20:56:05 OBSERVE   search_documents -> Kahramaa_Drinking_Water_Quality_Requirements_2014.txt p.16, Kahramaa_Drinking_Water_Quality_Requirements_2014.txt p.16, WHO_GDWQ_annex_tables.txt p.5, WHO_GDWQ_annex_tables.txt p.4, Kahramaa_Drinking_Water_Quality_Requirements_2014.txt p.35, Kahramaa_Drinking_Water_Quality_Requirements_2014.txt p.36 (0.1 s)

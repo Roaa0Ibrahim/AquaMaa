@@ -10,7 +10,8 @@ import subprocess
 import sys
 from pathlib import Path
 
-from verifier import UNCONFIRMED_NOTE, conflict_notes, find_problems, remove_failing
+from checks import tool_results_text
+from verifier import UNCONFIRMED_NOTE, conflict_notes, find_problems, fix_miscopied_citations, remove_failing
 
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = Path(__file__).parent
@@ -71,6 +72,21 @@ def verifier_tests():
     notes = conflict_notes(answer)
     record("one side of a known conflict", "a note gives the other side and why they differ",
            any("180" in n for n in notes), f"notes: {notes}")
+
+    # 5b. A miscopied label of a returned source is corrected; a different source with a similar name is not
+    wells = ("[number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv row 91] Wells on farms "
+             "(working and not working): 4,564 wells (2023)")
+    tool_text = tool_results_text(TRACE) + "\n" + wells
+    answer = "Qatar has 4,564 wells on farms [number-of-farms-and-wells-by-type-of-farm-and-region.txt]."
+    fixed, fixes = fix_miscopied_citations(answer, tool_text)
+    record("miscopied citation label", "corrected to the label the tool returned, not removed",
+           "type-of-the-farm-and-municipality.csv row 91]" in fixed and not find_problems(
+               fixed, TRACE + [{"step": "result", "tool": "key_statistics", "text": wells}], QUESTION),
+           f"fixed: {fixed!r}")
+    answer = "The safe yield is 49.6 million m3 a year [PSA_Water_Statistics_2021.txt p.29]."
+    fixed, fixes = fix_miscopied_citations(answer, tool_text)
+    record("similar but different source", "not swapped: it stays an invented citation for the repair route",
+           not fixes, f"fixes: {fixes}")
 
 
 def run_agent(question, extra_env):

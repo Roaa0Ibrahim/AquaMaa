@@ -10,10 +10,12 @@ removed (decided option B: drop it, and say that some points couldn't be confirm
 Test on a saved run: python verifier.py runs/agent_20261107-212533.json
 """
 import csv
+import os
 import re
+from difflib import SequenceMatcher
 from pathlib import Path
 
-from checks import CITATION, citation_check, numbers, tool_results_text
+from checks import CITATION, _file_of, citation_check, numbers, tool_results_text
 
 CONFLICTS_FILE = Path(__file__).parent / "database" / "12-known-conflicts" / "known_conflicts.csv"
 CONFLICTS = list(csv.DictReader(CONFLICTS_FILE.open(encoding="utf-8-sig")))
@@ -67,6 +69,37 @@ def _cited_for_missing(sentence):
     Sentences that also state a fact ("X isn't given, but Y [file]") are left alone."""
     files = [c for c in CITATION.findall(sentence) if "general knowledge" not in c.lower()]
     return bool(MISSING_INFO.search(sentence) and files and not CONTRAST.search(sentence))
+
+
+def fix_miscopied_citations(answer, tool_text):
+    """A cited label that no tool returned, but that is almost exactly a label a tool did return, is the same source
+    miscopied (9 Nov, an Arabic answer: "...by-type-of-farm-and-region.txt" for "...by-type-of-the-farm-and-
+    municipality.csv row 91"). It is replaced by the real label. A source that only looks similar is not: the two
+    file names must share most of their beginning, so NPC_..._2023 is never swapped for PSA_..._2021.
+    Returns the answer and the list of (cited, replaced by)."""
+    blocks = re.split(r"\n(?=\[)", tool_text)
+    labels = [m.group(1) for b in blocks if (m := re.match(r"\[([^\]]+)\]", b))]
+    returned_files = {_file_of(l) for l in labels}
+    answer_numbers = numbers(CITATION.sub("", answer))
+    fixes = []
+    for cited in set(CITATION.findall(answer)):
+        name = _file_of(cited)
+        if name.lower() == "general knowledge" or name.isdigit() or name in returned_files or not labels:
+            continue
+        best_file, best = None, 0.0
+        for f in returned_files:
+            prefix = len(os.path.commonprefix([name.lower(), f.lower()]))
+            ratio = SequenceMatcher(None, name.lower(), f.lower()).ratio()
+            if prefix >= 0.6 * min(len(name), len(f)) and ratio >= 0.7 and ratio > best:
+                best_file, best = f, ratio
+        if not best_file:
+            continue
+        # Of that file's labels, prefer the one whose result holds a number the answer uses
+        same_file = [(l, b) for l, b in zip(labels, blocks) if _file_of(l) == best_file]
+        label = next((l for l, b in same_file if numbers(b) & answer_numbers), same_file[0][0])
+        answer = answer.replace(cited, f"[{label}]")
+        fixes.append((cited, f"[{label}]"))
+    return answer, fixes
 
 
 def find_problems(answer, trace, question):

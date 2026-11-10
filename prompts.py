@@ -84,6 +84,9 @@ DEMO_NOTE = ("Note: these dashboard figures are demonstration data, not real mea
 FIRST_SEARCH = ("You haven't searched AquaMaa's sources yet. Call search_documents or lookup_table for the question "
                 "first (rule 1), then answer.")
 
+TIME_NOTE = ("Current date and time in Qatar: {now}. Use it for words like now, today, this year or this season. "
+             "If the sources stop at an earlier year, give the latest year they have and say which year it is.")
+
 LANGUAGE_NOTE = {
     "ar": "The question is in Arabic. Write the whole answer in simple Modern Standard Arabic, even though the tool "
           "results are in English. Keep the citation labels exactly as they are, and write numbers in digits.",

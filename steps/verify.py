@@ -1,25 +1,35 @@
 """Graph steps (Milestone 5): check the answer, give the agent one repair attempt, then remove what still fails
 (decided option B) and add notes for known conflicts. The checks themselves are in verifier.py."""
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import AIMessage, HumanMessage
 
 from agent_log import log
+from checks import tool_results_text
 from config import MAX_REPAIRS, VERIFY
 from prompts import DEMO_NOTE
 from state import trace_of
 from steps.figures import is_about_dashboard
-from verifier import conflict_notes, find_problems, remove_failing, repair_request
+from verifier import conflict_notes, find_problems, fix_miscopied_citations, remove_failing, repair_request
 
 
 def verify_node(state):
     """Python checks the answer: numbers in tool results, real citations, a citation per sentence."""
     if not state["route"]["in_scope"] or not VERIFY:
         return {"problems": []}
-    problems = find_problems(state["messages"][-1].content, trace_of(state["messages"]), state["question"])
+    last = state["messages"][-1]
+    trace = trace_of(state["messages"])
+    # A label that is the same source miscopied is corrected first, so its sentence isn't removed as invented
+    answer, fixes = fix_miscopied_citations(last.content, tool_results_text(trace))
+    for cited, real in fixes:
+        log.info("VERIFY    miscopied citation %s corrected to %s", cited, real)
+    problems = find_problems(answer, trace, state["question"])
     for p in problems:
         log.info("VERIFY    %s %s <- %s", p["kind"], p["detail"] or "", p["sentence"][:90])
     if not problems:
         log.info("VERIFY    no problems")
-    return {"problems": problems}
+    update = {"problems": problems}
+    if fixes:                                   # same message id, so the corrected answer replaces the original
+        update["messages"] = [AIMessage(content=answer, id=last.id)]
+    return update
 
 
 def after_verify(state):

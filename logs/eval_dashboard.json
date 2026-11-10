@@ -12,7 +12,7 @@
   "says_demonstration": true,
   "used_read_dashboard": true,
   "passed": true,
-  "answer": "The dashboard shows that groundwater extraction in 2022 was 250 MCM/year, while the safe yield was 49.6 MCM/year [dashboard overview 2022]. This means that groundwater extraction was 5.04 times the safe yield [dashboard overview 2022]. These figures are marked as demonstration data [dashboard overview 2022]."
+  "answer": "The dashboard shows that groundwater extraction in 2022 was 250 MCM/year, while the safe yield was 49.6 MCM/year [dashboard overview 2022]. Extraction was 5.04 times the safe yield [dashboard overview 2022]. These figures are marked as demonstration data [dashboard overview 2022]."
  },
  {
   "question": "On the dashboard's sector chart, how much did agriculture extract in 2022 and what share is that?",
@@ -39,7 +39,7 @@
   "says_demonstration": true,
   "used_read_dashboard": true,
   "passed": true,
-  "answer": "According to the dashboard's trend chart, the total extraction in 2010 was 165 MCM/year [dashboard extraction 2010]. This figure is marked as demonstration data, sourced from the National water accounts (demonstration series) [dashboard extraction 2010]."
+  "answer": "According to the dashboard's trend chart, the total extraction in 2010 was 165 MCM/year [dashboard extraction 2010]. These figures are marked as demonstration data [general knowledge]."
  },
  {
   "question": "How many wells on the dashboard meet the TDS threshold?",
