@@ -51,3 +51,7 @@ explain,en,How do I test the quality of my well water?
 explain,en,How can I measure the salinity of my well?
 explain,ar,كيف أفحص جودة مياه البئر؟
 explain,ar,كيف أعرف إذا كان ماء البئر صالحًا؟
+live_reading,en,How salty is my well?
+live_reading,en,Is my reading okay?
+live_reading,ar,كم نسبة الأملاح في بئري؟
+live_reading,ar-dialect,شكثر الملوحة في بيري؟

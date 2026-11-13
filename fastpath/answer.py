@@ -57,6 +57,12 @@ def fast_answer(question, persona, grounding):
         # "Is my well getting saltier?" without live data is often a "why" question (13 Nov: لماذا تزداد ملوحة مياه
         # بئري؟ was read as a trend): answer from the explanation cards instead
         intent, facts = "explain", BUILDERS["explain"](question, grounding, arabic, 0.9)
+    if not facts and intent == "live_reading":
+        # "How salty is my well?" with no live sensor data (Pepper, or the sensor offline): say so, and give the
+        # closest card, such as how to test well water (13 Nov: it fell to the deep path and took minutes)
+        card = BUILDERS["explain"](question, grounding, arabic, 0.9) or []
+        facts = ["[live sensors] " + ("لا تتوفر الآن قراءة مباشرة من حساس البئر." if arabic
+                                      else "No live reading from the well sensor is available right now.")] + card
     if not facts:
         log.info("FAST      %s (%.2f) but no facts for it: deep path", intent, score)
         return None

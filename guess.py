@@ -120,12 +120,21 @@ def known(n):
     return any(f in VOCAB or ("ال" + f) in VOCAB for f in forms)
 
 
-def suspects(text):
-    """Words that aren't AquaMaa words but look like one: {word: [closest vocabulary words]}."""
+def unknown_arabic(text):
+    """Arabic words AquaMaa's vocabulary doesn't know: dialect or misheard words. If there are none, the question
+    is already in AquaMaa's words and needs no rewrite (13 Nov: rewriting standard questions added words like
+    "الموجودة" and lost the fast path)."""
+    return [w for w in WORD.findall(text) if re.match(r"[ء-ي]", w) and len(norm(w)) >= 3 and not known(norm(w))]
+
+
+def suspects(text, only=None):
+    """Words that aren't AquaMaa words but look like one: {word: [closest vocabulary words]}.
+    only: a text; just its words can be suspects (the person's own words, not those of the dialect rewrite)."""
     out = {}
+    allowed = {norm(w) for w in WORD.findall(only)} if only else None
     for w in WORD.findall(text):
         n = norm(w)
-        if len(n) < 3 or n.isdigit() or known(n):
+        if len(n) < 3 or n.isdigit() or known(n) or (allowed is not None and n not in allowed):
             continue
         scored = sorted(((SequenceMatcher(None, n, v).ratio(), v) for v in VOCAB_LIST if abs(len(v) - len(n)) <= 3),
                         reverse=True)
@@ -135,10 +144,11 @@ def suspects(text):
     return out
 
 
-def guess(text):
-    """(the intended question, changed?, suspects, seconds). No model call when no word is suspect."""
+def guess(text, only=None):
+    """(the intended question, changed?, suspects, seconds). No model call when no word is suspect.
+    only: see suspects()."""
     text = (text or "").strip()
-    found = suspects(text)
+    found = suspects(text, only)
     if not found:
         return text, False, {}, 0.0
     start = time.time()

@@ -29,8 +29,8 @@ from agent_log import log
 from config import FAST, MAX_REPAIRS, MAX_TOOL_ROUNDS
 from fastpath.answer import fast_answer
 from prompts import MODEL_DOWN, localize
-from guess import guess, reread
-from understand import to_msa
+from guess import guess, reread, unknown_arabic
+from understand import is_dialect, to_msa
 from state import State, trace_of
 from steps.figures import figures_block, figures_node
 from steps.live import live_node
@@ -73,15 +73,20 @@ def ask(question: str, save_trace: bool = True, role: str | None = None, groundi
     asked = question
     guessed = None
     try:
-        # The guessing layer: words that don't fit are replaced by what was probably meant (guess.py)
-        intended, changed, _, _ = guess(asked)
-        if changed:
-            guessed = intended
-            log.info("GUESS     %s -> %s", asked, intended)
-        # The dialect layer: dialect -> Modern Standard Arabic (understand.py)
-        question, rewritten, _ = to_msa(intended)
+        # The dialect layer first: Arabic -> Modern Standard Arabic (understand.py). Then dialect words aren't taken
+        # for mistakes (13 Nov: "شكثر" = how much became "أكثر" = most, when guessing ran first)
+        # Only when the question has Arabic words AquaMaa doesn't know; a standard question is left as asked.
+        msa, rewritten = asked, False
+        if unknown_arabic(asked) or is_dialect(asked):
+            msa, rewritten, _ = to_msa(asked)
         if rewritten:
-            log.info("DIALECT   %s -> %s", intended, question)
+            log.info("DIALECT   %s -> %s", asked, msa)
+        # The guessing layer: words that don't fit are replaced by what was probably meant (guess.py). Only the
+        # person's own words can change, not the dialect rewrite's (13 Nov: "يمكنني" became "يمكن ل")
+        question, changed, _, _ = guess(msa, only=asked)
+        if changed:
+            guessed = question
+            log.info("GUESS     %s -> %s", msa, question)
     except (ConnectionError, OSError, httpx.HTTPError, ollama.ResponseError):
         question = asked
     if FAST:

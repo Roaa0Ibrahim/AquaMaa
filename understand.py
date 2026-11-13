@@ -23,10 +23,14 @@ model = make_model(num_predict=120)     # local Qwen, or Fanar (understand_model
 
 PROMPT = """Rewrite this question from Qatari or Gulf Arabic dialect into clear Modern Standard Arabic.
 Keep exactly the same meaning, the same numbers, units and place names. Don't answer it and don't add anything.
+Change only the dialect words; keep every other word as it is. Don't add words such as "الموجودة" or "منطقة".
+If it is already Modern Standard Arabic, write it back unchanged.
 Examples:
 "ليش ماي البير صار مالح؟" -> "لماذا أصبح ماء البئر مالحًا؟"
 "أقدر أسقي النخل بهالماي؟" -> "هل يمكنني سقي النخيل بهذا الماء؟"
 "شنو قراءة الحساس الحين؟" -> "ما قراءة الحساس الآن؟"
+"شكثر الاملاح في بيري؟" -> "كم الأملاح في بئري؟"
+"كم عدد الآبار في سدرية الخيسة؟" -> "كم عدد الآبار في سدرية الخيسة؟"
 Question: {text}
 Modern Standard Arabic:"""
 
@@ -46,7 +50,9 @@ def is_dialect(text):
 def to_msa(text):
     """(question to use, rewritten?, seconds). Non-dialect questions come back unchanged with no model call."""
     text = (text or "").strip()
-    if not is_dialect(text):
+    # Every Arabic question, not only those with known dialect words: a word list always misses some
+    # (13 Nov: "شكثر", "شسوي"). Standard Arabic comes back unchanged. English is skipped, no model call.
+    if not re.search(r"[ء-ي]", text):
         return text, False, 0.0
     start = time.time()
     out = model.invoke([HumanMessage(PROMPT.format(text=text))]).content.strip()
