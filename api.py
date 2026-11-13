@@ -60,7 +60,7 @@ async def ask_endpoint(q: Question, x_aquamaa_key: Optional[str] = Header(defaul
     question = re.sub(r"\s+", " ", q.question).strip()
     log.info("API       question from role=%s: %s", q.role or "-", question)
     async with one_at_a_time:                              # one model job at a time
-        r = await asyncio.to_thread(ask, question)
+        r = await asyncio.to_thread(ask, question, True, q.role)   # the role picks the persona: farmer or officer
     return {
         "answer": r["answer"],
         "sources": sources_of(r["answer"]),

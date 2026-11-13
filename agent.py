@@ -32,7 +32,7 @@ from state import State, trace_of
 from steps.figures import figures_block, figures_node
 from steps.react import after_agent, agent_node, tools_node
 from steps.route import route_node
-from steps.simplify import simplify_node
+from steps.simplify import persona_of, simplify_node
 from steps.verify import after_verify, finalize_node, repair_node, verify_node
 
 TRACE_DIR = Path("logs/traces")
@@ -58,10 +58,12 @@ graph.add_edge("simplify", END)
 app = graph.compile()
 
 
-def ask(question: str, save_trace: bool = True) -> dict:
+def ask(question: str, save_trace: bool = True, role: str | None = None) -> dict:
+    """role: the website account's role; it picks the reader persona (farmer or officer, see steps/simplify.py)."""
     start = time.time()
+    persona = persona_of(role)
     try:
-        final = app.invoke({"question": question, "repairs": 0, "problems": []},
+        final = app.invoke({"question": question, "persona": persona, "repairs": 0, "problems": []},
                            {"recursion_limit": 2 * (MAX_REPAIRS + 1) * (MAX_TOOL_ROUNDS + 2) + 8})
     except (ConnectionError, OSError, httpx.HTTPError, ollama.ResponseError) as error:
         # Milestone 5: the model is down or failed. A clear message instead of a crash, for the website and Pepper.
@@ -71,8 +73,9 @@ def ask(question: str, save_trace: bool = True) -> dict:
                     seconds=round(time.time() - start, 1))
     figures = final.get("figures") or []
     answer = (final.get("final") or final["messages"][-1].content).strip()
-    answer += figures_block(figures, answer)
-    result = dict(question=question, route=final["route"], answer=answer, tool_rounds=final["rounds"],
+    if not (final.get("simplified") and persona == "farmer"):   # a farmer sees the simple answer without the list
+        answer += figures_block(figures, answer)
+    result = dict(question=question, persona=persona, route=final["route"], answer=answer, tool_rounds=final["rounds"],
                   key_figures=[s["stat_id"] for s in figures], repairs=final.get("repairs", 0),
                   problems_left=final.get("problems", []), trace=trace_of(final["messages"]),
                   checked_answer=final.get("checked_answer"), simplified=final.get("simplified", False),

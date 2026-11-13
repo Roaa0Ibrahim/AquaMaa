@@ -1,4 +1,11 @@
-"""Graph step (Milestone 6): rewrite the checked answer for a farmer, then make sure nothing changed.
+"""Graph step (Milestone 6): rewrite the checked answer for its reader (farmer or officer), then make sure nothing
+changed.
+
+Two personas (decided 13 Nov):
+  farmer   farm owner or manager; also Pepper and anyone whose role is unknown (the public default). Direct answer,
+           a next step only for their own water, crops or a decision, no notes under the answer.
+  officer  Kahramaa or ministry staff (the dashboard's officer accounts). Main finding with number and source, what it
+           means for planning, and the notes under the answer (key figures, conflicting sources) kept.
 
 Position:  ... verify -> finalize -> SIMPLIFY -> end. The rewrite comes after the verifier, so accuracy stays the
 first pass, and Python checks the rewrite against the checked answer before it is used:
@@ -7,8 +14,8 @@ first pass, and Python checks the rewrite against the checked answer before it i
   - no source label that the checked answer doesn't have
   - the question's language (Arabic or English), at most 6 sentences, no headings
 If any check fails, the checked answer is used as it is, and the reason is logged.
-The prompt and its few-shot examples are SIMPLIFY in prompts.py; the research behind them is in
-context/research/simplification-for-farmers.md. Switch off with  $env:AQUAMAA_SIMPLIFY = "0"
+The prompts and their few-shot examples are SIMPLIFY_FARMER and SIMPLIFY_OFFICER in prompts.py; the research behind
+them is in context/research/simplification-for-farmers.md. Switch off with  $env:AQUAMAA_SIMPLIFY = "0"
 """
 import time
 
@@ -17,12 +24,20 @@ from langchain_core.messages import HumanMessage
 from agent_log import log
 from checks import ADDED_BLOCKS, CITATION, numbers
 from config import SIMPLIFY
-from prompts import LANGUAGE_NOTE, SIMPLIFY as SIMPLIFY_PROMPT
+from prompts import LANGUAGE_NOTE, SIMPLIFY_FARMER, SIMPLIFY_OFFICER
 from retrieval import is_arabic
 from steps.react import model
 from verifier import HEADING, NOT_ENOUGH, sentences, wrong_language
 
 MAX_SIMPLE_SENTENCES = 6
+DEMO_NOTE_START = "\n\nNote: these dashboard figures are demonstration data"
+PROMPTS = {"farmer": SIMPLIFY_FARMER, "officer": SIMPLIFY_OFFICER}
+# The dashboard's officer accounts (Deema's roles); everything else, including Pepper and no role, is a farmer
+OFFICER_ROLES = {"officer", "admin", "kahramaa", "mecc", "municipality", "agriculture", "researcher"}
+
+
+def persona_of(role):
+    return "officer" if (role or "").strip().lower() in OFFICER_ROLES else "farmer"
 
 
 def split_blocks(answer):
@@ -61,13 +76,20 @@ def simplify_node(state):
     if checked.startswith(NOT_ENOUGH):
         return {}                                  # nothing to simplify
     start = time.time()
+    persona = state.get("persona") or "farmer"
     language = LANGUAGE_NOTE["ar" if is_arabic(state["question"]) else "en"]
-    prompt = SIMPLIFY_PROMPT.format(language=language, question=state["question"], answer=checked)
+    prompt = PROMPTS[persona].format(language=language, question=state["question"], answer=checked)
     simple = model.invoke([HumanMessage(prompt)]).content.strip()
     reasons = check_rewrite(checked, simple, state["question"])
     if reasons:
-        log.info("SIMPLIFY  kept the checked answer: %s (%.1f s)", "; ".join(reasons), time.time() - start)
-        return {"checked_answer": checked, "simplified": False,
+        log.info("SIMPLIFY  %s: kept the checked answer: %s (%.1f s)", persona, "; ".join(reasons), time.time() - start)
+        return {"checked_answer": checked + notes, "simplified": False,
                 "simplify_note": f"kept the checked answer: {'; '.join(reasons)}. Rewrite was: {simple}"}
-    log.info("SIMPLIFY  rewritten for a farmer (%.1f s)", time.time() - start)
-    return {"final": simple + notes, "checked_answer": checked, "simplified": True, "simplify_note": ""}
+    log.info("SIMPLIFY  rewritten for a %s (%.1f s)", persona, time.time() - start)
+    if persona == "officer":
+        return {"final": simple + notes, "checked_answer": checked + notes, "simplified": True, "simplify_note": ""}
+    # A farmer sees the simple answer alone (13 Nov: the conflict note and key figures were "too much for a farmer").
+    # The demonstration-data label always stays; the full checked answer with its notes is kept in checked_answer.
+    keep = DEMO_NOTE_START in notes
+    shown = simple + (notes[notes.index(DEMO_NOTE_START):].split("\n\nNote on sources:")[0] if keep else "")
+    return {"final": shown, "checked_answer": checked + notes, "simplified": True, "simplify_note": ""}

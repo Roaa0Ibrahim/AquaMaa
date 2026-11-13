@@ -1,0 +1,13 @@
+id,persona,role,language,question,why
+F1,farmer,farmer,en,My well water tastes saltier lately. Is it still okay for my date palms?,Own well and crop; needs a verdict and a next step
+F2,farmer,farmer,ar,هل يصلح ماء البئر لسقي النخيل إذا كانت ملوحته 3000 ملغم/لتر؟,Same need in Arabic with a reading the farmer has
+F3,farmer,farmer,ar-dialect,ليش ماي البير صار مالح؟,Qatari dialect: why did the farm well turn salty
+F4,farmer,farmer,en,Can my camels drink the water from my farm well?,Livestock on the farm; the knowledge base may not cover it
+F5,farmer,farmer,en,Do I need a licence to dig a new well on my farm?,Law: licensing under the 2025 water law
+F6,farmer,farmer,ar,هل أزرع الشعير أم الطماطم إذا كان ماء البئر مالحًا؟,A crop decision: options with trade-offs
+O1,officer,agriculture,en,How much groundwater do farms pump each year compared with the safe yield?,Farm abstraction against the safe yield
+O2,officer,municipality,en,How many farms are working and how many are not working in each municipality?,Farm census by municipality
+O3,officer,kahramaa,ar,كم عدد الآبار في مزارع بلدية الخور؟,Farm wells in one municipality in Arabic
+O4,officer,mecc,en,What is the penalty for a farm that digs a well without a licence?,Law enforcement on farms
+O5,officer,agriculture,en,Should we restrict groundwater for fodder crops or subsidise drip irrigation on farms first?,A farm policy decision: options with trade-offs
+O6,officer,agriculture,ar,ما متوسط ملوحة مياه آبار المزارع في قطر؟,Average salinity of farm wells in Arabic
