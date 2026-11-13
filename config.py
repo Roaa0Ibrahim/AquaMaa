@@ -8,11 +8,26 @@ EMBED_MODEL: the model that turns text into vectors. If you change it, run pytho
 because the saved knowledge base was built with the old one.
 """
 import os
+from pathlib import Path
+
+# Local secrets from .env (not in git): lines like  FANAR_API_KEY=...
+_env = Path(__file__).parent / ".env"
+if _env.exists():
+    for _line in _env.read_text(encoding="utf-8").splitlines():
+        if "=" in _line and not _line.lstrip().startswith("#"):
+            _k, _v = _line.split("=", 1)
+            os.environ.setdefault(_k.strip(), _v.strip())
 
 CHAT_MODEL = os.environ.get("AQUAMAA_MODEL", "qwen3:14b")
 # The model for the question layers (guess.py: misheard words and re-reading; understand.py: dialect). Its own
 # setting so an Arabic-first model (for example Fanar, from QCRI in Qatar) can be tried here without touching answers.
-UNDERSTAND_MODEL = os.environ.get("AQUAMAA_UNDERSTAND_MODEL", CHAT_MODEL)
+# Fanar (api.fanar.qa): used when UNDERSTAND_MODEL starts with "Fanar". Fanar-C-2-27B, the plain chat model: the
+# "Fanar" alias searches the web and answers the question instead of rewriting it (compare_fanar.py, 13 Nov).
+# Default when a key is in .env; local Qwen otherwise, and for any call where Fanar fails.
+FANAR_URL = "https://api.fanar.qa/v1/chat/completions"
+FANAR_API_KEY = os.environ.get("FANAR_API_KEY", "")
+FANAR_TIMEOUT = 8          # seconds before falling back to the local model
+UNDERSTAND_MODEL = os.environ.get("AQUAMAA_UNDERSTAND_MODEL", "Fanar-C-2-27B" if FANAR_API_KEY else CHAT_MODEL)
 MAX_TOOL_ROUNDS = 6        # tool rounds before the agent must answer
 MAX_REPAIRS = 1            # repair attempts after the verifier finds problems
 MAX_ANSWER_TOKENS = 500    # cap on each model reply; answers are at most 5 sentences

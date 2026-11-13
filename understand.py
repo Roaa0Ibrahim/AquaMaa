@@ -12,16 +12,14 @@ import time
 from difflib import SequenceMatcher
 
 from langchain_core.messages import HumanMessage
-from langchain_ollama import ChatOllama
 
-from config import OLLAMA_URL, UNDERSTAND_MODEL
+from understand_model import make_model
 
 DIALECT_WORDS = re.compile(
     r"(^|\s)(ليش|ليه|شنو|شو|وش|ايش|إيش|شلون|كيفك|الحين|ذحين|زين|مب|مو|ماي|الماي|البير|بير|أبي|ابي|ابغى|أبغى|وايد|"
     r"عشان|علشان|هال\S*|هذي|ذي|اللي|يبه|يعني|أقدر|اقدر|نقدر|ينفع|يصير|صار|خلاص|شي|اشلون|كذا)(\s|$|[؟?،,.])")
 MIN_SIMILARITY = 0.35          # dialect and standard Arabic differ a lot, so this only blocks a different question
-model = ChatOllama(model=UNDERSTAND_MODEL, temperature=0, reasoning=False, base_url=OLLAMA_URL, num_predict=120,
-                   keep_alive="2h")
+model = make_model(num_predict=120)     # local Qwen, or Fanar (understand_model.py)
 
 PROMPT = """Rewrite this question from Qatari or Gulf Arabic dialect into clear Modern Standard Arabic.
 Keep exactly the same meaning, the same numbers, units and place names. Don't answer it and don't add anything.
@@ -31,6 +29,14 @@ Examples:
 "شنو قراءة الحساس الحين؟" -> "ما قراءة الحساس الآن؟"
 Question: {text}
 Modern Standard Arabic:"""
+
+
+DIGITS = str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789")
+
+
+def numbers(text):
+    """The numbers in a text, Arabic-Indic digits read as 0-9, so ٣٠٠٠ and 3000 are equal."""
+    return sorted(re.findall(r"\d+(?:\.\d+)?", text.translate(DIGITS)))
 
 
 def is_dialect(text):
@@ -45,7 +51,9 @@ def to_msa(text):
     start = time.time()
     out = model.invoke([HumanMessage(PROMPT.format(text=text))]).content.strip()
     out = out.strip('"“”').splitlines()[0].strip() if out else ""
-    if not out or SequenceMatcher(None, text, out).ratio() < MIN_SIMILARITY:
+    out = out.translate(DIGITS)     # 0-9 digits, as the rest of AquaMaa reads them (Fanar wrote ٣٠٠٠ for 3000)
+    if not out or SequenceMatcher(None, text, out).ratio() < MIN_SIMILARITY or numbers(out) != numbers(text):
+        # a different question, or a number lost or changed (13 Nov: "تي دي اس ١٢٠٠" came back without 1200)
         return text, False, round(time.time() - start, 1)
     return out, out != text, round(time.time() - start, 1)
 

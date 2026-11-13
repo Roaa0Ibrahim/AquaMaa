@@ -22,9 +22,8 @@ from difflib import SequenceMatcher
 from pathlib import Path
 
 from langchain_core.messages import HumanMessage
-from langchain_ollama import ChatOllama
 
-from config import OLLAMA_URL, UNDERSTAND_MODEL
+from understand_model import make_model
 from understand import DIALECT_WORDS
 
 ROOT = Path(__file__).parent
@@ -81,8 +80,7 @@ def _spelled(texts):
 
 SPELLED, VOCAB = _vocabulary()               # SPELLED: core words to suggest; VOCAB: every word known as correct
 VOCAB_LIST = sorted(SPELLED)
-model = ChatOllama(model=UNDERSTAND_MODEL, temperature=0, reasoning=False, base_url=OLLAMA_URL, num_predict=120,
-                   keep_alive="2h")
+model = make_model(num_predict=120)     # local Qwen, or Fanar (understand_model.py)
 
 PROMPT = """You help AquaMaa, an assistant about groundwater wells, water quality, farms and sensors in Qatar.
 The question below came from speech recognition or typing. Some words may be mistakes: real words that look or sound
