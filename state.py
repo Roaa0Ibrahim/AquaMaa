@@ -15,6 +15,7 @@ class State(MessagesState):
     simplified: bool       # whether the farmer's rewrite passed its checks and is the answer shown
     simplify_note: str     # why a rewrite was not used, with the rewrite itself, for review
     persona: str           # who reads the answer: farmer or officer (from the website account's role)
+    grounding: dict        # live sensor data from Deema's dashboard, if the question came from her chat box
 
 
 def trace_of(messages):

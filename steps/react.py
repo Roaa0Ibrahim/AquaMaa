@@ -41,7 +41,8 @@ def agent_node(state):
         log.info("LIMIT     %d tool rounds reached, answering now (%.1f s)", MAX_TOOL_ROUNDS, time.time() - start)
         return {"messages": [reply]}
     reply = agent_model.invoke(state["messages"])
-    if not reply.tool_calls and state["rounds"] == 0:
+    # An answer from the live reading needs no search first (13 Nov: the live sensors from Deema's dashboard)
+    if not reply.tool_calls and state["rounds"] == 0 and "[live sensors" not in reply.content:
         # Rule 1 enforced in code: an answer before any search goes back once with a reminder.
         # Key statistics given before the agent starts don't count as a search (9 Nov: "where is the most number
         # of wells" answered from a key statistic without searching, and missed the municipality table)

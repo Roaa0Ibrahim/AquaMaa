@@ -27,7 +27,7 @@ from config import CHAT_MODEL
 HOST = os.environ.get("AQUAMAA_API_HOST", "127.0.0.1")
 PORT = int(os.environ.get("AQUAMAA_API_PORT", "8000"))
 API_KEY = os.environ.get("AQUAMAA_API_KEY")          # optional shared secret with Deema's server
-MAX_QUESTION = 500                                     # characters
+MAX_QUESTION = 2000                                    # characters (Deema's assistant allows 2000)
 
 app = FastAPI(title="AquaMaa agent", version="1.0")
 one_at_a_time = asyncio.Lock()
@@ -36,6 +36,8 @@ one_at_a_time = asyncio.Lock()
 class Question(BaseModel):
     question: str = Field(min_length=3, max_length=MAX_QUESTION)
     role: Optional[str] = Field(default=None, max_length=40, description="The signed-in user's dashboard role")
+    grounding: Optional[dict] = Field(default=None, description="Live sensor data from Deema's dashboard "
+                                      "(server/assistant.js buildGrounding); read by steps/live.py")
 
 
 def sources_of(answer):
@@ -60,7 +62,8 @@ async def ask_endpoint(q: Question, x_aquamaa_key: Optional[str] = Header(defaul
     question = re.sub(r"\s+", " ", q.question).strip()
     log.info("API       question from role=%s: %s", q.role or "-", question)
     async with one_at_a_time:                              # one model job at a time
-        r = await asyncio.to_thread(ask, question, True, q.role)   # the role picks the persona: farmer or officer
+        # the role picks the persona (farmer or officer); the grounding gives the live sensor readings
+        r = await asyncio.to_thread(ask, question, True, q.role, q.grounding)
     return {
         "answer": r["answer"],
         "sources": sources_of(r["answer"]),

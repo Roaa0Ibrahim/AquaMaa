@@ -30,6 +30,7 @@ from config import MAX_REPAIRS, MAX_TOOL_ROUNDS
 from prompts import MODEL_DOWN
 from state import State, trace_of
 from steps.figures import figures_block, figures_node
+from steps.live import live_node
 from steps.react import after_agent, agent_node, tools_node
 from steps.route import route_node
 from steps.simplify import persona_of, simplify_node
@@ -39,6 +40,7 @@ TRACE_DIR = Path("logs/traces")
 
 graph = StateGraph(State)
 graph.add_node("route", route_node)
+graph.add_node("live", live_node)
 graph.add_node("figures", figures_node)
 graph.add_node("agent", agent_node)
 graph.add_node("tools", tools_node)
@@ -47,7 +49,8 @@ graph.add_node("repair", repair_node)
 graph.add_node("finalize", finalize_node)
 graph.add_node("simplify", simplify_node)
 graph.add_edge(START, "route")
-graph.add_edge("route", "figures")
+graph.add_edge("route", "live")
+graph.add_edge("live", "figures")
 graph.add_edge("figures", "agent")
 graph.add_conditional_edges("agent", after_agent, {"tools": "tools", "verify": "verify"})
 graph.add_edge("tools", "agent")
@@ -58,12 +61,14 @@ graph.add_edge("simplify", END)
 app = graph.compile()
 
 
-def ask(question: str, save_trace: bool = True, role: str | None = None) -> dict:
-    """role: the website account's role; it picks the reader persona (farmer or officer, see steps/simplify.py)."""
+def ask(question: str, save_trace: bool = True, role: str | None = None, grounding: dict | None = None) -> dict:
+    """role: the website account's role; it picks the reader persona (farmer or officer, see steps/simplify.py).
+    grounding: live sensor data from Deema's dashboard, given to the agent by steps/live.py."""
     start = time.time()
     persona = persona_of(role)
     try:
-        final = app.invoke({"question": question, "persona": persona, "repairs": 0, "problems": []},
+        final = app.invoke({"question": question, "persona": persona, "grounding": grounding or {},
+                            "repairs": 0, "problems": []},
                            {"recursion_limit": 2 * (MAX_REPAIRS + 1) * (MAX_TOOL_ROUNDS + 2) + 8})
     except (ConnectionError, OSError, httpx.HTTPError, ollama.ResponseError) as error:
         # Milestone 5: the model is down or failed. A clear message instead of a crash, for the website and Pepper.
