@@ -8,6 +8,7 @@ Used by POST /clean in api.py, which the website chat box calls after speech rec
 Test:  python clean_transcript.py "كم عدد الإضرار الموجودة في منطقة سدرية الخيسر"
 """
 import csv
+import re
 import sys
 import time
 from difflib import SequenceMatcher
@@ -30,6 +31,8 @@ Usual words: آبار، بئر، البير، ماي، مياه جوفية، م�
 ترخيص، حساس، قراءة، wells, salinity, TDS, pH, irrigation, date palms, licence, sensor.
 Places in Qatar: {places}
 A place name that sounds close to one in this list was misheard: write the name from the list.
+The question is always about wells, water, farms or sensors: a word that doesn't fit (dust, damage, news) is a
+misheard water word, usually الآبار.
 Examples:
 "كم عدد الإضرار الموجودة في الخور" -> "كم عدد الآبار الموجودة في الخور"
 "ملوحة الماي في مزارع الذخيره والشحانيه" -> "ملوحة الماي في مزارع الذخيرة والشحانية"
@@ -38,19 +41,25 @@ Heard: {text}
 Corrected question only:"""
 
 
+# Words speech recognition often writes instead of الآبار (wells). After "عدد" or "كم" they make no sense in a
+# question to AquaMaa, so they are replaced in code before the model sees the text (13 Nov: الإضرار, then الغبار).
+WELLS_HEARD_AS = re.compile(r"((?:عدد|كم)\s+)(الغبار|غبار|الإضرار|الاضرار|الأضرار|أضرار|الأخبار|الاخبار|الأحبار|الاحبار)")
+
+
 def clean(text):
     """(corrected text, changed?, seconds)."""
-    text = (text or "").strip()
-    if len(text) < 3:
-        return text, False, 0.0
+    original = (text or "").strip()
+    if len(original) < 3:
+        return original, False, 0.0
     start = time.time()
+    text = WELLS_HEARD_AS.sub(r"\1الآبار", original)
     places = "، ".join(f"{p['name_ar']} ({p['name_en']})" for p in PLACES)
     out = model.invoke([HumanMessage(PROMPT.format(places=places, text=text))]).content.strip()
     out = out.strip('"“”').splitlines()[0].strip() if out else text
     similar = SequenceMatcher(None, text, out).ratio()
     if not out or similar < MIN_SIMILARITY:
-        return text, False, round(time.time() - start, 1)
-    return out, out != text, round(time.time() - start, 1)
+        out = text                                      # keep the code's own fix, drop the model's
+    return out, out != original, round(time.time() - start, 1)
 
 
 if __name__ == "__main__":
