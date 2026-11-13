@@ -11,10 +11,13 @@ The sensors already send their readings to the shared database (Munira's link); 
 ## Roaa: AI agent
 Today's work: make the milestones already on the main list work, nothing new. Details in [AquaMaa.md](AquaMaa.md).
 ### [x] Milestones 1-4: model, knowledge base, routing, agent loop (v1-v4)
-### [ ] Milestone 5: Error-handling routing
+### [x] Milestone 5: Error-handling routing (v5, 13 Nov)
 - **Done when:** each failure, forced on purpose, takes its route, and none produces an invented answer
-### [ ] Milestone 6: Simplification prompting (builds on Mais's Knowledge Milestone 2)
+- **Result:** 11 of 11 forced failures take their route, offline and live. Faithfulness before and after is carried to after the internal evaluation
+### [ ] Milestone 6: Simplification prompting (in progress, branch `milestone-6`)
 - **Done when:** the numbers match before and after, and 3 non-technical readers restate the main finding correctly
+- **Built (13 Nov):** answers rewritten for a farm owner or manager, in English and Arabic, with few-shot examples; used only when Python finds the same numbers and sources. Research: `context/research/simplification-for-farmers.md`
+- **First check:** 5 of 6 farmer questions simplified, each in the question's language. Still to do: the 3 non-technical readers
 ### [ ] Milestone 7: The website chat and Arabic text-to-speech (step 1, the text chat, done)
 - **Done when:** a native Arabic speaker rates 10 spoken answers as clear, and it works with no robot
 ### [x] Milestone 8: Reading the dashboard (v8)
@@ -30,8 +33,9 @@ Today's work: make the milestones already on the main list work, nothing new. De
 - **Done when:** "What is the salinity now?" gets the value just measured, with a gesture, and a second question gets an answer
 
 ## Deema: website
-### [ ] Milestone 1: The website reads the shared database
+### [ ] Milestone 1: The website reads the shared database (in progress)
 - **Done when:** the website shows the latest sensor reading stored in the database
+- **Status (13 Nov):** the dashboard is connected to Supabase and has its live sensor panels, but no reading shows yet: either the readings table has no read policy for the website (RLS), or the sensors sent nothing recently. Several pH columns: the values should be calculated in one place (the ESP32 or a database view), so the website, Pepper and the agent show the same numbers
 ### [ ] Milestone 2: Real data only
 - Replace all dummy data with real data
 - **Done when:** no dummy figure is left anywhere on the website
