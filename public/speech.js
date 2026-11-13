@@ -11,6 +11,7 @@
   if (!A || !A.hooks) return;
   const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   const arabicPage = () => document.documentElement.lang === 'ar';
+  const CLEAN_URL = 'http://127.0.0.1:8000/clean';   // the AquaMaa agent service on this laptop
   let rec = null;
   let heard = '';
   let lastWasSpoken = false;
@@ -34,8 +35,17 @@
         // Put the words in the question box to check before sending (13 Nov: "الآبار في سدرية الخيسة" was heard as
         // "الإضرار في منطقة سدرية الخيسر"; Qatari place names are often misheard). Press send or Enter to ask.
         const box = document.querySelector('input[aria-label="Message"]');
-        if (box) { box.value = text; box.focus(); box.setSelectionRange(text.length, text.length); }
-        else A.submitTranscript(text);
+        const put = (t) => {
+          if (box) { box.value = t; box.focus(); box.setSelectionRange(t.length, t.length); }
+          else A.submitTranscript(t);
+        };
+        put(text);
+        // Then AquaMaa fixes misheard words (python api.py, POST /clean, about 1-2 s); the box shows the result
+        fetch(CLEAN_URL, { method: 'POST', headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ text }), signal: AbortSignal.timeout(8000) })
+          .then((r) => (r.ok ? r.json() : null))
+          .then((j) => { if (j && j.changed && box && box.value === text) put(j.text); })
+          .catch(() => { /* the agent service is unreachable: keep what was heard */ });
       };
       try { rec.start(); } catch (e) { console.error(e); }
     };
