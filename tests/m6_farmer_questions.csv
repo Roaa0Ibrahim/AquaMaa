@@ -1,0 +1,7 @@
+id,question,language,kind
+F01,Can I irrigate tomatoes with brackish groundwater?,en,verdict
+F02,هل يمكن ري الطماطم بالمياه الجوفية المالحة؟,ar,verdict
+F03,What does a salinity of 2000 mg/L mean for my farm?,en,meaning
+F04,ماذا تعني ملوحة 2000 ملغم/لتر لمزرعتي؟,ar,meaning
+F05,Should I switch my farm to drip irrigation?,en,decision
+F06,هل أحوّل مزرعتي إلى الري بالتنقيط؟,ar,decision

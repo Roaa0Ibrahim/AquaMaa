@@ -1,7 +1,9 @@
 """The AquaMaa agent: connects the steps into one graph, and runs it.
 
     route -> figures -> agent <-> tools -> verify -(problems, once)-> repair -> agent
-                                          verify -(no problems, or after one repair)-> finalize -> end
+                                          verify -(no problems, or after one repair)-> finalize -> simplify -> end
+    simplify (Milestone 6, steps/simplify.py): the checked answer rewritten for a farmer, used only if Python finds
+    no changed number, source or language in it
 
 Each step lives in steps/, and each step's logic in a top-level module:
     steps/route.py    routing.py     the router's reading of the question, and the scope check
@@ -30,6 +32,7 @@ from state import State, trace_of
 from steps.figures import figures_block, figures_node
 from steps.react import after_agent, agent_node, tools_node
 from steps.route import route_node
+from steps.simplify import simplify_node
 from steps.verify import after_verify, finalize_node, repair_node, verify_node
 
 TRACE_DIR = Path("logs/traces")
@@ -42,6 +45,7 @@ graph.add_node("tools", tools_node)
 graph.add_node("verify", verify_node)
 graph.add_node("repair", repair_node)
 graph.add_node("finalize", finalize_node)
+graph.add_node("simplify", simplify_node)
 graph.add_edge(START, "route")
 graph.add_edge("route", "figures")
 graph.add_edge("figures", "agent")
@@ -49,7 +53,8 @@ graph.add_conditional_edges("agent", after_agent, {"tools": "tools", "verify": "
 graph.add_edge("tools", "agent")
 graph.add_conditional_edges("verify", after_verify, {"repair": "repair", "finalize": "finalize"})
 graph.add_edge("repair", "agent")
-graph.add_edge("finalize", END)
+graph.add_edge("finalize", "simplify")
+graph.add_edge("simplify", END)
 app = graph.compile()
 
 
@@ -70,6 +75,8 @@ def ask(question: str, save_trace: bool = True) -> dict:
     result = dict(question=question, route=final["route"], answer=answer, tool_rounds=final["rounds"],
                   key_figures=[s["stat_id"] for s in figures], repairs=final.get("repairs", 0),
                   problems_left=final.get("problems", []), trace=trace_of(final["messages"]),
+                  checked_answer=final.get("checked_answer"), simplified=final.get("simplified", False),
+                  simplify_note=final.get("simplify_note", ""),
                   seconds=round(time.time() - start, 1))
     if save_trace:
         TRACE_DIR.mkdir(parents=True, exist_ok=True)

@@ -81,6 +81,60 @@ DASHBOARD_FIRST = ("This question is about the dashboard. Call read_dashboard fi
 DEMO_NOTE = ("Note: these dashboard figures are demonstration data, not real measurements. "
              "AquaMaa's verified figures come from its documents and tables.")
 
+# Milestone 6: rewrite the checked answer for a farmer. Built on context/research/simplification-for-farmers.md:
+# verdict first, one thing to do, few numbers each with its meaning, options rather than orders.
+# The examples use made-up numbers and placeholder labels ([S1], [S2]); they are not test questions. Python checks
+# that the rewrite adds no number or label the checked answer doesn't have, so nothing can be copied from them.
+SIMPLIFY = """Rewrite the checked answer below for a farm owner or farm manager in Qatar who is not a water expert.
+
+Rules:
+- Use only what the checked answer says. Add no new fact, number or source.
+- Start with the verdict for their use (drinking, irrigation, livestock), then one thing they can do next.
+- Keep only the numbers that support the verdict, each with its unit and its meaning (high, normal, low).
+  Copy those numbers exactly. Never round them or change their units.
+- Keep the source labels in square brackets exactly as written, after the sentence they support.
+- If the checked answer says something is not in the sources, keep that, in plain words.
+- If the question asks what to do, give 2 or 3 options, each with one trade-off, and let the farmer choose.
+- Short, everyday words. At most 4 sentences, no headings, no lists of sections.
+- {language}
+
+Example 1
+Question: Is my well water okay for growing tomatoes?
+Checked answer: The latest reading shows total dissolved solids of 3,100 mg/L [S1]. FAO 29 places irrigation water
+above 2,000 mg/L in the severe restriction class [S2]. Tomatoes are rated moderately sensitive to salinity [S3].
+Rewritten: Your well water is too salty for tomatoes: its salt level is 3,100 mg/L, which is high [S1]. Water above
+2,000 mg/L limits most crops a lot [S2], and tomatoes are fairly sensitive to salt [S3]. You could choose a more
+salt-tolerant crop, or mix this water with fresher water before using it.
+
+Example 2
+Question: هل ماء البئر صالح للشرب؟
+Checked answer: Total dissolved solids in the latest reading are 1,450 mg/L [S1]. The drinking limit used by AquaMaa
+is 1,000 mg/L [S2]. The pH is 7.6, within the normal range of 6.5 to 8.5 [S3].
+Rewritten: ماء البئر غير صالح للشرب، لأن نسبة الأملاح فيه 1,450 ملغم/لتر، وهي أعلى من حد الشرب البالغ 1,000 ملغم/لتر [S1] [S2].
+درجة الحموضة 7.6، وهي طبيعية [S3]. يمكنك استخدامه للري، أو معالجته قبل الشرب.
+
+Example 3
+Question: Should I keep pumping from my well this summer?
+Checked answer: Groundwater abstraction was 4.0 times the safe yield in 2023 [S1]. Over-pumping raises salinity as
+seawater moves inland [S2]. Drip irrigation uses less water than flood irrigation [S3].
+Rewritten: Qatar pumps 4.0 times more groundwater than nature refills, and that makes wells saltier over time [S1] [S2].
+You have three options: keep pumping as now, which is easiest but may make your water saltier; switch to drip
+irrigation, which costs money but uses less water [S3]; or pump less in the hottest months, which protects the well
+but may lower your harvest. The choice depends on your crops and budget.
+
+Example 4
+Question: How much fluoride is in my well?
+Checked answer: AquaMaa's sources don't give fluoride levels for Qatar's groundwater. The 2020 well survey reports
+salinity, with an average of about 4,600 mg/L [S1].
+Rewritten: AquaMaa doesn't have fluoride data for wells in Qatar, so it can't tell you the fluoride level. It only
+knows that wells in a 2020 survey were very salty on average, about 4,600 mg/L [S1]. A lab test of your water can
+measure fluoride.
+
+Now rewrite this one.
+Question: {question}
+Checked answer: {answer}
+Rewritten:"""
+
 FIRST_SEARCH = ("You haven't searched AquaMaa's sources yet. Call search_documents or lookup_table for the question "
                 "first (rule 1), then answer.")
 

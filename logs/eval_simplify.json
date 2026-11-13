@@ -1,0 +1,80 @@
+[
+ {
+  "id": "F01",
+  "kind": "verdict",
+  "language": "en",
+  "question": "Can I irrigate tomatoes with brackish groundwater?",
+  "simplified": true,
+  "language_ok": true,
+  "sentences": 4,
+  "before": "[misconceptions.csv p.9] Brackish water can still irrigate salt-tolerant crops with management, under FAO 29's restriction levels.\n\n[misconceptions.csv p.9] irrigation with water of moderate to high salinity (ECw > 1.0 dS/m) can lead to poor germination due to salt accumulation in the seed row, especially when crops are seeded on raised beds and furrow irrigated.",
+  "after": "You can irrigate salt-tolerant crops with brackish water if managed properly, as it is allowed under FAO 29's restriction levels [misconceptions.csv p.9]. However, using water with moderate to high salinity (ECw > 1.0 dS/m) may cause poor germination because salt can build up in the seed row, especially with raised beds and furrow irrigation [misconceptions.csv p.9]. You could try using drip irrigation instead, which reduces salt buildup but costs more, or mix brackish water with fresh water, which may lower salt levels but uses more water. Choose based on your budget and crop needs.\n\nKey figures:\n- FAO irrigation threshold for TDS: 450 / 2,000 mg/L (none / slight to moderate / severe) [limits.csv row 3]\n- Groundwater abstraction: 200 million m3 (2023) [total-abstraction-from-ground-water.csv row 3]",
+  "note": "",
+  "seconds": 39.6
+ },
+ {
+  "id": "F02",
+  "kind": "verdict",
+  "language": "ar",
+  "question": "هل يمكن ري الطماطم بالمياه الجوفية المالحة؟",
+  "simplified": true,
+  "language_ok": true,
+  "sentences": 3,
+  "before": "لا، لا يمكن ري الطماطم بالمياه الجوفية المالحة بشكل مباشر دون معالجة، لأن المحتوى العالي من الملح (TDS) في المياه الجوفية المالحة قد يؤثر سلبًا على نمو النباتات ويزيد من خطر تراكم الملح في التربة [limits.csv row 3]. ومع ذلك، يمكن استخدام المياه المالحة في الري إذا تم تخفيفها أو معالجتها لخفض تركيز الملح إلى مستويات آمنة، كما يُوصى به في بعض الممارسات الزراعية [FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.4].",
+  "after": "لا، لا يمكن ري الطماطم بالمياه الجوفية المالحة بشكل مباشر دون معالجة، لأن المحتوى العالي من الملح (TDS) في المياه الجوفية المالحة قد يؤثر سلبًا على نمو النباتات ويزيد من خطر تراكم الملح في التربة [limits.csv row 3]. يمكن تخفيف المياه المالحة أو معالجتها لخفض تركيز الملح إلى مستويات آمنة، كما يُوصى به في بعض الممارسات الزراعية [FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.4]. يمكنك إما تخفيف المياه قبل الري، وهو أرخص لكنه يستهلك موارد مائية إضافية، أو تثبيت نظام معالجة المياه، وهو أكثر تكلفة لكنه يوفر مياه صالحة للاستخدام الطويل الأمد.\n\nKey figures:\n- Average TDS in the 201-well survey: about 4,600 mg/L (2020) [misconceptions.csv row 10]\n- FAO irrigation threshold for TDS: 450 / 2,000 mg/L (none / slight to moderate / severe) [limits.csv row 3]",
+  "note": "",
+  "seconds": 44.8
+ },
+ {
+  "id": "F03",
+  "kind": "meaning",
+  "language": "en",
+  "question": "What does a salinity of 2000 mg/L mean for my farm?",
+  "simplified": true,
+  "language_ok": true,
+  "sentences": 4,
+  "before": "The information provided is based on general knowledge and guidelines from the Food and Agriculture Organization (FAO) regarding water quality for agriculture [general knowledge]. Salinity, measured by electrical conductivity (ECw), affects crop suitability, with higher levels requiring leaching or limiting to salt-tolerant crops [general knowledge]. Sodium adsorption ratio (SAR) influences soil structure, with higher values increasing the risk of soil dispersion [general knowledge]. Specific ions like chloride and boron can be toxic to crops at high concentrations [general knowledge]. Nitrate levels also impact water quality, with safe limits set for irrigation [general knowledge].",
+  "after": "A salinity of 2,000 mg/L is high for farming, as it can affect crops and soil [general knowledge]. You could choose salt-tolerant plants, which may grow slower, or use more water to wash salt away, which uses more water. You could also test for other things like sodium or boron, which might be harmful too [general knowledge]. The choice depends on what you grow and how much water you have.\n\nKey figures:\n- Average TDS in the 201-well survey: about 4,600 mg/L (2020) [misconceptions.csv row 10]\n- Groundwater samples unsuitable for irrigation: up to 95 % (not stated) [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1]",
+  "note": "",
+  "seconds": 66.9
+ },
+ {
+  "id": "F04",
+  "kind": "meaning",
+  "language": "ar",
+  "question": "ماذا تعني ملوحة 2000 ملغم/لتر لمزرعتي؟",
+  "simplified": false,
+  "language_ok": false,
+  "sentences": 1,
+  "before": null,
+  "after": "AquaMaa's sources don't contain enough evidence to answer this question.\n\nSome points couldn't be confirmed from AquaMaa's sources, so they were left out.\n\nKey figures:\n- Groundwater samples unsuitable for irrigation: up to 95 % (not stated) [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1]\n- Wells on farms (working and not working): 4,564 wells (2023) [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv row 91]",
+  "note": "",
+  "seconds": 64.7
+ },
+ {
+  "id": "F05",
+  "kind": "decision",
+  "language": "en",
+  "question": "Should I switch my farm to drip irrigation?",
+  "simplified": true,
+  "language_ok": true,
+  "sentences": 3,
+  "before": "Drip irrigation is more efficient compared to other methods, as it applies water directly to the plant roots, minimizing water loss due to evaporation and runoff [general knowledge]. For farming in Qatar, drip irrigation helps conserve water, which is a critical resource in a region with severe water scarcity [NPC_Water_Statistics_2023.txt p.41].",
+  "after": "Switching to drip irrigation could help your farm use water more efficiently, as it sends water directly to plant roots and reduces waste [NPC_Water_Statistics_2023.txt p.41]. You could try drip irrigation, which saves water but costs more to set up; keep using your current method, which is cheaper but uses more water; or mix drip with other methods, which balances cost and water use. The choice depends on your budget and how much water you need to save.\n\nKey figures:\n- FAO irrigation threshold for TDS: 450 / 2,000 mg/L (none / slight to moderate / severe) [limits.csv row 3]\n- Groundwater abstraction before the 2023 revision: 250 million m3 a year (2019-2022) [Kahramaa_Statistics_Report_2023.txt p.80]",
+  "note": "",
+  "seconds": 39.4
+ },
+ {
+  "id": "F06",
+  "kind": "decision",
+  "language": "ar",
+  "question": "هل أحوّل مزرعتي إلى الري بالتنقيط؟",
+  "simplified": true,
+  "language_ok": true,
+  "sentences": 3,
+  "before": "الري بالتنقيط يقلل من استخدام المياه في المزارع، وهو أسلوب يُستخدم لتقديم الماء مباشرة إلى جذور النبات، مما يقلل من الهدر الناتج عن التبخر أو التسرب [general knowledge]. كما يساعد على تقليل كمية الماء المطلوبة للري، مما يزيد من كفاءة استخدام المياه [FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.4].",
+  "after": "الري بالتنقيط يقلل من استخدام المياه، وهو أسلوب يُستخدم لتقديم الماء مباشرة إلى جذور النبات، مما يقلل من الهدر الناتج عن التبخر أو التسرب [general knowledge]. كما يساعد على تقليل كمية الماء المطلوبة للري، مما يزيد من كفاءة استخدام المياه [FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.4]. يمكنك البدء بالتنقيط لتوفير المياه، لكنه يتطلب استثماراً مالياً، أو تبقى مع الري التقليدي الذي يكلف أقل لكنه يستهلك مزيداً من المياه.",
+  "note": "",
+  "seconds": 32.0
+ }
+]
