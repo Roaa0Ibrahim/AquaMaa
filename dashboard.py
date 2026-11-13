@@ -56,6 +56,23 @@ def _get(path, **params):
     return r.json()
 
 
+def grounding(page="dashboard"):
+    """The live sensor data as Deema's server prepares it for her chat box (POST /api/assistant/context): each
+    device's latest values, online or offline, her thresholds, and her alerts. Read by alerts.py."""
+    try:
+        if _session is None:
+            _login()
+        r = _session.post(f"{URL}/api/assistant/context", json={"page": page, "context": {}}, timeout=15)
+        if r.status_code == 401:
+            _login()
+            r = _session.post(f"{URL}/api/assistant/context", json={"page": page, "context": {}}, timeout=15)
+    except requests.RequestException as error:
+        raise DashboardError(f"The dashboard at {URL} can't be reached: {error.__class__.__name__}") from error
+    if r.status_code != 200:
+        raise DashboardError(f"/api/assistant/context returned {r.status_code}: {r.text[:120]}")
+    return r.json()
+
+
 def _status(item):
     parts = [f"status: {item.get('status')}" if item.get("status") else "", f"source: {item.get('source')}" if item.get("source") else ""]
     return f" ({'; '.join(p for p in parts if p)})" if any(parts) else ""

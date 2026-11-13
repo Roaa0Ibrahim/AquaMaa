@@ -1,6 +1,8 @@
 """The agent as a small web service, so Deema's dashboard can send it questions (the website chat).
 
     GET  /health  -> {"status": "ok", "model": ...}                   Deema's server can check the agent is up
+    GET  /alerts?after=<seq> -> {"messages": [...], "last": <seq>}     spoken alerts for Pepper and the website
+                  (alerts.py; a background task checks Deema's live data every few seconds)
     POST /ask     <- {"question": "...", "role": "kahramaa"}          role is optional (ready for Milestone 6)
                   -> {"answer", "sources", "key_figures", "type", "in_scope", "repairs", "seconds", "error"}
 
@@ -19,10 +21,12 @@ from typing import Optional
 from fastapi import FastAPI, Header, HTTPException
 from pydantic import BaseModel, Field
 
+import dashboard
 from agent import ask
 from agent_log import log
+from alerts import AlertWatcher
 from checks import CITATION
-from config import CHAT_MODEL
+from config import ALERT_LANGUAGE, ALERT_POLL_SECONDS, ALERTS, CHAT_MODEL
 
 HOST = os.environ.get("AQUAMAA_API_HOST", "127.0.0.1")
 PORT = int(os.environ.get("AQUAMAA_API_PORT", "8000"))
@@ -31,6 +35,36 @@ MAX_QUESTION = 2000                                    # characters (Deema's ass
 
 app = FastAPI(title="AquaMaa agent", version="1.0")
 one_at_a_time = asyncio.Lock()
+watcher = AlertWatcher(lang=ALERT_LANGUAGE)
+
+
+async def watch_alerts():
+    """Checks Deema's live data every ALERT_POLL_SECONDS and turns new alerts into messages. No model call."""
+    failed = False
+    while True:
+        try:
+            grounding = await asyncio.to_thread(dashboard.grounding)
+            for m in watcher.process(grounding):
+                log.info("ALERT     %s %s: %s", m["kind"], m["id"], m["text"])
+            failed = False
+        except Exception as error:                         # the dashboard is down: try again, log once
+            if not failed:
+                log.info("ALERT     can't read the dashboard's live data (%s); will keep trying", error)
+            failed = True
+        await asyncio.sleep(ALERT_POLL_SECONDS)
+
+
+@app.on_event("startup")
+async def start_watcher():
+    if ALERTS:
+        asyncio.create_task(watch_alerts())
+        log.info("ALERT     watching the dashboard's live data every %.0f s", ALERT_POLL_SECONDS)
+
+
+@app.get("/alerts")
+def alerts(after: int = 0):
+    """Alert messages newer than `after` (the last seq the caller has seen). Pepper and the website poll this."""
+    return {"messages": watcher.since(after), "last": watcher.seq}
 
 
 class Question(BaseModel):
