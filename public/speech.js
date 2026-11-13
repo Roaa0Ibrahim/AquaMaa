@@ -1,7 +1,7 @@
 /* AquaMaa chat box: speech in and out, using the browser's own speech services (Chrome and Edge).
  * Plugs into the hooks assistant.js leaves for this:
  *   onListeningStart / onListeningStop  -> speech recognition: Arabic (Qatar) when the site is in Arabic, else English;
- *                                          the recognised text is sent like a typed question
+ *                                          the recognised text goes into the question box, to correct and then send
  *   onAssistantReply                    -> when the question was spoken, the answer is read aloud in its own language
  * Recognition in Chrome sends the audio to Google's speech service, so it needs internet. Nothing is stored here.
  */
@@ -30,7 +30,12 @@
       rec.onend = function () {
         const text = heard.trim();
         rec = null;
-        if (text) A.submitTranscript(text);
+        if (!text) return;
+        // Put the words in the question box to check before sending (13 Nov: "الآبار في سدرية الخيسة" was heard as
+        // "الإضرار في منطقة سدرية الخيسر"; Qatari place names are often misheard). Press send or Enter to ask.
+        const box = document.querySelector('input[aria-label="Message"]');
+        if (box) { box.value = text; box.focus(); box.setSelectionRange(text.length, text.length); }
+        else A.submitTranscript(text);
       };
       try { rec.start(); } catch (e) { console.error(e); }
     };
