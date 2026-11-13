@@ -126,7 +126,8 @@ function createAssistantRouter({ requireAuth }) {
     try {
       const v = validate(req.body, { needMessage: true });
       const grounding = await buildGrounding(v);
-      const out = await model.generate({ message: v.message, page: v.page, grounding });
+      // role: the signed-in user's role, so the AquaMaa agent can answer as for a farmer or an officer
+      const out = await model.generate({ message: v.message, page: v.page, grounding, role: req.user.role });
       res.json({ text: String(out && out.text != null ? out.text : '') });
     } catch (e) {
       if (e && e.code === 'assistant_not_connected') return res.status(501).json({ error: 'assistant_not_connected', message: e.message });
