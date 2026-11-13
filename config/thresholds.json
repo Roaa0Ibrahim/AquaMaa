@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "_readme": "Monitoring configuration for the sensor-based water quality indicator. Every value here is configurable. Reference ranges are DEFAULTS taken from commonly cited drinking-water aesthetic/operational references; they are NOT Qatari regulatory limits and have NOT been confirmed by any authority. Set 'confirmed' to true only after the responsible institution has approved them. A null range means 'no threshold configured': that parameter is displayed but not classified.",
+
+  "operations": {
+    "freshnessMinutes": 60,
+    "refreshSeconds": 60,
+    "deviceLookbackHours": 168,
+    "snapshotRowLimit": 2000,
+    "historyRowCap": 10000,
+    "historyPageSize": 1000,
+    "minAssessableParameters": 1,
+    "_readme": "freshnessMinutes: a reading older than this is stale and excluded from the current network summary; a device whose newest reading is older is shown as offline (set it to a few multiples of the devices' real reporting interval). deviceLookbackHours: devices with no reading in this window are not listed at all."
+  },
+
+  "validity": {
+    "_readme": "Physical plausibility filters (not quality thresholds). A value outside these bounds is treated as a sensor fault and ignored, never as zero.",
+    "ph": { "min": 0, "max": 14 },
+    "temperature": { "min": -10, "max": 100 },
+    "tds_ppm": { "min": 0, "max": null },
+    "turbidity_raw": { "min": 0, "max": null },
+    "turbidity_voltage": { "min": 0, "max": null },
+    "ph_raw": { "min": 0, "max": null },
+    "ph_voltage": { "min": 0, "max": null }
+  },
+
+  "parameters": {
+    "ph": {
+      "label": "pH",
+      "unit": "pH",
+      "neutralBand": { "min": 6.5, "max": 7.5 },
+      "reference": { "min": 6.5, "max": 8.5 },
+      "critical": null,
+      "confirmed": false,
+      "source": "Default reference range 6.5-8.5: US EPA National Secondary Drinking Water Regulations (aesthetic) and the range commonly cited by WHO for operational control. WHO sets no health-based guideline value for pH. neutralBand is a display convention for the Acidic / Neutral / Alkaline label only."
+    },
+    "temperature": {
+      "label": "Water temperature",
+      "unit": "°C",
+      "reference": null,
+      "critical": null,
+      "confirmed": false,
+      "source": "No universal threshold exists. Configure a site-specific or operational range here."
+    },
+    "tds_ppm": {
+      "label": "Total dissolved solids",
+      "unit": "ppm",
+      "reference": { "max": 1000 },
+      "critical": null,
+      "confirmed": false,
+      "source": "Default upper reference 1000 mg/L (~ppm): WHO background document on TDS in drinking-water (taste acceptability; no health-based guideline value). US EPA secondary standard is stricter (500 mg/L). Replace with the limit that applies to the intended use of each well."
+    },
+    "turbidity_raw": {
+      "label": "Turbidity",
+      "unit": "raw",
+      "reference": null,
+      "critical": null,
+      "calibration": { "validated": false, "unit": "NTU", "formula": null },
+      "confirmed": false,
+      "source": "The database holds raw sensor counts and voltage only. No validated NTU conversion exists, so turbidity is displayed raw, is never labelled NTU and never contributes to the assessment."
+    }
+  },
+
+  "deviation": {
+    "parameters": ["tds_ppm"],
+    "method": "Modified z-score of the current network median against the median of earlier time buckets in the selected period (Iglewicz & Hoaglin, 1993)",
+    "zThreshold": 3.5,
+    "minBaselinePoints": 12
+  },
+
+  "ranges": {
+    "24h": { "label": "Last 24 hours", "ms": 86400000, "bucketMs": 900000 },
+    "7d": { "label": "Last 7 days", "ms": 604800000, "bucketMs": 3600000 },
+    "30d": { "label": "Last 30 days", "ms": 2592000000, "bucketMs": 21600000 }
+  },
+  "defaultRange": "24h"
+}

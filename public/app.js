@@ -79,6 +79,10 @@
     bars: '<path d="M5 20V11M10 20V6M15 20v-7M20 20V9"/>',
     cog: '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/>',
     dl: '<path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/>',
+    flask: '<path d="M10 2v7.5a2 2 0 0 1-.2.9L4.7 20.5a1 1 0 0 0 .9 1.5h12.8a1 1 0 0 0 .9-1.5l-5.1-10.1a2 2 0 0 1-.2-.9V2M8.5 2h7M7 16h10"/>',
+    thermo: '<path d="M14 4v10.5a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/>',
+    tds: '<circle cx="8" cy="8" r="2"/><circle cx="16" cy="9" r="1.5"/><circle cx="12" cy="15" r="2.4"/><circle cx="6" cy="17" r="1.2"/><circle cx="18" cy="17" r="1.2"/>',
+    eye: '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',
   };
   const icon = (n) => `<svg class="i" viewBox="0 0 24 24" aria-hidden="true">${P[n] || ''}</svg>`;
   const logo = `<svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4s14 14.6 14 24.6A14 14 0 0 1 10 28.6C10 18.6 24 4 24 4Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M15 30c3-2.5 6-2.5 9 0s6 2.5 9 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>`;
@@ -101,6 +105,8 @@
   /* ================= login ================= */
   async function showLogin() {
     state.user = null;
+    if (window.SensorUI) SensorUI.stop();
+    if (window.AquaMaaAssistant) window.AquaMaaAssistant.unmount();
     $('#app').hidden = true;
     const el = $('#login');
     el.hidden = false;
@@ -182,7 +188,7 @@
           <div class="top-actions">
             <label class="search">${icon('search')}<input id="gsearch" placeholder="${esc(t('Search platform…'))}" aria-label="Search platform"></label>
             <label class="select-pill">${icon('cal')}<select id="year" aria-label="Reporting year"></select></label>
-            <div class="live" id="live"><i></i><span>${esc(t('Database live'))}</span></div>
+            <div class="live idle" id="live"><i></i><span>Connecting…</span></div>
             <button class="lang" id="lang">${lang === 'ar' ? 'English' : 'عربي'}</button>
             <a class="bell" href="#/notifications" aria-label="Notifications">${icon('bell')}<em id="bell-dot" hidden></em></a>
             <button class="me-btn" id="me" aria-label="Account menu"><div class="avatar">${esc(initials(u.name))}</div>${icon('chevd')}</button>
@@ -439,14 +445,8 @@
         <p>${esc(t('Real-time insights, trends, and resource status for the State of Qatar'))}</p></section>
       <div class="section-label rise" style="--d:60ms">${esc(t('AT A GLANCE'))} ${infoTip('Each figure shows its unit, period and data status.')}</div>
       <div class="glance">
-        <article class="card kpi k1 rise" ${dl()}><div class="k-head"><span class="k-ico">${icon('waves')}</span>${esc(t('Total extraction'))}</div>
-          <div class="k-body"><div><div class="big">${num(ex && ex.value)}</div><div class="unit">MCM / year</div></div>
-            <div class="k-right">${ex ? sparkline(ex.spark) : ''}${ex && ex.yoy_pct != null ? tag(`${ex.yoy_pct > 0 ? '+' : ''}${ex.yoy_pct}%`, ex.yoy_pct > 0 ? 'amber' : 'green', ex.yoy_pct > 0 ? 'up' : 'down') : ''}</div></div>
-          <div class="k-foot">${ex ? statusTag(ex.status) : '<span></span>'}</div></article>
-        <article class="card kpi k2 rise" ${dl()}><div class="k-head"><span class="k-ico amber">${icon('gauge')}</span>${esc(t('Estimated safe yield'))}</div>
-          <div class="k-body"><div><div class="big">${num(sy && sy.value, 1)}</div><div class="unit">MCM / year</div></div>
-            ${ring({ frac: 1, color: '#f5a524', track: '#fde9bd', size: 78, stroke: 8, center: ratio ? `<text x="50%" y="46%" text-anchor="middle" font-size="13.5" font-weight="700" fill="#0b2a4a">${ratio}×</text><text x="50%" y="60%" text-anchor="middle" font-size="8" fill="#5d7589">Extraction</text><text x="50%" y="70%" text-anchor="middle" font-size="8" fill="#5d7589">Ratio</text>` : '' })}</div>
-          <div class="k-foot">${sy ? statusTag(sy.status) : ''}<span>${sy ? esc(sy.period) : ''}</span></div></article>
+        <article class="card kpi sensor k4 rise" data-sensor-kpi="ph" ${dl()}></article>
+        <article class="card kpi sensor k2 rise" data-sensor-kpi="temperature" ${dl()}></article>
         <article class="card kpi k3 rise" ${dl()}><div class="k-head"><span class="k-ico blue">${icon('drop')}</span>${esc(t('Registered wells'))}</div>
           <div class="k-body"><div><div class="big">${num(d.wells.count)}</div><div class="unit">wells</div></div><div class="minibars"><i style="width:100%"></i><i style="width:45%;opacity:.55"></i></div></div>
           <div class="k-foot">${statusTag(d.wells.status)}</div></article>
@@ -454,14 +454,9 @@
           <div class="k-body"><div><div class="big">${num(d.stations.count)}</div><div class="unit">stations</div></div>
             <div class="dots" aria-hidden="true">${Array.from({ length: d.stations.count }, (_, i) => `<i class="${i < d.stations.active ? '' : 'off'}" style="animation-delay:${200 + i * 70}ms"></i>`).join('')}</div></div>
           <div class="k-foot">${tag(`${d.stations.active} active`, 'green')}${tag(covTag, 'grey')}</div></article>
-        <article class="card kpi k5 rise" ${dl()}><div class="k-head"><span class="k-ico green">${icon('shield')}</span>${esc(t('Water quality'))}</div>
-          <div class="k-body"><div><div class="big">${num(d.quality.suitable_pct)}</div><div class="unit">% suitable</div></div>
-            ${ring({ frac: (d.quality.suitable_pct || 0) / 100, color: '#16a34a', size: 70, stroke: 7, center: `<text x="50%" y="47%" text-anchor="middle" font-size="13" font-weight="700" fill="#0b2a4a">${fmt(d.quality.suitable_pct)}%</text><text x="50%" y="62%" text-anchor="middle" font-size="8.5" fill="#5d7589">Suitable</text>` })}</div>
-          <div class="k-foot">${statusTag(d.quality.status)}<span title="TDS ≤ ${d.quality.threshold_tds_mgl} mg/L">${d.quality.suitable_count}/${d.quality.total} wells</span></div></article>
-        <article class="card kpi k6 rise" ${dl()}><div class="k-head"><span class="k-ico blue">${icon('layers')}</span>${esc(t('Data availability'))}</div>
-          <div class="k-body"><div><div class="big">${d.integrations.connected}/${d.integrations.total}</div><div class="unit">integrations</div></div>
-            <div class="vbars" aria-hidden="true">${d.integrations.sources.map((s, i) => `<i class="${s.connected ? '' : 'off'}" style="height:${20 + i * 4}px;animation-delay:${200 + i * 80}ms"></i>`).join('')}</div></div>
-          <div class="k-foot">${tag(d.integrations.connected < d.integrations.total ? 'Incomplete' : 'Complete', d.integrations.connected < d.integrations.total ? 'amber' : 'green', d.integrations.connected < d.integrations.total ? 'alert' : 'check')}<span>${d.integrations.pct}% connected</span></div></article>
+        <article class="card kpi sensor k5 rise" data-sensor-kpi="wq" ${dl()}></article>
+        <article class="card kpi sensor k3 rise" data-sensor-kpi="tds_ppm" ${dl()}></article>
+        <article class="card kpi sensor k6 rise" data-sensor-kpi="turbidity_raw" ${dl()}></article>
       </div>
 
       <div class="row2">
@@ -495,9 +490,11 @@
           ${sec ? `<div class="sector"><div>${donut(sec.items.map((i) => ({ label: secLabel[i.key], value: i.value, color: colors[i.key] })), fmt(sec.total), 'MCM')}</div>
             <div class="sector-list">${sec.items.map((i) => `<div><span class="ic" style="color:${secIcon[i.key][1]}">${icon(secIcon[i.key][0])}</span><span>${esc(t(secLabel[i.key]))}</span><b>${i.pct}%</b></div>`).join('')}</div></div>
             <div class="chart-foot"><span class="l"><span>${statusTag(sec.status)}</span></span><span>Source: ${esc(sec.source)}</span></div>` : '<p class="unit">No sector data for this year.</p>'}</section>
-      </div>`;
+      </div>
+      <div id="sensor-section"></div>`;
 
     animateIn(view);
+    SensorUI.mountDashboard(view, $('#sensor-section'));
 
     const trendHost = $('#trend');
     const draw = () => {
@@ -511,9 +508,9 @@
     draw();
 
     // statusbar
-    $('#statusbar').innerHTML = `<span>${icon('refresh')} Platform updated ${esc(stamp(d.updated_at))}</span>
-      <span><i class="dot ${d.integrations.connected < d.integrations.total ? 'amber' : ''}"></i>Data status: <b>${d.integrations.connected} of ${d.integrations.total}</b> sources connected</span>
+    $('#statusbar').innerHTML = `<span id="sb-updated"></span><span id="sb-sensors"></span>
       <span>${icon('pin')} Geographic scope: <b>State of Qatar</b></span>`;
+    SensorUI.renderLive();
 
     // markers for the schematic map (after layout so the page is not blocked by the extra requests)
     const [wells, stations] = await Promise.all([api('/api/wells'), api('/api/stations')]);
@@ -573,12 +570,15 @@
   }
 
   async function pageQuality(view) {
+    view.innerHTML = '<div id="wq-sensors"></div><div id="wq-demo"></div>';
+    SensorUI.mountQuality($('#wq-sensors'));
     const w = await api('/api/wells');
     const rows = w.wells.filter((x) => x.tds_mgl != null).sort((a, b) => a.tds_mgl - b.tds_mgl);
     const max = Math.max(...rows.map((r) => r.tds_mgl), w.threshold_tds_mgl);
     const barH = 20, H = rows.length * (barH + 6) + 20, Wd = 700, L = 150;
     const x = (v) => L + (v / max) * (Wd - L - 60);
-    view.innerHTML = `<div class="page-head"><div><h1>${esc(t('Water Quality'))}</h1><p>Total dissolved solids (TDS) per well against the ${fmt(w.threshold_tds_mgl)} mg/L demonstration suitability threshold.</p></div></div>
+    $('#wq-demo').innerHTML = `<div class="section-label">REGISTERED WELLS · DEMONSTRATION DATA</div>
+      <p class="unit" style="margin:-4px 0 10px">Total dissolved solids (TDS) per registered well against the ${fmt(w.threshold_tds_mgl)} mg/L demonstration suitability threshold. Not linked to the live sensors above.</p>
       <section class="card"><div class="legend-inline"><span><i class="sw" style="background:#16a34a"></i>≤ threshold</span><span><i class="sw" style="background:#e08a00"></i>above threshold</span>
         <span>${rows.length} wells with measurements · ${w.wells.length - rows.length} without data</span></div>
         <div class="tbl-wrap"><svg viewBox="0 0 ${Wd} ${H}" width="100%" style="min-width:560px" role="img" aria-label="TDS per well">
@@ -641,6 +641,27 @@
       <p><a href="#/dashboard">Back to dashboard</a></p></section>`;
   }
 
+  /* ================= page context for the assistant ================= */
+  const pageCtx = { fn: null };
+  const currentPage = () => { const id = (location.hash.replace(/^#\//, '') || 'dashboard').split('?')[0]; return PAGE_INFO[id] ? id : 'dashboard'; };
+  window.AquaMaaPageContext = {
+    get() {
+      const id = currentPage(), info = PAGE_INFO[id];
+      let ctx = null;
+      try { ctx = pageCtx.fn ? pageCtx.fn() : null; } catch (e) { console.error(e); }
+      if (!ctx) ctx = { page: id, pageTitle: info.label, section: info.section, selectedDevice: null, dateRange: null, note: 'This page does not publish structured data to the assistant.' };
+      ctx.language = lang;
+      if (id === 'dashboard' && state.dash) {
+        const d = state.dash;
+        ctx.filters = { year: state.year, sensorRange: ctx.dateRange };
+        ctx.demonstrationData = { note: 'These dashboard figures are demonstration data, not live sensor readings.',
+          resourceBalance: d.extraction && d.safe_yield ? { extractionMCM: d.extraction.value, safeYieldMCM: d.safe_yield.value, ratio: d.ratio, period: d.year, status: 'demonstration' } : null,
+          registeredWells: d.wells.count, monitoringStations: d.stations.count };
+      }
+      return ctx;
+    },
+  };
+
   /* ================= router ================= */
   const PAGES = { dashboard: pageDashboard, map: pageMap, wells: pageWells, quality: pageQuality, extraction: pageExtraction, notifications: pageNotifications, reports: pageReports, settings: pageSettings };
 
@@ -649,6 +670,7 @@
     const id = (location.hash.replace(/^#\//, '') || 'dashboard').split('?')[0];
     const page = PAGE_INFO[id] ? id : 'dashboard';
     disposeMaps();
+    SensorUI.unmount(); pageCtx.fn = null;
     document.querySelectorAll('.nav a').forEach((a) => a.classList.toggle('active', a.dataset.page === page));
     $('#crumbs').innerHTML = `${esc(t(PAGE_INFO[page].section.replace(/^./, (c) => c)))}<span>/</span><b>${esc(t(PAGE_INFO[page].label))}</b>`;
     $('#year').closest('.select-pill').style.visibility = page === 'dashboard' ? 'visible' : 'hidden';
@@ -657,18 +679,24 @@
     const view = $('#view');
     try {
       if (PAGES[page]) await PAGES[page](view); else pagePlaceholder(view, page);
-      $('#live').classList.remove('off');
+      SensorUI.renderLive();
     } catch (e) {
       if (e.message === 'unauthenticated') return;
       view.innerHTML = `<section class="card placeholder"><h2>Something went wrong</h2><p>${esc(e.message)}</p></section>`;
-      $('#live').classList.add('off');
     }
     window.scrollTo(0, 0);
   }
 
+  let sensorInit = false;
   function boot() {
+    if (!sensorInit) {
+      SensorUI.init({ esc, icon, fmt, api, sparkline, ring, animateIn, setContext: (fn) => { pageCtx.fn = fn; } });
+      sensorInit = true;
+    }
     applyLang();
     buildShell();
+    SensorUI.start();
+    if (window.AquaMaaAssistant) window.AquaMaaAssistant.mount({ getContext: () => window.AquaMaaPageContext.get() });
     refreshBadge();
     route();
   }

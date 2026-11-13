@@ -1,0 +1,72 @@
+/* AquaMaa Intelligence Assistant: reuses the platform's colours, radii, shadows and type. */
+.aq-fab { position: fixed; inset-block-end: 22px; inset-inline-end: 22px; z-index: 70; width: 56px; height: 56px; border-radius: 50%; border: 0; color: #fff; cursor: pointer;
+  display: grid; place-items: center; background: linear-gradient(135deg, #14c8bd, #0a8f9b); box-shadow: 0 10px 24px rgba(10, 143, 155, .38), inset 0 1px 0 rgba(255, 255, 255, .3);
+  transition: transform .25s var(--ease, ease), box-shadow .25s; }
+.aq-fab:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 14px 28px rgba(10, 143, 155, .45); }
+.aq-fab:focus-visible { outline: 3px solid #fff; box-shadow: 0 0 0 6px rgba(18, 191, 183, .5); }
+.aq-fab svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.aq-fab .aq-rec { position: absolute; top: 3px; inset-inline-end: 3px; width: 13px; height: 13px; border-radius: 50%; background: #ef3340; border: 2px solid #fff; animation: aqpulse 1.2s infinite; }
+.aq-open .aq-fab { display: none; }
+
+.aq-panel { position: fixed; inset-block-end: 22px; inset-inline-end: 22px; z-index: 71; width: 388px; max-width: calc(100vw - 24px); height: min(580px, calc(100vh - 44px));
+  display: flex; flex-direction: column; background: #fff; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255, 255, 255, .9);
+  box-shadow: 0 24px 60px rgba(8, 72, 91, .28), 0 2px 8px rgba(8, 72, 91, .1); animation: aqin .28s var(--ease, ease) both; }
+.aq-panel[hidden] { display: none; }
+@keyframes aqin { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: none; } }
+@keyframes aqpulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(239, 51, 64, .5); } 50% { box-shadow: 0 0 0 6px rgba(239, 51, 64, 0); } }
+
+.aq-head { display: flex; align-items: center; gap: 10px; padding: 14px 14px 12px 16px; color: #fff; background: linear-gradient(135deg, #07465a, #0b8fa3); }
+.aq-head .aq-av { width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center; background: rgba(255, 255, 255, .16); flex: none; }
+.aq-head svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.aq-head .aq-t { min-width: 0; flex: 1; }
+.aq-head b { display: block; font-size: 14px; line-height: 1.2; }
+.aq-head small { display: block; font-size: 11.5px; opacity: .85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.aq-ibtn { width: 30px; height: 30px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, .25); background: rgba(255, 255, 255, .1); color: #fff; display: grid; place-items: center; cursor: pointer; flex: none; transition: background .2s; }
+.aq-ibtn:hover { background: rgba(255, 255, 255, .22); }
+.aq-ibtn svg { width: 16px; height: 16px; }
+
+.aq-ctx { display: none; padding: 10px 16px; background: #f1f8fb; border-bottom: 1px solid var(--line, #dfeef4); font-size: 12px; color: #29496a; line-height: 1.5; }
+.aq-ctx.show { display: block; }
+.aq-ctx b { color: var(--navy, #0b2a4a); }
+
+.aq-log { flex: 1; overflow-y: auto; padding: 14px 14px 6px; display: flex; flex-direction: column; gap: 10px; background: linear-gradient(180deg, #f7fcfd, #fff 40%); scroll-behavior: smooth; }
+.aq-msg { max-width: 86%; padding: 9px 12px; border-radius: 14px; font-size: 13.2px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; animation: aqin .25s both; }
+.aq-msg.user { align-self: flex-end; background: linear-gradient(135deg, #12bfb7, #0ea5a0); color: #fff; border-end-end-radius: 4px; }
+.aq-msg.assistant { align-self: flex-start; background: #eef6f9; color: var(--navy, #0b2a4a); border-end-start-radius: 4px; }
+.aq-msg.system { align-self: center; max-width: 94%; background: var(--amber-bg, #fff1d0); color: #8a5300; font-size: 12.3px; text-align: center; }
+.aq-msg time { display: block; font-size: 10.5px; opacity: .65; margin-top: 3px; }
+.aq-hello { color: var(--muted, #5d7589); font-size: 13px; line-height: 1.5; }
+.aq-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.aq-chips button { border: 1px solid var(--line, #dfeef4); background: #fff; border-radius: 999px; padding: 6px 11px; font-size: 12px; cursor: pointer; color: var(--navy, #0b2a4a); transition: border-color .2s, background .2s; text-align: start; }
+.aq-chips button:hover { border-color: var(--turq, #12bfb7); background: #effbfa; }
+
+.aq-typing { align-self: flex-start; display: inline-flex; gap: 4px; align-items: center; padding: 12px 14px; background: #eef6f9; border-radius: 14px; border-end-start-radius: 4px; }
+.aq-typing i { width: 7px; height: 7px; border-radius: 50%; background: #0ea5a0; animation: aqdot 1.1s infinite ease-in-out; }
+.aq-typing i:nth-child(2) { animation-delay: .15s; } .aq-typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes aqdot { 0%, 80%, 100% { transform: scale(.55); opacity: .5; } 40% { transform: scale(1); opacity: 1; } }
+
+.aq-listen { display: none; align-items: center; gap: 12px; margin: 0 12px 8px; padding: 9px 12px; border-radius: 12px; background: #fdeaea; color: #8f1d1d; font-size: 12.5px; }
+.aq-listen.show { display: flex; }
+.aq-listen .aq-dot { width: 10px; height: 10px; border-radius: 50%; background: #ef3340; animation: aqpulse 1.2s infinite; flex: none; }
+.aq-listen .aq-t { flex: 1; line-height: 1.35; }
+.aq-listen .aq-t b { display: block; }
+.aq-bars { display: flex; align-items: center; gap: 3px; height: 22px; }
+.aq-bars i { width: 3px; height: 4px; border-radius: 2px; background: #ef3340; transition: height .08s linear; }
+.aq-listen.wait { background: #eef6f9; color: #29496a; } .aq-listen.wait .aq-dot { background: #0ea5a0; animation: none; } .aq-listen.wait .aq-bars { display: none; }
+
+.aq-foot { display: flex; align-items: center; gap: 8px; padding: 10px 12px 12px; border-top: 1px solid var(--line, #dfeef4); background: #fff; }
+.aq-foot input { flex: 1; min-width: 0; height: 40px; border: 1px solid var(--line, #dfeef4); border-radius: 12px; padding: 0 13px; font: inherit; font-size: 13.2px; background: #f8fcfd; transition: border-color .2s, box-shadow .2s; }
+.aq-foot input:focus { outline: none; border-color: var(--turq, #12bfb7); box-shadow: 0 0 0 3px rgba(18, 191, 183, .16); }
+.aq-round { width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--line, #dfeef4); background: #fff; color: var(--navy, #0b2a4a); display: grid; place-items: center; cursor: pointer; flex: none; transition: background .2s, transform .15s; }
+.aq-round svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.aq-round:hover:not(:disabled) { background: #effbfa; }
+.aq-round.send { background: linear-gradient(90deg, #12bfb7, #0ea5a0); color: #fff; border: 0; }
+.aq-round.mic.on { background: #ef3340; color: #fff; border-color: #ef3340; animation: aqpulse 1.2s infinite; }
+.aq-round:disabled { opacity: .45; cursor: not-allowed; }
+.aq-round:focus-visible, .aq-chips button:focus-visible, .aq-ibtn:focus-visible { outline: 2px solid var(--turq, #12bfb7); outline-offset: 2px; }
+
+@media (max-width: 520px) {
+  .aq-panel { inset-inline: 8px; inset-block-end: 8px; width: auto; max-width: none; height: min(76vh, 600px); }
+  .aq-fab { inset-block-end: 16px; inset-inline-end: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .aq-panel, .aq-msg, .aq-fab, .aq-typing i, .aq-dot, .aq-rec { animation: none !important; transition: none !important; } }

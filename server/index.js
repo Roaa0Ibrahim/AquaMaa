@@ -1,12 +1,18 @@
 'use strict';
 const path = require('path');
+try { process.loadEnvFile(path.join(__dirname, '..', '.env')); } catch { /* .env is optional; real environment variables still apply */ }
 const express = require('express');
 const { db } = require('./db');
 const auth = require('./auth');
+const sensorConfig = require('./sensorConfig');
+const { getSupabasePublic } = sensorConfig;
+const { createAssistantRouter } = require('./assistant');
 
 const app = express();
 app.disable('x-powered-by');
-app.use(express.json({ limit: '10kb' }));
+// The assistant router has its own, larger body limit (it receives page context).
+const smallJson = express.json({ limit: '10kb' });
+app.use((req, res, next) => (req.path.startsWith('/api/assistant') ? next() : smallJson(req, res, next)));
 
 // Basic security headers.
 app.use((req, res, next) => {
@@ -39,7 +45,7 @@ function requireAuth(req, res, next) {
 }
 
 const ROLE_INSIGHTS = {
-  admin: 'Platform-wide view. Review the three data integrations that are not yet connected to improve evidence coverage.',
+  admin: 'Platform-wide view. Live sensor indicators come from the Supabase readings table; the registry, map and extraction figures are still demonstration data.',
   kahramaa: 'Supply planning: municipal abstraction is the share most relevant to KAHRAMAA. Compare it with the estimated safe yield before committing groundwater to new supply.',
   mecc: 'Environmental protection: extraction far exceeds the estimated safe yield for the same period. Prioritise recharge studies and verification of the estimate.',
   municipality: 'Urban planning: only a small share of registered wells meet the TDS threshold. Treat remaining wells as candidates for treatment or non-potable use.',
@@ -87,7 +93,6 @@ app.get('/api/dashboard', requireAuth, (req, res) => {
   if (year == null) return res.status(400).json({ error: `year must be an integer between ${YEAR_MIN} and ${YEAR_MAX}` });
 
   const cur = db.prepare('SELECT * FROM extraction_annual WHERE year=?').get(year);
-  const prev = db.prepare('SELECT total FROM extraction_annual WHERE year=?').get(year - 1);
   const sy = db.prepare('SELECT * FROM safe_yield WHERE id=1').get();
   const trend = db.prepare('SELECT year,total FROM extraction_annual ORDER BY year').all();
 
@@ -96,12 +101,8 @@ app.get('/api/dashboard', requireAuth, (req, res) => {
   const periodPrefix = `${year}-`;
   const received = db.prepare('SELECT COUNT(*) c FROM readings WHERE period LIKE ?').get(`${periodPrefix}%`).c;
   const expected = stations.length * 12;
-  const suitable = wells.filter((w) => w.tds_mgl != null && w.tds_mgl <= SAFE_TDS).length;
-  const sources = db.prepare('SELECT * FROM data_sources').all();
-  const connected = sources.filter((s) => s.connected).length;
   const meta = Object.fromEntries(db.prepare('SELECT key,value FROM meta').all().map((m) => [m.key, m.value]));
 
-  const yoy = cur && prev ? round(((cur.total - prev.total) / prev.total) * 100, 1) : null;
   // The safe-yield estimate applies to a single reporting period; only compare like with like.
   const comparable = cur && sy && String(year) === sy.period;
   const sectorTotal = cur ? cur.agriculture + cur.municipal + cur.industrial : 0;
@@ -113,9 +114,8 @@ app.get('/api/dashboard', requireAuth, (req, res) => {
     updated_at: meta.last_data_update,
     insight: ROLE_INSIGHTS[req.user.role] || ROLE_INSIGHTS.researcher,
     extraction: cur && {
-      value: cur.total, unit: cur.unit, yoy_pct: yoy, period: String(year),
+      value: cur.total, unit: cur.unit, period: String(year),
       source: cur.source, status: cur.data_status,
-      spark: trend.filter((t) => t.year <= year).slice(-10).map((t) => t.total),
     },
     safe_yield: sy && { value: sy.value, unit: sy.unit, period: sy.period, source: sy.source, status: sy.data_status },
     ratio: comparable ? round(cur.total / sy.value, 2) : null,
@@ -125,14 +125,6 @@ app.get('/api/dashboard', requireAuth, (req, res) => {
       active: stations.filter((s) => s.status === 'active').length,
       expected, received,
       coverage_pct: received ? round((received / expected) * 100, 0) : null,
-    },
-    quality: {
-      suitable_pct: wells.length ? round((suitable / wells.length) * 100, 0) : null,
-      suitable_count: suitable, total: wells.length, threshold_tds_mgl: SAFE_TDS, status: 'demonstration',
-    },
-    integrations: {
-      connected, total: sources.length, pct: sources.length ? round((connected / sources.length) * 100, 0) : 0,
-      sources,
     },
     trend,
     sectors: cur && {
@@ -191,6 +183,25 @@ app.post('/api/notifications/:id/read', requireAuth, (req, res) => {
   db.prepare('UPDATE notifications SET read=1 WHERE id=?').run(id);
   res.json({ ok: true });
 });
+
+// ---------- live sensor configuration (public values only) ----------
+app.get('/api/config', requireAuth, (req, res) => {
+  const pub = getSupabasePublic();
+  res.json({
+    supabase: pub.ok ? { url: pub.url, publishableKey: pub.key } : null,
+    configError: pub.ok ? null : pub.error,
+    sensors: sensorConfig.getSensorConfig(),
+  });
+});
+
+// Browser build of supabase-js, served locally so the dashboard does not depend on a CDN.
+app.get('/vendor/supabase.js', (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=86400');
+  res.sendFile(path.join(__dirname, '..', 'node_modules', '@supabase', 'supabase-js', 'dist', 'umd', 'supabase.js'));
+});
+
+// ---------- AI assistant (model call is a stub; see server/assistant-model.js) ----------
+app.use('/api/assistant', createAssistantRouter({ requireAuth }));
 
 app.use('/api', (req, res) => res.status(404).json({ error: 'Not found' }));
 
