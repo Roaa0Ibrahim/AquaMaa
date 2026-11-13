@@ -19,7 +19,10 @@ import re
 from typing import Optional
 
 from fastapi import FastAPI, Header, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
+
+from clean_transcript import clean
 
 import dashboard
 from agent import ask
@@ -34,6 +37,9 @@ API_KEY = os.environ.get("AQUAMAA_API_KEY")          # optional shared secret wi
 MAX_QUESTION = 2000                                    # characters (Deema's assistant allows 2000)
 
 app = FastAPI(title="AquaMaa agent", version="1.0")
+# The website (Deema's dashboard on this laptop) calls /clean and /alerts straight from the browser
+app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+                   allow_methods=["GET", "POST"], allow_headers=["Content-Type"])
 one_at_a_time = asyncio.Lock()
 watcher = AlertWatcher(lang=ALERT_LANGUAGE)
 
@@ -59,6 +65,21 @@ async def start_watcher():
     if ALERTS:
         asyncio.create_task(watch_alerts())
         log.info("ALERT     watching the dashboard's live data every %.0f s", ALERT_POLL_SECONDS)
+
+
+class Heard(BaseModel):
+    text: str = Field(min_length=1, max_length=MAX_QUESTION)
+
+
+@app.post("/clean")
+async def clean_spoken(h: Heard):
+    """Fixes speech-recognition mistakes in a spoken question (clean_transcript.py). Called by the website chat box
+    right after the browser recognises speech, before the question is sent."""
+    async with one_at_a_time:                              # it uses the model too: one job at a time
+        text, changed, seconds = await asyncio.to_thread(clean, h.text)
+    if changed:
+        log.info("CLEAN     %s -> %s (%.1f s)", h.text, text, seconds)
+    return {"text": text, "changed": changed, "seconds": seconds}
 
 
 @app.get("/alerts")

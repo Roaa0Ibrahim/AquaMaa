@@ -27,6 +27,13 @@ suitability,ar,هل يمكن ري الطماطم بهذا الماء؟
 suitability,ar,هل هذا الماء صالح للشرب؟
 suitability,ar-dialect,أقدر أسقي الزرع بهالماي؟
 suitability,ar-dialect,الماي هذا ينفع للنخل؟
+statistic,en,How many wells are there on farms in Al Rayyan?
+statistic,en,How many farms are in Al Shamal?
+statistic,en,Which municipality has the most wells?
+statistic,ar,كم عدد الآبار في مزارع الريان؟
+statistic,ar,كم عدد المزارع في الشمال؟
+statistic,ar,ما البلدية التي فيها أكثر عدد من الآبار؟
+statistic,ar-dialect,كم بير في مزارع الشحانية؟
 law,en,Do I need a licence to dig a new well?
 law,en,What is the fine for an unlicensed well?
 law,en,How far apart must wells be?
@@ -40,3 +47,7 @@ explain,en,What makes well water salty?
 explain,ar,لماذا تصبح مياه الآبار مالحة؟
 explain,ar,ما سبب ملوحة المياه الجوفية في قطر؟
 explain,ar-dialect,ليش ماي البير صار مالح؟
+explain,en,How do I test the quality of my well water?
+explain,en,How can I measure the salinity of my well?
+explain,ar,كيف أفحص جودة مياه البئر؟
+explain,ar,كيف أعرف إذا كان ماء البئر صالحًا؟

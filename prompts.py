@@ -233,6 +233,33 @@ PHRASE_STYLE = {
                 "with its numbers and source first, then what it means for monitoring or planning."),
 }
 
+# Fixed messages that Python adds to answers, in Arabic for Arabic questions (13 Nov: "كيف اقيس جودة ماء البير" got the
+# English "not enough evidence" message). English text -> Arabic text; applied by localize() at the end of ask().
+ARABIC_FIXED = {
+    "AquaMaa's sources don't contain enough evidence to answer this question.":
+        "لا تحتوي مصادر أكوا ماء على معلومات كافية للإجابة عن هذا السؤال.",
+    "Some points couldn't be confirmed from AquaMaa's sources, so they were left out.":
+        "حُذفت بعض النقاط لأنه تعذّر تأكيدها من مصادر أكوا ماء.",
+    "Key figures:": "أرقام رئيسية:",
+    "Note on sources:": "ملاحظة عن المصادر:",
+    "Note: these dashboard figures are demonstration data, not real measurements. "
+    "AquaMaa's verified figures come from its documents and tables.":
+        "ملاحظة: أرقام لوحة المعلومات هذه بيانات تجريبية وليست قياسات حقيقية. أرقام أكوا ماء الموثّقة مصدرها وثائقها وجداولها.",
+    "AquaMaa's assistant can't reach its AI model right now, so it can't answer. "
+    "Please try again in a minute. If this keeps happening, the Ollama service needs restarting.":
+        "لا يستطيع مساعد أكوا ماء الوصول إلى نموذج الذكاء الاصطناعي الآن. حاول مرة أخرى بعد دقيقة.",
+}
+
+
+def localize(answer, question):
+    """Python's fixed messages in the question's language."""
+    if not any("؀" <= ch <= "ۿ" for ch in question):
+        return answer
+    for en, ar in ARABIC_FIXED.items():
+        answer = answer.replace(en, ar)
+    return answer
+
+
 FIRST_SEARCH = ("You haven't searched AquaMaa's sources yet. Call search_documents or lookup_table for the question "
                 "first (rule 1), then answer.")
 

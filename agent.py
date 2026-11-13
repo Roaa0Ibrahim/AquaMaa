@@ -28,7 +28,8 @@ from langgraph.graph import END, START, StateGraph
 from agent_log import log
 from config import FAST, MAX_REPAIRS, MAX_TOOL_ROUNDS
 from fastpath.answer import fast_answer
-from prompts import MODEL_DOWN
+from prompts import MODEL_DOWN, localize
+from understand import to_msa
 from state import State, trace_of
 from steps.figures import figures_block, figures_node
 from steps.live import live_node
@@ -67,6 +68,13 @@ def ask(question: str, save_trace: bool = True, role: str | None = None, groundi
     grounding: live sensor data from Deema's dashboard, given to the agent by steps/live.py."""
     start = time.time()
     persona = persona_of(role)
+    asked = question
+    try:                                    # the dialect layer: dialect -> Modern Standard Arabic (understand.py)
+        question, rewritten, _ = to_msa(asked)
+        if rewritten:
+            log.info("DIALECT   %s -> %s", asked, question)
+    except (ConnectionError, OSError, httpx.HTTPError, ollama.ResponseError):
+        question = asked
     if FAST:
         try:
             fast = fast_answer(question, persona, grounding)
@@ -74,8 +82,9 @@ def ask(question: str, save_trace: bool = True, role: str | None = None, groundi
             log.info("FAST      skipped, the model didn't respond: %s", error)
             fast = None
         if fast:
-            result = dict(question=question, persona=persona, path="fast", intent=fast["intent"],
-                          route={"question_type": f"fast:{fast['intent']}", "in_scope": True}, answer=fast["answer"],
+            result = dict(question=asked, understood=question, persona=persona, path="fast", intent=fast["intent"],
+                          route={"question_type": f"fast:{fast['intent']}", "in_scope": True},
+                          answer=localize(fast["answer"], asked),
                           tool_rounds=0, key_figures=[], repairs=0, problems_left=[], checked_answer=None,
                           simplified=False, simplify_note="",
                           trace=[{"step": "result", "tool": "fast_facts", "text": "\n".join(fast["facts"])}],
@@ -89,14 +98,16 @@ def ask(question: str, save_trace: bool = True, role: str | None = None, groundi
     except (ConnectionError, OSError, httpx.HTTPError, ollama.ResponseError) as error:
         # Milestone 5: the model is down or failed. A clear message instead of a crash, for the website and Pepper.
         log.info("ERROR     the model didn't respond: %s", error)
-        return dict(question=question, route={"question_type": None, "in_scope": None}, answer=MODEL_DOWN,
+        return dict(question=asked, route={"question_type": None, "in_scope": None}, answer=localize(MODEL_DOWN, asked),
                     tool_rounds=0, key_figures=[], repairs=0, problems_left=[], trace=[], error=str(error),
                     seconds=round(time.time() - start, 1))
     figures = final.get("figures") or []
     answer = (final.get("final") or final["messages"][-1].content).strip()
     if not (final.get("simplified") and persona == "farmer"):   # a farmer sees the simple answer without the list
         answer += figures_block(figures, answer)
-    result = dict(question=question, persona=persona, route=final["route"], answer=answer, tool_rounds=final["rounds"],
+    answer = localize(answer, asked)
+    result = dict(question=asked, understood=question, persona=persona, route=final["route"], answer=answer,
+                  tool_rounds=final["rounds"],
                   key_figures=[s["stat_id"] for s in figures], repairs=final.get("repairs", 0),
                   problems_left=final.get("problems", []), trace=trace_of(final["messages"]),
                   checked_answer=final.get("checked_answer"), simplified=final.get("simplified", False),

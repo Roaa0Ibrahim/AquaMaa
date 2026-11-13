@@ -187,4 +187,75 @@ def card(question, grounding, arabic, intent_score=0.0):
     return [f"{best['fact_ar'] if arabic else best['fact_en']} [{best['source']}]"]
 
 
-BUILDERS = {"live_reading": live_reading, "trend": trend, "suitability": suitability, "law": card, "explain": card}
+FARMS_FILE = "number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv"
+FARMS = list(csv.DictReader((Path(__file__).parent.parent / "database" / "07-geography" / FARMS_FILE)
+                            .open(encoding="utf-8-sig")))
+PLACES = _table("places.csv")
+
+
+def place_in(question):
+    """The municipality a question names, directly or through an area in it (places.csv); and the area, if any."""
+    q = question.lower()
+    for p in sorted(PLACES, key=lambda p: -len(p["name_ar"])):      # longer names first: الخيسة before الخور
+        names = {p["name_ar"], p["name_ar"].removeprefix("ال"), p["name_en"].lower(),
+                 p["name_en"].lower().removeprefix("al ")}
+        if any(n and n in q for n in names if len(n) >= 3):
+            return p["municipality_en"], (p if p["kind"] == "area" else None)
+    return None, None
+
+
+def census(municipality):
+    """Wells and farms on farms in one municipality, latest year: {(indicator, status): value}, year, Arabic name."""
+    rows = [r for r in FARMS if r["municipality"] == municipality]
+    if not rows:
+        return {}, None, None
+    year = max(r["year"] for r in rows)
+    out = {}
+    for r in rows:
+        if r["year"] == year:
+            out[(r["indicator"], r["farm_status"])] = out.get((r["indicator"], r["farm_status"]), 0) + _num(r["value"])
+    return out, year, rows[0].get("lbldy")
+
+
+def statistic(question, grounding, arabic):
+    """Counts of farm wells and farms by municipality, added up by code from the farm census (13 Nov: "كم عدد الآبار
+    في مزارع بلدية الخور؟" said "no information"; areas like الخيسة are answered at their municipality's level)."""
+    q = question.lower()
+    want_wells = bool(re.search(r"well|بئر|آبار|ابار|بير", q))
+    want_farms = bool(re.search(r"farm|مزرع|مزارع", q)) and not want_wells
+    municipality, area = place_in(question)
+    label = f"[{FARMS_FILE}]"
+    if municipality is None:
+        if not re.search(r"most|highest|largest|أكثر|أكبر", q):
+            return None
+        totals = {}
+        for r in FARMS:
+            if r["indicator"] == ("Number of Farms" if want_farms else "Number of Wells"):
+                totals.setdefault(r["year"], {}).setdefault(r["municipality"], 0)
+                totals[r["year"]][r["municipality"]] += _num(r["value"])
+        year = max(totals)
+        ranked = sorted(totals[year].items(), key=lambda kv: -kv[1])[:3]
+        what = "farms" if want_farms else "wells on farms"
+        return [f"In {year}, the municipalities with the most {what} were: "
+                + ", ".join(f"{m} ({_fmt(v)})" for m, v in ranked) + f" {label}."]
+    counts, year, name_ar = census(municipality)
+    if not counts:
+        return None
+    lines = []
+    if area:
+        lines.append(f"The farm census counts wells and farms by municipality, not by area; "
+                     f"{area['name_ar'] if arabic else area['name_en']} is in {municipality} [AquaMaa place list].")
+    place = name_ar if (arabic and name_ar) else municipality
+    for indicator, what in (("Number of Wells", "wells"), ("Number of Farms", "farms")):
+        if (indicator == "Number of Wells" and want_farms) or (indicator == "Number of Farms" and want_wells):
+            continue
+        working = counts.get((indicator, "Working Farms"), 0)
+        idle = counts.get((indicator, "Farms Not Working"), 0)
+        if working or idle:
+            lines.append(f"In {year}, {place} had {_fmt(working + idle)} {what} on farms: {_fmt(working)} on working "
+                         f"farms and {_fmt(idle)} on farms not working {label}.")
+    return lines or None
+
+
+BUILDERS = {"live_reading": live_reading, "trend": trend, "suitability": suitability, "law": card, "explain": card,
+            "statistic": statistic}
