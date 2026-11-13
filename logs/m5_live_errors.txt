@@ -19,139 +19,71 @@ PASS  miscopied citation label
 PASS  similar but different source
       route: not swapped: it stays an invented citation for the repair route
       fixes: []
+PASS  a report instead of an answer
+      route: flagged off format -> repair -> the clear message if still a report
+      final answer: "AquaMaa's sources don't contain enough evidence to answer this question.\n\nSome points couldn't be confirmed from AquaMaa's sources, so they were left out."
 PASS  model down
       route: ask() catches the error -> a clear message instead of a crash
-      output ends: "l rounds, 0 repair(s), 2.1 s\n\nA: AquaMaa's assistant can't reach its AI model right now, so it can't answer. Please try again in a minute. If this keeps happening, the Ollama service needs restarting."
-22:10:44 QUESTION  Why is Qatar's groundwater getting saltier?
-22:10:53 ROUTE     type=explanation in_scope=True conditions=[] sub_questions=[] premise=None (9.3 s)
-22:10:57 KEYSTATS  shortlist: [('K07', 0.57), ('K15', 0.53)]
-22:11:41 KEYSTATS  chose none: The statistic K15 (Average TDS in the 201-well survey = about 4,600 mg/L) directly relates to the salinity of groundwater in Qatar and helps explain why it is getting saltier. K07 (Share of water production from seawater desalination = 63%) provides context about the reliance on desalination, which may influence groundwater salinity through processes like brine discharge or over-extraction. These two statistics are most relevant to understanding the officer's question.
-22:11:41 KEYSTATS  chose 0 (47.8 s)
-22:11:49 REASON    round 1: call search_documents({'query': 'groundwater salinity Qatar'}) (7.7 s)
-python.exe : Traceback (most recent call last):
-At C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\scripts\run_m5_close.ps1:12 char:1
-+ & $python eval_errors.py --live 2>&1 | Out-File -Encoding utf8 logs\m ...
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
- 
-  File "C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\eval_errors.py", line 135, in <module>
-    live_tests()
-    ~~~~~~~~~~^^
-  File "C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\eval_errors.py", line 118, in live_tests
-    r = agent.ask("Why is Qatar's groundwater getting saltier?", save_trace=False)
-  File "C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\agent.py", line 59, in ask
-    final = app.invoke({"question": question, "repairs": 0, "problems": []},
-                       {"recursion_limit": 2 * (MAX_REPAIRS + 1) * (MAX_TOOL_ROUNDS + 2) + 8})
-  File "C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\.venv\Lib\site-packages\langgraph\pregel\main.py", line 
-4000, in invoke
-    for chunk in self.stream(
-                 ~~~~~~~~~~~^
-        input,
-        ^^^^^^
-    ...<11 lines>...
-        **kwargs,
-        ^^^^^^^^^
-    ):
-    ^
-  File "C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\.venv\Lib\site-packages\langgraph\pregel\main.py", line 
-3060, in stream
-    for _ in runner.tick(
-             ~~~~~~~~~~~^
-        [t for t in loop.tasks.values() if not t.writes],
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    ...<2 lines>...
-        schedule_task=loop.accept_push,
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    ):
-    ^
-  File "C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\.venv\Lib\site-packages\langgraph\pregel\_runner.py", 
-line 204, in tick
-    run_with_retry(
-    ~~~~~~~~~~~~~~^
-        t,
-        ^^
-    ...<10 lines>...
-        },
-        ^^
-    )
-    ^
-  File "C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\.venv\Lib\site-packages\langgraph\pregel\_retry.py", line 
-637, in run_with_retry
-    return task.proc.invoke(task.input, config)
-           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
-  File 
-"C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\.venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 
-794, in invoke
-    input = context.run(step.invoke, input, config, **kwargs)
-  File 
-"C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\.venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 
-479, in invoke
-    ret = self.func(*args, **kwargs)
-  File "C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\steps\react.py", line 49, in tools_node
-    out = tool_node.invoke(state)
-  File 
-"C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\.venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 
-479, in invoke
-    ret = self.func(*args, **kwargs)
-  File "C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\.venv\Lib\site-packages\langgraph\prebuilt\tool_node.py", 
-line 830, in _func
-    outputs = list(
-        executor.map(self._run_one, tool_calls, input_types, tool_runtimes)
-    )
-  File "C:\Users\Roaa_\anaconda3\Lib\concurrent\futures\_base.py", line 619, in result_iterator
-    yield _result_or_cancel(fs.pop())
-          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
-  File "C:\Users\Roaa_\anaconda3\Lib\concurrent\futures\_base.py", line 317, in _result_or_cancel
-    return fut.result(timeout)
-           ~~~~~~~~~~^^^^^^^^^
-  File "C:\Users\Roaa_\anaconda3\Lib\concurrent\futures\_base.py", line 449, in result
-    return self.__get_result()
-           ~~~~~~~~~~~~~~~~~^^
-  File "C:\Users\Roaa_\anaconda3\Lib\concurrent\futures\_base.py", line 401, in __get_result
-    raise self._exception
-  File "C:\Users\Roaa_\anaconda3\Lib\concurrent\futures\thread.py", line 59, in run
-    result = self.fn(*self.args, **self.kwargs)
-  File 
-"C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\.venv\Lib\site-packages\langchain_core\runnables\config.py", 
-line 650, in _wrapped_fn
-    return contexts.pop().run(fn, *args)
-           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
-  File "C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\.venv\Lib\site-packages\langgraph\prebuilt\tool_node.py", 
-line 1063, in _run_one
-    return self._execute_tool_sync(tool_request, input_type, config)
-           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\.venv\Lib\site-packages\langgraph\prebuilt\tool_node.py", 
-line 1023, in _execute_tool_sync
-    content = _handle_tool_error(e, flag=self._handle_tool_errors)
-  File "C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\.venv\Lib\site-packages\langgraph\prebuilt\tool_node.py", 
-line 442, in _handle_tool_error
-    content = flag(e)  # type: ignore [assignment, call-arg]
-  File "C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\.venv\Lib\site-packages\langgraph\prebuilt\tool_node.py", 
-line 399, in _default_handle_tool_errors
-    raise e
-  File "C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\.venv\Lib\site-packages\langgraph\prebuilt\tool_node.py", 
-line 966, in _execute_tool_sync
-    response = tool.invoke(call_args, config)
-  File "C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\.venv\Lib\site-packages\langchain_core\tools\base.py", 
-line 764, in invoke
-    return self.run(tool_input, **kwargs)
-           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\.venv\Lib\site-packages\langchain_core\tools\base.py", 
-line 1132, in run
-    raise error_to_raise
-  File "C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\.venv\Lib\site-packages\langchain_core\tools\base.py", 
-line 1098, in run
-    response = context.run(self._run, *tool_args, **tool_kwargs)
-  File 
-"C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\.venv\Lib\site-packages\langchain_core\tools\structured.py", 
-line 152, in _run
-    return self.func(*args, **kwargs)
-           ~~~~~~~~~^^^^^^^^^^^^^^^^^
-  File "C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\tools.py", line 28, in search_documents
-    return _format(R.hybrid(query, k=6))
-                   ~~~~~~~~^^^^^^^^^^^^
-  File "C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\eval_errors.py", line 114, in broken
-    raise RuntimeError("search index unavailable (forced by eval_errors.py)")
-RuntimeError: search index unavailable (forced by eval_errors.py)
-During task with name 'tools' and id '930bfa08-13ef-3a5b-922e-a932dbfada8e'
+      output ends: "l rounds, 0 repair(s), 2.0 s\n\nA: AquaMaa's assistant can't reach its AI model right now, so it can't answer. Please try again in a minute. If this keeps happening, the Ollama service needs restarting."
+15:31:44 QUESTION  Why is Qatar's groundwater getting saltier?
+15:31:46 ROUTE     type=explanation in_scope=True conditions=[] sub_questions=[] premise=None (2.3 s)
+15:31:46 KEYSTATS  shortlist: [('K07', 0.57), ('K15', 0.53)]
+15:31:55 KEYSTATS  chose none: The statistic K15 (Average TDS in the 201-well survey = about 4,600 mg/L) directly relates to the salinity of groundwater in Qatar and helps explain why it is getting saltier. K07 (Share of water production from seawater desalination = 63%) provides context about the reliance on desalination, which may influence groundwater salinity through processes like brine discharge or over-extraction. These two statistics are most relevant to understanding the officer's question.
+15:31:55 KEYSTATS  chose 0 (9.1 s)
+15:31:57 REASON    round 1: call search_documents({'query': 'groundwater salinity Qatar'}) (1.9 s)
+15:31:57 TOOL      failed: search index unavailable (forced by eval_errors.py)
+15:31:57 OBSERVE   search_documents -> Error: this tool failed (search index unavailable (forced by eval_errors.py)). Answer from the other tools, and say that (0.0 s)
+15:32:02 REASON    round 2: enough evidence, answering (4.9 s)
+15:32:02 VERIFY    sentence_without_citation  <- I cannot search for specific documents at this time.
+15:32:02 VERIFY    sentence_without_citation  <- However, groundwater in Qatar is getting saltier due to several factors, including natural
+15:32:02 VERIFY    sentence_without_citation  <- One major cause is the over-extraction of groundwater, which lowers the water table and al
+15:32:02 VERIFY    sentence_without_citation  <- Additionally, the high evaporation rates in Qatar's arid climate contribute to the concent
+15:32:02 VERIFY    sentence_without_citation  <- These factors are well-documented in general knowledge.
+15:32:02 REPAIR    sending 5 problem(s) back to the agent
+15:32:07 REASON    round 2: enough evidence, answering (5.5 s)
+15:32:07 VERIFY    no problems
+15:32:13 SIMPLIFY  rewritten for a farmer (5.9 s)
+PASS  a tool fails
+      route: the error goes back to the agent as text; it answers honestly without that tool
+      answer: "Qatar's groundwater is getting saltier because people are pumping too much water, which lets saltwater from deep layers rise [general knowledge]. Also, the hot, dry weather makes water evaporate quickly, leaving salt behind [general knowledge]. You c"
+15:32:13 QUESTION  What is the fluoride concentration in Qatar's groundwater?
+15:32:16 ROUTE     type=simple in_scope=True conditions=[] sub_questions=["What is the fluoride concentration in Qatar's groundwater?"] premise=None (2.4 s)
+15:32:16 KEYSTATS  shortlist: [('K07', 0.55)]
+15:32:18 KEYSTATS  chose none: None of the provided statistics directly address fluoride concentration in Qatar's groundwater. The given statistic (K07) relates to seawater desalination and does not provide information about fluoride levels in groundwater.
+15:32:18 KEYSTATS  chose 0 (2.4 s)
+15:32:20 REASON    round 1: call search_documents({'query': "fluoride concentration in Qatar's groundwater"}) (2.1 s)
+15:32:20 OBSERVE   search_documents -> QEERI_2022_Qatar_Groundwater_Challenges.txt p.1, ANND_Right_to_Water_in_Qatar.txt p.17, Fanack_Water_Resources_in_Qatar.txt p.1, PSA_Water_Statistics_2021.txt p.22, NPC_Water_Statistics_2023.txt p.29, ANND_Right_to_Water_in_Qatar.txt p.20 (0.1 s)
+15:32:46 REASON    round 2: enough evidence, answering (26.2 s)
+15:32:46 VERIFY    sentence_without_citation  <- ### **Qatar’s Groundwater Deficit: A Deep Dive into the Crisis**
+
+#### **1.
+15:32:46 VERIFY    sentence_without_citation  <- Overview of Qatar’s Water Resources**
+Qatar lacks natural surface water resources, relying
+15:32:46 VERIFY    sentence_without_citation  <- These three sources have seen a significant increase in production over the years:
+- **199
+15:32:46 VERIFY    number_not_in_tool_results ['130', '2.1', '2.2', '2.3'] <- Groundwater Abstraction and Recharge: A Growing Imbalance**
+
+#### **2.1 Groundwater Abstra
+15:32:46 VERIFY    sentence_without_citation  <- Groundwater Abstraction and Recharge: A Growing Imbalance**
+
+#### **2.1 Groundwater Abstra
+15:32:46 VERIFY    sentence_without_citation  <- Historical Context: The Roots of the Crisis**
+
+#### **3.1 Agricultural Expansion in the 19
+15:32:46 VERIFY    off_format  <- ### **Qatar’s Groundwater Deficit: A Deep Dive into the Crisis**
+
+#### **1. Overview of Qa
+15:32:46 REPAIR    sending 7 problem(s) back to the agent
+15:33:03 REASON    round 2: enough evidence, answering (17.0 s)
+15:33:03 VERIFY    cited_file_not_returned ['Qatar National Water Strategy 2035'] <- The country’s two main groundwater resources are the Rus and Umm er Rhaduma aquifers, whic
+15:33:03 VERIFY    cited_file_not_returned ['Groundwater_Usage_2022.txt'] <- Groundwater abstraction in 2022 was 250 MCM/year, with 230 MCM used for agriculture and 20
+15:33:03 VERIFY    cited_file_not_returned ['Groundwater_Usage_2022.txt'] <- The annual groundwater deficit was approximately 200 MCM/year as of 2022 [Groundwater_Usag
+15:33:03 VERIFY    off_format  <- ### **Qatar’s Groundwater Deficit: A Deep Dive into the Crisis**
+
+Qatar lacks natural surf
+15:33:03 FINALIZE  removed 4 sentence(s) that still failed
+PASS  evidence missing from the database
+      route: the agent says what is missing; nothing invented survives
+      answer: "AquaMaa's sources don't contain enough evidence to answer this question.\n\nSome points couldn't be confirmed from AquaMaa's sources, so they were left out."
+
+11/11 forced failures took their route

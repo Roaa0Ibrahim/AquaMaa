@@ -40,5 +40,29 @@
   "expected_route": "not swapped: it stays an invented citation for the repair route",
   "passed": true,
   "detail": "fixes: []"
+ },
+ {
+  "test": "a report instead of an answer",
+  "expected_route": "flagged off format -> repair -> the clear message if still a report",
+  "passed": true,
+  "detail": "final answer: \"AquaMaa's sources don't contain enough evidence to answer this question.\\n\\nSome points couldn't be confirmed from AquaMaa's sources, so they were left out.\""
+ },
+ {
+  "test": "model down",
+  "expected_route": "ask() catches the error -> a clear message instead of a crash",
+  "passed": true,
+  "detail": "output ends: \"l rounds, 0 repair(s), 2.0 s\\n\\nA: AquaMaa's assistant can't reach its AI model right now, so it can't answer. Please try again in a minute. If this keeps happening, the Ollama service needs restarting.\""
+ },
+ {
+  "test": "a tool fails",
+  "expected_route": "the error goes back to the agent as text; it answers honestly without that tool",
+  "passed": true,
+  "detail": "answer: \"Qatar's groundwater is getting saltier because people are pumping too much water, which lets saltwater from deep layers rise [general knowledge]. Also, the hot, dry weather makes water evaporate quickly, leaving salt behind [general knowledge]. You c\""
+ },
+ {
+  "test": "evidence missing from the database",
+  "expected_route": "the agent says what is missing; nothing invented survives",
+  "passed": true,
+  "detail": "answer: \"AquaMaa's sources don't contain enough evidence to answer this question.\\n\\nSome points couldn't be confirmed from AquaMaa's sources, so they were left out.\""
  }
 ]

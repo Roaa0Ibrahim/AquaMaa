@@ -21,7 +21,7 @@ Git tag `checkpoint-2026-11-09`. Everything is committed and pushed.
 | 2. Knowledge base | done, `v2` | 46 sources in 12 folders, 1,406 chunks; 10 of 10 test questions find their file |
 | 3. Routing and retrieval | done, `v3` | type right 26/27, right file in top 3 26/27, recall 0.96, precision 0.83, baseline faithfulness 0.854 |
 | 4. Agent loop | done, `v4` | every number from a tool; 0 invented citations; uncited sentences in 2 of 30 answers (18 with prompt v1) |
-| 5. Error handling | built, testing deferred | verifier built and in use; 5 of 5 offline tests pass; live tests and before-and-after deferred (decided 9 Nov, short of time) |
+| 5. Error handling | done, `v5` (13 Nov) | 11 of 11 forced failures take their route, offline and live; faithfulness before and after carried to after the internal evaluation |
 | 6. Simplifying for officers | not started | |
 | 7. Arabic speech on the website | text chat done, speech not started | text chat working end to end on Deema's dashboard (branch `chat-widget`, for her review); speech not started |
 | 8. Dashboard data | done, `v8` | 5 of 5 dashboard charts match exactly, labelled as demonstration data |
@@ -116,9 +116,18 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 
 - Prompt v2 adapted ScholarQA's citation rules (Apache 2.0): cite only labels from tool results, tag own knowledge as [general knowledge]. Prompt v3 adds: every sentence ends with a citation
 
-### [ ] Milestone 5: Error-handling routing (built, testing deferred)
-- **Status (9 Nov):** built and running in every answer: `verifier.py`, `steps/verify.py`, `database/12-known-conflicts/`, a clear message when the model is down, and the `AQUAMAA_VERIFY` switch. `eval_errors.py` passes 5 of 5 offline tests (unsupported number, invented citation, uncited claim, too little evidence, known conflict)
-- **Deferred to after the internal evaluation (decided 9 Nov, short of time):** `python eval_errors.py --live` (model down, failed tool, missing evidence); the before-and-after run with `$env:AQUAMAA_VERIFY = "0"` on the labelled set; faithfulness judging of both runs and Roaa's hand-check of 10 verdicts; the weak-search threshold, only if the missing-evidence test shows it's needed
+### [x] Milestone 5: Error-handling routing (v5, 13 Nov)
+- **Result (13 Nov): every failure, forced on purpose, takes its route: 11 of 11** (`python eval_errors.py --live`, `logs/m5_live_errors.txt`): unsupported number, invented citation, uncited claim, too little evidence, one side of a known conflict, miscopied citation label, similar but different source, a report instead of an answer, model down, a failed tool, evidence missing. Milestone 8 still holds (dashboard 5 of 5), and the website wells questions are answered right in English and Arabic (`tests/m5_regression.csv`)
+- **Carried to after the internal evaluation (decided 13 Nov, option B):** faithfulness before and after the error routes (`$env:AQUAMAA_VERIFY = "0"` on the labelled set, judged claim by claim, plus Roaa's hand-check of 10 verdicts)
+- **Built 9-13 Nov, from website questions and the live tests:**
+  - answers in the question's language (router note per question, and a `wrong_language` check)
+  - one more search before "not in the sources" (`gave_up_early`, only for a pure "not in the sources" answer); no file citation on such a sentence (`cited_for_missing`)
+  - search before answering, enforced in code; table search in the tables' own words (groundwater wells → wells, count → number, area → municipality); official Arabic municipality names kept; key statistics matched through the English sub-question for Arabic questions
+  - a miscopied label of a returned source is corrected, not removed; a similar but different source is not swapped
+  - failed tools: every tool error goes back to the agent as text (LangGraph re-raised them, so a broken tool crashed the answer)
+  - runaway answers: replies capped at 500 tokens; a report with headings or more than 8 sentences is `off_format`, repaired once, then replaced by the clear "not enough evidence" message
+  - dashboard years outside 1998-2022 fall back to 2022 (the agent knows it is 2026); the agent gets the current date and time in Qatar
+- **Status (9 Nov):** built and running in every answer: `verifier.py`, `steps/verify.py`, `database/12-known-conflicts/`, a clear message when the model is down, and the `AQUAMAA_VERIFY` switch
 - Each failure gets its own route:
   - a failed tool
   - an empty or weak retrieval, where the agent rewrites the query and retries once

@@ -81,8 +81,14 @@ def read_dashboard(view: Literal["overview", "extraction_trend", "wells", "stati
     - wells, stations: the individual monitoring wells and stations listed on the dashboard
     - station_readings: monthly water level and TDS for one station; give station_code, such as ST-01
     Each line says its status. Figures marked "demonstration" are not real data: always say so."""
+    note = ""
+    if year is not None and not 1998 <= year <= 2022:
+        # The dashboard only has 1998-2022. Since the agent knows today's date (2026), it may ask for this year:
+        # show the latest year instead of failing (13 Nov, the well-quality card)
+        note = f"(The dashboard has no data for {year}; it covers 1998-2022, so this is the latest year, 2022.)\n"
+        year = None
     try:
-        return dashboard.read(view, year=year, station_code=station_code)
+        return note + dashboard.read(view, year=year, station_code=station_code)
     except dashboard.DashboardError as error:
         return f"Error: {error}. Answer from the other tools instead, and say the dashboard couldn't be read."
 

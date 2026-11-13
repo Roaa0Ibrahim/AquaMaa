@@ -11,7 +11,8 @@ import sys
 from pathlib import Path
 
 from checks import tool_results_text
-from verifier import UNCONFIRMED_NOTE, conflict_notes, find_problems, fix_miscopied_citations, remove_failing
+from verifier import (NOT_ENOUGH, UNCONFIRMED_NOTE, conflict_notes, find_problems, fix_miscopied_citations,
+                      remove_failing)
 
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = Path(__file__).parent
@@ -88,6 +89,15 @@ def verifier_tests():
     record("similar but different source", "not swapped: it stays an invented citation for the repair route",
            not fixes, f"fixes: {fixes}")
 
+    # 5c. A report instead of an answer (headings), as the fluoride question produced on 13 Nov
+    answer = ("### **Qatar's Groundwater Deficit: A Deep Dive** [general knowledge]\n\n#### **1. Overview** "
+              "[general knowledge]\nThe safe yield is 49.6 million m3 a year [NPC_Water_Statistics_2023.txt p.29].")
+    problems = find_problems(answer, TRACE, QUESTION)
+    final = remove_failing(answer, problems)
+    record("a report instead of an answer", "flagged off format -> repair -> the clear message if still a report",
+           any(p["kind"] == "off_format" for p in problems) and final.startswith("AquaMaa's sources don't contain"),
+           f"final answer: {final!r}")
+
 
 def run_agent(question, extra_env):
     """Runs the agent in a separate process, so its settings (such as the Ollama address) can be changed."""
@@ -125,8 +135,10 @@ def live_tests():
     # 8. Missing evidence: a water question the database can't answer
     r = agent.ask("What is the fluoride concentration in Qatar's groundwater?", save_trace=False)
     honest = any(w in r["answer"].lower() for w in ("not ", "no ", "doesn't", "don't", "general knowledge"))
+    # Passes when the answer is honest and either nothing was left to fix, or what was left was removed and the
+    # clear "not enough evidence" message replaced it (13 Nov: the fluoride question's essay ends this way)
     record("evidence missing from the database", "the agent says what is missing; nothing invented survives",
-           honest and not r["problems_left"], f"answer: {r['answer'][:250]!r}")
+           honest and (not r["problems_left"] or r["answer"].startswith(NOT_ENOUGH)), f"answer: {r['answer'][:250]!r}")
 
 
 if __name__ == "__main__":

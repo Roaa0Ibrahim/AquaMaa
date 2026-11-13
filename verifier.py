@@ -20,6 +20,7 @@ from checks import CITATION, _file_of, citation_check, numbers, tool_results_tex
 CONFLICTS_FILE = Path(__file__).parent / "database" / "12-known-conflicts" / "known_conflicts.csv"
 CONFLICTS = list(csv.DictReader(CONFLICTS_FILE.open(encoding="utf-8-sig")))
 UNCONFIRMED_NOTE = "Some points couldn't be confirmed from AquaMaa's sources, so they were left out."
+NOT_ENOUGH = "AquaMaa's sources don't contain enough evidence to answer this question."
 # A sentence ends at . ! ? (or the Arabic ؟) followed by a capital letter, a quote, a bracket or an Arabic letter
 SENTENCE_SPLIT = re.compile(r"(?<=[.!?؟])\s+(?=[A-Z\"'(ء-ي])")
 
@@ -41,6 +42,8 @@ SEARCH_TOOLS = ("search_documents", "lookup_table")
 CONTRAST = re.compile(r"\b(but|however|although|while|whereas)\b|لكن|إلا أن|بينما|غير أن", re.I)
 # Kinds that don't make a sentence wrong: after the repair attempt they are fixed in place, not removed
 SOFT_KINDS = ("gave_up_early", "cited_for_missing", "wrong_language")
+HEADING = re.compile(r"^\s*#{1,6}\s", re.M)
+MAX_SENTENCES = 8              # the prompt asks for at most 5; 8 leaves room for notes
 ARABIC_LETTER = re.compile(r"[ء-ي]")
 LATIN_LETTER = re.compile(r"[A-Za-z]")
 
@@ -126,6 +129,10 @@ def find_problems(answer, trace, question):
             problems.append(dict(kind="cited_file_not_returned", detail=bad_cites, sentence=s))
         if _uncited(s):
             problems.append(dict(kind="sentence_without_citation", detail=[], sentence=s))
+    # Not an answer at all: a report with headings, or far longer than the 5-sentence rule (13 Nov: "What is the
+    # fluoride concentration...?" found nothing on fluoride and twice wrote "Qatar's Groundwater Deficit: A Deep Dive")
+    if HEADING.search(body) or len(sentences(body)) > MAX_SENTENCES:
+        problems.append(dict(kind="off_format", detail=[], sentence=body))
     if wrong_language(body, question):
         target = "Arabic" if arabic_share(question) > 0.5 else "English"
         problems.append(dict(kind="wrong_language", detail=[target], sentence=body))
@@ -147,6 +154,10 @@ def repair_request(problems):
             lines.append(f'- "{p["sentence"]}" says the sources don\'t have it, after only {p["detail"][0]}. '
                          "Search again first with different words: other terms (municipality for area), no year "
                          "filter, or the place, sector or cause behind the question. Then answer.")
+        elif p["kind"] == "off_format":
+            lines.append("- This is not an answer to the question: it is a report with headings or far too long. "
+                         "Answer the question asked, in at most 5 sentences, with no headings or sections. If the "
+                         "tool results don't answer it, say so in one sentence and say what they do cover.")
         elif p["kind"] == "wrong_language":
             lines.append(f"- The answer is not in the question's language. Rewrite the whole answer in "
                          f"{'simple Modern Standard Arabic' if p['detail'][0] == 'Arabic' else 'English'}, with the "
@@ -169,12 +180,18 @@ def remove_failing(answer, problems):
         if p["kind"] == "cited_for_missing":
             fixed = CITATION.sub("", p["sentence"]).replace(" .", ".").strip()
             answer = answer.replace(p["sentence"], fixed)
+    if any(p["kind"] == "off_format" for p in problems):
+        # Still a report after the repair: no part of it is shown
+        return f"{NOT_ENOUGH}\n\n{UNCONFIRMED_NOTE}"
     failing = {p["sentence"] for p in problems if p["kind"] not in SOFT_KINDS}
     if not failing:
         return answer
     body, _, figures = answer.partition("\n\nKey figures:")
     kept = [s for s in sentences(body) if s not in failing]
-    text = " ".join(kept) if kept else ("AquaMaa's sources don't contain enough evidence to answer this question.")
+    # What is left must still say something supported or honest: a cited sentence or a "not in the sources" one.
+    # Otherwise (13 Nov: a derailed essay left only "### **1." and a note about edits) the clear message is used.
+    useful = any(CITATION.search(s) or MISSING_INFO.search(s) for s in kept)
+    text = " ".join(kept) if kept and useful else NOT_ENOUGH
     text += f"\n\n{UNCONFIRMED_NOTE}"
     return text + (f"\n\nKey figures:{figures}" if figures else "")
 

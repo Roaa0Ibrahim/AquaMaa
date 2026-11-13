@@ -7,13 +7,26 @@ from langchain_ollama import ChatOllama
 from langgraph.prebuilt import ToolNode
 
 from agent_log import log
-from config import CHAT_MODEL, MAX_TOOL_ROUNDS, OLLAMA_URL
+from config import CHAT_MODEL, MAX_ANSWER_TOKENS, MAX_TOOL_ROUNDS, OLLAMA_URL
 from prompts import FIRST_SEARCH, STEP_LIMIT
 from tools import TOOLS
 
-model = ChatOllama(model=CHAT_MODEL, temperature=0, reasoning=False, base_url=OLLAMA_URL)
+# num_predict caps each reply. Answers are at most 5 sentences, so 500 tokens is plenty; a runaway essay is cut off
+# early (13 Nov: the fluoride question produced a 70-second essay with headings, unrelated to the question)
+model = ChatOllama(model=CHAT_MODEL, temperature=0, reasoning=False, base_url=OLLAMA_URL, num_predict=MAX_ANSWER_TOKENS)
 agent_model = model.bind_tools(TOOLS)
-tool_node = ToolNode(TOOLS)
+
+
+def tool_failed(error):
+    """Milestone 5, failed-tool route: any tool error goes back to the agent as text, so it answers from its other
+    tools instead of the whole answer crashing (13 Nov: ToolNode's default only catches input errors and re-raises
+    the rest, so a broken search index stopped the answer; found by eval_errors.py --live)."""
+    log.info("TOOL      failed: %s", error)
+    return (f"Error: this tool failed ({error}). Answer from the other tools, and say that this source "
+            "couldn't be searched.")
+
+
+tool_node = ToolNode(TOOLS, handle_tool_errors=tool_failed)
 
 
 def agent_node(state):
