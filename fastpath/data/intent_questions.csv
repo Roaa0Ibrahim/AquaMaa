@@ -1,0 +1,42 @@
+intent,language,question
+live_reading,en,What is the salinity of my water right now?
+live_reading,en,What does the sensor read now?
+live_reading,en,Is the pH okay at the moment?
+live_reading,en,What is the current water temperature?
+live_reading,en,Give me the latest readings
+live_reading,ar,ما ملوحة الماء الآن؟
+live_reading,ar,كم درجة الحموضة في الماء الآن؟
+live_reading,ar,ما آخر قراءة للحساس؟
+live_reading,ar-dialect,كم الملوحة الحين؟
+live_reading,ar-dialect,شنو قراءة الحساس الحين؟
+trend,en,Is my well getting saltier?
+trend,en,How has the salinity changed today?
+trend,en,Is the water getting better or worse?
+trend,en,Has the TDS gone up since this morning?
+trend,ar,هل تزداد ملوحة البئر؟
+trend,ar,كيف تغيرت الملوحة خلال اليوم؟
+trend,ar-dialect,الماي قاعد يملح أكثر؟
+suitability,en,Can I irrigate tomatoes with this water?
+suitability,en,Is my well water okay for date palms?
+suitability,en,Is water with 3000 mg/L salinity good for barley?
+suitability,en,Can I drink this water?
+suitability,en,Which crops can I grow with my well water?
+suitability,en,Is this water safe for irrigation?
+suitability,ar,هل يصلح ماء البئر لسقي النخيل؟
+suitability,ar,هل يمكن ري الطماطم بهذا الماء؟
+suitability,ar,هل هذا الماء صالح للشرب؟
+suitability,ar-dialect,أقدر أسقي الزرع بهالماي؟
+suitability,ar-dialect,الماي هذا ينفع للنخل؟
+law,en,Do I need a licence to dig a new well?
+law,en,What is the fine for an unlicensed well?
+law,en,How far apart must wells be?
+law,en,Is there a limit on how much I can pump from my well?
+law,ar,هل أحتاج إلى ترخيص لحفر بئر؟
+law,ar,ما عقوبة حفر بئر بدون ترخيص؟
+law,ar-dialect,لازم رخصة عشان أحفر بير؟
+explain,en,Why is my well water getting salty?
+explain,en,Why does groundwater in Qatar turn salty?
+explain,en,What makes well water salty?
+explain,ar,لماذا تصبح مياه الآبار مالحة؟
+explain,ar,ما سبب ملوحة المياه الجوفية في قطر؟
+explain,ar-dialect,ليش ماي البير صار مالح؟

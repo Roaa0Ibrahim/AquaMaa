@@ -1,0 +1,76 @@
+﻿
+========== FF1 [farmer, role=farmer, en] Is water with 3000 mg/L salinity okay for my date palms?
+19:01:05 FAST      suitability (0.80), 3 fact(s), answered in 5.8 s
+---------- 5.8 s | path=fast suitability | persona=farmer | simplified=False | language_ok=True
+ANSWER:
+At 3,000 mg/L salinity, your date palms would give about 11% less harvest [limits.csv row 4 (FAO 29)] [FAO 29 Table 4]. This level is a severe restriction for irrigation, so mixing with fresher water may help improve yield [limits.csv row 4 (FAO 29)].
+
+========== FF2 [farmer, role=farmer, ar] هل يصلح ماء ملوحته 1500 ملغم/لتر لسقي الطماطم؟
+19:01:12 FAST      suitability (0.75), 3 fact(s), answered in 6.8 s
+---------- 6.8 s | path=fast suitability | persona=farmer | simplified=False | language_ok=True
+ANSWER:
+ماء ملوحته 1500 ملغم/لتر يقلل من إنتاج الطماطم بنسبة حوالي 10% [FAO 29 Table 4]. هذا الماء يناسب الري مع قيود خفيفة إلى متوسطة، ويمكن استخدامه مع محاصيل ذات تحمل متوسط أو عالي مع غسل الأملاح من التربة [limits.csv row 3 (FAO 29)]. يمكن تحسين الوضع من خلال تطبيق نظام ري دوري مع فترات راحة بين الريات لغسل الأملاح من التربة.
+
+========== FF3 [farmer, role=farmer, ar-dialect] الماي ملوحته 800 ينفع للشرب؟
+19:01:14 FAST      suitability (0.64), 2 fact(s), answered in 2.5 s
+---------- 2.5 s | path=fast suitability | persona=farmer | simplified=False | language_ok=True
+ANSWER:
+الماء بملوحته 800 ملغم/لتر له طعم مقبول لكنه يميل للملوحة، افحصه في مختبر قبل الاعتماد عليه [WHO_TDS_background_document.txt]
+
+========== FF4 [farmer, role=farmer, en] Do I need a licence to dig a new well?
+19:01:18 FAST      law (1.00), 1 fact(s), answered in 3.9 s
+---------- 3.9 s | path=fast law | persona=farmer | simplified=False | language_ok=True
+ANSWER:
+Yes, you need a licence to dig a new well [ANND_Right_to_Water_in_Qatar.txt p.14]. This is required by water law no. 23 of 2025 (Article 10) [ANND_Right_to_Water_in_Qatar.txt p.14]. You should apply for the licence through the relevant authority before starting any work.
+
+========== FF5 [farmer, role=farmer, ar] لماذا تزداد ملوحة مياه بئري؟
+19:01:22 FAST      explain (0.89), 1 fact(s), answered in 4.1 s
+---------- 4.1 s | path=fast explain | persona=farmer | simplified=False | language_ok=True
+ANSWER:
+تزيد ملوحة مياه البئر لأن سحب المياه الجوفية للمزارع أسرع مما يعوضه المطر، مما يسمح لمياه البحر بالتقدم نحو الداخل [Elobaid_2017_EGU_saline_front_Qatar.txt p.2]. يمكنهم تقليل سحب المياه الجوفية لوقف تقدم جبهة الملوحة.
+
+========== FF6 [farmer, role=farmer, en] Can I grow barley with water at 4000 mg/L?
+19:01:26 FAST      suitability (0.82), 3 fact(s), answered in 3.6 s
+---------- 3.6 s | path=fast suitability | persona=farmer | simplified=False | language_ok=True
+ANSWER:
+At 4,000 mg/L, barley would give about 7% less harvest [limits.csv row 4 (FAO 29)] [FAO 29 Table 4]. This level is a severe restriction for irrigation, so mixing with fresher water may help [limits.csv row 4 (FAO 29)].
+
+========== FO1 [officer, role=kahramaa, en] Is water at 2500 mg/L suitable for irrigation?
+19:01:31 FAST      suitability (0.73), 3 fact(s), answered in 5.3 s
+---------- 5.3 s | path=fast suitability | persona=officer | simplified=False | language_ok=True
+ANSWER:
+At 2,500 mg/L, this water is a severe restriction for irrigation, suitable only for salt-tolerant crops like barley or date palm, or when mixed with fresher water [limits.csv row 4 (FAO 29)]. Crops such as tomato, cucumber, and alfalfa experience some yield loss at this salinity level [FAO 29 Table 4]. This indicates the need for careful monitoring and planning to ensure crop suitability and minimize yield loss.
+
+========== FO2 [officer, role=municipality, ar] هل تصلح مياه ملوحتها 600 ملغم/لتر للشرب؟
+19:01:35 FAST      suitability (0.70), 2 fact(s), answered in 3.8 s
+---------- 3.8 s | path=fast suitability | persona=officer | simplified=False | language_ok=True
+ANSWER:
+مياه ذات ملوحة 600 ملغم/لتر لها طعم مقبول لكنه يميل للملوحة [WHO_TDS_background_document.txt]. يُنصح باختبارها في مختبر قبل الاعتماد عليها للاطمئنان على ملاءمتها للشرب [WHO_TDS_background_document.txt].
+
+========== FO3 [officer, role=mecc, en] What is the penalty for digging a well without a licence?
+19:01:39 FAST      law (0.88), 1 fact(s), answered in 3.8 s
+---------- 3.8 s | path=fast law | persona=officer | simplified=False | language_ok=True
+ANSWER:
+Digging a well without a licence can result in up to three years in prison and fines of up to 500,000 Qatari riyals [ANND_Right_to_Water_in_Qatar.txt p.14]. This penalty applies to both unlicensed wells and pumping above the permitted rate. The law aims to ensure proper regulation and sustainable use of groundwater resources.
+
+========== FO4 [officer, role=agriculture, ar] ما المسافة المطلوبة بين الآبار؟
+19:01:43 FAST      law (0.73), 1 fact(s), answered in 4.2 s
+---------- 4.2 s | path=fast law | persona=officer | simplified=False | language_ok=True
+ANSWER:
+يجب أن تكون الآبار على مسافة لا تقل عن 300 متر من بعضها للحد من الإفراط في السحب [ANND_Right_to_Water_in_Qatar.txt p.14]. هذه المسافة تساعد في الحفاظ على استدامة موارد المياه الجوفية وتقليل التأثيرات السلبية على الجودة والكمية.
+
+========== FO5 [officer, role=kahramaa, en] Why are wells in the north getting saltier?
+19:01:47 FAST      explain (0.88), 1 fact(s), answered in 4.2 s
+---------- 4.2 s | path=fast explain | persona=officer | simplified=False | language_ok=True
+ANSWER:
+Pumping groundwater for farms faster than rain refills it lets seawater move inland; in the north the saline front has been advancing about 4-5 km per year [Elobaid_2017_EGU_saline_front_Qatar.txt p.2]. This means that wells in the north are increasingly exposed to seawater intrusion. Monitoring should focus on areas near the advancing saline front to manage salinity levels effectively.
+
+========== FO6 [officer, role=agriculture, en] Which crops can tolerate water at 2000 mg/L?
+19:01:51 FAST      suitability (0.67), 3 fact(s), answered in 4.2 s
+---------- 4.2 s | path=fast suitability | persona=officer | simplified=False | language_ok=True
+ANSWER:
+At 2,000 mg/L, crops with no expected yield loss include barley and wheat; crops with some yield loss include date palm, alfalfa, tomato, cucumber, and lettuce [FAO 29 Table 4]. This level is a severe restriction for irrigation, so only salt-tolerant crops or mixes with fresher water are recommended [limits.csv row 4 (FAO 29)].
+
+========== Summary
+farmer: 6 questions, persona right 6, fast path 6, simplified 0, right language 6, time median 4.1 s, max 6.8 s
+officer: 6 questions, persona right 6, fast path 6, simplified 0, right language 6, time median 4.2 s, max 5.3 s

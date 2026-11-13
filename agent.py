@@ -26,7 +26,8 @@ import ollama
 from langgraph.graph import END, START, StateGraph
 
 from agent_log import log
-from config import MAX_REPAIRS, MAX_TOOL_ROUNDS
+from config import FAST, MAX_REPAIRS, MAX_TOOL_ROUNDS
+from fastpath.answer import fast_answer
 from prompts import MODEL_DOWN
 from state import State, trace_of
 from steps.figures import figures_block, figures_node
@@ -66,6 +67,21 @@ def ask(question: str, save_trace: bool = True, role: str | None = None, groundi
     grounding: live sensor data from Deema's dashboard, given to the agent by steps/live.py."""
     start = time.time()
     persona = persona_of(role)
+    if FAST:
+        try:
+            fast = fast_answer(question, persona, grounding)
+        except (ConnectionError, OSError, httpx.HTTPError, ollama.ResponseError) as error:
+            log.info("FAST      skipped, the model didn't respond: %s", error)
+            fast = None
+        if fast:
+            result = dict(question=question, persona=persona, path="fast", intent=fast["intent"],
+                          route={"question_type": f"fast:{fast['intent']}", "in_scope": True}, answer=fast["answer"],
+                          tool_rounds=0, key_figures=[], repairs=0, problems_left=[], checked_answer=None,
+                          simplified=False, simplify_note="",
+                          trace=[{"step": "result", "tool": "fast_facts", "text": "\n".join(fast["facts"])}],
+                          seconds=round(time.time() - start, 1))
+            save(result, save_trace)
+            return result
     try:
         final = app.invoke({"question": question, "persona": persona, "grounding": grounding or {},
                             "repairs": 0, "problems": []},
@@ -85,12 +101,16 @@ def ask(question: str, save_trace: bool = True, role: str | None = None, groundi
                   problems_left=final.get("problems", []), trace=trace_of(final["messages"]),
                   checked_answer=final.get("checked_answer"), simplified=final.get("simplified", False),
                   simplify_note=final.get("simplify_note", ""),
-                  seconds=round(time.time() - start, 1))
+                  seconds=round(time.time() - start, 1), path="deep")
+    save(result, save_trace)
+    return result
+
+
+def save(result, save_trace):
     if save_trace:
         TRACE_DIR.mkdir(parents=True, exist_ok=True)
         name = datetime.now().strftime("%Y%m%d-%H%M%S-%f")
         json.dump(result, open(TRACE_DIR / f"{name}.json", "w", encoding="utf-8"), indent=1, ensure_ascii=False)
-    return result
 
 
 if __name__ == "__main__":

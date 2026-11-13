@@ -1,0 +1,9 @@
+crop_en,crop_ar,group,ecw_no_loss,ecw_half_loss,tolerance,source,note
+barley,الشعير,field,5.3,12,tolerant,FAO 29 Table 4,draft from Ayers and Westcot; Mais to check against the table
+date palm,النخيل,fruit,2.7,12,tolerant,FAO 29 Table 4,draft; also matches palm and palms
+wheat,القمح,field,4.0,13,moderately tolerant,FAO 29 Table 4,draft
+alfalfa,البرسيم,fodder,1.3,5.9,moderately sensitive,FAO 29 Table 4,draft
+tomato,الطماطم,vegetable,1.7,5.0,moderately sensitive,FAO 29 Table 4,draft
+cucumber,الخيار,vegetable,1.7,4.2,moderately sensitive,FAO 29 Table 4,draft
+lettuce,الخس,vegetable,0.9,3.4,moderately sensitive,FAO 29 Table 4,draft
+onion,البصل,vegetable,0.8,2.9,sensitive,FAO 29 Table 4,draft

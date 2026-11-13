@@ -17,5 +17,7 @@ MAX_ANSWER_TOKENS = 500    # cap on each model reply; answers are at most 5 sent
 VERIFY = os.environ.get("AQUAMAA_VERIFY", "1") != "0"
 # Milestone 6 simplification for farmers on or off, to compare before and after:  $env:AQUAMAA_SIMPLIFY = "0"
 SIMPLIFY = os.environ.get("AQUAMAA_SIMPLIFY", "1") != "0"
+# Fast path (facts by code, one short model call) on or off:  $env:AQUAMAA_FAST = "0"
+FAST = os.environ.get("AQUAMAA_FAST", "1") != "0"
 EMBED_MODEL = os.environ.get("AQUAMAA_EMBED_MODEL", "bge-m3")
 OLLAMA_URL = os.environ.get("OLLAMA_HOST", "http://127.0.0.1:11434")

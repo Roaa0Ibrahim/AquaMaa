@@ -202,6 +202,37 @@ Question: {question}
 Checked answer: {answer}
 Rewritten:"""
 
+# Fast path (13 Nov): code builds the facts, the model only says them. One short call, so it stays a few seconds.
+PHRASE = """You are AquaMaa, answering {reader} in Qatar about well water.
+Answer the question using ONLY the facts below. The facts were worked out by AquaMaa's own checks and are correct:
+don't add, change, round or compare numbers yourself, and don't add facts.
+- Give only advice that is in the facts; never suggest tasting or drinking water to test it.
+- Keep the facts' strength: "lower its yield by about 7%" is a small loss, not "too salty to grow".
+- {style}
+- Keep each source label in square brackets exactly as written, after the sentence it supports.
+- If the facts say there is no current reading or not enough data, say that plainly.
+- No headings or lists. {language}
+
+Example
+Question: Can I irrigate my tomatoes with this water?
+Facts:
+- Salinity (TDS) used: 2,500 mg/L, from the latest live reading [live sensors].
+- TDS 2,500 mg/L for irrigation: severe restriction for irrigation; only salt-tolerant crops such as barley or date palm [S1]
+- tomato grows with no yield loss up to about 1,088 mg/L of salinity and loses about half its yield near 3,200 mg/L; so this water would lower its yield by about 33% [S2].
+Answer: At 2,500 mg/L your tomatoes would give about 33% less harvest [live sensors] [S2]. This level is a severe restriction for irrigation, so salt-tolerant crops like barley or date palm suit it better [S1].
+
+Question: {question}
+Facts:
+{facts}
+Answer:"""
+
+PHRASE_STYLE = {
+    "farmer": ("a farm owner or farm manager", "Direct and practical, everyday words, at most 3 sentences: the answer "
+               "first, then one thing they can do if the facts give it."),
+    "officer": ("a water officer (Kahramaa or a ministry)", "Plain and professional, at most 4 sentences: the finding "
+                "with its numbers and source first, then what it means for monitoring or planning."),
+}
+
 FIRST_SEARCH = ("You haven't searched AquaMaa's sources yet. Call search_documents or lookup_table for the question "
                 "first (rule 1), then answer.")
 
