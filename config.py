@@ -10,6 +10,9 @@ because the saved knowledge base was built with the old one.
 import os
 
 CHAT_MODEL = os.environ.get("AQUAMAA_MODEL", "qwen3:14b")
+# The model for the question layers (guess.py: misheard words and re-reading; understand.py: dialect). Its own
+# setting so an Arabic-first model (for example Fanar, from QCRI in Qatar) can be tried here without touching answers.
+UNDERSTAND_MODEL = os.environ.get("AQUAMAA_UNDERSTAND_MODEL", CHAT_MODEL)
 MAX_TOOL_ROUNDS = 6        # tool rounds before the agent must answer
 MAX_REPAIRS = 1            # repair attempts after the verifier finds problems
 MAX_ANSWER_TOKENS = 500    # cap on each model reply; answers are at most 5 sentences

@@ -24,7 +24,7 @@ from pathlib import Path
 from langchain_core.messages import HumanMessage
 from langchain_ollama import ChatOllama
 
-from config import CHAT_MODEL, OLLAMA_URL
+from config import OLLAMA_URL, UNDERSTAND_MODEL
 from understand import DIALECT_WORDS
 
 ROOT = Path(__file__).parent
@@ -81,7 +81,7 @@ def _spelled(texts):
 
 SPELLED, VOCAB = _vocabulary()               # SPELLED: core words to suggest; VOCAB: every word known as correct
 VOCAB_LIST = sorted(SPELLED)
-model = ChatOllama(model=CHAT_MODEL, temperature=0, reasoning=False, base_url=OLLAMA_URL, num_predict=120,
+model = ChatOllama(model=UNDERSTAND_MODEL, temperature=0, reasoning=False, base_url=OLLAMA_URL, num_predict=120,
                    keep_alive="2h")
 
 PROMPT = """You help AquaMaa, an assistant about groundwater wells, water quality, farms and sensors in Qatar.
@@ -156,6 +156,27 @@ def guess(text):
         if word in found and choice in found[word]:
             out = re.sub(rf"(?<![\wء-ي]){re.escape(word)}(?![\wء-ي])", choice, out)
     return out, out != text, found, round(time.time() - start, 1)
+
+
+REREAD = """AquaMaa's users ask about groundwater wells, well water quality and salinity, farms and irrigation, water
+sensors and their readings, water law and permits, and water statistics in Qatar. They are farmers and water officers,
+and they may be looking at AquaMaa's dashboard or asking about their own farm's well.
+The question below seemed outside these subjects. Assume the person asked a relevant question and AquaMaa
+misunderstood it: a misheard or mistyped word, dialect, or missing context. Write the most likely intended question,
+changing as little as possible and keeping its language. Only if it truly has nothing to do with water, wells, farms
+or sensors (for example football or cooking), answer exactly: UNRELATED
+Question: {text}
+Intended question:"""
+
+
+def reread(text):
+    """The most likely intended question for one that seemed out of scope, or None if it is truly unrelated
+    (13 Nov, Roaa: users ask relevant questions; when one looks irrelevant, AquaMaa probably got it wrong)."""
+    out = model.invoke([HumanMessage(REREAD.format(text=text))]).content.strip()
+    out = out.strip('"“”').splitlines()[0].strip() if out else ""
+    if not out or "UNRELATED" in out.upper() or out == text:
+        return None
+    return out
 
 
 if __name__ == "__main__":

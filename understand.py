@@ -14,13 +14,13 @@ from difflib import SequenceMatcher
 from langchain_core.messages import HumanMessage
 from langchain_ollama import ChatOllama
 
-from config import CHAT_MODEL, OLLAMA_URL
+from config import OLLAMA_URL, UNDERSTAND_MODEL
 
 DIALECT_WORDS = re.compile(
     r"(^|\s)(ليش|ليه|شنو|شو|وش|ايش|إيش|شلون|كيفك|الحين|ذحين|زين|مب|مو|ماي|الماي|البير|بير|أبي|ابي|ابغى|أبغى|وايد|"
     r"عشان|علشان|هال\S*|هذي|ذي|اللي|يبه|يعني|أقدر|اقدر|نقدر|ينفع|يصير|صار|خلاص|شي|اشلون|كذا)(\s|$|[؟?،,.])")
 MIN_SIMILARITY = 0.35          # dialect and standard Arabic differ a lot, so this only blocks a different question
-model = ChatOllama(model=CHAT_MODEL, temperature=0, reasoning=False, base_url=OLLAMA_URL, num_predict=120,
+model = ChatOllama(model=UNDERSTAND_MODEL, temperature=0, reasoning=False, base_url=OLLAMA_URL, num_predict=120,
                    keep_alive="2h")
 
 PROMPT = """Rewrite this question from Qatari or Gulf Arabic dialect into clear Modern Standard Arabic.

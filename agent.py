@@ -29,7 +29,7 @@ from agent_log import log
 from config import FAST, MAX_REPAIRS, MAX_TOOL_ROUNDS
 from fastpath.answer import fast_answer
 from prompts import MODEL_DOWN, localize
-from guess import guess
+from guess import guess, reread
 from understand import to_msa
 from state import State, trace_of
 from steps.figures import figures_block, figures_node
@@ -64,7 +64,8 @@ graph.add_edge("simplify", END)
 app = graph.compile()
 
 
-def ask(question: str, save_trace: bool = True, role: str | None = None, grounding: dict | None = None) -> dict:
+def ask(question: str, save_trace: bool = True, role: str | None = None, grounding: dict | None = None,
+        _reread: bool = True) -> dict:
     """role: the website account's role; it picks the reader persona (farmer or officer, see steps/simplify.py).
     grounding: live sensor data from Deema's dashboard, given to the agent by steps/live.py."""
     start = time.time()
@@ -109,6 +110,20 @@ def ask(question: str, save_trace: bool = True, role: str | None = None, groundi
         return dict(question=asked, route={"question_type": None, "in_scope": None}, answer=localize(MODEL_DOWN, asked),
                     tool_rounds=0, key_figures=[], repairs=0, problems_left=[], trace=[], error=str(error),
                     seconds=round(time.time() - start, 1))
+    if _reread and not final["route"].get("in_scope"):
+        # Before answering "outside AquaMaa's sources", assume AquaMaa misunderstood and re-read the question once
+        try:
+            intended = reread(asked)
+        except (ConnectionError, OSError, httpx.HTTPError, ollama.ResponseError):
+            intended = None
+        if intended:
+            log.info("REREAD    out of scope as asked; understood as: %s", intended)
+            again = ask(intended, save_trace=False, role=role, grounding=grounding, _reread=False)
+            if again["route"].get("in_scope"):
+                again["answer"] = understood_note(intended, asked) + again["answer"]
+                again.update(question=asked, understood=intended, seconds=round(time.time() - start, 1))
+                save(again, save_trace)
+                return again
     figures = final.get("figures") or []
     answer = (final.get("final") or final["messages"][-1].content).strip()
     if not (final.get("simplified") and persona == "farmer"):   # a farmer sees the simple answer without the list

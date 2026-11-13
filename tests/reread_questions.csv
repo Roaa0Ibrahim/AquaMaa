@@ -1,0 +1,5 @@
+id,persona,role,language,question,why
+R1,farmer,farmer,ar,كم عدد الغبار في الشحانية؟,Misheard word the guessing layer may miss: re-read as wells
+R2,officer,kahramaa,en,how many wheels does Al Khor have?,Misheard word in English: re-read as wells
+R3,farmer,farmer,en,is my reading okay?,Missing context: the sensor reading
+R4,farmer,farmer,en,who won the football match yesterday?,Truly unrelated: stays outside AquaMaa's sources
