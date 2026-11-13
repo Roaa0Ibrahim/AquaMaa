@@ -13,7 +13,7 @@ from langchain_ollama import ChatOllama
 from agent_log import log
 from checks import CITATION, numbers
 from config import CHAT_MODEL, OLLAMA_URL
-from fastpath.facts import BUILDERS
+from fastpath.facts import BUILDERS, no_reading
 from fastpath.intents import detect
 from prompts import LANGUAGE_NOTE, PHRASE, PHRASE_STYLE
 from retrieval import is_arabic
@@ -60,9 +60,7 @@ def fast_answer(question, persona, grounding):
     if not facts and intent == "live_reading":
         # "How salty is my well?" with no live sensor data (Pepper, or the sensor offline): say so, and give the
         # closest card, such as how to test well water (13 Nov: it fell to the deep path and took minutes)
-        card = BUILDERS["explain"](question, grounding, arabic, 0.9) or []
-        facts = ["[live sensors] " + ("لا تتوفر الآن قراءة مباشرة من حساس البئر." if arabic
-                                      else "No live reading from the well sensor is available right now.")] + card
+        facts = no_reading(grounding, arabic)
     if not facts:
         log.info("FAST      %s (%.2f) but no facts for it: deep path", intent, score)
         return None

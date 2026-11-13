@@ -40,7 +40,7 @@ def norm(word):
 
 
 def _vocabulary():
-    texts = []
+    texts, dialect = [], []
     sources = [("fastpath/data/intent_questions.csv", ["question"]),
                ("fastpath/data/knowledge_cards.csv", ["question_en", "question_ar", "fact_en", "fact_ar"]),
                ("fastpath/data/places.csv", ["name_ar", "name_en"]),
@@ -51,12 +51,12 @@ def _vocabulary():
         p = ROOT / path
         if p.exists():
             for row in csv.DictReader(p.open(encoding="utf-8-sig")):
-                texts += [row.get(c) or "" for c in columns]
-    core = _spelled(texts)                    # AquaMaa's own words: the only source of suggested replacements
+                (dialect if row.get("language") == "ar-dialect" else texts).extend(row.get(c) or "" for c in columns)
+    core = _spelled(texts + dialect)                    # AquaMaa's own words: the only source of suggested replacements
     # Ordinary words, only to recognise them as correct, never suggested (13 Nov: "suitable" became "table", and
     # "الموجودة" was offered "المتجددة"): every word used at least twice in the knowledge base's passages, and the
     # dialect words the dialect layer knows
-    general = [" ".join(re.findall(r"[ء-ي]+", DIALECT_WORDS.pattern))]
+    general = []
     chunks = ROOT / "chunks.jsonl"
     if chunks.exists():
         counts = {}
@@ -64,7 +64,9 @@ def _vocabulary():
             for w in WORD.findall(json.loads(line).get("text", "")):
                 counts[w] = counts.get(w, 0) + 1
         general.append(" ".join(w for w, c in counts.items() if c >= 2))
-    return core, set(core) | set(_spelled(general))
+    standard = set(_spelled(texts)) | set(_spelled(general))
+    known_dialect = set(_spelled(dialect + [" ".join(re.findall(r"[ء-ي]+", DIALECT_WORDS.pattern))]))
+    return core, set(core) | standard | known_dialect, standard
 
 
 def _spelled(texts):
@@ -78,7 +80,9 @@ def _spelled(texts):
     return spelled
 
 
-SPELLED, VOCAB = _vocabulary()               # SPELLED: core words to suggest; VOCAB: every word known as correct
+# SPELLED: core words to suggest; VOCAB: every word known as correct; STANDARD: VOCAB without dialect words, to
+# tell whether a question needs the dialect rewrite (13 Nov: a dialect example question made "شكثر" look standard)
+SPELLED, VOCAB, STANDARD = _vocabulary()
 VOCAB_LIST = sorted(SPELLED)
 model = make_model(num_predict=120)     # local Qwen, or Fanar (understand_model.py)
 
@@ -101,9 +105,10 @@ PREFIXES = ("وال", "بال", "فال", "كال", "لل", "ال", "و", "ف", 
 SUFFIXES = ("تها", "ته", "تهم", "هما", "هم", "ها", "ه", "ي", "نا", "ك", "ات", "ون", "ين", "ة")
 
 
-def known(n):
+def known(n, vocab=None):
     """A word AquaMaa knows, also with Arabic prefixes or endings removed (بئري, ملوحته, يحفر, والملوحة)."""
-    if n in VOCAB:
+    vocab = VOCAB if vocab is None else vocab
+    if n in vocab:
         return True
     forms = {n}
     for p in PREFIXES:
@@ -117,14 +122,15 @@ def known(n):
                 if stem.endswith("ت"):                 # ملوحة + ه = ملوحته: the ة became ت
                     forms.add(stem[:-1] + "ه")
     forms |= {f[1:] for f in forms if f[:1] in "يتنا" and len(f) >= 4}      # verb prefixes: يحفر -> حفر
-    return any(f in VOCAB or ("ال" + f) in VOCAB for f in forms)
+    return any(f in vocab or ("ال" + f) in vocab for f in forms)
 
 
 def unknown_arabic(text):
     """Arabic words AquaMaa's vocabulary doesn't know: dialect or misheard words. If there are none, the question
     is already in AquaMaa's words and needs no rewrite (13 Nov: rewriting standard questions added words like
     "الموجودة" and lost the fast path)."""
-    return [w for w in WORD.findall(text) if re.match(r"[ء-ي]", w) and len(norm(w)) >= 3 and not known(norm(w))]
+    return [w for w in WORD.findall(text) if re.match(r"[ء-ي]", w) and len(norm(w)) >= 3
+            and not known(norm(w), STANDARD)]
 
 
 def suspects(text, only=None):

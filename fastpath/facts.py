@@ -103,14 +103,37 @@ def uses_in(question):
 def live_reading(question, grounding, arabic):
     if not grounding:
         return None                                   # outside the website there is no live reading
-    lines = live_lines(grounding)
     tds, ph = live_value(grounding, "tds"), live_value(grounding, "ph")
+    if tds is None and ph is None:
+        return None     # no fresh value: answer.py says so simply (13 Nov: 7 dashboard lines became a confusing answer)
+    lines = live_lines(grounding)
     for use in ("drinking", "irrigation"):
         if tds is not None:
             lines.append(meaning("tds", use, tds, arabic))
         if ph is not None:
             lines.append(meaning("ph", use, ph, arabic))
     return [x for x in lines if x]
+
+
+def no_reading(grounding, arabic):
+    """Facts when the well sensor has no fresh reading: since when, what to check, and how to test the water."""
+    devices = (((grounding or {}).get("live") or {}).get("devices")) or []
+    ago = devices[0].get("minutesAgo") if devices else None
+    if isinstance(ago, (int, float)) and ago >= 120:
+        hours = round(ago / 60)
+        lines = [f"[live sensors] لم يرسل حساس البئر أي قراءة منذ حوالي {hours} ساعة، فلا توجد قراءة حالية للماء."
+                 if arabic else f"[live sensors] The well sensor has not sent a reading for about {hours} hours, so "
+                                f"there is no current reading of the water."]
+    else:
+        lines = ["[live sensors] لا تتوفر الآن قراءة مباشرة من حساس البئر." if arabic
+                 else "[live sensors] No live reading from the well sensor is available right now."]
+    if devices:
+        lines.append("[live sensors] تأكد أن الحساس موصول بالكهرباء وبشبكة الواي فاي." if arabic
+                     else "[live sensors] Check that the sensor has power and is connected to Wi-Fi.")
+    # The card on testing well water yourself, found by its meaning, not by an id
+    lines += card("كيف أفحص جودة مياه البئر؟" if arabic else "How do I test the quality of my well water?",
+                  grounding, arabic, 0.9) or []
+    return lines
 
 
 def trend(question, grounding, arabic):

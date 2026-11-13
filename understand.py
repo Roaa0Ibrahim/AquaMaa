@@ -13,6 +13,7 @@ from difflib import SequenceMatcher
 
 from langchain_core.messages import HumanMessage
 
+from agent_log import log
 from understand_model import make_model
 
 DIALECT_WORDS = re.compile(
@@ -29,7 +30,7 @@ Examples:
 "ليش ماي البير صار مالح؟" -> "لماذا أصبح ماء البئر مالحًا؟"
 "أقدر أسقي النخل بهالماي؟" -> "هل يمكنني سقي النخيل بهذا الماء؟"
 "شنو قراءة الحساس الحين؟" -> "ما قراءة الحساس الآن؟"
-"شكثر الاملاح في بيري؟" -> "كم الأملاح في بئري؟"
+"شكثر الماي اللي أسحبه من البير باليوم؟" -> "كم كمية الماء التي أسحبها من البئر في اليوم؟"
 "كم عدد الآبار في سدرية الخيسة؟" -> "كم عدد الآبار في سدرية الخيسة؟"
 Question: {text}
 Modern Standard Arabic:"""
@@ -60,6 +61,7 @@ def to_msa(text):
     out = out.translate(DIGITS)     # 0-9 digits, as the rest of AquaMaa reads them (Fanar wrote ٣٠٠٠ for 3000)
     if not out or SequenceMatcher(None, text, out).ratio() < MIN_SIMILARITY or numbers(out) != numbers(text):
         # a different question, or a number lost or changed (13 Nov: "تي دي اس ١٢٠٠" came back without 1200)
+        log.info("DIALECT   rewrite not used (too different or numbers changed): %s", out)
         return text, False, round(time.time() - start, 1)
     return out, out != text, round(time.time() - start, 1)
 

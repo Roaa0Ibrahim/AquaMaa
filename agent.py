@@ -87,7 +87,8 @@ def ask(question: str, save_trace: bool = True, role: str | None = None, groundi
         if changed:
             guessed = question
             log.info("GUESS     %s -> %s", msa, question)
-    except (ConnectionError, OSError, httpx.HTTPError, ollama.ResponseError):
+    except (ConnectionError, OSError, httpx.HTTPError, ollama.ResponseError) as error:
+        log.info("LAYERS    skipped, the model didn't respond: %r", error)
         question = asked
     if FAST:
         try:
