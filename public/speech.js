@@ -29,6 +29,10 @@
   new MutationObserver(() => { if (!document.body.classList.contains('aq-open')) stopSpeaking(); })
     .observe(document.body, { attributes: true, attributeFilter: ['class'] });
   window.addEventListener('pagehide', stopSpeaking);
+  window.addEventListener('beforeunload', stopSpeaking);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) stopSpeaking(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') stopSpeaking(); });
+  stopSpeaking();                                      // anything left speaking from an earlier page stops now
 
   // The ع / EN button next to the microphone: the language to listen in
   function addLanguageButton() {
