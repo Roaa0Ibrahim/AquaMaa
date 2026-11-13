@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AquaMaa</string>
+    <!-- The laptop running python api.py, on Pepper's Wi-Fi. scripts\start_for_pepper.ps1 prints the address to use. -->
+    <string name="agent_url">http://192.168.8.100:8000</string>
+</resources>

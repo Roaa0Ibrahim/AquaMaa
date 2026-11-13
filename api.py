@@ -72,6 +72,8 @@ class Question(BaseModel):
     role: Optional[str] = Field(default=None, max_length=40, description="The signed-in user's dashboard role")
     grounding: Optional[dict] = Field(default=None, description="Live sensor data from Deema's dashboard "
                                       "(server/assistant.js buildGrounding); read by steps/live.py")
+    live: bool = Field(default=False, description="Fetch the dashboard's live data here when no grounding is sent "
+                                                  "(Pepper asks this way)")
 
 
 def sources_of(answer):
@@ -95,9 +97,15 @@ async def ask_endpoint(q: Question, x_aquamaa_key: Optional[str] = Header(defaul
         raise HTTPException(status_code=401, detail="Missing or wrong X-AquaMaa-Key")
     question = re.sub(r"\s+", " ", q.question).strip()
     log.info("API       question from role=%s: %s", q.role or "-", question)
+    grounding = q.grounding
+    if grounding is None and q.live:
+        try:
+            grounding = await asyncio.to_thread(dashboard.grounding)
+        except Exception as error:                         # no live data: the agent says there is no current reading
+            log.info("API       couldn't fetch the dashboard's live data for this question: %s", error)
     async with one_at_a_time:                              # one model job at a time
         # the role picks the persona (farmer or officer); the grounding gives the live sensor readings
-        r = await asyncio.to_thread(ask, question, True, q.role, q.grounding)
+        r = await asyncio.to_thread(ask, question, True, q.role, grounding)
     return {
         "answer": r["answer"],
         "sources": sources_of(r["answer"]),

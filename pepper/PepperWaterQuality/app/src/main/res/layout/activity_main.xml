@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0B3D5C"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="32dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AquaMaa: I watch the wells for you"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:lineSpacingExtra="6dp"
+        android:text="• What is the salinity now?\n• Is the water getting saltier?\n• Is it good for irrigation?\n• What should we do?\n• Give me the briefing\n• Why are the wells getting saltier?\n• Do farmers need a licence?"
+        android:textColor="#CDEBFF"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Starting..."
+        android:textColor="#FFD54F"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/heard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text=""
+        android:textColor="#A5D6A7"
+        android:textSize="20sp" />
+</LinearLayout>
