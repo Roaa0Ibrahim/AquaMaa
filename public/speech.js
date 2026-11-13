@@ -1,27 +1,65 @@
 /* AquaMaa chat box: speech in and out, using the browser's own speech services (Chrome and Edge).
  * Plugs into the hooks assistant.js leaves for this:
- *   onListeningStart / onListeningStop  -> speech recognition: Arabic (Qatar) when the site is in Arabic, else English;
- *                                          the recognised text goes into the question box, to correct and then send
- *   onAssistantReply                    -> when the question was spoken, the answer is read aloud in its own language
- * Recognition in Chrome sends the audio to Google's speech service, so it needs internet. Nothing is stored here.
+ *   onListeningStart / onListeningStop -> speech recognition in the chat's own language setting (the ع / EN button
+ *                                         next to the microphone; Arabic by default), never the page's language.
+ *                                         The words go into the question box; AquaMaa fixes misheard words
+ *                                         (POST /clean on the agent service), then you check them and send.
+ *   onAssistantReply                   -> when the question was spoken, the answer is read aloud in its language.
+ * Speaking stops when you press the microphone, close or minimise the chat, or leave the page.
+ * Recognition in Chrome sends the audio to Google's speech service, so it needs internet. Nothing is stored here
+ * except the chosen language, in this browser.
  */
 (function () {
   'use strict';
   const A = window.AquaMaaAssistant;
   if (!A || !A.hooks) return;
   const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  const arabicPage = () => document.documentElement.lang === 'ar';
   const CLEAN_URL = 'http://127.0.0.1:8000/clean';   // the AquaMaa agent service on this laptop
+  const LANGS = { ar: { code: 'ar-QA', label: 'ع', title: 'Listening in Arabic. Click for English' },
+                  en: { code: 'en-US', label: 'EN', title: 'Listening in English. Click for Arabic' } };
+  let lang = 'ar';
+  try { lang = localStorage.getItem('aq_speech_lang') === 'en' ? 'en' : 'ar'; } catch (e) { /* default Arabic */ }
   let rec = null;
   let heard = '';
   let lastWasSpoken = false;
 
+  function stopSpeaking() { if (window.speechSynthesis) window.speechSynthesis.cancel(); }
+
+  // Stop speaking when the chat closes or is minimised (assistant.js removes the aq-open class from <body>)
+  new MutationObserver(() => { if (!document.body.classList.contains('aq-open')) stopSpeaking(); })
+    .observe(document.body, { attributes: true, attributeFilter: ['class'] });
+  window.addEventListener('pagehide', stopSpeaking);
+
+  // The ع / EN button next to the microphone: the language to listen in
+  function addLanguageButton() {
+    const mic = document.querySelector('.aq-round.mic');
+    if (!mic || document.querySelector('.aq-speech-lang')) return !!mic;
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'aq-round aq-speech-lang';
+    b.style.cssText = 'font-weight:700;font-size:14px;min-width:36px';
+    const show = () => { b.textContent = LANGS[lang].label; b.title = LANGS[lang].title; b.setAttribute('aria-label', LANGS[lang].title); };
+    b.addEventListener('click', () => {
+      lang = lang === 'ar' ? 'en' : 'ar';
+      try { localStorage.setItem('aq_speech_lang', lang); } catch (e) { /* not remembered */ }
+      show();
+    });
+    show();
+    mic.insertAdjacentElement('afterend', b);
+    return true;
+  }
+  if (!addLanguageButton()) {
+    const wait = new MutationObserver(() => { if (addLanguageButton()) wait.disconnect(); });
+    wait.observe(document.body, { childList: true, subtree: true });
+  }
+
   if (Recognition) {
     A.hooks.onListeningStart = function () {
+      stopSpeaking();                                  // never talk over the person speaking
       heard = '';
       lastWasSpoken = true;
       rec = new Recognition();
-      rec.lang = arabicPage() ? 'ar-QA' : 'en-US';
+      rec.lang = LANGS[lang].code;
       rec.interimResults = false;
       rec.continuous = false;
       rec.onresult = function (e) {
@@ -32,15 +70,12 @@
         const text = heard.trim();
         rec = null;
         if (!text) return;
-        // Put the words in the question box to check before sending (13 Nov: "الآبار في سدرية الخيسة" was heard as
-        // "الإضرار في منطقة سدرية الخيسر"; Qatari place names are often misheard). Press send or Enter to ask.
         const box = document.querySelector('input[aria-label="Message"]');
         const put = (t) => {
           if (box) { box.value = t; box.focus(); box.setSelectionRange(t.length, t.length); }
           else A.submitTranscript(t);
         };
         put(text);
-        // Then AquaMaa fixes misheard words (python api.py, POST /clean, about 1-2 s); the box shows the result
         fetch(CLEAN_URL, { method: 'POST', headers: { 'content-type': 'application/json' },
           body: JSON.stringify({ text }), signal: AbortSignal.timeout(8000) })
           .then((r) => (r.ok ? r.json() : null))
@@ -54,8 +89,8 @@
 
   function speakable(text) {
     return String(text || '')
-      .split('\n\nKey figures:')[0]
-      .split('\n\nNote on sources:')[0]
+      .split('\n\nKey figures:')[0].split('\n\nأرقام رئيسية:')[0]
+      .split('\n\nNote on sources:')[0].split('\n\nملاحظة عن المصادر:')[0]
       .replace(/\[[^\]]*\]/g, '')
       .replace(/mg\/L/g, ' milligrams per litre')
       .replace(/\bppm\b/g, ' parts per million')
@@ -66,13 +101,14 @@
   A.hooks.onAssistantReply = function (text) {
     if (!lastWasSpoken || !window.speechSynthesis) return;   // read aloud only answers to spoken questions
     lastWasSpoken = false;
+    if (!document.body.classList.contains('aq-open')) return;  // the chat was closed meanwhile
     const say = speakable(text);
     if (!say) return;
     const u = new SpeechSynthesisUtterance(say);
     u.lang = /[؀-ۿ]/.test(say) ? 'ar-SA' : 'en-US';
     const voice = window.speechSynthesis.getVoices().find((v) => v.lang && v.lang.slice(0, 2) === u.lang.slice(0, 2));
     if (voice) u.voice = voice;
-    window.speechSynthesis.cancel();
+    stopSpeaking();
     window.speechSynthesis.speak(u);
   };
 })();
