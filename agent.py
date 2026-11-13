@@ -29,6 +29,7 @@ from agent_log import log
 from config import FAST, MAX_REPAIRS, MAX_TOOL_ROUNDS
 from fastpath.answer import fast_answer
 from prompts import MODEL_DOWN, localize
+from guess import guess
 from understand import to_msa
 from state import State, trace_of
 from steps.figures import figures_block, figures_node
@@ -69,10 +70,17 @@ def ask(question: str, save_trace: bool = True, role: str | None = None, groundi
     start = time.time()
     persona = persona_of(role)
     asked = question
-    try:                                    # the dialect layer: dialect -> Modern Standard Arabic (understand.py)
-        question, rewritten, _ = to_msa(asked)
+    guessed = None
+    try:
+        # The guessing layer: words that don't fit are replaced by what was probably meant (guess.py)
+        intended, changed, _, _ = guess(asked)
+        if changed:
+            guessed = intended
+            log.info("GUESS     %s -> %s", asked, intended)
+        # The dialect layer: dialect -> Modern Standard Arabic (understand.py)
+        question, rewritten, _ = to_msa(intended)
         if rewritten:
-            log.info("DIALECT   %s -> %s", asked, question)
+            log.info("DIALECT   %s -> %s", intended, question)
     except (ConnectionError, OSError, httpx.HTTPError, ollama.ResponseError):
         question = asked
     if FAST:
@@ -84,7 +92,7 @@ def ask(question: str, save_trace: bool = True, role: str | None = None, groundi
         if fast:
             result = dict(question=asked, understood=question, persona=persona, path="fast", intent=fast["intent"],
                           route={"question_type": f"fast:{fast['intent']}", "in_scope": True},
-                          answer=localize(fast["answer"], asked),
+                          answer=understood_note(guessed, asked) + localize(fast["answer"], asked),
                           tool_rounds=0, key_figures=[], repairs=0, problems_left=[], checked_answer=None,
                           simplified=False, simplify_note="",
                           trace=[{"step": "result", "tool": "fast_facts", "text": "\n".join(fast["facts"])}],
@@ -105,7 +113,7 @@ def ask(question: str, save_trace: bool = True, role: str | None = None, groundi
     answer = (final.get("final") or final["messages"][-1].content).strip()
     if not (final.get("simplified") and persona == "farmer"):   # a farmer sees the simple answer without the list
         answer += figures_block(figures, answer)
-    answer = localize(answer, asked)
+    answer = understood_note(guessed, asked) + localize(answer, asked)
     result = dict(question=asked, understood=question, persona=persona, route=final["route"], answer=answer,
                   tool_rounds=final["rounds"],
                   key_figures=[s["stat_id"] for s in figures], repairs=final.get("repairs", 0),
@@ -115,6 +123,15 @@ def ask(question: str, save_trace: bool = True, role: str | None = None, groundi
                   seconds=round(time.time() - start, 1), path="deep")
     save(result, save_trace)
     return result
+
+
+def understood_note(guessed, asked):
+    """When the guessing layer changed the question, the answer first says how it was understood."""
+    if not guessed:
+        return ""
+    if any("؀" <= ch <= "ۿ" for ch in asked):
+        return f"فهمت سؤالك على أنه: «{guessed}»\n\n"
+    return f"I understood your question as: \"{guessed}\"\n\n"
 
 
 def save(result, save_trace):

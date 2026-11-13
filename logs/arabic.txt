@@ -1,50 +1,53 @@
 ﻿
 ========== A1 [farmer, role=farmer, ar-dialect] كيف اقيس جودة ماء البير
-20:12:20 DIALECT   كيف اقيس جودة ماء البير -> كيف أقيس جودة ماء البئر
-20:12:26 FAST      explain (0.95), 1 fact(s), answered in 6.7 s
----------- 7.3 s | path=fast explain | persona=farmer | simplified=False | language_ok=True
+20:25:44 DIALECT   كيف اقيس جودة ماء البير -> كيف أقيس جودة ماء البئر
+20:25:51 FAST      explain (0.95), 1 fact(s), answered in 7.1 s
+---------- 7.5 s | path=fast explain | persona=farmer | simplified=False | language_ok=True
 ANSWER:
 لقياس جودة ماء البئر، قِس الملوحة بجهاز TDS أو EC والحموضة بجهاز pH [DFRobot_SEN0244_TDS.txt; DFRobot_SEN0161_V2_pH.txt; misconceptions.csv p.8]. إذا كانت الملوحة مرتفعة، استخدم جهاز EC بدلاً من TDS [DFRobot_SEN0244_TDS.txt; DFRobot_SEN0161_V2_pH.txt; misconceptions.csv p.8].
 
 ========== A2 [farmer, role=farmer, ar-dialect] ليش ماي البير صار مالح؟
-20:12:27 DIALECT   ليش ماي البير صار مالح؟ -> لماذا أصبح ماء البئر مالحًا؟
-20:12:31 FAST      explain (0.75), 1 fact(s), answered in 4.4 s
----------- 5.0 s | path=fast explain | persona=farmer | simplified=False | language_ok=True
+20:25:52 DIALECT   ليش ماي البير صار مالح؟ -> لماذا أصبح ماء البئر مالحًا؟
+20:25:57 FAST      explain (0.75), 1 fact(s), answered in 4.7 s
+---------- 5.4 s | path=fast explain | persona=farmer | simplified=False | language_ok=True
 ANSWER:
 يصبح ماء البئر مالحًا لأن سحب المياه الجوفية للمزارع أسرع مما يعوضه المطر، مما يسمح لمياه البحر بالتقدم نحو الداخل [Elobaid_2017_EGU_saline_front_Qatar.txt p.2]. يمكن تقليل هذا التأثير من خلال تقليل سحب المياه الجوفية وزيادة إعادة تدوير المياه.
 
 ========== A3 [farmer, role=farmer, ar-dialect] أقدر أسقي النخل بماي ملوحته 3000؟
-20:12:32 DIALECT   أقدر أسقي النخل بماي ملوحته 3000؟ -> هل يمكنني سقي النخيل بالماء الملوح الذي تركيزه 3000؟
-20:12:38 FAST      suitability (0.74), 3 fact(s), answered in 5.2 s
----------- 6.3 s | path=fast suitability | persona=farmer | simplified=False | language_ok=True
+20:25:57 GUESS     أقدر أسقي النخل بماي ملوحته 3000؟ -> أقدر أسقي النخيل بماي ملوحته 3000؟
+20:25:58 DIALECT   أقدر أسقي النخيل بماي ملوحته 3000؟ -> هل يمكنني سقي النخيل بالماء الملوحة تركيزه 3000؟
+20:26:04 FAST      suitability (0.73), 3 fact(s), answered in 5.4 s
+---------- 6.9 s | path=fast suitability | persona=farmer | simplified=False | language_ok=True
 ANSWER:
-الماء الملوح بتركيز 3000 ملغم/لتر سيؤدي إلى انخفاض إنتاج النخيل بنسبة حوالي 11% [AquaMaa check] [FAO 29 Table 4]. هذا التركيز يُعتبر قيودًا شديدة على الري، لذا يُفضل خلطه بماء أعذب أو استخدامه مع محاصيل متحملة للملوحة [limits.csv row 4 (FAO 29)].
+فهمت سؤالك على أنه: «أقدر أسقي النخيل بماي ملوحته 3000؟»
+
+بتركيز ملوحة 3000 ملغم/لتر، فإن النخيل سيؤدي إلى خسارة في المحصول تقدر بحوالي 11% [limits.csv row 4 (FAO 29)] [FAO 29 Table 4]. يمكن استخدام هذا الماء للري، لكنه يُفضل خلطه بماء أقل ملوحة لتحسين النتائج [limits.csv row 4 (FAO 29)].
 
 ========== A4 [officer, role=kahramaa, ar-dialect] شنو عقوبة اللي يحفر بير بدون رخصة؟
-20:12:38 DIALECT   شنو عقوبة اللي يحفر بير بدون رخصة؟ -> ما عقوبة من يحفر بئرًا بدون رخصة؟
-20:12:41 FAST      law (0.96), 1 fact(s), answered in 2.6 s
----------- 3.5 s | path=fast law | persona=officer | simplified=False | language_ok=True
+20:26:05 DIALECT   شنو عقوبة اللي يحفر بير بدون رخصة؟ -> ما عقوبة من يحفر بئرًا بدون رخصة؟
+20:26:08 FAST      law (0.96), 1 fact(s), answered in 3.0 s
+---------- 3.9 s | path=fast law | persona=officer | simplified=False | language_ok=True
 ANSWER:
 من يحفر بئرًا بدون رخصة قد يُعاقب بالسجن حتى ثلاث سنوات وغرامة تصل إلى 500000 ريال قطري [ANND_Right_to_Water_in_Qatar.txt p.14].
 
 ========== A5 [officer, role=municipality, ar] كم عدد الآبار في مزارع بلدية الخور؟
-20:12:45 FAST      statistic (0.70), 1 fact(s), answered in 4.0 s
----------- 4.0 s | path=fast statistic | persona=officer | simplified=False | language_ok=True
+20:26:12 FAST      statistic (0.70), 1 fact(s), answered in 4.3 s
+---------- 4.3 s | path=fast statistic | persona=officer | simplified=False | language_ok=True
 ANSWER:
 في عام 2025، كانت بلدية الخور تمتلك 1,547 بئرًا في المزارع: 1,482 بئرًا في المزارع النشطة و65 بئرًا في المزارع غير النشطة [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv].
 
 ========== A6 [farmer, role=farmer, ar] كم عدد الآبار في سدرية الخيسة؟
-20:12:50 FAST      statistic (0.63), 2 fact(s), answered in 4.5 s
----------- 4.5 s | path=fast statistic | persona=farmer | simplified=False | language_ok=True
+20:26:17 FAST      statistic (0.63), 2 fact(s), answered in 4.8 s
+---------- 4.8 s | path=fast statistic | persona=farmer | simplified=False | language_ok=True
 ANSWER:
 لا توجد معلومات دقيقة عن عدد الآبار في سدرية الخيسة [AquaMaa place list]. في عام 2025، كانت هناك 555 بئرًا في أم صلال [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv]. يُنصح بالاتصال بالجهات المختصة في الخيسة للحصول على معلومات محدثة.
 
 ========== A7 [officer, role=agriculture, en] Which municipality has the most wells?
-20:12:54 FAST      statistic (1.00), 1 fact(s), answered in 4.5 s
----------- 4.5 s | path=fast statistic | persona=officer | simplified=False | language_ok=True
+20:26:22 FAST      statistic (1.00), 1 fact(s), answered in 4.8 s
+---------- 4.8 s | path=fast statistic | persona=officer | simplified=False | language_ok=True
 ANSWER:
 In 2025, Al Khor had the most wells with 1,547, followed by Al Shahaniya with 1,084 and Umm Salal with 555 [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv]. This data shows the distribution of wells across municipalities for farm use. It can help in planning water resource management and infrastructure development in these areas.
 
 ========== Summary
-farmer: 4 questions, persona right 4, fast path 4, simplified 0, right language 4, time median 6.3 s, max 7.3 s
-officer: 3 questions, persona right 3, fast path 3, simplified 0, right language 3, time median 4.0 s, max 4.5 s
+farmer: 4 questions, persona right 4, fast path 4, simplified 0, right language 4, time median 6.9 s, max 7.5 s
+officer: 3 questions, persona right 3, fast path 3, simplified 0, right language 3, time median 4.3 s, max 4.8 s
