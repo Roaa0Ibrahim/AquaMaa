@@ -29,6 +29,7 @@ from clean_transcript import clean
 from tablet import PAGE, live_summary
 from transcribe import transcribe
 from voice import speak
+from fastpath.answer import warm as warm_fast
 
 import dashboard
 from agent import ask
@@ -66,6 +67,11 @@ async def watch_alerts():
                 log.info("ALERT     can't read the dashboard's live data (%s); will keep trying", error)
             failed = True
         await asyncio.sleep(ALERT_POLL_SECONDS)
+
+
+@app.on_event("startup")
+async def warm_small_model():
+    asyncio.create_task(asyncio.to_thread(warm_fast))      # the farmer's fast answers: no load pause on the first one
 
 
 @app.on_event("startup")

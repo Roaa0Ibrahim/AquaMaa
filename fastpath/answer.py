@@ -5,6 +5,7 @@
              -> answer, or None: the question then takes the deep path (the full agent in agent.py)
 Switch off with  $env:AQUAMAA_FAST = "0"
 """
+import re
 import time
 
 from langchain_core.messages import HumanMessage
@@ -12,7 +13,8 @@ from langchain_ollama import ChatOllama
 
 from agent_log import log
 from checks import CITATION, numbers
-from config import CHAT_MODEL, OLLAMA_URL
+from config import CHAT_MODEL, FANAR_API_KEY, FAST_PHRASE_MODEL, OLLAMA_URL
+from understand_model import make_model
 from fastpath.facts import BUILDERS, no_reading
 from fastpath.intents import detect
 from prompts import LANGUAGE_NOTE, PHRASE, PHRASE_STYLE
@@ -22,6 +24,40 @@ from verifier import HEADING, sentences, wrong_language
 MAX_SENTENCES = 5
 phraser = ChatOllama(model=CHAT_MODEL, temperature=0, reasoning=False, base_url=OLLAMA_URL, num_predict=220,
                      keep_alive="2h")      # keep the model loaded between questions: no reload pause
+# The farmer gets at most 3 short sentences, so fewer words to write: the answer comes sooner (14 Nov: farm
+# questions took 3.5-8 s, almost all of it writing)
+farmer_phraser = ChatOllama(model=CHAT_MODEL, temperature=0, reasoning=False, base_url=OLLAMA_URL, num_predict=130,
+                            keep_alive="2h")
+# A small model words the farmer's answer first (about 4-5x faster); the same check applies, and the big model tries
+# if it fails. The facts and verdicts are already decided by code, so the small model only has to phrase them.
+small_phraser = ChatOllama(model=FAST_PHRASE_MODEL, temperature=0, base_url=OLLAMA_URL, num_predict=130,
+                           keep_alive="2h") if FAST_PHRASE_MODEL else None
+# Only where code has already decided the verdict, so wording it is simple (14 Nov: on a trend question the small
+# model said to keep salinity "below 92 mg/L", correct numbers in a wrong sentence); trends, explanations and law
+# stay with the big model
+SMALL_MODEL_INTENTS = {"live_reading", "suitability", "page"}
+# Arabic farm answers are worded by Fanar (online, good Arabic, about 1.5 s); without a key, the big local model
+arabic_phraser = make_model(130, "Fanar-C-2-27B") if FANAR_API_KEY else None
+
+
+def tidy_tags(answer):
+    """Source tags joined with an Arabic comma ("[AquaMaa check، limits.csv row 2]") split into the facts' own tags."""
+    return re.sub(r"\[([^\]]*?)،\s*([^\]]*?)\]", r"[\1] [\2]", answer)
+
+
+def warm():
+    """Loads the small model when the service starts, so the first farm question is fast too."""
+    if small_phraser is not None:
+        try:
+            small_phraser.invoke([HumanMessage("Reply with: ok")])
+        except Exception:
+            pass
+
+
+# Answers already written, for the same question, reader and facts: returned at once (the farm page's "Ask AquaMaa"
+# button and rehearsed questions). New readings change the facts, so a changed well gets a new answer.
+_answers = {}
+MAX_REMEMBERED = 200
 
 
 def check(answer, facts_text, question):
@@ -68,8 +104,31 @@ def fast_answer(question, persona, grounding):
     reader, style = PHRASE_STYLE.get(persona, PHRASE_STYLE["farmer"])
     prompt = PHRASE.format(reader=reader, style=style, language=LANGUAGE_NOTE["ar" if arabic else "en"],
                            question=question, facts=facts_text)
-    answer = phraser.invoke([HumanMessage(prompt)]).content.strip()
-    reasons = check(answer, facts_text, question)
+    key = (question.strip().lower(), persona, facts_text)
+    if key in _answers:
+        log.info("FAST      %s: the same question with the same facts, answered at once", intent)
+        return dict(path="fast", intent=intent, intent_score=score, facts=facts, answer=_answers[key],
+                    seconds=round(time.time() - start, 1))
+    answer, reasons = "", ["not tried"]
+    # English: the small local model; Arabic: Fanar (14 Nov: the small model's Arabic repeated the question and
+    # misspelled a word). Either falls back to the big local model.
+    quick = (arabic_phraser if arabic else small_phraser)
+    if persona == "farmer" and quick is not None and intent in SMALL_MODEL_INTENTS:
+        try:
+            answer = tidy_tags(quick.invoke([HumanMessage(prompt)]).content.strip())
+            reasons = check(answer, facts_text, question)
+            if reasons:
+                log.info("FAST      small model's answer failed its check (%s); the big model tries", "; ".join(reasons))
+        except Exception as error:                           # the small model isn't installed or failed
+            log.info("FAST      small model unavailable (%s); the big model answers", error)
+    if reasons:
+        model = farmer_phraser if persona == "farmer" else phraser
+        answer = tidy_tags(model.invoke([HumanMessage(prompt)]).content.strip())
+        reasons = check(answer, facts_text, question)
+    if not reasons:
+        if len(_answers) >= MAX_REMEMBERED:
+            _answers.pop(next(iter(_answers)))
+        _answers[key] = answer
     seconds = round(time.time() - start, 1)
     if reasons:
         log.info("FAST      %s: answer failed its check (%s): deep path (%.1f s)", intent, "; ".join(reasons), seconds)

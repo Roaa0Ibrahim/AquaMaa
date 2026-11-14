@@ -43,3 +43,5 @@ ALERT_POLL_SECONDS = float(os.environ.get("AQUAMAA_ALERT_POLL_SECONDS", "3"))
 ALERT_LANGUAGE = os.environ.get("AQUAMAA_ALERT_LANGUAGE", "en")
 EMBED_MODEL = os.environ.get("AQUAMAA_EMBED_MODEL", "bge-m3")
 OLLAMA_URL = os.environ.get("OLLAMA_HOST", "http://127.0.0.1:11434")
+# The small model that words the farmer's fast answers first (fastpath/answer.py); "" turns it off
+FAST_PHRASE_MODEL = os.environ.get("AQUAMAA_FAST_PHRASE_MODEL", "qwen2.5:3b")

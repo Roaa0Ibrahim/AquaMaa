@@ -177,6 +177,13 @@ def suitability(question, grounding, arabic):
     origin = "the value in the question"
     if value is None:
         value, origin = live_value(grounding, "tds"), "the latest live reading [live sensors]"
+        if value is not None and all_offline(grounding):
+            # 14 Nov: "your well water has a salinity of 93" while the sensor had been offline for 2 hours
+            ago = min((d.get("minutesAgo") for d in ((grounding.get("live") or {}).get("devices") or [])
+                       if isinstance(d.get("minutesAgo"), (int, float))), default=None)
+            origin = ("the last known reading" + (f", about {round(ago / 60)} hours ago" if ago and ago >= 90 else
+                      f", {ago} minutes ago" if ago else "") + "; the sensor is offline now, so check again when it "
+                      "reports [live sensors]")
     crops, uses = crops_in(question), uses_in(question)
     lines = []
     if value is None:
