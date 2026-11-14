@@ -6,7 +6,7 @@ WHAT'S NEW IN THIS VERSION
   what Pepper heard, and what it is saying (answers and alerts).
 - Pepper answers questions with AquaMaa's AI and the live sensor data, and speaks alerts by itself.
 - It finds Roaa's laptop on the Wi-Fi by itself, even if the laptop's address changes. No more rebuilds for that.
-- The website's chat box is hidden on Pepper: on the robot, people talk to Pepper itself.
+- The website's chat box is on Pepper for typed questions (no microphone button there: to talk, talk to Pepper).
 
 ADDRESSES
 - Wi-Fi for everything: Pepper's router (HUAWEI-89AB / HUAWEI-8983, same router, 192.168.8.x)
