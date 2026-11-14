@@ -256,7 +256,10 @@
   /* ========================= formatting ========================= */
   const esc = (v) => H.esc(v);
   // Arabic (14 Nov): whole labels first, then the small pieces inside composite text ("ppm · median of wells")
-  const AR_WORDS = [[/\bmedian of wells\b/g, 'الوسيط بين الآبار'], [/\bmean of wells\b/g, 'المتوسط بين الآبار'], [/\braw reading · not NTU\b/g, 'قراءة خام · ليست NTU'],
+  const AR_WORDS = [[/\bparameters in range\b/g, 'مؤشرات ضمن المدى'], [/\bnot enough data\b/g, 'بيانات غير كافية'],
+    [/(\d+) of (\d+) checked/g, 'تم فحص $1 من $2'], [/\bsensors offline · last known values\b/g, 'الحساسات غير متصلة · آخر قيم معروفة'],
+    [/\b0 sensors need attention\b/g, 'لا حساسات تحتاج انتباهًا'], [/\b1 sensor need attention\b/g, 'حساس واحد يحتاج انتباهًا'],
+    [/\b(\d+) sensors need attention\b/g, '$1 حساسات تحتاج انتباهًا'], [/\bmedian of wells\b/g, 'الوسيط بين الآبار'], [/\bmean of wells\b/g, 'المتوسط بين الآبار'], [/\braw reading · not NTU\b/g, 'قراءة خام · ليست NTU'],
     [/\blast known\b/gi, 'آخر قيمة معروفة'], [/\bjust now\b/g, 'الآن'], [/(\d+) min ago/g, 'قبل $1 دقيقة'], [/(\d+) h ago/g, 'قبل $1 ساعة'], [/(\d+) d ago/g, 'قبل $1 يوم'],
     [/\b(\d+) wells\b/g, '$1 آبار'], [/\b1 well\b/g, 'بئر واحد'], [/\b(\d+) sensors\b/g, '$1 حساسات'], [/\b1 sensor\b/g, 'حساس واحد'],
     [/\bLast valid\b/g, 'آخر قراءة صالحة'], [/\bNever reported\b/g, 'لم يرسل أبدًا'], [/\bstale\b/g, 'قديمة'], [/\bof\b/g, 'من']];
@@ -267,7 +270,8 @@
     'No fresh readings': 'لا توجد قراءات حديثة', 'Not configured': 'غير مُعد', 'Database error': 'خطأ في قاعدة البيانات',
     'Within range': 'ضمن المدى', 'Within reference': 'ضمن المرجع', 'Above reference': 'أعلى من المرجع', 'Below reference': 'أقل من المرجع',
     'Neutral': 'متعادل', 'Acidic': 'حمضي', 'Alkaline': 'قلوي', 'Normal': 'طبيعي', 'Attention': 'انتباه', 'Insufficient Data': 'بيانات غير كافية',
-    'Rising': 'في ارتفاع', 'Falling': 'في انخفاض', 'Stable': 'مستقر', 'Online': 'متصل', 'Offline': 'غير متصل' };
+    'Rising': 'في ارتفاع', 'Falling': 'في انخفاض', 'Stable': 'مستقر', 'Online': 'متصل', 'Offline': 'غير متصل',
+    'Attention Required': 'يتطلب انتباهًا', 'Critical': 'حرج', 'Preliminary': 'أولي' };
   function tr(txt) {
     if (document.documentElement.lang !== 'ar' || txt == null) return txt;
     const t = String(txt);
@@ -383,8 +387,13 @@
     const ins = as.overall === 'insufficient_data';
     const inRange = c.parametersAssessed - c.parametersOutside;
     const ring = H.ring({ frac: ins ? 0 : inRange / c.parametersAssessed, color: col, size: 70, stroke: 7, center: `<text x="50%" y="53%" text-anchor="middle" font-size="9.5" font-weight="700" fill="${col}">${short}</text>` });
-    return shell({ ...base, big: ins ? '—' : `${inRange}/${c.parametersAssessed}`, unit: ins ? 'not enough data' : 'parameters in range', right: ring,
-      meta: `${plural(c.wellsTotal, 'well')} · ${c.devicesAttention} sensor${c.devicesAttention === 1 ? '' : 's'} need attention`, metaTitle: esc(as.disclaimer),
+    // 14 Nov: say how many of the readings were checked ("1/1" read as if all three were), and when every sensor is
+    // offline, that these are last known values
+    const allOff = c.devicesTotal > 0 && c.devicesOnline === 0;
+    return shell({ ...base, big: ins ? '—' : `${inRange}/${c.parametersAssessed}`,
+      unit: ins ? 'not enough data' : `parameters in range · ${c.parametersAssessed} of ${S.ASSESSED.length} checked`, right: ring,
+      meta: allOff ? 'sensors offline · last known values'
+        : `${plural(c.wellsTotal, 'well')} · ${c.devicesAttention} sensor${c.devicesAttention === 1 ? '' : 's'} need attention`, metaTitle: esc(as.disclaimer),
       foot: tag(as.label, cls, ic) + `<span title="${esc(as.disclaimer)}">Preliminary</span>` });
   }
 
