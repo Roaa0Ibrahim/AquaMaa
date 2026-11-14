@@ -317,6 +317,14 @@ def page(question, grounding, arabic):
              f"for {period} {tag}."]
     if ctx.get("note"):
         lines.append(f"This page doesn't send its figures to AquaMaa yet, so only the live sensor data is known {tag}.")
+    for w in (ctx.get("farmWells") or [])[:10]:            # the farmer's My farm page: each well and its state
+        parts = [f"{w.get('well')}"] + ([f"crop {w['crop']}"] if w.get("crop") else [])
+        vals = ([f"TDS {_fmt(w['tds_ppm'])} ppm"] if isinstance(w.get("tds_ppm"), (int, float)) else []) + \
+               ([f"pH {_fmt(w['ph'])}"] if isinstance(w.get("ph"), (int, float)) else [])
+        lines.append(f"Well {', '.join(parts)}: {w.get('quality')}" + (f" ({', '.join(vals)})" if vals else "")
+                     + ("" if w.get("online") else "; the sensor is offline or not linked") + f" {tag}.")
+    if ctx.get("farmWells"):
+        return lines                                         # the farm page: the wells are the page
     devices = live.get("devices") or []
     if devices:
         online = [d for d in devices if d.get("online")]
