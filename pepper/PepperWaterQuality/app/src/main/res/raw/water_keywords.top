@@ -22,8 +22,14 @@ u:({*} [alert alerts problem problems wrong attention offline briefing] {*}) Her
 
 u:({*} [dashboard screen page show] {*}) Let me read the dashboard. ^execute(ask, What does the dashboard show right now)
 
+u:({*} [temperature temperatures hot cold warm degrees] {*}) Let me check the sensor. ^execute(ask, What is the water temperature right now and what does it mean)
+
+u:({*} [pH "P H" acid acidic acidity alkaline alkalinity] {*}) Let me check the sensor. ^execute(ask, What is the pH of the water right now and what does it mean)
+
+u:({*} [readings values everything "all the" status situation] {*}) Let me read all the sensors. ^execute(ask, What are the current sensor readings and what do they mean)
+
 u:({*} [trend saltier rising increasing worse changing] {*}) Let me look at the recent readings. ^execute(ask, Is the water getting saltier)
 
-u:({*} [salt salty saltiness salinity TDS "T D S" quality reading readings sensor water] {*}) Let me check the sensor. ^execute(ask, What is the salinity of the water right now)
+u:({*} [salt salty saltiness salinity TDS "T D S" quality reading sensor water] {*}) Let me check the sensor. ^execute(ask, What is the salinity of the water right now)
 
 u:({*} ~bye {*}) You are welcome! I will keep watching the wells. Goodbye!
