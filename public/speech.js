@@ -168,7 +168,7 @@
   function speakable(text) {
     let s = String(text || '')
       .split('\n\nKey figures:')[0].split('\n\nأرقام رئيسية:')[0]
-      .split('\n\nNote on sources:')[0].split('\n\nملاحظة عن المصادر:')[0]
+      .split('\n\nNote on sources:')[0].split('\n\nملاحظة عن المصادر:')[0].split('\n\nالمصادر:')[0]
       .replace(/^فهمت سؤالك على أنه:.*$/m, '').replace(/^I understood your question as:.*$/m, '')
       .replace(/\[[^\]]*\]/g, '')
       .replace(/(\d),(?=\d{3}\b)/g, '$1');                 // 1,800 -> 1800, so the comma isn't read out
