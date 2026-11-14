@@ -155,8 +155,12 @@ app.get('/api/dashboard', requireAuth, (req, res) => {
     // Water level (depth to water below ground, m) across the monitoring stations, month by month: demonstration
     // data, like the stations (14 Nov: the officer's page on Pepper shows it; no live water-level sensor yet)
     water_level: (() => {
-      const months = db.prepare(`SELECT period, AVG(water_level_m) avg, COUNT(*) n FROM readings WHERE period LIKE ?
-        GROUP BY period ORDER BY period`).all(`${periodPrefix}%`);
+      // Only the stations reporting in the latest month, so every month averages the same stations (a station that
+      // stopped reporting would otherwise shift the average and fake a change)
+      const lastPeriod = db.prepare('SELECT MAX(period) p FROM readings WHERE period LIKE ?').get(`${periodPrefix}%`).p;
+      const months = lastPeriod ? db.prepare(`SELECT period, AVG(water_level_m) avg, COUNT(*) n FROM readings
+        WHERE period LIKE ? AND station_id IN (SELECT station_id FROM readings WHERE period = ?)
+        GROUP BY period ORDER BY period`).all(`${periodPrefix}%`, lastPeriod) : [];
       if (!months.length) return null;
       const first = months[0], last = months[months.length - 1];
       return { latest: round(last.avg, 2), period: last.period, stations: last.n, change: round(last.avg - first.avg, 2),
