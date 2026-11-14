@@ -44,7 +44,14 @@ if (-not (Test-Path $apk)) { Say "Build failed: see the lines above."; exit 1 }
 
 Say "4. Installing on Pepper's tablet ($PepperTablet). ADB must be ON on the tablet; tap Allow if it asks."
 & $adb connect "${PepperTablet}:5555" 2>&1 | ForEach-Object { Say "   $_" }
-& $adb -s "${PepperTablet}:5555" install -r $apk 2>&1 | ForEach-Object { Say "   $_" }
+$out = & $adb -s "${PepperTablet}:5555" install -r $apk 2>&1 | Out-String
+Say "   $($out.Trim())"
+if ($out -match "INSTALL_FAILED_UPDATE_INCOMPATIBLE|signatures do not match") {
+    # The starter app was installed from another laptop (a different signing key): remove it, then install ours
+    Say "   The old app was signed on another laptop: removing it and installing AquaMaa"
+    & $adb -s "${PepperTablet}:5555" uninstall com.example.pepperwater 2>&1 | ForEach-Object { Say "   $_" }
+    & $adb -s "${PepperTablet}:5555" install $apk 2>&1 | ForEach-Object { Say "   $_" }
+}
 & $adb -s "${PepperTablet}:5555" shell am start -n com.example.pepperwater/com.example.pepperwater.MainActivity 2>&1 |
     ForEach-Object { Say "   $_" }
 
