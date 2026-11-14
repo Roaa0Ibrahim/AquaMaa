@@ -441,3 +441,5 @@ table.wq-table td:last-child { white-space: normal; min-width: 96px; }
 .gauge .g-refs span { font-size: 10px; letter-spacing: .08em; color: var(--muted); }
 @media (max-width: 560px) { .farm-grid { grid-template-columns: 1fr; } .well-gauges { gap: 6px; } .gauge .big { font-size: 20px; } }
 .gauge .g-mark { font-size: 9px; font-weight: 700; fill: var(--navy); }
+[dir="rtl"] .well-del { right: auto; left: 10px; }
+[dir="rtl"] .well-head h3 { padding-right: 0; padding-left: 22px; }

@@ -255,7 +255,27 @@
 
   /* ========================= formatting ========================= */
   const esc = (v) => H.esc(v);
-  const tag = (txt, cls, ic) => `<span class="tag ${cls}">${ic ? H.icon(ic) : '<i></i>'}${esc(txt)}</span>`;
+  // Arabic (14 Nov): whole labels first, then the small pieces inside composite text ("ppm · median of wells")
+  const AR_WORDS = [[/\bmedian of wells\b/g, 'الوسيط بين الآبار'], [/\bmean of wells\b/g, 'المتوسط بين الآبار'], [/\braw reading · not NTU\b/g, 'قراءة خام · ليست NTU'],
+    [/\blast known\b/gi, 'آخر قيمة معروفة'], [/\bjust now\b/g, 'الآن'], [/(\d+) min ago/g, 'قبل $1 دقيقة'], [/(\d+) h ago/g, 'قبل $1 ساعة'], [/(\d+) d ago/g, 'قبل $1 يوم'],
+    [/\b(\d+) wells\b/g, '$1 آبار'], [/\b1 well\b/g, 'بئر واحد'], [/\b(\d+) sensors\b/g, '$1 حساسات'], [/\b1 sensor\b/g, 'حساس واحد'],
+    [/\bLast valid\b/g, 'آخر قراءة صالحة'], [/\bNever reported\b/g, 'لم يرسل أبدًا'], [/\bstale\b/g, 'قديمة'], [/\bof\b/g, 'من']];
+  const AR_LABELS = { 'pH Level': 'درجة الحموضة', 'Water Temperature': 'درجة حرارة الماء', 'Total Dissolved Solids': 'الأملاح الذائبة الكلية',
+    'Turbidity': 'العكارة', 'Water quality': 'جودة المياه', 'Last known value': 'آخر قيمة معروفة', 'No threshold set': 'لا يوجد حد محدد',
+    'Not calibrated': 'غير معايَر', 'Reporting': 'يرسل', 'Unusual change': 'تغير غير معتاد', 'No data': 'لا توجد بيانات', 'Stale': 'قديمة',
+    'Loading': 'جارٍ التحميل', 'Unavailable': 'غير متاح', 'No readings': 'لا توجد قراءات', 'No valid readings': 'لا توجد قراءات صالحة',
+    'No fresh readings': 'لا توجد قراءات حديثة', 'Not configured': 'غير مُعد', 'Database error': 'خطأ في قاعدة البيانات',
+    'Within range': 'ضمن المدى', 'Within reference': 'ضمن المرجع', 'Above reference': 'أعلى من المرجع', 'Below reference': 'أقل من المرجع',
+    'Neutral': 'متعادل', 'Acidic': 'حمضي', 'Alkaline': 'قلوي', 'Normal': 'طبيعي', 'Attention': 'انتباه', 'Insufficient Data': 'بيانات غير كافية',
+    'Rising': 'في ارتفاع', 'Falling': 'في انخفاض', 'Stable': 'مستقر', 'Online': 'متصل', 'Offline': 'غير متصل' };
+  function tr(txt) {
+    if (document.documentElement.lang !== 'ar' || txt == null) return txt;
+    const t = String(txt);
+    if (AR_LABELS[t]) return AR_LABELS[t];
+    if (H && H.t && H.t(t) !== t) return H.t(t);
+    return AR_WORDS.reduce((x, [re, ar]) => x.replace(re, ar), t);
+  }
+  const tag = (txt, cls, ic) => `<span class="tag ${cls}">${ic ? H.icon(ic) : '<i></i>'}${esc(tr(txt))}</span>`;
   function ago(t, now) {
     if (t == null) return '—';
     const m = Math.round((now - t) / 60000);
@@ -291,9 +311,9 @@
 
   /* ========================= KPI cards ========================= */
   function shell(o) {
-    return `<div class="k-head"><span class="k-ico ${o.ico || ''}">${H.icon(o.icon)}</span>${esc(o.title)}</div>
-      <div class="k-body"><div><div class="big${o.skel ? ' skel' : ''}">${o.big}</div><div class="unit">${o.unit || ''}</div></div>${o.right ? `<div class="k-right">${o.right}</div>` : ''}</div>
-      ${o.meta ? `<div class="k-meta" title="${o.metaTitle || ''}">${o.meta}</div>` : ''}
+    return `<div class="k-head"><span class="k-ico ${o.ico || ''}">${H.icon(o.icon)}</span>${esc(tr(o.title))}</div>
+      <div class="k-body"><div><div class="big${o.skel ? ' skel' : ''}">${o.big}</div><div class="unit">${tr(o.unit) || ''}</div></div>${o.right ? `<div class="k-right">${o.right}</div>` : ''}</div>
+      ${o.meta ? `<div class="k-meta" title="${o.metaTitle || ''}">${tr(o.meta)}</div>` : ''}
       <div class="k-foot">${o.foot || ''}</div>`;
   }
   const NL = '&#10;';
