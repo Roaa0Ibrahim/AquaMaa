@@ -1,5 +1,23 @@
 # Demo day: running the website and connecting Pepper
 
+## Quick start (Roaa isn't there: this is all you need)
+1. Roaa's laptop: **plugged in**, signed in to Windows (ask Roaa for the password privately, before the day).
+2. Connect it to **Pepper's Wi-Fi** (HUAWEI-89AB / HUAWEI-8983).
+3. On the Desktop, double-click **"Start AquaMaa demo"**. Wait about 1-2 minutes until it says **READY**
+   (it starts the AI model, the website and AquaMaa, loads the model, and opens the website in Edge).
+   **Leave the two windows it opens running** ("AquaMaa" and the website's window).
+4. Pepper: tablet Settings -> Developer options -> **ADB OFF**, wait for "Connected to Pepper", open the **AquaMaa**
+   app. Sign in once on the tablet: `officer@aquamaa.demo` / `AquaMaa-Demo-2026`.
+5. Munira's sensor on and sending: the four sensor cards update every few seconds.
+6. After the demo: double-click **"Stop AquaMaa demo"**.
+
+If something goes wrong: the "If something goes wrong" table at the end. If all else fails, close everything,
+restart the laptop, and double-click "Start AquaMaa demo" again.
+
+The steps below are what "Start AquaMaa demo" does, for reference or if you need to do them by hand.
+
+---
+
 For Deema (and anyone setting up). About 10 minutes. Everything runs on **one laptop: Roaa's**, because:
 - Pepper's app looks for AquaMaa (port 8000) and the dashboard (port 3000) **on the same laptop**
 - the website's voice (speaking answers, Fanar speech-to-text) calls AquaMaa on the laptop the browser runs on
