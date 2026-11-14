@@ -2,6 +2,8 @@ package com.example.pepperwater
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import com.aldebaran.qi.sdk.design.activity.conversationstatus.SpeechBarDisplayStrategy
 import android.webkit.CookieManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -45,13 +47,28 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Full height for the dashboard: no QiSDK speech bar at the top, no Android system bars (14 Nov)
+        setSpeechBarDisplayStrategy(SpeechBarDisplayStrategy.IMMERSIVE)
         setContentView(R.layout.activity_main)
+        hideSystemBars()
         statusView = findViewById(R.id.status)
         heardView = findViewById(R.id.heard)
         answerView = findViewById(R.id.answer)
         AgentClient.baseUrl = getString(R.string.agent_url)
         showDashboard()
         QiSDK.register(this, this)
+    }
+
+    @Suppress("DEPRECATION")
+    private fun hideSystemBars() {
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+            or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) hideSystemBars()
     }
 
     /** The live dashboard on the tablet. It stays signed in (cookies), and reloads if the laptop wasn't ready. */
@@ -61,6 +78,7 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
         web.settings.domStorageEnabled = true
         web.settings.useWideViewPort = true
         web.settings.loadWithOverviewMode = true
+        web.setInitialScale(80)                  // the dashboard is laid out for a laptop: fit more of it on the tablet
         CookieManager.getInstance().setAcceptCookie(true)
         web.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean = false   // stay in the app
