@@ -137,6 +137,12 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
         CookieManager.getInstance().setAcceptCookie(true)
         web.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean = false   // stay in the app
+            // On Pepper, people talk to Pepper itself: the website's chat box (its microphone needs HTTPS, which the
+            // tablet doesn't have) is hidden here; the website on laptops and phones keeps it (14 Nov)
+            override fun onPageFinished(view: WebView, url: String) {
+                view.evaluateJavascript("(function(){var s=document.createElement('style');" +
+                    "s.textContent='#aq-root{display:none!important}';document.head.appendChild(s);})()", null)
+            }
             @Suppress("OverridingDeprecatedMember")
             override fun onReceivedError(view: WebView, code: Int, description: String?, failingUrl: String?) {
                 status("Dashboard not reachable ($description); looking for the laptop again")
