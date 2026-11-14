@@ -156,15 +156,60 @@
     A.hooks.onListeningStop = function () { if (rec) try { rec.stop(); } catch (e) { /* already stopped */ } };
   }
 
+  // The answer as it should be heard: no source tags, no lists, and units and abbreviations spelled out in the
+  // answer's own language (14 Nov: "ملغم" was read as "mulagam", and "TDS" in English inside Arabic speech)
   function speakable(text) {
-    return String(text || '')
+    let s = String(text || '')
       .split('\n\nKey figures:')[0].split('\n\nأرقام رئيسية:')[0]
       .split('\n\nNote on sources:')[0].split('\n\nملاحظة عن المصادر:')[0]
+      .replace(/^فهمت سؤالك على أنه:.*$/m, '').replace(/^I understood your question as:.*$/m, '')
       .replace(/\[[^\]]*\]/g, '')
-      .replace(/mg\/L/g, ' milligrams per litre')
-      .replace(/\bppm\b/g, ' parts per million')
-      .replace(/\s+/g, ' ')
-      .trim();
+      .replace(/(\d),(?=\d{3}\b)/g, '$1');                 // 1,800 -> 1800, so the comma isn't read out
+    if (/[؀-ۿ]/.test(s)) {
+      s = s
+        .replace(/\(\s*(TDS|EC|pH|PH)\s*\)/g, '')            // "الأملاح الذائبة (TDS)": the Arabic name is enough
+        .replace(/(درجة الحموضة|الحموضة)\s*pH/gi, '$1')       // "درجة الحموضة pH": said once
+        .replace(/(الأملاح الذائبة|الأملاح الكلية الذائبة)\s*TDS/g, '$1')
+        .replace(/(التوصيل الكهربائي|الموصلية)\s*EC/g, '$1')
+        .replace(/(ملغم|ملجم|مجم|ملغ|mg)\s*\/\s*(لتر|L)/gi, ' مليغرام لكل لتر ')
+        .replace(/(ملغم|ملجم|مجم|ملغ)(?![ء-ي])/g, ' مليغرام ')
+        .replace(/µS\/cm|ميكروسيمنز\/سم/g, ' ميكروسيمنز لكل سنتيمتر ')
+        .replace(/\bppm\b/gi, ' جزء في المليون ')
+        .replace(/\bTDS\b/g, ' الأملاح الذائبة ')
+        .replace(/\bEC\b/g, ' التوصيل الكهربائي ')
+        .replace(/\bpH\b/gi, ' درجة الحموضة ')
+        .replace(/°\s*[Cم]/g, ' درجة مئوية ')
+        .replace(/\bWHO\b/g, ' منظمة الصحة العالمية ')
+        .replace(/\bFAO\b/g, ' منظمة الأغذية والزراعة ');
+    } else {
+      s = s
+        .replace(/\(\s*(TDS|EC|pH)\s*\)/g, '')
+        .replace(/mg\s*\/\s*L/gi, ' milligrams per litre')
+        .replace(/µS\/cm/g, ' microsiemens per centimetre')
+        .replace(/\bppm\b/g, ' parts per million')
+        .replace(/\bTDS\b/g, 'T D S').replace(/\bpH\b/g, 'P H')
+        .replace(/°\s*C/g, ' degrees Celsius');
+    }
+    return s.replace(/\s+/g, ' ').replace(/\s+([.,،؛])/g, '$1').trim();
+  }
+
+  // The most natural voice for the language: a neural ("Natural"/"Online") voice first, Qatari Arabic first.
+  // Microsoft Edge has natural Qatari voices (Amal, Moaz); Chrome on Windows only has the older ones.
+  function bestVoice(arabic) {
+    const voices = window.speechSynthesis.getVoices();
+    const want = arabic ? ['ar-QA', 'ar-AE', 'ar-SA', 'ar'] : ['en-GB', 'en-US', 'en'];
+    const natural = (v) => /natural|online|neural/i.test(v.name);
+    for (const pick of [natural, () => true]) {
+      for (const code of want) {
+        const v = voices.find((x) => x.lang && x.lang.replace('_', '-').startsWith(code) && pick(x));
+        if (v) return v;
+      }
+    }
+    return null;
+  }
+  if (window.speechSynthesis) {
+    window.speechSynthesis.getVoices();                    // browsers load the voice list late: start it now
+    window.speechSynthesis.addEventListener && window.speechSynthesis.addEventListener('voiceschanged', () => {});
   }
 
   A.hooks.onAssistantReply = function (text) {
@@ -173,10 +218,12 @@
     if (!document.body.classList.contains('aq-open')) return;  // the chat was closed meanwhile
     const say = speakable(text);
     if (!say) return;
+    const arabic = /[؀-ۿ]/.test(say);
     const u = new SpeechSynthesisUtterance(say);
-    u.lang = /[؀-ۿ]/.test(say) ? 'ar-SA' : 'en-US';
-    const voice = window.speechSynthesis.getVoices().find((v) => v.lang && v.lang.slice(0, 2) === u.lang.slice(0, 2));
+    const voice = bestVoice(arabic);
+    u.lang = voice ? voice.lang : (arabic ? 'ar-QA' : 'en-US');
     if (voice) u.voice = voice;
+    u.rate = arabic ? 0.95 : 1;                            // a little slower in Arabic, easier to follow
     stopSpeaking();
     window.speechSynthesis.speak(u);
   };
