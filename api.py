@@ -1,6 +1,7 @@
 """The agent as a small web service, so Deema's dashboard can send it questions (the website chat).
 
     GET  /health  -> {"status": "ok", "model": ...}                   Deema's server can check the agent is up
+    POST /transcribe <- WAV audio  -> {"text", "heard", "changed"}   Fanar speech-to-text for the website microphone
     GET  /alerts?after=<seq> -> {"messages": [...], "last": <seq>}     spoken alerts for Pepper and the website
                   (alerts.py; a background task checks Deema's live data every few seconds)
     POST /ask     <- {"question": "...", "role": "kahramaa"}          role is optional (ready for Milestone 6)
@@ -18,11 +19,13 @@ import os
 import re
 from typing import Optional
 
-from fastapi import FastAPI, Header, HTTPException
+import httpx
+from fastapi import FastAPI, Header, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from clean_transcript import clean
+from transcribe import transcribe
 
 import dashboard
 from agent import ask
@@ -80,6 +83,26 @@ async def clean_spoken(h: Heard):
     if changed:
         log.info("CLEAN     %s -> %s (%.1f s)", h.text, text, seconds)
     return {"text": text, "changed": changed, "seconds": seconds}
+
+
+@app.post("/transcribe")
+async def transcribe_spoken(request: Request):
+    """A spoken question as WAV audio (the request body) -> text, by Fanar's speech recognition, then the same
+    correction as /clean. The website falls back to the browser's own text if this fails (transcribe.py)."""
+    audio = await request.body()
+    if not 1000 < len(audio) < 10_000_000:
+        raise HTTPException(400, "Send a WAV recording of up to about a minute")
+    try:
+        heard, stt_seconds = await asyncio.to_thread(transcribe, audio)
+    except (httpx.HTTPError, ValueError) as error:
+        log.info("STT       Fanar failed (%s); the website keeps the browser's text", error)
+        raise HTTPException(502, "Speech recognition failed")
+    if not heard:
+        raise HTTPException(422, "Nothing was heard")
+    async with one_at_a_time:
+        text, changed, seconds = await asyncio.to_thread(clean, heard)
+    log.info("STT       Fanar heard: %s (%.1f s)%s", heard, stt_seconds, f" -> {text}" if changed else "")
+    return {"text": text, "heard": heard, "changed": changed, "seconds": round(stt_seconds + seconds, 1)}
 
 
 @app.get("/alerts")
