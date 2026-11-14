@@ -556,8 +556,25 @@
       <path d="M40 128v62c0 12 36 22 80 22s80-10 80-22v-62" fill="#f4f8fa" stroke="#0b2a4a" stroke-width="6"/>
       <path d="M40 160c0 12 36 22 80 22s80-10 80-22" fill="none" stroke="#dfeef4" stroke-width="3"/>
       <ellipse cx="120" cy="128" rx="80" ry="18" fill="none" stroke="#0b2a4a" stroke-width="6"/>
-      <text x="120" y="176" text-anchor="middle" class="well-num" fill="${level === 'none' || level === 'off' ? '#5d7589' : water}">${esc(big)}</text>
-      <text x="120" y="198" text-anchor="middle" class="well-numl">TDS ppm</text></svg>`;
+      ${tds === undefined ? '' : `<text x="120" y="176" text-anchor="middle" class="well-num" fill="${level === 'none' || level === 'off' ? '#5d7589' : water}">${esc(big)}</text>
+      <text x="120" y="198" text-anchor="middle" class="well-numl">TDS ppm</text>`}</svg>`;
+  }
+
+  // A half-circle gauge tile: big value, coloured zones, a needle, its name, and two reference values below
+  function gauge({ value, dec = 0, min, max, zones, label, refs }) {
+    const W = 140, cx = 70, cy = 74, r = 50, sw = 16;
+    const pt = (v) => { const t = Math.max(0, Math.min(1, (v - min) / (max - min))); const a = Math.PI * (1 - t);
+      return [cx + r * Math.cos(a), cy - r * Math.sin(a)]; };
+    let from = min;
+    const arcs = zones.map((z) => { const [x1, y1] = pt(from), [x2, y2] = pt(z.to); from = z.to;
+      return `<path d="M${x1.toFixed(1)} ${y1.toFixed(1)} A${r} ${r} 0 0 1 ${x2.toFixed(1)} ${y2.toFixed(1)}" stroke="${z.color}" stroke-width="${sw}" fill="none" opacity=".85"/>`; }).join('');
+    const has = value != null && Number.isFinite(value);
+    const [nx, ny] = has ? pt(value) : [cx, cy - r + 6];
+    const needle = has ? `<line x1="${cx}" y1="${cy}" x2="${(cx + (nx - cx) * .92).toFixed(1)}" y2="${(cy + (ny - cy) * .92).toFixed(1)}" stroke="var(--navy)" stroke-width="4" stroke-linecap="round"/>` : '';
+    return `<div class="gauge"><div class="big">${has ? fmt(value, dec) : '—'}</div>
+      <svg viewBox="0 0 ${W} 84" aria-hidden="true">${arcs}${needle}<circle cx="${cx}" cy="${cy}" r="8" fill="var(--navy)"/></svg>
+      <div class="g-label">${esc(label)}</div>
+      <div class="g-refs"><div><b>${esc(refs[0][0])}</b><span>${esc(refs[0][1])}</span></div><div><b>${esc(refs[1][0])}</b><span>${esc(refs[1][1])}</span></div></div></div>`;
   }
 
   async function pageFarm(view) {
@@ -595,6 +612,7 @@
         const d = data.devices.find((x) => x.device_id === w.device_id);
         const q = wellQuality(w, d);
         const val = (f, dec) => (d && d.fresh && d.fresh[f] ? fmt(d.fresh[f].value, dec) : '—');
+        const num = (f) => (d && d.fresh && d.fresh[f] ? Number(d.fresh[f].value) : null);
         const series = (data.history || []).filter((r) => r.device_id === w.device_id && Number.isFinite(Number(r.tds_ppm)))
           .sort((a, b) => Date.parse(a.created_at) - Date.parse(b.created_at)).map((r) => Number(r.tds_ppm)).slice(-48);
         const change = series.length > 1 ? series[series.length - 1] - series[0] : null;
@@ -605,11 +623,16 @@
         return `<article class="card well-card q-${q.level}">
           <button class="well-del" data-del="${w.id}" title="Remove this well" aria-label="Remove ${esc(w.name)}">×</button>
           <div class="well-head"><h3>${esc(w.name)}</h3><div class="unit">${esc([w.crop, w.location].filter(Boolean).join(' · ') || '—')}</div></div>
-          ${wellFigure(q.level, d && d.fresh && d.fresh.tds_ppm ? d.fresh.tds_ppm.value : null, `${w.name}: ${q.label}`)}
+          ${wellFigure(q.level, undefined, `${w.name}: ${q.label}`)}
           <div class="well-label">${tag(q.label, { good: 'green', warn: 'amber', bad: 'red' }[q.level] || 'grey')}</div>
-          <div class="well-vals">
-            <div><div class="big">${val('ph', 1)}</div><div class="unit">pH</div></div>
-            <div><div class="big">${val('temperature', 1)}</div><div class="unit">°C</div></div><div><div class="big">${val('turbidity_raw', 0)}</div><div class="unit">turbidity (raw)</div></div></div>
+          <div class="well-gauges">
+            ${gauge({ value: num('tds_ppm'), min: 0, max: 3000, label: 'Salinity (TDS ppm)', refs: [['1,000', 'LIMIT'], ['2,000', 'SEVERE']],
+              zones: [{ to: 1000, color: 'var(--green)' }, { to: 2000, color: 'var(--amber)' }, { to: 3000, color: 'var(--red)' }] })}
+            ${gauge({ value: num('ph'), dec: 1, min: 4, max: 10, label: 'pH', refs: [['6.5', 'MIN'], ['8.5', 'MAX']],
+              zones: [{ to: 6.5, color: 'var(--amber)' }, { to: 8.5, color: 'var(--green)' }, { to: 10, color: 'var(--amber)' }] })}
+            ${gauge({ value: num('temperature'), dec: 1, min: 0, max: 45, label: 'Temperature (°C)', refs: [['0', 'MIN'], ['45', 'MAX']],
+              zones: [{ to: 45, color: 'var(--turq)' }] })}</div>
+          <div class="unit" style="text-align:center">Turbidity (raw, not calibrated): ${val('turbidity_raw', 0)}</div>
           <div class="well-trend">${series.length > 1 ? sparkline(series, 220, 48) + `<span class="unit">Salinity over ${esc(data.range ? data.range.label : 'the period')}: ${change >= 0 ? '+' : ''}${fmt(change, 0)} ppm</span>` : '<span class="unit">Not enough readings yet for a chart</span>'}</div>
           <div class="well-foot"><span class="unit">${w.device_id ? `Sensor ${esc(w.device_id)}${ago != null ? ` · last reading ${ago} min ago` : ''}` : 'Link a sensor to see live readings'}</span>
             <button class="btn ghost" data-ask="${esc(w.name)}" data-crop="${esc(w.crop || '')}">Ask AquaMaa</button></div>

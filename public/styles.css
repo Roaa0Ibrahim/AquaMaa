@@ -426,3 +426,17 @@ table.wq-table td:last-child { white-space: normal; min-width: 96px; }
 .farm-form { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; margin-top: 10px; }
 .farm-form label { display: flex; flex-direction: column; gap: 5px; font-size: 12px; color: var(--muted); }
 .farm-form input, .farm-form select { height: 38px; border: 1px solid var(--line); border-radius: 10px; padding: 0 10px; color: var(--navy); background: #fff; min-width: 170px; }
+
+/* Gauge tiles on each farm well (big value, half-circle with coloured zones and a needle, name, two references) */
+.farm-grid { grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)); }
+.well-fig { max-width: 190px; }
+.well-gauges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.gauge { border: 1px solid var(--line); border-radius: 12px; padding: 10px 10px 8px; background: #fff; box-shadow: 0 2px 6px rgba(10, 80, 105, .05); }
+.gauge .big { font-size: 26px; }
+.gauge svg { width: 100%; height: auto; display: block; margin-top: 2px; }
+.gauge .g-label { text-align: center; font-size: 12px; font-weight: 700; margin-top: 2px; }
+.gauge .g-refs { display: flex; justify-content: space-between; margin-top: 6px; }
+.gauge .g-refs div { display: flex; flex-direction: column; align-items: center; }
+.gauge .g-refs b { font-size: 13px; }
+.gauge .g-refs span { font-size: 10px; letter-spacing: .08em; color: var(--muted); }
+@media (max-width: 560px) { .farm-grid { grid-template-columns: 1fr; } .well-gauges { gap: 6px; } .gauge .big { font-size: 20px; } }
