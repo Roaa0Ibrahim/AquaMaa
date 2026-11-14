@@ -280,5 +280,67 @@ def statistic(question, grounding, arabic):
     return lines or None
 
 
+PARAM_NAMES = {"tds_ppm": ("salinity (TDS)", "ppm"), "temperature": ("water temperature", "°C"),
+               "ph": ("pH", ""), "turbidity_raw": ("turbidity (raw, not calibrated)", "")}
+
+
+def page(question, grounding, arabic):
+    """"What does this page show?" (14 Nov): what the person is looking at, read and analysed by code from the data
+    the website sends (the page, its sensors, readings, charts over the selected period, alerts, the dashboard's
+    figures). Every line is tagged [this page]; the model only phrases it."""
+    if not grounding:
+        return None
+    ctx = grounding.get("clientContext") or {}
+    live = grounding.get("live") or {}
+    tag = "[this page]"
+    title = ctx.get("pageTitle") or (grounding.get("page") or "dashboard").title()
+    period = ctx.get("dateRangeLabel") or grounding.get("dateRange") or "the selected period"
+    lines = [f"This is the {title} page of the AquaNova dashboard; it shows live readings from the well sensors "
+             f"for {period} {tag}."]
+    if ctx.get("note"):
+        lines.append(f"This page doesn't send its figures to AquaMaa yet, so only the live sensor data is known {tag}.")
+    devices = live.get("devices") or []
+    if devices:
+        online = [d for d in devices if d.get("online")]
+        newest = min((d.get("minutesAgo") for d in devices if isinstance(d.get("minutesAgo"), (int, float))),
+                     default=None)
+        lines.append(f"{len(devices)} sensor device(s), {len(online)} online"
+                     + (f"; the latest reading is {newest} minutes old" if newest is not None else "") + f" {tag}.")
+    # Current values, and what they mean (meanings.csv, the same as the live-reading answers)
+    tds, temp = live_value(grounding, "tds"), live_value(grounding, "temperature")
+    if tds is not None:
+        ref = (((grounding.get("thresholds") or {}).get("tds_ppm") or {}).get("reference") or {}).get("max")
+        lines.append(f"Salinity (TDS) now: {_fmt(tds)} ppm" + (f", within the dashboard's reference limit of "
+                     f"{_fmt(ref)}" if ref and tds <= ref else f", above the dashboard's reference limit of {_fmt(ref)}"
+                     if ref else "") + f" {tag}.")
+        lines += [m for m in (meaning("tds", "drinking", tds, arabic), meaning("tds", "irrigation", tds, arabic)) if m]
+    if temp is not None:
+        lines.append(f"Water temperature now: {_fmt(temp)} °C {tag}.")
+    ph = live_value(grounding, "ph")
+    lines.append(f"pH now: {_fmt(ph)} {tag}." if ph is not None else f"pH: no valid reading in this period {tag}.")
+    # The charts: how each value changed over the period
+    for key, s in ((live.get("series") or {}).items()):
+        pts = [p for p in (s or {}).get("points") or [] if isinstance(p.get("median"), (int, float))]
+        if len(pts) < 2 or key not in PARAM_NAMES or key == "turbidity_raw":
+            continue
+        name, unit = PARAM_NAMES[key]
+        first, last = pts[0]["median"], pts[-1]["median"]
+        high = max(p.get("max", p["median"]) for p in pts)
+        way = "rose" if last > first else "fell" if last < first else "stayed at"
+        lines.append(f"Chart: over {period}, {name} {way} from {_fmt(first)} to {_fmt(last)} {unit}".rstrip()
+                     + f" (highest {_fmt(high)}) {tag}.")
+    status = (live.get("assessment") or {}).get("label")
+    if status:
+        lines.append(f"The dashboard's overall status is \"{status}\"; this is a monitoring indicator, not a "
+                     f"drinking-water certification {tag}.")
+    alerts = live.get("alerts") or []
+    lines.append(f"{len(alerts)} active alert(s) {tag}." if alerts else f"No active alerts {tag}.")
+    demo = ctx.get("demonstrationData") or {}
+    if demo.get("registeredWells") is not None:
+        lines.append(f"The dashboard cards also show {demo['registeredWells']} registered wells and "
+                     f"{demo.get('monitoringStations')} monitoring stations, as demonstration data {tag}.")
+    return lines
+
+
 BUILDERS = {"live_reading": live_reading, "trend": trend, "suitability": suitability, "law": card, "explain": card,
-            "statistic": statistic}
+            "statistic": statistic, "page": page}

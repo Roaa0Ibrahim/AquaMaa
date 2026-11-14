@@ -14,7 +14,7 @@ from key_stats import cosine
 
 ROOT = Path(__file__).parent.parent
 EXAMPLE_FILES = [ROOT / "fastpath" / "data" / "intent_questions.csv", ROOT / "handoff" / "mais" / "1_intent_questions.csv"]
-FAST_INTENTS = {"live_reading", "trend", "suitability", "law", "explain", "statistic"}
+FAST_INTENTS = {"live_reading", "trend", "suitability", "law", "explain", "statistic", "page"}
 MIN_SIMILARITY = 0.62           # below this the question is not close enough to any example: deep path
 
 embeddings = OllamaEmbeddings(model=EMBED_MODEL, base_url=OLLAMA_URL)

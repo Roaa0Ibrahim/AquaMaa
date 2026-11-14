@@ -190,6 +190,9 @@ def reread(text):
     out = out.strip('"“”').splitlines()[0].strip() if out else ""
     if not out or "UNRELATED" in out.upper() or out == text:
         return None
+    if len(out.split()) > 2 * len(text.split()) + 6:
+        # a list of every subject, not a re-reading (14 Nov: "What does this page show?" became a 40-word question)
+        return None
     return out
 
 

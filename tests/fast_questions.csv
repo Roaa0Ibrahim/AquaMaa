@@ -11,3 +11,5 @@ FO3,officer,mecc,en,What is the penalty for digging a well without a licence?,La
 FO4,officer,agriculture,ar,ما المسافة المطلوبة بين الآبار؟,Law card in Arabic: 300 m
 FO5,officer,kahramaa,en,Why are wells in the north getting saltier?,Explanation card for an officer
 FO6,officer,agriculture,en,Which crops can tolerate water at 2000 mg/L?,Suitability without a named crop
+P1,officer,kahramaa,en,What does this page show?,Roaa 14 Nov: the page is read and analysed by code
+P2,farmer,farmer,ar,اشرح لي هذه الصفحة,Page summary in Arabic

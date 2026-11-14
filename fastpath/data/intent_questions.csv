@@ -55,3 +55,15 @@ live_reading,en,How salty is my well?
 live_reading,en,Is my reading okay?
 live_reading,ar,كم نسبة الأملاح في بئري؟
 live_reading,ar-dialect,شكثر الملوحة في بيري؟
+page,en,What does this page show?
+page,en,Explain this page to me
+page,en,What am I looking at?
+page,en,Summarize the dashboard
+page,en,Analyze what is on this screen
+page,en,What do these charts mean?
+page,ar,ماذا تعرض هذه الصفحة؟
+page,ar,اشرح لي هذه الصفحة
+page,ar,لخص لي ما في لوحة المعلومات
+page,ar,ماذا تعني هذه الرسوم البيانية؟
+page,ar-dialect,شو هالصفحة؟
+page,ar-dialect,وش يعني اللي قدامي؟
