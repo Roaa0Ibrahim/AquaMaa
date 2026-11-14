@@ -93,15 +93,31 @@
   const NAV = [
     ['OVERVIEW', [['dashboard', 'Dashboard', 'grid'], ['map', 'Groundwater Map', 'pin']]],
     ['MONITORING & MEASUREMENT', [['wells', 'Wells & Monitoring', 'radio'], ['quality', 'Water Quality', 'drop'], ['extraction', 'Water Extraction', 'waves']]],
-    ['ANALYSIS & INTELLIGENCE', [['aquifer', 'Aquifer Assessment', 'layers'], ['risk', 'Risk Assessment', 'alert'], ['resilience', 'Hydrological Resilience', 'leaf'],
-      ['alternatives', 'Alternative Water Sources', 'leaf'], ['predictive', 'Predictive Analysis', 'nodes']]],
-    ['INSTITUTION & KNOWLEDGE', [['research', 'Research & Statistics', 'book'], ['sustainability', 'Sustainability Goals', 'leaf'], ['reports', 'Reports', 'file'],
-      ['notifications', 'Notifications', 'bell'], ['settings', 'Settings', 'sliders']]],
+    // 14 Nov: the seven "not implemented yet" pages (aquifer, risk, resilience, alternatives, predictive, research,
+    // sustainability) are out of the menu, so every page shown has real content
+    ['INSTITUTION & KNOWLEDGE', [['reports', 'Reports', 'file'], ['notifications', 'Notifications', 'bell'], ['settings', 'Settings', 'sliders']]],
   ];
+  // Qatar's main farm crops, with FAO 29's salinity for no yield loss (ECw x 640 mg/L; the same table AquaMaa answers
+  // from: fresh-start/fastpath/data/crop_tolerance.csv), and the farming areas, in English and Arabic
+  const CROPS = [['date palm', 'النخيل', 2.7], ['tomato', 'الطماطم', 1.7], ['cucumber', 'الخيار', 1.7], ['alfalfa', 'البرسيم', 1.3],
+    ['barley', 'الشعير', 5.3], ['wheat', 'القمح', 4.0], ['lettuce', 'الخس', 0.9], ['onion', 'البصل', 0.8]]
+    .map(([en, ar, ecw]) => ({ en, ar, noLoss: Math.round(ecw * 640) }));
+  const PLACES = [['Al Khor', 'الخور'], ['Al Thakhira', 'الذخيرة'], ['Al Shamal', 'الشمال'], ['Al Ruwais', 'الرويس'], ['Umm Salal', 'أم صلال'],
+    ['Al Kheesa', 'الخيسة'], ['Al Shahaniya', 'الشحانية'], ['Al Jemailiya', 'الجميلية'], ['Al Ghuwariyah', 'الغويرية'], ['Al Daayen', 'الضعاين'],
+    ['Al Rayyan', 'الريان'], ['Rawdat Rashed', 'روضة راشد'], ['Al Karaana', 'الكرعانة'], ['Abu Samra', 'أبو سمرة'], ['Al Wakra', 'الوكرة'], ['Doha', 'الدوحة']];
+  // "Good afternoon, Salem" at Qatar's time of day, in the page's language
+  const AR_NAMES = { Salem: 'سالم', Noura: 'نورة' };
+  function greeting(user) {
+    const h = Number(new Intl.DateTimeFormat('en-GB', { hour: 'numeric', hour12: false, timeZone: 'Asia/Qatar' }).format(new Date()));
+    const first = String(user.name || '').split(' ')[0];
+    if (lang === 'ar') return `${h < 12 ? 'صباح الخير' : 'مساء الخير'} يا ${AR_NAMES[first] || first}`;
+    return `${h < 12 ? 'Good morning' : h < 18 ? 'Good afternoon' : 'Good evening'}, ${first}`;
+  }
+  const cropOf = (name) => CROPS.find((c) => c.en === String(name || '').trim().toLowerCase()) || null;
   // The two personas (14 Nov): the officer sees the monitoring dashboard and all its pages; the farmer sees his farm
   const FARMER_NAV = [
-    ['MY FARM', [['farm', 'My Farm', 'drop'], ['quality', 'Water Quality', 'pulse']]],
-    ['ACCOUNT', [['notifications', 'Notifications', 'bell'], ['settings', 'Settings', 'sliders']]],
+    ['MY FARM', [['farm', 'My Farm', 'drop']]],                 // only his farm: the national pages aren't his
+    ['ACCOUNT', [['settings', 'Settings', 'sliders']]],
   ];
   const isFarmer = () => !!(state.user && state.user.role === 'farmer');
   const navFor = () => (isFarmer() ? FARMER_NAV : NAV);
@@ -451,7 +467,7 @@
     let n = 0; const dl = () => `style="--d:${60 * n++}ms"`;
 
     view.innerHTML = `
-      <section class="hero rise" style="--d:0ms"><h1>${esc(t('Groundwater Intelligence Summary'))}</h1>
+      <section class="hero rise" style="--d:0ms"><div class="greet">${esc(greeting(state.user))} · ${esc(t(state.user.title))}</div><h1>${esc(t('Groundwater Intelligence Summary'))}</h1>
         <p>${esc(t('Real-time insights, trends, and resource status for the State of Qatar'))}</p></section>
       <div class="section-label rise" style="--d:60ms">${esc(t('AT A GLANCE'))} ${infoTip('Each figure shows its unit, period and data status.')}</div>
       <div class="glance">
@@ -540,6 +556,16 @@
     const v = (f) => (d.fresh && d.fresh[f] ? d.fresh[f].value : null);
     const tds = v('tds_ppm'), ph = v('ph');
     if (!d.online) return { level: 'off', label: F('Sensor offline · last known values', 'الحساس غير متصل · آخر قيم معروفة') };
+    // For the well's own crop first (FAO 29 tolerance): "fine for your date palms" / "too salty for your tomatoes"
+    const crop = cropOf(well.crop);
+    if (crop && tds != null) {
+      const name = F(crop.en, crop.ar);
+      if (tds <= crop.noLoss && !(ph != null && (ph < FARM_T.phMin || ph > FARM_T.phMax)))
+        return { level: 'good', label: F(`Fine for your ${name}: no yield loss`, `مناسب لـ${name}: بدون خسارة في الإنتاج`) };
+      if (tds > crop.noLoss)
+        return { level: tds > Math.max(SEVERE_TDS, crop.noLoss * 2) ? 'bad' : 'warn',
+          label: F(`Too salty for your ${name}: expect yield loss`, `مالح على ${name}: يُتوقع نقص في الإنتاج`) };
+    }
     if (tds != null && tds > SEVERE_TDS) return { level: 'bad', label: F('Too salty: severe for irrigation, not for drinking', 'مالح جدًا: قيد شديد على الري، ولا يصلح للشرب') };
     if (tds != null && tds > FARM_T.tdsMax) return { level: 'warn', label: F('Salty: suits salt-tolerant crops only', 'مالح: يناسب المحاصيل المتحملة للملوحة فقط') };
     if (ph != null && (ph < FARM_T.phMin || ph > FARM_T.phMax)) return { level: 'warn', label: F(`pH ${fmt(ph, 1)} is outside ${FARM_T.phMin}-${FARM_T.phMax}`, `درجة الحموضة ${fmt(ph, 1)} خارج المدى ${FARM_T.phMin}-${FARM_T.phMax}`) };
@@ -592,8 +618,10 @@
     const infoTip = (txt) => `<span class="info" title="${esc(txt)}">i</span>`;          // as on the dashboard
     const tag = (txt, cls) => `<span class="tag ${cls}"><i></i>${esc(txt)}</span>`;
     const noSensor = F('No sensor yet', 'لا يوجد حساس بعد');
-    view.innerHTML = `<div class="page-head"><div><h1>${esc(t('My Farm'))}</h1>
-        <p>${esc(u.name)} · ${esc(u.institution)}. ${esc(F('Each well shows its live sensor readings; the colour shows its water quality.', 'كل بئر يعرض قراءات حساسه المباشرة، ولونه يدل على جودة مائه.'))}</p></div></div>
+    const opt = (list, pick) => list.map((x) => `<option value="${esc(x.en || x[0])}">${esc(pick(x))}</option>`).join('');
+    view.innerHTML = `<div class="page-head"><div><div class="greet">${esc(greeting(u))}</div><h1>${esc(t('My Farm'))}</h1>
+        <p>${esc(F('Each well shows its live sensor readings; the colour shows if its water suits your crop.', 'كل بئر يعرض قراءات حساسه المباشرة، ولونه يدل على مناسبة مائه لمحصولك.'))}</p></div>
+        <div class="toolbar" id="farm-summary"></div></div>
       <div class="section-label">${esc(t('MY WELLS'))} ${infoTip(F('Colour by salinity for irrigation (FAO 29) and the dashboard reference limits; pH outside its range is a warning.', 'اللون حسب ملوحة مياه الري (الفاو 29) وحدود لوحة المعلومات؛ درجة الحموضة خارج مداها تنبيه.'))}</div>
       <div class="toolbar" style="margin-bottom:12px">${tag(F('Good', 'جيد'), 'green')}${tag(F('Salty: salt-tolerant crops only', 'مالح: للمحاصيل المتحملة للملوحة فقط'), 'amber')}${tag(F('Too salty for most uses', 'مالح جدًا لمعظم الاستخدامات'), 'red')}${tag(F('Offline or no sensor', 'غير متصل أو بلا حساس'), 'grey')}</div>
       <div class="farm-grid" id="farm-grid"></div>
@@ -601,8 +629,8 @@
         <form id="farm-form" class="farm-form">
           <label>${esc(F('Well name', 'اسم البئر'))}<input name="name" required maxlength="60" placeholder="${esc(F('e.g. Greenhouse well', 'مثال: بئر البيت المحمي'))}"></label>
           <label>${esc(F('Sensor', 'الحساس'))}<select name="device_id" id="farm-device"><option value="">${esc(noSensor)}</option></select></label>
-          <label>${esc(F('Main crop', 'المحصول الرئيسي'))}<input name="crop" maxlength="40" placeholder="${esc(F('e.g. Tomato', 'مثال: طماطم'))}"></label>
-          <label>${esc(F('Location', 'الموقع'))}<input name="location" maxlength="60" placeholder="${esc(F('e.g. Al Khor', 'مثال: الخور'))}"></label>
+          <label>${esc(F('Main crop', 'المحصول الرئيسي'))}<select name="crop">${opt(CROPS, (c) => F(c.en.replace(/^./, (x) => x.toUpperCase()), c.ar))}</select></label>
+          <label>${esc(F('Area', 'المنطقة'))}<select name="location">${opt(PLACES, (p) => F(p[0], p[1]))}</select></label>
           <button class="btn" type="submit">${esc(F('Add well', 'إضافة البئر'))}</button><span class="unit" id="farm-msg"></span>
         </form></section>`;
     let wells = (await api('/api/farm/wells')).wells;
@@ -625,9 +653,15 @@
         sel.value = keep;
       }
       state.farmSummary = [];
+      const counts = {};
       grid.innerHTML = wells.length ? wells.map((w) => {
         const d = data.devices.find((x) => x.device_id === w.device_id);
         const q = wellQuality(w, d);
+        const crop = cropOf(w.crop);
+        counts[q.level] = (counts[q.level] || 0) + 1;
+        // The salinity gauge: green up to the crop's no-loss limit (or the dashboard limit when no crop is set)
+        const limit = crop ? crop.noLoss : tdsMax, top = Math.max(3000, limit * 1.6);
+        const zones = [{ to: limit, color: 'var(--green)' }].concat(limit < SEVERE_TDS ? [{ to: SEVERE_TDS, color: 'var(--amber)' }] : [], [{ to: top, color: 'var(--red)' }]);
         const val = (f, dec) => (d && d.fresh && d.fresh[f] ? fmt(d.fresh[f].value, dec) : '—');
         const num = (f) => (d && d.fresh && d.fresh[f] ? Number(d.fresh[f].value) : null);
         const series = (data.history || []).filter((r) => r.device_id === w.device_id && Number.isFinite(Number(r.tds_ppm)))
@@ -639,14 +673,14 @@
           ph: d && d.fresh && d.fresh.ph ? d.fresh.ph.value : null, minutesAgo: ago });
         return `<article class="card well-card q-${q.level}">
           <button class="well-del" data-del="${w.id}" title="${esc(F('Remove this well', 'إزالة هذا البئر'))}" aria-label="${esc(F('Remove', 'إزالة'))} ${esc(w.name)}">×</button>
-          <div class="well-head"><h3>${esc(w.name)}</h3><div class="unit">${esc([w.crop, w.location].filter(Boolean).join(' · ') || '—')}</div></div>
+          <div class="well-head"><h3>${esc(w.name)}</h3><div class="unit">${esc([crop ? F(crop.en.replace(/^./, (x) => x.toUpperCase()), crop.ar) : w.crop,
+            (PLACES.find((p) => p[0] === w.location) || [w.location, w.location])[lang === 'ar' ? 1 : 0]].filter(Boolean).join(' · ') || '—')}</div></div>
           ${wellFigure(q.level, undefined, `${w.name}: ${q.label}`)}
           <div class="well-label">${tag(q.label, { good: 'green', warn: 'amber', bad: 'red' }[q.level] || 'grey')}</div>
           <div class="well-gauges">
-            ${gauge({ value: num('tds_ppm'), min: 0, max: Math.max(3000, tdsMax * 3), label: F('Salinity (TDS ppm)', 'الملوحة (جزء في المليون)'),
-              refs: [[fmt(tdsMax), F('DASHBOARD LIMIT', 'حد لوحة المعلومات')], [fmt(SEVERE_TDS), F('FAO SEVERE', 'شديد (الفاو)')]],
-              marks: [{ v: tdsMax, text: fmt(tdsMax) }, { v: SEVERE_TDS, text: fmt(SEVERE_TDS) }],
-              zones: [{ to: tdsMax, color: 'var(--green)' }, { to: SEVERE_TDS, color: 'var(--amber)' }, { to: Math.max(3000, tdsMax * 3), color: 'var(--red)' }] })}
+            ${gauge({ value: num('tds_ppm'), min: 0, max: top, label: F('Salinity (TDS ppm)', 'الملوحة (جزء في المليون)'),
+              refs: [[fmt(limit), crop ? F(`${crop.en.toUpperCase()} LIMIT`, `حد ${crop.ar}`) : F('DASHBOARD LIMIT', 'حد لوحة المعلومات')], [fmt(SEVERE_TDS), F('FAO SEVERE', 'شديد (الفاو)')]],
+              marks: [{ v: limit, text: fmt(limit) }].concat(Math.abs(SEVERE_TDS - limit) > top * 0.08 ? [{ v: SEVERE_TDS, text: fmt(SEVERE_TDS) }] : []), zones })}
             ${gauge({ value: num('ph'), dec: 1, min: 4, max: 10, label: F('pH', 'درجة الحموضة'),
               refs: [[fmt(phMin, 1), F('MIN', 'الحد الأدنى')], [fmt(phMax, 1), F('MAX', 'الحد الأعلى')]],
               marks: [{ v: phMin, text: fmt(phMin, 1) }, { v: phMax, text: fmt(phMax, 1) }],
@@ -659,6 +693,12 @@
             <button class="btn ghost" data-ask="${esc(w.name)}" data-crop="${esc(w.crop || '')}">${esc(F('Ask AquaMaa', 'اسأل أكوا ماء'))}</button></div>
         </article>`;
       }).join('') : `<p class="unit">${esc(F('No wells yet. Add your first well below.', 'لا توجد آبار بعد. أضف أول بئر بالأسفل.'))}</p>`;
+      // The farm at a glance: how many wells, and how many need attention
+      const attention = (counts.warn || 0) + (counts.bad || 0), off = (counts.off || 0) + (counts.none || 0);
+      const sum = $('#farm-summary');
+      if (sum) sum.innerHTML = tag(F(`${wells.length} wells`, `${wells.length} آبار`), 'grey')
+        + tag(attention ? F(`${attention} need attention`, `${attention} تحتاج انتباهًا`) : F('All wells fine', 'كل الآبار جيدة'), attention ? 'amber' : 'green')
+        + (off ? tag(F(`${off} without live readings`, `${off} بدون قراءات مباشرة`), 'grey') : '');
       return true;
     };
 
@@ -867,6 +907,8 @@
 
   let sensorInit = false;
   function boot() {
+    // The farmer's page opens in Arabic the first time; after that, the language he chose is remembered
+    if (!store.get('aq_lang') && state.user && state.user.role === 'farmer') { lang = 'ar'; applyLang(); }
     if (!sensorInit) {
       SensorUI.init({ esc, icon, fmt, api, sparkline, ring, animateIn, t: (s) => t(s), setContext: (fn) => { pageCtx.fn = fn; } });
       sensorInit = true;

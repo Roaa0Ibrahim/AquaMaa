@@ -443,3 +443,4 @@ table.wq-table td:last-child { white-space: normal; min-width: 96px; }
 .gauge .g-mark { font-size: 9px; font-weight: 700; fill: var(--navy); }
 [dir="rtl"] .well-del { right: auto; left: 10px; }
 [dir="rtl"] .well-head h3 { padding-right: 0; padding-left: 22px; }
+.greet { font-size: 13.5px; font-weight: 600; color: var(--turq-2); margin-bottom: 4px; }
