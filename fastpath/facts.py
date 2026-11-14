@@ -325,7 +325,12 @@ def page(question, grounding, arabic):
     if ctx.get("note"):
         lines.append(f"This page doesn't send its figures to AquaMaa yet, so only the live sensor data is known {tag}.")
     for w in (ctx.get("farmWells") or [])[:10]:            # the farmer's My farm page: each well and its state
-        parts = [f"{w.get('well')}"] + ([f"crop {w['crop']}"] if w.get("crop") else [])
+        # The crop's name from AquaMaa's own crop table, in the answer's language (14 Nov: "Date palm" became «خوخ»,
+        # peach, when the model translated it); the well's name as the farmer typed it, in quotes
+        c = next((x for x in CROPS if x["crop_en"] == str(w.get("crop") or "").strip().lower()), None)
+        crop = (c["crop_ar"] if arabic else c["crop_en"]) if c else w.get("crop")
+        parts = [f"«{w.get('well')}»" if arabic else f"\"{w.get('well')}\""] + \
+                ([("المحصول " if arabic else "crop ") + crop] if crop else [])
         vals = ([f"TDS {_fmt(w['tds_ppm'])} ppm"] if isinstance(w.get("tds_ppm"), (int, float)) else []) + \
                ([f"pH {_fmt(w['ph'])}"] if isinstance(w.get("ph"), (int, float)) else [])
         lines.append(f"Well {', '.join(parts)}: {w.get('quality')}" + (f" ({', '.join(vals)})" if vals else "")
