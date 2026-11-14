@@ -37,6 +37,9 @@
     'Sign out': 'تسجيل الخروج', 'Search platform…': 'ابحث في المنصة…', 'Database live': 'قاعدة البيانات متصلة',
     'Demonstration mode': 'وضع العرض التجريبي', 'Open map': 'افتح الخريطة',
     // The farmer's pages (14 Nov)
+    'Water level': 'منسوب المياه', 'm below ground': 'م تحت سطح الأرض', 'deeper by': 'أعمق بـ', 'shallower by': 'أقل عمقًا بـ', 'since': 'منذ',
+    'No readings for this year': 'لا توجد قراءات لهذه السنة',
+    'Average depth to water across the monitoring stations; a larger depth means a lower water table': 'متوسط عمق المياه في محطات المراقبة؛ العمق الأكبر يعني انخفاض منسوب المياه الجوفية',
     'My Farm': 'مزرعتي', 'My farm': 'مزرعتي', 'MY FARM': 'مزرعتي', 'MY WELLS': 'آباري', 'ACCOUNT': 'الحساب',
   };
   let lang = store.get('aq_lang') === 'ar' ? 'ar' : 'en';
@@ -482,6 +485,11 @@
           <div class="k-body"><div><div class="big">${num(d.stations.count)}</div><div class="unit">stations</div></div>
             <div class="dots" aria-hidden="true">${Array.from({ length: d.stations.count }, (_, i) => `<i class="${i < d.stations.active ? '' : 'off'}" style="animation-delay:${200 + i * 70}ms"></i>`).join('')}</div></div>
           <div class="k-foot">${tag(`${d.stations.active} active`, 'green')}${tag(covTag, 'grey')}</div></article>
+        <article class="card kpi k2 rise" ${dl()}><div class="k-head"><span class="k-ico blue">${icon('waves')}</span>${esc(t('Water level'))}</div>
+          ${d.water_level ? `<div class="k-body"><div><div class="big">${num(d.water_level.latest, 1)}</div><div class="unit">${esc(t('m below ground'))} · ${esc(d.water_level.period)}</div></div>${sparkline(d.water_level.series, 72, 38)}</div>
+          <div class="k-meta" title="${esc(t('Average depth to water across the monitoring stations; a larger depth means a lower water table'))}">${esc(d.water_level.change > 0 ? t('deeper by') : t('shallower by'))} ${fmt(Math.abs(d.water_level.change), 2)} m ${esc(t('since'))} ${esc(d.water_level.since)} · ${d.water_level.stations} ${esc(t('stations'))}</div>
+          <div class="k-foot">${statusTag(d.water_level.status)}</div>`
+          : `<div class="k-body"><div><div class="big">—</div><div class="unit">${esc(t('No readings for this year'))}</div></div></div><div class="k-foot">${statusTag('demonstration')}</div>`}</article>
         <article class="card kpi sensor k5 rise" data-sensor-kpi="wq" ${dl()}></article>
       </div>
 

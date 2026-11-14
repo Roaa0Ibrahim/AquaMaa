@@ -152,6 +152,16 @@ app.get('/api/dashboard', requireAuth, (req, res) => {
     safe_yield: sy && { value: sy.value, unit: sy.unit, period: sy.period, source: sy.source, status: sy.data_status },
     ratio: comparable ? round(cur.total / sy.value, 2) : null,
     wells: { count: wells.length, status: 'demonstration' },
+    // Water level (depth to water below ground, m) across the monitoring stations, month by month: demonstration
+    // data, like the stations (14 Nov: the officer's page on Pepper shows it; no live water-level sensor yet)
+    water_level: (() => {
+      const months = db.prepare(`SELECT period, AVG(water_level_m) avg, COUNT(*) n FROM readings WHERE period LIKE ?
+        GROUP BY period ORDER BY period`).all(`${periodPrefix}%`);
+      if (!months.length) return null;
+      const first = months[0], last = months[months.length - 1];
+      return { latest: round(last.avg, 2), period: last.period, stations: last.n, change: round(last.avg - first.avg, 2),
+        since: first.period, series: months.map((m) => round(m.avg, 2)), unit: 'm below ground', status: 'demonstration' };
+    })(),
     stations: {
       count: stations.length,
       active: stations.filter((s) => s.status === 'active').length,

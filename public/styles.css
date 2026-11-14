@@ -331,21 +331,21 @@ table.t tr:hover td { background: #f4fafc; }
 /* KPI grid: 7 cards (4 sensor + 3 retained). Same card size as before on wide screens, wraps below. */
 .glance { grid-template-columns: repeat(12, minmax(0, 1fr)); }
 .glance > .kpi { grid-column: span 3; }
-.glance > .kpi:nth-child(n+5) { grid-column: span 4; }
+.glance > .kpi:nth-child(n+5) { grid-column: span 3; }   /* 8 cards: two rows of four (14 Nov: water level added) */
 .glance .spark { width: 72px; height: 38px; }
 .k-meta { font-size: 11.5px; color: var(--muted); margin-top: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: help; }
 .kpi .k-foot { margin-top: 6px; }
 .big.skel { color: transparent; background: linear-gradient(90deg, #e4eef2 25%, #f3f8fa 50%, #e4eef2 75%); background-size: 200% 100%; border-radius: 8px; width: 64px; animation: shimmer 1.3s infinite linear; }
 @keyframes shimmer { to { background-position: -200% 0; } }
 @media (min-width: 1700px) {
-  .glance { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  .glance { grid-template-columns: repeat(8, minmax(0, 1fr)); }
   .glance > .kpi, .glance > .kpi:nth-child(n+5) { grid-column: span 1; }
   .glance .spark { width: 60px; }
 }
 @media (max-width: 1000px) {
   .glance { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .glance > .kpi, .glance > .kpi:nth-child(n+5) { grid-column: span 1; }
-  .glance > .kpi:last-child { grid-column: span 2; }
+  .glance > .kpi:last-child { grid-column: span 1; }
 }
 @media (max-width: 560px) {
   .glance { grid-template-columns: 1fr; }
