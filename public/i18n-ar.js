@@ -12,6 +12,7 @@
     "Turning groundwater data into smarter decisions for Qatar's water future.": 'نحوّل بيانات المياه الجوفية إلى قرارات أذكى لمستقبل المياه في قطر.',
     'Demonstration accounts (click to fill email):': 'حسابات العرض التجريبي (اضغط لتعبئة البريد):', 'Connecting…': 'جارٍ الاتصال…', 'Loading…': 'جارٍ التحميل…',
     'Groundwater Monitoring Officer': 'مسؤولة مراقبة المياه الجوفية', 'Farm owner': 'صاحب مزرعة',
+    'Noura Al-Kuwari': 'نورة الكواري', 'Salem Al-Marri': 'سالم المري',
     'Ministry of Environment and Climate Change': 'وزارة البيئة والتغير المناخي', 'Al Khor farm': 'مزرعة الخور',
     // dashboard
     'Annual': 'سنوي', 'Extraction MCM / year': 'الاستخراج (مليون م³ / سنة)', 'Comparison ratio': 'نسبة المقارنة', 'Safe yield MCM / year': 'العائد الآمن (مليون م³ / سنة)',
@@ -53,7 +54,7 @@
   const RULES = [
     [/^Live · (\d+)s$/, 'مباشر · كل $1 ث'], [/^(\d+) active$/, '$1 نشطة'], [/^(\d+) wells?$/, '$1 آبار'], [/^(\d+) stations?$/, '$1 محطات'],
     [/^(\d+) min ago$/, 'قبل $1 دقيقة'], [/^(\d+) h ago$/, 'قبل $1 ساعة'], [/^(\d+) d ago$/, 'قبل $1 يوم'], [/^just now$/, 'الآن'],
-    [/Sensor data updated/, 'آخر تحديث لبيانات الحساسات'], [/devices reporting/, 'أجهزة ترسل'], [/^Sensors:$/, 'الحساسات:'], [/\bof\b/g, 'من'],
+    [/Sensor data updated/, 'آخر تحديث لبيانات الحساسات'], [/devices reporting/, 'أجهزة ترسل'], [/^Sensors:$/, 'الحساسات:'], [/^(\d+) of (\d+)$/, '$1 من $2'],
     [/(\d+) wells? with data/, '$1 آبار بها بيانات'], [/without data/, 'بدون بيانات'], [/demonstration data/gi, 'بيانات تجريبية'],
     [/registered wells/gi, 'آبار مسجلة'], [/monitoring stations/gi, 'محطات مراقبة'], [/All records are/gi, 'كل السجلات'],
   ];
