@@ -45,6 +45,8 @@ function requireAuth(req, res, next) {
 }
 
 const ROLE_INSIGHTS = {
+  officer: 'Monitoring view: live well sensors and their alerts first. The registry, map and extraction figures are demonstration data until the official feeds are connected.',
+  farmer: 'Your farm: each of your wells with its live reading, what it means for your crops, and what to do.',
   admin: 'Platform-wide view. Live sensor indicators come from the Supabase readings table; the registry, map and extraction figures are still demonstration data.',
   kahramaa: 'Supply planning: municipal abstraction is the share most relevant to KAHRAMAA. Compare it with the estimated safe yield before committing groundwater to new supply.',
   mecc: 'Environmental protection: extraction far exceeds the estimated safe yield for the same period. Prioritise recharge studies and verification of the estimate.',
@@ -79,6 +81,36 @@ app.post('/api/auth/logout', (req, res) => {
 });
 
 app.get('/api/auth/me', requireAuth, (req, res) => res.json({ user: req.user }));
+
+// ---------- the farmer's own wells (My farm) ----------
+const DEVICE_ID = /^[A-Za-z0-9_.:-]{1,64}$/;
+const clean = (v, max) => (v == null ? '' : String(v).trim().slice(0, max));
+function requireFarmer(req, res, next) {
+  if (req.user.role !== 'farmer') return res.status(403).json({ error: 'Only the farmer account has a farm' });
+  next();
+}
+app.get('/api/farm/wells', requireAuth, requireFarmer, (req, res) => {
+  res.json({ wells: db.prepare('SELECT id,name,device_id,crop,location,created_at FROM farm_wells WHERE owner_email=? ORDER BY id')
+    .all(req.user.email) });
+});
+app.post('/api/farm/wells', requireAuth, requireFarmer, (req, res) => {
+  const b = req.body || {};
+  const name = clean(b.name, 60), crop = clean(b.crop, 40), location = clean(b.location, 60);
+  const device = clean(b.device_id, 64) || null;
+  if (!name) return res.status(400).json({ error: 'Give the well a name' });
+  if (device && !DEVICE_ID.test(device)) return res.status(400).json({ error: 'The sensor ID is not valid' });
+  const n = db.prepare('SELECT COUNT(*) c FROM farm_wells WHERE owner_email=?').get(req.user.email).c;
+  if (n >= 50) return res.status(400).json({ error: 'A farm can have up to 50 wells here' });
+  const r = db.prepare('INSERT INTO farm_wells (owner_email,name,device_id,crop,location) VALUES (?,?,?,?,?)')
+    .run(req.user.email, name, device, crop || null, location || null);
+  res.status(201).json({ id: Number(r.lastInsertRowid) });
+});
+app.delete('/api/farm/wells/:id', requireAuth, requireFarmer, (req, res) => {
+  const id = Number(req.params.id);
+  if (!Number.isInteger(id)) return res.status(400).json({ error: 'Invalid id' });
+  db.prepare('DELETE FROM farm_wells WHERE id=? AND owner_email=?').run(id, req.user.email);
+  res.json({ ok: true });
+});
 
 // Public: demo accounts listed on the login page (demo mode only).
 app.get('/api/auth/demo-accounts', (req, res) => {

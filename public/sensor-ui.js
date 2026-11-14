@@ -673,5 +673,11 @@
 
   function init(helpers) { H = helpers; }
 
-  window.SensorUI = { init, start, stop, unmount, mountDashboard, mountQuality, renderLive, connection, kpiInner, getContext: buildContext };
+  // For the farmer's "My farm" page: each sensor's latest values and its readings over the selected period
+  function farmData() {
+    return { ready: !!st.network, devices: st.network ? st.network.devices : [], history: st.histRows,
+      snapshot: st.snapRows, cfg: st.cfg, lastUpdated: st.lastUpdated, range: st.network ? st.network.range : null };
+  }
+
+  window.SensorUI = { init, start, stop, unmount, mountDashboard, mountQuality, renderLive, connection, kpiInner, getContext: buildContext, farmData };
 })();

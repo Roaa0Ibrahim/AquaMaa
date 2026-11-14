@@ -96,8 +96,16 @@
     ['INSTITUTION & KNOWLEDGE', [['research', 'Research & Statistics', 'book'], ['sustainability', 'Sustainability Goals', 'leaf'], ['reports', 'Reports', 'file'],
       ['notifications', 'Notifications', 'bell'], ['settings', 'Settings', 'sliders']]],
   ];
+  // The two personas (14 Nov): the officer sees the monitoring dashboard and all its pages; the farmer sees his farm
+  const FARMER_NAV = [
+    ['MY FARM', [['farm', 'My Farm', 'drop'], ['quality', 'Water Quality', 'pulse']]],
+    ['ACCOUNT', [['notifications', 'Notifications', 'bell'], ['settings', 'Settings', 'sliders']]],
+  ];
+  const isFarmer = () => !!(state.user && state.user.role === 'farmer');
+  const navFor = () => (isFarmer() ? FARMER_NAV : NAV);
+  const homePage = () => (isFarmer() ? 'farm' : 'dashboard');
   const PAGE_INFO = {};
-  NAV.forEach(([sec, items]) => items.forEach(([id, label]) => { PAGE_INFO[id] = { label, section: sec === 'OVERVIEW' ? 'Overview' : sec }; }));
+  [...NAV, ...FARMER_NAV].forEach(([sec, items]) => items.forEach(([id, label]) => { if (!PAGE_INFO[id]) PAGE_INFO[id] = { label, section: sec === 'OVERVIEW' ? 'Overview' : sec === 'MY FARM' ? 'My farm' : sec }; }));
 
   /* ================= state ================= */
   const state = { user: null, year: 2022, unread: 0, dash: null, live: true, maps: [] };
@@ -171,7 +179,7 @@
         <div class="brand">${logo}<div><b>AquaMaa</b><span>Groundwater Intelligence</span></div>
           <button class="collapse-btn" id="collapse" aria-label="Collapse sidebar">${icon('chevs')}</button></div>
         <nav class="nav" id="nav">
-          ${NAV.map(([sec, items]) => `<div class="nav-label">${esc(t(sec))}</div>` + items.map(([id, label, ic]) =>
+          ${navFor().map(([sec, items]) => `<div class="nav-label">${esc(t(sec))}</div>` + items.map(([id, label, ic]) =>
             `<a href="#/${id}" data-page="${id}" title="${esc(t(label))}">${icon(ic)}<span class="t">${esc(t(label))}</span>${id === 'notifications' ? '<span class="badge" id="nav-badge" hidden></span>' : ''}</a>`).join('')).join('')}
         </nav>
         <div class="side-foot">
@@ -518,6 +526,118 @@
     if (landEl) await drawCoverage(landEl, wells.wells, stations.stations);
   }
 
+  /* ================= the farmer's farm: each well as an icon coloured by its water quality ================= */
+  // Colour by salinity for irrigation (FAO 29: up to ~450 mg/L no restriction, 450-2000 slight to moderate, above 2000
+  // severe) and the dashboard's reference limit of 1000; pH outside 6.5-8.5 is a warning. Offline or unlinked: grey.
+  function wellQuality(well, d) {
+    if (!well.device_id) return { level: 'none', label: 'No sensor linked' };
+    if (!d) return { level: 'none', label: 'No readings yet' };
+    const v = (f) => (d.fresh && d.fresh[f] ? d.fresh[f].value : null);
+    const tds = v('tds_ppm'), ph = v('ph');
+    if (!d.online) return { level: 'off', label: 'Sensor offline · last known values' };
+    if (tds != null && tds > 2000) return { level: 'bad', label: 'Too salty: severe for irrigation, not for drinking' };
+    if (tds != null && tds > 1000) return { level: 'warn', label: 'Salty: suits salt-tolerant crops only' };
+    if (ph != null && (ph < 6.5 || ph > 8.5)) return { level: 'warn', label: `pH ${fmt(ph, 1)} is outside 6.5-8.5` };
+    if (tds == null && ph == null) return { level: 'none', label: 'No valid readings' };
+    return { level: 'good', label: 'Good: fine for irrigation' };
+  }
+
+  function wellIcon(level) {
+    const water = { good: '#16a34a', warn: '#e08a00', bad: '#dc2626', off: '#94a3b8', none: '#cbd5e1' }[level];
+    return `<svg class="well-ico" viewBox="0 0 120 110" aria-hidden="true">
+      <path d="M22 34 60 10l38 24" fill="none" stroke="#0b2a4a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M30 34v28M90 34v28" stroke="#0b2a4a" stroke-width="5" stroke-linecap="round"/>
+      <path d="M48 34h24M60 34v22" stroke="#5b7488" stroke-width="3"/><rect x="54" y="54" width="12" height="10" rx="2" fill="#5b7488"/>
+      <ellipse cx="60" cy="66" rx="40" ry="10" fill="${water}" class="well-water"/>
+      <path d="M20 66v26c0 6 18 11 40 11s40-5 40-11V66" fill="#e8eef2" stroke="#0b2a4a" stroke-width="4"/>
+      <path d="M20 80c0 6 18 11 40 11s40-5 40-11" fill="none" stroke="#b7c6d1" stroke-width="2"/>
+      <ellipse cx="60" cy="66" rx="40" ry="10" fill="none" stroke="#0b2a4a" stroke-width="4"/></svg>`;
+  }
+
+  async function pageFarm(view) {
+    const u = state.user;
+    const infoTip = (txt) => `<span class="info" title="${esc(txt)}">i</span>`;          // as on the dashboard
+    const tag = (txt, cls) => `<span class="tag ${cls}"><i></i>${esc(txt)}</span>`;
+    view.innerHTML = `<div class="page-head"><div><h1>${esc(t('My Farm'))}</h1>
+        <p>${esc(u.name)} · ${esc(u.institution)}. Each well shows its live sensor readings; the colour shows its water quality.</p></div></div>
+      <div class="section-label">${esc(t('MY WELLS'))} ${infoTip('Colour by salinity for irrigation (FAO 29) and the dashboard reference limit of 1000 ppm; pH outside 6.5-8.5 is a warning.')}</div>
+      <div class="toolbar" style="margin-bottom:12px">${tag('Good', 'green')}${tag('Salty: salt-tolerant crops only', 'amber')}${tag('Too salty for most uses', 'red')}${tag('Offline or no sensor', 'grey')}</div>
+      <div class="farm-grid" id="farm-grid"></div>
+      <section class="card farm-add"><div class="eyebrow">ADD A WELL</div>
+        <form id="farm-form" class="farm-form">
+          <label>Well name<input name="name" required maxlength="60" placeholder="e.g. Greenhouse well"></label>
+          <label>Sensor<select name="device_id" id="farm-device"><option value="">No sensor yet</option></select></label>
+          <label>Main crop<input name="crop" maxlength="40" placeholder="e.g. Tomato"></label>
+          <label>Location<input name="location" maxlength="60" placeholder="e.g. Al Khor"></label>
+          <button class="btn" type="submit">Add well</button><span class="unit" id="farm-msg"></span>
+        </form></section>`;
+    let wells = (await api('/api/farm/wells')).wells;
+
+    const draw = () => {
+      const grid = $('#farm-grid');
+      if (!grid) return false;                                     // the page was left
+      const data = SensorUI.farmData();
+      const sel = $('#farm-device');
+      const ids = data.devices.map((d) => d.device_id);
+      if (sel && sel.options.length !== ids.length + 1) {
+        const keep = sel.value;
+        sel.innerHTML = '<option value="">No sensor yet</option>' + ids.map((i) => `<option value="${esc(i)}">${esc(i)}</option>`).join('');
+        sel.value = keep;
+      }
+      state.farmSummary = [];
+      grid.innerHTML = wells.length ? wells.map((w) => {
+        const d = data.devices.find((x) => x.device_id === w.device_id);
+        const q = wellQuality(w, d);
+        const val = (f, dec) => (d && d.fresh && d.fresh[f] ? fmt(d.fresh[f].value, dec) : '—');
+        const series = (data.history || []).filter((r) => r.device_id === w.device_id && Number.isFinite(Number(r.tds_ppm)))
+          .sort((a, b) => Date.parse(a.created_at) - Date.parse(b.created_at)).map((r) => Number(r.tds_ppm)).slice(-48);
+        const change = series.length > 1 ? series[series.length - 1] - series[0] : null;
+        const ago = d ? Math.round(d.ageMs / 60000) : null;
+        state.farmSummary.push({ well: w.name, crop: w.crop, location: w.location, sensor: w.device_id, quality: q.label,
+          online: !!(d && d.online), tds_ppm: d && d.fresh && d.fresh.tds_ppm ? d.fresh.tds_ppm.value : null,
+          ph: d && d.fresh && d.fresh.ph ? d.fresh.ph.value : null, minutesAgo: ago });
+        return `<article class="card well-card q-${q.level}">
+          <button class="well-del" data-del="${w.id}" title="Remove this well" aria-label="Remove ${esc(w.name)}">×</button>
+          <div class="well-top">${wellIcon(q.level)}<div><h3>${esc(w.name)}</h3>
+            <div class="unit">${esc([w.crop, w.location].filter(Boolean).join(' · ') || '—')}</div>
+            <div style="margin-top:8px">${tag(q.label, { good: 'green', warn: 'amber', bad: 'red' }[q.level] || 'grey')}</div></div></div>
+          <div class="well-vals">
+            <div><div class="big">${val('tds_ppm', 0)}</div><div class="unit">TDS ppm</div></div><div><div class="big">${val('ph', 1)}</div><div class="unit">pH</div></div>
+            <div><div class="big">${val('temperature', 1)}</div><div class="unit">°C</div></div><div><div class="big">${val('turbidity_raw', 0)}</div><div class="unit">turbidity (raw)</div></div></div>
+          <div class="well-trend">${series.length > 1 ? sparkline(series, 220, 48) + `<span class="unit">Salinity over ${esc(data.range ? data.range.label : 'the period')}: ${change >= 0 ? '+' : ''}${fmt(change, 0)} ppm</span>` : '<span class="unit">Not enough readings yet for a chart</span>'}</div>
+          <div class="well-foot"><span class="unit">${w.device_id ? `Sensor ${esc(w.device_id)}${ago != null ? ` · last reading ${ago} min ago` : ''}` : 'Link a sensor to see live readings'}</span>
+            <button class="btn ghost" data-ask="${esc(w.name)}" data-crop="${esc(w.crop || '')}">Ask AquaMaa</button></div>
+        </article>`;
+      }).join('') : '<p class="unit">No wells yet. Add your first well below.</p>';
+      return true;
+    };
+
+    $('#farm-grid').addEventListener('click', async (e) => {
+      const del = e.target.closest('[data-del]');
+      if (del && confirm('Remove this well from your farm?')) {
+        await api(`/api/farm/wells/${del.dataset.del}`, { method: 'DELETE' });
+        wells = (await api('/api/farm/wells')).wells; draw();
+      }
+      const ask = e.target.closest('[data-ask]');
+      if (ask && window.AquaMaaAssistant) {
+        const crop = ask.dataset.crop;
+        window.AquaMaaAssistant.open();
+        window.AquaMaaAssistant.submitTranscript(crop ? `Is the water in my ${ask.dataset.ask} okay for ${crop}?` : `Is the water in my ${ask.dataset.ask} okay?`);
+      }
+    });
+    $('#farm-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = new FormData(e.target);
+      try {
+        await api('/api/farm/wells', { method: 'POST', body: JSON.stringify(Object.fromEntries(f.entries())) });
+        e.target.reset(); $('#farm-msg').textContent = 'Well added.';
+        wells = (await api('/api/farm/wells')).wells; draw();
+      } catch (err) { $('#farm-msg').textContent = err.message; }
+    });
+    draw();
+    const timer = setInterval(() => { if (!draw()) clearInterval(timer); }, 5000);   // live: redraw every 5 s
+  }
+
   async function pageMap(view) {
     view.innerHTML = `<div class="page-head"><div><h1>${esc(t('Groundwater Map'))}</h1><p>Wells and monitoring stations. Coordinates are demonstration values.</p></div></div>
       <div class="map-layout"><div class="card" style="padding:8px"><div class="map-full" id="full-map"></div></div>
@@ -643,7 +763,8 @@
 
   /* ================= page context for the assistant ================= */
   const pageCtx = { fn: null };
-  const currentPage = () => { const id = (location.hash.replace(/^#\//, '') || 'dashboard').split('?')[0]; return PAGE_INFO[id] ? id : 'dashboard'; };
+  const allowed = (id) => navFor().some(([, items]) => items.some(([i]) => i === id));
+  const currentPage = () => { const id = (location.hash.replace(/^#\//, '') || homePage()).split('?')[0]; return PAGE_INFO[id] && allowed(id) ? id : homePage(); };
   window.AquaMaaPageContext = {
     get() {
       const id = currentPage(), info = PAGE_INFO[id];
@@ -651,6 +772,10 @@
       try { ctx = pageCtx.fn ? pageCtx.fn() : null; } catch (e) { console.error(e); }
       if (!ctx) ctx = { page: id, pageTitle: info.label, section: info.section, selectedDevice: null, dateRange: null, note: 'This page does not publish structured data to the assistant.' };
       ctx.language = lang;
+      if (id === 'farm' && state.farmSummary) {            // the farmer's wells, as shown on My farm
+        ctx.farmWells = state.farmSummary;
+        delete ctx.note;
+      }
       if (id === 'dashboard' && state.dash) {
         const d = state.dash;
         ctx.filters = { year: state.year, sensorRange: ctx.dateRange };
@@ -663,12 +788,12 @@
   };
 
   /* ================= router ================= */
-  const PAGES = { dashboard: pageDashboard, map: pageMap, wells: pageWells, quality: pageQuality, extraction: pageExtraction, notifications: pageNotifications, reports: pageReports, settings: pageSettings };
+  const PAGES = { farm: pageFarm, dashboard: pageDashboard, map: pageMap, wells: pageWells, quality: pageQuality, extraction: pageExtraction, notifications: pageNotifications, reports: pageReports, settings: pageSettings };
 
   async function route() {
     if (!state.user) return;
-    const id = (location.hash.replace(/^#\//, '') || 'dashboard').split('?')[0];
-    const page = PAGE_INFO[id] ? id : 'dashboard';
+    const id = (location.hash.replace(/^#\//, '') || homePage()).split('?')[0];
+    const page = PAGE_INFO[id] && allowed(id) ? id : homePage();     // each persona only reaches its own pages
     disposeMaps();
     SensorUI.unmount(); pageCtx.fn = null;
     document.querySelectorAll('.nav a').forEach((a) => a.classList.toggle('active', a.dataset.page === page));

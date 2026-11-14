@@ -16,17 +16,20 @@ function reset() {
 }
 
 function seedUsers() {
+  // The two personas AquaMaa serves (agreed 13-14 Nov): the officer in the ministry's monitoring room, and the farmer
   const users = [
-    ['ahmed.almansoori@aquamaa.demo', 'Ahmed Al-Mansoori', 'admin', 'System Administrator', 'AquaMaa Platform'],
-    ['water.planning@kahramaa.demo', 'Noora Al-Kuwari', 'kahramaa', 'Water Planning Lead', 'KAHRAMAA'],
-    ['groundwater@mecc.demo', 'Khalid Al-Thani', 'mecc', 'Groundwater Specialist', 'Ministry of Environment and Climate Change'],
-    ['planning@baladiya.demo', 'Mariam Al-Sulaiti', 'municipality', 'Urban Water Analyst', 'Ministry of Municipality'],
-    ['advisor@agri.demo', 'Yousef Al-Naimi', 'agriculture', 'Agricultural Water Advisor', 'Agricultural Affairs Department'],
-    ['researcher@university.demo', 'Dr. Layla Haddad', 'researcher', 'Hydrogeology Researcher', 'Academic Research'],
+    ['officer@aquamaa.demo', 'Noura Al-Kuwari', 'officer', 'Groundwater Monitoring Officer', 'Ministry of Environment and Climate Change'],
+    ['farmer@aquamaa.demo', 'Salem Al-Marri', 'farmer', 'Farm owner', 'Al Khor farm'],
   ];
   const ins = db.prepare('INSERT INTO users (email,name,role,title,institution,password_hash) VALUES (?,?,?,?,?,?)');
   const pw = hashPassword(DEMO_PASSWORD);
   users.forEach((u) => ins.run(...u, pw));
+  // The farmer's farm starts with one well on the live sensor; wells the farmer adds are kept across re-seeds
+  const has = db.prepare('SELECT COUNT(*) c FROM farm_wells WHERE owner_email=?').get('farmer@aquamaa.demo').c;
+  if (!has) {
+    db.prepare('INSERT INTO farm_wells (owner_email,name,device_id,crop,location) VALUES (?,?,?,?,?)')
+      .run('farmer@aquamaa.demo', 'North field well', 'AquaNova-ESP32-01', 'Date palm', 'Al Khor');
+  }
 }
 
 function seedGroundwater() {

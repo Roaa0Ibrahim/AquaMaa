@@ -398,3 +398,26 @@ table.net-table tr:focus-visible { outline: 2px solid var(--turq); outline-offse
 .map-full .leaflet-bottom.leaflet-right { margin-inline-end: 70px; }
 table.wq-table th { white-space: normal; line-height: 1.25; }
 table.wq-table td:last-child { white-space: normal; min-width: 96px; }
+
+/* ================= My farm (farmer account): each well as an icon coloured by its water quality ================= */
+/* Layout only; colours, cards, tags, numbers and buttons are the dashboard's own (.card, .tag, .big, .unit, .btn). */
+.farm-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 14px; }
+.well-card { display: flex; flex-direction: column; gap: 12px; border-top: 4px solid var(--grey); }
+.well-card.q-good { border-top-color: var(--green); }
+.well-card.q-warn { border-top-color: var(--amber); }
+.well-card.q-bad { border-top-color: var(--red); }
+.well-top { display: flex; gap: 14px; align-items: center; }
+.well-top h3 { margin: 0; font-size: 17px; }
+.well-ico { width: 92px; height: 84px; flex: none; }
+.well-ico .well-water { transition: fill .6s var(--ease); }
+.well-vals { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.well-vals .big { font-size: 22px; }
+.well-trend { display: flex; flex-direction: column; gap: 2px; }
+.well-trend .spark { width: 100%; height: 48px; }
+.well-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.well-foot .btn { height: 32px; padding: 0 12px; font-size: 12.5px; }
+.well-del { position: absolute; top: 8px; right: 10px; border: 0; background: none; color: var(--muted); font-size: 20px; cursor: pointer; }
+.farm-add { margin-top: 16px; }
+.farm-form { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; margin-top: 10px; }
+.farm-form label { display: flex; flex-direction: column; gap: 5px; font-size: 12px; color: var(--muted); }
+.farm-form input, .farm-form select { height: 38px; border: 1px solid var(--line); border-radius: 10px; padding: 0 10px; color: var(--navy); background: #fff; min-width: 170px; }

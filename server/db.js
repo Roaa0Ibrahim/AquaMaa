@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY,
   email TEXT NOT NULL UNIQUE,
   name TEXT NOT NULL,
-  role TEXT NOT NULL,            -- admin | kahramaa | mecc | municipality | agriculture | researcher
+  role TEXT NOT NULL,            -- officer | farmer (the two personas, 14 Nov)
   title TEXT NOT NULL,
   institution TEXT NOT NULL,
   password_hash TEXT NOT NULL,
@@ -90,6 +90,18 @@ CREATE TABLE IF NOT EXISTS notifications (
   body TEXT NOT NULL,
   created_at TEXT NOT NULL,
   read INTEGER NOT NULL DEFAULT 0
+);
+
+-- A farmer's own wells (the farmer account's "My farm" page). Keyed by the account's email, not its id, so the wells
+-- a farmer adds survive a re-seed of the demonstration data. device_id links a well to its live sensor.
+CREATE TABLE IF NOT EXISTS farm_wells (
+  id INTEGER PRIMARY KEY,
+  owner_email TEXT NOT NULL,
+  name TEXT NOT NULL,
+  device_id TEXT,
+  crop TEXT,
+  location TEXT,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS meta (
