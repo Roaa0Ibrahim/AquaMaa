@@ -1,0 +1,104 @@
+﻿.venv\Scripts\python.exe : C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\compare_fanar.py:3: SyntaxWarning: 
+invalid escape sequence '\S'
+At line:1 char:333
++ ... ODING="utf-8"; .venv\Scripts\python.exe compare_fanar.py 2>&1 | Out-F ...
++                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\Roaa_\...e sequence '\S':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  Run:  .venv\Scripts\python.exe compare_fanar.py   ->  logs\compare_fanar.txt
+===== DIALECT -> Modern Standard Arabic (every question, the dialect-word check skipped)
+
+Q: كيف اقيس جودة ماء البير   (dialect check: yes)
+  qwen    0.6 s  كيف أقيس جودة ماء البئر
+20:43:46 FANAR     failed (The read operation timed out); using the local model for this call
+  fanar  21.0 s  كيف أقيس جودة ماء البئر
+
+Q: ليش ماي البير صار مالح؟   (dialect check: yes)
+  qwen    0.7 s  لماذا أصبح ماء البئر مالحًا؟
+  fanar   6.1 s  لماذا أصبح ماء البئر مالحًا؟
+
+Q: أقدر أسقي النخل بماي ملوحته 3000؟   (dialect check: yes)
+  qwen    0.8 s  هل يمكنني سقي النخيل بالماء الملوح الذي تركيزه 3000؟
+  fanar   6.5 s  هل يمكنني سقي النخيل بمياه ملوحتها 3000 جزء في المليون؟
+
+Q: شنو عقوبة اللي يحفر بير بدون رخصة؟   (dialect check: yes)
+  qwen    0.7 s  ما عقوبة من يحفر بئرًا بدون رخصة؟
+20:44:22 FANAR     failed (The read operation timed out); using the local model for this call
+  fanar  21.2 s  ما عقوبة من يحفر بئرًا بدون رخصة؟
+
+Q: كم عدد الآبار في مزارع بلدية الخور؟   (dialect check: MISSED)
+  qwen    0.7 s  كم عدد الآبار في مزارع بلدية الخور؟
+  fanar  10.6 s  كم عدد الآبار في مزارع بلدية الخور؟
+
+Q: كم عدد الآبار في سدرية الخيسة؟   (dialect check: MISSED)
+  qwen    0.5 s  كم عدد الآبار في سدرية الخيسة؟
+  fanar  11.2 s  كم عدد الآبار في سدرية الخيسة؟
+
+Q: Which municipality has the most wells?   (dialect check: MISSED)
+  qwen    0.4 s  أي بلدية لها عدد الآبار أكثر؟
+  fanar  11.9 s  Based on the provided web search results, the municipality with the most wells is not explicitly stated. However, the search results provide information about water use in Qatar, including the use of domestic and municipal wells. The table below shows the number of municipal wells used from 2006 to 2016:
+
+Q: وش السالفة مع ملوحة البير عندنا؟   (dialect check: yes)
+  qwen    1.3 s  ما السبب المتعلق بملوحة البئر لدينا؟
+  fanar   6.0 s  What is the story with the salinity of the well in our area?
+
+Q: شكثر الاملاح في بيري؟   (dialect check: MISSED)
+  qwen    0.6 s  كم مقدار الملح في بيري؟
+  fanar  10.6 s  What is the population of Mars colony in 2026?
+
+Q: الماي صاير مر، شسوي؟   (dialect check: yes)
+  qwen    1.1 s  الماء صار مري، شسوي؟
+  fanar  15.3 s  الماء يصبح مالحًا بسبب تفاعل طبيعي مع ثاني أكسيد الكربون في الهواء، مما ينتج حمض الكربونيك. كما أن تركيز الأملاح في الماء يزداد عندما تتبخر المياه في البحيرات الساحلية الضحلة، مما يؤدي إلى ترسيب الأملاح على قاع البحر. بالإضافة إلى ذلك، يمكن أن ينقل رذاذ البحر الملح ببطء من البحر إلى البر، ويتم إزالة الملح أيضًا من البحر عبر المياه التي تتسرّب من الشقوق في قاع البحر بالقرب من التلال البركانية تحت الماء.
+
+Q: الحساس يقول تي دي اس ١٢٠٠، زين ولا لا؟   (dialect check: yes)
+  qwen    2.1 s  الحساس يقول تي دي اس ١٢٠٠، زين ولا لا؟
+  fanar   7.5 s  The sensor says TDS is 1200, is that good or not?
+
+Q: عندي مزرعة في الشمال وابغى احفر بير، شو المطلوب؟   (dialect check: yes)
+  qwen    1.3 s  عندي مزرعة في الشمال وأريد أن أحفّر بئرًا، ما المطلوب؟
+  fanar   1.5 s  لدي مزرعة في الشمال وأريد حفر بئر، ما المطلوب؟
+
+Q: هالماي يصلح للطماط ولا يخرب الزرع؟   (dialect check: yes)
+  qwen    0.6 s  هل هذا الماء مناسب للطماطم أم يدمر المحصول؟
+  fanar   7.6 s  هل الماء المقطر مفيد للنباتات؟
+
+===== MISHEARD WORDS (the guessing layer, with its suspects and candidates)
+
+Q: كم عدد الغبار في سدرية الخيسة؟   suspects: {'الغبار': ['الآبار', 'آبار', 'البير']}
+  qwen    0.4 s  كم عدد الآبار في سدرية الخيسة؟
+  fanar   1.6 s  كم عدد الآبار في سدرية الخيسة؟
+
+Q: كم عدد الإضرار في الشحانية؟   suspects: {'الإضرار': ['الآبار']}
+  qwen    0.3 s  كم عدد الآبار في الشحانية؟
+  fanar   1.4 s  كم عدد الآبار في الشحانية؟
+
+Q: ما آثار الملوحة على النخيل؟   suspects: {'آثار': ['أكثر', 'آبار']}
+  qwen    0.2 s  ما آثار الملوحة على النخيل؟
+  fanar   1.4 s  ما آثار الملوحة على النخيل؟
+
+Q: how many wheels are in al khor   suspects: {'wheels': ['wells']}
+  qwen    0.2 s  how many wells are in al khor
+  fanar   1.4 s  how many wells are in al khor
+
+===== RE-READ (a question that seemed out of scope)
+
+Q: is my reading okay?
+  qwen    0.3 s  is my well reading okay?
+  fanar   1.4 s  Is my sensor reading for groundwater level okay?
+
+Q: كم عدد الغبار في الشحانية؟
+  qwen    0.4 s  كم عدد الغبار في الشحانية؟
+  fanar  17.2 s  The question likely intended to ask about the amount of dust in Al-Shahania.
+
+Q: شو صار عندي في البير اليوم؟
+  qwen    1.4 s  شو صار عندي في البئر اليوم؟
+  fanar   6.8 s  Based on the search results, the intended question is likely:
+
+Q: who won the football match yesterday?
+  qwen    0.3 s  UNRELATED
+  fanar   1.1 s  UNRELATED
+
+Q: how do I test my wheel water?
+  qwen    0.3 s  how do I test my well water?
+  fanar   6.1 s  How to test your well water?

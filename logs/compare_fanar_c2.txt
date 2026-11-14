@@ -1,0 +1,102 @@
+﻿.venv\Scripts\python.exe : C:\Users\Roaa_\OneDrive\Desktop\AquaNova\fresh-start\compare_fanar.py:3: SyntaxWarning: 
+invalid escape sequence '\S'
+At line:1 char:333
++ ... NG="utf-8"; .venv\Scripts\python.exe compare_fanar.py Fanar-C-2-27B 2 ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\Roaa_\...e sequence '\S':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  Run:  .venv\Scripts\python.exe compare_fanar.py   ->  logs\compare_fanar.txt
+===== DIALECT -> Modern Standard Arabic (every question, the dialect-word check skipped)
+
+Q: كيف اقيس جودة ماء البير   (dialect check: yes)
+  qwen    1.5 s  كيف أقيس جودة ماء البئر
+  fanar   1.4 s  كيف أقيس جودة ماء البئر؟
+
+Q: ليش ماي البير صار مالح؟   (dialect check: yes)
+  qwen    0.8 s  لماذا أصبح ماء البئر مالحًا؟
+  fanar   1.6 s  لماذا أصبح ماء البئر مالحاً؟
+
+Q: أقدر أسقي النخل بماي ملوحته 3000؟   (dialect check: yes)
+  qwen    0.9 s  هل يمكنني سقي النخيل بالماء الملوح الذي تركيزه 3000؟
+  fanar   1.7 s  هل يمكنني سقي النخيل بماء ملوحته ٣٠٠٠؟
+
+Q: شنو عقوبة اللي يحفر بير بدون رخصة؟   (dialect check: yes)
+  qwen    0.6 s  ما عقوبة من يحفر بئرًا بدون رخصة؟
+  fanar   1.4 s  ما هي العقوبة لمن يحفر بئراً دون ترخيص؟
+
+Q: كم عدد الآبار في مزارع بلدية الخور؟   (dialect check: MISSED)
+  qwen    0.5 s  كم عدد الآبار في مزارع بلدية الخور؟
+  fanar   1.4 s  كم عدد الآبار الموجودة في مزارع بلدية الخور؟
+
+Q: كم عدد الآبار في سدرية الخيسة؟   (dialect check: MISSED)
+  qwen    0.4 s  كم عدد الآبار في سدرية الخيسة؟
+  fanar   1.7 s  كم عدد الآبار الموجودة في منطقة سدرية الخيسة؟
+
+Q: Which municipality has the most wells?   (dialect check: MISSED)
+  qwen    0.4 s  أي بلدية لها عدد الآبار أكثر؟
+  fanar   1.5 s  أي بلدية لديها أكبر عدد من الآبار؟
+
+Q: وش السالفة مع ملوحة البير عندنا؟   (dialect check: yes)
+  qwen    0.6 s  ما السبب المتعلق بملوحة البئر لدينا؟
+  fanar   1.4 s  ما هي القصة حول ملوحة البئر لدينا؟
+
+Q: شكثر الاملاح في بيري؟   (dialect check: MISSED)
+  qwen    0.4 s  كم مقدار الملح في بيري؟
+  fanar   1.4 s  كم نسبة الأملاح في بئري؟
+
+Q: الماي صاير مر، شسوي؟   (dialect check: yes)
+  qwen    0.4 s  الماء صار مري، شسوي؟
+  fanar   1.3 s  الماء أصبح مراً، ماذا أفعل؟
+
+Q: الحساس يقول تي دي اس ١٢٠٠، زين ولا لا؟   (dialect check: yes)
+  qwen    1.0 s  الحساس يقول تي دي اس ١٢٠٠، زين ولا لا؟
+  fanar   1.5 s  ما هو مستوى TDS الذي يشير إليه الحساس حاليًا؟
+
+Q: عندي مزرعة في الشمال وابغى احفر بير، شو المطلوب؟   (dialect check: yes)
+  qwen    1.1 s  عندي مزرعة في الشمال وأريد أن أحفّر بئرًا، ما المطلوب؟
+  fanar   1.6 s  لدي مزرعة في الشمال وأريد حفر بئر، ما المطلوب؟
+
+Q: هالماي يصلح للطماط ولا يخرب الزرع؟   (dialect check: yes)
+  qwen    0.6 s  هل هذا الماء مناسب للطماطم أم يدمر المحصول؟
+  fanar   1.5 s  هل هذا الماء صالح لري الطماطم أم أنه يفسد المحصول؟
+
+===== MISHEARD WORDS (the guessing layer, with its suspects and candidates)
+
+Q: كم عدد الغبار في سدرية الخيسة؟   suspects: {'الغبار': ['الآبار', 'آبار', 'البير']}
+  qwen    0.3 s  كم عدد الآبار في سدرية الخيسة؟
+  fanar   1.3 s  كم عدد الآبار في سدرية الخيسة؟
+
+Q: كم عدد الإضرار في الشحانية؟   suspects: {'الإضرار': ['الآبار']}
+  qwen    0.3 s  كم عدد الآبار في الشحانية؟
+  fanar   1.3 s  كم عدد الآبار في الشحانية؟
+
+Q: ما آثار الملوحة على النخيل؟   suspects: {'آثار': ['أكثر', 'آبار']}
+  qwen    0.2 s  ما آثار الملوحة على النخيل؟
+  fanar   1.2 s  ما آثار الملوحة على النخيل؟
+
+Q: how many wheels are in al khor   suspects: {'wheels': ['wells']}
+  qwen    0.2 s  how many wells are in al khor
+  fanar   1.4 s  how many wells are in al khor
+
+===== RE-READ (a question that seemed out of scope)
+
+Q: is my reading okay?
+  qwen    0.3 s  is my well reading okay?
+  fanar   1.5 s  Is my sensor reading for groundwater level okay?
+
+Q: كم عدد الغبار في الشحانية؟
+  qwen    0.4 s  كم عدد الغبار في الشحانية؟
+  fanar   1.2 s  كم عدد الآبار في الشحانية؟
+
+Q: شو صار عندي في البير اليوم؟
+  qwen    0.4 s  شو صار عندي في البئر اليوم؟
+  fanar   1.6 s  ما هي قراءة مستشعر المياه الخاص بي اليوم؟
+
+Q: who won the football match yesterday?
+  qwen    0.1 s  UNRELATED
+  fanar   1.3 s  UNRELATED
+
+Q: how do I test my wheel water?
+  qwen    0.3 s  how do I test my well water?
+  fanar   1.4 s  How do I test my well water?

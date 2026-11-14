@@ -1,80 +1,106 @@
 ﻿
 ========== FF1 [farmer, role=farmer, en] Is water with 3000 mg/L salinity okay for my date palms?
-20:24:48 FAST      suitability (0.80), 3 fact(s), answered in 4.9 s
----------- 4.9 s | path=fast suitability | persona=farmer | simplified=False | language_ok=True
+13:46:38 FAST      suitability (0.80), 3 fact(s), answered in 1.7 s
+---------- 1.7 s | path=fast suitability | persona=farmer | simplified=False | language_ok=True
 ANSWER:
-At 3,000 mg/L salinity, your date palms would give about 11% less harvest [limits.csv row 4 (FAO 29)] [FAO 29 Table 4]. This level is a severe restriction for irrigation, so mixing with fresher water may help improve yield [limits.csv row 4 (FAO 29)].
+At 3,000 mg/L your date palms would give about 11% less harvest [AquaMaa check]. This level is a severe restriction for irrigation, so salt-tolerant crops like barley or date palm suit it better [limits.csv row 4 (FAO 29)].
 
 ========== FF2 [farmer, role=farmer, ar] هل يصلح ماء ملوحته 1500 ملغم/لتر لسقي الطماطم؟
-20:24:55 FAST      suitability (0.75), 3 fact(s), answered in 6.7 s
----------- 6.7 s | path=fast suitability | persona=farmer | simplified=False | language_ok=True
+13:46:44 FAST      suitability (0.75), 3 fact(s), answered in 5.2 s
+---------- 5.2 s | path=fast suitability | persona=farmer | simplified=False | language_ok=True
 ANSWER:
-ماء ملوحته 1500 ملغم/لتر يقلل من إنتاج الطماطم بنسبة حوالي 10% [FAO 29 Table 4]. هذا الماء يناسب الري مع قيود خفيفة إلى متوسطة، ويُفضل استخدامه مع محاصيل ذات تحمل متوسط أو عالي مع غسل الأملاح من التربة [limits.csv row 3 (FAO 29)]. يمكنهم تحسين الري بالتأكد من تجنب تراكم الأملاح في التربة من خلال الري المنتظم والكافي.
+ماء بملوحة 1500 ملغم/لتر قد يقلل إنتاجية الطماطم بنسبة حوالي 10%. هذا المستوى يعتبر ضمن القيود الخفيفة إلى المتوسطة للري، ويناسب المحاصيل ذات التحمل المتوسط أو العالي مثل الطماطم إذا تم غسل الأملاح من التربة بشكل منتظم [limits.csv row 3 (FAO 29)].
 
 ========== FF3 [farmer, role=farmer, ar-dialect] الماي ملوحته 800 ينفع للشرب؟
-20:24:56 DIALECT   الماي ملوحته 800 ينفع للشرب؟ -> الماء ملوحته 800 هل ينفع للشرب؟
-20:24:59 FAST      suitability (0.72), 2 fact(s), answered in 2.6 s
----------- 3.6 s | path=fast suitability | persona=farmer | simplified=False | language_ok=True
+13:46:45 DIALECT   الماي ملوحته 800 ينفع للشرب؟ -> هل الماء الذي تبلغ ملوحته 800 صالح للشرب؟
+13:46:48 FAST      suitability (0.78), 2 fact(s), answered in 2.9 s
+---------- 4.4 s | path=fast suitability | persona=farmer | simplified=False | language_ok=True
 ANSWER:
-الماء ملوحته 800 ملغم/لتر يعطي طعمًا مقبولًا لكنه يميل للملوحة، افحصه في مختبر قبل الاعتماد عليه [WHO_TDS_background_document.txt].
+الماء بملوحة 800 ملغم/لتر له طعم مقبول ولكنه قد يكون مالحًا بعض الشيء؛ يُنصح بفحصه في المختبر قبل استخدامه كشرب [WHO_TDS_background_document.txt].
 
 ========== FF4 [farmer, role=farmer, en] Do I need a licence to dig a new well?
-20:25:03 FAST      law (1.00), 1 fact(s), answered in 4.2 s
----------- 4.2 s | path=fast law | persona=farmer | simplified=False | language_ok=True
+13:46:52 FAST      law (1.00), 1 fact(s), answered in 4.1 s
+---------- 4.1 s | path=fast law | persona=farmer | simplified=False | language_ok=True
 ANSWER:
 Yes, you need a licence to dig a new well [ANND_Right_to_Water_in_Qatar.txt p.14]. This is required by water law no. 23 of 2025 (Article 10) [ANND_Right_to_Water_in_Qatar.txt p.14]. You should apply for the licence through the relevant authority before starting any work.
 
 ========== FF5 [farmer, role=farmer, ar] لماذا تزداد ملوحة مياه بئري؟
-20:25:07 FAST      explain (0.89), 1 fact(s), answered in 4.2 s
----------- 4.2 s | path=fast explain | persona=farmer | simplified=False | language_ok=True
+13:46:56 FAST      explain (0.89), 1 fact(s), answered in 4.1 s
+---------- 4.1 s | path=fast explain | persona=farmer | simplified=False | language_ok=True
 ANSWER:
-تزيد ملوحة مياه البئر لأن سحب المياه الجوفية للمزارع أسرع مما يعوضه المطر، مما يسمح لمياه البحر بالتقدم نحو الداخل [Elobaid_2017_EGU_saline_front_Qatar.txt p.2]. يمكنهم تقليل سحب المياه الجوفية لوقف تقدم جبهة الملوحة.
+تزيد ملوحة مياه البئر لأن سحب المياه الجوفية للمزارع أسرع مما يعوضه المطر، مما يسمح لمياه البحر بالتقدم نحو الداخل [Elobaid_2017_EGU_saline_front_Qatar.txt p.2]. يمكنهم تقليل سحب المياه من البئر لوقف تقدم جبهة الملوحة.
 
 ========== FF6 [farmer, role=farmer, en] Can I grow barley with water at 4000 mg/L?
-20:25:11 FAST      suitability (0.82), 3 fact(s), answered in 3.8 s
----------- 3.8 s | path=fast suitability | persona=farmer | simplified=False | language_ok=True
+13:46:57 FAST      suitability (0.82), 3 fact(s), answered in 0.7 s
+---------- 0.7 s | path=fast suitability | persona=farmer | simplified=False | language_ok=True
 ANSWER:
-At 4,000 mg/L, barley would give about 7% less harvest [limits.csv row 4 (FAO 29)] [FAO 29 Table 4]. This level is a severe restriction for irrigation, so mixing with fresher water may help [limits.csv row 4 (FAO 29)].
+At 4,000 mg/L your barley would give about 7% less harvest [AquaMaa check]. This level is suitable for salt-tolerant crops like barley or date palm, or you can mix it with fresher water [limits.csv row 4 (FAO 29)].
 
 ========== FO1 [officer, role=kahramaa, en] Is water at 2500 mg/L suitable for irrigation?
-20:25:16 FAST      suitability (0.73), 3 fact(s), answered in 5.1 s
----------- 5.1 s | path=fast suitability | persona=officer | simplified=False | language_ok=True
+13:47:02 FAST      suitability (0.73), 3 fact(s), answered in 4.9 s
+---------- 4.9 s | path=fast suitability | persona=officer | simplified=False | language_ok=True
 ANSWER:
-At 2,500 mg/L, this water is a severe restriction for irrigation; only salt-tolerant crops such as barley or date palm; or mix with fresher water [limits.csv row 4 (FAO 29)]. Crops like tomato, cucumber, and alfalfa experience some yield loss at this salinity [FAO 29 Table 4]. This level suggests the need for careful monitoring and possible blending with lower salinity water to maintain crop productivity.
+At 2,500 mg/L, this water is a severe restriction for irrigation, suitable only for salt-tolerant crops like barley or date palm, or when mixed with fresher water [limits.csv row 4 (FAO 29)]. Crops such as tomato, cucumber, and alfalfa experience some yield loss at this salinity level [FAO 29 Table 4]. This indicates the need for careful monitoring and planning to ensure crop suitability and minimize yield loss.
 
 ========== FO2 [officer, role=municipality, ar] هل تصلح مياه ملوحتها 600 ملغم/لتر للشرب؟
-20:25:16 GUESS     هل تصلح مياه ملوحتها 600 ملغم/لتر للشرب؟ -> هل يصلح مياه ملوحتها 600 ملغم/لتر للشرب؟
-20:25:22 FAST      suitability (0.67), 2 fact(s), answered in 5.6 s
----------- 5.9 s | path=fast suitability | persona=officer | simplified=False | language_ok=True
+13:47:04 DIALECT   هل تصلح مياه ملوحتها 600 ملغم/لتر للشرب؟ -> هل تصلح المياه ذات الملوحة 600 مليغرام لكل لتر للشرب؟
+13:47:09 FAST      suitability (0.67), 2 fact(s), answered in 3.8 s
+---------- 6.9 s | path=fast suitability | persona=officer | simplified=False | language_ok=True
 ANSWER:
-فهمت سؤالك على أنه: «هل يصلح مياه ملوحتها 600 ملغم/لتر للشرب؟»
-
-مياه ذات ملوحة 600 ملغم/لتر لها طعم مقبول لكنه يميل للملوحة، ويعتبر مقبول الطعم، لكن يجب فحصها في مختبر قبل الاعتماد عليها [WHO_TDS_background_document.txt]. هذه الملوحة لا تُعتبر مناسبة للشرب حسب المعايير الصحية، لذا يُنصح بعدم استخدامها لهذا الغرض دون فحص معمق [AquaMaa check].
+المياه ذات الملوحة 600 مليغرام لكل لتر لها طعم مقبول لكنه يميل للملوحة، وينصح باختبارها في مختبر قبل الاعتماد عليها [WHO_TDS_background_document.txt]. هذه الملوحة لا تُعتبر مناسبة للشرب حسب معايير الجودة العالمية [AquaMaa check].
 
 ========== FO3 [officer, role=mecc, en] What is the penalty for digging a well without a licence?
-20:25:26 FAST      law (0.88), 1 fact(s), answered in 4.1 s
----------- 4.1 s | path=fast law | persona=officer | simplified=False | language_ok=True
+13:47:13 FAST      law (0.88), 1 fact(s), answered in 3.8 s
+---------- 3.8 s | path=fast law | persona=officer | simplified=False | language_ok=True
 ANSWER:
 Digging a well without a licence can result in up to three years in prison and fines of up to 500,000 Qatari riyals [ANND_Right_to_Water_in_Qatar.txt p.14]. This penalty applies to both unlicensed wells and pumping above the permitted rate. The law aims to ensure proper regulation and sustainable use of groundwater resources.
 
 ========== FO4 [officer, role=agriculture, ar] ما المسافة المطلوبة بين الآبار؟
-20:25:30 FAST      law (0.73), 1 fact(s), answered in 4.4 s
----------- 4.4 s | path=fast law | persona=officer | simplified=False | language_ok=True
+13:47:16 FAST      law (0.73), 1 fact(s), answered in 3.7 s
+---------- 3.7 s | path=fast law | persona=officer | simplified=False | language_ok=True
 ANSWER:
-يجب أن تكون الآبار على مسافة لا تقل عن 300 متر من بعضها للحد من الإفراط في السحب [ANND_Right_to_Water_in_Qatar.txt p.14]. هذه المسافة تساعد في الحفاظ على استدامة موارد المياه الجوفية وتقليل التأثيرات السلبية على الجودة والكمية.
+يجب أن تكون الآبار على بعد 300 متر على الأقل من بعضها للحد من الإفراط في السحب [ANND_Right_to_Water_in_Qatar.txt p.14]. هذه المسافة تساعد في الحفاظ على مستويات المياه الجوفية وتجنب التأثيرات السلبية على جودة المياه.
 
 ========== FO5 [officer, role=kahramaa, en] Why are wells in the north getting saltier?
-20:25:35 FAST      explain (0.88), 1 fact(s), answered in 4.4 s
----------- 4.4 s | path=fast explain | persona=officer | simplified=False | language_ok=True
+13:47:21 FAST      explain (0.88), 1 fact(s), answered in 4.2 s
+---------- 4.2 s | path=fast explain | persona=officer | simplified=False | language_ok=True
 ANSWER:
 Pumping groundwater for farms faster than rain refills it lets seawater move inland; in the north the saline front has been advancing about 4-5 km per year [Elobaid_2017_EGU_saline_front_Qatar.txt p.2]. This means that wells in the north are increasingly exposed to seawater intrusion. Monitoring should focus on areas near the advancing saline front to manage salinity levels effectively.
 
 ========== FO6 [officer, role=agriculture, en] Which crops can tolerate water at 2000 mg/L?
-20:25:39 FAST      suitability (0.67), 3 fact(s), answered in 4.5 s
----------- 4.5 s | path=fast suitability | persona=officer | simplified=False | language_ok=True
+13:47:26 FAST      suitability (0.67), 3 fact(s), answered in 5.0 s
+---------- 5.0 s | path=fast suitability | persona=officer | simplified=False | language_ok=True
 ANSWER:
-At 2,000 mg/L, crops with no expected yield loss include barley and wheat; crops with some yield loss include date palm, alfalfa, tomato, cucumber, and lettuce [FAO 29 Table 4]. This level is a severe restriction for irrigation, so only salt-tolerant crops or mixes with fresher water are recommended [limits.csv row 4 (FAO 29)].
+At 2,000 mg/L, crops with no expected yield loss include barley and wheat [FAO 29 Table 4]. Crops such as date palm, alfalfa, tomato, cucumber, and lettuce may experience some yield loss [FAO 29 Table 4]. This level of salinity is considered a severe restriction for irrigation, so it is recommended to use it with caution or mix with fresher water [limits.csv row 4 (FAO 29)].
+
+========== P1 [officer, role=kahramaa, en] What does this page show?
+13:47:26 FAST      page (1.00) but no facts for it: deep path
+13:47:26 QUESTION  What does this page show?
+13:47:28 ROUTE     type=explanation in_scope=False conditions=[] sub_questions=['What does this page show?'] premise=None (2.1 s)
+13:47:31 ANSWER    out of scope, general answer (2.7 s)
+---------- 7.3 s | path=deep  | persona=officer | simplified=False | language_ok=True
+ANSWER:
+This is outside AquaMaa's sources. This page appears to be a query interface or a help page related to a chatbot or virtual assistant, possibly designed to provide information or assistance to users. It may not contain specific content about water in Qatar or AquaMaa's mission.
+
+========== P2 [farmer, role=farmer, ar] اشرح لي هذه الصفحة
+13:47:33 FAST      page (1.00) but no facts for it: deep path
+13:47:33 QUESTION  اشرح لي هذه الصفحة
+13:47:35 ROUTE     type=explanation in_scope=True conditions=[] sub_questions=['explain this page'] premise=None (2.2 s)
+13:47:36 KEYSTATS  shortlist: [('K18', 0.53), ('K12', 0.53), ('K01', 0.52)]
+13:47:44 KEYSTATS  chose none: The officer asked for an explanation of the page, and the answer provided statistics related to water compliance, well rehabilitation, and groundwater yield. To help the officer understand the context, the most relevant statistics are K18 (Biological compliance of drinking water) and K01 (Groundwater safe yield), as they directly relate to the quality and availability of water resources, which are likely central to the page's subject. K12 (Recharge wells rehabilitated) is also relevant but less directly tied to the overall context of water quality and availability.
+13:47:44 KEYSTATS  chose 0 (9.0 s)
+13:47:46 REASON    round 1: call search_documents({'query': 'explain this page'}) (2.1 s)
+13:47:46 OBSERVE   search_documents -> policy-goals.csv p.10, policy-goals.csv p.30, policy-goals.csv p.11, Mohieldeen_2021_GIS_aquifer_recharge_Qatar_SciRep.txt p.13, ANND_Right_to_Water_in_Qatar.txt p.5, policy-goals.csv p.29 (0.1 s)
+13:47:54 REASON    round 2: enough evidence, answering (7.3 s)
+13:47:54 VERIFY    sentence_without_citation  <- الصفحة التي تشير إليها تتعلق بسياسات واهداف تتعلق بالمياه في قطر، وتشمل تقليل الاعتماد على
+13:47:54 REPAIR    sending 1 problem(s) back to the agent
+13:47:58 REASON    round 2: enough evidence, answering (4.2 s)
+13:47:58 VERIFY    no problems
+13:48:01 SIMPLIFY  rewritten for a farmer (2.8 s)
+---------- 27.8 s | path=deep  | persona=farmer | simplified=True | language_ok=True
+ANSWER:
+الصفحة التي تشير إليها تتعلق بسياسات وأهداف تتعلق بالمياه في قطر، وتشمل تقليل الاعتماد على استخراج المياه الجوفية من خلال تعزيز استخدام المياه المعالجة [policy-goals.csv p.10].
 
 ========== Summary
-farmer: 6 questions, persona right 6, fast path 6, simplified 0, right language 6, time median 4.2 s, max 6.7 s
-officer: 6 questions, persona right 6, fast path 6, simplified 0, right language 6, time median 4.5 s, max 5.9 s
+farmer: 7 questions, persona right 7, fast path 6, simplified 1, right language 7, time median 4.1 s, max 27.8 s
+officer: 7 questions, persona right 7, fast path 6, simplified 0, right language 7, time median 4.9 s, max 7.3 s

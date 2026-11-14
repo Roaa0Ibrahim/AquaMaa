@@ -1,0 +1,34 @@
+﻿
+========== R1 [farmer, role=farmer, ar] كم عدد الغبار في الشحانية؟
+21:09:12 FAST      statistic (0.73), 2 fact(s), answered in 28.4 s
+---------- 32.0 s | path=fast statistic | persona=farmer | simplified=False | language_ok=True
+ANSWER:
+في عام 2025، كانت هناك 1,084 بئرًا في الشيحانية: 891 في المزارع العاملة و193 في المزارع غير العاملة [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv]. كما كانت هناك 327 مزرعة في الشيحانية: 274 مزرعة عاملة و53 مزرعة غير عاملة [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv].
+
+========== R2 [officer, role=kahramaa, en] how many wheels does Al Khor have?
+21:09:13 GUESS     how many wheels does Al Khor have? -> how many wells does Al Khor have?
+21:09:32 FAST      statistic (0.93), 1 fact(s), answered in 19.1 s
+---------- 20.8 s | path=fast statistic | persona=officer | simplified=False | language_ok=True
+ANSWER:
+I understood your question as: "how many wells does Al Khor have?"
+
+In 2025, Al Khor had 1,547 wells on farms: 1,482 on working farms and 65 on farms not working [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv]. This data can help in planning water resource management and identifying areas where well usage may need monitoring or regulation.
+
+========== R3 [farmer, role=farmer, en] is my reading okay?
+21:09:49 FAST      live_reading (1.00), 2 fact(s), answered in 17.0 s
+---------- 17.0 s | path=fast live_reading | persona=farmer | simplified=False | language_ok=True
+ANSWER:
+There is no live reading from the well sensor right now [live sensors]. You can measure salinity with a TDS or EC meter and acidity with a pH meter [DFRobot_SEN0244_TDS.txt; DFRobot_SEN0161_V2_pH.txt; misconceptions.csv p.8].
+
+========== R4 [farmer, role=farmer, en] who won the football match yesterday?
+21:09:50 FAST      no fast intent (closest 0.54: كيف تغيرت الملوحة خلال اليوم؟): deep path
+21:09:50 QUESTION  who won the football match yesterday?
+21:09:59 ROUTE     type=simple in_scope=False conditions=[] sub_questions=[] premise=None (9.5 s)
+21:10:09 ANSWER    out of scope, general answer (10.0 s)
+---------- 21.3 s | path=deep  | persona=farmer | simplified=False | language_ok=True
+ANSWER:
+This is outside AquaMaa's sources. I don't have information about specific football matches or their outcomes. You may need to check a sports news website or a live scores platform for the latest updates.
+
+========== Summary
+farmer: 3 questions, persona right 3, fast path 2, simplified 0, right language 3, time median 21.3 s, max 32.0 s
+officer: 1 questions, persona right 1, fast path 1, simplified 0, right language 1, time median 20.8 s, max 20.8 s
