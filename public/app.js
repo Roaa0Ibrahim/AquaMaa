@@ -542,16 +542,22 @@
     return { level: 'good', label: 'Good: fine for irrigation' };
   }
 
-  function wellIcon(level) {
+  // The well itself is the element: roof, bucket, the water inside coloured by quality, and the salinity reading on
+  // the well's wall (14 Nov: one well element, not an icon beside text)
+  function wellFigure(level, tds, label) {
     const water = { good: '#16a34a', warn: '#e08a00', bad: '#dc2626', off: '#94a3b8', none: '#cbd5e1' }[level];
-    return `<svg class="well-ico" viewBox="0 0 120 110" aria-hidden="true">
-      <path d="M22 34 60 10l38 24" fill="none" stroke="#0b2a4a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M30 34v28M90 34v28" stroke="#0b2a4a" stroke-width="5" stroke-linecap="round"/>
-      <path d="M48 34h24M60 34v22" stroke="#5b7488" stroke-width="3"/><rect x="54" y="54" width="12" height="10" rx="2" fill="#5b7488"/>
-      <ellipse cx="60" cy="66" rx="40" ry="10" fill="${water}" class="well-water"/>
-      <path d="M20 66v26c0 6 18 11 40 11s40-5 40-11V66" fill="#e8eef2" stroke="#0b2a4a" stroke-width="4"/>
-      <path d="M20 80c0 6 18 11 40 11s40-5 40-11" fill="none" stroke="#b7c6d1" stroke-width="2"/>
-      <ellipse cx="60" cy="66" rx="40" ry="10" fill="none" stroke="#0b2a4a" stroke-width="4"/></svg>`;
+    const big = tds == null ? '—' : fmt(tds, 0);
+    return `<svg class="well-fig" viewBox="0 0 240 230" role="img" aria-label="${esc(label)}">
+      <path d="M40 70 120 22l80 48" fill="none" stroke="#0b2a4a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M58 70v54M182 70v54" stroke="#0b2a4a" stroke-width="8" stroke-linecap="round"/>
+      <path d="M92 70h56" stroke="#5b7488" stroke-width="5" stroke-linecap="round"/><path d="M120 70v36" stroke="#5b7488" stroke-width="3"/>
+      <path d="M110 104h20l-3 14h-14Z" fill="#5b7488"/>
+      <ellipse cx="120" cy="128" rx="80" ry="18" class="well-water" fill="${water}"/>
+      <path d="M40 128v62c0 12 36 22 80 22s80-10 80-22v-62" fill="#f4f8fa" stroke="#0b2a4a" stroke-width="6"/>
+      <path d="M40 160c0 12 36 22 80 22s80-10 80-22" fill="none" stroke="#dfeef4" stroke-width="3"/>
+      <ellipse cx="120" cy="128" rx="80" ry="18" fill="none" stroke="#0b2a4a" stroke-width="6"/>
+      <text x="120" y="176" text-anchor="middle" class="well-num" fill="${level === 'none' || level === 'off' ? '#5d7589' : water}">${esc(big)}</text>
+      <text x="120" y="198" text-anchor="middle" class="well-numl">TDS ppm</text></svg>`;
   }
 
   async function pageFarm(view) {
@@ -598,11 +604,11 @@
           ph: d && d.fresh && d.fresh.ph ? d.fresh.ph.value : null, minutesAgo: ago });
         return `<article class="card well-card q-${q.level}">
           <button class="well-del" data-del="${w.id}" title="Remove this well" aria-label="Remove ${esc(w.name)}">×</button>
-          <div class="well-top">${wellIcon(q.level)}<div><h3>${esc(w.name)}</h3>
-            <div class="unit">${esc([w.crop, w.location].filter(Boolean).join(' · ') || '—')}</div>
-            <div style="margin-top:8px">${tag(q.label, { good: 'green', warn: 'amber', bad: 'red' }[q.level] || 'grey')}</div></div></div>
+          <div class="well-head"><h3>${esc(w.name)}</h3><div class="unit">${esc([w.crop, w.location].filter(Boolean).join(' · ') || '—')}</div></div>
+          ${wellFigure(q.level, d && d.fresh && d.fresh.tds_ppm ? d.fresh.tds_ppm.value : null, `${w.name}: ${q.label}`)}
+          <div class="well-label">${tag(q.label, { good: 'green', warn: 'amber', bad: 'red' }[q.level] || 'grey')}</div>
           <div class="well-vals">
-            <div><div class="big">${val('tds_ppm', 0)}</div><div class="unit">TDS ppm</div></div><div><div class="big">${val('ph', 1)}</div><div class="unit">pH</div></div>
+            <div><div class="big">${val('ph', 1)}</div><div class="unit">pH</div></div>
             <div><div class="big">${val('temperature', 1)}</div><div class="unit">°C</div></div><div><div class="big">${val('turbidity_raw', 0)}</div><div class="unit">turbidity (raw)</div></div></div>
           <div class="well-trend">${series.length > 1 ? sparkline(series, 220, 48) + `<span class="unit">Salinity over ${esc(data.range ? data.range.label : 'the period')}: ${change >= 0 ? '+' : ''}${fmt(change, 0)} ppm</span>` : '<span class="unit">Not enough readings yet for a chart</span>'}</div>
           <div class="well-foot"><span class="unit">${w.device_id ? `Sensor ${esc(w.device_id)}${ago != null ? ` · last reading ${ago} min ago` : ''}` : 'Link a sensor to see live readings'}</span>
