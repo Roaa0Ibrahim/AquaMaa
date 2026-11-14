@@ -21,6 +21,10 @@ u:(["do farmers need a licence" "do we need a licence for a well" "is a licence 
 
 u:(["what is the penalty for an unlicensed well" "what is the fine for an illegal well"]) Let me check the law. ^execute(ask, What is the penalty for digging a well without a licence)
 
-u:(["what is TDS" "what are total dissolved solids"]) T D S means total dissolved solids, the amount of salt and minerals in the water. Above about one thousand milligrams per litre, water becomes too salty to drink.
+u:(["what is TDS" "what are total dissolved solids"]) Let me explain. ^execute(ask, What is TDS and what does the reading mean right now)
+
+u:(["is the water safe to drink" "can people drink this water" "is it drinkable"]) Let me check the sensor. ^execute(ask, Is the water right now suitable for drinking)
+
+u:(["what does this mean" "explain the reading" "what does the dashboard show"]) Let me read the dashboard. ^execute(ask, What does the dashboard show right now)
 
 u:(~bye) You are welcome! I will keep watching the wells. Goodbye!
