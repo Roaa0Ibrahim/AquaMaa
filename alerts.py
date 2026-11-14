@@ -49,10 +49,13 @@ def threshold_message(alert, grounding, lang):
     value = latest(grounding, device, param)
     name, unit = NAMES[lang].get(param, param), UNITS.get(param, "")
     shown = f"{_fmt(value)} {unit}".strip() if value is not None else alert.get("detail", "")
+    critical = alert.get("severity") == "critical"      # 14 Nov: pH below 6 or above 9, salinity above 2000
     if lang == "ar":
-        text = f"تنبيه: {name} في {device} أصبحت {shown}، وهي خارج المدى المرجعي."
+        text = (f"تنبيه عاجل: {name} في {device} أصبحت {shown}، وهي بعيدة جدًا عن المدى الآمن." if critical else
+                f"تنبيه: {name} في {device} أصبحت {shown}، وهي خارج المدى المرجعي.")
     else:
-        text = f"Alert: the {name} at {device} is now {shown}, outside its reference range."
+        text = (f"Urgent alert: the {name} at {device} is now {shown}, far outside the safe range." if critical else
+                f"Alert: the {name} at {device} is now {shown}, outside its reference range.")
     sensor = SENSOR_OF.get(param)
     if sensor and value is not None:
         # One use only, so the spoken alert stays short: irrigation first (these are farm wells), else drinking
