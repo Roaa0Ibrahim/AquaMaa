@@ -189,19 +189,31 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
         if (text.startsWith("Alert: ")) caption("⚠ " + text.removePrefix("Alert: "))
     }
 
+    private var mode = ""
+
+    private fun makeChat(qiContext: QiContext, topicRes: Int): Chat {
+        val topic = TopicBuilder.with(qiContext).withResource(topicRes).build()
+        val executors = HashMap<String, QiChatExecutor>()
+        executors["ask"] = AskExecutor(qiContext, english) { status(it) }
+        val chatbot = QiChatbotBuilder.with(qiContext).withTopic(topic).withLocale(english).build()
+        chatbot.executors = executors          // QiSDK 1.7.5: set after build (the builder has no withExecutors)
+        return ChatBuilder.with(qiContext).withChatbot(chatbot).withLocale(english).build()
+    }
+
     override fun onRobotFocusGained(qiContext: QiContext) {
         status("Robot connected. AquaMaa at ${AgentClient.baseUrl}")
         SayBuilder.with(qiContext)
             .withText("Hello! I am AquaMaa. I watch the wells, and I will tell you when the water changes.")
             .withLocale(english).build().run()
         try {
-            val topic = TopicBuilder.with(qiContext).withResource(R.raw.water_quality).build()
-            val executors = HashMap<String, QiChatExecutor>()
-            executors["ask"] = AskExecutor(qiContext, english) { status(it) }
-            val chatbot = QiChatbotBuilder.with(qiContext).withTopic(topic).withLocale(english).build()
-            chatbot.executors = executors          // QiSDK 1.7.5: set after build (the builder has no withExecutors)
-            val c = ChatBuilder.with(qiContext).withChatbot(chatbot).withLocale(english).build()
-            c.addOnStartedListener { status("Listening... ask me about the water") }
+            // Keyword listening first (any sentence with a known word); the exact sentences if Pepper rejects it
+            val c = try {
+                makeChat(qiContext, R.raw.water_keywords).also { mode = "keywords" }
+            } catch (e: Throwable) {
+                status("Keyword listening unavailable (${e.message}); using exact sentences")
+                makeChat(qiContext, R.raw.water_quality).also { mode = "exact sentences" }
+            }
+            c.addOnStartedListener { status("Listening ($mode)... ask me about the water") }
             c.addOnHeardListener { phrase -> runOnUiThread { heardView.text = "You asked: \"${phrase.text}\"" } }
             c.addOnNoPhraseRecognizedListener {
                 runOnUiThread { heardView.text = "Heard something, but did not understand" }
