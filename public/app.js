@@ -529,15 +529,17 @@
   /* ================= the farmer's farm: each well as an icon coloured by its water quality ================= */
   // Colour by salinity for irrigation (FAO 29: up to ~450 mg/L no restriction, 450-2000 slight to moderate, above 2000
   // severe) and the dashboard's reference limit of 1000; pH outside 6.5-8.5 is a warning. Offline or unlinked: grey.
+  const SEVERE_TDS = 2000;                              // FAO 29: severe restriction for irrigation above this
+  const FARM_T = { tdsMax: 1000, phMin: 6.5, phMax: 8.5 }; // replaced by the dashboard's thresholds on each redraw
   function wellQuality(well, d) {
     if (!well.device_id) return { level: 'none', label: 'No sensor linked' };
     if (!d) return { level: 'none', label: 'No readings yet' };
     const v = (f) => (d.fresh && d.fresh[f] ? d.fresh[f].value : null);
     const tds = v('tds_ppm'), ph = v('ph');
     if (!d.online) return { level: 'off', label: 'Sensor offline · last known values' };
-    if (tds != null && tds > 2000) return { level: 'bad', label: 'Too salty: severe for irrigation, not for drinking' };
-    if (tds != null && tds > 1000) return { level: 'warn', label: 'Salty: suits salt-tolerant crops only' };
-    if (ph != null && (ph < 6.5 || ph > 8.5)) return { level: 'warn', label: `pH ${fmt(ph, 1)} is outside 6.5-8.5` };
+    if (tds != null && tds > SEVERE_TDS) return { level: 'bad', label: 'Too salty: severe for irrigation, not for drinking' };
+    if (tds != null && tds > FARM_T.tdsMax) return { level: 'warn', label: 'Salty: suits salt-tolerant crops only' };
+    if (ph != null && (ph < FARM_T.phMin || ph > FARM_T.phMax)) return { level: 'warn', label: `pH ${fmt(ph, 1)} is outside ${FARM_T.phMin}-${FARM_T.phMax}` };
     if (tds == null && ph == null) return { level: 'none', label: 'No valid readings' };
     return { level: 'good', label: 'Good: fine for irrigation' };
   }
@@ -561,10 +563,15 @@
   }
 
   // A half-circle gauge tile: big value, coloured zones, a needle, its name, and two reference values below
-  function gauge({ value, dec = 0, min, max, zones, label, refs }) {
-    const W = 140, cx = 70, cy = 74, r = 50, sw = 16;
-    const pt = (v) => { const t = Math.max(0, Math.min(1, (v - min) / (max - min))); const a = Math.PI * (1 - t);
-      return [cx + r * Math.cos(a), cy - r * Math.sin(a)]; };
+  function gauge({ value, dec = 0, min, max, zones, label, refs, marks = [] }) {
+    const W = 160, cx = 80, cy = 86, r = 50, sw = 16;
+    const ang = (v) => Math.PI * (1 - Math.max(0, Math.min(1, (v - min) / (max - min))));
+    const at = (v, rr) => [cx + rr * Math.cos(ang(v)), cy - rr * Math.sin(ang(v))];
+    const pt = (v) => at(v, r);
+    // Each threshold: a tick across the arc and its value just outside it
+    const ticks = marks.map((m) => { const [x1, y1] = at(m.v, r - sw / 2 - 2), [x2, y2] = at(m.v, r + sw / 2 + 2), [tx, ty] = at(m.v, r + sw / 2 + 11);
+      return `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="var(--navy)" stroke-width="2.5"/>
+        <text x="${tx.toFixed(1)}" y="${(ty + 3).toFixed(1)}" text-anchor="middle" class="g-mark">${esc(m.text)}</text>`; }).join('');
     let from = min;
     const arcs = zones.map((z) => { const [x1, y1] = pt(from), [x2, y2] = pt(z.to); from = z.to;
       return `<path d="M${x1.toFixed(1)} ${y1.toFixed(1)} A${r} ${r} 0 0 1 ${x2.toFixed(1)} ${y2.toFixed(1)}" stroke="${z.color}" stroke-width="${sw}" fill="none" opacity=".85"/>`; }).join('');
@@ -572,7 +579,7 @@
     const [nx, ny] = has ? pt(value) : [cx, cy - r + 6];
     const needle = has ? `<line x1="${cx}" y1="${cy}" x2="${(cx + (nx - cx) * .92).toFixed(1)}" y2="${(cy + (ny - cy) * .92).toFixed(1)}" stroke="var(--navy)" stroke-width="4" stroke-linecap="round"/>` : '';
     return `<div class="gauge"><div class="big">${has ? fmt(value, dec) : '—'}</div>
-      <svg viewBox="0 0 ${W} 84" aria-hidden="true">${arcs}${needle}<circle cx="${cx}" cy="${cy}" r="8" fill="var(--navy)"/></svg>
+      <svg viewBox="0 0 ${W} 96" aria-hidden="true">${arcs}${ticks}${needle}<circle cx="${cx}" cy="${cy}" r="8" fill="var(--navy)"/></svg>
       <div class="g-label">${esc(label)}</div>
       <div class="g-refs"><div><b>${esc(refs[0][0])}</b><span>${esc(refs[0][1])}</span></div><div><b>${esc(refs[1][0])}</b><span>${esc(refs[1][1])}</span></div></div></div>`;
   }
@@ -600,6 +607,12 @@
       const grid = $('#farm-grid');
       if (!grid) return false;                                     // the page was left
       const data = SensorUI.farmData();
+      // The thresholds are the dashboard's own (config/thresholds.json), so this page matches the officer's view and
+      // its alerts; 2000 ppm is FAO 29's "severe restriction" for irrigation
+      const P = (data.cfg && data.cfg.parameters) || {};
+      const ref = (p, k, dflt) => (P[p] && P[p].reference && P[p].reference[k] != null ? Number(P[p].reference[k]) : dflt);
+      const tdsMax = ref('tds_ppm', 'max', 1000), phMin = ref('ph', 'min', 6.5), phMax = ref('ph', 'max', 8.5);
+      Object.assign(FARM_T, { tdsMax, phMin, phMax });
       const sel = $('#farm-device');
       const ids = data.devices.map((d) => d.device_id);
       if (sel && sel.options.length !== ids.length + 1) {
@@ -626,12 +639,16 @@
           ${wellFigure(q.level, undefined, `${w.name}: ${q.label}`)}
           <div class="well-label">${tag(q.label, { good: 'green', warn: 'amber', bad: 'red' }[q.level] || 'grey')}</div>
           <div class="well-gauges">
-            ${gauge({ value: num('tds_ppm'), min: 0, max: 3000, label: 'Salinity (TDS ppm)', refs: [['1,000', 'LIMIT'], ['2,000', 'SEVERE']],
-              zones: [{ to: 1000, color: 'var(--green)' }, { to: 2000, color: 'var(--amber)' }, { to: 3000, color: 'var(--red)' }] })}
-            ${gauge({ value: num('ph'), dec: 1, min: 4, max: 10, label: 'pH', refs: [['6.5', 'MIN'], ['8.5', 'MAX']],
-              zones: [{ to: 6.5, color: 'var(--amber)' }, { to: 8.5, color: 'var(--green)' }, { to: 10, color: 'var(--amber)' }] })}
-            ${gauge({ value: num('temperature'), dec: 1, min: 0, max: 45, label: 'Temperature (°C)', refs: [['0', 'MIN'], ['45', 'MAX']],
-              zones: [{ to: 45, color: 'var(--turq)' }] })}</div>
+            ${gauge({ value: num('tds_ppm'), min: 0, max: Math.max(3000, tdsMax * 3), label: 'Salinity (TDS ppm)',
+              refs: [[fmt(tdsMax), 'DASHBOARD LIMIT'], [fmt(SEVERE_TDS), 'FAO SEVERE']],
+              marks: [{ v: tdsMax, text: fmt(tdsMax) }, { v: SEVERE_TDS, text: fmt(SEVERE_TDS) }],
+              zones: [{ to: tdsMax, color: 'var(--green)' }, { to: SEVERE_TDS, color: 'var(--amber)' }, { to: Math.max(3000, tdsMax * 3), color: 'var(--red)' }] })}
+            ${gauge({ value: num('ph'), dec: 1, min: 4, max: 10, label: 'pH',
+              refs: [[fmt(phMin, 1), 'MIN'], [fmt(phMax, 1), 'MAX']],
+              marks: [{ v: phMin, text: fmt(phMin, 1) }, { v: phMax, text: fmt(phMax, 1) }],
+              zones: [{ to: phMin, color: 'var(--amber)' }, { to: phMax, color: 'var(--green)' }, { to: 10, color: 'var(--amber)' }] })}
+            ${gauge({ value: num('temperature'), dec: 1, min: 0, max: 45, label: 'Temperature (°C)',
+              refs: [['—', 'NO LIMIT SET'], ['45', 'SCALE MAX']], zones: [{ to: 45, color: 'var(--turq)' }] })}</div>
           <div class="unit" style="text-align:center">Turbidity (raw, not calibrated): ${val('turbidity_raw', 0)}</div>
           <div class="well-trend">${series.length > 1 ? sparkline(series, 220, 48) + `<span class="unit">Salinity over ${esc(data.range ? data.range.label : 'the period')}: ${change >= 0 ? '+' : ''}${fmt(change, 0)} ppm</span>` : '<span class="unit">Not enough readings yet for a chart</span>'}</div>
           <div class="well-foot"><span class="unit">${w.device_id ? `Sensor ${esc(w.device_id)}${ago != null ? ` · last reading ${ago} min ago` : ''}` : 'Link a sensor to see live readings'}</span>
