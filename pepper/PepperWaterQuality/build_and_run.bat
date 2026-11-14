@@ -6,7 +6,7 @@ REM     APP_ID   = must match applicationId in app\build.gradle.kts
 REM  2) Turn ADB ON on the tablet, then double-click this file
 REM  3) Read build_log.txt for the result
 REM ============================================================
-set PEPPER_IP=192.168.8.105
+set PEPPER_IP=192.168.8.101
 set APP_ID=com.example.pepperwater
 
 cd /d "%~dp0"
