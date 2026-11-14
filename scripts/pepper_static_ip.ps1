@@ -5,15 +5,15 @@
 #   On:   powershell -ExecutionPolicy Bypass -File scripts\pepper_static_ip.ps1
 #   Off:  powershell -ExecutionPolicy Bypass -File scripts\pepper_static_ip.ps1 -Off
 # Needs administrator rights (Windows asks).
-param([switch]$Off)
+param([switch]$Off, [string]$Ip = "192.168.8.20")
 
 $adapter = "Wi-Fi"
-$ip = "192.168.8.20"; $gateway = "192.168.8.1"
+$ip = $Ip; $gateway = "192.168.8.1"
 
 if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole(
         [Security.Principal.WindowsBuiltInRole]::Administrator)) {
     # Run again as administrator, and wait for it
-    $args = "-ExecutionPolicy Bypass -File `"$PSCommandPath`"" + $(if ($Off) { " -Off" } else { "" })
+    $args = "-ExecutionPolicy Bypass -File `"$PSCommandPath`" -Ip $Ip" + $(if ($Off) { " -Off" } else { "" })
     Start-Process powershell -Verb RunAs -ArgumentList $args -Wait
     Get-NetIPAddress -InterfaceAlias $adapter -AddressFamily IPv4 | Select-Object IPAddress, PrefixOrigin | Format-Table
     exit
