@@ -4,13 +4,15 @@
 
   "operations": {
     "freshnessMinutes": 60,
-    "refreshSeconds": 60,
+    "useLastKnownValues": true,
+    "refreshSeconds": 5,
+    "fullReloadSeconds": 300,
     "deviceLookbackHours": 168,
     "snapshotRowLimit": 2000,
     "historyRowCap": 10000,
     "historyPageSize": 1000,
     "minAssessableParameters": 1,
-    "_readme": "freshnessMinutes: a reading older than this is stale and excluded from the current network summary; a device whose newest reading is older is shown as offline (set it to a few multiples of the devices' real reporting interval). deviceLookbackHours: devices with no reading in this window are not listed at all."
+    "_readme": "refreshSeconds: the dashboard asks the database for new rows this often (only rows it has not seen yet). fullReloadSeconds: a complete reload, to drop rows that aged out. useLastKnownValues: true = the dashboard always shows each sensor's latest valid reading however old, labelled 'Last known value' when older than freshnessMinutes; false = such readings are excluded. freshnessMinutes: a device whose newest reading is older than this is shown as offline (set it to a few multiples of the devices' real reporting interval). deviceLookbackHours: devices with no reading in this window are not listed at all."
   },
 
   "validity": {
@@ -59,6 +61,14 @@
       "confirmed": false,
       "source": "The database holds raw sensor counts and voltage only. No validated NTU conversion exists, so turbidity is displayed raw, is never labelled NTU and never contributes to the assessment."
     }
+  },
+
+  "aggregation": {
+    "_readme": "How values are combined. The dashboard takes the latest valid reading of each device, combines the devices of the same well ('withinWell'), then combines the wells ('acrossWells'). Methods: mean | median | hydrogenMean (pH only: mean of hydrogen-ion activity, the chemically correct way to average pH of the same water). pH uses the median across wells because a mean of different wells' pH has no chemical meaning; TDS uses the median because salinity is skewed and one saline well should not drag the headline; temperature uses the mean because it is linear with a narrow spread; raw turbidity uses the median because it is uncalibrated and spiky.",
+    "ph": { "withinWell": "hydrogenMean", "acrossWells": "median" },
+    "temperature": { "withinWell": "mean", "acrossWells": "mean" },
+    "tds_ppm": { "withinWell": "mean", "acrossWells": "median" },
+    "turbidity_raw": { "withinWell": "median", "acrossWells": "median" }
   },
 
   "deviation": {

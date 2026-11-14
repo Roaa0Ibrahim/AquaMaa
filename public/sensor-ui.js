@@ -9,7 +9,7 @@
   const S = window.AquaMaaSensors;
   let H = null; // helpers supplied by app.js: esc, icon, fmt, api, sparkline, ring, animateIn, setContext
 
-  const COLS = 'id,device_id,ph,temperature,tds_ppm,created_at,ph_raw,ph_voltage,turbidity_raw,turbidity_voltage';
+  const COLS = 'id,device_id,well_id,ph,temperature,tds_ppm,created_at,ph_raw,ph_voltage,turbidity_raw,turbidity_voltage';
   const AST = 'Asia/Qatar';
   const fTime = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: AST });
   const fHM = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: AST });
@@ -20,7 +20,7 @@
   const st = {
     cfg: null, client: null, channel: null, pollTimer: null, tickTimer: null, recomputeTimer: null, visHandler: null,
     started: false, token: 0, rangeKey: '24h', histKey: null, device: null,
-    snapRows: [], histRows: [], histTruncated: false,
+    snapRows: [], histRows: [], histTruncated: false, ids: new Set(), maxId: 0, reloadTimer: null, pollInflight: null,
     loading: true, db: 'unknown', error: null, configError: null, realtime: 'off',
     lastUpdated: null, lastInsertAt: null, network: null, view: null, inflight: null, histInflight: null,
   };
@@ -69,6 +69,50 @@
     return { rows, truncated };
   }
 
+  /* Incremental poll: only rows newer than what we already hold. The small id overlap catches
+     rows whose transaction committed after a higher id; duplicates are dropped by id. */
+  const ID_OVERLAP = 200;
+  async function fetchNewRows() {
+    const ops = st.cfg.operations;
+    const since = new Date(Date.now() - ops.deviceLookbackHours * 3600000).toISOString();
+    const { data, error } = await st.client.from('readings').select(COLS)
+      .gt('id', Math.max(0, st.maxId - ID_OVERLAP)).gte('created_at', since)
+      .order('id', { ascending: true }).limit(1000);
+    if (error) throw error;
+    return data || [];
+  }
+  function indexRows() {
+    st.ids = new Set();
+    st.maxId = 0;
+    for (const r of st.snapRows.concat(st.histRows)) if (r && r.id != null) { st.ids.add(r.id); if (r.id > st.maxId) st.maxId = r.id; }
+  }
+  /* Adds rows not seen before; returns how many were new. */
+  function mergeRows(rows) {
+    const ops = st.cfg.operations, range = st.cfg.ranges[st.rangeKey], cut = Date.now() - range.ms;
+    let added = 0;
+    for (const r of rows) {
+      if (!r || typeof r.device_id !== 'string' || !r.created_at || !Number.isFinite(Date.parse(r.created_at))) continue;
+      if (r.id != null) { if (st.ids.has(r.id)) continue; st.ids.add(r.id); if (r.id > st.maxId) st.maxId = r.id; }
+      st.snapRows.unshift(r);
+      if (Date.parse(r.created_at) >= cut) st.histRows.unshift(r);
+      added++;
+    }
+    if (st.snapRows.length > ops.snapshotRowLimit * 2) st.snapRows.length = ops.snapshotRowLimit * 2;
+    if (st.histRows.length > ops.historyRowCap + 1000) st.histRows.length = ops.historyRowCap + 1000;
+    return added;
+  }
+  function pollNew() {
+    if (st.inflight || st.pollInflight || !st.client) return;
+    st.pollInflight = (async () => {
+      try {
+        const rows = await fetchNewRows();
+        if (mergeRows(rows)) st.lastInsertAt = Date.now();
+        st.db = 'ok'; st.error = null; st.lastUpdated = Date.now();
+      } catch (e) { st.db = 'error'; st.error = describe(e); }
+      finally { st.pollInflight = null; recompute(); emit(); }
+    })();
+  }
+
   function recompute() {
     if (!st.cfg) return;
     const now = Date.now();
@@ -87,7 +131,7 @@
     st.inflight = (async () => {
       try {
         const [snap, hist] = await Promise.all([fetchSnapshot(), fetchHistory(key)]);
-        st.snapRows = snap; st.histRows = hist.rows; st.histTruncated = hist.truncated; st.histKey = key;
+        st.snapRows = snap; st.histRows = hist.rows; st.histTruncated = hist.truncated; st.histKey = key; indexRows();
         st.db = 'ok'; st.error = null; st.lastUpdated = Date.now();
       } catch (e) { st.db = 'error'; st.error = describe(e); }
       finally {
@@ -103,7 +147,7 @@
     st.histInflight = (async () => {
       try {
         const hist = await fetchHistory(key);
-        st.histRows = hist.rows; st.histTruncated = hist.truncated; st.histKey = key; st.db = 'ok'; st.error = null; st.lastUpdated = Date.now();
+        st.histRows = hist.rows; st.histTruncated = hist.truncated; st.histKey = key; indexRows(); st.db = 'ok'; st.error = null; st.lastUpdated = Date.now();
       } catch (e) { st.db = 'error'; st.error = describe(e); }
       finally {
         st.histInflight = null; recompute(); emit();
@@ -115,16 +159,7 @@
 
   function onInsert(payload) {
     const r = payload && payload.new;
-    if (!r || typeof r.device_id !== 'string' || !r.created_at || !Number.isFinite(Date.parse(r.created_at))) return;
-    if (r.id != null && st.snapRows.some((x) => x.id === r.id)) return;
-    const ops = st.cfg.operations;
-    st.snapRows.unshift(r);
-    if (st.snapRows.length > ops.snapshotRowLimit * 2) st.snapRows.length = ops.snapshotRowLimit * 2;
-    const range = st.cfg.ranges[st.rangeKey];
-    if (Date.parse(r.created_at) >= Date.now() - range.ms) {
-      st.histRows.unshift(r);
-      if (st.histRows.length > ops.historyRowCap + 1000) st.histRows.length = ops.historyRowCap + 1000;
-    }
+    if (!r || !mergeRows([r])) return;
     st.db = 'ok'; st.error = null; st.lastInsertAt = st.lastUpdated = Date.now();
     scheduleRecompute();
   }
@@ -147,7 +182,7 @@
     if (st.started) return;
     st.started = true;
     const token = ++st.token;
-    Object.assign(st, { loading: true, db: 'unknown', error: null, configError: null, realtime: 'off', snapRows: [], histRows: [], network: null, view: null, device: null, lastUpdated: null, histKey: null });
+    Object.assign(st, { loading: true, db: 'unknown', error: null, configError: null, realtime: 'off', snapRows: [], histRows: [], ids: new Set(), maxId: 0, network: null, view: null, device: null, lastUpdated: null, histKey: null });
     emit();
     try {
       const conf = await H.api('/api/config');
@@ -165,7 +200,9 @@
     await loadAll();
     if (token !== st.token) return;
     subscribeRealtime();
-    st.pollTimer = setInterval(() => { if (!document.hidden) loadAll(); }, st.cfg.operations.refreshSeconds * 1000);
+    const ops = st.cfg.operations;
+    st.pollTimer = setInterval(() => { if (!document.hidden) pollNew(); }, ops.refreshSeconds * 1000);          // new rows every 5 s
+    st.reloadTimer = setInterval(() => { if (!document.hidden) loadAll(); }, (ops.fullReloadSeconds || 300) * 1000); // full resync
     st.tickTimer = setInterval(() => { recompute(); emit(); }, 30000);   // keeps "x min ago" and offline detection current
     st.visHandler = () => { if (!document.hidden) loadAll(); };
     document.addEventListener('visibilitychange', st.visHandler);
@@ -173,12 +210,12 @@
 
   function stop() {
     st.token++; st.started = false;
-    clearInterval(st.pollTimer); clearInterval(st.tickTimer); clearTimeout(st.recomputeTimer);
-    st.pollTimer = st.tickTimer = st.recomputeTimer = null;
+    clearInterval(st.pollTimer); clearInterval(st.reloadTimer); clearInterval(st.tickTimer); clearTimeout(st.recomputeTimer);
+    st.pollTimer = st.reloadTimer = st.tickTimer = st.recomputeTimer = null;
     if (st.visHandler) document.removeEventListener('visibilitychange', st.visHandler);
     st.visHandler = null;
     if (st.client && st.channel) { try { st.client.removeChannel(st.channel); } catch { /* ignore */ } }
-    st.channel = null; st.client = null; st.inflight = st.histInflight = null;
+    st.channel = null; st.client = null; st.inflight = st.histInflight = st.pollInflight = null;
     unmount();
   }
 
@@ -196,8 +233,9 @@
     if (st.loading) return { kind: 'idle', label: 'Connecting…', detail: 'Loading sensor readings' };
     if (st.db === 'error') return { kind: 'error', label: 'Database error', detail: st.error ? st.error.message : '' };
     const upd = st.lastUpdated ? `Last update ${fTime.format(st.lastUpdated)} AST` : '';
-    if (st.realtime === 'subscribed') return { kind: 'live', label: 'Live · realtime', detail: `Receiving new readings as they are inserted. ${upd}` };
-    return { kind: 'polling', label: `Polling · ${st.cfg.operations.refreshSeconds}s`, detail: `Realtime is not connected (${st.realtime}); refreshing on a timer. ${upd}` };
+    const every = st.cfg.operations.refreshSeconds;
+    if (st.realtime === 'subscribed') return { kind: 'live', label: `Live · ${every}s`, detail: `Checking the database every ${every} s, plus realtime inserts. ${upd}` };
+    return { kind: 'live', label: `Live · ${every}s`, detail: `Checking the database every ${every} s (realtime: ${st.realtime}). ${upd}` };
   }
   function renderLive() {
     const node = document.getElementById('live');
@@ -226,9 +264,11 @@
     if (m < 48 * 60) return `${Math.round(m / 60)} h ago`;
     return `${Math.round(m / 1440)} d ago`;
   }
+  const cap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
   const plural = (n, w) => `${n} ${w}${n === 1 ? '' : 's'}`;
   const label = (p) => st.cfg.parameters[p].label;
   const DIG = { ph: 2, temperature: 1, tds_ppm: 0, turbidity_raw: 0 };
+  const statName = (p) => { const m = S.aggregationFor(p, st.cfg && st.cfg.aggregation).acrossWells; return S.AGG_LABEL[m] || m; };
   function refText(p) {
     const r = st.cfg.parameters[p].reference;
     if (p === 'turbidity_raw') return 'Awaiting calibration';
@@ -262,10 +302,10 @@
     if (!ch) return '';
     const d = DIG[p], delta = ch.delta, flat = Math.abs(delta) < 0.5 * Math.pow(10, -d);
     const txt = flat ? '0' : (delta > 0 ? '+' : '') + delta.toFixed(d);
-    const tip = `Change over ${a.range.label.toLowerCase()}: ${ch.from.toFixed(d)} → ${ch.to.toFixed(d)} (network median, per time bucket)`;
+    const tip = `Change over ${a.range.label.toLowerCase()}: ${ch.from.toFixed(d)} → ${ch.to.toFixed(d)} (network ${statName(p)} of wells, per time bucket)`;
     return `<span class="tag grey" title="${esc(tip)}">${flat ? '' : H.icon(delta > 0 ? 'up' : 'down')}${esc(txt)}</span>`;
   }
-  function spark(a, p) { return H.sparkline(a.series[p].points.map((x) => x.median)); }
+  function spark(a, p) { return H.sparkline(a.series[p].points.map((x) => x.value)); }
 
   function kpiInner(kind) {
     const meta = { ph: ['pH Level', 'flask', 'blue'], temperature: ['Water Temperature', 'thermo', 'amber'], tds_ppm: ['Total Dissolved Solids', 'tds', ''], turbidity_raw: ['Turbidity', 'eye', 'blue'], wq: ['Water quality', 'shield', 'green'] }[kind];
@@ -279,37 +319,39 @@
     if (!st.snapRows.length) return shell({ ...base, big: '—', unit: 'No readings', foot: tag('No data', 'grey') });
     if (!s.count) {
       const last = a.allDevices.length ? Math.max(...a.allDevices.map((x) => (x.latest[p] ? x.latest[p].at : 0))) : 0;
-      return shell({ ...base, big: '—', unit: 'No fresh readings', meta: last ? `Last valid ${ago(last, now)}` : 'Never reported', foot: tag(a.allDevices.length ? 'Stale' : 'No data', 'grey') });
+      return shell({ ...base, big: '—', unit: st.cfg.operations.useLastKnownValues === false ? 'No fresh readings' : 'No valid readings', meta: last ? `Last valid ${ago(last, now)}` : 'Never reported', foot: tag(a.allDevices.length ? 'Stale' : 'No data', 'grey') });
     }
     const m = a.metrics;
-    const devs = plural(s.count, 'device');
-    const when = ago(s.latestAt, now);
+    const devs = plural(s.count, 'well'), sn = statName(p);
+    const srcTxt = `${plural(s.count, 'well')} (${plural(s.devices, 'sensor')})`;
+    const when = s.staleWells ? `last known · ${ago(s.latestAt, now)}` : ago(s.latestAt, now);
+    const staleTag = s.staleWells ? tag(s.staleWells === s.count ? 'Last known value' : `${s.staleWells} of ${plural(s.count, 'well')} stale`, 'grey', 'info') : '';
     const rangeTxt = `${S.num(s.min) === null ? '' : s.min.toFixed(d)} – ${s.max.toFixed(d)}`;
     const abs = `Latest contributing measurement: ${fFull.format(s.latestAt)} AST`;
 
     if (kind === 'ph') {
       const e = a.assessment.params.ph;
-      const tip = [`Median of the latest reading from each of ${devs}`, `Range across devices: ${rangeTxt}`, `[H⁺]-based mean pH: ${s.meanByHydrogen.toFixed(2)} (median is not a chemically mixed-water pH)`, abs].map(esc).join(NL);
-      return shell({ ...base, big: s.median.toFixed(2), unit: 'pH · median', right: spark(a, p) + trendTag(a, p), meta: `${devs} · ${when}`, metaTitle: tip,
-        foot: tag(m.ph.classification, STATE_CLS[e.state], e.state === 'within' ? 'check' : null) + `<span title="Lowest – highest device reading">${rangeTxt}</span>` });
+      const tip = [`${cap(sn)} of the latest reading from each of ${srcTxt}`, `Range across wells: ${rangeTxt}`, `[H⁺]-based mean pH of the wells: ${s.meanByHydrogen.toFixed(2)} (wells are separate water bodies, so this is not a mixed-water pH)`, abs].map(esc).join(NL);
+      return shell({ ...base, big: s.value.toFixed(2), unit: `pH · ${sn} of wells`, right: spark(a, p) + trendTag(a, p), meta: `${devs} · ${when}`, metaTitle: tip,
+        foot: tag(m.ph.classification, STATE_CLS[e.state], e.state === 'within' ? 'check' : null) + (staleTag || `<span title="Lowest – highest well value">${rangeTxt}</span>`) });
     }
     if (kind === 'temperature') {
       const e = a.assessment.params.temperature;
-      const tip = [`Median of the latest reading from each of ${devs}`, `Range across devices: ${rangeTxt} °C`, abs].map(esc).join(NL);
-      return shell({ ...base, big: s.median.toFixed(1), unit: '°C · median', right: spark(a, p) + trendTag(a, p), meta: `${devs} · ${when}`, metaTitle: tip,
-        foot: (e.state === 'not_assessed' ? tag('No threshold set', 'grey', 'info') : paramTag(e)) + `<span title="Lowest – highest device reading">${rangeTxt}</span>` });
+      const tip = [`${cap(sn)} of the latest reading from each of ${srcTxt}`, `Range across wells: ${rangeTxt} °C`, abs].map(esc).join(NL);
+      return shell({ ...base, big: s.value.toFixed(1), unit: `°C · ${sn} of wells`, right: spark(a, p) + trendTag(a, p), meta: `${devs} · ${when}`, metaTitle: tip,
+        foot: (e.state === 'not_assessed' ? tag('No threshold set', 'grey', 'info') : paramTag(e)) + (staleTag || `<span title="Lowest – highest well value">${rangeTxt}</span>`) });
     }
     if (kind === 'tds_ppm') {
       const e = a.assessment.params.tds_ppm, dv = a.deviations.tds_ppm;
-      const tip = [`Median of the latest reading from each of ${devs}`, `Range across devices: ${rangeTxt} ppm`, `Highest: ${s.maxDevice}`, abs].map(esc).join(NL);
-      return shell({ ...base, big: H.fmt(s.median, 0), unit: 'ppm · median', right: spark(a, p) + trendTag(a, p), meta: `${devs} · ${when}`, metaTitle: tip,
-        foot: paramTag(e) + (dv && dv.evaluated && dv.flag ? tag('Unusual change', 'amber', 'alert') : `<span title="Lowest – highest device reading">${rangeTxt}</span>`) });
+      const tip = [`${cap(sn)} of the latest reading from each of ${srcTxt}`, `Range across wells: ${rangeTxt} ppm`, `Highest: ${s.maxWell}`, abs].map(esc).join(NL);
+      return shell({ ...base, big: H.fmt(s.value, 0), unit: `ppm · ${sn} of wells`, right: spark(a, p) + trendTag(a, p), meta: `${devs} · ${when}`, metaTitle: tip,
+        foot: paramTag(e) + (dv && dv.evaluated && dv.flag ? tag('Unusual change', 'amber', 'alert') : (staleTag || `<span title="Lowest – highest well value">${rangeTxt}</span>`)) });
     }
     // turbidity: raw only, never NTU
     const v = a.summary.turbidity_voltage;
-    const tip = [`Median raw sensor reading of the latest value from each of ${devs}`, `Raw range across devices: ${rangeTxt}`, 'Not calibrated: no validated NTU conversion exists, so this is not an NTU value.', abs].map(esc).join(NL);
-    return shell({ ...base, big: H.fmt(s.median, 0), unit: 'raw reading · not NTU', meta: `${v.count ? `${v.median.toFixed(2)} V · ` : ''}${devs} · ${when}`, metaTitle: tip,
-      foot: tag('Reporting', 'green') + tag('Not calibrated', 'amber', 'info') });
+    const tip = [`${cap(sn)} raw sensor reading of the latest value from each of ${srcTxt}`, `Raw range across wells: ${rangeTxt}`, 'Not calibrated: no validated NTU conversion exists, so this is not an NTU value.', abs].map(esc).join(NL);
+    return shell({ ...base, big: H.fmt(s.value, 0), unit: 'raw reading · not NTU', meta: `${v.count ? `${v.value.toFixed(2)} V · ` : ''}${devs} · ${when}`, metaTitle: tip,
+      foot: (staleTag || tag('Reporting', 'green')) + tag('Not calibrated', 'amber', 'info') });
   }
 
   function wqInner(base, a) {
@@ -322,7 +364,7 @@
     const inRange = c.parametersAssessed - c.parametersOutside;
     const ring = H.ring({ frac: ins ? 0 : inRange / c.parametersAssessed, color: col, size: 70, stroke: 7, center: `<text x="50%" y="53%" text-anchor="middle" font-size="9.5" font-weight="700" fill="${col}">${short}</text>` });
     return shell({ ...base, big: ins ? '—' : `${inRange}/${c.parametersAssessed}`, unit: ins ? 'not enough data' : 'parameters in range', right: ring,
-      meta: `${plural(c.devicesTotal, 'device')} · ${c.devicesAttention} need attention`, metaTitle: esc(as.disclaimer),
+      meta: `${plural(c.wellsTotal, 'well')} · ${c.devicesAttention} sensor${c.devicesAttention === 1 ? '' : 's'} need attention`, metaTitle: esc(as.disclaimer),
       foot: tag(as.label, cls, ic) + `<span title="${esc(as.disclaimer)}">Preliminary</span>` });
   }
 
@@ -366,8 +408,8 @@
     pts.forEach((p, i) => { if (i && p.t - pts[i - 1].t > series.bucketMs * 3) { segs.push(cur); cur = []; } cur.push(p); });
     segs.push(cur);
     const hasBand = pts.some((p) => p.max !== p.min);
-    const line = segs.map((sg) => (sg.length === 1 ? '' : `<path class="line-path" pathLength="1" d="${sg.map((p, i) => `${i ? 'L' : 'M'}${bx(p).toFixed(1)},${y(p.median).toFixed(1)}`).join(' ')}" fill="none" stroke="${o.color}" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>`)).join('');
-    const lone = segs.filter((sg) => sg.length === 1).map((sg) => `<circle cx="${bx(sg[0]).toFixed(1)}" cy="${y(sg[0].median).toFixed(1)}" r="2.6" fill="${o.color}"/>`).join('');
+    const line = segs.map((sg) => (sg.length === 1 ? '' : `<path class="line-path" pathLength="1" d="${sg.map((p, i) => `${i ? 'L' : 'M'}${bx(p).toFixed(1)},${y(p.value).toFixed(1)}`).join(' ')}" fill="none" stroke="${o.color}" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>`)).join('');
+    const lone = segs.filter((sg) => sg.length === 1).map((sg) => `<circle cx="${bx(sg[0]).toFixed(1)}" cy="${y(sg[0].value).toFixed(1)}" r="2.6" fill="${o.color}"/>`).join('');
     const band = hasBand ? segs.filter((sg) => sg.length > 1).map((sg) => {
       const top = sg.map((p) => `${bx(p).toFixed(1)},${y(p.max).toFixed(1)}`);
       const bot = sg.slice().reverse().map((p) => `${bx(p).toFixed(1)},${y(p.min).toFixed(1)}`);
@@ -392,11 +434,11 @@
       const r = svg.getBoundingClientRect(), px = ((e.clientX - r.left) / r.width) * W;
       let best = pts[0], bd = Infinity;
       pts.forEach((p) => { const dd = Math.abs(bx(p) - px); if (dd < bd) { bd = dd; best = p; } });
-      const cx = bx(best), cy = y(best.median);
+      const cx = bx(best), cy = y(best.value);
       hv.setAttribute('x1', cx); hv.setAttribute('x2', cx); hv.setAttribute('opacity', '.6');
       hd.setAttribute('cx', cx); hd.setAttribute('cy', cy); hd.setAttribute('opacity', '1');
-      tip.innerHTML = `<b>${fDay.format(best.t)} ${fHM.format(best.t)}</b><br>${best.median.toFixed(dg)} ${esc(o.unit)} median` +
-        (best.max !== best.min ? `<br>${best.min.toFixed(dg)} – ${best.max.toFixed(dg)} range` : '') + `<br>${plural(best.n, 'device')}`;
+      tip.innerHTML = `<b>${fDay.format(best.t)} ${fHM.format(best.t)}</b><br>${best.value.toFixed(dg)} ${esc(o.unit)} ${esc(statName(o.key))}` +
+        (best.max !== best.min ? `<br>${best.min.toFixed(dg)} – ${best.max.toFixed(dg)} range across wells` : '') + `<br>${plural(best.n, 'well')}`;
       const sw = r.width, pxs = (cx / W) * sw, tw = tip.offsetWidth;
       tip.style.left = `${Math.min(Math.max(pxs, tw / 2), sw - tw / 2)}px`;
       tip.style.top = `${(cy / Hh) * r.height - 12}px`;
@@ -409,9 +451,9 @@
   function chartDefs() {
     const P = st.cfg.parameters;
     return [
-      { key: 'ph', title: 'pH over time', unit: 'pH', digits: 2, color: '#0ea5a0', icon: 'flask', refs: P.ph.reference, note: 'Median across devices' },
-      { key: 'temperature', title: 'Temperature over time', unit: '°C', digits: 1, color: '#e08a00', icon: 'thermo', refs: P.temperature.reference, note: 'Median across devices' },
-      { key: 'tds_ppm', title: 'TDS over time', unit: 'ppm', digits: 0, color: '#2f80ed', icon: 'tds', refs: P.tds_ppm.reference, note: 'Median across devices' },
+      { key: 'ph', title: 'pH over time', unit: 'pH', digits: 2, color: '#0ea5a0', icon: 'flask', refs: P.ph.reference, note: '' },
+      { key: 'temperature', title: 'Temperature over time', unit: '°C', digits: 1, color: '#e08a00', icon: 'thermo', refs: P.temperature.reference, note: '' },
+      { key: 'tds_ppm', title: 'TDS over time', unit: 'ppm', digits: 0, color: '#2f80ed', icon: 'tds', refs: P.tds_ppm.reference, note: '' },
       { key: 'turbidity_raw', title: 'Turbidity (raw) over time', unit: 'raw', digits: 0, color: '#7c5cbf', icon: 'eye', refs: null, note: 'Raw reading · not NTU' },
     ];
   }
@@ -419,7 +461,7 @@
     return chartDefs().map((c) => `<section class="card panel chart-card" data-chart="${c.key}">
       <div class="panel-head"><div><div class="eyebrow">${H.icon(c.icon)} ${esc(label(c.key).toUpperCase())}</div><h2>${esc(c.title)}</h2></div></div>
       <div class="chart-wrap" data-host><div class="chart-empty">Loading…</div></div>
-      <div class="chart-foot"><span class="cf-left"></span><span class="cf-right">${esc(c.note)}</span></div></section>`).join('');
+      <div class="chart-foot"><span class="cf-left"></span><span class="cf-right">${esc(c.note || `${cap(statName(c.key))} across wells`)}</span></div></section>`).join('');
   }
   function fillCharts(root, a, animate) {
     const defs = chartDefs();
@@ -430,7 +472,7 @@
       const series = a.series[def.key];
       timeChart(host, series, def, animate);
       const n = series.points.length ? Math.max(...series.points.map((p) => p.n)) : 0;
-      card.querySelector('.cf-left').textContent = series.points.length ? `${a.range.label} · ${a.range.bucketMs / 60000 >= 60 ? a.range.bucketMs / 3600000 + ' h' : a.range.bucketMs / 60000 + ' min'} buckets · up to ${plural(n, 'device')}` : a.range.label;
+      card.querySelector('.cf-left').textContent = series.points.length ? `${a.range.label} · ${a.range.bucketMs / 60000 >= 60 ? a.range.bucketMs / 3600000 + ' h' : a.range.bucketMs / 60000 + ' min'} buckets · up to ${plural(n, 'well')}` : a.range.label;
     });
   }
 
@@ -443,7 +485,9 @@
     else if (!st.loading && st.cfg) {
       const a = st.network;
       if (!st.snapRows.length) item('warn', 'No sensor readings returned.', `The readings table returned no rows for the last ${st.cfg.operations.deviceLookbackHours} hours. If the table does contain data, the Row Level Security SELECT policy for the anon role is probably missing (see supabase/setup.sql).`);
-      else if (a && a.allDevices.length && !a.allDevices.some((d) => d.online)) item('warn', 'No device is reporting.', `No device has sent a reading in the last ${st.cfg.operations.freshnessMinutes} minutes, so no current network values are shown.`);
+      else if (a && a.allDevices.length && !a.allDevices.some((d) => d.online)) item('warn', 'No device is reporting.', st.cfg.operations.useLastKnownValues === false
+        ? `No device has sent a reading in the last ${st.cfg.operations.freshnessMinutes} minutes, so no current network values are shown.`
+        : `No device has sent a reading in the last ${st.cfg.operations.freshnessMinutes} minutes. Showing each sensor's last known reading (newest ${ago(Math.max(...a.allDevices.map((d) => d.lastSeen)), a.now)}).`);
     }
     if (st.histTruncated && st.cfg) item('warn', 'Chart history is capped.', `Only the most recent ${st.cfg.operations.historyRowCap.toLocaleString('en-US')} rows of this period were loaded; choose a shorter range for the full detail.`);
     return out.join('');
@@ -468,11 +512,11 @@
       const sh = S.outsideShare(a.series[p].points, P[p]);
       const hist = sh ? ` · ${Math.round(sh.share * 100)}% of period outside` : '';
       return `<tr><td><b>${esc(label(p))}</b></td><td>${val}</td><td>${paramTag(e)}</td><td>${esc(refText(p))}</td>
-        <td>${e.count}${e.outsideDevices.length ? ` <span class="muted">(${e.outsideDevices.length} outside)</span>` : ''}</td><td title="Network median, first vs last time bucket in ${esc(a.range.label.toLowerCase())}">${chTxt}<span class="muted">${esc(hist)}</span></td></tr>`;
+        <td>${e.count}${e.outsideDevices.length ? ` <span class="muted">(${plural(e.outsideDevices.length, 'sensor')} outside)</span>` : ''}</td><td title="Network value, first vs last time bucket in ${esc(a.range.label.toLowerCase())}">${chTxt}<span class="muted">${esc(hist)}</span></td></tr>`;
     }).join('');
     const dev = a.deviations.tds_ppm;
     const unconfirmed = S.ASSESSED.some((p) => (P[p].reference || P[p].critical) && !P[p].confirmed);
-    return `<div class="panel-head"><div><div class="eyebrow">${H.icon('shield')} WATER QUALITY ASSESSMENT <span class="info" title="Calculated from the latest valid reading of each device. Thresholds come from config/thresholds.json.">i</span></div>
+    return `<div class="panel-head"><div><div class="eyebrow">${H.icon('shield')} WATER QUALITY ASSESSMENT <span class="info" title="Calculated from the latest valid reading of each well (sensors in the same well are averaged), then combined across wells. Thresholds come from config/thresholds.json.">i</span></div>
         <h2>Preliminary sensor-based indicator</h2></div>${tag(as.label, cls, ic)}</div>
       <p class="wq-headline">${esc(headline)}</p>
       <div class="stat4">
@@ -480,7 +524,7 @@
         <div><b>${c.parametersOutside}</b><span>Outside thresholds</span></div>
         <div><b>${c.devicesAttention}</b><span>Devices needing attention</span></div>
         <div><b>${c.devicesOffline}<small>/${c.devicesTotal}</small></b><span>Devices offline</span></div></div>
-      <div class="tbl-wrap"><table class="t wq-table"><thead><tr><th>Parameter</th><th>Network value</th><th>Status</th><th>Reference</th><th>Devices</th><th>Change · ${esc(a.range.label.toLowerCase())}</th></tr></thead><tbody>${rows}</tbody></table></div>
+      <div class="tbl-wrap"><table class="t wq-table"><thead><tr><th>Parameter</th><th>Network value</th><th>Status</th><th>Reference</th><th>Wells</th><th>Change · ${esc(a.range.label.toLowerCase())}</th></tr></thead><tbody>${rows}</tbody></table></div>
       ${dev && dev.evaluated && dev.flag ? `<div class="note warn">${H.icon('alert')}<span>TDS deviates from its recent history: modified z-score ${dev.z.toFixed(1)} (${esc(dev.direction)} the earlier median of ${H.fmt(dev.baselineMedian, 0)} ppm).</span></div>` : ''}
       <div class="note">${H.icon('info')}<span>${esc(as.disclaimer)} Not assessed: ${esc(notAssessed.join(', '))}. Turbidity is a raw, uncalibrated reading and does not contribute.${unconfirmed ? ' Reference ranges are unconfirmed defaults (see config/thresholds.json).' : ''}</span></div>`;
   }
@@ -491,15 +535,20 @@
     const alerts = a.alerts.slice(0, 6);
     const f = (d, p, dg) => (d.fresh[p] ? d.fresh[p].value.toFixed(dg) : '—');
     const rows = (st.device ? a.allDevices : a.devices).map((d) => `<tr data-device="${esc(d.device_id)}" class="${st.device === d.device_id ? 'sel' : ''}" tabindex="0" title="${interactive ? 'Select device' : 'Open Water Quality for this device'}">
-        <td><b>${esc(d.device_id)}</b></td><td>${d.online ? tag('Online', 'green') : tag('Offline', 'amber')}</td><td title="${esc(fFull.format(d.lastSeen))} AST">${esc(ago(d.lastSeen, now))}</td>
+        <td><b>${esc(d.device_id)}</b></td><td>${d.well_id != null ? `Well ${d.well_id}` : '—'}</td><td>${d.online ? tag('Online', 'green') : tag('Offline', 'amber')}</td><td title="${esc(fFull.format(d.lastSeen))} AST">${esc(ago(d.lastSeen, now))}</td>
         <td>${f(d, 'ph', 2)}</td><td>${f(d, 'temperature', 1)}</td><td>${d.fresh.tds_ppm ? H.fmt(d.fresh.tds_ppm.value, 0) : '—'}</td><td>${d.fresh.turbidity_raw ? H.fmt(d.fresh.turbidity_raw.value, 0) : '—'}</td></tr>`).join('');
+    const wf = (w, p, dg) => (w.fresh[p] ? (dg == null ? H.fmt(w.fresh[p].value, 0) : w.fresh[p].value.toFixed(dg)) : '—');
+    const wellRows = (a.allWells || a.wells).map((w) => `<tr><td><b>${esc(w.label)}</b></td><td title="${esc(w.devices.join(', '))}">${w.devices.length}</td><td>${w.online ? tag('Online', 'green') : tag('Offline', 'amber')}</td>
+        <td title="${esc(fFull.format(w.lastSeen))} AST">${esc(ago(w.lastSeen, now))}</td><td>${wf(w, 'ph', 2)}</td><td>${wf(w, 'temperature', 1)}</td><td>${wf(w, 'tds_ppm')}</td><td>${wf(w, 'turbidity_raw')}</td></tr>`).join('');
     return `<div class="panel-head"><div><div class="eyebrow">${H.icon('radio')} SENSOR NETWORK</div><h2>Connectivity &amp; alerts</h2></div>
-        <div class="pills">${tag(`${c.devicesOnline} online`, 'green')}${tag(`${c.devicesOffline} offline`, c.devicesOffline ? 'amber' : 'grey')}</div></div>
+        <div class="pills">${tag(`${c.wellsOnline}/${c.wellsTotal} wells online`, 'green')}${tag(`${c.devicesOffline} sensor${c.devicesOffline === 1 ? '' : 's'} offline`, c.devicesOffline ? 'amber' : 'grey')}</div></div>
       ${alerts.length ? `<ul class="alerts">${alerts.map((x) => `<li class="${x.severity}"><i></i><div><b>${esc(x.title)}</b><span>${esc(x.detail || '')}</span></div></li>`).join('')}${a.alerts.length > alerts.length ? `<li class="more">+${a.alerts.length - alerts.length} more</li>` : ''}</ul>`
         : `<div class="note ok">${H.icon('check')}<span>${c.devicesTotal ? 'No active sensor alerts.' : 'No devices to monitor yet.'}</span></div>`}
-      <div class="tbl-wrap net-wrap"><table class="t net-table"><thead><tr><th>Device</th><th>Status</th><th>Last reading</th><th>pH</th><th>°C</th><th>TDS ppm</th><th>Turb. raw</th></tr></thead>
-        <tbody>${rows || '<tr><td colspan="7">No devices</td></tr>'}</tbody></table></div>
-      <div class="chart-foot"><span>Latest fresh value per device (window ${st.cfg.operations.freshnessMinutes} min)</span><span>${esc(S.DISCLAIMER.split('.')[0])}</span></div>`;
+      <div class="tbl-wrap net-wrap"><table class="t net-table"><thead><tr><th>Well</th><th>Sensors</th><th>Status</th><th>Last reading</th><th>pH</th><th>°C</th><th>TDS ppm</th><th>Turb. raw</th></tr></thead>
+        <tbody>${wellRows || '<tr><td colspan="8">No wells</td></tr>'}</tbody></table></div>
+      <div class="tbl-wrap net-wrap"><table class="t net-table"><thead><tr><th>Sensor</th><th>Well</th><th>Status</th><th>Last reading</th><th>pH</th><th>°C</th><th>TDS ppm</th><th>Turb. raw</th></tr></thead>
+        <tbody>${rows || '<tr><td colspan="8">No devices</td></tr>'}</tbody></table></div>
+      <div class="chart-foot"><span>Latest valid value per well and per sensor${st.cfg.operations.useLastKnownValues === false ? ` (window ${st.cfg.operations.freshnessMinutes} min)` : ` · offline after ${st.cfg.operations.freshnessMinutes} min`}</span><span>${esc(S.DISCLAIMER.split('.')[0])}</span></div>`;
   }
 
   /* ========================= page context for the assistant ========================= */
@@ -518,15 +567,16 @@
     if (a) {
       const as = a.assessment;
       ctx.metrics = a.metrics;
-      ctx.assessment = { overall: as.overall, label: as.label, counts: as.counts, params: Object.fromEntries(Object.entries(as.params).map(([k, v]) => [k, { value: v.value, state: v.state, direction: v.direction || null, devices: v.count, devicesOutside: v.outsideDevices.length }])), attentionDevices: as.attentionDevices, disclaimer: as.disclaimer };
+      ctx.assessment = { overall: as.overall, label: as.label, counts: as.counts, params: Object.fromEntries(Object.entries(as.params).map(([k, v]) => [k, { value: v.value, state: v.state, direction: v.direction || null, wells: v.count, devicesOutside: v.outsideDevices.length }])), attentionDevices: as.attentionDevices, disclaimer: as.disclaimer };
       ctx.alerts = a.alerts.slice(0, 20);
-      ctx.devices = a.devices.map((d) => ({ device_id: d.device_id, online: d.online, lastSeen: iso(d.lastSeen), minutesAgo: Math.round(d.ageMs / 60000) }));
+      ctx.wells = a.wells.map((w) => ({ well: w.label, well_id: w.well_id, devices: w.devices, online: w.online, lastSeen: iso(w.lastSeen), latest: Object.fromEntries(S.PARAMS.map((p) => [p, w.fresh[p] ? w.fresh[p].value : null])) }));
+      ctx.devices = a.devices.map((d) => ({ device_id: d.device_id, well_id: d.well_id, online: d.online, lastSeen: iso(d.lastSeen), minutesAgo: Math.round(d.ageMs / 60000) }));
       ctx.deviations = a.deviations;
       ctx.charts = chartDefs().map((c) => {
         const pts = a.series[c.key].points, ds = pts.length > 48 ? Array.from({ length: 48 }, (_, i) => pts[Math.round((i * (pts.length - 1)) / 47)]) : pts;
         return { id: c.key, title: c.title, unit: c.key === 'turbidity_raw' ? 'raw (uncalibrated, not NTU)' : c.unit, bucketMinutes: a.range.bucketMs / 60000, pointCount: pts.length,
           min: pts.length ? Math.min(...pts.map((p) => p.min)) : null, max: pts.length ? Math.max(...pts.map((p) => p.max)) : null,
-          change: S.seriesChange(pts), points: ds.map((p) => ({ t: iso(p.t), median: p.median, min: p.min, max: p.max, devices: p.n })) };
+          change: S.seriesChange(pts), statistic: statName(c.key) + ' across wells', points: ds.map((p) => ({ t: iso(p.t), value: p.value, median: p.median, min: p.min, max: p.max, wells: p.n, devices: p.devices })) };
       });
     }
     return ctx;
@@ -553,7 +603,7 @@
     unmount(); st.device = null; if (st.cfg) recompute();
     H.setContext(() => buildContext('dashboard', 'Groundwater Intelligence Summary', 'Overview'));
     const cfgReady = !!st.cfg;
-    host.innerHTML = `<div class="section-label rise">LIVE SENSOR ANALYTICS <span class="info" title="Readings from the Supabase readings table. One value per device per time bucket, then the median across devices.">i</span>
+    host.innerHTML = `<div class="section-label rise">LIVE SENSOR ANALYTICS <span class="info" title="Readings from the Supabase readings table. Latest reading per well, combined across wells (mean or median depending on the parameter). Refreshed every few seconds.">i</span>
         <span class="sec-right"><span id="sx-updated" class="muted"></span>${cfgReady ? rangeSelect('sx-range') : ''}</span></div>
       <div id="sx-banner"></div>
       <div class="charts4" id="sx-charts">${cfgReady ? chartCardsHTML() : ''}</div>

@@ -149,7 +149,7 @@ test('history: device filter returns that device only, gaps stay gaps', () => {
 });
 
 test('deviation check flags a jump and refuses to judge with too little history', () => {
-  const pts = Array.from({ length: 20 }, (_, i) => ({ t: i, median: 500 + (i % 3) * 5, min: 0, max: 0, n: 1 }));
+  const pts = Array.from({ length: 20 }, (_, i) => ({ t: i, value: 500 + (i % 3) * 5, min: 0, max: 0, n: 1 }));
   assert.equal(S.deviationCheck(pts, 505, cfg.deviation).flag, false);
   const hi = S.deviationCheck(pts, 900, cfg.deviation);
   assert.equal(hi.flag, true);
@@ -167,4 +167,58 @@ test('analyze() ties it together and produces alerts for offline and out-of-rang
   assert.deepEqual(types, ['offline', 'threshold']);
   const one = S.analyze(snap, snap, cfg, NOW, '24h', 'A');
   assert.equal(one.devices.length, 1);
+});
+
+/* ---------- per-well aggregation ---------- */
+test('sensors in the same well are combined first; each well counts once across the network', () => {
+  const rows = [
+    row('A', 2, { well_id: 1, temperature: 20, tds_ppm: 400 }), row('B', 2, { well_id: 1, temperature: 22, tds_ppm: 600 }),  // well 1 -> 21 °C, 500 ppm
+    row('C', 2, { well_id: 2, temperature: 30, tds_ppm: 3000 }),                                                          // well 2
+    row('D', 2, { well_id: 3, temperature: 25, tds_ppm: 700 }),                                                           // well 3
+  ];
+  const devs = S.latestPerDevice(rows, opts);
+  const wells = S.latestPerWell(devs, cfg.aggregation);
+  assert.deepEqual(wells.map((w) => w.label), ['Well 1', 'Well 2', 'Well 3']);
+  assert.equal(wells[0].fresh.temperature.value, 21);
+  assert.equal(wells[0].fresh.tds_ppm.value, 500);
+  const sum = S.summarize(devs, cfg.aggregation);
+  assert.equal(sum.temperature.count, 3);                       // 3 wells, not 4 sensors
+  assert.equal(sum.temperature.devices, 4);
+  assert.equal(sum.temperature.statistic, 'mean');
+  assert.ok(Math.abs(sum.temperature.value - (21 + 30 + 25) / 3) < 1e-9);
+  assert.equal(sum.tds_ppm.statistic, 'median');
+  assert.equal(sum.tds_ppm.value, 700);                         // median(500, 3000, 700): the saline well does not drag it
+  assert.equal(sum.tds_ppm.maxWell, 'Well 2');
+});
+
+test('pH of sensors in one well is averaged on hydrogen-ion activity; wells use the median', () => {
+  const rows = [row('A', 1, { well_id: 1, ph: 6 }), row('B', 1, { well_id: 1, ph: 8 }), row('C', 1, { well_id: 2, ph: 7 }), row('D', 1, { well_id: 3, ph: 7.5 })];
+  const devs = S.latestPerDevice(rows, opts);
+  const w1 = S.latestPerWell(devs, cfg.aggregation)[0];
+  assert.ok(Math.abs(w1.fresh.ph.value - S.phMeanByHydrogen([6, 8])) < 1e-9);   // ≈ 6.30, not 7
+  const sum = S.summarize(devs, cfg.aggregation);
+  assert.equal(sum.ph.value, 7);                                // median(6.30, 7, 7.5)
+});
+
+test('a device follows its latest well_id, and time series group by well', () => {
+  const rows = [row('A', 1, { well_id: 2, temperature: 24 }), row('A', 30, { well_id: 1, temperature: 20 })];
+  assert.equal(S.latestPerDevice(rows, opts)[0].well_id, 2);
+  const s = S.bucketSeries([row('A', 5, { well_id: 1, temperature: 20 }), row('B', 5, { well_id: 1, temperature: 22 }), row('C', 5, { well_id: 2, temperature: 30 })],
+    'temperature', { start: NOW - 3600000, end: NOW, bucketMs: 3600000, validity: cfg.validity, aggregation: cfg.aggregation });
+  assert.equal(s.points.length, 1);
+  assert.equal(s.points[0].n, 2);                               // 2 wells
+  assert.equal(s.points[0].value, (21 + 30) / 2);
+});
+
+test('useLastKnown keeps old readings (flagged stale) while the device still shows offline', () => {
+  const rows = [row('A', 3000, { well_id: 1, temperature: 24.5 })];   // ~2 days old
+  const strict = S.latestPerDevice(rows, opts);
+  assert.equal(strict[0].fresh.temperature, null);
+  const lk = S.latestPerDevice(rows, { ...opts, useLastKnown: true });
+  assert.equal(lk[0].online, false);
+  assert.equal(lk[0].fresh.temperature.value, 24.5);
+  assert.equal(lk[0].fresh.temperature.stale, true);
+  const sum = S.summarize(lk, cfg.aggregation);
+  assert.equal(sum.temperature.value, 24.5);
+  assert.equal(sum.temperature.staleWells, 1);
 });

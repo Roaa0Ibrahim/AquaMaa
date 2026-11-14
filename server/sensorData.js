@@ -6,7 +6,7 @@
 const { createClient } = require('@supabase/supabase-js');
 const { getSupabasePublic } = require('./sensorConfig');
 
-const COLUMNS = 'id,device_id,ph,temperature,tds_ppm,created_at,ph_raw,ph_voltage,turbidity_raw,turbidity_voltage';
+const COLUMNS = 'id,device_id,well_id,ph,temperature,tds_ppm,created_at,ph_raw,ph_voltage,turbidity_raw,turbidity_voltage';
 
 class SensorDataError extends Error {
   constructor(status, code, message, hint) { super(message); this.status = status; this.code = code; this.hint = hint; }
