@@ -71,6 +71,19 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
             }
         }
         web.loadUrl(getString(R.string.dashboard_url))
+        // Pepper's Android 6 browser may be too old for the dashboard's JavaScript: if neither the dashboard nor its
+        // sign-in screen appeared after 12 s, show AquaMaa's simple live page instead (api.py /tablet)
+        web.postDelayed({
+            web.evaluateJavascript(
+                "(function(){var v=document.getElementById('view'),l=document.getElementById('login');" +
+                "return !!((v&&v.children.length)||(l&&!l.hidden));})()"
+            ) { shown ->
+                if (shown != "true") {
+                    status("Dashboard didn't render on this tablet; showing AquaMaa's live page")
+                    web.loadUrl(AgentClient.baseUrl.trimEnd('/') + "/tablet")
+                }
+            }
+        }, 12000)
     }
 
     /** The caption bar: what Pepper is saying right now (answers and alerts), for the room to read. */

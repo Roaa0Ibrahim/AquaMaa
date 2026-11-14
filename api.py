@@ -22,9 +22,11 @@ from typing import Optional
 import httpx
 from fastapi import FastAPI, Header, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, Field
 
 from clean_transcript import clean
+from tablet import PAGE, live_summary
 from transcribe import transcribe
 
 import dashboard
@@ -45,6 +47,7 @@ app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:3000", "http
                    allow_methods=["GET", "POST"], allow_headers=["Content-Type"])
 one_at_a_time = asyncio.Lock()
 watcher = AlertWatcher(lang=ALERT_LANGUAGE)
+latest = {"grounding": None}                           # the dashboard's live data, refreshed by the alert watcher
 
 
 async def watch_alerts():
@@ -53,6 +56,7 @@ async def watch_alerts():
     while True:
         try:
             grounding = await asyncio.to_thread(dashboard.grounding)
+            latest["grounding"] = grounding                # for Pepper's tablet page (/live)
             for m in watcher.process(grounding):
                 log.info("ALERT     %s %s: %s", m["kind"], m["id"], m["text"])
             failed = False
@@ -128,6 +132,24 @@ def sources_of(answer):
         if label.lower() != "general knowledge" and not label.isdigit() and label not in seen:
             seen.append(label)
     return seen
+
+
+@app.get("/tablet", response_class=HTMLResponse)
+def tablet_page():
+    """A simple live sensor page for Pepper's tablet, for when its old browser can't show Deema's dashboard."""
+    return PAGE
+
+
+@app.get("/live")
+async def live_now():
+    """The tablet page's data: current readings, status, the salinity series and the latest alert."""
+    g = latest["grounding"]
+    if g is None:
+        try:
+            g = latest["grounding"] = await asyncio.to_thread(dashboard.grounding)
+        except Exception:
+            g = {}
+    return live_summary(g, list(watcher.messages))
 
 
 @app.get("/health")
