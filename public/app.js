@@ -447,6 +447,8 @@
       <div class="glance">
         <article class="card kpi sensor k4 rise" data-sensor-kpi="ph" ${dl()}></article>
         <article class="card kpi sensor k2 rise" data-sensor-kpi="temperature" ${dl()}></article>
+        <article class="card kpi sensor k3 rise" data-sensor-kpi="tds_ppm" ${dl()}></article>
+        <article class="card kpi sensor k6 rise" data-sensor-kpi="turbidity_raw" ${dl()}></article>
         <article class="card kpi k3 rise" ${dl()}><div class="k-head"><span class="k-ico blue">${icon('drop')}</span>${esc(t('Registered wells'))}</div>
           <div class="k-body"><div><div class="big">${num(d.wells.count)}</div><div class="unit">wells</div></div><div class="minibars"><i style="width:100%"></i><i style="width:45%;opacity:.55"></i></div></div>
           <div class="k-foot">${statusTag(d.wells.status)}</div></article>
@@ -455,8 +457,6 @@
             <div class="dots" aria-hidden="true">${Array.from({ length: d.stations.count }, (_, i) => `<i class="${i < d.stations.active ? '' : 'off'}" style="animation-delay:${200 + i * 70}ms"></i>`).join('')}</div></div>
           <div class="k-foot">${tag(`${d.stations.active} active`, 'green')}${tag(covTag, 'grey')}</div></article>
         <article class="card kpi sensor k5 rise" data-sensor-kpi="wq" ${dl()}></article>
-        <article class="card kpi sensor k3 rise" data-sensor-kpi="tds_ppm" ${dl()}></article>
-        <article class="card kpi sensor k6 rise" data-sensor-kpi="turbidity_raw" ${dl()}></article>
       </div>
 
       <div class="row2">
