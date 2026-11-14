@@ -104,8 +104,10 @@ def live_reading(question, grounding, arabic):
     if not grounding:
         return None                                   # outside the website there is no live reading
     tds, ph = live_value(grounding, "tds"), live_value(grounding, "ph")
-    if tds is None and ph is None:
-        return None     # no fresh value: answer.py says so simply (13 Nov: 7 dashboard lines became a confusing answer)
+    if (tds is None and ph is None) or all_offline(grounding):
+        # no current value: answer.py says so simply, with the last known value and its age (14 Nov: the dashboard
+        # now gives the last known value even when the sensor is offline; it must not be told as current)
+        return None
     lines = live_lines(grounding)
     for use in ("drinking", "irrigation"):
         if tds is not None:
@@ -113,6 +115,11 @@ def live_reading(question, grounding, arabic):
         if ph is not None:
             lines.append(meaning("ph", use, ph, arabic))
     return [x for x in lines if x]
+
+
+def all_offline(grounding):
+    devices = (((grounding or {}).get("live") or {}).get("devices")) or []
+    return bool(devices) and not any(d.get("online") for d in devices)
 
 
 def no_reading(grounding, arabic):
@@ -127,6 +134,12 @@ def no_reading(grounding, arabic):
     else:
         lines = ["[live sensors] لا تتوفر الآن قراءة مباشرة من حساس البئر." if arabic
                  else "[live sensors] No live reading from the well sensor is available right now."]
+    tds = live_value(grounding, "tds")
+    if tds is not None and isinstance(ago, (int, float)):
+        when = f"{round(ago / 60)} ساعة" if ago >= 90 else f"{ago} دقيقة"
+        lines.append(f"[live sensors] آخر قراءة معروفة للملوحة كانت {_fmt(tds)} جزء في المليون، قبل حوالي {when}."
+                     if arabic else f"[live sensors] The last known salinity reading was {_fmt(tds)} ppm, about "
+                     + (f"{round(ago / 60)} hours" if ago >= 90 else f"{ago} minutes") + " ago.")
     if devices:
         lines.append("[live sensors] تأكد أن الحساس موصول بالكهرباء وبشبكة الواي فاي." if arabic
                      else "[live sensors] Check that the sensor has power and is connected to Wi-Fi.")
@@ -151,7 +164,12 @@ def trend(question, grounding, arabic):
     line = (f"[live sensors history] Over {grounding.get('dateRange', 'the selected period')}, TDS {direction} from "
             f"{_fmt(first['median'])} ppm ({first['t'][11:16]} UTC) to {_fmt(last['median'])} ppm "
             f"({last['t'][11:16]} UTC), a change of {change:+.0f} ppm" + (f" ({pct:+.0f}%)." if pct is not None else "."))
-    return [line, meaning("tds", "irrigation", last["median"], arabic)]
+    lines = [line, meaning("tds", "irrigation", last["median"], arabic)]
+    if all_offline(grounding):
+        # 14 Nov: "the current salinity is 92" was said from a 2-hour-old point while the sensor was offline
+        lines.insert(0, "[live sensors] The well sensor is offline now, so the latest point above is its last known "
+                        "reading, not a current one.")
+    return lines
 
 
 def suitability(question, grounding, arabic):
@@ -308,16 +326,20 @@ def page(question, grounding, arabic):
                      + (f"; the latest reading is {newest} minutes old" if newest is not None else "") + f" {tag}.")
     # Current values, and what they mean (meanings.csv, the same as the live-reading answers)
     tds, temp = live_value(grounding, "tds"), live_value(grounding, "temperature")
+    now = "last known" if all_offline(grounding) else "now"
+    if all_offline(grounding):
+        lines.append(f"The sensors are offline, so the values below are the last known readings, not current ones "
+                     f"{tag}.")
     if tds is not None:
         ref = (((grounding.get("thresholds") or {}).get("tds_ppm") or {}).get("reference") or {}).get("max")
-        lines.append(f"Salinity (TDS) now: {_fmt(tds)} ppm" + (f", within the dashboard's reference limit of "
+        lines.append(f"Salinity (TDS) {now}: {_fmt(tds)} ppm" + (f", within the dashboard's reference limit of "
                      f"{_fmt(ref)}" if ref and tds <= ref else f", above the dashboard's reference limit of {_fmt(ref)}"
                      if ref else "") + f" {tag}.")
         lines += [m for m in (meaning("tds", "drinking", tds, arabic), meaning("tds", "irrigation", tds, arabic)) if m]
     if temp is not None:
-        lines.append(f"Water temperature now: {_fmt(temp)} °C {tag}.")
+        lines.append(f"Water temperature {now}: {_fmt(temp)} °C {tag}.")
     ph = live_value(grounding, "ph")
-    lines.append(f"pH now: {_fmt(ph)} {tag}." if ph is not None else f"pH: no valid reading in this period {tag}.")
+    lines.append(f"pH {now}: {_fmt(ph)} {tag}." if ph is not None else f"pH: no valid reading in this period {tag}.")
     # The charts: how each value changed over the period
     for key, s in ((live.get("series") or {}).items()):
         pts = [p for p in (s or {}).get("points") or [] if isinstance(p.get("median"), (int, float))]
