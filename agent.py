@@ -26,6 +26,7 @@ import ollama
 from langgraph.graph import END, START, StateGraph
 
 from agent_log import log
+from arabic_text import arabic_only
 from config import FAST, MAX_REPAIRS, MAX_TOOL_ROUNDS
 from fastpath.answer import fast_answer
 from prompts import MODEL_DOWN, localize
@@ -104,7 +105,7 @@ def ask(question: str, save_trace: bool = True, role: str | None = None, groundi
                           simplified=False, simplify_note="",
                           trace=[{"step": "result", "tool": "fast_facts", "text": "\n".join(fast["facts"])}],
                           seconds=round(time.time() - start, 1))
-            save(result, save_trace)
+            save(arabic_answer(result), save_trace)
             return result
     try:
         final = app.invoke({"question": question, "persona": persona, "grounding": grounding or {},
@@ -128,7 +129,7 @@ def ask(question: str, save_trace: bool = True, role: str | None = None, groundi
             if again["route"].get("in_scope"):
                 again["answer"] = understood_note(intended, asked) + again["answer"]
                 again.update(question=asked, understood=intended, seconds=round(time.time() - start, 1))
-                save(again, save_trace)
+                save(arabic_answer(again), save_trace)
                 return again
     figures = final.get("figures") or []
     answer = (final.get("final") or final["messages"][-1].content).strip()
@@ -142,7 +143,7 @@ def ask(question: str, save_trace: bool = True, role: str | None = None, groundi
                   checked_answer=final.get("checked_answer"), simplified=final.get("simplified", False),
                   simplify_note=final.get("simplify_note", ""),
                   seconds=round(time.time() - start, 1), path="deep")
-    save(result, save_trace)
+    save(arabic_answer(result), save_trace)
     return result
 
 
@@ -153,6 +154,15 @@ def understood_note(guessed, asked):
     if any("؀" <= ch <= "ۿ" for ch in asked):
         return f"فهمت سؤالك على أنه: «{guessed}»\n\n"
     return f"I understood your question as: \"{guessed}\"\n\n"
+
+
+def arabic_answer(result):
+    """An Arabic question gets an answer in Arabic only (arabic_text.py); the original, with its source tags, is kept
+    as tagged_answer for the website's source list."""
+    if "tagged_answer" not in result and any("؀" <= ch <= "ۿ" for ch in result.get("question", "")):
+        result["tagged_answer"] = result["answer"]
+        result["answer"] = arabic_only(result["answer"])
+    return result
 
 
 def save(result, save_trace):

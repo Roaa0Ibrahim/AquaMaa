@@ -14,6 +14,8 @@ import sys
 
 import edge_tts
 
+from arabic_text import speakable_ar
+
 VOICES = {"ar": os.environ.get("AQUAMAA_VOICE_AR", "ar-QA-AmalNeural"),
           "en": os.environ.get("AQUAMAA_VOICE_EN", "en-GB-SoniaNeural")}
 RATE = {"ar": "-5%", "en": "+0%"}          # Arabic a little slower, easier to follow
@@ -26,6 +28,8 @@ def language_of(text):
 async def speak(text, lang=None):
     """MP3 bytes of the text in the most natural voice for its language."""
     lang = lang if lang in VOICES else language_of(text)
+    if lang == "ar":
+        text = speakable_ar(text)              # units said as words: ملغم/لتر -> مليغرام لكل لتر (arabic_text.py)
     audio = bytearray()
     async for chunk in edge_tts.Communicate(text, VOICES[lang], rate=RATE[lang]).stream():
         if chunk.get("type") == "audio":

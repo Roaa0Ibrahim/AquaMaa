@@ -197,7 +197,7 @@ async def ask_endpoint(q: Question, x_aquamaa_key: Optional[str] = Header(defaul
         r = await asyncio.to_thread(ask, question, True, q.role, grounding)
     return {
         "answer": r["answer"],
-        "sources": sources_of(r["answer"]),
+        "sources": sources_of(r.get("tagged_answer") or r["answer"]),
         "key_figures": r.get("key_figures", []),
         "type": r["route"].get("question_type"),
         "in_scope": r["route"].get("in_scope"),
