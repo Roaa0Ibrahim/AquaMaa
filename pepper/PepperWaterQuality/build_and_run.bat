@@ -12,6 +12,8 @@ set APP_ID=com.example.pepperwater
 cd /d "%~dp0"
 set ADB=%LOCALAPPDATA%\Android\Sdk\platform-tools\adb.exe
 if not exist local.properties echo sdk.dir=%LOCALAPPDATA:\=\\%\\Android\\Sdk> local.properties
+REM Java 17 first: Gradle 8.13 can't run on the Java 25 that new Android Studio versions bring (14 Nov)
+if exist "C:\Program Files\Eclipse Adoptium\jdk-17.0.21.9-hotspot" set "JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.21.9-hotspot"
 if not defined JAVA_HOME if exist "C:\Program Files\Android\Android Studio\jbr" set "JAVA_HOME=C:\Program Files\Android\Android Studio\jbr"
 (
 echo JAVA_HOME=%JAVA_HOME%

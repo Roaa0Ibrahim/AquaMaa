@@ -117,8 +117,8 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
             val topic = TopicBuilder.with(qiContext).withResource(R.raw.water_quality).build()
             val executors = HashMap<String, QiChatExecutor>()
             executors["ask"] = AskExecutor(qiContext, english) { status(it) }
-            val chatbot = QiChatbotBuilder.with(qiContext).withTopic(topic).withLocale(english)
-                .withExecutors(executors).build()
+            val chatbot = QiChatbotBuilder.with(qiContext).withTopic(topic).withLocale(english).build()
+            chatbot.executors = executors          // QiSDK 1.7.5: set after build (the builder has no withExecutors)
             val c = ChatBuilder.with(qiContext).withChatbot(chatbot).withLocale(english).build()
             c.addOnStartedListener { status("Listening... ask me about the water") }
             c.addOnHeardListener { phrase -> runOnUiThread { heardView.text = "You asked: \"${phrase.text}\"" } }

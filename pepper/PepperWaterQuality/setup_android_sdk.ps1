@@ -22,7 +22,12 @@ if (-not (Test-Path (Join-Path $tools "bin\sdkmanager.bat"))) {
 }
 $sdkmanager = Join-Path $tools "bin\sdkmanager.bat"
 Write-Host "Accepting the SDK licences..."
-"y`ny`ny`ny`ny`ny`ny`ny`n" | & $sdkmanager --sdk_root=$sdk --licenses | Out-Null
+# Piping "y" into sdkmanager doesn't reach it from PowerShell (14 Nov), so the accepted-licence file is written
+# directly, as build servers do
+$licences = Join-Path $sdk "licenses"
+New-Item -ItemType Directory -Force $licences | Out-Null
+Set-Content -Encoding ascii (Join-Path $licences "android-sdk-license") `
+    "`n24333f8a63b6825ea9c5514f83c2829b004d1fee`nd56f5187479451eabf01fb78af6dfcb131a6481e`n8933bad161af4178b1185d1a37fbf41ea5269c55"
 Write-Host "Installing platform-tools (adb), Android 34 and build-tools 34 (a few minutes)..."
 & $sdkmanager --sdk_root=$sdk "platform-tools" "platforms;android-34" "build-tools;34.0.0"
 Write-Host "Done. adb: $(Join-Path $sdk 'platform-tools\adb.exe')"
