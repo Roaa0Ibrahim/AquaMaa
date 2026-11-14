@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AquaMaa</string>
     <!-- The laptop running python api.py, on Pepper's Wi-Fi. scripts\start_for_pepper.ps1 prints the address to use. -->
-    <string name="agent_url">http://192.168.8.113:8000</string>
+    <string name="agent_url">http://192.168.8.109:8000</string>
     <!-- Deema's dashboard on the same laptop (port 3000), shown on the tablet. Sign in once on the tablet. -->
-    <string name="dashboard_url">http://192.168.8.113:3000/#/dashboard</string>
+    <string name="dashboard_url">http://192.168.8.109:3000/#/dashboard</string>
 </resources>

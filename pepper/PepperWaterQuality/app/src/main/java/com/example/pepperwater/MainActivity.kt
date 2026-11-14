@@ -54,9 +54,64 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
         statusView = findViewById(R.id.status)
         heardView = findViewById(R.id.heard)
         answerView = findViewById(R.id.answer)
-        AgentClient.baseUrl = getString(R.string.agent_url)
+        // The laptop's address: the last one that worked (saved on the tablet), else the one built in; checked at
+        // start, and found again on the network if it doesn't answer. Tap the yellow line to type one by hand.
+        val saved = getSharedPreferences("aquamaa", MODE_PRIVATE).getString("laptop_host", null)
+        useLaptop(saved ?: android.net.Uri.parse(getString(R.string.agent_url)).host ?: "192.168.8.100", save = false)
+        statusView.setOnClickListener { askForAddress() }
         showDashboard()
+        findLaptop()
         QiSDK.register(this, this)
+    }
+
+    @Volatile private var laptop = ""
+    @Volatile private var searching = false
+    private val dashboardUrl get() = "http://$laptop:3000/#/dashboard"
+
+    private fun useLaptop(host: String, save: Boolean = true) {
+        laptop = host.trim()
+        AgentClient.baseUrl = "http://$laptop:8000"
+        if (save) getSharedPreferences("aquamaa", MODE_PRIVATE).edit().putString("laptop_host", laptop).apply()
+    }
+
+    /** Checks the laptop's address; if AquaMaa doesn't answer there, looks for it on this Wi-Fi and reloads. */
+    private fun findLaptop() {
+        if (searching) return
+        searching = true
+        Thread {
+            try {
+                if (LaptopFinder.healthy(laptop)) return@Thread
+                status("Looking for the AquaMaa laptop on this Wi-Fi…")
+                val found = LaptopFinder.find()
+                if (found != null) {
+                    useLaptop(found)
+                    status("Found AquaMaa at $found")
+                    runOnUiThread { findViewById<WebView>(R.id.dashboard).loadUrl(dashboardUrl) }
+                } else {
+                    status("AquaMaa laptop not found on this Wi-Fi. Is it on HUAWEI-89AB? Tap here to type its address.")
+                }
+            } finally {
+                searching = false
+            }
+        }.start()
+    }
+
+    /** Tap the yellow line: type the laptop's address by hand (the backup). */
+    private fun askForAddress() {
+        val input = android.widget.EditText(this)
+        input.setText(laptop)
+        android.app.AlertDialog.Builder(this)
+            .setTitle("AquaMaa laptop address")
+            .setMessage("The address scripts\\start_for_pepper.ps1 prints, such as 192.168.8.109")
+            .setView(input)
+            .setPositiveButton("Use") { _, _ ->
+                useLaptop(input.text.toString())
+                findViewById<WebView>(R.id.dashboard).loadUrl(dashboardUrl)
+                status("Using AquaMaa at $laptop")
+            }
+            .setNeutralButton("Search again") { _, _ -> findLaptop() }
+            .setNegativeButton("Cancel", null)
+            .show()
     }
 
     @Suppress("DEPRECATION")
@@ -84,11 +139,12 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean = false   // stay in the app
             @Suppress("OverridingDeprecatedMember")
             override fun onReceivedError(view: WebView, code: Int, description: String?, failingUrl: String?) {
-                status("Dashboard not reachable ($description); retrying in 10 s")
-                view.postDelayed({ view.loadUrl(getString(R.string.dashboard_url)) }, 10000)
+                status("Dashboard not reachable ($description); looking for the laptop again")
+                findLaptop()                                  // the laptop's address may have changed
+                view.postDelayed({ view.loadUrl(dashboardUrl) }, 10000)
             }
         }
-        web.loadUrl(getString(R.string.dashboard_url))
+        web.loadUrl(dashboardUrl)
         // Pepper's Android 6 browser may be too old for the dashboard's JavaScript: if neither the dashboard nor its
         // sign-in screen appeared after 12 s, show AquaMaa's simple live page instead (api.py /tablet)
         web.postDelayed({
@@ -200,7 +256,7 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
                     }
                     reported = false
                 } catch (e: Exception) {
-                    if (!reported) status("Can't reach AquaMaa for alerts: ${e.message}")
+                    if (!reported) { status("Can't reach AquaMaa for alerts: ${e.message}"); findLaptop() }
                     reported = true
                 }
                 try { Thread.sleep(3000) } catch (e: InterruptedException) { break }
