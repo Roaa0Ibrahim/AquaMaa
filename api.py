@@ -22,12 +22,13 @@ from typing import Optional
 import httpx
 from fastapi import FastAPI, Header, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, Response
 from pydantic import BaseModel, Field
 
 from clean_transcript import clean
 from tablet import PAGE, live_summary
 from transcribe import transcribe
+from voice import speak
 
 import dashboard
 from agent import ask
@@ -132,6 +133,22 @@ def sources_of(answer):
         if label.lower() != "general knowledge" and not label.isdigit() and label not in seen:
             seen.append(label)
     return seen
+
+
+class Spoken(BaseModel):
+    text: str = Field(min_length=1, max_length=3000)
+    lang: Optional[str] = Field(default=None, max_length=2)
+
+
+@app.post("/speak")
+async def speak_answer(s: Spoken):
+    """An answer as MP3 in a natural neural voice (voice.py; Qatari Arabic or English). No model, no queue."""
+    try:
+        audio = await speak(s.text, s.lang)
+    except Exception as error:                              # no internet or the voice service failed
+        log.info("VOICE     failed (%s); the website uses the browser's voice", error)
+        raise HTTPException(502, "Voice service unavailable")
+    return Response(content=audio, media_type="audio/mpeg")
 
 
 @app.get("/tablet", response_class=HTMLResponse)
