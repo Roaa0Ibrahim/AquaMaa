@@ -5,7 +5,7 @@ const { getSensorConfig } = require('./sensorConfig');
 const { fetchSnapshotRows, fetchHistoryRows, SensorDataError } = require('./sensorData');
 const model = require('./assistant-model');
 
-const PAGES = ['dashboard', 'map', 'wells', 'quality', 'extraction', 'aquifer', 'risk', 'resilience', 'alternatives', 'predictive', 'research', 'sustainability', 'reports', 'notifications', 'settings'];
+const PAGES = ['farm', 'dashboard', 'map', 'wells', 'quality', 'extraction', 'aquifer', 'risk', 'resilience', 'alternatives', 'predictive', 'research', 'sustainability', 'reports', 'notifications', 'settings'];
 const DEVICE_RE = /^[\w.:\-/ #]{1,100}$/;   // only ever used as an equality filter, never in SQL
 const MAX_MESSAGE = 2000;
 
