@@ -416,8 +416,11 @@ table.wq-table td:last-child { white-space: normal; min-width: 96px; }
 .well-vals .big { font-size: 22px; }
 .well-trend { display: flex; flex-direction: column; gap: 2px; }
 .well-trend .spark { width: 100%; height: 48px; }
-.well-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-.well-foot .btn { height: 32px; padding: 0 12px; font-size: 12.5px; }
+.well-trend .line-path { stroke-dashoffset: 0; transition: none; }   /* shown at once: the card redraws every 5 s */
+.well-trend .line-area { opacity: 1; transition: none; }
+.well-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-top: auto; }
+.well-foot .unit { white-space: normal; flex: 1 1 180px; min-width: 0; margin-top: 0; }
+.well-foot .btn { height: 32px; padding: 0 14px; font-size: 12.5px; flex: none; white-space: nowrap; }
 .well-del { position: absolute; top: 8px; right: 10px; border: 0; background: none; color: var(--muted); font-size: 20px; cursor: pointer; }
 .farm-add { margin-top: 16px; }
 .farm-form { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; margin-top: 10px; }
