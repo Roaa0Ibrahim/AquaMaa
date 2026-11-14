@@ -23,7 +23,14 @@
   let heard = '';
   let lastWasSpoken = false;
 
-  function stopSpeaking() { if (window.speechSynthesis) window.speechSynthesis.cancel(); }
+  // Answers are spoken in a natural neural voice from the AquaMaa service (POST /speak: Qatari Arabic or English);
+  // the browser's own voice is the fallback when the service can't be reached
+  const SPEAK_URL = 'http://127.0.0.1:8000/speak';
+  let audio = null;
+  function stopSpeaking() {
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+    if (audio) { try { audio.pause(); } catch (e) { /* already stopped */ } audio = null; }
+  }
 
   // Stop speaking when the chat closes or is minimised (assistant.js removes the aq-open class from <body>)
   new MutationObserver(() => { if (!document.body.classList.contains('aq-open')) stopSpeaking(); })
@@ -219,6 +226,20 @@
     const say = speakable(text);
     if (!say) return;
     const arabic = /[؀-ۿ]/.test(say);
+    stopSpeaking();
+    fetch(SPEAK_URL, { method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ text: say.slice(0, 3000), lang: arabic ? 'ar' : 'en' }), signal: AbortSignal.timeout(15000) })
+      .then((r) => (r.ok ? r.blob() : Promise.reject(new Error('voice service ' + r.status))))
+      .then((blob) => {
+        if (!document.body.classList.contains('aq-open')) return;   // the chat was closed meanwhile
+        stopSpeaking();
+        audio = new Audio(URL.createObjectURL(blob));
+        return audio.play();
+      })
+      .catch((e) => { console.warn('Natural voice unavailable, using the browser voice:', e); browserVoice(say, arabic); });
+  };
+
+  function browserVoice(say, arabic) {
     const u = new SpeechSynthesisUtterance(say);
     const voice = bestVoice(arabic);
     u.lang = voice ? voice.lang : (arabic ? 'ar-QA' : 'en-US');
