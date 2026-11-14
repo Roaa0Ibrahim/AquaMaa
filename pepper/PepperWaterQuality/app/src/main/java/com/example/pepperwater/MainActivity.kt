@@ -2,6 +2,9 @@ package com.example.pepperwater
 
 import android.os.Bundle
 import android.util.Log
+import android.webkit.CookieManager
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.TextView
 import com.aldebaran.qi.Future
 import com.aldebaran.qi.sdk.QiContext
@@ -25,7 +28,7 @@ import com.aldebaran.qi.sdk.`object`.locale.Region
  *     the AquaMaa agent on the laptop (AskExecutor), and Pepper speaks the answer.
  *  2. Speaks alerts without being asked: a background thread asks the agent for new alerts every 3 seconds
  *     (GET /alerts); for each one Pepper pauses listening, says it, and listens again.
- *  3. Shows on the tablet what it heard and what it is doing, for debugging.
+ *  3. Shows on the tablet the live dashboard (dashboard_url), and below it what it heard and what it is saying.
  * The laptop's address is agent_url in res/values/strings.xml.
  */
 class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
@@ -38,14 +41,41 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
     private val english = Locale(Language.ENGLISH, Region.UNITED_STATES)
     private lateinit var statusView: TextView
     private lateinit var heardView: TextView
+    private lateinit var answerView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         statusView = findViewById(R.id.status)
         heardView = findViewById(R.id.heard)
+        answerView = findViewById(R.id.answer)
         AgentClient.baseUrl = getString(R.string.agent_url)
+        showDashboard()
         QiSDK.register(this, this)
+    }
+
+    /** The live dashboard on the tablet. It stays signed in (cookies), and reloads if the laptop wasn't ready. */
+    private fun showDashboard() {
+        val web = findViewById<WebView>(R.id.dashboard)
+        web.settings.javaScriptEnabled = true
+        web.settings.domStorageEnabled = true
+        web.settings.useWideViewPort = true
+        web.settings.loadWithOverviewMode = true
+        CookieManager.getInstance().setAcceptCookie(true)
+        web.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean = false   // stay in the app
+            @Suppress("OverridingDeprecatedMember")
+            override fun onReceivedError(view: WebView, code: Int, description: String?, failingUrl: String?) {
+                status("Dashboard not reachable ($description); retrying in 10 s")
+                view.postDelayed({ view.loadUrl(getString(R.string.dashboard_url)) }, 10000)
+            }
+        }
+        web.loadUrl(getString(R.string.dashboard_url))
+    }
+
+    /** The caption bar: what Pepper is saying right now (answers and alerts), for the room to read. */
+    private fun caption(text: String) {
+        runOnUiThread { answerView.text = text }
     }
 
     override fun onDestroy() {
@@ -61,6 +91,8 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
             f.appendText("$time  $text\n")
         } catch (e: Throwable) { }
         runOnUiThread { statusView.text = text }
+        if (text.startsWith("Answer: ")) caption(text.removePrefix("Answer: "))
+        if (text.startsWith("Alert: ")) caption("⚠ " + text.removePrefix("Alert: "))
     }
 
     override fun onRobotFocusGained(qiContext: QiContext) {
@@ -76,7 +108,7 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
                 .withExecutors(executors).build()
             val c = ChatBuilder.with(qiContext).withChatbot(chatbot).withLocale(english).build()
             c.addOnStartedListener { status("Listening... ask me about the water") }
-            c.addOnHeardListener { phrase -> runOnUiThread { heardView.text = "Heard: \"${phrase.text}\"" } }
+            c.addOnHeardListener { phrase -> runOnUiThread { heardView.text = "You asked: \"${phrase.text}\"" } }
             c.addOnNoPhraseRecognizedListener {
                 runOnUiThread { heardView.text = "Heard something, but did not understand" }
             }
