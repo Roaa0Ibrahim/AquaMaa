@@ -19,6 +19,8 @@ if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
     exit
 }
 
+Start-Transcript -Path (Join-Path (Split-Path $PSScriptRoot) "logs\static_ip.log") -Append | Out-Null
+
 function Automatic {
     netsh interface ipv4 set address name="$adapter" source=dhcp | Out-Null
     netsh interface ipv4 set dnsservers name="$adapter" source=dhcp | Out-Null
@@ -27,17 +29,24 @@ function Automatic {
 
 if ($Off) { Automatic; Start-Sleep 3; exit }
 
-$ssid = (netsh wlan show interfaces | Select-String "^\s+SSID\s+:" | Select-Object -First 1).Line -replace '.*:\s*', ''
-if ($ssid -ne "HUAWEI-89AB") { Write-Host "The laptop is on '$ssid', not HUAWEI-89AB: nothing changed."; Start-Sleep 5; exit 1 }
+# Pepper's router, whatever name its Wi-Fi shows (14 Nov: the same router appeared as HUAWEI-89AB and HUAWEI-8983)
+$onPepper = Get-NetIPAddress -InterfaceAlias $adapter -AddressFamily IPv4 -ErrorAction SilentlyContinue |
+    Where-Object { $_.IPAddress -like "192.168.8.*" }
+if (-not $onPepper -or -not (Test-Connection $gateway -Count 1 -Quiet)) {
+    Write-Host "The laptop isn't on Pepper's network (192.168.8.x with the router at $gateway): nothing changed."; Start-Sleep 5; exit 1 }
 
 Write-Host "Setting $ip on $adapter (gateway $gateway)..."
 netsh interface ipv4 set address name="$adapter" static $ip 255.255.255.0 $gateway | Out-Null
 netsh interface ipv4 set dnsservers name="$adapter" static $gateway primary | Out-Null
 netsh interface ipv4 add dnsservers name="$adapter" 8.8.8.8 index=2 | Out-Null
-Start-Sleep 6
-
-$router = Test-Connection $gateway -Count 2 -Quiet
-$internet = Test-Connection 8.8.8.8 -Count 2 -Quiet
+# Windows needs a few seconds to reconnect with the new address (14 Nov: a check after 6 s failed and rolled back):
+# try the router for up to 30 s
+$router = $false
+for ($i = 0; $i -lt 15 -and -not $router; $i++) {
+    Start-Sleep 2
+    $router = (ping -n 1 -w 1000 $gateway | Select-String "TTL=") -ne $null
+}
+$internet = (ping -n 1 -w 2000 8.8.8.8 | Select-String "TTL=") -ne $null
 if (-not $router) {
     Write-Host "The router didn't answer at ${ip}: going back to automatic."
     Automatic; Start-Sleep 5; exit 1
