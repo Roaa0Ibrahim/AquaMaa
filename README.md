@@ -41,7 +41,7 @@ Our key word is **trust**:
 
 | Where | What |
 |---|---|
-| **this branch** (`main` / `milestone-6`) | The **AquaMaa AI** (`agent.py`, `api.py`, `fastpath/`, `steps/`), the knowledge base (`database/`), the **Pepper app** (`pepper/PepperWaterQuality`), the **sensor firmware** (`sensor/AquaNova.ino`), tests, scripts and guides |
+| **this branch** (`main` / `milestone-6`) | The **AquaMaa AI** (`agent.py`, `api.py`, `fastpath/`, `steps/`), the knowledge base (`database/`), the **Pepper app** (`pepper/PepperWaterQuality`), the **sensor firmware** (`sensor/AquaNova.ino`) and its **calibration record** ([sensor/SENSOR_CALIBRATION.md](sensor/SENSOR_CALIBRATION.md)), tests, scripts and guides |
 | branch **`deema-development`** | The **website**: dashboard, farmer view, alerts, Telegram bot, Supabase schema (`server/`, `public/`, `config/thresholds.json`, `supabase/`) |
 | **Release** `v1.0-submission` | One zip with everything: AI, website, Pepper app (APK) and sensor firmware |
 
