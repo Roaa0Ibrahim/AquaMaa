@@ -189,8 +189,12 @@ def drink_answer(g):
     if v > limit:
         return (f"{said} No, the water is not drinkable: above {limit:g} parts per million it is too salty to drink "
                 f"without treatment.")
-    return (f"{said} By salinity, the water is drinkable, below the limit of {limit:g}. A laboratory test is still "
-            f"needed to confirm it is safe.")
+    if ph is not None and not (6.5 <= ph <= 8.5):
+        # 15 Nov: "drinkable" was said from the salinity while the pH was 9.2 (6.5-8.5: thresholds.json neutralBand)
+        return (f"{said} No, do not drink it: the pH is outside the drinking range of 6.5 to 8.5. Check the sensor, "
+                f"and test the water in a laboratory.")
+    return (f"{said} The salinity and pH are within the drinking limits, but sensors alone can't show the water is "
+            f"safe: a laboratory test is needed before drinking it.")
 
 
 @app.get("/pepper/now")
