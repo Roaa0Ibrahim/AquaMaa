@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 560" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10z" fill="#0b2a4a"/></marker>
+    <filter id="s" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0a5069" flood-opacity=".15"/></filter>
+  </defs>
+  <rect width="1600" height="560" fill="#ffffff"/>
+  <text x="800" y="60" text-anchor="middle" font-size="38" font-weight="700" fill="#0b2a4a">When a well turns salty: from the sample to everyone who needs to know</text>
+  <!-- timeline -->
+  <line x1="120" y1="300" x2="1480" y2="300" stroke="#dfeef4" stroke-width="14" stroke-linecap="round"/>
+  <g filter="url(#s)">
+    <circle cx="200" cy="300" r="46" fill="#e0f6f5" stroke="#12bfb7" stroke-width="4"/>
+    <circle cx="530" cy="300" r="46" fill="#e0edfb" stroke="#2f80ed" stroke-width="4"/>
+    <circle cx="860" cy="300" r="46" fill="#fff1d0" stroke="#e08a00" stroke-width="4"/>
+    <circle cx="1190" cy="300" r="46" fill="#fde4e4" stroke="#dc2626" stroke-width="4"/>
+    <circle cx="1440" cy="300" r="46" fill="#dcf5e6" stroke="#16a34a" stroke-width="4"/>
+  </g>
+  <g font-size="30" font-weight="800" text-anchor="middle" fill="#0b2a4a"><text x="200" y="311">1</text><text x="530" y="311">2</text><text x="860" y="311">3</text><text x="1190" y="311">4</text><text x="1440" y="311">5</text></g>
+  <g font-size="22" font-weight="700" fill="#0b2a4a" text-anchor="middle">
+    <text x="200" y="200">Salt in the sample</text><text x="530" y="200">Reading saved</text><text x="860" y="200">Dashboard updates</text>
+    <text x="1190" y="200">Alert raised</text><text x="1440" y="200">People told</text>
+  </g>
+  <g font-size="17" fill="#33505f" text-anchor="middle">
+    <text x="200" y="390">the probe measures</text><text x="200" y="414">salinity rising</text>
+    <text x="530" y="390">ESP32 -> Wi-Fi -></text><text x="530" y="414">database, with its time</text>
+    <text x="860" y="390">within about 5 s,</text><text x="860" y="414">gauges and charts move</text>
+    <text x="1190" y="390">above the limit: warning;</text><text x="1190" y="414">above 2,000 ppm: urgent</text>
+    <text x="1440" y="390">Pepper speaks it,</text><text x="1440" y="414">farmer gets Telegram</text>
+  </g>
+  <g stroke="#0b2a4a" stroke-width="3" fill="none" marker-end="url(#a)"><path d="M250 300h228"/><path d="M580 300h228"/><path d="M910 300h228"/><path d="M1240 300h148"/></g>
+  <rect x="300" y="460" width="1000" height="64" rx="14" fill="#fff1d0" stroke="#e08a00" stroke-width="2"/>
+  <text x="800" y="490" text-anchor="middle" font-size="18" font-weight="700" fill="#0b2a4a">"Urgent alert: the salinity at Well 1 is now 2,400 ppm, far outside the safe range.</text>
+  <text x="800" y="514" text-anchor="middle" font-size="18" fill="#0b2a4a">Severe restriction for irrigation; only salt-tolerant crops such as barley or date palm."</text>
+</svg>

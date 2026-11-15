@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 620" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10z" fill="#0b2a4a"/></marker>
+    <filter id="s" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0a5069" flood-opacity=".15"/></filter>
+  </defs>
+  <rect width="1600" height="620" fill="#ffffff"/>
+  <text x="800" y="60" text-anchor="middle" font-size="38" font-weight="700" fill="#0b2a4a">One reading, two readers</text>
+  <text x="800" y="98" text-anchor="middle" font-size="20" fill="#5d7589">The same facts and sources; the words fit the person who asks (example)</text>
+  <g filter="url(#s)">
+    <rect x="620" y="210" width="360" height="200" rx="18" fill="#e0edfb" stroke="#2f80ed" stroke-width="3"/>
+    <rect x="40" y="150" width="500" height="330" rx="18" fill="#dcf5e6" stroke="#16a34a" stroke-width="3"/>
+    <rect x="1060" y="150" width="500" height="330" rx="18" fill="#fff1d0" stroke="#e08a00" stroke-width="3"/>
+  </g>
+  <text x="800" y="255" text-anchor="middle" font-size="24" font-weight="700" fill="#0b2a4a">Well 1, live reading</text>
+  <g font-size="19" fill="#33505f" text-anchor="middle">
+    <text x="800" y="295">salinity (TDS) 1,520 ppm</text><text x="800" y="325">pH 7.4 · 24 °C</text>
+    <text x="800" y="365" font-size="16" fill="#5d7589">facts by code from WHO, FAO 29,</text><text x="800" y="388" font-size="16" fill="#5d7589">Qatar's thresholds</text>
+  </g>
+  <g stroke="#0b2a4a" stroke-width="3" fill="none" marker-end="url(#a)"><path d="M618 310h-72"/><path d="M982 310h72"/></g>
+  <text x="290" y="195" text-anchor="middle" font-size="24" font-weight="700" fill="#0b2a4a">Farm owner (My Farm)</text>
+  <g font-size="18" fill="#33505f">
+    <text x="75" y="240">Plain words and what to do:</text>
+    <text x="75" y="282" fill="#16a34a" font-weight="700">✓ date palm, barley: no yield loss</text>
+    <text x="75" y="316" fill="#dc2626" font-weight="700">✗ drinking: too salty without treatment</text>
+    <text x="75" y="358">"Keep irrigating your palms. Don't drink it;</text>
+    <text x="75" y="384">use treated water at home."</text>
+    <text x="75" y="430" fill="#5d7589" font-size="16">alert on the phone (Telegram) if it changes</text>
+  </g>
+  <text x="1310" y="195" text-anchor="middle" font-size="24" font-weight="700" fill="#0b2a4a">Ministry officer</text>
+  <g font-size="18" fill="#33505f">
+    <text x="1095" y="240">Figures, sources and options:</text>
+    <text x="1095" y="282">TDS 1,520 ppm, above the 1,000 ppm</text>
+    <text x="1095" y="308">drinking reference [WHO]</text>
+    <text x="1095" y="342">within FAO 29 tolerance for date palm</text>
+    <text x="1095" y="384">Options: monitor monthly · blend · treat;</text>
+    <text x="1095" y="410">the officer decides</text>
+    <text x="1095" y="452" fill="#5d7589" font-size="16">all wells, alerts, map, water quality index</text>
+  </g>
+  <text x="800" y="560" text-anchor="middle" font-size="20" fill="#5d7589">Arabic or English, typed or spoken · the account's role picks the style</text>
+</svg>

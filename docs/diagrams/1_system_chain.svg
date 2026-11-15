@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 600" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10z" fill="#0b2a4a"/></marker>
+    <filter id="s" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0a5069" flood-opacity=".15"/></filter>
+  </defs>
+  <rect width="1600" height="600" fill="#ffffff"/>
+  <text x="800" y="60" text-anchor="middle" font-size="38" font-weight="700" fill="#0b2a4a">From a well reading to a decision</text>
+  <text x="800" y="98" text-anchor="middle" font-size="20" fill="#5d7589">One sample travels the whole chain in seconds</text>
+
+  <!-- boxes -->
+  <g filter="url(#s)">
+    <rect x="40" y="200" width="230" height="170" rx="18" fill="#e0f6f5" stroke="#12bfb7" stroke-width="3"/>
+    <rect x="330" y="200" width="230" height="170" rx="18" fill="#e0f6f5" stroke="#12bfb7" stroke-width="3"/>
+    <rect x="620" y="200" width="230" height="170" rx="18" fill="#e0edfb" stroke="#2f80ed" stroke-width="3"/>
+    <rect x="910" y="200" width="250" height="170" rx="18" fill="#e0edfb" stroke="#2f80ed" stroke-width="3"/>
+    <rect x="1220" y="130" width="340" height="120" rx="18" fill="#fff1d0" stroke="#e08a00" stroke-width="3"/>
+    <rect x="1220" y="270" width="340" height="120" rx="18" fill="#fff1d0" stroke="#e08a00" stroke-width="3"/>
+    <rect x="1220" y="410" width="340" height="120" rx="18" fill="#fff1d0" stroke="#e08a00" stroke-width="3"/>
+  </g>
+  <g font-size="24" font-weight="700" fill="#0b2a4a" text-anchor="middle">
+    <text x="155" y="250">Probes</text><text x="445" y="250">ESP32</text><text x="735" y="250">Database</text><text x="1035" y="250">AquaMaa AI</text>
+  </g>
+  <g font-size="17" fill="#33505f" text-anchor="middle">
+    <text x="155" y="285">Salinity (TDS), pH,</text><text x="155" y="309">temperature, turbidity,</text><text x="155" y="333">water level</text>
+    <text x="445" y="285">reads every few seconds</text><text x="445" y="309">sends over Wi-Fi</text><text x="445" y="333">no cable</text>
+    <text x="735" y="285">Supabase</text><text x="735" y="309">every reading</text><text x="735" y="333">with its time</text>
+    <text x="1035" y="285">facts by code,</text><text x="1035" y="309">words by the model</text><text x="1035" y="333">cited sources, alerts</text>
+  </g>
+  <g font-size="22" font-weight="700" fill="#0b2a4a">
+    <text x="1245" y="180">Officer dashboard</text><text x="1245" y="320">Farmer view (phone)</text><text x="1245" y="460">Pepper robot</text>
+  </g>
+  <g font-size="16" fill="#33505f">
+    <text x="1245" y="208">all wells, alerts, map, WQI</text><text x="1245" y="230">Arabic and English</text>
+    <text x="1245" y="348">his wells, what the water is good for,</text><text x="1245" y="370">what to do, Telegram alerts</text>
+    <text x="1245" y="488">monitoring room: speaks alerts,</text><text x="1245" y="510">answers by voice, live dashboard</text>
+  </g>
+  <!-- arrows -->
+  <g stroke="#0b2a4a" stroke-width="3" fill="none" marker-end="url(#a)">
+    <path d="M272 285h52"/><path d="M562 285h52"/><path d="M852 285h52"/>
+    <path d="M1162 270 C1190 230 1190 190 1214 190"/><path d="M1162 285h52"/><path d="M1162 300 C1190 340 1190 470 1214 470"/>
+  </g>
+  <text x="587" y="273" text-anchor="middle" font-size="15" fill="#5d7589">Wi-Fi</text>
+  <text x="800" y="570" text-anchor="middle" font-size="18" fill="#5d7589">Dashboard updates every 5 s · alerts spoken by Pepper and sent to the farmer's phone</text>
+</svg>

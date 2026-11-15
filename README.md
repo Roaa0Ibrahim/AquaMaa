@@ -16,6 +16,8 @@ Our key word is **trust**:
 3. **Words each user understands:** plain answers for the farm owner, figures and options for the officer.
 4. **Made for Qatar:** Arabic and English, including Qatari dialect (Fanar, from QCRI), by text or by voice.
 
+<p align="center"><img src="docs/diagrams/3_trust_pillars.png" alt="TRUST: real data, science not guessing, words for each user, made for Qatar" width="900"></p>
+
 ---
 
 ## What it does
@@ -28,14 +30,13 @@ Our key word is **trust**:
 | **Alerts** | Salinity or pH outside its range (critical levels flagged as urgent), sensor silent for 30 minutes, unusual changes, water quality index; each with what it means and what to do. |
 | **Pepper robot** | Stands in the ministry's monitoring room, shows the live dashboard on its tablet, speaks alerts by itself and answers spoken questions with the live readings. |
 
+<p align="center"><img src="docs/diagrams/5_two_views.png" alt="One reading, two readers: farm owner and ministry officer" width="900"></p>
+
+<p align="center"><img src="docs/diagrams/4_alert_flow.png" alt="When a well turns salty: from the sample to everyone who needs to know" width="900"></p>
+
 ## How it fits together
 
-```
- probes (TDS, pH, temperature, turbidity, water level)
-   -> ESP32 (Wi-Fi, no cable)  -> database (Supabase: every reading with its time)
-   -> website (Node/Express dashboard, officer + farmer views, alerts, Telegram)
-   -> AquaMaa AI service (Python, FastAPI, on the laptop)  <-  Pepper app (Android, QiSDK) on the same Wi-Fi
-```
+<p align="center"><img src="docs/diagrams/1_system_chain.png" alt="From a well reading to a decision: probes, ESP32, database, AquaMaa AI, officer, farmer, Pepper" width="900"></p>
 
 ## Repository layout
 
@@ -46,6 +47,8 @@ Our key word is **trust**:
 | **Release** `v1.0-submission` | One zip with everything: AI, website, Pepper app (APK) and sensor firmware |
 
 ## The AI, briefly
+
+<p align="center"><img src="docs/diagrams/2_ai_method.png" alt="How AquaMaa answers: understand, fast or deep path, check, answer" width="900"></p>
 
 - **Local open models** through Ollama: `qwen3:14b` for answers, `qwen2.5:3b` for quick English farm answers,
   `bge-m3` for search (Arabic and English). Nothing leaves the laptop except optional Fanar and voice calls.
