@@ -211,6 +211,7 @@ don't add, change, round or compare numbers yourself, and don't add facts.
 - {style}
 - Keep each source label in square brackets exactly as written, after the sentence it supports.
 - If the facts say there is no current reading or not enough data, say that plainly.
+- Whenever you give a reading, also say what it means (for drinking or irrigation), as the facts state it.
 - No headings or lists. {language}
 
 Example

@@ -149,6 +149,10 @@ def no_reading(grounding, arabic):
                    ([f"temperature {_fmt(temp)} °C"] if temp is not None else [])
         lines.append(f"[live sensors] آخر قراءات معروفة، قبل حوالي {when_ar}: {'، '.join(parts_ar)}." if arabic
                      else f"[live sensors] The last known readings, about {when_en} ago: {', '.join(parts_en)}.")
+        # Always what the readings mean (15 Nov, Roaa), also for last known values
+        for sensor, v in (("tds", tds), ("ph", ph)):
+            if v is not None:
+                lines += [m for m in (meaning(sensor, "drinking", v, arabic), meaning(sensor, "irrigation", v, arabic)) if m]
     if devices:
         lines.append("[live sensors] تأكد أن الحساس موصول بالكهرباء وبشبكة الواي فاي." if arabic
                      else "[live sensors] Check that the sensor has power and is connected to Wi-Fi.")
