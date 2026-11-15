@@ -54,6 +54,10 @@
     'Verified': 'موثّق', 'Official': 'رسمي', 'Measured': 'مقاس', 'Estimated': 'تقديري', 'Modelled': 'نموذجي', 'Demonstration': 'تجريبي',
   };
   const RULES = [
+    [/^The sensor is not reporting\.$/, 'الحساس لا يرسل قراءات.'], [/^None of the (\d+) sensors is reporting\.$/, 'لا يرسل أي من الحساسات الـ$1 قراءات.'],
+    [/^It has not sent a reading in the last (\d+) minutes\. Showing its last known reading \((.+)\)\.$/, 'لم يرسل أي قراءة خلال آخر $1 دقيقة. تُعرض آخر قراءة معروفة له ($2).'],
+    [/^None has sent a reading in the last (\d+) minutes\. Showing each sensor's last known reading \(newest (.+)\)\.$/, 'لم يرسل أي منها قراءة خلال آخر $1 دقيقة. تُعرض آخر قراءة معروفة لكل حساس (أحدثها $2).'],
+    [/(\d+) min ago/, 'قبل $1 دقيقة'], [/(\d+) h ago/, 'قبل $1 ساعة'],
     [/^Live · (\d+)s$/, 'مباشر · كل $1 ث'], [/^(\d+) active$/, '$1 نشطة'], [/^(\d+) wells?$/, '$1 آبار'], [/^(\d+) stations?$/, '$1 محطات'],
     [/^(\d+) min ago$/, 'قبل $1 دقيقة'], [/^(\d+) h ago$/, 'قبل $1 ساعة'], [/^(\d+) d ago$/, 'قبل $1 يوم'], [/^just now$/, 'الآن'],
     [/Sensor data updated/, 'آخر تحديث لبيانات الحساسات'], [/devices reporting/, 'أجهزة ترسل'], [/^Sensors:$/, 'الحساسات:'], [/^(\d+) of (\d+)$/, '$1 من $2'],

@@ -548,9 +548,15 @@
     else if (!st.loading && st.cfg) {
       const a = st.network;
       if (!st.snapRows.length) item('warn', 'No sensor readings returned.', `The readings table returned no rows for the last ${st.cfg.operations.deviceLookbackHours} hours. If the table does contain data, the Row Level Security SELECT policy for the anon role is probably missing (see supabase/setup.sql).`);
-      else if (a && a.allDevices.length && !a.allDevices.some((d) => d.online)) item('warn', 'No device is reporting.', st.cfg.operations.useLastKnownValues === false
-        ? `No device has sent a reading in the last ${st.cfg.operations.freshnessMinutes} minutes, so no current network values are shown.`
-        : `No device has sent a reading in the last ${st.cfg.operations.freshnessMinutes} minutes. Showing each sensor's last known reading (newest ${ago(Math.max(...a.allDevices.map((d) => d.lastSeen)), a.now)}).`);
+      else if (a && a.allDevices.length && !a.allDevices.some((d) => d.online)) {
+        // Count the sensors (15 Nov: with one sensor, "No device is reporting" read as if there were none)
+        const one = a.allDevices.length === 1, mins = st.cfg.operations.freshnessMinutes;
+        const last = ago(Math.max(...a.allDevices.map((d) => d.lastSeen)), a.now);
+        item('warn', one ? 'The sensor is not reporting.' : `None of the ${a.allDevices.length} sensors is reporting.`,
+          st.cfg.operations.useLastKnownValues === false
+            ? `${one ? 'It has' : 'None has'} sent a reading in the last ${mins} minutes, so no current values are shown.`
+            : `${one ? 'It has not' : 'None has'} sent a reading in the last ${mins} minutes. Showing ${one ? 'its' : "each sensor's"} last known reading (${one ? '' : 'newest '}${last}).`);
+      }
     }
     if (st.histTruncated && st.cfg) item('warn', 'Chart history is capped.', `Only the most recent ${st.cfg.operations.historyRowCap.toLocaleString('en-US')} rows of this period were loaded; choose a shorter range for the full detail.`);
     return out.join('');
