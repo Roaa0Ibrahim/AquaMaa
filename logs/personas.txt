@@ -1,0 +1,221 @@
+﻿
+========== F1 [farmer, role=farmer, en] My well water tastes saltier lately. Is it still okay for my date palms?
+18:53:40 FAST      suitability (0.90), 2 fact(s), answered in 13.3 s
+---------- 13.3 s | persona=farmer | simplified=False | language_ok=True
+ANSWER:
+We can't judge the water's salinity because no current reading is available; measuring TDS is the first step. Date palms can tolerate higher salinity than many crops, but without knowing the exact level, it's hard to say if it's suitable [FAO 29 Table 4]. Measure the TDS to check if it's within safe limits for date palms.
+
+========== F2 [farmer, role=farmer, ar] هل يصلح ماء البئر لسقي النخيل إذا كانت ملوحته 3000 ملغم/لتر؟
+18:53:44 FAST      suitability (0.86), 3 fact(s), answered in 4.1 s
+---------- 4.1 s | persona=farmer | simplified=False | language_ok=True
+ANSWER:
+ماء البئر بملوحته 3000 ملغم/لتر يُقلل من إنتاج النخيل [limits.csv row 4 (FAO 29)] [FAO 29 Table 4]. يمكن تخفيفه بماء أقل ملوحة لتحسين إنتاجه [limits.csv row 4 (FAO 29)].
+
+========== F3 [farmer, role=farmer, ar-dialect] ليش ماي البير صار مالح؟
+18:53:44 FAST      explain (1.00) but no facts for it: deep path
+18:53:44 QUESTION  ليش ماي البير صار مالح؟
+18:53:47 ROUTE     type=explanation in_scope=True conditions=[] sub_questions=['Why is the water in the well salty?'] premise=None (2.8 s)
+18:53:47 KEYSTATS  shortlist: [('K15', 0.65), ('K19', 0.57), ('K06', 0.51)]
+18:53:54 KEYSTATS  chose ['K15', 'K06']: The question is about why the water in the well is salty, which relates to the salinity (TDS) of the water. The most relevant statistic is K15, which directly provides the average TDS in the wells (4,600 mg/L), giving a clear indication of the salinity level. K06 provides context about the share of abstraction from agricultural wells (90%), which may help explain the source of salinity if agricultural activities are contributing to it. K19, while providing the number of wells on farms, is less directly relevant to the salinity question.
+18:53:54 KEYSTATS  chose 2 (6.9 s)
+18:54:02 REASON    answered before searching: sent back to search first (8.1 s)
+18:54:03 REASON    round 1: call search_documents({'query': 'why is the well water salty'}) (9.4 s)
+18:54:03 OBSERVE   search_documents -> QEERI_2022_Qatar_Groundwater_Challenges.txt p.1, FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.2, FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.3, FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.2, FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.1, FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.2 (0.1 s)
+18:54:29 REASON    round 2: enough evidence, answering (26.1 s)
+18:54:29 VERIFY    sentence_without_citation  <- The provided text is from **FAO_29 "Water Quality for Agriculture"**, focusing on **salini
+18:54:29 VERIFY    sentence_without_citation  <- Here's a **summary and analysis** of the key points:
+
+---
+
+### **1.
+18:54:29 VERIFY    sentence_without_citation  <- Salinity and Water Availability**
+- **Salinity reduces water availability** to plants by i
+18:54:29 VERIFY    sentence_without_citation  <- This means the plant must exert more energy to absorb water from salty soil.
+- **Example**
+18:54:29 VERIFY    sentence_without_citation  <- Root Zone Salinity**
+- **Average root zone salinity** is calculated based on the **distrib
+18:54:29 VERIFY    sentence_without_citation  <- Effects of Salinity on Crops**
+- **Water stress** occurs when the plant cannot extract eno
+18:54:29 VERIFY    sentence_without_citation  <- Leaching and Drainage**
+- **Leaching fraction (LF)** is crucial for managing salinity:
+  -
+18:54:29 VERIFY    sentence_without_citation  <- Salinity Accumulation Over Time**
+- **Figure 2** shows how salinity profiles in the root z
+18:54:29 VERIFY    off_format  <- The provided text is from **FAO_29 "Water Quality for Agriculture"**, focusing on **salini
+18:54:29 VERIFY    wrong_language ['Arabic'] <- The provided text is from **FAO_29 "Water Quality for Agriculture"**, focusing on **salini
+18:54:29 REPAIR    sending 10 problem(s) back to the agent
+18:54:32 REASON    round 2: call search_documents({'query': 'salinity effects on crops and soil'}) (2.8 s)
+18:54:32 OBSERVE   search_documents -> FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.2, FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.3, FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.2, FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.2, FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.2, FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.2 (0.1 s)
+18:54:59 REASON    round 3: enough evidence, answering (26.4 s)
+18:54:59 VERIFY    sentence_without_citation  <- Based on the provided text, here's a structured summary of the key points related to **sal
+18:54:59 VERIFY    sentence_without_citation  <- SALINITY PROBLEMS**
+
+#### **2.1 Introduction**
+- **Irrigation water** contains naturally o
+18:54:59 VERIFY    off_format  <- Based on the provided text, here's a structured summary of the key points related to **sal
+18:54:59 VERIFY    wrong_language ['Arabic'] <- Based on the provided text, here's a structured summary of the key points related to **sal
+18:54:59 FINALIZE  removed 3 sentence(s) that still failed
+---------- 74.6 s | persona=farmer | simplified=False | language_ok=False
+ANSWER:
+AquaMaa's sources don't contain enough evidence to answer this question.
+
+Some points couldn't be confirmed from AquaMaa's sources, so they were left out.
+
+Key figures:
+- Average TDS in the 201-well survey: about 4,600 mg/L (2020) [misconceptions.csv row 10]
+- Share of abstraction from agricultural wells: 90 % (2023) [water-production-abstraction-losses-and-uses.csv row 57]
+
+========== F4 [farmer, role=farmer, en] Can my camels drink the water from my farm well?
+18:55:02 FAST      suitability (0.67), 1 fact(s), answered in 2.9 s
+---------- 2.9 s | persona=farmer | simplified=False | language_ok=True
+ANSWER:
+We don't have a current salinity reading for your well water, so we can't say if it's safe for your camels to drink [no current sensor reading]. The first step is to measure the TDS (salinity) of the water to check its safety [no current sensor reading].
+
+========== F5 [farmer, role=farmer, en] Do I need a licence to dig a new well on my farm?
+18:55:05 FAST      law (0.95), 1 fact(s), answered in 3.6 s
+---------- 3.6 s | persona=farmer | simplified=False | language_ok=True
+ANSWER:
+Yes, you need a licence to dig a new well on your farm as every well in Qatar must be licensed under water law no. 23 of 2025 (Article 10) [ANND_Right_to_Water_in_Qatar.txt p.14]. You should apply for the licence through the relevant authority before starting any work.
+
+========== F6 [farmer, role=farmer, ar] هل أزرع الشعير أم الطماطم إذا كان ماء البئر مالحًا؟
+18:55:11 FAST      suitability (0.71), 3 fact(s), answered in 5.9 s
+---------- 5.9 s | persona=farmer | simplified=False | language_ok=True
+ANSWER:
+لا يمكن تحديد ما إذا كان ماء البئر مناسبًا للشعير أو الطماطم دون معرفة مستوى الملوحة (TDS) [لا يوجد قراءة حالية]. الشعير يتحمل الملوحة أكثر من الطماطم، لكن كلاهما يحتاج إلى قياس الملوحة أولاً لتحديد مدى ملاءمته [FAO 29 Table 4]. يُنصح بقياس TDS للماء أولاً لاتخاذ قرار دقيق [لا يوجد قراءة حالية].
+
+========== O1 [officer, role=agriculture, en] How much groundwater do farms pump each year compared with the safe yield?
+18:55:11 FAST      law (0.63) but no facts for it: deep path
+18:55:11 QUESTION  How much groundwater do farms pump each year compared with the safe yield?
+18:55:16 ROUTE     type=comparison in_scope=True conditions=['groundwater use for farms', 'safe yield'] sub_questions=['How much groundwater do farms pump each year?', 'What is the safe yield of groundwater in Qatar?'] premise=None (4.4 s)
+18:55:16 KEYSTATS  shortlist: [('K01', 0.63), ('K03', 0.56), ('K15', 0.53)]
+18:55:20 KEYSTATS  chose ['K01', 'K03']: K01 provides the safe yield of groundwater, which is directly relevant to the question. K03 provides the actual amount of groundwater pumped in 2023, which allows for a direct comparison with the safe yield. K15, while informative about water quality, is not directly related to the quantity of groundwater pumped or the safe yield.
+18:55:20 KEYSTATS  chose 2 (4.6 s)
+18:55:25 REASON    answered before searching: sent back to search first (4.6 s)
+18:55:26 REASON    round 1: call search_documents({'query': 'groundwater use for farms safe yield'}) (6.0 s)
+18:55:26 OBSERVE   search_documents -> NPC_Water_Statistics_2023.txt p.29, FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.1, FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.3, misconceptions.csv p.6, PSA_Water_Statistics_2021.txt p.36, NPC_Water_Statistics_2023.txt p.29 (0.1 s)
+18:55:33 REASON    round 2: enough evidence, answering (6.9 s)
+18:55:33 VERIFY    number_not_in_tool_results ['4.6'] <- This means that farms pump approximately 4.6 times the safe yield of groundwater each year
+18:55:33 VERIFY    sentence_without_citation  <- This means that farms pump approximately 4.6 times the safe yield of groundwater each year
+18:55:33 REPAIR    sending 2 problem(s) back to the agent
+18:55:41 REASON    round 2: enough evidence, answering (7.7 s)
+18:55:41 VERIFY    no problems
+18:55:41 FINALIZE  added 1 conflict note(s)
+18:55:50 SIMPLIFY  rewritten for a officer (9.0 s)
+---------- 38.8 s | persona=officer | simplified=True | language_ok=True
+ANSWER:
+Farms in Qatar pump 230 million m3 of groundwater each year, compared with a safe yield of 49.6 million m3 per year [PSA_Water_Statistics_2021.txt p.36] [NPC_Water_Statistics_2023.txt p.29]. The safe yield is the maximum amount that can be withdrawn annually without depleting the aquifer. This means current agricultural use far exceeds what the aquifer can sustain. To address this, options include limiting farm pumping, which would reduce pressure on the aquifer but may affect crop production; or expanding recharge efforts, which can replenish groundwater but requires investment and suitable conditions; or improving water efficiency in farming, which may have lower immediate costs but needs long-term planning and cooperation from farmers.
+
+Note on sources: The groundwater safe yield is 49.6 million m3 a year (1998-2023 average) [NPC_Water_Statistics_2023.txt p.29], while the 2021 report gave 54.2 million m3 a year (1998-2021 average) [PSA_Water_Statistics_2021.txt p.22]. The averaging period was extended to 2023, which lowered the estimate.
+
+Key figures:
+- Groundwater abstraction: 200 million m3 (2023) [total-abstraction-from-ground-water.csv row 3]
+
+========== O2 [officer, role=municipality, en] How many farms are working and how many are not working in each municipality?
+18:55:50 FAST      no fast intent (closest 0.46: أقدر أسقي الزرع بهالماي؟): deep path
+18:55:50 QUESTION  How many farms are working and how many are not working in each municipality?
+18:55:53 ROUTE     type=aggregation in_scope=True conditions=[] sub_questions=['How many farms are working in each municipality?', 'How many farms are not working in each municipality?'] premise=None (3.4 s)
+18:55:53 KEYSTATS  shortlist: [('K19', 0.62)]
+18:55:57 KEYSTATS  chose none: The question asks about the number of working and not working farms in each municipality, but the only statistic provided (K19) is about the number of wells on farms, not about the number of farms themselves. Since no statistics are provided that directly address the number of working or not working farms, no statistic can be chosen.
+18:55:57 KEYSTATS  chose 0 (3.7 s)
+18:56:00 REASON    round 1: call search_documents({'query': 'farms working and not working by municipality'}) (2.9 s)
+18:56:00 OBSERVE   search_documents -> ANND_Right_to_Water_in_Qatar.txt p.14, policy-goals.csv p.13, policy-goals.csv p.14, Kahramaa_Statistics_Report_2023.txt p.18, Qatar_NDC_3.txt p.10, PSA_Water_Statistics_2021.txt p.53 (0.1 s)
+18:56:04 REASON    round 2: call lookup_table({'query': 'farms working and not working by municipality', 'year_from': 2023, 'year_to': 2023}) (3.4 s)
+18:56:04 OBSERVE   lookup_table -> number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.255, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.104, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.93, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.99, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.100, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.242, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.246, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.251, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.94, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.95, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.103, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.243, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.247, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.253, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.254, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.386, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.91, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.92, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.101, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.250, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.252, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.259, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.379, number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.258, limits.csv p.21, limits.csv p.26, limits.csv p.20 (0.0 s)
+18:56:21 REASON    round 3: enough evidence, answering (17.2 s)
+18:56:21 VERIFY    no problems
+18:56:36 SIMPLIFY  rewritten for a officer (15.0 s)
+---------- 46.0 s | persona=officer | simplified=True | language_ok=True
+ANSWER:
+The number of farms not working in each municipality in 2023 is as follows: Doha has 0 farms [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.255], Al Rayyan has 54 farms [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.93], Al Shamal has 38 farms [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.99], Al Wakra has 18 farms [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.100], Al Daayen has 25 farms [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.242], Al Khor has 40 farms [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.246], Al Shahaniya has 8 farms [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.251], and Umm Salal has 27 farms [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv p.386]. The data does not provide the number of farms that are working in each municipality.
+
+========== O3 [officer, role=kahramaa, ar] كم عدد الآبار في مزارع بلدية الخور؟
+18:56:36 FAST      no fast intent (closest 0.53: لماذا تصبح مياه الآبار مالحة؟): deep path
+18:56:36 QUESTION  كم عدد الآبار في مزارع بلدية الخور؟
+18:56:39 ROUTE     type=simple_with_condition in_scope=True conditions=['municipality: الخور', 'use: farms'] sub_questions=['How many wells are in farms in municipality of Khour?'] premise=None (3.1 s)
+18:56:39 KEYSTATS  shortlist: [('K19', 0.59)]
+18:56:44 KEYSTATS  chose none: The only statistic directly related to the question is K19: Wells on farms (working and not working) = 4,564 wells (2023). No other statistics are provided that would help put this number in context or relate to the subject of the question.
+18:56:44 KEYSTATS  chose 0 (4.6 s)
+18:56:48 REASON    round 1: call lookup_table({'year_to': 2026, 'query': 'number of wells in farms in municipality of Khour', 'year_from': 2026}) (4.1 s)
+18:56:48 OBSERVE   lookup_table -> No results. (0.0 s)
+18:56:49 REASON    round 2: call search_documents({'query': 'number of wells in farms in municipality of Khour'}) (1.4 s)
+18:56:49 OBSERVE   search_documents -> ANND_Right_to_Water_in_Qatar.txt p.14, QEERI_2022_Qatar_Groundwater_Challenges.txt p.1, ANND_Right_to_Water_in_Qatar.txt p.12, policy-goals.csv p.14, policy-goals.csv p.13, Kahramaa_Statistics_Report_2023.txt p.51 (0.1 s)
+18:56:52 REASON    round 3: enough evidence, answering (3.1 s)
+18:56:52 VERIFY    no problems
+18:56:54 SIMPLIFY  rewritten for a officer (2.1 s)
+---------- 18.5 s | persona=officer | simplified=True | language_ok=True
+ANSWER:
+لا توجد معلومات متوفرة في المصادر عن عدد الآبار في مزارع بلدية الخور.
+
+========== O4 [officer, role=mecc, en] What is the penalty for a farm that digs a well without a licence?
+18:56:59 FAST      law (0.86), 1 fact(s), answered in 4.3 s
+---------- 4.3 s | persona=officer | simplified=False | language_ok=True
+ANSWER:
+The penalty for digging a well without a licence can include up to three years in prison and fines of up to 500,000 Qatari riyals [ANND_Right_to_Water_in_Qatar.txt p.14]. This penalty applies to both unlicensed wells and pumping above the permitted rate. The law aims to ensure proper regulation and sustainable use of groundwater resources.
+
+========== O5 [officer, role=agriculture, en] Should we restrict groundwater for fodder crops or subsidise drip irrigation on farms first?
+18:56:59 FAST      no fast intent (closest 0.56: Which crops can I grow with my well water?): deep path
+18:56:59 QUESTION  Should we restrict groundwater for fodder crops or subsidise drip irrigation on farms first?
+18:57:03 ROUTE     type=explanation in_scope=True conditions=[] sub_questions=['What is the current use of groundwater on farms?', 'What are the benefits and drawbacks of using groundwater for fodder crops?', 'What are the benefits and drawbacks of drip irrigation on farms?', 'What is the impact of subsidising drip irrigation on groundwater use?'] premise=false_assumption (4.5 s)
+18:57:03 KEYSTATS  shortlist: [('K20', 0.55), ('K14', 0.55), ('K03', 0.51)]
+18:57:09 KEYSTATS  chose ['K14', 'K20']: K14 directly addresses the suitability of groundwater for irrigation, which is central to the question of whether to restrict its use for fodder crops. K20 provides context on the threshold for irrigation water quality (TDS), which helps interpret the significance of K14's finding that up to 95% of groundwater samples are unsuitable. K03, while informative about abstraction levels, is less directly relevant to the specific issue of groundwater suitability for irrigation.
+18:57:09 KEYSTATS  chose 2 (5.7 s)
+18:57:11 REASON    round 1: call search_documents({'query': 'benefits and drawbacks of drip irrigation on farms'}) (2.3 s)
+18:57:11 OBSERVE   search_documents -> FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.4, FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.5, FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.5, FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.4, FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.4, FAO_29_Water_Quality_for_Agriculture_ch1-5.txt p.3 (0.1 s)
+18:57:38 REASON    round 2: enough evidence, answering (27.1 s)
+18:57:38 VERIFY    sentence_without_citation  <- The text you've provided is from **Chapter 1–5 of the FAO publication "Water Quality for A
+18:57:38 VERIFY    sentence_without_citation  <- Here's a **summary and analysis** of the key points from the text:
+
+---
+
+## **1.
+18:57:38 VERIFY    sentence_without_citation  <- Irrigation System Adaptations to Reduce Foliar Toxicity**
+
+### **Sprinkler Irrigation and 
+18:57:38 VERIFY    sentence_without_citation  <- Crop Selection and Seasonal Planting**
+
+### **Crop Sensitivity to Salinity and Toxicity**
+
+18:57:38 VERIFY    sentence_without_citation  <- Irrigation Management for Salinity Control**
+
+### **Irrigation Duration and Water Applicat
+18:57:38 VERIFY    off_format  <- The text you've provided is from **Chapter 1–5 of the FAO publication "Water Quality for A
+18:57:38 REPAIR    sending 6 problem(s) back to the agent
+18:57:48 REASON    round 2: enough evidence, answering (9.5 s)
+18:57:48 VERIFY    no problems
+18:57:54 SIMPLIFY  rewritten for a officer (5.8 s)
+---------- 55.0 s | persona=officer | simplified=True | language_ok=True
+ANSWER:
+The text provided does not give specific data on groundwater use for fodder crops or drip irrigation subsidies [general knowledge]. It discusses irrigation methods, with drip being better than sprinkler for reducing foliar absorption of salts [general knowledge]. For planning, this means choosing between restricting fodder crop use, which may reduce demand, or subsidising drip irrigation, which may improve efficiency but requires investment [general knowledge]. The officer must weigh the cost of subsidies against the benefits of reduced water use and crop damage. The choice depends on available resources and priority between short-term efficiency and long-term sustainability.
+
+Key figures:
+- Groundwater samples unsuitable for irrigation: up to 95 % (not stated) [QEERI_2022_Qatar_Groundwater_Challenges.txt p.1]
+- FAO irrigation threshold for TDS: 450 / 2,000 mg/L (none / slight to moderate / severe) [limits.csv row 3]
+
+========== O6 [officer, role=agriculture, ar] ما متوسط ملوحة مياه آبار المزارع في قطر؟
+18:57:54 FAST      explain (0.70) but no facts for it: deep path
+18:57:54 QUESTION  ما متوسط ملوحة مياه آبار المزارع في قطر؟
+18:57:57 ROUTE     type=aggregation in_scope=True conditions=['Qatar', 'farm wells', 'TDS'] sub_questions=['What is the average TDS of farm wells in Qatar?'] premise=None (2.9 s)
+18:57:57 KEYSTATS  shortlist: [('K15', 0.59), ('K19', 0.5), ('K20', 0.48)]
+18:58:00 KEYSTATS  chose ['K15', 'K19']: K15 directly answers the question about the average TDS of farm wells in Qatar, and K19 provides context about the number of farm wells, which helps put the average in perspective.
+18:58:00 KEYSTATS  chose 2 (3.1 s)
+18:58:05 REASON    answered before searching: sent back to search first (5.0 s)
+18:58:06 REASON    round 1: call search_documents({'query': 'متوسط ملوحة مياه آبار المزارع في قطر'}) (6.8 s)
+18:58:07 OBSERVE   search_documents -> NPC_Water_Statistics_2023.txt p.77, Mohieldeen_2021_GIS_aquifer_recharge_Qatar_SciRep.txt p.2, PSA_Water_Statistics_2021.txt p.72, ANND_Right_to_Water_in_Qatar.txt p.11, PSA_Water_Statistics_2021.txt p.72, ANND_Right_to_Water_in_Qatar.txt p.17 (0.1 s)
+18:58:15 REASON    round 2: enough evidence, answering (8.3 s)
+18:58:15 VERIFY    sentence_without_citation  <- ومع ذلك، يمكننا الإشارة إلى أن ملوحة مياه الآبار (TDS) تختلف حسب الموقع الجغرافي والعمق، و
+18:58:15 REPAIR    sending 1 problem(s) back to the agent
+18:58:19 REASON    round 2: enough evidence, answering (4.4 s)
+18:58:19 VERIFY    cited_for_missing  <- لا توجد معلومات مباشرة في النصوص المقدمة عن متوسط ملوحة مياه آبار المزارع في قطر. [misconc
+18:58:19 FINALIZE  removed 1 sentence(s) that still failed
+18:58:21 SIMPLIFY  rewritten for a officer (1.6 s)
+---------- 27.3 s | persona=officer | simplified=True | language_ok=True
+ANSWER:
+لا توجد معلومات مباشرة في النصوص المقدمة عن متوسط ملوحة مياه آبار المزارع في قطر.
+
+Key figures:
+- Average TDS in the 201-well survey: about 4,600 mg/L (2020) [misconceptions.csv row 10]
+- Wells on farms (working and not working): 4,564 wells (2023) [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv row 91]
+
+========== Summary
+farmer: 6 questions, persona right 6, simplified 0, right language 5, time median 5.9 s, max 74.6 s
+officer: 6 questions, persona right 6, simplified 5, right language 6, time median 38.8 s, max 55.0 s

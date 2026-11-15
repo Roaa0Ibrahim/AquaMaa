@@ -1,0 +1,80 @@
+﻿
+========== A1 [farmer, role=farmer, ar-dialect] كيف اقيس جودة ماء البير
+13:48:08 DIALECT   كيف اقيس جودة ماء البير -> كيف أقيس جودة ماء البئر؟
+13:48:16 FAST      explain (0.96), 1 fact(s), answered in 7.5 s
+---------- 9.0 s | path=fast explain | persona=farmer | simplified=False | language_ok=True
+ANSWER:
+لقياس جودة ماء البئر، قِس الملوحة بجهاز TDS أو EC والحموضة بجهاز pH [DFRobot_SEN0244_TDS.txt; DFRobot_SEN0161_V2_pH.txt; misconceptions.csv p.8]. إذا كان الماء للاستخدام الشربي، يجب فحصه في مختبر معتمد للتحقق من البكتيريا والمواد الكيميائية [DFRobot_SEN0244_TDS.txt; DFRobot_SEN0161_V2_pH.txt
+
+========== A2 [farmer, role=farmer, ar-dialect] ليش ماي البير صار مالح؟
+13:48:17 DIALECT   ليش ماي البير صار مالح؟ -> لماذا أصبح ماء البئر مالحاً؟
+13:48:21 FAST      explain (0.85), 1 fact(s), answered in 4.3 s
+---------- 5.9 s | path=fast explain | persona=farmer | simplified=False | language_ok=True
+ANSWER:
+يصبح ماء البئر مالحًا لأن سحب المياه الجوفية للمزارع أسرع مما يعوضه المطر، مما يسمح لمياه البحر بالتقدم نحو الداخل [Elobaid_2017_EGU_saline_front_Qatar.txt p.2]. يمكن تقليل هذا التأثير من خلال تقليل سحب المياه الجوفية وزيادة إعادة تدوير المياه.
+
+========== A3 [farmer, role=farmer, ar-dialect] أقدر أسقي النخل بماي ملوحته 3000؟
+13:48:23 DIALECT   أقدر أسقي النخل بماي ملوحته 3000؟ -> هل يمكنني سقي النخيل بماء ملوحته 3000؟
+13:48:27 FAST      suitability (0.76), 3 fact(s), answered in 3.8 s
+---------- 5.6 s | path=fast suitability | persona=farmer | simplified=False | language_ok=True
+ANSWER:
+بمستوى الملوحة 3000 ملغم/لتر، سيؤدي ذلك إلى انخفاض إنتاج نخيلك بنسبة حوالي 11٪ [FAO 29 Table 4]. هذا المستوى يعتبر قيدًا شديدًا للري، لذا فإن المحاصيل التي تتحمل الملوحة مثل الشعير أو النخيل مناسبة له أكثر [limits.csv row 4 (FAO 29)].
+
+========== A4 [officer, role=kahramaa, ar-dialect] شنو عقوبة اللي يحفر بير بدون رخصة؟
+13:48:29 DIALECT   شنو عقوبة اللي يحفر بير بدون رخصة؟ -> ما هي العقوبة على حفر بئر دون ترخيص؟
+13:48:32 FAST      law (0.99), 1 fact(s), answered in 3.6 s
+---------- 5.2 s | path=fast law | persona=officer | simplified=False | language_ok=True
+ANSWER:
+حفر بئر دون ترخيص قد يؤدي إلى السجن حتى ثلاث سنوات وغرامة تصل إلى 500000 ريال قطري [ANND_Right_to_Water_in_Qatar.txt p.14]. هذه العقوبة تُطبَّق وفقًا للمادة 77 من القانون.
+
+========== A5 [officer, role=municipality, ar] كم عدد الآبار في مزارع بلدية الخور؟
+13:48:36 FAST      statistic (0.70), 1 fact(s), answered in 4.1 s
+---------- 4.1 s | path=fast statistic | persona=officer | simplified=False | language_ok=True
+ANSWER:
+في عام 2025، كانت بلدية الخور تمتلك 1,547 بئرًا في المزارع: 1,482 بئرًا في المزارع النشطة و65 بئرًا في المزارع غير النشطة [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv].
+
+========== A6 [farmer, role=farmer, ar] كم عدد الآبار في سدرية الخيسة؟
+13:48:42 FAST      statistic (0.63), 2 fact(s), answered in 4.4 s
+---------- 6.0 s | path=fast statistic | persona=farmer | simplified=False | language_ok=True
+ANSWER:
+لا توجد معلومات دقيقة عن عدد الآبار في سدرية الخيسة [AquaMaa place list]. في عام 2025، كانت هناك 555 بئرًا في أم صلال [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv]. يُنصح بالاتصال بالجهات المختصة في الخيسة للحصول على معلومات محدثة.
+
+========== A7 [officer, role=agriculture, en] Which municipality has the most wells?
+13:48:47 FAST      statistic (1.00), 1 fact(s), answered in 4.6 s
+---------- 4.6 s | path=fast statistic | persona=officer | simplified=False | language_ok=True
+ANSWER:
+In 2025, Al Khor had the most wells with 1,547, followed by Al Shahaniya with 1,084 and Umm Salal with 555 [number-of-farms-and-wells-by-type-of-the-farm-and-municipality.csv]. This data shows the distribution of wells across municipalities for farm use. It can help in planning water resource management and infrastructure development in these areas.
+
+========== A8 [farmer, role=farmer, ar-dialect] شكثر الاملاح في بيري؟
+13:48:49 DIALECT   شكثر الاملاح في بيري؟ -> كم نسبة الأملاح في بئري؟
+13:48:54 FAST      live_reading (1.00), 2 fact(s), answered in 5.1 s
+---------- 7.1 s | path=fast live_reading | persona=farmer | simplified=False | language_ok=True
+ANSWER:
+لا يمكنني تقديم قيمة محددة لملوحة بئرك حاليًا بسبب عدم توفر القراءات الحية من حساس البئر [live sensors]. يمكنك قياس ملوحة المياه باستخدام جهاز TDS أو EC، ولكن إذا كانت الملوحة عالية جدًا، فقد تحتاج إلى استخدام جهاز EC بدلاً من ذلك. كما يُنصح بفحص عينات المياه في المختبر للتأكد من سلامتها للشرب، حيث أن قراءة TDS وحدها لا تكفي لتحديد مدى أمان المياه.
+
+========== A9 [farmer, role=farmer, ar-dialect] الماي صاير مر، شسوي؟
+13:48:55 DIALECT   الماي صاير مر، شسوي؟ -> الماء أصبح مراً، ماذا أفعل؟
+13:49:01 FAST      explain: answer failed its check (source tags not in the facts: ['[misconceptions.csv p.8]']): deep path (5.8 s)
+13:49:01 QUESTION  الماء أصبح مراً، ماذا أفعل؟
+13:49:04 ROUTE     type=explanation in_scope=True conditions=[] sub_questions=['What does it mean if water has become brackish?', 'What can be done if water has become brackish?'] premise=None (3.1 s)
+13:49:04 KEYSTATS  shortlist: [('K09', 0.51), ('K03', 0.51), ('K14', 0.51)]
+13:49:11 KEYSTATS  chose none: The question is about brackish water — its meaning and what can be done if water has become brackish. The statistics provided are about real water losses, groundwater abstraction, and groundwater samples unsuitable for irrigation. None of these directly address brackish water or its implications. K14 mentions groundwater samples unsuitable for irrigation, which is somewhat related to water quality, but it refers to unsuitability for irrigation, not brackishness. The other statistics are about water losses and abstraction, which are not directly relevant to the question. Therefore, no statistic clearly helps answer the question.
+13:49:11 KEYSTATS  chose 0 (6.6 s)
+13:49:13 REASON    round 1: call search_documents({'query': 'ما معنى الماء المرا؟'}) (2.1 s)
+13:49:13 OBSERVE   search_documents -> glossary.csv p.22, USGS_Dictionary_of_Water_Terms.txt p.1, USGS_Dictionary_of_Water_Terms.txt p.1, glossary.csv p.2, glossary.csv p.13, NPC_Water_Statistics_2023.txt p.80 (0.1 s)
+13:49:22 REASON    round 2: enough evidence, answering (9.0 s)
+13:49:22 VERIFY    sentence_without_citation  <- الماء المرا (أو الماء قليل الملوحة) هو ماء يحتوي على ملح أكثر من الماء العذب، لكنه أقل من 
+13:49:22 VERIFY    sentence_without_citation  <- إذا أصبح الماء في منزلك مراً، فقد يكون بسبب ارتفاع تركيز الملح فيه.
+13:49:22 VERIFY    sentence_without_citation  <- يمكن أن تؤثر هذه الظاهرة على طعم الماء وصحة الأجهزة المنزلية.
+13:49:22 VERIFY    sentence_without_citation  <- من المهم أن تتأكد من مصدر الماء وتحصل على تحليل كيميائي للماء لتحديد مستوى الملوحة.
+13:49:22 REPAIR    sending 4 problem(s) back to the agent
+13:49:31 REASON    round 2: enough evidence, answering (8.8 s)
+13:49:31 VERIFY    no problems
+13:49:35 SIMPLIFY  rewritten for a farmer (4.1 s)
+---------- 40.8 s | path=deep  | persona=farmer | simplified=True | language_ok=True
+ANSWER:
+الماء أصبح مراً، أي أنه يحتوي على ملح أكثر من الماء العذب [glossary.csv p.13]. قد يكون ذلك بسبب ارتفاع تركيز الملح فيه [glossary.csv p.13]. يمكنك التأكد من مصدر الماء وتحليله كيميائيًا لتحديد مستوى الملوحة [general knowledge].
+
+========== Summary
+farmer: 6 questions, persona right 6, fast path 5, simplified 1, right language 6, time median 7.1 s, max 40.8 s
+officer: 3 questions, persona right 3, fast path 3, simplified 0, right language 3, time median 4.6 s, max 5.2 s

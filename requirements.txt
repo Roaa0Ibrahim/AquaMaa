@@ -22,3 +22,4 @@ uvicorn==0.54.0
 
 # Only for analyze_runs.py
 pandas==3.1.1
+edge-tts==7.3.1        # natural neural voices for spoken answers (voice.py)

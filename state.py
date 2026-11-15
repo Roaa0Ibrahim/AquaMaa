@@ -10,7 +10,12 @@ class State(MessagesState):
     figures: list          # key statistics given to the agent
     repairs: int           # repair attempts used after the verifier found problems
     problems: list         # what the verifier found in the latest answer
-    final: str             # the answer after the verifier
+    final: str             # the answer after the verifier, then after the simplification if it passed its checks
+    checked_answer: str    # the verified answer before simplification (Milestone 6), for comparison
+    simplified: bool       # whether the farmer's rewrite passed its checks and is the answer shown
+    simplify_note: str     # why a rewrite was not used, with the rewrite itself, for review
+    persona: str           # who reads the answer: farmer or officer (from the website account's role)
+    grounding: dict        # live sensor data from Deema's dashboard, if the question came from her chat box
 
 
 def trace_of(messages):

@@ -1,0 +1,15 @@
+id,persona,role,language,question,why
+FF1,farmer,farmer,en,Is water with 3000 mg/L salinity okay for my date palms?,Suitability with a value and a crop
+FF2,farmer,farmer,ar,هل يصلح ماء ملوحته 1500 ملغم/لتر لسقي الطماطم؟,Suitability in Arabic: tomato loses yield
+FF3,farmer,farmer,ar-dialect,الماي ملوحته 800 ينفع للشرب؟,Drinking suitability in Qatari dialect
+FF4,farmer,farmer,en,Do I need a licence to dig a new well?,Law card
+FF5,farmer,farmer,ar,لماذا تزداد ملوحة مياه بئري؟,Explanation card in Arabic
+FF6,farmer,farmer,en,Can I grow barley with water at 4000 mg/L?,Suitability: barley tolerates it
+FO1,officer,kahramaa,en,Is water at 2500 mg/L suitable for irrigation?,Suitability for an officer
+FO2,officer,municipality,ar,هل تصلح مياه ملوحتها 600 ملغم/لتر للشرب؟,Drinking suitability in Arabic for an officer
+FO3,officer,mecc,en,What is the penalty for digging a well without a licence?,Law card for an officer
+FO4,officer,agriculture,ar,ما المسافة المطلوبة بين الآبار؟,Law card in Arabic: 300 m
+FO5,officer,kahramaa,en,Why are wells in the north getting saltier?,Explanation card for an officer
+FO6,officer,agriculture,en,Which crops can tolerate water at 2000 mg/L?,Suitability without a named crop
+P1,officer,kahramaa,en,What does this page show?,Roaa 14 Nov: the page is read and analysed by code
+P2,farmer,farmer,ar,اشرح لي هذه الصفحة,Page summary in Arabic

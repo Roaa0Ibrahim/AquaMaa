@@ -1,6 +1,6 @@
 # AquaMaa
 
-Our working file, last updated 9 November 2026.
+Our working file, last updated 14 November 2026.
 
 ## Frozen idea (9 November 2026)
 Frozen so the team stops reopening it. Changes only by a team decision, written here with the date.
@@ -10,6 +10,7 @@ Frozen so the team stops reopening it. Changes only by a team decision, written 
 - **Two accounts only:** the officer (general) account sees the main dashboard: the live sensor readings and the map, real data only. The farmer account (future work) sees its farm's wells and their information, with one example farm
 - **Measurable targets:** a sample change reaches the website and the robot within 5 seconds; every agent answer cites its source
 - **Not in scope before 15 November:** multi-farm management, the Supabase knowledge base, Arabic speech, forecasting beyond a simple early warning, robots outdoors, Pepper's camera (no time for computer vision; decided 9 November)
+- **Changed 13 November (Roaa):** the website is for everyone; Pepper sits in the ministry's monitoring room for officers, and its main value is speaking alerts. Speech on the website is now in scope (browser speech, Arabic and English)
 - **Order:** the end-to-end chain first, due for the internal evaluation (Wednesday 11 November); then the farm view, the Qatar view with real data and the early warning (by Sunday 15 November). Owners and done-checks: [TEAM_PLAN.md](TEAM_PLAN.md)
 
 ## Checkpoint: 9 November 2026
@@ -22,10 +23,10 @@ Git tag `checkpoint-2026-11-09`. Everything is committed and pushed.
 | 3. Routing and retrieval | done, `v3` | type right 26/27, right file in top 3 26/27, recall 0.96, precision 0.83, baseline faithfulness 0.854 |
 | 4. Agent loop | done, `v4` | every number from a tool; 0 invented citations; uncited sentences in 2 of 30 answers (18 with prompt v1) |
 | 5. Error handling | done, `v5` (13 Nov) | 11 of 11 forced failures take their route, offline and live; faithfulness before and after carried to after the internal evaluation |
-| 6. Simplifying for officers | not started | |
-| 7. Arabic speech on the website | text chat done, speech not started | text chat working end to end on Deema's dashboard (branch `chat-widget`, for her review); speech not started |
+| 6. Simplifying, farmer and officer | built, readers' check open | two personas from the account's role; fast path (facts by code, one phrasing call, about 4-7 s); Arabic and dialect; 21 of 21 regression questions in the right language, 20 on the fast path |
+| 7. Arabic speech on the website | browser speech built | Deema's chat box connected to the agent (local branch `connect-agent`); speak and listen in Arabic or English; spoken questions cleaned by `POST /clean`. Piper voice not started |
 | 8. Dashboard data | done, `v8` | 5 of 5 dashboard charts match exactly, labelled as demonstration data |
-| 9. Pepper | not started | |
+| 9. Pepper | app written, not tested on the robot | QiSDK app asks `api.py` and speaks alerts (`GET /alerts`); Munira tests it on Pepper |
 | 11. Sensor-fault and trend statistics | not started | |
 | 12. Web search when the knowledge base lacks the answer | not started | |
 
@@ -143,6 +144,21 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 - **Done when:** the numbers match before and after, and 3 non-technical readers restate the main finding correctly
   - the same readers rate completeness on a 1–5 scale (can they understand and act on it?), following Nakarmi et al. 2026 ([arXiv 2609.06222](https://arxiv.org/abs/2609.06222))
 
+- **Built 13-14 Nov:**
+  - two personas from the account's role (`persona_of`): the farmer gets short, plain answers and what to do; the officer gets numbers and options (`SIMPLIFY_FARMER`, `SIMPLIFY_OFFICER`, with few-shot examples)
+  - the fast path (`fastpath/`): the question type is found by meaning (live reading, trend, suitability, law, explanation, statistic); Python builds the facts and verdicts, the model only phrases them, and a check keeps only the facts' numbers and source tags. Otherwise the full agent answers
+  - answers in the question's language; fixed messages in Arabic for Arabic questions (`localize`)
+  - with the well sensor offline, a short answer: hours since its last report, check power and Wi-Fi, and how to test the water
+  - the question layers, before anything else (no hand-written word lists):
+    1. dialect → Modern Standard Arabic (`understand.py`), only when the question has words outside AquaMaa's standard vocabulary; kept only if the numbers are unchanged
+    2. misheard or mistyped words (`guess.py`): only the asker's own words that aren't AquaMaa words but look like one, each replaced only by one of its candidates (الغبار → الآبار, wheels → wells)
+    3. re-read: a question that still looks out of scope is assumed relevant and re-read once (`reread`); "is my reading okay?" → the well sensor reading. The answer says how it was understood
+  - Fanar (`Fanar-C-2-27B`, QCRI, api.fanar.qa) runs the question layers, with local Qwen as fallback when it is slow or offline (`understand_model.py`, key in `.env`, not in git). Compared side by side in `compare_fanar.py`: better on Qatari dialect (شكثر, شسوي, بيري). Only the question is sent to Fanar
+  - alerts (`alerts.py`, `GET /alerts`): template messages from Deema's thresholds, sensor offline and device faults, for Pepper and the website
+  - the gap finder (`find_gaps.py` → `logs/gaps_report.md`): questions that went to the slow path or found nothing, to add knowledge cards
+- **Tests:** `scripts/run_regression.ps1` (`tests/fast_questions.csv`, `tests/arabic_questions.csv`), `scripts/run_reread.ps1`, `eval_personas.py`
+- **Still open:** the 3 non-technical readers' check; "الماي صاير مر، شسوي؟" still takes the slow path; the crop and place tables are drafts (Mais's tables replace them; Roaa checks `places.csv`)
+
 ### [ ] Milestone 7: Arabic text-to-speech deployed to the website
 - Diacritics are added (tashkeel), numbers are spoken as words, and a local voice (Piper `ar_JO`) speaks, after we check its licence
 - **Done when:** a native Arabic speaker rates 10 spoken answers as clear, and it works with no robot
@@ -168,6 +184,7 @@ Base code: the official LangGraph agentic RAG tutorial (https://docs.langchain.c
 - Fixes found on the way: the agent first counted the wells list itself (6) instead of reading the card (5 of 28); the tool description now says to use the overview for counts and shares
 
 ### [ ] Milestone 9: Connection to the robot
+- **Built 13 Nov (Munira tests on Pepper):** `pepper/PepperWaterQuality`, a QiSDK app: a QiChat topic sends any question to `api.py` `/ask` and Pepper says the answer; a background thread polls `/alerts` and speaks new ones. The laptop runs `scripts/start_for_pepper.ps1` on the robot's Wi-Fi; the laptop's address goes in `strings.xml`. Check whether Arabic is installed on Pepper
 - Pepper hears the question, the laptop transcribes it (faster-whisper), the pipeline answers, and Pepper speaks
 - Check Pepper's NAOqi version and Arabic support first
 - **Done when:** at least 8 of 10 spoken questions per language work in a noisy room, and the website still works when Pepper is off

@@ -1,0 +1,7 @@
+topic: ~water_keywords()
+
+# Filming version (15 Nov): one question, answered at once. The app refreshes $answer every 5 s with the live
+# "is the water drinkable" answer (readings + verdict) from the laptop, and starts it with a safe default, so the
+# rule always has something to say and never waits.
+
+u:({*} [drink drinking drinkable potable] {*}) $answer

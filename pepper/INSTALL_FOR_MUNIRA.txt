@@ -1,0 +1,45 @@
+AquaMaa on Pepper: install the update (about 2 minutes)
+=======================================================
+
+WHAT'S NEW IN THIS VERSION
+- Pepper's tablet shows the live AquaNova dashboard over the full screen, with a caption strip at the bottom:
+  what Pepper heard, and what it is saying (answers and alerts).
+- Pepper answers questions with AquaMaa's AI and the live sensor data, and speaks alerts by itself.
+- It finds Roaa's laptop on the Wi-Fi by itself, even if the laptop's address changes. No more rebuilds for that.
+- The website's chat box is on Pepper for typed questions (no microphone button there: to talk, talk to Pepper).
+
+ADDRESSES
+- Wi-Fi for everything: Pepper's router (HUAWEI-89AB / HUAWEI-8983, same router, 192.168.8.x)
+- Pepper's tablet (Run/Debug Config): 192.168.8.101
+- Roaa's laptop (AquaMaa + dashboard): 192.168.8.109 right now. The app finds it anyway if this changes.
+
+INSTALL (from your laptop, the one the tablet already trusts)
+1. Your laptop on Pepper's Wi-Fi.
+2. On Pepper's tablet: Settings -> Developer options -> ADB ON.
+3. In a terminal (or Android Studio's Terminal), in the folder with AquaMaa_Pepper.apk:
+       adb connect 192.168.8.101:5555
+       adb install -r AquaMaa_Pepper.apk
+   If it says INSTALL_FAILED_UPDATE_INCOMPATIBLE (the old app was signed on another laptop):
+       adb uninstall com.example.pepperwater
+       adb install AquaMaa_Pepper.apk
+   ("adb" is in %LOCALAPPDATA%\Android\Sdk\platform-tools\ if it isn't on your PATH.)
+
+START IT
+4. On the tablet: ADB OFF. Wait for the notification "Connected to Pepper".
+   (With ADB on, the app can't use the robot: Pepper can't listen or speak.)
+5. Open the AquaMaa app. Pepper says: "Hello! I am AquaMaa. I watch the wells..."
+6. The dashboard appears. Sign in once on the tablet:  officer@aquamaa.demo  /  AquaMaa-Demo-2026
+7. The yellow text at the bottom right should say: "Listening... ask me about the water".
+
+TALK TO PEPPER (English, about 1 m in front, after its eyes turn blue)
+   "hello" . "what is the salinity now" . "is it good for irrigation" . "is the water safe to drink"
+   "what does the dashboard show" . "give me the briefing" . "why are the wells getting saltier"
+   Pepper says a short line ("Let me check the sensor"), then AquaMaa's answer (5-10 s).
+
+IF SOMETHING IS WRONG (read the yellow text at the bottom right)
+- "Starting..."                         -> ADB is still on, or the tablet isn't "Connected to Pepper" yet.
+- "Looking for the AquaMaa laptop..."   -> wait a few seconds; Roaa's laptop must be on the same Wi-Fi with
+                                           AquaMaa running.
+- "AquaMaa laptop not found..."         -> tap the yellow text and type Roaa's laptop address (192.168.8.x).
+- "Robot focus refused"                 -> close other apps on the tablet, open AquaMaa again.
+- A blank page instead of the dashboard -> after 12 s it switches to AquaMaa's simple live page by itself.

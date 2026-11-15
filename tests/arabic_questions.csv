@@ -1,0 +1,10 @@
+id,persona,role,language,question,why
+A1,farmer,farmer,ar-dialect,كيف اقيس جودة ماء البير,Roaa 13 Nov: answered in English with no information; now a knowledge card
+A2,farmer,farmer,ar-dialect,ليش ماي البير صار مالح؟,Dialect why question
+A3,farmer,farmer,ar-dialect,أقدر أسقي النخل بماي ملوحته 3000؟,Dialect suitability with a value
+A4,officer,kahramaa,ar-dialect,شنو عقوبة اللي يحفر بير بدون رخصة؟,Dialect law question
+A5,officer,municipality,ar,كم عدد الآبار في مزارع بلدية الخور؟,Wells in Al Khor (said no information before); now the census by code
+A6,farmer,farmer,ar,كم عدد الآبار في سدرية الخيسة؟,Roaa 13 Nov by voice: an area; answered at its municipality's level
+A7,officer,agriculture,en,Which municipality has the most wells?,Ranking from the census
+A8,farmer,farmer,ar-dialect,شكثر الاملاح في بيري؟,Roaa 13 Nov: شكثر was guessed as أكثر; dialect layer now runs first
+A9,farmer,farmer,ar-dialect,الماي صاير مر، شسوي؟,Dialect words not in any list

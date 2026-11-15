@@ -1,0 +1,2 @@
+sensor,use,low,high,unit,level,meaning_en,meaning_ar,advice_en,advice_ar,source,note
+tds,irrigation,0,450,mg/L,good,No restriction on use for irrigation.,لا توجد قيود على استخدامه للري.,Can be used for all crops.,يمكن استخدامه لكل المحاصيل.,limits.csv row 2 (FAO 29),example row: check and keep
