@@ -43,6 +43,7 @@ def arabic_only(answer):
             if name not in names:
                 names.append(name)
     text = TAG.sub("", answer)
+    text = re.sub(r"\s*\[[^\]]*$", "", text)     # 15 Nov: a source tag cut off at the end left a stray "["
     for pattern, ar in TERMS:
         text = re.sub(pattern, ar, text, flags=re.I if pattern.startswith(r"\bmg/l") else 0)
     for pattern, ar in REPEATS:

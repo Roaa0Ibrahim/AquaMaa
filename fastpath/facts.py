@@ -206,6 +206,12 @@ def suitability(question, grounding, arabic):
         lines.append(f"Salinity (TDS) used: {_fmt(value)} mg/L, from {origin} [AquaMaa check].")
         for use in uses:
             lines.append(meaning("tds", use, value, arabic))
+        ph = live_value(grounding, "ph") if origin != "the value in the question" else None
+        if ph is not None:
+            # 15 Nov: "this water is good to drink" from salinity alone while the pH was 9.2; the pH counts too
+            lines.append(f"pH used: {_fmt(ph)}, from the same reading [live sensors].")
+            for use in uses:
+                lines.append(meaning("ph", use, ph, arabic))
     for c in crops:
         no_loss, half = float(c["ecw_no_loss"]) * TDS_PER_ECW, float(c["ecw_half_loss"]) * TDS_PER_ECW
         name = c["crop_ar"] if arabic else c["crop_en"]

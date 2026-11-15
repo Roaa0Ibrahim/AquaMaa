@@ -17,6 +17,9 @@ from config import CHAT_MODEL, FANAR_API_KEY, FAST_PHRASE_MODEL, OLLAMA_URL
 from understand_model import make_model
 from fastpath.facts import BUILDERS, no_reading
 from fastpath.intents import detect
+
+DRINK = re.compile(r"drink|potable|شرب|يشرب|نشرب", re.I)
+LAB = re.compile(r"\blab|laborator|مختبر", re.I)
 from prompts import LANGUAGE_NOTE, PHRASE, PHRASE_STYLE
 from retrieval import is_arabic
 from verifier import HEADING, sentences, wrong_language
@@ -132,6 +135,12 @@ def fast_answer(question, persona, grounding, intent=None):
         model = farmer_phraser if persona == "farmer" else phraser
         answer = tidy_tags(model.invoke([HumanMessage(prompt)]).content.strip())
         reasons = check(answer, facts_text, question)
+    if not reasons and intent in ("suitability", "live_reading") and DRINK.search(question) and not LAB.search(answer):
+        # 15 Nov: "This water is good to drink" from a salinity reading; the model dropped the caveat in 2 of 3
+        # answers, so it is added by code: sensors alone never show that water is safe to drink
+        answer += (" الملوحة والحموضة وحدهما لا تثبتان أن الماء آمن للشرب: يجب فحصه في مختبر معتمد."
+                   if arabic else " Salinity and pH alone never show that water is safe to drink: a certified "
+                   "lab must test it for bacteria and chemicals.")
     if not reasons:
         if len(_answers) >= MAX_REMEMBERED:
             _answers.pop(next(iter(_answers)))
