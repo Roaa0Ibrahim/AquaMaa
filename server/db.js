@@ -108,6 +108,13 @@ CREATE TABLE IF NOT EXISTS meta (
   key TEXT PRIMARY KEY,
   value TEXT NOT NULL
 );
+
+-- Telegram chats that sent /subscribe to the alert bot (server/notifier.js). Not touched by a re-seed.
+CREATE TABLE IF NOT EXISTS telegram_subscribers (
+  chat_id TEXT PRIMARY KEY,
+  name TEXT,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
 `);
 
 module.exports = { db, DB_PATH };

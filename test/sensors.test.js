@@ -92,22 +92,27 @@ test('assessment: normal, attention, critical, insufficient data', () => {
   assert.deepEqual(attn.attentionDevices.map((d) => d.device_id), ['B']);
 
   assert.equal(run([]).overall, 'insufficient_data');
-  assert.equal(run([row('A', 1, { temperature: 30, turbidity_raw: 300 })]).overall, 'insufficient_data'); // nothing assessable
+  assert.equal(run([row('A', 1, { turbidity_raw: 300 })]).overall, 'insufficient_data'); // nothing assessable (turbidity never is)
 
   const crit = JSON.parse(JSON.stringify(cfg.parameters));
   crit.tds_ppm.critical = { max: 2000 };
   assert.equal(run([row('A', 1, { ph: 7, tds_ppm: 2500 })], crit).overall, 'critical');
   // with no critical thresholds configured, 'critical' can never be produced
-  assert.notEqual(run([row('A', 1, { ph: 7, tds_ppm: 99999 })]).overall, 'critical');
+  const noCrit = JSON.parse(JSON.stringify(cfg.parameters));
+  for (const k of Object.keys(noCrit)) noCrit[k].critical = null;
+  assert.notEqual(run([row('A', 1, { ph: 7, tds_ppm: 99999 })], noCrit).overall, 'critical');
+  // with the configured critical limits (TDS above 2000), the same water is critical
+  assert.equal(run([row('A', 1, { ph: 7, tds_ppm: 99999 })]).overall, 'critical');
 });
 
-test('temperature has no universal threshold: not assessed unless configured', () => {
+test('temperature: not assessed without limits; with the configured operational band it is', () => {
   const devs = S.latestPerDevice([row('A', 1, { temperature: 95 })], opts);
-  const a = S.assess(S.summarize(devs), devs, cfg.parameters, cfg.operations);
-  assert.equal(a.params.temperature.state, 'not_assessed');
-  const withRef = JSON.parse(JSON.stringify(cfg.parameters));
-  withRef.temperature.reference = { max: 40 };
-  assert.equal(S.assess(S.summarize(devs), devs, withRef, cfg.operations).params.temperature.state, 'outside');
+  const noLimits = JSON.parse(JSON.stringify(cfg.parameters));
+  noLimits.temperature.reference = null; noLimits.temperature.critical = null;
+  assert.equal(S.assess(S.summarize(devs), devs, noLimits, cfg.operations).params.temperature.state, 'not_assessed');
+  assert.equal(S.assess(S.summarize(devs), devs, cfg.parameters, cfg.operations).params.temperature.state, 'critical'); // above 40
+  const ok = S.latestPerDevice([row('A', 1, { temperature: 26 })], opts);
+  assert.equal(S.assess(S.summarize(ok), ok, cfg.parameters, cfg.operations).params.temperature.state, 'within');
 });
 
 test('turbidity stays raw: awaiting calibration, never NTU, never in the assessment', () => {
@@ -164,7 +169,8 @@ test('analyze() ties it together and produces alerts for offline and out-of-rang
   assert.equal(r.assessment.overall, 'attention');
   assert.equal(r.assessment.counts.devicesOffline, 1);
   const types = r.alerts.map((a) => a.type).sort();
-  assert.deepEqual(types, ['offline', 'threshold']);
+  // TDS 1400 ppm: above the reference, too salty for several crops, and the index drops
+  assert.deepEqual(types, ['offline', 'threshold', 'water_use', 'wqi']);
   const one = S.analyze(snap, snap, cfg, NOW, '24h', 'A');
   assert.equal(one.devices.length, 1);
 });
@@ -221,4 +227,86 @@ test('useLastKnown keeps old readings (flagged stale) while the device still sho
   const sum = S.summarize(lk, cfg.aggregation);
   assert.equal(sum.temperature.value, 24.5);
   assert.equal(sum.temperature.staleWells, 1);
+});
+
+/* ---------- CCME Water Quality Index ---------- */
+test('CCME WQI matches a hand calculation', () => {
+  const ph = { min: 6.5, max: 8.5 }, tds = { max: 1000 };
+  const r = S.ccmeIndex({
+    ph: [7, 7, 9, 7].map((value) => ({ value, objective: ph })),            // one failure: 9/8.5 − 1 = 0.0588
+    tds_ppm: [500, 1500, 500, 500].map((value) => ({ value, objective: tds })), // one failure: 1500/1000 − 1 = 0.5
+  });
+  assert.equal(r.F1, 100);                       // both variables failed at least once
+  assert.equal(r.F2, 25);                        // 2 of 8 tests
+  const nse = (9 / 8.5 - 1 + 0.5) / 8;
+  assert.ok(Math.abs(r.F3 - nse / (0.01 * nse + 0.01)) < 1e-9);
+  assert.ok(Math.abs(r.wqi - (100 - Math.sqrt(100 ** 2 + 25 ** 2 + r.F3 ** 2) / 1.732)) < 1e-9);
+  assert.equal(r.category, 'Poor');
+  assert.equal(S.ccmeIndex({ ph: [7, 7.2].map((value) => ({ value, objective: ph })) }).wqi, 100);
+  assert.equal(S.wqiCategory(85), 'Good');
+});
+
+test('CCME WQI per well: one test per bucket, only parameters with limits, lowest well first', () => {
+  const rows = [];
+  for (let m = 0; m < 6; m++) {
+    rows.push(row('A', 5 + m * 15, { well_id: 1, ph: 7.2, tds_ppm: 400, temperature: 25, turbidity_raw: 3000 }));
+    rows.push(row('A', 6 + m * 15, { well_id: 1, ph: 7.2, tds_ppm: 410 }));                 // same bucket: still one test
+    rows.push(row('B', 5 + m * 15, { well_id: 2, ph: 7.0, tds_ppm: m < 3 ? 2500 : 600 }));   // half the buckets too salty
+  }
+  const w = S.ccmeWqi(rows, cfg, { start: NOW - 3 * 3600000, end: NOW, bucketMs: 15 * 60000 });
+  assert.deepEqual(w.parameters, ['ph', 'tds_ppm', 'temperature']);
+  assert.deepEqual(w.excluded.map((e) => e.param), ['turbidity_raw']);
+  assert.equal(w.headline.well, 'Well 2');
+  assert.equal(w.headline.tests, 12);            // 6 buckets × pH and TDS (well 2 reports no temperature)
+  assert.equal(w.headline.failedTests, 3);
+  assert.equal(w.headline.sufficient, false);    // one variable missing
+  const w1 = w.wells.find((x) => x.well === 'Well 1');
+  assert.equal(w1.wqi, 100);
+  assert.equal(w1.tests, 18);                    // 6 buckets × 3 parameters
+  assert.equal(w1.sufficient, true);
+});
+
+/* ---------- Water Card and its alerts ---------- */
+test('Water Card: crops by FAO 29 no-loss salinity, drinking by taste; alert lists lost and kept uses', () => {
+  const card = (tds, ph = 7.5) => S.waterCard(S.latestPerWell(S.latestPerDevice([row('A', 1, { well_id: 1, tds_ppm: tds, ph })], opts), cfg.aggregation), cfg)[0];
+  const fresh = card(90);
+  assert.ok(fresh.uses.every((u) => u.ok));
+  assert.equal(fresh.uses.find((u) => u.id === 'drinking').level, 'ok');
+  const salty = card(1500);                                          // above tomato (1088), below date palm (1728)
+  const by = Object.fromEntries(salty.uses.map((u) => [u.id, u.ok]));
+  assert.equal(by.tomato, false); assert.equal(by.lettuce, false); assert.equal(by.drinking, false);
+  assert.equal(by['date palm'], true); assert.equal(by.barley, true);
+  const alerts = S.extraAlerts([salty], { wells: [] }, cfg);
+  assert.equal(alerts.length, 1);
+  assert.equal(alerts[0].type, 'water_use');
+  assert.equal(alerts[0].severity, 'warning');
+  assert.match(alerts[0].title, /not suitable for .*tomato/);
+  assert.match(alerts[0].title, /still suitable for .*date palm/);
+  const brine = S.extraAlerts([card(5000)], { wells: [] }, cfg)[0];
+  assert.equal(brine.severity, 'critical');                          // no listed crop left
+  assert.equal(S.extraAlerts([fresh], { wells: [] }, cfg).length, 0);
+  assert.equal(card(300, 9.2).uses.find((u) => u.id === 'drinking').ok, false); // pH outside 6.5-8.5
+});
+
+test('WQI alert: raised for Marginal or Poor wells only, Poor is critical', () => {
+  const mk = (wqi, category) => ({ period: 'Last 24 hours', wells: [{ well: 'Well 1', wqi, category, failedVariables: ['ph'], failedTests: 4, tests: 8 }] });
+  assert.equal(S.extraAlerts([], mk(90, 'Good'), cfg).length, 0);
+  const m = S.extraAlerts([], mk(59, 'Marginal'), cfg)[0];
+  assert.equal(m.severity, 'warning'); assert.match(m.title, /59 out of 100, marginal, because of ph/);
+  assert.equal(S.extraAlerts([], mk(30, 'Poor'), cfg)[0].severity, 'critical');
+});
+
+test('turbidity alerts use the unusual-change check (no calibration needed)', () => {
+  assert.ok(cfg.deviation.parameters.includes('turbidity_raw'));
+  const pts = Array.from({ length: 20 }, (_, i) => ({ t: i, value: 3000 + (i % 3) * 10 }));
+  assert.equal(S.deviationCheck(pts, 1500, cfg.deviation).flag, true);
+});
+
+test('Telegram message format', () => {
+  const { format } = require('../server/notifier.js');
+  const a = { title: 'Well 1 water, at 1,500 ppm, is not suitable for tomato.', detail: 'Tomato: TDS 1500 above 1088', severity: 'warning' };
+  assert.match(format(a, 'alert'), /^⚠️ AquaMaa · Alert · \d\d:\d\d AST\nWell 1 water/);
+  assert.match(format({ ...a, severity: 'critical' }, 'alert'), /^🔴 AquaMaa · URGENT/);
+  assert.match(format(a, 'cleared'), /^✅ AquaMaa · Resolved/);
+  assert.doesNotMatch(format(a, 'cleared'), /Tomato: TDS/);
 });

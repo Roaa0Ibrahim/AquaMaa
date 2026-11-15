@@ -19,7 +19,7 @@ function buildRows(now) {
     { id: 'well-01', ph: 7.2, t: 27.5, tds: 620, turb: 310 },
     { id: 'well-02', ph: 7.6, t: 28.1, tds: 880, turb: 340 },
     { id: 'well-03', ph: 6.9, t: 26.8, tds: 1260, turb: 410 },
-    { id: 'well-04', ph: 8.9, t: 29.0, tds: 760, turb: 295, noTemp: true },     // pH out of range, temperature never reported
+    { id: 'well-04', ph: 8.8, t: 29.0, tds: 760, turb: 295, noTemp: true },     // pH above the 8.5 reference but below the 9.0 critical limit (8.8 ± 0.12); temperature never reported
     { id: 'well-05', ph: 7.4, t: 27.2, tds: 1710, turb: 380 },                   // TDS above reference
     { id: 'well-06', ph: 7.1, t: 27.9, tds: 540, turb: 300, silentAfterH: 5 },   // stops reporting 5 hours ago
   ];

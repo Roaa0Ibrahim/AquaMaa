@@ -20,7 +20,7 @@ test.before(async () => {
 });
 test.after(() => { srv.close(); fk.server.close(); });
 
-async function login(email = 'ahmed.almansoori@aquamaa.demo') {
+async function login(email = 'officer@aquamaa.demo') {
   const r = await fetch(`${base}/api/auth/login`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ email, password: PW }) });
   assert.equal(r.status, 200);
   return r.headers.get('set-cookie').split(';')[0];

@@ -390,6 +390,24 @@
     // 14 Nov: say how many of the readings were checked ("1/1" read as if all three were), and when every sensor is
     // offline, that these are last known values
     const allOff = c.devicesTotal > 0 && c.devicesOnline === 0;
+    // CCME Water Quality Index (0-100) over the selected period, lowest-scoring well
+    const W = a.wqi && a.wqi.headline;
+    if (W) {
+      const WCOL = { Excellent: '#16a34a', Good: '#16a34a', Fair: '#e08a00', Marginal: '#e08a00', Poor: '#dc2626' }[W.category];
+      const WCLS = { Excellent: 'green', Good: 'green', Fair: 'amber', Marginal: 'amber', Poor: 'red' }[W.category];
+      const lab = (p) => (st.cfg.parameters[p] ? st.cfg.parameters[p].label : p);
+      const tip = [`CCME Water Quality Index (2001): 100 − √(F1² + F2² + F3²) / 1.732`,
+        `${W.well}, ${a.wqi.period}: ${W.tests} tests, ${W.failedTests} outside the acceptable limits`,
+        `F1 scope ${W.F1.toFixed(0)} · F2 frequency ${W.F2.toFixed(0)} · F3 amplitude ${W.F3.toFixed(1)}`,
+        `Limits: ${a.wqi.parameters.map((p) => `${lab(p)} ${refText(p)}`).join(', ')}`,
+        `Not included: ${a.wqi.excluded.map((e) => `${lab(e.param)} (${e.reason})`).join('; ')}`,
+        W.sufficient ? '' : `Indicative: CCME recommends at least 4 variables and ${a.wqi.minSamplesPerVariable} samples each`,
+        as.disclaimer].filter(Boolean).map(esc).join(NL);
+      const ringW = H.ring({ frac: W.wqi / 100, color: WCOL, size: 70, stroke: 7, center: `<text x="50%" y="53%" text-anchor="middle" font-size="9.5" font-weight="700" fill="${WCOL}">${esc(W.category)}</text>` });
+      return shell({ ...base, big: String(Math.round(W.wqi)), unit: 'WQI / 100', right: ringW,
+        meta: `${allOff ? 'last known values · ' : ''}${a.wqi.parameters.map(lab).join(' + ')} · ${W.tests} tests`, metaTitle: tip,
+        foot: tag(as.label, cls, ic) + `<span title="${tip}">${W.sufficient ? 'CCME 2001' : 'Indicative'}</span>` });
+    }
     return shell({ ...base, big: ins ? '—' : `${inRange}/${c.parametersAssessed}`,
       unit: ins ? 'not enough data' : `parameters in range · ${c.parametersAssessed} of ${S.ASSESSED.length} checked`, right: ring,
       meta: allOff ? 'sensors offline · last known values'
@@ -523,6 +541,21 @@
   }
 
   /* ========================= assessment + network panels ========================= */
+  /* Water Card: per well, each use with ✔ / ✘, from the well's latest TDS (config "waterUse"). */
+  function waterCardHTML(a) {
+    const cards = (a.waterCard || []).filter((w) => w.uses.length);
+    if (!cards.length) return '';
+    const chip = (u) => {
+      const cls = u.level === 'ok' ? 'green' : u.level === 'limited' ? 'amber' : 'red';
+      const mark = u.level === 'ok' ? '✔' : u.level === 'limited' ? '~' : '✘';
+      return `<span class="tag ${cls}" title="${esc(u.reason + (u.note ? ` · ${u.note}` : ''))}"><i></i>${mark} ${esc(u.label)}</span>`;
+    };
+    return `<div class="water-card"><div class="eyebrow">${H.icon('leaf')} WATER CARD · WHAT THIS WATER IS GOOD FOR <span class="info" title="${esc(st.cfg.waterUse._readme)}">i</span></div>
+      ${cards.map((w) => `<div class="wc-row"><b>${esc(w.well)}</b> <span class="muted">TDS ${H.fmt(w.tds, 0)} ppm${w.stale ? ' · last known' : ''}</span>
+        <div class="wc-chips">${w.uses.map(chip).join('')}</div></div>`).join('')}
+      <div class="unit">Crops: full yield at this salinity (FAO 29 Table 4). Drinking: taste only, a laboratory test is needed for safety.</div></div>`;
+  }
+
   function assessmentHTML(a) {
     if (st.loading || !a) return '<div class="chart-empty">Loading…</div>';
     const as = a.assessment, c = as.counts, P = st.cfg.parameters;
@@ -555,6 +588,7 @@
         <div><b>${c.devicesOffline}<small>/${c.devicesTotal}</small></b><span>Devices offline</span></div></div>
       <div class="tbl-wrap"><table class="t wq-table"><thead><tr><th>Parameter</th><th>Network value</th><th>Status</th><th>Reference</th><th>Wells</th><th>Change · ${esc(a.range.label.toLowerCase())}</th></tr></thead><tbody>${rows}</tbody></table></div>
       ${dev && dev.evaluated && dev.flag ? `<div class="note warn">${H.icon('alert')}<span>TDS deviates from its recent history: modified z-score ${dev.z.toFixed(1)} (${esc(dev.direction)} the earlier median of ${H.fmt(dev.baselineMedian, 0)} ppm).</span></div>` : ''}
+      ${waterCardHTML(a)}
       <div class="note">${H.icon('info')}<span>${esc(as.disclaimer)} Not assessed: ${esc(notAssessed.join(', '))}. Turbidity is a raw, uncalibrated reading and does not contribute.${unconfirmed ? ' Reference ranges are unconfirmed defaults (see config/thresholds.json).' : ''}</span></div>`;
   }
 

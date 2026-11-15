@@ -54,4 +54,13 @@ async function fetchHistoryRows(cfg, now, rangeKey) {
   return { rows, truncated };
 }
 
-module.exports = { fetchSnapshotRows, fetchHistoryRows, SensorDataError };
+/* Rows newer than afterId (with a small overlap: duplicates are dropped by id), oldest first. */
+async function fetchRowsAfter(afterId, sinceMs) {
+  const { data, error } = await getClient().from('readings').select(COLUMNS)
+    .gt('id', Math.max(0, afterId - 200)).gte('created_at', new Date(sinceMs).toISOString())
+    .order('id', { ascending: true }).limit(1000);
+  if (error) throw wrap(error);
+  return data || [];
+}
+
+module.exports = { fetchSnapshotRows, fetchHistoryRows, fetchRowsAfter, SensorDataError };

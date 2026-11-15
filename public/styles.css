@@ -174,7 +174,15 @@ svg.i.sm { width: 15px; height: 15px; }
 .tag i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
 .k-foot { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-top: 8px; font-size: 11.5px; color: var(--muted); flex-wrap: wrap; }
 .spark { width: 100px; height: 40px; overflow: visible; display: block; }
-.k-right { display: grid; justify-items: end; gap: 8px; }
+.k-right { display: grid; justify-items: end; gap: 8px; flex-shrink: 0; }
+/* Water Card (assessment panel) */
+.water-card { margin-top: 14px; padding-top: 12px; border-top: 1px solid #e3eef2; }
+.water-card .wc-row { margin-top: 8px; }
+.water-card .wc-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.water-card .unit { white-space: normal; margin-top: 8px; }
+/* long unit text truncates instead of pushing the ring or sparkline out of the card */
+.kpi .k-body > :first-child { min-width: 0; }
+.kpi .k-body .unit { overflow: hidden; text-overflow: ellipsis; }
 .ring { overflow: visible; }
 .ring .arc { transition: stroke-dasharray 1.1s var(--ease) .15s; }
 .ring text { font-family: inherit; }

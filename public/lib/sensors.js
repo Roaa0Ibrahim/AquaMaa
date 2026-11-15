@@ -358,6 +358,153 @@
     };
   }
 
+  /* ---------- CCME Water Quality Index (CCME 2001, Canadian Water Quality Guidelines) ----------
+   *   F1 scope     = % of variables that failed their objective at least once
+   *   F2 frequency = % of individual tests that failed
+   *   F3 amplitude = nse / (0.01·nse + 0.01), nse = Σ excursions / all tests,
+   *                  excursion = value/max − 1 (above a maximum) or min/value − 1 (below a minimum)
+   *   WQI = 100 − √(F1² + F2² + F3²) / 1.732
+   * Objectives are the configured reference ranges. A "test" is one well value per time bucket
+   * (the median of each sensor in the bucket, combined within the well), so a sensor that
+   * reports every few seconds does not count as thousands of samples.
+   * Computed per well; the headline is the lowest-scoring well. */
+  const WQI_BANDS = [[95, 'Excellent'], [80, 'Good'], [65, 'Fair'], [45, 'Marginal'], [0, 'Poor']];
+  function wqiCategory(v) { for (const [lo, name] of WQI_BANDS) if (v >= lo) return name; return 'Poor'; }
+
+  function wellSamples(rows, field, opts) {
+    const { start, end, bucketMs, device, validity, aggregation } = opts;
+    const agg = aggregationFor(field, aggregation);
+    const perWell = new Map();   // wellKey -> { label, buckets: Map(bucket -> Map(device -> values[])) }
+    for (const r of rows || []) {
+      if (!r || typeof r.device_id !== 'string') continue;
+      if (device && r.device_id !== device) continue;
+      const t = timeOf(r);
+      if (t === null || t < start || t > end) continue;
+      const v = validValue(field, r[field], validity);
+      if (v === null) continue;
+      const wk = wellKeyOf(num(r.well_id), r.device_id), b = Math.floor(t / bucketMs) * bucketMs;
+      if (!perWell.has(wk)) perWell.set(wk, { label: num(r.well_id) != null ? `Well ${num(r.well_id)}` : r.device_id, buckets: new Map() });
+      const bk = perWell.get(wk).buckets;
+      if (!bk.has(b)) bk.set(b, new Map());
+      const dv = bk.get(b);
+      if (dv.has(r.device_id)) dv.get(r.device_id).push(v); else dv.set(r.device_id, [v]);
+    }
+    const out = new Map();
+    for (const [wk, w] of perWell) {
+      out.set(wk, { label: w.label, values: Array.from(w.buckets.values()).map((dv) => combine(agg.withinWell, Array.from(dv.values()).map(median))) });
+    }
+    return out;
+  }
+
+  function ccmeIndex(testsByVar) {
+    const vars = Object.keys(testsByVar).filter((p) => testsByVar[p].length);
+    if (!vars.length) return null;
+    let total = 0, failed = 0, excSum = 0; const failedVars = [];
+    for (const p of vars) {
+      let anyFail = false;
+      for (const { value, objective: o } of testsByVar[p]) {
+        total++;
+        let exc = 0;
+        if (o.max != null && value > o.max) exc = value / o.max - 1;
+        else if (o.min != null && value < o.min) exc = value > 0 ? o.min / value - 1 : 1;
+        if (exc > 0) { failed++; excSum += exc; anyFail = true; }
+      }
+      if (anyFail) failedVars.push(p);
+    }
+    const F1 = (100 * failedVars.length) / vars.length;
+    const F2 = (100 * failed) / total;
+    const nse = excSum / total;
+    const F3 = nse / (0.01 * nse + 0.01);
+    const wqi = Math.max(0, Math.min(100, 100 - Math.sqrt(F1 * F1 + F2 * F2 + F3 * F3) / 1.732));
+    return { wqi, category: wqiCategory(wqi), F1, F2, F3, variables: vars, failedVariables: failedVars, tests: total, failedTests: failed };
+  }
+
+  function ccmeWqi(rows, cfg, opts) {
+    const wcfg = cfg.wqi || {};
+    const minSamples = wcfg.minSamplesPerVariable || 4;
+    const params = (wcfg.parameters || ASSESSED).filter((p) => cfg.parameters[p]);
+    const used = params.filter((p) => cfg.parameters[p].reference);
+    const excluded = PARAMS.filter((p) => !used.includes(p)).map((p) => ({
+      param: p, reason: p === 'turbidity_raw' ? 'raw, uncalibrated reading (no NTU objective possible)' : 'no acceptable limit configured' }));
+    const byWell = new Map();
+    for (const p of used) {
+      for (const [wk, w] of wellSamples(rows, p, { ...opts, aggregation: cfg.aggregation, validity: cfg.validity })) {
+        if (!byWell.has(wk)) byWell.set(wk, { label: w.label, tests: {} });
+        byWell.get(wk).tests[p] = w.values.map((value) => ({ value, objective: cfg.parameters[p].reference }));
+      }
+    }
+    const wells = [];
+    for (const w of byWell.values()) {
+      const r = ccmeIndex(w.tests);
+      if (!r) continue;
+      const samples = Math.min(...r.variables.map((p) => w.tests[p].length));
+      wells.push({ well: w.label, ...r, samplesPerVariable: samples, sufficient: samples >= minSamples && r.variables.length === used.length });
+    }
+    wells.sort((a, b) => a.wqi - b.wqi);
+    return {
+      method: 'CCME WQI (2001)', objectives: Object.fromEntries(used.map((p) => [p, cfg.parameters[p].reference])),
+      parameters: used, excluded, minSamplesPerVariable: minSamples, wells, headline: wells[0] || null,
+    };
+  }
+
+  /* ---------- Water Card: what each well's water is good for (config "waterUse") ----------
+   * Crops: suitable when the well's latest TDS is at or below the crop's no-yield-loss salinity
+   * (FAO 29 Table 4, ECw x 640). Drinking: taste only (WHO), plus pH 6.5-8.5; never "safe". */
+  function waterCard(wells, cfg) {
+    const wu = cfg.waterUse;
+    if (!wu) return [];
+    const k = wu.tdsPerEcw || 640;
+    return wells.map((w) => {
+      const tds = w.fresh.tds_ppm ? w.fresh.tds_ppm.value : null;
+      const ph = w.fresh.ph ? w.fresh.ph.value : null;
+      if (tds == null) return { well: w.label, well_id: w.well_id, tds: null, uses: [], stale: false };
+      const uses = [];
+      const d = wu.drinking;
+      if (d) {
+        const phBad = ph != null && d.ph && ((d.ph.min != null && ph < d.ph.min) || (d.ph.max != null && ph > d.ph.max));
+        const level = tds > d.tdsMax || phBad ? 'no' : tds > d.tdsGood ? 'limited' : 'ok';
+        uses.push({ id: 'drinking', label: d.label, label_ar: d.label_ar, kind: 'drinking', ok: level !== 'no', level, limit: d.tdsMax,
+          short: tds > d.tdsMax ? 'drinking (too salty)' : phBad ? `drinking (pH ${ph.toFixed(1)})` : 'drinking',
+          reason: tds > d.tdsMax ? `TDS ${Math.round(tds)} above ${d.tdsMax} (too salty to drink)` : phBad ? `pH ${ph.toFixed(1)} outside ${d.ph.min}-${d.ph.max}` : level === 'limited' ? 'acceptable taste, becoming salty' : 'good taste',
+          note: d.note });
+      }
+      for (const c of wu.crops || []) {
+        const limit = Math.round(c.ecwNoLoss * k);
+        uses.push({ id: c.crop, label: c.label, label_ar: c.label_ar, short: c.label.toLowerCase(), kind: 'crop', ok: tds <= limit, level: tds <= limit ? 'ok' : 'no', limit,
+          reason: tds <= limit ? `TDS within ${limit} (full yield)` : `TDS ${Math.round(tds)} above ${limit} (yield loss)` });
+      }
+      return { well: w.label, well_id: w.well_id, tds, ph, stale: !!w.fresh.tds_ppm.stale, at: w.fresh.tds_ppm.at, uses };
+    });
+  }
+  const listText = (xs) => (xs.length <= 1 ? xs.join('') : `${xs.slice(0, -1).join(', ')} and ${xs[xs.length - 1]}`);
+
+  /* Alerts from the Water Card and the WQI. Titles are full sentences: Pepper speaks them as they are. */
+  function extraAlerts(card, wqi, cfg) {
+    const out = [];
+    for (const w of card) {
+      const lost = w.uses.filter((u) => !u.ok), kept = w.uses.filter((u) => u.ok && u.kind === 'crop');
+      if (!lost.length) continue;
+      const tdsTxt = `${Math.round(w.tds).toLocaleString('en-US')} ppm`;
+      out.push({
+        id: `use:${w.well}:${lost.map((u) => u.id).join('|')}`, severity: kept.length ? 'warning' : 'critical', type: 'water_use', well: w.well,
+        title: `${w.well} water, at ${tdsTxt}, is not suitable for ${listText(lost.map((u) => u.short))}.` +
+          (kept.length ? ` It is still suitable for ${listText(kept.map((u) => u.short))}.` : ' It is not suitable for any listed crop: mix it with fresher water or rest the well.'),
+        detail: lost.map((u) => `${u.label}: ${u.reason}`).join('; ') + (w.stale ? ' (last known value)' : ''),
+      });
+    }
+    const cats = (cfg.wqi && cfg.wqi.alertCategories) || ['Marginal', 'Poor'];
+    for (const x of (wqi && wqi.wells) || []) {
+      if (!cats.includes(x.category)) continue;
+      const failed = x.failedVariables.map((p) => (cfg.parameters[p] ? cfg.parameters[p].label : p));
+      out.push({
+        id: `wqi:${x.well}:${x.category}`, severity: x.category === 'Poor' ? 'critical' : 'warning', type: 'wqi', well: x.well,
+        title: `The water quality index of ${x.well} is ${Math.round(x.wqi)} out of 100, ${x.category.toLowerCase()}, because of ${listText(failed.map((s) => s.toLowerCase()))}.`,
+        detail: `CCME WQI ${wqi.period}: ${x.failedTests} of ${x.tests} tests outside the limits`,
+      });
+    }
+    return out;
+  }
+
   /* ---------- convenience: everything derived from rows, in one call ---------- */
   function analyze(snapshotRows, historyRows, cfg, now, rangeKey, device) {
     const ops = cfg.operations;
@@ -376,8 +523,26 @@
     for (const p of (cfg.deviation && cfg.deviation.parameters) || []) deviations[p] = deviationCheck(series[p].points, summary[p].value, cfg.deviation);
     const labels = {}; for (const p of PARAMS) labels[p] = cfg.parameters[p].label;
     const alerts = buildAlerts(assessment, deviations, { labels });
-    return { now, devices: scoped, allDevices: devices, wells, allWells, summary, assessment, series, deviations, alerts, metrics: buildMetrics(summary, assessment, cfg), range: { key: rangeKey, ...range } };
+    // WQI over the selected period; when the period has no readings (sensor offline), over the
+    // last-known snapshot window instead, and say so.
+    const wqiOpts = { start: now - range.ms, end: now, bucketMs: range.bucketMs, device };
+    let wqi = ccmeWqi(historyRows, cfg, wqiOpts), wqiPeriod = range.label;
+    if (!wqi.headline) {
+      wqi = ccmeWqi(snapshotRows, cfg, { ...wqiOpts, start: now - ops.deviceLookbackHours * 3600000 });
+      wqiPeriod = `last ${Math.round(ops.deviceLookbackHours / 24)} days (no readings in ${range.label.toLowerCase()})`;
+    }
+    wqi.period = wqiPeriod;
+    const card = waterCard(wells, cfg);
+    const rank = { critical: 0, warning: 1, info: 2 };
+    alerts.push(...extraAlerts(card, wqi, cfg));
+    alerts.sort((x, y) => rank[x.severity] - rank[y.severity]);
+    const metrics = buildMetrics(summary, assessment, cfg);
+    metrics.waterUse = card.map((w) => ({ well: w.well, tds: w.tds, lastKnown: w.stale, suitable: w.uses.filter((u) => u.ok).map((u) => u.id), notSuitable: w.uses.filter((u) => !u.ok).map((u) => u.id) }));
+    metrics.wqi = wqi.headline ? { value: Math.round(wqi.headline.wqi), category: wqi.headline.category, well: wqi.headline.well, method: wqi.method,
+      period: wqi.period, parameters: wqi.parameters, excluded: wqi.excluded.map((e) => e.param), F1: wqi.headline.F1, F2: wqi.headline.F2, F3: wqi.headline.F3,
+      tests: wqi.headline.tests, failedTests: wqi.headline.failedTests, sufficient: wqi.headline.sufficient } : null;
+    return { now, devices: scoped, allDevices: devices, wells, allWells, summary, assessment, series, deviations, alerts, wqi, waterCard: card, metrics, range: { key: rangeKey, ...range } };
   }
 
-  return { FIELDS, PARAMS, ASSESSED, DISCLAIMER, AGG_LABEL, num, median, mean, combine, aggregationFor, validValue, phMeanByHydrogen, classifyPh, latestPerDevice, latestPerWell, summarize, evalThreshold, assess, bucketSeries, seriesChange, outsideShare, deviationCheck, buildAlerts, buildMetrics, analyze };
+  return { FIELDS, PARAMS, ASSESSED, DISCLAIMER, AGG_LABEL, num, median, mean, combine, aggregationFor, validValue, phMeanByHydrogen, classifyPh, latestPerDevice, latestPerWell, summarize, evalThreshold, assess, bucketSeries, seriesChange, outsideShare, deviationCheck, buildAlerts, buildMetrics, ccmeIndex, ccmeWqi, wqiCategory, waterCard, extraAlerts, analyze };
 });

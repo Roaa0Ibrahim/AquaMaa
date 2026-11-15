@@ -67,10 +67,15 @@
     "temperature": {
       "label": "Water temperature",
       "unit": "°C",
-      "reference": null,
-      "critical": null,
+      "reference": {
+        "min": 15,
+        "max": 35
+      },
+      "critical": {
+        "max": 40
+      },
       "confirmed": false,
-      "source": "No universal threshold exists. Configure a site-specific or operational range here."
+      "source": "AquaMaa operational band for well water in Qatar (15-35 °C; above 40 °C treated as critical: a sensor fault or water heated at the surface). There is no universal regulatory limit for water temperature: replace with the responsible institution's site-specific range."
     },
     "tds_ppm": {
       "label": "Total dissolved solids",
@@ -96,7 +101,7 @@
         "formula": null
       },
       "confirmed": false,
-      "source": "The database holds raw sensor counts and voltage only. No validated NTU conversion exists, so turbidity is displayed raw, is never labelled NTU and never contributes to the assessment."
+      "source": "The database holds raw sensor counts and voltage only. No validated NTU conversion exists, so turbidity is displayed raw, is never labelled NTU and never contributes to the assessment. Turbidity alerts therefore use the unusual-change check only (deviation), which compares the raw reading with its own recent history and needs no calibration."
     }
   },
   "aggregation": {
@@ -118,9 +123,90 @@
       "acrossWells": "median"
     }
   },
+  "wqi": {
+    "_readme": "CCME Water Quality Index (CCME 2001): WQI = 100 - sqrt(F1^2 + F2^2 + F3^2) / 1.732, with F1 = % of variables failing, F2 = % of tests failing, F3 = amplitude of the failures. Objectives are each parameter's 'reference' range above; a parameter with no reference is left out (and listed as left out). Turbidity is never included: it is a raw, uncalibrated reading. One test = one well value per time bucket of the selected period. Categories: Excellent 95-100, Good 80-94, Fair 65-79, Marginal 45-64, Poor 0-44. CCME recommends at least 4 variables and 4 samples; with fewer the index is shown as indicative. An alert is raised when a well's index falls into one of alertCategories (Poor is critical).",
+    "parameters": [
+      "ph",
+      "tds_ppm",
+      "temperature"
+    ],
+    "minSamplesPerVariable": 4,
+    "alertCategories": [
+      "Marginal",
+      "Poor"
+    ]
+  },
+  "waterUse": {
+    "_readme": "Water Card: what each well's water is good for, from its latest valid TDS (and pH for drinking). Crop limits are the salinity of irrigation water (ECw, dS/m) at which the crop still gives its full yield, FAO Irrigation and Drainage Paper 29 Table 4, converted with TDS ≈ 640 × ECw (FAO 29). The same table is AquaMaa's fastpath/data/crop_tolerance.csv, so the dashboard, Pepper and the agent agree. Drinking is judged on taste only (WHO): it never says 'safe to drink', which needs a laboratory test. An alert is raised when a well's water is not suitable for one or more of these uses.",
+    "tdsPerEcw": 640,
+    "drinking": {
+      "label": "Drinking (taste)",
+      "label_ar": "الشرب (الطعم)",
+      "tdsGood": 600,
+      "tdsMax": 1000,
+      "ph": {
+        "min": 6.5,
+        "max": 8.5
+      },
+      "source": "WHO TDS background document (taste); pH 6.5-8.5 (US EPA secondary standard / WHO operational range)",
+      "note": "Taste only: safety needs a laboratory test"
+    },
+    "crops": [
+      {
+        "crop": "onion",
+        "label": "Onion",
+        "label_ar": "البصل",
+        "ecwNoLoss": 0.8
+      },
+      {
+        "crop": "lettuce",
+        "label": "Lettuce",
+        "label_ar": "الخس",
+        "ecwNoLoss": 0.9
+      },
+      {
+        "crop": "alfalfa",
+        "label": "Alfalfa",
+        "label_ar": "البرسيم",
+        "ecwNoLoss": 1.3
+      },
+      {
+        "crop": "tomato",
+        "label": "Tomato",
+        "label_ar": "الطماطم",
+        "ecwNoLoss": 1.7
+      },
+      {
+        "crop": "cucumber",
+        "label": "Cucumber",
+        "label_ar": "الخيار",
+        "ecwNoLoss": 1.7
+      },
+      {
+        "crop": "date palm",
+        "label": "Date palm",
+        "label_ar": "النخيل",
+        "ecwNoLoss": 2.7
+      },
+      {
+        "crop": "wheat",
+        "label": "Wheat",
+        "label_ar": "القمح",
+        "ecwNoLoss": 4.0
+      },
+      {
+        "crop": "barley",
+        "label": "Barley",
+        "label_ar": "الشعير",
+        "ecwNoLoss": 5.3
+      }
+    ],
+    "source": "FAO 29 Table 4 (Ayers & Westcot 1985), via AquaMaa fastpath/data/crop_tolerance.csv (draft, Mais to check)"
+  },
   "deviation": {
     "parameters": [
-      "tds_ppm"
+      "tds_ppm",
+      "turbidity_raw"
     ],
     "method": "Modified z-score of the current network median against the median of earlier time buckets in the selected period (Iglewicz & Hoaglin, 1993)",
     "zThreshold": 3.5,

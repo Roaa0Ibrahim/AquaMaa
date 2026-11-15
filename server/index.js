@@ -264,5 +264,6 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 const PORT = Number(process.env.PORT) || 3000;
 if (require.main === module) {
   app.listen(PORT, () => console.log(`AquaMaa running on http://localhost:${PORT}`));
+  require('./notifier').startNotifier();   // Telegram alerts; does nothing unless TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID are set
 }
 module.exports = app;
