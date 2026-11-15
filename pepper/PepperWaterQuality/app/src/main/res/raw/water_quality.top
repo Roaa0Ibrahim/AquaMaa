@@ -5,26 +5,26 @@ concept:(bye) [thanks "thank you" bye goodbye]
 
 u:(~hello) Hello! I am AquaMaa, I watch the wells for you. Ask me about the water right now, or what to do about it.
 
-u:(["what is the salinity now" "what is the salinity" "how salty is the water" "what is the water reading" "what does the sensor say" "what is the water quality now"]) Let me check the sensor. ^execute(ask, What is the salinity of the water right now)
+u:(["what is the salinity now" "what is the salinity" "how salty is the water" "what is the water reading" "what does the sensor say" "what is the water quality now"]) Let me check the sensor. ^execute(ask, What is the salinity of the water right now) $answer
 
-u:(["is the water getting saltier" "is it getting saltier" "how has the salinity changed" "is the water getting worse"]) Let me look at the recent readings. ^execute(ask, Is the water getting saltier)
+u:(["is the water getting saltier" "is it getting saltier" "how has the salinity changed" "is the water getting worse"]) Let me look at the recent readings. ^execute(ask, Is the water getting saltier) $answer
 
-u:(["can farmers irrigate with it" "is it good for irrigation" "can we use it for farming" "is the water suitable for irrigation"]) Let me check what this water is good for. ^execute(ask, Is the water right now suitable for irrigation)
+u:(["can farmers irrigate with it" "is it good for irrigation" "can we use it for farming" "is the water suitable for irrigation"]) Let me check what this water is good for. ^execute(ask, Is the water right now suitable for irrigation) $answer
 
-u:(["what should we do" "what do you recommend" "what are our options"]) Let me think about the options. ^execute(ask, What should we do about the salinity of the water right now)
+u:(["what should we do" "what do you recommend" "what are our options"]) Let me think about the options. ^execute(ask, What should we do about the salinity of the water right now) $answer
 
-u:(["give me the briefing" "morning briefing" "which wells need attention" "which sensors are offline"]) Here is the status of the wells. ^execute(ask, Which sensors need attention and which are offline right now)
+u:(["give me the briefing" "morning briefing" "which wells need attention" "which sensors are offline"]) Here is the status of the wells. ^execute(ask, Which sensors need attention and which are offline right now) $answer
 
-u:(["why are the wells getting saltier" "why is the water salty" "why is groundwater getting salty"]) Good question. ^execute(ask, Why are wells getting saltier)
+u:(["why are the wells getting saltier" "why is the water salty" "why is groundwater getting salty"]) Good question. ^execute(ask, Why are wells getting saltier) $answer
 
-u:(["do farmers need a licence" "do we need a licence for a well" "is a licence needed for a new well"]) Let me check the law. ^execute(ask, Do farmers need a licence to dig a new well)
+u:(["do farmers need a licence" "do we need a licence for a well" "is a licence needed for a new well"]) Let me check the law. ^execute(ask, Do farmers need a licence to dig a new well) $answer
 
-u:(["what is the penalty for an unlicensed well" "what is the fine for an illegal well"]) Let me check the law. ^execute(ask, What is the penalty for digging a well without a licence)
+u:(["what is the penalty for an unlicensed well" "what is the fine for an illegal well"]) Let me check the law. ^execute(ask, What is the penalty for digging a well without a licence) $answer
 
-u:(["what is TDS" "what are total dissolved solids"]) Let me explain. ^execute(ask, What is TDS and what does the reading mean right now)
+u:(["what is TDS" "what are total dissolved solids"]) Let me explain. ^execute(ask, What is TDS and what does the reading mean right now) $answer
 
-u:(["is the water safe to drink" "can people drink this water" "is it drinkable"]) Let me check the sensor. ^execute(ask, Is the water right now suitable for drinking)
+u:(["is the water safe to drink" "can people drink this water" "is it drinkable"]) Let me check the sensor. ^execute(ask, Is the water right now suitable for drinking) $answer
 
-u:(["what does this mean" "explain the reading" "what does the dashboard show"]) Let me read the dashboard. ^execute(ask, What does the dashboard show right now)
+u:(["what does this mean" "explain the reading" "what does the dashboard show"]) Let me read the dashboard. ^execute(ask, What does the dashboard show right now) $answer
 
 u:(~bye) You are welcome! I will keep watching the wells. Goodbye!

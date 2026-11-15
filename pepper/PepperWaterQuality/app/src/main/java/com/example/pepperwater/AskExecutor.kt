@@ -14,6 +14,7 @@ class AskExecutor(
     private val ctx: QiContext,
     private val locale: Locale,
     private val status: (String) -> Unit,
+    private val setAnswer: (String) -> Unit,
 ) : BaseQiChatExecutor(ctx) {
 
     override fun runWith(params: List<String>) {
@@ -30,7 +31,9 @@ class AskExecutor(
             "Sorry, I can't reach AquaMaa's brain right now. Please check that the laptop service is running."
         }
         status("Answer: $answer")
-        SayBuilder.with(ctx).withText(answer).withLocale(locale).build().run()
+        // The conversation itself says the answer: the rule continues with "$answer" after ^execute (15 Nov: a
+        // separate Say inside the conversation was silent on the robot; the answer only showed as text)
+        setAnswer(answer)
     }
 
     override fun stop() {}

@@ -257,8 +257,9 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
     private fun makeChat(qiContext: QiContext, topicRes: Int): Chat {
         val topic = TopicBuilder.with(qiContext).withResource(topicRes).build()
         val executors = HashMap<String, QiChatExecutor>()
-        executors["ask"] = AskExecutor(qiContext, english) { status(it) }
         val chatbot = QiChatbotBuilder.with(qiContext).withTopic(topic).withLocale(english).build()
+        val answerVar = chatbot.variable("answer")     // the rule says "$answer" right after ^execute
+        executors["ask"] = AskExecutor(qiContext, english, { status(it) }) { answerVar.value = it }
         chatbot.executors = executors          // QiSDK 1.7.5: set after build (the builder has no withExecutors)
         return ChatBuilder.with(qiContext).withChatbot(chatbot).withLocale(english).build()
     }

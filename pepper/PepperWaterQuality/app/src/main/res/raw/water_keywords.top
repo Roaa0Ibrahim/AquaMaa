@@ -9,10 +9,10 @@ concept:(bye) [thanks "thank you" bye goodbye]
 
 u:({*} ~hello {*}) Hello, I am AquaMaa. Qatar's wells can't speak, so I give them a voice. I watch every sensor live, and I tell you what the water means and what to do. Ask me what the salinity is now, or if the water is safe to drink.
 
-u:({*} [temperature temperatures hot cold warm degrees] {*}) ^execute(ask, now:temperature)
+u:({*} [temperature temperatures hot cold warm degrees] {*}) ^execute(ask, now:temperature) $answer
 
-u:({*} [drink drinking drinkable potable safe] {*}) Let me check the sensor. ^execute(ask, Is the water right now suitable for drinking)
+u:({*} [drink drinking drinkable potable safe] {*}) Let me check the sensor. ^execute(ask, Is the water right now suitable for drinking) $answer
 
-u:({*} [salt salty saltiness salinity TDS "T D S" quality reading sensor water] {*}) Let me check the sensor. ^execute(ask, What is the salinity of the water right now)
+u:({*} [salt salty saltiness salinity TDS "T D S" quality reading sensor water] {*}) Let me check the sensor. ^execute(ask, What is the salinity of the water right now) $answer
 
 u:({*} ~bye {*}) You are welcome. I will keep watching the wells. Goodbye!
