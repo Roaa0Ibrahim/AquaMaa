@@ -78,9 +78,14 @@ function format(alert, kind) {
   return `${icon} AquaMaa · ${head} · ${AST.format(Date.now())} AST\n${alert.title}${alert.detail && kind !== 'cleared' ? `\n${alert.detail}` : ''}`;
 }
 
+let BOT_USERNAME = null;   // filled from Telegram's getMe when the notifier starts; shown on the farmer's page
+function botUsername() { return BOT_USERNAME; }
+
 function startNotifier(log = console) {
   const cfgEnv = settings();
   if (!cfgEnv.token) return null;   // chats come from TELEGRAM_CHAT_ID and/or /subscribe
+  fetch(`${API}/bot${cfgEnv.token}/getMe`, { signal: AbortSignal.timeout(15000) }).then((r) => r.json())
+    .then((d) => { if (d && d.ok) BOT_USERNAME = d.result.username; }).catch(() => {});
   const st = { rows: [], ids: new Set(), maxId: 0, active: null, busy: false, timer: null, failures: 0 };
 
   function merge(rows) {
@@ -194,8 +199,8 @@ function startReplies(token, latest, log) {
   async function handle(msg) {
     const chat = msg.chat.id, text = String(msg.text || '').trim();
     if (!text) return;
-    if (/^\/(start|help)\b/i.test(text)) return reply(chat, WELCOME);
-    if (/^\/subscribe\b/i.test(text) || /^(subscribe|اشتراك|اشترك)$/i.test(text)) {
+    if (/^\/(start|help)\b/i.test(text) && !/^\/start\s+subscribe\b/i.test(text)) return reply(chat, WELCOME);
+    if (/^\/start\s+subscribe\b/i.test(text) || /^\/subscribe\b/i.test(text) || /^(subscribe|اشتراك|اشترك)$/i.test(text)) {
       const who = [msg.chat.title, msg.chat.first_name, msg.chat.last_name].filter(Boolean).join(' ') || msg.chat.username || '';
       const isNew = subscribe(chat, who);
       return reply(chat, `${isNew ? '🔔 Subscribed!' : '🔔 You are already subscribed.'} You'll get an alert here the moment the well water changes.\nتم الاشتراك: ستصلك التنبيهات هنا فور تغيّر ماء البئر.\n\nSend /unsubscribe to stop.\n\n${readingsCard(latest())}`);
@@ -233,7 +238,7 @@ function startReplies(token, latest, log) {
   return { stop: () => { stopped = true; } };
 }
 
-module.exports = { startNotifier, format, readingsCard, subscribe, unsubscribe, subscribers, recipients };
+module.exports = { startNotifier, format, readingsCard, subscribe, unsubscribe, subscribers, recipients, botUsername };
 
 /* CLI: --chat-id lists the chats that have written to the bot; --test sends a test message. */
 if (require.main === module) {

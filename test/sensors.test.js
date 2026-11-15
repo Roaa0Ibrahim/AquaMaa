@@ -327,3 +327,14 @@ test('status alerts: NO WATER and a non-clear turbidity raise alerts; CLEAR and 
   const devs = S.latestPerDevice([row('A', 1, { well_id: 1, water_level_status: 'OK' }), row('A', 5, { well_id: 1, water_level_status: 'NO WATER' })], opts);
   assert.equal(S.latestPerWell(devs, cfg.aggregation)[0].status.water_level_status.value, 'OK');
 });
+
+test('pH is shown exactly as stored in the database (no rounding or averaging for one sensor)', () => {
+  for (const v of [6.96, 7.63, 4.62, 8.89, 7.123456]) {
+    const rows = [row('AquaNova-ESP32-01', 1, { well_id: 1, ph: v, tds_ppm: 300 })];
+    const a = S.analyze(rows, rows, cfg, NOW, '24h', null);
+    assert.equal(a.devices[0].fresh.ph.value, v);       // the sensor's value
+    assert.equal(a.wells[0].fresh.ph.value, v);         // the well's value
+    assert.equal(a.summary.ph.value, v);                // the dashboard headline
+    assert.equal(a.metrics.ph.value, v);                // what the assistant and Pepper receive
+  }
+});

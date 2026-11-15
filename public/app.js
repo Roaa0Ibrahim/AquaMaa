@@ -576,9 +576,66 @@
     }
     if (tds != null && tds > SEVERE_TDS) return { level: 'bad', label: F('Too salty: severe for irrigation, not for drinking', 'مالح جدًا: قيد شديد على الري، ولا يصلح للشرب') };
     if (tds != null && tds > FARM_T.tdsMax) return { level: 'warn', label: F('Salty: suits salt-tolerant crops only', 'مالح: يناسب المحاصيل المتحملة للملوحة فقط') };
-    if (ph != null && (ph < FARM_T.phMin || ph > FARM_T.phMax)) return { level: 'warn', label: F(`pH ${fmt(ph, 1)} is outside ${FARM_T.phMin}-${FARM_T.phMax}`, `درجة الحموضة ${fmt(ph, 1)} خارج المدى ${FARM_T.phMin}-${FARM_T.phMax}`) };
+    if (ph != null && (ph < FARM_T.phMin || ph > FARM_T.phMax)) return { level: 'warn', label: F(`pH ${fmt(ph, 2)} is outside ${FARM_T.phMin}-${FARM_T.phMax}`, `درجة الحموضة ${fmt(ph, 2)} خارج المدى ${FARM_T.phMin}-${FARM_T.phMax}`) };
     if (tds == null && ph == null) return { level: 'none', label: F('No valid readings', 'لا توجد قراءات صالحة') };
     return { level: 'good', label: F('Good: fine for irrigation', 'جيد: مناسب للري') };
+  }
+
+  // 15 Nov: the farmer's real question is "what do I do now?". One plain sentence per well, most urgent first:
+  // no sensor > no water > offline > too salty for the crop > pH > cloudy water > all fine. Same thresholds as above.
+  const listOr = (xs) => (xs.length <= 1 ? xs.join('') : `${xs.slice(0, -1).join(', ')}${F(' or ', ' أو ')}${xs[xs.length - 1]}`);
+  function wellAdvice(well, d) {
+    const st = (f) => (d && d.status && d.status[f] ? String(d.status[f].value).toUpperCase() : null);
+    const v = (f) => (d && d.fresh && d.fresh[f] ? d.fresh[f].value : null);
+    const tds = v('tds_ppm'), ph = v('ph'), crop = cropOf(well.crop);
+    const cname = crop ? F(crop.en, crop.ar) : F('your crops', 'محاصيلك');
+    if (!well.device_id) return { icon: '🔗', level: 'none', text: F('Link a sensor to this well to get live advice.', 'اربط حساسًا بهذا البئر لتحصل على نصيحة مباشرة.') };
+    if (!d) return { icon: '⏳', level: 'none', text: F('Waiting for the first reading from the sensor.', 'بانتظار أول قراءة من الحساس.') };
+    if (['NO WATER', 'EMPTY', 'DRY', 'LOW'].includes(st('water_level_status')))
+      return { icon: '💧', level: 'bad', text: F(`The sensor reports "${d.status.water_level_status.value}": check the pump and that the probes are in the water.`,
+        `الحساس يشير إلى "${d.status.water_level_status.value}": افحص المضخة وتأكد أن المجسات داخل الماء.`) };
+    if (!d.online) { const m = Math.round(d.ageMs / 60000);
+      return { icon: '📡', level: 'off', text: F(`No reading for ${m < 120 ? `${m} min` : `${Math.round(m / 60)} h`}: check the sensor's power and Wi-Fi. The advice below uses the last known values.`,
+        `لا توجد قراءة منذ ${m < 120 ? `${m} دقيقة` : `${Math.round(m / 60)} ساعة`}: افحص طاقة الحساس والواي فاي. النصيحة أدناه من آخر القيم المعروفة.`) }; }
+    if (tds != null && ((crop && tds > crop.noLoss) || (!crop && tds > FARM_T.tdsMax))) {
+      const ok = CROPS.filter((c) => tds <= c.noLoss).map((c) => F(c.en, c.ar));
+      return { icon: '🧂', level: tds > SEVERE_TDS ? 'bad' : 'warn', text: ok.length
+        ? (crop ? F(`Too salty for ${cname} (${fmt(tds)} ppm, limit ${fmt(crop.noLoss)}). Use this well for ${listOr(ok)}, or mix it with fresher water for ${cname}.`,
+          `مالح على ${cname} (${fmt(tds)}، والحد ${fmt(crop.noLoss)}). استخدم هذا البئر لـ${listOr(ok)}، أو اخلطه بماء أعذب لسقي ${cname}.`)
+          : F(`Salty (${fmt(tds)} ppm): use this well for ${listOr(ok)}.`, `مالح (${fmt(tds)}): استخدم هذا البئر لـ${listOr(ok)}.`))
+        : F(`Too salty for every listed crop (${fmt(tds)} ppm): mix it with fresher water or rest the well.`, `مالح على كل المحاصيل المدرجة (${fmt(tds)}): اخلطه بماء أعذب أو أرِح البئر.`) };
+    }
+    if (ph != null && (ph < FARM_T.phMin || ph > FARM_T.phMax))
+      return { icon: '⚗️', level: 'warn', text: ph < FARM_T.phMin
+        ? F(`The water reads acidic (pH ${fmt(ph, 2)}): check the pH probe, then test a sample before relying on it.`, `الماء حمضي (درجة الحموضة ${fmt(ph, 2)}): افحص مجس الحموضة ثم اختبر عينة قبل الاعتماد عليه.`)
+        : F(`The water reads alkaline (pH ${fmt(ph, 2)}): check the pH probe, then test a sample before relying on it.`, `الماء قلوي (درجة الحموضة ${fmt(ph, 2)}): افحص مجس الحموضة ثم اختبر عينة قبل الاعتماد عليه.`) };
+    if (st('turbidity_status') && st('turbidity_status') !== 'CLEAR')
+      return { icon: '🌫️', level: 'warn', text: F(`The water is ${d.status.turbidity_status.value.toLowerCase()}: let it settle or filter it before drip irrigation.`,
+        `الماء عكر (${d.status.turbidity_status.value}): اتركه يترسب أو رشّحه قبل الري بالتنقيط.`) };
+    if (tds == null) return { icon: '⏳', level: 'none', text: F('No salinity reading yet.', 'لا توجد قراءة ملوحة بعد.') };
+    return { icon: '✅', level: 'good', text: F(`No action needed: the water is fine for ${cname}.`, `لا حاجة لأي إجراء: الماء مناسب لـ${cname}.`) };
+  }
+  // "Good for": every crop in the table, ticked or crossed at this salinity (FAO 29 no-loss limits); drinking by taste only
+  function wellUses(well, d) {
+    const tds = d && d.fresh && d.fresh.tds_ppm ? d.fresh.tds_ppm.value : null;
+    const ph = d && d.fresh && d.fresh.ph ? d.fresh.ph.value : null;
+    if (tds == null) return '';
+    const mine = (cropOf(well.crop) || {}).en;
+    const chip = (ok, label, title, strong) => `<span class="tag ${ok ? 'green' : 'red'}${strong ? ' mine' : ''}" title="${esc(title)}"><i></i>${ok ? '✔' : '✘'} ${esc(label)}</span>`;
+    const drinkOk = tds <= 1000 && !(ph != null && (ph < FARM_T.phMin || ph > FARM_T.phMax));
+    return `<div class="well-uses"><div class="unit">${esc(F('This water is good for', 'هذا الماء يصلح لـ'))}</div><div class="chips">
+      ${CROPS.slice().sort((a, b) => b.noLoss - a.noLoss).map((c) => chip(tds <= c.noLoss, F(c.en.replace(/^./, (x) => x.toUpperCase()), c.ar),
+        F(`Full yield up to ${fmt(c.noLoss)} ppm (FAO 29)`, `إنتاج كامل حتى ${fmt(c.noLoss)} جزء في المليون (الفاو 29)`), c.en === mine)).join('')}
+      ${chip(drinkOk, F('Drinking (taste)', 'الشرب (الطعم)'), F('Taste only (WHO, up to 1000 mg/L, pH 6.5-8.5); safety needs a laboratory test', 'الطعم فقط (منظمة الصحة العالمية)؛ السلامة تحتاج فحصًا مخبريًا'))}</div></div>`;
+  }
+  // Device status from the ESP32: water level and turbidity, as small tags
+  function wellStatus(d) {
+    const s = (f) => (d && d.status && d.status[f] ? d.status[f].value : null);
+    const wl = s('water_level_status'), tb = s('turbidity_status');
+    if (!wl && !tb) return '';
+    const bad = (x, list) => list.includes(String(x).toUpperCase());
+    return `<div class="toolbar well-status">${wl ? `<span class="tag ${bad(wl, ['NO WATER', 'EMPTY', 'DRY', 'LOW']) ? 'amber' : 'green'}"><i></i>${esc(F('Water level', 'مستوى الماء'))}: ${esc(wl)}</span>` : ''}
+      ${tb ? `<span class="tag ${String(tb).toUpperCase() === 'CLEAR' ? 'green' : 'amber'}"><i></i>${esc(F('Turbidity', 'العكارة'))}: ${esc(tb)}</span>` : ''}</div>`;
   }
 
   // The well itself is the element: roof, bucket, the water inside coloured by quality, and the salinity reading on
@@ -640,8 +697,17 @@
           <label>${esc(F('Main crop', 'المحصول الرئيسي'))}<select name="crop">${opt(CROPS, (c) => F(c.en.replace(/^./, (x) => x.toUpperCase()), c.ar))}</select></label>
           <label>${esc(F('Area', 'المنطقة'))}<select name="location">${opt(PLACES, (p) => F(p[0], p[1]))}</select></label>
           <button class="btn" type="submit">${esc(F('Add well', 'إضافة البئر'))}</button><span class="unit" id="farm-msg"></span>
-        </form></section>`;
+        </form></section>
+      <section class="card farm-alerts" id="farm-telegram" hidden><div class="eyebrow">${esc(F('ALERTS ON YOUR PHONE', 'التنبيهات على هاتفك'))}</div>
+        <div class="fa-row"><div><b>${esc(F('Know first when your water changes', 'اعرف أولاً عندما يتغير ماء بئرك'))}</b>
+          <p class="unit">${esc(F('Get a Telegram message the moment a well becomes too salty, the pH changes or the water level drops: what it means and what to do.', 'تصلك رسالة على تيليجرام فور أن يصبح البئر مالحًا أو تتغير الحموضة أو ينخفض مستوى الماء: ماذا يعني وماذا تفعل.'))}</p></div>
+          <a class="btn" id="farm-tg-link" target="_blank" rel="noopener">${esc(F('Get alerts on Telegram', 'فعّل التنبيهات على تيليجرام'))}</a></div></section>`;
     let wells = (await api('/api/farm/wells')).wells;
+    // The alert bot, if the server runs one (TELEGRAM_BOT_TOKEN): one tap opens it and subscribes
+    api('/api/config').then((c) => {
+      const bot = c && c.telegramBot, box = $('#farm-telegram');
+      if (bot && box) { $('#farm-tg-link').href = `https://t.me/${encodeURIComponent(bot)}?start=subscribe`; box.hidden = false; }
+    }).catch(() => {});
 
     const draw = () => {
       const grid = $('#farm-grid');
@@ -683,27 +749,29 @@
           <button class="well-del" data-del="${w.id}" title="${esc(F('Remove this well', 'إزالة هذا البئر'))}" aria-label="${esc(F('Remove', 'إزالة'))} ${esc(w.name)}">×</button>
           <div class="well-head"><h3>${esc(w.name)}</h3><div class="unit">${esc([crop ? F(crop.en.replace(/^./, (x) => x.toUpperCase()), crop.ar) : w.crop,
             (PLACES.find((p) => p[0] === w.location) || [w.location, w.location])[lang === 'ar' ? 1 : 0]].filter(Boolean).join(' · ') || '—')}</div></div>
+          <div class="well-body">
+            <div class="well-side">
           ${wellFigure(q.level, undefined, `${w.name}: ${q.label}`)}
           <div class="well-label">${tag(q.label, { good: 'green', warn: 'amber', bad: 'red' }[q.level] || 'grey')}</div>
+          ${wellStatus(d)}
+            </div>
+            <div class="well-main">
+          ${(() => { const a = wellAdvice(w, d); return `<div class="well-advice adv-${a.level}"><span class="adv-ic" aria-hidden="true">${a.icon}</span><div><b>${esc(F('What to do', 'ماذا أفعل'))}</b><p>${esc(a.text)}</p></div></div>`; })()}
+          ${wellUses(w, d)}
           <div class="well-gauges">
             ${gauge({ value: num('tds_ppm'), min: 0, max: top, label: F('Salinity (TDS ppm)', 'الملوحة (جزء في المليون)'),
               refs: [[fmt(limit), crop ? F(`${crop.en.toUpperCase()} LIMIT`, `حد ${crop.ar}`) : F('DASHBOARD LIMIT', 'حد لوحة المعلومات')], [fmt(SEVERE_TDS), F('FAO SEVERE', 'شديد (الفاو)')]],
               marks: [{ v: limit, text: fmt(limit) }].concat(Math.abs(SEVERE_TDS - limit) > top * 0.08 ? [{ v: SEVERE_TDS, text: fmt(SEVERE_TDS) }] : []), zones })}
-            ${gauge({ value: num('ph'), dec: 1, min: 4, max: 10, label: F('pH', 'درجة الحموضة'),
+            ${gauge({ value: num('ph'), dec: 2, min: 4, max: 10, label: F('pH', 'درجة الحموضة'),
               refs: [[fmt(phMin, 1), F('MIN', 'الحد الأدنى')], [fmt(phMax, 1), F('MAX', 'الحد الأعلى')]],
               marks: [{ v: phMin, text: fmt(phMin, 1) }, { v: phMax, text: fmt(phMax, 1) }],
               zones: [{ to: phMin, color: 'var(--amber)' }, { to: phMax, color: 'var(--green)' }, { to: 10, color: 'var(--amber)' }] })}
             ${gauge({ value: num('temperature'), dec: 1, min: 0, max: 45, label: F('Temperature (°C)', 'الحرارة (درجة مئوية)'),
               refs: [['—', F('NO LIMIT SET', 'لا يوجد حد')], ['45', F('SCALE MAX', 'أعلى المقياس')]], zones: [{ to: 45, color: 'var(--turq)' }] })}</div>
           <div class="unit" style="text-align:center">${esc(F('Turbidity index (not NTU)', 'مؤشر العكارة (ليس NTU)'))}: ${val('turbidity_index', 1)}</div>
-          ${(() => {                                   // what this well's water can be used for (Deema's Water Card, 15 Nov)
-            const wc = d && d.well_id != null ? (data.waterCard || []).find((c) => c.well === `Well ${d.well_id}`) : null;
-            if (!wc || !wc.uses || !wc.uses.length) return '';
-            const chip = (u) => `<span class="tag ${u.ok ? 'green' : 'red'}">${u.ok ? '✓' : '✗'} ${esc(lang === 'ar' ? (u.label_ar || u.label) : u.label)}</span>`;
-            return `<div class="well-uses"><div class="eyebrow">${esc(F('CAN BE USED FOR', 'يمكن استخدامه لـ'))}</div>
-              <div class="toolbar">${wc.uses.filter((u) => u.ok).map(chip).join('')}${wc.uses.filter((u) => !u.ok).map(chip).join('')}</div></div>`;
-          })()}
           <div class="well-trend">${series.length > 1 ? sparkline(series, 220, 48) + `<span class="unit">${esc(F(`Salinity over ${data.range ? data.range.label : 'the period'}`, 'تغير الملوحة خلال الفترة'))}: ${change >= 0 ? '+' : ''}${fmt(change, 0)} ${esc(F('ppm', 'جزء في المليون'))}</span>` : `<span class="unit">${esc(F('Not enough readings yet for a chart', 'لا توجد قراءات كافية بعد للرسم'))}</span>`}</div>
+            </div>
+          </div>
           <div class="well-foot"><span class="unit">${w.device_id ? `${esc(F('Sensor', 'الحساس'))} ${esc(w.device_id)}${ago != null ? ` · ${esc(F(`last reading ${ago} min ago`, `آخر قراءة قبل ${ago} دقيقة`))}` : ''}` : esc(F('Link a sensor to see live readings', 'اربط حساسًا لرؤية القراءات المباشرة'))}</span>
             <button class="btn ghost" data-ask="${esc(w.name)}" data-crop="${esc(w.crop || '')}">${esc(F('Ask AquaMaa', 'اسأل أكوا ماء'))}</button></div>
         </article>`;

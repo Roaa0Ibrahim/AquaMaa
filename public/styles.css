@@ -436,7 +436,7 @@ table.wq-table td:last-child { white-space: normal; min-width: 96px; }
 .farm-form input, .farm-form select { height: 38px; border: 1px solid var(--line); border-radius: 10px; padding: 0 10px; color: var(--navy); background: #fff; min-width: 170px; }
 
 /* Gauge tiles on each farm well (big value, half-circle with coloured zones and a needle, name, two references) */
-.farm-grid { grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)); }
+.farm-grid { grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); }   /* auto-fit: one well uses the full width */
 .well-fig { max-width: 190px; }
 .well-gauges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .gauge { border: 1px solid var(--line); border-radius: 12px; padding: 10px 10px 8px; background: #fff; box-shadow: 0 2px 6px rgba(10, 80, 105, .05); }
@@ -454,3 +454,35 @@ table.wq-table td:last-child { white-space: normal; min-width: 96px; }
 .greet { font-size: 13.5px; font-weight: 600; color: var(--turq-2); margin-bottom: 4px; }
 .well-uses .toolbar { gap: 6px; margin-top: 6px; }
 .well-uses .tag { height: 26px; font-size: 12.5px; }
+
+/* Farmer page, 15 Nov: what to do, device status, what the water is good for, alerts on the phone */
+.well-advice { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border-radius: 12px; background: #f3f8fa; border-left: 4px solid var(--grey); }
+.well-advice .adv-ic { font-size: 22px; line-height: 1.1; }
+.well-advice b { font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.well-advice p { margin: 2px 0 0; font-size: 14px; line-height: 1.4; color: var(--navy); }
+.well-advice.adv-good { background: var(--green-bg); border-left-color: var(--green); }
+.well-advice.adv-warn { background: var(--amber-bg); border-left-color: var(--amber); }
+.well-advice.adv-bad { background: #fde2e2; border-left-color: var(--red); }
+[dir="rtl"] .well-advice { border-left: 0; border-right: 4px solid var(--grey); }
+[dir="rtl"] .well-advice.adv-good { border-right-color: var(--green); }
+[dir="rtl"] .well-advice.adv-warn { border-right-color: var(--amber); }
+[dir="rtl"] .well-advice.adv-bad { border-right-color: var(--red); }
+.well-status { justify-content: center; gap: 6px; }
+.well-uses .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.well-uses .tag.mine { outline: 2px solid currentColor; outline-offset: 1px; font-weight: 700; }
+.farm-alerts .fa-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 6px; }
+.farm-alerts .fa-row > div { flex: 1 1 260px; min-width: 0; }
+.farm-alerts .unit { white-space: normal; }
+
+/* Well card: two columns when the card is wide (picture + verdict | advice, uses, gauges), one when narrow */
+.well-card { container-type: inline-size; }
+.well-body { display: grid; grid-template-columns: minmax(200px, 260px) 1fr; gap: 20px; align-items: start; }
+.well-side { display: flex; flex-direction: column; gap: 12px; align-items: center; position: sticky; top: 12px; }
+.well-side .well-fig { max-width: 220px; }
+.well-main { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.well-main .well-gauges { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@container (max-width: 680px) {
+  .well-body { grid-template-columns: 1fr; gap: 12px; }
+  .well-side { position: static; }
+  .well-side .well-fig { max-width: 190px; }
+}

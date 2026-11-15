@@ -81,6 +81,7 @@
   }
   function combine(method, values) {
     if (!values.length) return null;
+    if (values.length === 1) return values[0];   // one value: passed through exactly as stored, no arithmetic
     if (method === 'mean') return mean(values);
     if (method === 'hydrogenMean') return phMeanByHydrogen(values);
     return median(values);
@@ -478,8 +479,8 @@
         const phBad = ph != null && d.ph && ((d.ph.min != null && ph < d.ph.min) || (d.ph.max != null && ph > d.ph.max));
         const level = tds > d.tdsMax || phBad ? 'no' : tds > d.tdsGood ? 'limited' : 'ok';
         uses.push({ id: 'drinking', label: d.label, label_ar: d.label_ar, kind: 'drinking', ok: level !== 'no', level, limit: d.tdsMax,
-          short: tds > d.tdsMax ? 'drinking (too salty)' : phBad ? `drinking (pH ${ph.toFixed(1)})` : 'drinking',
-          reason: tds > d.tdsMax ? `TDS ${Math.round(tds)} above ${d.tdsMax} (too salty to drink)` : phBad ? `pH ${ph.toFixed(1)} outside ${d.ph.min}-${d.ph.max}` : level === 'limited' ? 'acceptable taste, becoming salty' : 'good taste',
+          short: tds > d.tdsMax ? 'drinking (too salty)' : phBad ? `drinking (pH ${ph})` : 'drinking',
+          reason: tds > d.tdsMax ? `TDS ${Math.round(tds)} above ${d.tdsMax} (too salty to drink)` : phBad ? `pH ${ph} outside ${d.ph.min}-${d.ph.max}` : level === 'limited' ? 'acceptable taste, becoming salty' : 'good taste',
           note: d.note });
       }
       for (const c of wu.crops || []) {

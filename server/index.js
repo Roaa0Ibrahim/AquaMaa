@@ -237,6 +237,7 @@ app.get('/api/config', requireAuth, (req, res) => {
     supabase: pub.ok ? { url: pub.url, publishableKey: pub.key } : null,
     configError: pub.ok ? null : pub.error,
     sensors: sensorConfig.getSensorConfig(),
+    telegramBot: require('./notifier').botUsername(),   // null unless the Telegram bot is running
   });
 });
 
