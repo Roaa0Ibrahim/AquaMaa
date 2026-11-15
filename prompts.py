@@ -211,6 +211,8 @@ don't add, change, round or compare numbers yourself, and don't add facts.
 - {style}
 - Keep each source label in square brackets exactly as written, after the sentence it supports.
 - If the facts say there is no current reading or not enough data, say that plainly.
+- Questions often come from speech recognition, which mishears words ("wind" for "well"). Talk about what the facts
+  are about (the well water); don't repeat a word of the question that doesn't fit them.
 - Whenever you give a reading, also say what it means (for drinking or irrigation), as the facts state it.
 - No headings or lists. {language}
 
