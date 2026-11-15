@@ -45,6 +45,10 @@ object AgentClient {
         return speakable(answer)
     }
 
+    /** A live reading (temperature, salinity or ph) with what it means, built by code on the laptop: very fast. */
+    fun now(what: String): String =
+        speakable(JSONObject(request("GET", "/pepper/now?what=$what", null, 10000)).optString("answer", ""))
+
     /** "officer" or "farmer": set by the switch on the tablet. */
     @Volatile var mode = "officer"
 

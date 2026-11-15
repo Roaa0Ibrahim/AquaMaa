@@ -1,9 +1,10 @@
-﻿TWO QUESTIONS PEPPER ANSWERS (live, from the sensor)
+﻿QUESTIONS PEPPER ANSWERS (live, from the sensor)
 
-1. What is the salinity now?      (any sentence with: salt, salty, salinity, TDS, water, sensor, reading, quality)
-2. Is the water safe to drink?     (any sentence with: drink, drinking, drinkable, safe)
+1. What is the temperature?       (any sentence with: temperature, hot, cold, warm, degrees)  -> answered at once
+2. What is the salinity now?      (any sentence with: salt, salty, salinity, TDS, water, sensor, reading, quality)
+3. Is the water safe to drink?     (any sentence with: drink, drinking, drinkable, safe)
 
 Also: 'Hello' (Pepper tells the AquaMaa story) and 'Thank you' (goodbye).
-Speak English, about 1 m in front of Pepper, after its eyes turn blue. First answer about 5-10 s.
+Speak English, about 1 m in front of Pepper, after its eyes turn blue.
 The yellow text must say 'Listening (keywords)...'. If it says 'Starting...', turn ADB OFF and reopen the app.
 

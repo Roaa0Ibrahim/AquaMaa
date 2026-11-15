@@ -21,7 +21,9 @@ class AskExecutor(
         status("Asking AquaMaa (${AgentClient.mode}): $question")
         val answer = try {
             // One word = a topic (keyword file); a sentence = an exact question (the fallback file)
-            (if (' ' in question) AgentClient.ask(question) else AgentClient.askTopic(question))
+            // "now:temperature" = a live reading said at once, built by code on the laptop (no AI, under a second)
+            (if (question.startsWith("now:")) AgentClient.now(question.removePrefix("now:"))
+             else if (' ' in question) AgentClient.ask(question) else AgentClient.askTopic(question))
                 .ifBlank { "Sorry, I have no answer for that right now." }
         } catch (e: Exception) {
             status("Agent error: ${e.message}")

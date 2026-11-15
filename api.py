@@ -169,6 +169,44 @@ async def speak_answer(s: Spoken):
     return Response(content=audio, media_type="audio/mpeg")
 
 
+@app.get("/pepper/now")
+async def pepper_now(what: str = "temperature"):
+    """A live reading said at once, built by code from the sensor's latest value, no AI (15 Nov: Pepper's temperature
+    answer must be very fast). what: temperature | salinity | ph.  -> {"answer"}"""
+    try:
+        g = await live_data()
+    except Exception:
+        return {"answer": "I can't reach the sensor data right now."}
+    live = g.get("live") or {}
+    devices = live.get("devices") or []
+    d = next((x for x in devices if x.get("online")), devices[0] if devices else {})
+    field, name, unit = {"temperature": ("temperature", "water temperature", "degrees Celsius"),
+                         "ph": ("ph", "pH", ""), "salinity": ("tds_ppm", "salinity", "parts per million")}.get(
+                             what, ("temperature", "water temperature", "degrees Celsius"))
+    v = ((d.get("latestFresh") or {}).get(field) or {}).get("value")
+    if v is None:
+        return {"answer": f"There is no {name} reading from the sensor right now."}
+    shown = f"{round(v, 1):g}" if field != "tds_ppm" else f"{round(v):,}"
+    ago = d.get("minutesAgo")
+    when = ("just now" if not ago else f"{ago} minutes ago") if d.get("online") else \
+           f"but the sensor is offline; this is its last known value, from {ago} minutes ago"
+    text = f"The {name} is {shown} {unit}".rstrip() + f", measured {when}." if d.get("online") else \
+           f"The {name} was {shown} {unit}".rstrip() + f", {when}."
+    # What it means: the dashboard's own range, and for salinity and pH AquaMaa's meanings table
+    ref = ((g.get("thresholds") or {}).get(field) or {}).get("reference") or {}
+    lo, hi = ref.get("min"), ref.get("max")
+    if lo is not None or hi is not None:
+        inside = (lo is None or v >= lo) and (hi is None or v <= hi)
+        rng = f"{lo:g} to {hi:g}" if lo is not None and hi is not None else (f"up to {hi:g}" if hi is not None else f"from {lo:g}")
+        text += f" That is {'within' if inside else 'outside'} the normal range of {rng}{' ' + unit if field == 'temperature' else ''}."
+    if field in ("tds_ppm", "ph"):
+        from fastpath.facts import meaning
+        m = meaning("tds" if field == "tds_ppm" else "ph", "drinking", v, False)
+        if m:
+            text += " For drinking: " + m.split(":", 1)[-1].split("[")[0].strip().rstrip(".") + "."
+    return {"answer": text}
+
+
 class PepperTopic(BaseModel):
     topic: str = Field(min_length=1, max_length=40)
     mode: str = Field(default="officer", max_length=10)
