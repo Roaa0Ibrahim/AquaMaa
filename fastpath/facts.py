@@ -332,9 +332,18 @@ def page(question, grounding, arabic):
         parts = [f"«{w.get('well')}»" if arabic else f"\"{w.get('well')}\""] + \
                 ([("المحصول " if arabic else "crop ") + crop] if crop else [])
         vals = ([f"TDS {_fmt(w['tds_ppm'])} ppm"] if isinstance(w.get("tds_ppm"), (int, float)) else []) + \
-               ([f"pH {_fmt(w['ph'])}"] if isinstance(w.get("ph"), (int, float)) else [])
+               ([f"pH {_fmt(w['ph'])}"] if isinstance(w.get("ph"), (int, float)) else []) + \
+               ([f"temperature {_fmt(w['temperature'])} °C"] if isinstance(w.get("temperature"), (int, float)) else [])
         lines.append(f"Well {', '.join(parts)}: {w.get('quality')}" + (f" ({', '.join(vals)})" if vals else "")
                      + ("" if w.get("online") else "; the sensor is offline or not linked") + f" {tag}.")
+        # What this well's water can be used for (Deema's Water Card, 15 Nov), with crop names in the answer's language
+        name = lambda u: next(((x["crop_ar"] if arabic else x["crop_en"]) for x in CROPS
+                               if x["crop_en"] == str(u).replace("_", " ").lower()),
+                              "الشرب" if (arabic and u == "drinking") else u.replace("_", " "))
+        if w.get("suitable") or w.get("notSuitable"):
+            lines.append(f"Well \"{w.get('well')}\" can be used for: {', '.join(name(u) for u in w.get('suitable') or []) or 'none'}"
+                         + (f"; not suitable for: {', '.join(name(u) for u in w['notSuitable'])}" if w.get("notSuitable") else "")
+                         + " [AquaMaa check].")
     if ctx.get("farmWells"):
         return lines                                         # the farm page: the wells are the page
     devices = live.get("devices") or []
@@ -371,6 +380,14 @@ def page(question, grounding, arabic):
         way = "rose" if last > first else "fell" if last < first else "stayed at"
         lines.append(f"Chart: over {period}, {name} {way} from {_fmt(first)} to {_fmt(last)} {unit}".rstrip()
                      + f" (highest {_fmt(high)}) {tag}.")
+    wqi = (live.get("metrics") or {}).get("wqi") or {}
+    if isinstance(wqi.get("value"), (int, float)):            # Deema's Water Quality Index (CCME), 15 Nov
+        lines.append(f"Water Quality Index: {_fmt(wqi['value'])} out of 100, {str(wqi.get('category', '')).lower()}"
+                     + (f", for {wqi['well']}" if wqi.get("well") else "") + f" {tag}.")
+    alerts_now = live.get("alerts") or []
+    for a in alerts_now[:3]:                                     # what needs attention, in the dashboard's own words
+        if a.get("title"):
+            lines.append(f"Alert: {a['title'].rstrip('.')} {tag}.")
     status = (live.get("assessment") or {}).get("label")
     if status:
         lines.append(f"The dashboard's overall status is \"{status}\"; this is a monitoring indicator, not a "

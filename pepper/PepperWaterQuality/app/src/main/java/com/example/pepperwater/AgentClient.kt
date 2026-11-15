@@ -38,10 +38,21 @@ object AgentClient {
     fun ask(question: String): String {
         val body = JSONObject()
             .put("question", question)
-            .put("role", "officer")      // Pepper stands in the ministry's monitoring room
+            .put("role", mode)           // officer (the ministry's monitoring room) or farmer, from the tablet's switch
             .put("live", true)           // the agent fetches the dashboard's live readings itself
             .toString()
         val answer = JSONObject(request("POST", "/ask", body, 120000)).optString("answer", "")
+        return speakable(answer)
+    }
+
+    /** "officer" or "farmer": set by the switch on the tablet. */
+    @Volatile var mode = "officer"
+
+    /** A topic Pepper heard (a keyword, e.g. "salinity"); the laptop decides what to say or ask for it in this mode
+     *  (fresh-start/pepper_topics.json), so it can change without updating Pepper (15 Nov). */
+    fun askTopic(topic: String): String {
+        val body = JSONObject().put("topic", topic).put("mode", mode).toString()
+        val answer = JSONObject(request("POST", "/pepper/ask", body, 120000)).optString("answer", "")
         return speakable(answer)
     }
 

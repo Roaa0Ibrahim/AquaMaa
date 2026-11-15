@@ -70,3 +70,14 @@ page,ar-dialect,وش يعني اللي قدامي؟
 live_reading,en,What is the salinity now?
 live_reading,en,What is the salinity of the water right now?
 live_reading,ar,كم الملوحة الآن؟
+page,en,Give me a report of the wells on my farm
+page,en,Give me a report of the wells on my farm and what each can be used for
+page,en,Give me a briefing on all the wells
+page,en,Give me a briefing on all the wells: their status, the water quality index and the alerts
+page,en,What is the water quality index of the wells right now
+page,en,Which wells need attention right now and why
+page,en,Does any of my wells need attention right now
+page,en,What does my farm page show right now
+page,ar,أعطني تقريرًا عن آبار مزرعتي
+live_reading,en,Are any sensors offline right now
+live_reading,en,Is my well sensor working right now

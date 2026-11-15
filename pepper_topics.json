@@ -1,0 +1,73 @@
+{
+  "_readme": "What Pepper says or asks for each topic it hears (15 Nov). Pepper's app only knows the topic names (keywords in water_keywords.top); the text here can be changed on this laptop at any time, without updating Pepper. 'say' = spoken as written (no AI); 'officer' / 'farmer' = the question sent to AquaMaa in that mode. Restart api.py after editing.",
+  "hello": {
+    "say": "Hello, I am AquaMaa. Qatar's farm wells are getting saltier, and farmers find out too late; I read the well sensors live and tell you what the water means. Ask me about the salinity, the temperature, the pH, or the alerts."
+  },
+  "bye": {
+    "say": "You are welcome. I will keep watching the wells. Goodbye!"
+  },
+  "report": {
+    "officer": "Give me a briefing on all the wells: their status, the water quality index and the alerts",
+    "farmer": "Give me a report of the wells on my farm and what each can be used for"
+  },
+  "salinity": {
+    "officer": "What is the average salinity across all the wells right now and what does it mean",
+    "farmer": "What is the salinity of my well right now and what does it mean"
+  },
+  "temperature": {
+    "officer": "What is the water temperature across the wells right now and what does it mean",
+    "farmer": "What is the water temperature of my well right now and what does it mean"
+  },
+  "ph": {
+    "officer": "What is the average pH across the wells right now and what does it mean",
+    "farmer": "What is the pH of my well water right now and what does it mean"
+  },
+  "drink": {
+    "officer": "Is the water in the wells suitable for drinking right now",
+    "farmer": "Is my well water safe to drink right now"
+  },
+  "irrigation": {
+    "officer": "Is the water in the wells suitable for irrigation of date palms right now",
+    "farmer": "Can I irrigate my date palms with my well water right now"
+  },
+  "crops": {
+    "officer": "Which crops can be irrigated with the water in the wells right now",
+    "farmer": "Which crops can I grow with my well water right now"
+  },
+  "trend": {
+    "officer": "Is salinity rising across the wells",
+    "farmer": "Is my well getting saltier"
+  },
+  "advice": {
+    "officer": "What should the ministry do about the salinity of the wells right now",
+    "farmer": "What should I do about my well water right now"
+  },
+  "test": {
+    "officer": "How should well water be tested",
+    "farmer": "How do I test my well water"
+  },
+  "attention": {
+    "officer": "Which wells need attention right now and why",
+    "farmer": "Does any of my wells need attention right now"
+  },
+  "offline": {
+    "officer": "Are any sensors offline right now",
+    "farmer": "Is my well sensor working right now"
+  },
+  "index": {
+    "officer": "What is the water quality index of the wells right now",
+    "farmer": "What is the water quality index of my well right now"
+  },
+  "municipality": {
+    "officer": "Which municipality has the most wells",
+    "farmer": "Which municipality has the most wells"
+  },
+  "law": {
+    "officer": "What is the penalty for digging a well without a licence",
+    "farmer": "Do I need a licence to dig a new well"
+  },
+  "dashboard": {
+    "officer": "What does the dashboard show right now",
+    "farmer": "What does my farm page show right now"
+  }
+}

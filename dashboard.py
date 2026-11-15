@@ -73,6 +73,32 @@ def grounding(page="dashboard"):
     return r.json()
 
 
+def farm_context(grounding_data, email="farmer@aquamaa.demo"):
+    """The farmer's wells as the My Farm page shows them, for Pepper in farmer mode (15 Nov): each well with its
+    crop, area, sensor and its live values, plus what its water can be used for (Deema's Water Card, by well)."""
+    s = requests.Session()
+    r = s.post(f"{URL}/api/auth/login", json={"email": email, "password": PASSWORD}, timeout=10)
+    if r.status_code != 200:
+        raise DashboardError(f"Farmer login failed ({r.status_code})")
+    wells = s.get(f"{URL}/api/farm/wells", timeout=10).json().get("wells", [])
+    live = (grounding_data or {}).get("live") or {}
+    devices = {d.get("device_id"): d for d in live.get("devices") or []}
+    uses = {u.get("well"): u for u in ((live.get("metrics") or {}).get("waterUse") or [])}
+    out = []
+    for w in wells:
+        d = devices.get(w.get("device_id")) or {}
+        fresh = d.get("latestFresh") or {}
+        val = lambda f: (fresh.get(f) or {}).get("value")
+        use = uses.get(f"Well {d.get('well_id')}") if d.get("well_id") is not None else None
+        out.append({"well": w.get("name"), "crop": w.get("crop"), "location": w.get("location"), "sensor": w.get("device_id"),
+                    "online": bool(d.get("online")), "minutesAgo": d.get("minutesAgo"), "tds_ppm": val("tds_ppm"),
+                    "ph": val("ph"), "temperature": val("temperature"),
+                    "suitable": (use or {}).get("suitable") or [], "notSuitable": (use or {}).get("notSuitable") or [],
+                    "quality": "sensor offline, last known values" if d and not d.get("online") else
+                               ("no sensor linked" if not d else "live")})
+    return {"page": "farm", "pageTitle": "My Farm", "farmWells": out}
+
+
 def _status(item):
     parts = [f"status: {item.get('status')}" if item.get("status") else "", f"source: {item.get('source')}" if item.get("source") else ""]
     return f" ({'; '.join(p for p in parts if p)})" if any(parts) else ""

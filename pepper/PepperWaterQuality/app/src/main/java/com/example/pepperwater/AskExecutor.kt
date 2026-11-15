@@ -18,9 +18,11 @@ class AskExecutor(
 
     override fun runWith(params: List<String>) {
         val question = params.joinToString(" ").trim()
-        status("Asking AquaMaa: $question")
+        status("Asking AquaMaa (${AgentClient.mode}): $question")
         val answer = try {
-            AgentClient.ask(question).ifBlank { "Sorry, I have no answer for that right now." }
+            // One word = a topic (keyword file); a sentence = an exact question (the fallback file)
+            (if (' ' in question) AgentClient.ask(question) else AgentClient.askTopic(question))
+                .ifBlank { "Sorry, I have no answer for that right now." }
         } catch (e: Exception) {
             status("Agent error: ${e.message}")
             "Sorry, I can't reach AquaMaa's brain right now. Please check that the laptop service is running."

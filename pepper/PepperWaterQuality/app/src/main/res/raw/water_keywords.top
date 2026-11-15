@@ -1,35 +1,46 @@
 topic: ~water_keywords()
 
-# Keyword listening (14 Nov): any sentence that contains one of these words triggers the question, so people can
-# speak naturally ("Pepper, how salty is our water today?"). {*} = any words before or after. The answer always
-# comes live from AquaMaa (^execute(ask, ...)), never from this file.
+# Keyword listening (15 Nov, final): any sentence containing one of these words picks a TOPIC. Pepper sends only the
+# topic name and its mode (officer or farmer) to the laptop; what to say or ask for each topic is in
+# fresh-start/pepper_topics.json on the laptop, so it can change there without updating Pepper.
+# Order matters: the first rule that matches wins, so specific topics come before general ones.
 # If Pepper can't load this file, the app falls back to water_quality.top (exact sentences).
 
 concept:(hello) [hello hi hey "good morning" "good afternoon" "good evening" salam]
 concept:(bye) [thanks "thank you" bye goodbye]
 
-u:({*} ~hello {*}) Hello! I am AquaMaa. I watch the wells. Ask me about the salt in the water, drinking, irrigation, or the alerts.
+u:({*} ~hello {*}) ^execute(ask, hello)
 
-u:({*} [drink drinking drinkable potable] {*}) Let me check the sensor. ^execute(ask, Is the water right now suitable for drinking)
+u:({*} ~bye {*}) ^execute(ask, bye)
 
-u:({*} [irrigate irrigation irrigating crops crop palms palm dates farm farming tomatoes plants] {*}) Let me check what this water is good for. ^execute(ask, Is the water right now suitable for irrigation)
+u:({*} [report briefing summary overview] {*}) Let me prepare the report. ^execute(ask, report)
 
-u:({*} [why reason cause] {*}) Good question. ^execute(ask, Why are wells getting saltier)
+u:({*} [licence license permit penalty fine law legal illegal] {*}) Let me check the law. ^execute(ask, law)
 
-u:({*} [licence license permit law fine penalty legal] {*}) Let me check the law. ^execute(ask, Do farmers need a licence to dig a new well)
+u:({*} [municipality municipalities region regions area areas] {*}) Let me check the national data. ^execute(ask, municipality)
 
-u:({*} [alert alerts problem problems wrong attention offline briefing] {*}) Here is the status of the wells. ^execute(ask, Which sensors need attention and which are offline right now)
+u:({*} [index] {*}) Let me check the water quality index. ^execute(ask, index)
 
-u:({*} [dashboard screen page show] {*}) Let me read the dashboard. ^execute(ask, What does the dashboard show right now)
+u:({*} [offline connected working disconnected] {*}) Let me check the sensors. ^execute(ask, offline)
 
-u:({*} [temperature temperatures hot cold warm degrees] {*}) Let me check the sensor. ^execute(ask, What is the water temperature right now and what does it mean)
+u:({*} [attention problem problems wrong alert alerts warning] {*}) Let me check the alerts. ^execute(ask, attention)
 
-u:({*} [pH "P H" acid acidic acidity alkaline alkalinity] {*}) Let me check the sensor. ^execute(ask, What is the pH of the water right now and what does it mean)
+u:({*} [test testing measure measuring] {*}) Good question. ^execute(ask, test)
 
-u:({*} [readings values everything "all the" status situation] {*}) Let me read all the sensors. ^execute(ask, What are the current sensor readings and what do they mean)
+u:({*} [saltier rising increasing worse trend changing] {*}) Let me look at the recent readings. ^execute(ask, trend)
 
-u:({*} [trend saltier rising increasing worse changing] {*}) Let me look at the recent readings. ^execute(ask, Is the water getting saltier)
+u:({*} [temperature temperatures hot cold warm degrees] {*}) Let me check the sensor. ^execute(ask, temperature)
 
-u:({*} [salt salty saltiness salinity TDS "T D S" quality reading sensor water] {*}) Let me check the sensor. ^execute(ask, What is the salinity of the water right now)
+u:({*} [pH "P H" acid acidic acidity alkaline alkalinity] {*}) Let me check the sensor. ^execute(ask, ph)
 
-u:({*} ~bye {*}) You are welcome! I will keep watching the wells. Goodbye!
+u:({*} [drink drinking drinkable potable] {*}) Let me check the sensor. ^execute(ask, drink)
+
+u:({*} [crops crop grow growing plant plants vegetables tomatoes] {*}) Let me check which crops suit this water. ^execute(ask, crops)
+
+u:({*} [palms palm dates irrigate irrigation irrigating] {*}) Let me check what this water is good for. ^execute(ask, irrigation)
+
+u:({*} [do recommend recommendation advice should] {*}) Let me think about it. ^execute(ask, advice)
+
+u:({*} [dashboard screen page show] {*}) Let me read the page. ^execute(ask, dashboard)
+
+u:({*} [salt salty saltiness salinity TDS "T D S" quality reading readings sensor water wells well] {*}) Let me check the sensor. ^execute(ask, salinity)

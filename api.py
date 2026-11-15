@@ -15,6 +15,7 @@ Run:   python api.py                      (http://127.0.0.1:8000, docs at http:/
 Test:  python test_api.py                 (with the service running)
 """
 import asyncio
+import json
 import os
 import re
 from typing import Optional
@@ -155,6 +156,38 @@ async def speak_answer(s: Spoken):
         log.info("VOICE     failed (%s); the website uses the browser's voice", error)
         raise HTTPException(502, "Voice service unavailable")
     return Response(content=audio, media_type="audio/mpeg")
+
+
+class PepperTopic(BaseModel):
+    topic: str = Field(min_length=1, max_length=40)
+    mode: str = Field(default="officer", max_length=10)
+
+
+TOPICS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "pepper_topics.json")
+
+
+@app.post("/pepper/ask")
+async def pepper_ask(t: PepperTopic):
+    """Pepper sends only the topic it heard (a keyword) and its mode (officer or farmer); what to say or ask for it
+    is in pepper_topics.json on this laptop, so it can change without updating Pepper (15 Nov).
+    -> {"answer", "question"}"""
+    mode = "farmer" if t.mode == "farmer" else "officer"
+    topics = json.load(open(TOPICS_FILE, encoding="utf-8"))
+    entry = topics.get(t.topic) or topics.get("salinity")
+    if entry.get("say"):                                     # spoken as written: the story, goodbye
+        return {"answer": entry["say"], "question": t.topic}
+    question = entry.get(mode) or entry.get("officer")
+    log.info("PEPPER    %s mode, topic '%s': %s", mode, t.topic, question)
+    try:
+        grounding = await asyncio.to_thread(dashboard.grounding)
+        if mode == "farmer":
+            grounding["clientContext"] = await asyncio.to_thread(dashboard.farm_context, grounding)
+    except Exception as error:
+        log.info("PEPPER    no live data (%s)", error)
+        grounding = None
+    async with one_at_a_time:
+        r = await asyncio.to_thread(ask, question, True, mode, grounding)
+    return {"answer": r["answer"], "question": question}
 
 
 @app.get("/tablet", response_class=HTMLResponse)

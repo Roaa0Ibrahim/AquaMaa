@@ -59,6 +59,18 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
         val saved = getSharedPreferences("aquamaa", MODE_PRIVATE).getString("laptop_host", null)
         useLaptop(saved ?: android.net.Uri.parse(getString(R.string.agent_url)).host ?: "192.168.8.100", save = false)
         statusView.setOnClickListener { askForAddress() }
+        // Officer / Farmer and EN / ع, remembered on the tablet (15 Nov)
+        val prefs = getSharedPreferences("aquamaa", MODE_PRIVATE)
+        AgentClient.mode = prefs.getString("mode", "officer") ?: "officer"
+        pageLang = prefs.getString("lang", "en") ?: "en"
+        findViewById<TextView>(R.id.mode_officer).setOnClickListener { signOut() }
+        findViewById<TextView>(R.id.mode_farmer).setOnClickListener { signOut() }
+        findViewById<TextView>(R.id.lang).setOnClickListener {
+            pageLang = if (pageLang == "en") "ar" else "en"
+            prefs.edit().putString("lang", pageLang).apply()
+            showSwitches(); findViewById<WebView>(R.id.dashboard).loadUrl(dashboardUrl)
+        }
+        showSwitches()
         showDashboard()
         findLaptop()
         QiSDK.register(this, this)
@@ -66,7 +78,56 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
 
     @Volatile private var laptop = ""
     @Volatile private var searching = false
-    private val dashboardUrl get() = "http://$laptop:3000/#/dashboard"
+    @Volatile private var pageLang = "en"
+    private val dashboardUrl get() = "http://$laptop:3000/"      // the website opens each account on its own home page
+
+    /** Officer or Farmer: the page, the account it signs in with, and the role of Pepper's answers. */
+    private fun setMode(m: String) {
+        AgentClient.mode = m
+        getSharedPreferences("aquamaa", MODE_PRIVATE).edit().putString("mode", m).apply()
+        showSwitches()
+        findViewById<WebView>(R.id.dashboard).loadUrl(dashboardUrl)
+        status(if (m == "farmer") "Farmer mode: My Farm, answers for the farm owner" else "Officer mode: all wells, answers for the ministry")
+    }
+
+    private fun showSwitches() {
+        val on = android.graphics.Color.parseColor("#12BFB7"); val off = android.graphics.Color.parseColor("#5D7589")
+        findViewById<TextView>(R.id.mode_officer).setTextColor(if (AgentClient.mode == "officer") on else off)
+        findViewById<TextView>(R.id.mode_farmer).setTextColor(if (AgentClient.mode == "farmer") on else off)
+        findViewById<TextView>(R.id.lang).text = if (pageLang == "ar") "ع | EN" else "EN | ع"
+    }
+
+    /** The page's language, and who is signed in: Pepper's mode follows the account on the sign-in page (15 Nov:
+     *  "keep the login page"). The page tells the app through AquaMaaApp.role(...). */
+    private fun pageJs(): String = """(function(){try{
+          var lang='$pageLang', changed=(localStorage.getItem('aq_lang')||'en')!==lang; localStorage.setItem('aq_lang',lang);
+          if(changed){ location.reload(); return; }
+          fetch('/api/auth/me',{credentials:'same-origin'}).then(function(r){return r.ok?r.json():null;}).then(function(me){
+            if(me&&me.user&&window.AquaMaaApp) AquaMaaApp.role(me.user.role||'');
+          });
+          window.addEventListener('hashchange',function(){ fetch('/api/auth/me',{credentials:'same-origin'})
+            .then(function(r){return r.ok?r.json():null;}).then(function(me){ if(me&&me.user&&window.AquaMaaApp) AquaMaaApp.role(me.user.role||''); }); });
+        }catch(e){}})()"""
+
+    /** Tapping Officer or Farmer: sign out, back to the sign-in page, to switch account. */
+    private fun signOut() {
+        findViewById<WebView>(R.id.dashboard).evaluateJavascript(
+            "fetch('/api/auth/logout',{method:'POST',credentials:'same-origin'}).then(function(){location.hash='';location.reload();})", null)
+        status("Signed out: sign in as the officer or the farmer")
+    }
+
+    inner class PageBridge {
+        @android.webkit.JavascriptInterface
+        fun role(r: String) {
+            val m = if (r == "farmer") "farmer" else "officer"
+            if (m != AgentClient.mode) runOnUiThread {
+                AgentClient.mode = m
+                getSharedPreferences("aquamaa", MODE_PRIVATE).edit().putString("mode", m).apply()
+                showSwitches()
+                status(if (m == "farmer") "Farmer signed in: answers about the farm" else "Officer signed in: answers about all wells")
+            }
+        }
+    }
 
     private fun useLaptop(host: String, save: Boolean = true) {
         laptop = host.trim()
@@ -130,6 +191,7 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
     private fun showDashboard() {
         val web = findViewById<WebView>(R.id.dashboard)
         web.settings.javaScriptEnabled = true
+        web.addJavascriptInterface(PageBridge(), "AquaMaaApp")   // the page tells the app who signed in
         web.settings.domStorageEnabled = true
         web.settings.useWideViewPort = true
         web.settings.loadWithOverviewMode = true
@@ -143,6 +205,7 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
                 view.evaluateJavascript("(function(){var s=document.createElement('style');" +
                     "s.textContent='#aq-root .aq-round.mic,#aq-root .aq-speech-lang{display:none!important}';" +
                     "document.head.appendChild(s);})()", null)
+                view.evaluateJavascript(pageJs(), null)          // the page's language; Pepper follows who signed in
             }
             @Suppress("OverridingDeprecatedMember")
             override fun onReceivedError(view: WebView, code: Int, description: String?, failingUrl: String?) {
@@ -203,7 +266,7 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
     override fun onRobotFocusGained(qiContext: QiContext) {
         status("Robot connected. AquaMaa at ${AgentClient.baseUrl}")
         SayBuilder.with(qiContext)
-            .withText("Hello! I am AquaMaa. I watch the wells, and I will tell you when the water changes.")
+            .withText("AquaMaa is ready.")
             .withLocale(english).build().run()
         try {
             // Keyword listening first (any sentence with a known word); the exact sentences if Pepper rejects it
