@@ -1,10 +1,13 @@
-﻿QUESTIONS PEPPER ANSWERS (live, from the sensor)
+﻿PEPPER FILMING VERSION: ONE QUESTION
 
-1. What is the temperature?       (any sentence with: temperature, hot, cold, warm, degrees)  -> answered at once
-2. What is the salinity now?      (any sentence with: salt, salty, salinity, TDS, water, sensor, reading, quality)
-3. Is the water safe to drink?     (any sentence with: drink, drinking, drinkable, safe)
+Ask: 'Pepper, is the water drinkable?'   (any sentence with: drink, drinking, drinkable)
+Pepper answers at once with the live readings and the verdict, e.g.:
+'The readings now: salinity 1,520 parts per million, pH 7.6, and temperature 22.1 degrees. No, the water is not drinkable: above 1000 parts per million it is too salty to drink without treatment.'
 
-Also: 'Hello' (Pepper tells the AquaMaa story) and 'Thank you' (goodbye).
+Before filming:
+1. Install: adb install -r AquaMaa_Pepper.apk   (or tablet browser: http://192.168.8.104:8080/AquaMaa.apk)
+2. ADB OFF, wait for 'Connected to Pepper', open AquaMaa, wait for 'Listening (keywords)...'
+3. The ESP32 sensor must be sending (otherwise Pepper says 'last readings, N minutes ago').
+4. Roaa's laptop on Pepper's Wi-Fi with AquaMaa running.
 Speak English, about 1 m in front of Pepper, after its eyes turn blue.
-The yellow text must say 'Listening (keywords)...'. If it says 'Starting...', turn ADB OFF and reopen the app.
 
