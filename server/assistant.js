@@ -102,12 +102,13 @@ function createAssistantRouter({ requireAuth }) {
   const r = express.Router();
   r.use(express.json({ limit: '64kb' }));
 
-  // Per-user limit: 20 requests / minute.
+  // Per-user limit: 120 requests / minute (15 Nov: 20 was used up by AquaMaa's live data for alerts and Pepper,
+  // which shares the officer account, so questions got "Too many requests" and answered without live data).
   const hits = new Map();
   r.use(requireAuth, (req, res, next) => {
     const now = Date.now();
     const list = (hits.get(req.user.id) || []).filter((t) => now - t < 60000);
-    if (list.length >= 20) return res.status(429).json({ error: 'Too many assistant requests. Try again in a minute.' });
+    if (list.length >= 120) return res.status(429).json({ error: 'Too many assistant requests. Try again in a minute.' });
     list.push(now); hits.set(req.user.id, list);
     next();
   });
