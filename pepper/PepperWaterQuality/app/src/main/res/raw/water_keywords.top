@@ -1,7 +1,7 @@
 topic: ~water_keywords()
 
-# Filming version (15 Nov): one question, answered at once. The app refreshes $answer every 5 s with the live
-# "is the water drinkable" answer (readings + verdict) from the laptop, and starts it with a safe default, so the
-# rule always has something to say and never waits.
+# Demo version (15 Nov): one question, answered at once. The app refreshes $answer every 5 s with the live
+# "is the water drinkable" answer (readings + verdict) from the laptop. ^first says the live answer if it is set,
+# otherwise the fixed sentence, so Pepper always speaks.
 
-u:({*} [drink drinking drinkable potable] {*}) $answer
+u:({*} [drink drinking drinkable potable safe] {*}) ^first["$answer" "Drinking water needs salinity below one thousand parts per million and a pH between six and a half and eight and a half. Look at the dashboard for this well's live readings."]
