@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 640" font-family="Segoe UI, Arial, sans-serif">
+  <defs><filter id="s" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0a5069" flood-opacity=".15"/></filter></defs>
+  <rect width="1600" height="640" fill="#ffffff"/>
+  <text x="800" y="70" text-anchor="middle" font-size="42" font-weight="700" fill="#0b2a4a">Our key word: TRUST</text>
+  <text x="800" y="110" text-anchor="middle" font-size="20" fill="#5d7589">What exists today: sensors and networks (Vodafone), prediction models (UDST with Kahramaa). The gap: trusted meaning and action.</text>
+  <rect x="120" y="150" width="1360" height="34" rx="10" fill="#0b2a4a"/>
+  <text x="800" y="174" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff" letter-spacing="3">AQUAMAA</text>
+  <g filter="url(#s)">
+    <rect x="140" y="200" width="300" height="320" rx="18" fill="#e0f6f5" stroke="#12bfb7" stroke-width="3"/>
+    <rect x="480" y="200" width="300" height="320" rx="18" fill="#e0edfb" stroke="#2f80ed" stroke-width="3"/>
+    <rect x="820" y="200" width="300" height="320" rx="18" fill="#dcf5e6" stroke="#16a34a" stroke-width="3"/>
+    <rect x="1160" y="200" width="300" height="320" rx="18" fill="#fff1d0" stroke="#e08a00" stroke-width="3"/>
+  </g>
+  <g font-size="56" font-weight="800" text-anchor="middle"><text x="290" y="285" fill="#0ea5a0">1</text><text x="630" y="285" fill="#2f80ed">2</text><text x="970" y="285" fill="#16a34a">3</text><text x="1310" y="285" fill="#e08a00">4</text></g>
+  <g font-size="25" font-weight="700" fill="#0b2a4a" text-anchor="middle">
+    <text x="290" y="335">Real data</text><text x="630" y="335">Science, not guessing</text><text x="970" y="335">Words for each user</text><text x="1310" y="335">Made for Qatar</text>
+  </g>
+  <g font-size="18" fill="#33505f" text-anchor="middle">
+    <text x="290" y="380">live sensor readings,</text><text x="290" y="406">every reading stored</text><text x="290" y="432">with its time</text>
+    <text x="630" y="380">facts from WHO, FAO,</text><text x="630" y="406">Qatar's water law,</text><text x="630" y="432">sources cited, checked</text>
+    <text x="970" y="380">farm owner: plain words</text><text x="970" y="406">and what to do;</text><text x="970" y="432">officer: figures, options</text>
+    <text x="1310" y="380">Arabic and English,</text><text x="1310" y="406">Qatari dialect,</text><text x="1310" y="432">by text or by voice</text>
+  </g>
+  <rect x="120" y="545" width="1360" height="18" rx="9" fill="#dfeef4"/>
+  <text x="800" y="605" text-anchor="middle" font-size="20" fill="#5d7589">Every reading comes with its meaning and an action</text>
+</svg>
