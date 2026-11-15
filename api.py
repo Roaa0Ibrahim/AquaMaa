@@ -201,9 +201,10 @@ async def pepper_now(what: str = "temperature"):
         text += f" That is {'within' if inside else 'outside'} the normal range of {rng}{' ' + unit if field == 'temperature' else ''}."
     if field in ("tds_ppm", "ph"):
         from fastpath.facts import meaning
-        m = meaning("tds" if field == "tds_ppm" else "ph", "drinking", v, False)
-        if m:
-            text += " For drinking: " + m.split(":", 1)[-1].split("[")[0].strip().rstrip(".") + "."
+        for use in ("drinking", "irrigation"):                 # what it means for drinking and for the farm
+            m = meaning("tds" if field == "tds_ppm" else "ph", use, v, False)
+            if m:
+                text += f" For {use}: " + m.split(":", 1)[-1].split("[")[0].strip().rstrip(".") + "."
     return {"answer": text}
 
 

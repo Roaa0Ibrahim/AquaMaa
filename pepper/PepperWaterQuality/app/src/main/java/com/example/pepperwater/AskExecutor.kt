@@ -25,15 +25,29 @@ class AskExecutor(
             // "now:temperature" = a live reading said at once, built by code on the laptop (no AI, under a second)
             (if (question.startsWith("now:")) AgentClient.now(question.removePrefix("now:"))
              else if (' ' in question) AgentClient.ask(question) else AgentClient.askTopic(question))
-                .ifBlank { "Sorry, I have no answer for that right now." }
+                .ifBlank { fallback(question) }
         } catch (e: Exception) {
-            status("Agent error: ${e.message}")
-            "Sorry, I can't reach AquaMaa's brain right now. Please check that the laptop service is running."
+            // The laptop can't be reached: say a fixed answer rather than nothing (15 Nov, demo safety net)
+            status("Agent error: ${e.message} (fixed answer said)")
+            fallback(question)
         }
         status("Answer: $answer")
         // The conversation itself says the answer: the rule continues with "$answer" after ^execute (15 Nov: a
         // separate Say inside the conversation was silent on the robot; the answer only showed as text)
         setAnswer(answer)
+    }
+
+    /** What Pepper says when the laptop can't answer: general, true without a live reading. */
+    private fun fallback(question: String): String = when {
+        question.contains("temperature") ->
+            "The normal range for well water temperature is 15 to 35 degrees Celsius. I can't read the live sensor right now."
+        question.contains("ph") ->
+            "A healthy pH for well water is between 6.5 and 8.5. Outside that range, the water and the sensor should be checked. I can't read the live sensor right now."
+        question.contains("salinity") || question.contains("drink") ->
+            "Above 1000 parts per million, water is too salty to drink without treatment, but date palms, barley and wheat can still use it. I can't read the live sensor right now."
+        question.contains("crops") ->
+            "Salty water suits tolerant crops like date palms, barley and wheat; tomatoes, cucumbers and lettuce lose part of their harvest. I can't read the live sensor right now."
+        else -> "I can't reach the sensor data right now. Please try again in a moment."
     }
 
     override fun stop() {}

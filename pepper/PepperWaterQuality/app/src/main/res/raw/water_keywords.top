@@ -1,7 +1,10 @@
 topic: ~water_keywords()
 
-# DEMO VERSION (15 Nov, Roaa: "hard code the answer for now and make it speak"): fixed answers, spoken at once by
-# the conversation itself, no laptop needed. The live answers (from the sensor and AquaMaa) are on the website.
+# Pepper for the demo (15 Nov): connected and always speaking.
+# - salinity, drinking, temperature, pH: the LIVE sensor reading and its meaning, built by code on the laptop
+#   (^execute(ask, now:...), about 0.1 s); crops: AquaMaa's AI (about 5 s)
+# - the conversation itself speaks the answer ($answer after ^execute)
+# - if the laptop can't be reached, AskExecutor puts a fixed answer in $answer, so Pepper never stays silent
 # Any sentence containing one of the words triggers the rule.
 
 concept:(hello) [hello hi hey "good morning" "good afternoon" "good evening" salam]
@@ -9,16 +12,16 @@ concept:(bye) [thanks "thank you" bye goodbye]
 
 u:({*} ~hello {*}) Hello, I am AquaMaa. Qatar's wells can't speak, so I give them a voice. I watch every sensor live, and I tell you what the water means and what to do. Ask me about the salinity, the temperature, or if the water is safe to drink.
 
-u:({*} [temperature temperatures hot cold warm degrees] {*}) The water temperature is about 22 degrees Celsius. That is within the normal range of 15 to 35 degrees, so no action is needed.
+u:({*} [temperature temperatures hot cold warm degrees] {*}) ^execute(ask, now:temperature) $answer
 
-u:({*} [drink drinking drinkable potable safe] {*}) The salinity is about 1500 parts per million. Above 1000, water becomes too salty to drink, so do not drink it without treatment. A laboratory test is also needed to confirm that water is safe.
+u:({*} [pH "P H" acid acidic acidity alkaline] {*}) ^execute(ask, now:ph) $answer
 
-u:({*} [pH "P H" acid acidic acidity alkaline] {*}) A healthy pH for well water is between 6.5 and 8.5. Outside that range, the water is too acidic or too alkaline, and the sensor and the water should be checked.
+u:({*} [drink drinking drinkable potable safe] {*}) ^execute(ask, now:salinity) $answer
 
-u:({*} [crops crop palms palm dates irrigate irrigation farm farming plants] {*}) At about 1500 parts per million, this water suits salt tolerant crops like date palms, barley and wheat. Sensitive crops like tomatoes, cucumbers and lettuce would lose part of their harvest.
+u:({*} [crops crop palms palm dates irrigate irrigation farm farming plants] {*}) Let me check which crops suit this water. ^execute(ask, Which crops can be irrigated with the water right now) $answer
 
 u:({*} [alert alerts problem problems attention offline] {*}) When a well gets too salty, the pH goes out of range, or a sensor stops sending, I announce it right away, with what it means and what to do.
 
-u:({*} [salt salty saltiness salinity TDS "T D S" quality reading sensor water] {*}) The salinity right now is about 1500 parts per million. That is above the limit of 1000, so it is too salty to drink, but date palms, barley and wheat can still use it for irrigation.
+u:({*} [salt salty saltiness salinity TDS "T D S" quality reading sensor water] {*}) ^execute(ask, now:salinity) $answer
 
 u:({*} ~bye {*}) You are welcome. I will keep watching the wells. Goodbye!
