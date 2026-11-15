@@ -696,6 +696,13 @@
             ${gauge({ value: num('temperature'), dec: 1, min: 0, max: 45, label: F('Temperature (°C)', 'الحرارة (درجة مئوية)'),
               refs: [['—', F('NO LIMIT SET', 'لا يوجد حد')], ['45', F('SCALE MAX', 'أعلى المقياس')]], zones: [{ to: 45, color: 'var(--turq)' }] })}</div>
           <div class="unit" style="text-align:center">${esc(F('Turbidity index (not NTU)', 'مؤشر العكارة (ليس NTU)'))}: ${val('turbidity_index', 1)}</div>
+          ${(() => {                                   // what this well's water can be used for (Deema's Water Card, 15 Nov)
+            const wc = d && d.well_id != null ? (data.waterCard || []).find((c) => c.well === `Well ${d.well_id}`) : null;
+            if (!wc || !wc.uses || !wc.uses.length) return '';
+            const chip = (u) => `<span class="tag ${u.ok ? 'green' : 'red'}">${u.ok ? '✓' : '✗'} ${esc(lang === 'ar' ? (u.label_ar || u.label) : u.label)}</span>`;
+            return `<div class="well-uses"><div class="eyebrow">${esc(F('CAN BE USED FOR', 'يمكن استخدامه لـ'))}</div>
+              <div class="toolbar">${wc.uses.filter((u) => u.ok).map(chip).join('')}${wc.uses.filter((u) => !u.ok).map(chip).join('')}</div></div>`;
+          })()}
           <div class="well-trend">${series.length > 1 ? sparkline(series, 220, 48) + `<span class="unit">${esc(F(`Salinity over ${data.range ? data.range.label : 'the period'}`, 'تغير الملوحة خلال الفترة'))}: ${change >= 0 ? '+' : ''}${fmt(change, 0)} ${esc(F('ppm', 'جزء في المليون'))}</span>` : `<span class="unit">${esc(F('Not enough readings yet for a chart', 'لا توجد قراءات كافية بعد للرسم'))}</span>`}</div>
           <div class="well-foot"><span class="unit">${w.device_id ? `${esc(F('Sensor', 'الحساس'))} ${esc(w.device_id)}${ago != null ? ` · ${esc(F(`last reading ${ago} min ago`, `آخر قراءة قبل ${ago} دقيقة`))}` : ''}` : esc(F('Link a sensor to see live readings', 'اربط حساسًا لرؤية القراءات المباشرة'))}</span>
             <button class="btn ghost" data-ask="${esc(w.name)}" data-crop="${esc(w.crop || '')}">${esc(F('Ask AquaMaa', 'اسأل أكوا ماء'))}</button></div>

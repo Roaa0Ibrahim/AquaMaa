@@ -686,7 +686,7 @@
         <span class="sec-right"><span id="sx-updated" class="muted"></span>${cfgReady ? rangeSelect('sx-range') : ''}</span></div>
       <div id="sx-banner"></div>
       <div class="charts4" id="sx-charts">${cfgReady ? chartCardsHTML() : ''}</div>
-      <div class="row2"><section class="card panel" id="sx-assess"></section><section class="card panel" id="sx-net"></section></div>`;
+      <div class="row2" style="grid-template-columns:1fr"><section class="card panel" id="sx-assess"></section><section class="card panel" id="sx-net" hidden></section></div>`;
     let animPending = true, chartsBuilt = cfgReady;
     const render = () => {
       const animate = animPending && !st.loading;   // entrance animation runs once, when real data first arrives
@@ -755,6 +755,7 @@
   // For the farmer's "My farm" page: each sensor's latest values and its readings over the selected period
   function farmData() {
     return { ready: !!st.network, devices: st.network ? st.network.devices : [], history: st.histRows,
+      waterCard: st.network ? st.network.waterCard || [] : [],     // what each well's water can be used for (15 Nov)
       snapshot: st.snapRows, cfg: st.cfg, lastUpdated: st.lastUpdated, range: st.network ? st.network.range : null };
   }
 
