@@ -46,7 +46,9 @@
     'Awaiting calibration': 'بانتظار المعايرة', 'Not configured': 'غير مُعد', 'No threshold set': 'لا يوجد حد محدد', 'Unusual change': 'تغير غير معتاد',
     'Reporting': 'يرسل', 'Not calibrated': 'غير معايَر', 'Turbidity': 'العكارة', 'Online': 'متصل', 'Offline': 'غير متصل', 'pH': 'درجة الحموضة',
     'Water temperature': 'درجة حرارة الماء', 'Total dissolved solids': 'الأملاح الذائبة الكلية', 'Latest per well': 'آخر قراءة لكل بئر',
-    'Last known value': 'آخر قيمة معروفة', 'Above reference': 'أعلى من المرجع', 'Below reference': 'أقل من المرجع', 'Normal': 'طبيعي', 'Attention': 'انتباه',
+    'Last known value': 'آخر قيمة معروفة',
+    'WATER CARD · WHAT THIS WATER IS GOOD FOR': 'بطاقة المياه · لماذا يصلح هذا الماء',
+    'Crops: full yield at this salinity (FAO 29 Table 4). Drinking: taste only, a laboratory test is needed for safety.': 'المحاصيل: إنتاج كامل عند هذه الملوحة (الفاو 29، جدول 4). الشرب: من حيث الطعم فقط، ويلزم فحص مخبري للتأكد من السلامة.', 'Above reference': 'أعلى من المرجع', 'Below reference': 'أقل من المرجع', 'Normal': 'طبيعي', 'Attention': 'انتباه',
     'Insufficient Data': 'بيانات غير كافية', 'Neutral': 'متعادل', 'Acidic': 'حمضي', 'Alkaline': 'قلوي', 'Stale': 'قديمة',
     // data status tags
     'Verified': 'موثّق', 'Official': 'رسمي', 'Measured': 'مقاس', 'Estimated': 'تقديري', 'Modelled': 'نموذجي', 'Demonstration': 'تجريبي',
