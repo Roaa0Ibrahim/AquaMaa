@@ -1,7 +1,7 @@
 {
   "_readme": "What Pepper says or asks for each topic it hears (15 Nov). Pepper's app only knows the topic names (keywords in water_keywords.top); the text here can be changed on this laptop at any time, without updating Pepper. 'say' = spoken as written (no AI); 'officer' / 'farmer' = the question sent to AquaMaa in that mode. Restart api.py after editing.",
   "hello": {
-    "say": "Hello, I am AquaMaa. Qatar's farm wells are getting saltier, and farmers find out too late; I read the well sensors live and tell you what the water means. Ask me about the salinity, the temperature, the pH, or the alerts."
+    "say": "Hello, I am AquaMaa. Qatar's wells can't speak, so I give them a voice. I watch every sensor live, and I tell you what the water means and what to do. Ask me anything about the water."
   },
   "bye": {
     "say": "You are welcome. I will keep watching the wells. Goodbye!"
