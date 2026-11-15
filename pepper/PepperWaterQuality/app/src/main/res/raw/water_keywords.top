@@ -1,8 +1,7 @@
 topic: ~water_keywords()
 
-# Filming version (15 Nov, Roaa: "only make it answer to is the water drinkable"): one question, live from the sensor.
-# Any sentence with drink / drinking / drinkable / potable -> the live salinity and the drinking verdict, built by
-# code on the laptop (about 0.1 s) and spoken by the conversation ($answer). If the laptop can't be reached,
-# AskExecutor says a fixed answer instead of nothing.
+# Filming version (15 Nov): one question, answered at once. The app refreshes $answer every 5 s with the live
+# "is the water drinkable" answer (readings + verdict) from the laptop, and starts it with a safe default, so the
+# rule always has something to say and never waits.
 
-u:({*} [drink drinking drinkable potable] {*}) ^execute(ask, now:drink) $answer
+u:({*} [drink drinking drinkable potable] {*}) $answer

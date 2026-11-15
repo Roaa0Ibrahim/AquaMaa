@@ -254,11 +254,30 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
 
     private var mode = ""
 
+    @Volatile private var drinkVar: com.aldebaran.qi.sdk.`object`.conversation.QiChatVariable? = null
+
+    /** Every 5 s, the live "is the water drinkable" answer (readings + verdict) is put in $answer, so the rule says
+     *  it at once when asked, with readings at most 5 s old (15 Nov: the filmed question must answer straight away). */
+    private fun startDrinkRefresh() {
+        Thread {
+            while (running) {
+                try {
+                    val a = AgentClient.now("drink")
+                    if (a.isNotBlank()) drinkVar?.value = a
+                } catch (e: Exception) { /* keep the last answer */ }
+                try { Thread.sleep(5000) } catch (e: InterruptedException) { break }
+            }
+        }.start()
+    }
+
     private fun makeChat(qiContext: QiContext, topicRes: Int): Chat {
         val topic = TopicBuilder.with(qiContext).withResource(topicRes).build()
         val executors = HashMap<String, QiChatExecutor>()
         val chatbot = QiChatbotBuilder.with(qiContext).withTopic(topic).withLocale(english).build()
-        val answerVar = chatbot.variable("answer")     // the rule says "$answer" right after ^execute
+        val answerVar = chatbot.variable("answer")     // the rule says "$answer"
+        // Never empty: a rule whose variable has no value is skipped and Pepper says nothing (15 Nov)
+        answerVar.value = "Above 1000 parts per million, water is too salty to drink without treatment."
+        drinkVar = answerVar
         executors["ask"] = AskExecutor(qiContext, english, { status(it) }) { answerVar.value = it }
         chatbot.executors = executors          // QiSDK 1.7.5: set after build (the builder has no withExecutors)
         return ChatBuilder.with(qiContext).withChatbot(chatbot).withLocale(english).build()
@@ -285,6 +304,7 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
             chat = c
             startChat()
             startAlertLoop(qiContext)
+            startDrinkRefresh()
         } catch (e: Throwable) {
             status("Chat setup error: ${e.message}")
             SayBuilder.with(qiContext).withText("Sorry, I could not load my questions.").withLocale(english).build().run()
