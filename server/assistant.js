@@ -64,7 +64,7 @@ async function buildGrounding(v) {
   const iso = (t) => (t == null ? null : new Date(t).toISOString());
   const lab = {}; for (const p of S.PARAMS) lab[p] = v.cfg.parameters[p].label;
   const notAvailable = [
-    'Turbidity in NTU (no validated calibration; only raw reading and voltage exist)',
+    'Turbidity in NTU (the device sends a turbidity index and a status such as CLEAR, not NTU)',
     'Any drinking-water safety or potability conclusion',
   ];
   for (const p of S.PARAMS) if (!a.summary[p].count) notAvailable.push(`${lab[p]}: no fresh valid readings from any ${v.selectedDevice ? 'selected ' : ''}device`);

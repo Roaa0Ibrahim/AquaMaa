@@ -163,7 +163,8 @@ function readingsCard(a) {
     lines.push(`💧 ${w.label} · ${w.online ? '🟢 live' : '⚪ offline'} · ${at ? ago(at) : '—'}`);
     lines.push(`Salinity (TDS): ${fmtN(f.tds_ppm && f.tds_ppm.value, 0)} ppm`);
     lines.push(`pH: ${fmtN(f.ph && f.ph.value, 2)}  ·  Temperature: ${fmtN(f.temperature && f.temperature.value, 1)} °C`);
-    lines.push(`Turbidity (raw, uncalibrated): ${fmtN(f.turbidity_raw && f.turbidity_raw.value, 0)}`);
+    const ts = w.status && w.status.turbidity_status, wl = w.status && w.status.water_level_status;
+    lines.push(`Turbidity: ${ts ? ts.value : '—'} (index ${fmtN(f.turbidity_index && f.turbidity_index.value, 1)})  ·  Water level: ${wl ? wl.value : '—'}`);
     const card = (a.waterCard || []).find((c) => c.well === w.label);
     if (card && card.uses.length) {
       const ok = card.uses.filter((u) => u.ok).map((u) => u.short), no = card.uses.filter((u) => !u.ok).map((u) => u.short);
@@ -175,7 +176,7 @@ function readingsCard(a) {
     lines.push('');
   }
   const n = a.alerts.length;
-  lines.push(n ? `⚠️ ${n} active alert${n === 1 ? '' : 's'}: ${a.alerts.slice(0, 3).map((x) => x.title.split('.')[0]).join('; ')}` : '✅ No active alerts');
+  lines.push(n ? `⚠️ ${n} active alert${n === 1 ? '' : 's'}: ${a.alerts.slice(0, 3).map((x) => x.title.split(/\.(\s|$)/)[0]).join('; ')}` : '✅ No active alerts');
   if (!a.wells.some((w) => w.online)) lines.push('Sensors are offline: these are the last known values.');
   return lines.join('\n');
 }

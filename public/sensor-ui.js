@@ -117,8 +117,16 @@
   function recompute() {
     if (!st.cfg) return;
     const now = Date.now();
-    st.network = S.analyze(st.snapRows, st.histRows, st.cfg, now, st.rangeKey, null);
-    st.view = st.device ? S.analyze(st.snapRows, st.histRows, st.cfg, now, st.rangeKey, st.device) : st.network;
+    try {
+      st.network = S.analyze(st.snapRows, st.histRows, st.cfg, now, st.rangeKey, null);
+      st.view = st.device ? S.analyze(st.snapRows, st.histRows, st.cfg, now, st.rangeKey, st.device) : st.network;
+    } catch (e) {
+      // Never hang on "Connecting…": say what failed. Usual cause: the server still runs an older
+      // config/thresholds.json than this page's code (the server reads it only at start-up).
+      console.error(e);
+      st.network = st.view = null; st.loading = false; st.db = 'error';
+      st.error = { message: `The dashboard could not process the readings (${e.message})`, hint: 'Restart the website so it loads the latest config/thresholds.json, then reload this page.' };
+    }
   }
   function scheduleRecompute() {
     if (st.recomputeTimer) return;
@@ -292,11 +300,10 @@
   const cap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
   const plural = (n, w) => `${n} ${w}${n === 1 ? '' : 's'}`;
   const label = (p) => st.cfg.parameters[p].label;
-  const DIG = { ph: 2, temperature: 1, tds_ppm: 0, turbidity_raw: 0 };
+  const DIG = { ph: 2, temperature: 1, tds_ppm: 0, turbidity_index: 1 };
   const statName = (p) => { const m = S.aggregationFor(p, st.cfg && st.cfg.aggregation).acrossWells; return S.AGG_LABEL[m] || m; };
   function refText(p) {
     const r = st.cfg.parameters[p].reference;
-    if (p === 'turbidity_raw') return 'Awaiting calibration';
     if (!r) return 'Not configured';
     if (r.min != null && r.max != null) return `${r.min} – ${r.max}`;
     return r.max != null ? `≤ ${r.max}` : `≥ ${r.min}`;
@@ -333,7 +340,7 @@
   function spark(a, p) { return H.sparkline(a.series[p].points.map((x) => x.value)); }
 
   function kpiInner(kind) {
-    const meta = { ph: ['pH Level', 'flask', 'blue'], temperature: ['Water Temperature', 'thermo', 'amber'], tds_ppm: ['Total Dissolved Solids', 'tds', ''], turbidity_raw: ['Turbidity', 'eye', 'blue'], wq: ['Water quality', 'shield', 'green'] }[kind];
+    const meta = { ph: ['pH Level', 'flask', 'blue'], temperature: ['Water Temperature', 'thermo', 'amber'], tds_ppm: ['Total Dissolved Solids', 'tds', ''], turbidity_index: ['Turbidity', 'eye', 'blue'], wq: ['Water quality', 'shield', 'green'] }[kind];
     const base = { title: meta[0], icon: meta[1], ico: meta[2] };
     if (st.configError) return shell({ ...base, big: '—', unit: 'Unavailable', foot: tag('Not configured', 'red', 'alert'), meta: '', });
     if (st.loading || !st.network) return shell({ ...base, big: '…', skel: true, unit: 'Loading' });
@@ -372,11 +379,19 @@
       return shell({ ...base, big: H.fmt(s.value, 0), unit: `ppm · ${sn} of wells`, right: spark(a, p) + trendTag(a, p), meta: `${devs} · ${when}`, metaTitle: tip,
         foot: paramTag(e) + (dv && dv.evaluated && dv.flag ? tag('Unusual change', 'amber', 'alert') : (staleTag || `<span title="Lowest – highest well value">${rangeTxt}</span>`)) });
     }
-    // turbidity: raw only, never NTU
-    const v = a.summary.turbidity_voltage;
-    const tip = [`${cap(sn)} raw sensor reading of the latest value from each of ${srcTxt}`, `Raw range across wells: ${rangeTxt}`, 'Not calibrated: no validated NTU conversion exists, so this is not an NTU value.', abs].map(esc).join(NL);
-    return shell({ ...base, big: H.fmt(s.value, 0), unit: 'raw reading · not NTU', meta: `${v.count ? `${v.value.toFixed(2)} V · ` : ''}${devs} · ${when}`, metaTitle: tip,
-      foot: (staleTag || tag('Reporting', 'green')) + tag('Not calibrated', 'amber', 'info') });
+    // turbidity: the device's turbidity index (not NTU) and its status text, plus the water level status
+    const w0 = (a.wells || []).find((w) => w.status && (w.status.turbidity_status || w.status.water_level_status)) || {};
+    const ts = w0.status && w0.status.turbidity_status, wl = w0.status && w0.status.water_level_status;
+    const rule = (f) => (st.cfg.statusAlerts || {})[f] || {};
+    const isBad = (f, v) => { const r = rule(f), V = String(v).toUpperCase();
+      return r.alertOn ? r.alertOn.map((x) => x.toUpperCase()).includes(V) : r.normal ? !r.normal.map((x) => x.toUpperCase()).includes(V) : false; };
+    const tip = [`${cap(sn)} of the latest turbidity index from each of ${srcTxt}`, `Range across wells: ${rangeTxt}`,
+      'Turbidity index computed on the ESP32 (0 = clear). Not NTU: no NTU conversion has been validated.',
+      ts ? `Turbidity status (device): ${ts.value}` : '', wl ? `Water level (device): ${wl.value}` : '', abs].filter(Boolean).map(esc).join(NL);
+    const tsTag = ts ? tag(ts.value, isBad('turbidity_status', ts.value) ? 'amber' : 'green', isBad('turbidity_status', ts.value) ? 'alert' : 'check') : (staleTag || tag('Reporting', 'green'));
+    const wlTag = wl ? tag(`Level: ${wl.value}`, isBad('water_level_status', wl.value) ? 'amber' : 'green', isBad('water_level_status', wl.value) ? 'alert' : null) : '';
+    return shell({ ...base, big: s.value.toFixed(1), unit: 'turbidity index · not NTU', right: spark(a, p) + trendTag(a, p), meta: `${devs} · ${when}`, metaTitle: tip,
+      foot: tsTag + wlTag });
   }
 
   function wqInner(base, a) {
@@ -502,7 +517,7 @@
       { key: 'ph', title: 'pH over time', unit: 'pH', digits: 2, color: '#0ea5a0', icon: 'flask', refs: P.ph.reference, note: '' },
       { key: 'temperature', title: 'Temperature over time', unit: '°C', digits: 1, color: '#e08a00', icon: 'thermo', refs: P.temperature.reference, note: '' },
       { key: 'tds_ppm', title: 'TDS over time', unit: 'ppm', digits: 0, color: '#2f80ed', icon: 'tds', refs: P.tds_ppm.reference, note: '' },
-      { key: 'turbidity_raw', title: 'Turbidity (raw) over time', unit: 'raw', digits: 0, color: '#7c5cbf', icon: 'eye', refs: null, note: 'Raw reading · not NTU' },
+      { key: 'turbidity_index', title: 'Turbidity over time', unit: 'index', digits: 1, color: '#7c5cbf', icon: 'eye', refs: null, note: 'Turbidity index · not NTU' },
     ];
   }
   function chartCardsHTML() {
@@ -561,7 +576,7 @@
     if (st.loading || !a) return '<div class="chart-empty">Loading…</div>';
     const as = a.assessment, c = as.counts, P = st.cfg.parameters;
     const [cls, ic] = OVERALL[as.overall];
-    const notAssessed = S.ASSESSED.filter((p) => !(P[p].reference || P[p].critical)).map((p) => label(p)).concat('Turbidity');
+    const notAssessed = S.ASSESSED.filter((p) => !(P[p].reference || P[p].critical)).map((p) => label(p))
     let headline;
     if (as.overall === 'insufficient_data') headline = c.devicesTotal ? 'Not enough valid, fresh measurements of threshold-assessed parameters to produce an assessment.' : 'No devices are reporting, so no assessment can be produced.';
     else if (as.overall === 'normal') headline = `All ${plural(c.parametersAssessed, 'assessed parameter')} are within the configured monitoring thresholds.`;
@@ -569,7 +584,7 @@
     else headline = `${c.parametersOutside} of ${plural(c.parametersAssessed, 'assessed parameter')} ${c.parametersOutside === 1 ? 'has' : 'have'} at least one device outside the configured threshold.`;
     const rows = S.PARAMS.map((p) => {
       const e = as.params[p], d = DIG[p];
-      const val = e.value == null ? '—' : (p === 'turbidity_raw' ? `raw ${H.fmt(e.value, 0)}` : `${e.value.toFixed(d)} ${esc(P[p].unit)}`);
+      const val = e.value == null ? '—' : (p === 'turbidity_index' ? `index ${e.value.toFixed(d)}` : `${e.value.toFixed(d)} ${esc(P[p].unit)}`);
       const ch = S.seriesChange(a.series[p].points);
       const chTxt = ch ? `${ch.delta > 0 ? '+' : ''}${ch.delta.toFixed(d)}` : '—';
       const sh = S.outsideShare(a.series[p].points, P[p]);
@@ -590,7 +605,7 @@
       <div class="tbl-wrap"><table class="t wq-table"><thead><tr><th>Parameter</th><th>Network value</th><th>Status</th><th>Reference</th><th>Wells</th><th>Change · ${esc(a.range.label.toLowerCase())}</th></tr></thead><tbody>${rows}</tbody></table></div>
       ${dev && dev.evaluated && dev.flag ? `<div class="note warn">${H.icon('alert')}<span>TDS deviates from its recent history: modified z-score ${dev.z.toFixed(1)} (${esc(dev.direction)} the earlier median of ${H.fmt(dev.baselineMedian, 0)} ppm).</span></div>` : ''}
       ${waterCardHTML(a)}
-      <div class="note">${H.icon('info')}<span>${esc(as.disclaimer)} Not assessed: ${esc(notAssessed.join(', '))}. Turbidity is a raw, uncalibrated reading and does not contribute.${unconfirmed ? ' Reference ranges are unconfirmed defaults (see config/thresholds.json).' : ''}</span></div>`;
+      <div class="note">${H.icon('info')}<span>${esc(as.disclaimer)} Not assessed: ${esc(notAssessed.join(', '))}. Turbidity is the device's index (not NTU) with no limit set, so its alerts come from the device's status and unusual changes.${unconfirmed ? ' Reference ranges are unconfirmed defaults (see config/thresholds.json).' : ''}</span></div>`;
   }
 
   function networkHTML(a, interactive) {
@@ -600,17 +615,17 @@
     const f = (d, p, dg) => (d.fresh[p] ? d.fresh[p].value.toFixed(dg) : '—');
     const rows = (st.device ? a.allDevices : a.devices).map((d) => `<tr data-device="${esc(d.device_id)}" class="${st.device === d.device_id ? 'sel' : ''}" tabindex="0" title="${interactive ? 'Select device' : 'Open Water Quality for this device'}">
         <td><b>${esc(d.device_id)}</b></td><td>${d.well_id != null ? `Well ${d.well_id}` : '—'}</td><td>${d.online ? tag('Online', 'green') : tag('Offline', 'amber')}</td><td title="${esc(fFull.format(d.lastSeen))} AST">${esc(ago(d.lastSeen, now))}</td>
-        <td>${f(d, 'ph', 2)}</td><td>${f(d, 'temperature', 1)}</td><td>${d.fresh.tds_ppm ? H.fmt(d.fresh.tds_ppm.value, 0) : '—'}</td><td>${d.fresh.turbidity_raw ? H.fmt(d.fresh.turbidity_raw.value, 0) : '—'}</td></tr>`).join('');
+        <td>${f(d, 'ph', 2)}</td><td>${f(d, 'temperature', 1)}</td><td>${d.fresh.tds_ppm ? H.fmt(d.fresh.tds_ppm.value, 0) : '—'}</td><td>${d.fresh.turbidity_index ? d.fresh.turbidity_index.value.toFixed(1) : '—'}</td></tr>`).join('');
     const wf = (w, p, dg) => (w.fresh[p] ? (dg == null ? H.fmt(w.fresh[p].value, 0) : w.fresh[p].value.toFixed(dg)) : '—');
     const wellRows = (a.allWells || a.wells).map((w) => `<tr><td><b>${esc(w.label)}</b></td><td title="${esc(w.devices.join(', '))}">${w.devices.length}</td><td>${w.online ? tag('Online', 'green') : tag('Offline', 'amber')}</td>
-        <td title="${esc(fFull.format(w.lastSeen))} AST">${esc(ago(w.lastSeen, now))}</td><td>${wf(w, 'ph', 2)}</td><td>${wf(w, 'temperature', 1)}</td><td>${wf(w, 'tds_ppm')}</td><td>${wf(w, 'turbidity_raw')}</td></tr>`).join('');
+        <td title="${esc(fFull.format(w.lastSeen))} AST">${esc(ago(w.lastSeen, now))}</td><td>${wf(w, 'ph', 2)}</td><td>${wf(w, 'temperature', 1)}</td><td>${wf(w, 'tds_ppm')}</td><td>${wf(w, 'turbidity_index', 1)}</td><td>${w.status && w.status.water_level_status ? esc(w.status.water_level_status.value) : '—'}</td></tr>`).join('');
     return `<div class="panel-head"><div><div class="eyebrow">${H.icon('radio')} SENSOR NETWORK</div><h2>Connectivity &amp; alerts</h2></div>
         <div class="pills">${tag(`${c.wellsOnline}/${c.wellsTotal} wells online`, 'green')}${tag(`${c.devicesOffline} sensor${c.devicesOffline === 1 ? '' : 's'} offline`, c.devicesOffline ? 'amber' : 'grey')}</div></div>
       ${alerts.length ? `<ul class="alerts">${alerts.map((x) => `<li class="${x.severity}"><i></i><div><b>${esc(x.title)}</b><span>${esc(x.detail || '')}</span></div></li>`).join('')}${a.alerts.length > alerts.length ? `<li class="more">+${a.alerts.length - alerts.length} more</li>` : ''}</ul>`
         : `<div class="note ok">${H.icon('check')}<span>${c.devicesTotal ? 'No active sensor alerts.' : 'No devices to monitor yet.'}</span></div>`}
-      <div class="tbl-wrap net-wrap"><table class="t net-table"><thead><tr><th>Well</th><th>Sensors</th><th>Status</th><th>Last reading</th><th>pH</th><th>°C</th><th>TDS ppm</th><th>Turb. raw</th></tr></thead>
-        <tbody>${wellRows || '<tr><td colspan="8">No wells</td></tr>'}</tbody></table></div>
-      <div class="tbl-wrap net-wrap"><table class="t net-table"><thead><tr><th>Sensor</th><th>Well</th><th>Status</th><th>Last reading</th><th>pH</th><th>°C</th><th>TDS ppm</th><th>Turb. raw</th></tr></thead>
+      <div class="tbl-wrap net-wrap"><table class="t net-table"><thead><tr><th>Well</th><th>Sensors</th><th>Status</th><th>Last reading</th><th>pH</th><th>°C</th><th>TDS ppm</th><th>Turbidity</th><th>Water level</th></tr></thead>
+        <tbody>${wellRows || '<tr><td colspan="9">No wells</td></tr>'}</tbody></table></div>
+      <div class="tbl-wrap net-wrap"><table class="t net-table"><thead><tr><th>Sensor</th><th>Well</th><th>Status</th><th>Last reading</th><th>pH</th><th>°C</th><th>TDS ppm</th><th>Turbidity</th></tr></thead>
         <tbody>${rows || '<tr><td colspan="8">No devices</td></tr>'}</tbody></table></div>
       <div class="chart-foot"><span>Latest valid value per well and per sensor${st.cfg.operations.useLastKnownValues === false ? ` (window ${st.cfg.operations.freshnessMinutes} min)` : ` · offline after ${st.cfg.operations.freshnessMinutes} min`}</span><span>${esc(S.DISCLAIMER.split('.')[0])}</span></div>`;
   }
@@ -638,7 +653,7 @@
       ctx.deviations = a.deviations;
       ctx.charts = chartDefs().map((c) => {
         const pts = a.series[c.key].points, ds = pts.length > 48 ? Array.from({ length: 48 }, (_, i) => pts[Math.round((i * (pts.length - 1)) / 47)]) : pts;
-        return { id: c.key, title: c.title, unit: c.key === 'turbidity_raw' ? 'raw (uncalibrated, not NTU)' : c.unit, bucketMinutes: a.range.bucketMs / 60000, pointCount: pts.length,
+        return { id: c.key, title: c.title, unit: c.key === 'turbidity_index' ? 'turbidity index (device scale, not NTU)' : c.unit, bucketMinutes: a.range.bucketMs / 60000, pointCount: pts.length,
           min: pts.length ? Math.min(...pts.map((p) => p.min)) : null, max: pts.length ? Math.max(...pts.map((p) => p.max)) : null,
           change: S.seriesChange(pts), statistic: statName(c.key) + ' across wells', points: ds.map((p) => ({ t: iso(p.t), value: p.value, median: p.median, min: p.min, max: p.max, wells: p.n, devices: p.devices })) };
       });

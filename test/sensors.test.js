@@ -7,7 +7,7 @@ const cfg = require('../config/thresholds.json');
 
 const NOW = Date.parse('2026-11-09T12:00:00Z');
 const min = (m) => new Date(NOW - m * 60000).toISOString();
-const row = (device_id, mAgo, extra) => ({ device_id, created_at: min(mAgo), ph: null, temperature: null, tds_ppm: null, turbidity_raw: null, turbidity_voltage: null, ph_raw: null, ph_voltage: null, ...extra });
+const row = (device_id, mAgo, extra) => ({ device_id, created_at: min(mAgo), ph: null, temperature: null, tds_ppm: null, turbidity_index: null, turbidity_status: null, water_level_status: null, ...extra });
 const opts = { now: NOW, freshnessMs: 60 * 60000, lookbackMs: 168 * 3600000, validity: cfg.validity };
 
 test('each device contributes only its latest reading (not a row average)', () => {
@@ -92,7 +92,7 @@ test('assessment: normal, attention, critical, insufficient data', () => {
   assert.deepEqual(attn.attentionDevices.map((d) => d.device_id), ['B']);
 
   assert.equal(run([]).overall, 'insufficient_data');
-  assert.equal(run([row('A', 1, { turbidity_raw: 300 })]).overall, 'insufficient_data'); // nothing assessable (turbidity never is)
+  assert.equal(run([row('A', 1, { turbidity_index: 3 })]).overall, 'insufficient_data'); // nothing assessable (no turbidity limit)
 
   const crit = JSON.parse(JSON.stringify(cfg.parameters));
   crit.tds_ppm.critical = { max: 2000 };
@@ -115,20 +115,17 @@ test('temperature: not assessed without limits; with the configured operational 
   assert.equal(S.assess(S.summarize(ok), ok, cfg.parameters, cfg.operations).params.temperature.state, 'within');
 });
 
-test('turbidity stays raw: awaiting calibration, never NTU, never in the assessment', () => {
-  const rows = [row('A', 1, { ph: 7, tds_ppm: 500, turbidity_raw: 345, turbidity_voltage: 2.1 })];
+test('turbidity index: shown, never NTU, not assessed while no limit is configured', () => {
+  const rows = [row('A', 1, { ph: 7, tds_ppm: 500, turbidity_index: 2.7, turbidity_status: 'CLEAR' })];
   const devs = S.latestPerDevice(rows, opts);
   const sum = S.summarize(devs);
   const a = S.assess(sum, devs, cfg.parameters, cfg.operations);
-  assert.equal(a.params.turbidity_raw.state, 'awaiting_calibration');
+  assert.equal(a.params.turbidity_index.state, 'not_assessed');
   const m = S.buildMetrics(sum, a, cfg).turbidity;
-  assert.equal(m.value, null);
-  assert.equal(m.unit, null);
-  assert.equal(m.calibrated, false);
-  assert.equal(m.raw, 345);
-  assert.equal(m.voltage, 2.1);
+  assert.equal(m.value, 2.7);
+  assert.match(m.unit, /not NTU/);
   // an extreme turbidity reading must not change the overall status
-  const rows2 = [row('A', 1, { ph: 7, tds_ppm: 500, turbidity_raw: 999999 })];
+  const rows2 = [row('A', 1, { ph: 7, tds_ppm: 500, turbidity_index: 999999 })];
   const d2 = S.latestPerDevice(rows2, opts);
   assert.equal(S.assess(S.summarize(d2), d2, cfg.parameters, cfg.operations).overall, 'normal');
 });
@@ -249,13 +246,13 @@ test('CCME WQI matches a hand calculation', () => {
 test('CCME WQI per well: one test per bucket, only parameters with limits, lowest well first', () => {
   const rows = [];
   for (let m = 0; m < 6; m++) {
-    rows.push(row('A', 5 + m * 15, { well_id: 1, ph: 7.2, tds_ppm: 400, temperature: 25, turbidity_raw: 3000 }));
+    rows.push(row('A', 5 + m * 15, { well_id: 1, ph: 7.2, tds_ppm: 400, temperature: 25, turbidity_index: 3 }));
     rows.push(row('A', 6 + m * 15, { well_id: 1, ph: 7.2, tds_ppm: 410 }));                 // same bucket: still one test
     rows.push(row('B', 5 + m * 15, { well_id: 2, ph: 7.0, tds_ppm: m < 3 ? 2500 : 600 }));   // half the buckets too salty
   }
   const w = S.ccmeWqi(rows, cfg, { start: NOW - 3 * 3600000, end: NOW, bucketMs: 15 * 60000 });
   assert.deepEqual(w.parameters, ['ph', 'tds_ppm', 'temperature']);
-  assert.deepEqual(w.excluded.map((e) => e.param), ['turbidity_raw']);
+  assert.deepEqual(w.excluded.map((e) => e.param), ['turbidity_index']);
   assert.equal(w.headline.well, 'Well 2');
   assert.equal(w.headline.tests, 12);            // 6 buckets × pH and TDS (well 2 reports no temperature)
   assert.equal(w.headline.failedTests, 3);
@@ -292,12 +289,12 @@ test('WQI alert: raised for Marginal or Poor wells only, Poor is critical', () =
   const mk = (wqi, category) => ({ period: 'Last 24 hours', wells: [{ well: 'Well 1', wqi, category, failedVariables: ['ph'], failedTests: 4, tests: 8 }] });
   assert.equal(S.extraAlerts([], mk(90, 'Good'), cfg).length, 0);
   const m = S.extraAlerts([], mk(59, 'Marginal'), cfg)[0];
-  assert.equal(m.severity, 'warning'); assert.match(m.title, /59 out of 100, marginal, because of ph/);
+  assert.equal(m.severity, 'warning'); assert.match(m.title, /59 out of 100, marginal, because of pH\./);
   assert.equal(S.extraAlerts([], mk(30, 'Poor'), cfg)[0].severity, 'critical');
 });
 
 test('turbidity alerts use the unusual-change check (no calibration needed)', () => {
-  assert.ok(cfg.deviation.parameters.includes('turbidity_raw'));
+  assert.ok(cfg.deviation.parameters.includes('turbidity_index'));
   const pts = Array.from({ length: 20 }, (_, i) => ({ t: i, value: 3000 + (i % 3) * 10 }));
   assert.equal(S.deviationCheck(pts, 1500, cfg.deviation).flag, true);
 });
@@ -309,4 +306,24 @@ test('Telegram message format', () => {
   assert.match(format({ ...a, severity: 'critical' }, 'alert'), /^🔴 AquaMaa · URGENT/);
   assert.match(format(a, 'cleared'), /^✅ AquaMaa · Resolved/);
   assert.doesNotMatch(format(a, 'cleared'), /Tomato: TDS/);
+});
+
+/* ---------- device status text (turbidity_status, water_level_status) ---------- */
+test('status alerts: NO WATER and a non-clear turbidity raise alerts; CLEAR and OK do not', () => {
+  const run = (extra) => {
+    const devs = S.latestPerDevice([row('A', 1, { well_id: 1, ph: 7.2, tds_ppm: 300, temperature: 25, ...extra })], opts);
+    const wells = S.latestPerWell(devs, cfg.aggregation);
+    return S.extraAlerts([], { wells: [] }, cfg, wells).filter((x) => x.type === 'status');
+  };
+  assert.equal(run({ turbidity_status: 'CLEAR', water_level_status: 'OK' }).length, 0);
+  const nw = run({ turbidity_status: 'CLEAR', water_level_status: 'NO WATER' });
+  assert.equal(nw.length, 1);
+  assert.equal(nw[0].param, 'water_level_status');
+  assert.match(nw[0].title, /^Well 1: the water level sensor reports "NO WATER"\. Check the well/);
+  const tb = run({ turbidity_status: 'Dirty' });
+  assert.equal(tb.length, 1);
+  assert.equal(tb[0].severity, 'critical');
+  // the newest status wins
+  const devs = S.latestPerDevice([row('A', 1, { well_id: 1, water_level_status: 'OK' }), row('A', 5, { well_id: 1, water_level_status: 'NO WATER' })], opts);
+  assert.equal(S.latestPerWell(devs, cfg.aggregation)[0].status.water_level_status.value, 'OK');
 });

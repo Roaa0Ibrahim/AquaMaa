@@ -73,9 +73,9 @@ test('assistant context: live data from the database, grounded and honest about 
   assert.equal(r.status, 200);
   const g = await r.json();
   assert.equal(g.live.devices.length, 6);
-  assert.equal(g.live.metrics.turbidity.calibrated, false);
-  assert.equal(g.live.metrics.turbidity.value, null);
-  assert.equal(g.live.metrics.turbidity.unit, null);
+  assert.equal(typeof g.live.metrics.turbidity.value, 'number');          // the device's turbidity index
+  assert.match(g.live.metrics.turbidity.unit, /not NTU/);
+  assert.ok(g.live.metrics.deviceStatus.every((w) => w.water_level_status === 'OK'));
   const offline = g.live.assessment.offlineDevices.map((d) => d.device_id);
   assert.deepEqual(offline, ['well-06']);
   assert.equal(g.live.assessment.overall, 'attention');

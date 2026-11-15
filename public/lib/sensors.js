@@ -7,7 +7,8 @@
  *  - each device contributes at most one value per parameter to a network summary
  *  - stale values (older than the freshness window) are excluded
  *  - the representative network value is the median of per-device latest values
- *  - turbidity is never converted to NTU and never enters the assessment
+ *  - turbidity is the device's turbidity index (not NTU); it is only judged when a limit is configured
+ *  - turbidity_status and water_level_status are text from the device: the latest value is kept per device/well
  */
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) module.exports = factory();
@@ -15,8 +16,9 @@
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
 
-  const FIELDS = ['ph', 'temperature', 'tds_ppm', 'turbidity_raw', 'turbidity_voltage', 'ph_raw', 'ph_voltage'];
-  const PARAMS = ['ph', 'temperature', 'tds_ppm', 'turbidity_raw'];
+  const FIELDS = ['ph', 'temperature', 'tds_ppm', 'turbidity_index'];
+  const PARAMS = ['ph', 'temperature', 'tds_ppm', 'turbidity_index'];
+  const STATUS_FIELDS = ['turbidity_status', 'water_level_status'];
   const ASSESSED = ['ph', 'temperature', 'tds_ppm'];
   const DISCLAIMER = 'Preliminary sensor-based monitoring indicator. It is not a drinking-water certification and does not show that water is safe or potable.';
 
@@ -71,7 +73,7 @@
     ph: { withinWell: 'hydrogenMean', acrossWells: 'median' },
     temperature: { withinWell: 'mean', acrossWells: 'mean' },
     tds_ppm: { withinWell: 'mean', acrossWells: 'median' },
-    turbidity_raw: { withinWell: 'median', acrossWells: 'median' },
+    turbidity_index: { withinWell: 'median', acrossWells: 'median' },
   };
   const AGG_LABEL = { mean: 'mean', median: 'median', hydrogenMean: '[H⁺]-based mean' };
   function aggregationFor(field, cfgAgg) {
@@ -104,7 +106,7 @@
       if (t === null) continue;
       if (lookbackMs && now - t > lookbackMs) continue;
       let d = devs.get(r.device_id);
-      if (!d) { d = { device_id: r.device_id, lastSeen: t, latest: {}, well_id: null, wellAt: -Infinity }; devs.set(r.device_id, d); }
+      if (!d) { d = { device_id: r.device_id, lastSeen: t, latest: {}, status: {}, well_id: null, wellAt: -Infinity }; devs.set(r.device_id, d); }
       if (t > d.lastSeen) d.lastSeen = t;
       const w = num(r.well_id);
       if (w !== null && t >= d.wellAt) { d.well_id = w; d.wellAt = t; }   // the device's current well
@@ -113,6 +115,12 @@
         if (v === null) continue;
         const cur = d.latest[f];
         if (!cur || t > cur.at) d.latest[f] = { value: v, at: t };
+      }
+      for (const f of STATUS_FIELDS) {
+        const v = typeof r[f] === 'string' ? r[f].trim() : '';
+        if (!v) continue;
+        const cur = d.status[f];
+        if (!cur || t > cur.at) d.status[f] = { value: v, at: t };
       }
     }
     return Array.from(devs.values()).map((d) => {
@@ -124,7 +132,9 @@
         fresh[f] = l && (useLastKnown || !old) ? { ...l, stale: !!old } : null;
       }
       const ageMs = now - d.lastSeen;
-      return { device_id: d.device_id, well_id: d.well_id, wellKey: wellKeyOf(d.well_id, d.device_id), lastSeen: d.lastSeen, ageMs, online: ageMs <= freshnessMs, latest: d.latest, fresh };
+      const status = {};
+      for (const f of STATUS_FIELDS) { const l = d.status[f]; status[f] = l ? { ...l, stale: now - l.at > freshnessMs } : null; }
+      return { device_id: d.device_id, well_id: d.well_id, wellKey: wellKeyOf(d.well_id, d.device_id), lastSeen: d.lastSeen, ageMs, online: ageMs <= freshnessMs, latest: d.latest, fresh, status };
     }).sort((a, b) => (a.device_id < b.device_id ? -1 : 1));
   }
 
@@ -134,10 +144,14 @@
     for (const d of devices) {
       const k = d.wellKey || wellKeyOf(d.well_id, d.device_id);
       let w = wells.get(k);
-      if (!w) { w = { key: k, well_id: d.well_id != null ? d.well_id : null, label: d.well_id != null ? `Well ${d.well_id}` : d.device_id, devices: [], lastSeen: d.lastSeen, online: false, fresh: {} }; wells.set(k, w); }
+      if (!w) { w = { key: k, well_id: d.well_id != null ? d.well_id : null, label: d.well_id != null ? `Well ${d.well_id}` : d.device_id, devices: [], lastSeen: d.lastSeen, online: false, fresh: {}, status: {} }; wells.set(k, w); }
       w.devices.push(d.device_id);
       if (d.lastSeen > w.lastSeen) w.lastSeen = d.lastSeen;
       if (d.online) w.online = true;
+      for (const f of STATUS_FIELDS) {
+        const x = d.status && d.status[f];
+        if (x && (!w.status[f] || x.at > w.status[f].at)) w.status[f] = x;
+      }
     }
     for (const w of wells.values()) {
       const members = devices.filter((d) => (d.wellKey || wellKeyOf(d.well_id, d.device_id)) === w.key);
@@ -211,8 +225,8 @@
       }
       params[p] = { value: s.value, statistic: s.statistic, wells: s.count, min: s.min, max: s.max, count: s.count, ...e, outsideDevices };
     }
-    const tb = summary.turbidity_raw;
-    params.turbidity_raw = { value: tb.value, statistic: tb.statistic, wells: tb.count, min: tb.min, max: tb.max, count: tb.count, state: tb.count ? 'awaiting_calibration' : 'no_data', outsideDevices: [] };
+    const tb = summary.turbidity_index;   // judged only if a limit is configured (none today): shown, not assessed
+    params.turbidity_index = { value: tb.value, statistic: tb.statistic, wells: tb.count, min: tb.min, max: tb.max, count: tb.count, ...evalThreshold(tb.value, cfgParams.turbidity_index), outsideDevices: [] };
 
     const assessable = ASSESSED.filter((p) => isConfigured(cfgParams[p]));
     const withData = assessable.filter((p) => summary[p].count > 0);
@@ -354,7 +368,7 @@
         min: summary.ph.min, max: summary.ph.max, wells: summary.ph.count, devices: summary.ph.devices, status: st('ph'), reference: ref('ph'), hydrogenIonMean: summary.ph.meanByHydrogen, latestAt: summary.ph.latestAt },
       temperature: { value: summary.temperature.value, unit: 'C', statistic: statOf('temperature'), min: summary.temperature.min, max: summary.temperature.max, wells: summary.temperature.count, devices: summary.temperature.devices, status: st('temperature'), reference: ref('temperature'), latestAt: summary.temperature.latestAt },
       tds: { value: summary.tds_ppm.value, unit: 'ppm', statistic: statOf('tds_ppm'), min: summary.tds_ppm.min, max: summary.tds_ppm.max, wells: summary.tds_ppm.count, devices: summary.tds_ppm.devices, status: st('tds_ppm'), reference: ref('tds_ppm'), highestWell: summary.tds_ppm.maxWell, highestDevice: summary.tds_ppm.maxDevice, latestAt: summary.tds_ppm.latestAt },
-      turbidity: { value: null, unit: null, raw: summary.turbidity_raw.value, rawStatistic: statOf('turbidity_raw'), rawMin: summary.turbidity_raw.min, rawMax: summary.turbidity_raw.max, voltage: summary.turbidity_voltage.value, wells: summary.turbidity_raw.count, devices: summary.turbidity_raw.devices, calibrated: false, status: st('turbidity_raw'), note: 'Raw sensor reading; no validated NTU conversion exists', latestAt: summary.turbidity_raw.latestAt },
+      turbidity: { value: summary.turbidity_index.value, unit: 'index (device scale, not NTU)', statistic: statOf('turbidity_index'), min: summary.turbidity_index.min, max: summary.turbidity_index.max, wells: summary.turbidity_index.count, devices: summary.turbidity_index.devices, status: st('turbidity_index'), latestAt: summary.turbidity_index.latestAt },
     };
   }
 
@@ -425,7 +439,7 @@
     const params = (wcfg.parameters || ASSESSED).filter((p) => cfg.parameters[p]);
     const used = params.filter((p) => cfg.parameters[p].reference);
     const excluded = PARAMS.filter((p) => !used.includes(p)).map((p) => ({
-      param: p, reason: p === 'turbidity_raw' ? 'raw, uncalibrated reading (no NTU objective possible)' : 'no acceptable limit configured' }));
+      param: p, reason: 'no acceptable limit configured' }));
     const byWell = new Map();
     for (const p of used) {
       for (const [wk, w] of wellSamples(rows, p, { ...opts, aggregation: cfg.aggregation, validity: cfg.validity })) {
@@ -476,11 +490,31 @@
       return { well: w.label, well_id: w.well_id, tds, ph, stale: !!w.fresh.tds_ppm.stale, at: w.fresh.tds_ppm.at, uses };
     });
   }
+  const lcFirst = (t) => (/^[A-Z][a-z]/.test(t) ? t[0].toLowerCase() + t.slice(1) : t);   // 'Total dissolved solids' -> 'total…', 'pH' stays
   const listText = (xs) => (xs.length <= 1 ? xs.join('') : `${xs.slice(0, -1).join(', ')} and ${xs[xs.length - 1]}`);
 
   /* Alerts from the Water Card and the WQI. Titles are full sentences: Pepper speaks them as they are. */
-  function extraAlerts(card, wqi, cfg) {
+  function extraAlerts(card, wqi, cfg, wells) {
     const out = [];
+    // Device status text (config "statusAlerts"): an alert when a well's latest status is one of
+    // alertOn, or (with normal) anything other than the normal values. Titles are spoken by Pepper.
+    const sa = cfg.statusAlerts || {};
+    for (const w of wells || []) {
+      for (const [f, rule] of Object.entries(sa)) {
+        if (f.startsWith('_') || !w.status || !w.status[f]) continue;
+        const v = w.status[f].value, V = v.toUpperCase();
+        const bad = rule.alertOn ? rule.alertOn.map((x) => x.toUpperCase()).includes(V)
+          : rule.normal ? !rule.normal.map((x) => x.toUpperCase()).includes(V) : false;
+        if (!bad) continue;
+        const msg = (rule.messages && (rule.messages[V] || rule.messages['*'])) || '';
+        out.push({
+          id: `status:${w.label}:${f}:${V}`, severity: (rule.critical || []).map((x) => x.toUpperCase()).includes(V) ? 'critical' : 'warning',
+          type: 'status', well: w.label, param: f,
+          title: `${w.label}: the ${rule.label.toLowerCase()} sensor reports "${v}".${msg ? ` ${msg}` : ''}`,
+          detail: `${rule.label}: ${v}${w.status[f].stale ? ' (last known value)' : ''}`,
+        });
+      }
+    }
     for (const w of card) {
       const lost = w.uses.filter((u) => !u.ok), kept = w.uses.filter((u) => u.ok && u.kind === 'crop');
       if (!lost.length) continue;
@@ -498,7 +532,7 @@
       const failed = x.failedVariables.map((p) => (cfg.parameters[p] ? cfg.parameters[p].label : p));
       out.push({
         id: `wqi:${x.well}:${x.category}`, severity: x.category === 'Poor' ? 'critical' : 'warning', type: 'wqi', well: x.well,
-        title: `The water quality index of ${x.well} is ${Math.round(x.wqi)} out of 100, ${x.category.toLowerCase()}, because of ${listText(failed.map((s) => s.toLowerCase()))}.`,
+        title: `The water quality index of ${x.well} is ${Math.round(x.wqi)} out of 100, ${x.category.toLowerCase()}, because of ${listText(failed.map(lcFirst))}.`,
         detail: `CCME WQI ${wqi.period}: ${x.failedTests} of ${x.tests} tests outside the limits`,
       });
     }
@@ -534,9 +568,10 @@
     wqi.period = wqiPeriod;
     const card = waterCard(wells, cfg);
     const rank = { critical: 0, warning: 1, info: 2 };
-    alerts.push(...extraAlerts(card, wqi, cfg));
+    alerts.push(...extraAlerts(card, wqi, cfg, wells));
     alerts.sort((x, y) => rank[x.severity] - rank[y.severity]);
     const metrics = buildMetrics(summary, assessment, cfg);
+    metrics.deviceStatus = wells.map((w) => ({ well: w.label, ...Object.fromEntries(STATUS_FIELDS.map((f) => [f, w.status && w.status[f] ? w.status[f].value : null])) }));
     metrics.waterUse = card.map((w) => ({ well: w.well, tds: w.tds, lastKnown: w.stale, suitable: w.uses.filter((u) => u.ok).map((u) => u.id), notSuitable: w.uses.filter((u) => !u.ok).map((u) => u.id) }));
     metrics.wqi = wqi.headline ? { value: Math.round(wqi.headline.wqi), category: wqi.headline.category, well: wqi.headline.well, method: wqi.method,
       period: wqi.period, parameters: wqi.parameters, excluded: wqi.excluded.map((e) => e.param), F1: wqi.headline.F1, F2: wqi.headline.F2, F3: wqi.headline.F3,
@@ -544,5 +579,5 @@
     return { now, devices: scoped, allDevices: devices, wells, allWells, summary, assessment, series, deviations, alerts, wqi, waterCard: card, metrics, range: { key: rangeKey, ...range } };
   }
 
-  return { FIELDS, PARAMS, ASSESSED, DISCLAIMER, AGG_LABEL, num, median, mean, combine, aggregationFor, validValue, phMeanByHydrogen, classifyPh, latestPerDevice, latestPerWell, summarize, evalThreshold, assess, bucketSeries, seriesChange, outsideShare, deviationCheck, buildAlerts, buildMetrics, ccmeIndex, ccmeWqi, wqiCategory, waterCard, extraAlerts, analyze };
+  return { FIELDS, PARAMS, STATUS_FIELDS, ASSESSED, DISCLAIMER, AGG_LABEL, num, median, mean, combine, aggregationFor, validValue, phMeanByHydrogen, classifyPh, latestPerDevice, latestPerWell, summarize, evalThreshold, assess, bucketSeries, seriesChange, outsideShare, deviationCheck, buildAlerts, buildMetrics, ccmeIndex, ccmeWqi, wqiCategory, waterCard, extraAlerts, analyze };
 });

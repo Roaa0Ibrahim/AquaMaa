@@ -27,19 +27,7 @@
       "min": 0,
       "max": null
     },
-    "turbidity_raw": {
-      "min": 0,
-      "max": null
-    },
-    "turbidity_voltage": {
-      "min": 0,
-      "max": null
-    },
-    "ph_raw": {
-      "min": 0,
-      "max": null
-    },
-    "ph_voltage": {
+    "turbidity_index": {
       "min": 0,
       "max": null
     }
@@ -90,18 +78,13 @@
       "source": "Default upper reference 1000 mg/L (~ppm): WHO background document on TDS in drinking-water (taste acceptability; no health-based guideline value). US EPA secondary standard is stricter (500 mg/L). Replace with the limit that applies to the intended use of each well.",
       "criticalSource": "Critical above 2000 mg/L (added 14 Nov): FAO 29 severe restriction on use for irrigation."
     },
-    "turbidity_raw": {
+    "turbidity_index": {
       "label": "Turbidity",
-      "unit": "raw",
+      "unit": "index",
       "reference": null,
       "critical": null,
-      "calibration": {
-        "validated": false,
-        "unit": "NTU",
-        "formula": null
-      },
       "confirmed": false,
-      "source": "The database holds raw sensor counts and voltage only. No validated NTU conversion exists, so turbidity is displayed raw, is never labelled NTU and never contributes to the assessment. Turbidity alerts therefore use the unusual-change check only (deviation), which compares the raw reading with its own recent history and needs no calibration."
+      "source": "Turbidity index computed on the ESP32 from the turbidity sensor (0 = clear water); the device also sends a status (turbidity_status). Not NTU: no NTU conversion has been validated. No limit is configured, so it is shown, not assessed; the device's status and the unusual-change check raise its alerts."
     }
   },
   "aggregation": {
@@ -118,7 +101,7 @@
       "withinWell": "mean",
       "acrossWells": "median"
     },
-    "turbidity_raw": {
+    "turbidity_index": {
       "withinWell": "median",
       "acrossWells": "median"
     }
@@ -203,10 +186,41 @@
     ],
     "source": "FAO 29 Table 4 (Ayers & Westcot 1985), via AquaMaa fastpath/data/crop_tolerance.csv (draft, Mais to check)"
   },
+  "statusAlerts": {
+    "_readme": "Alerts from the text statuses the ESP32 sends. normal: any other value raises an alert. alertOn: only these values raise one. critical: values that make it urgent. messages: the advice Pepper and Telegram add (by value, or '*'). Values are compared without case. Confirm the full list of values with the ESP32 code (Munira).",
+    "turbidity_status": {
+      "label": "Turbidity",
+      "normal": [
+        "CLEAR"
+      ],
+      "critical": [
+        "DIRTY",
+        "VERY DIRTY",
+        "MUDDY"
+      ],
+      "messages": {
+        "*": "The water is no longer clear: check for sediment, a disturbed well or a dirty probe before use."
+      }
+    },
+    "water_level_status": {
+      "label": "Water level",
+      "alertOn": [
+        "NO WATER",
+        "LOW",
+        "EMPTY",
+        "DRY"
+      ],
+      "critical": [],
+      "messages": {
+        "NO WATER": "Check the well and the pump; if water is present, the probes may be out of the water, so the other readings may not be valid.",
+        "*": "The water level is low: avoid over-pumping and check the well."
+      }
+    }
+  },
   "deviation": {
     "parameters": [
       "tds_ppm",
-      "turbidity_raw"
+      "turbidity_index"
     ],
     "method": "Modified z-score of the current network median against the median of earlier time buckets in the selected period (Iglewicz & Hoaglin, 1993)",
     "zThreshold": 3.5,

@@ -10,7 +10,7 @@
  */
 const http = require('http');
 
-const COLS = ['id', 'device_id', 'ph', 'temperature', 'tds_ppm', 'created_at', 'ph_raw', 'ph_voltage', 'turbidity_raw', 'turbidity_voltage'];
+const COLS = ['id', 'device_id', 'well_id', 'ph', 'temperature', 'tds_ppm', 'created_at', 'turbidity_index', 'turbidity_status', 'water_level_status'];
 
 function buildRows(now) {
   const rows = [];
@@ -30,15 +30,14 @@ function buildRows(now) {
     for (const [di, d] of devices.entries()) {
       if (d.silentAfterH && now - ts < d.silentAfterH * 3600000) continue;
       const w = ts / 3600000;
-      const raw = Math.round(d.turb + 12 * Math.sin(w / 3 + di));
+      const ti = Math.max(0, Number(((d.turb - 290) / 20 + 0.5 * Math.sin(w / 3 + di)).toFixed(2)));
       rows.push({
         id: id++, device_id: d.id,
         ph: Number((d.ph + 0.12 * Math.sin(w / 5 + di)).toFixed(2)),
         temperature: d.noTemp ? null : Number((d.t + 0.8 * Math.sin(w / 12 + di)).toFixed(1)),
         tds_ppm: Number((d.tds + 25 * Math.sin(w / 7 + di)).toFixed(0)),
         created_at: new Date(ts).toISOString(),
-        ph_raw: 2000 + di, ph_voltage: Number((1.65 + 0.01 * di).toFixed(3)),
-        turbidity_raw: raw, turbidity_voltage: Number(((raw * 3.3) / 4095).toFixed(3)),
+        well_id: di + 1, turbidity_index: ti, turbidity_status: 'CLEAR', water_level_status: 'OK',
       });
     }
   }
@@ -68,7 +67,7 @@ function start({ port = 3200, mode = 'data' } = {}) {
     if (u.pathname === '/__insert' && req.method === 'POST') {
       let b = ''; req.on('data', (c) => (b += c));
       req.on('end', () => {
-        const r = { id: nextId++, ph: null, temperature: null, tds_ppm: null, ph_raw: null, ph_voltage: null, turbidity_raw: null, turbidity_voltage: null, ...JSON.parse(b), created_at: new Date().toISOString() };
+        const r = { id: nextId++, ph: null, temperature: null, tds_ppm: null, well_id: 1, turbidity_index: null, turbidity_status: null, water_level_status: null, ...JSON.parse(b), created_at: new Date().toISOString() };
         rows.push(r); json(200, r);
       });
       return;

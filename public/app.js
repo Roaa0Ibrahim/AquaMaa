@@ -477,7 +477,7 @@
         <article class="card kpi sensor k4 rise" data-sensor-kpi="ph" ${dl()}></article>
         <article class="card kpi sensor k2 rise" data-sensor-kpi="temperature" ${dl()}></article>
         <article class="card kpi sensor k3 rise" data-sensor-kpi="tds_ppm" ${dl()}></article>
-        <article class="card kpi sensor k6 rise" data-sensor-kpi="turbidity_raw" ${dl()}></article>
+        <article class="card kpi sensor k6 rise" data-sensor-kpi="turbidity_index" ${dl()}></article>
         <article class="card kpi k3 rise" ${dl()}><div class="k-head"><span class="k-ico blue">${icon('drop')}</span>${esc(t('Registered wells'))}</div>
           <div class="k-body"><div><div class="big">${num(d.wells.count)}</div><div class="unit">wells</div></div><div class="minibars"><i style="width:100%"></i><i style="width:45%;opacity:.55"></i></div></div>
           <div class="k-foot">${statusTag(d.wells.status)}</div></article>
@@ -695,7 +695,7 @@
               zones: [{ to: phMin, color: 'var(--amber)' }, { to: phMax, color: 'var(--green)' }, { to: 10, color: 'var(--amber)' }] })}
             ${gauge({ value: num('temperature'), dec: 1, min: 0, max: 45, label: F('Temperature (°C)', 'الحرارة (درجة مئوية)'),
               refs: [['—', F('NO LIMIT SET', 'لا يوجد حد')], ['45', F('SCALE MAX', 'أعلى المقياس')]], zones: [{ to: 45, color: 'var(--turq)' }] })}</div>
-          <div class="unit" style="text-align:center">${esc(F('Turbidity (raw, not calibrated)', 'العكارة (قراءة خام غير معايَرة)'))}: ${val('turbidity_raw', 0)}</div>
+          <div class="unit" style="text-align:center">${esc(F('Turbidity index (not NTU)', 'مؤشر العكارة (ليس NTU)'))}: ${val('turbidity_index', 1)}</div>
           <div class="well-trend">${series.length > 1 ? sparkline(series, 220, 48) + `<span class="unit">${esc(F(`Salinity over ${data.range ? data.range.label : 'the period'}`, 'تغير الملوحة خلال الفترة'))}: ${change >= 0 ? '+' : ''}${fmt(change, 0)} ${esc(F('ppm', 'جزء في المليون'))}</span>` : `<span class="unit">${esc(F('Not enough readings yet for a chart', 'لا توجد قراءات كافية بعد للرسم'))}</span>`}</div>
           <div class="well-foot"><span class="unit">${w.device_id ? `${esc(F('Sensor', 'الحساس'))} ${esc(w.device_id)}${ago != null ? ` · ${esc(F(`last reading ${ago} min ago`, `آخر قراءة قبل ${ago} دقيقة`))}` : ''}` : esc(F('Link a sensor to see live readings', 'اربط حساسًا لرؤية القراءات المباشرة'))}</span>
             <button class="btn ghost" data-ask="${esc(w.name)}" data-crop="${esc(w.crop || '')}">${esc(F('Ask AquaMaa', 'اسأل أكوا ماء'))}</button></div>
