@@ -1,156 +1,116 @@
-# AquaMaa assistant
+# AquaMaa: giving Qatar's wells a voice
 
-The AI assistant behind AquaMaa, team AquaNova's groundwater decision-support platform for Qatar (UDST Smart WaterBot Challenge 2026). It answers questions about Qatar's groundwater from a curated knowledge base, and runs entirely on a local open model.
+**Team AquaNova · UDST Smart WaterBot Challenge 2026**
 
-The plan and the progress on each milestone are in [AquaMaa.md](AquaMaa.md).
+Farm wells in Qatar are getting saltier: in the north the saline front advances inland every year, and many wells
+already have sensors, but nobody reads them in time. The farmer finds out when the crops suffer. **AquaMaa turns each
+reading into its meaning and an action**, for the ministry officer and for the farm owner, on a live dashboard, through
+an AI assistant in Arabic and English, and through a Pepper robot in the monitoring room that speaks up when a well
+goes wrong.
 
-## What you need
-- **Windows 10 or 11,** with about 15 GB free disk space and an internet connection for the downloads
-- **16 GB of RAM or more.** A GPU with 12 GB or more makes answers much faster. Without one, use the smaller model (see step 5)
+Our key word is **trust**:
+1. **Real data:** live, timely readings from real sensors, every reading stored with its time.
+2. **Meaning from sources, not AI guessing:** facts and verdicts are computed by code from cited sources (WHO, FAO 29,
+   Qatar's water law, national statistics); the language model only puts them into words, and a check rejects any number
+   or source that is not in the facts.
+3. **Words each user understands:** plain answers for the farm owner, figures and options for the officer.
+4. **Made for Qatar:** Arabic and English, including Qatari dialect (Fanar, from QCRI), by text or by voice.
 
-## Set up from scratch
-Do these once, in order. Nothing here is assumed to be installed already.
+---
 
-**1. Install Git** from [git-scm.com/download/win](https://git-scm.com/download/win), keeping the default options.
+## What it does
 
-**2. Install Python 3.13** from [python.org/downloads](https://www.python.org/downloads/). Choose a 3.13 version, not 3.14, which is too new for some packages.
-On the first installer screen, **tick "Add python.exe to PATH"**. Then check in a new PowerShell window:
-```powershell
-py -3.13 --version
+| Part | What the user sees |
+|---|---|
+| **Officer dashboard** | All wells at a glance: live pH, temperature, salinity (TDS), turbidity index, water quality index (CCME WQI), water level, alerts, trends, map, national statistics. Arabic and English. |
+| **Farmer view (My Farm)** | Each of the farmer's wells as a drawing coloured by water quality, gauges with thresholds, a verdict for **his crop**, **what this water is good for** (each crop and drinking, ticked or crossed), **what to do**, and alerts on the phone (Telegram). |
+| **AquaMaa assistant** | A chat on every page: any question about wells, water quality, crops, law and statistics, answered from live data and cited sources, in the question's language, by text or voice; it explains the page you are on. |
+| **Alerts** | Salinity or pH outside its range (critical levels flagged as urgent), sensor silent for 30 minutes, unusual changes, water quality index; each with what it means and what to do. |
+| **Pepper robot** | Stands in the ministry's monitoring room, shows the live dashboard on its tablet, speaks alerts by itself and answers spoken questions with the live readings. |
+
+## How it fits together
+
 ```
-It should print `Python 3.13.x`. If it prints an error, rerun the installer and choose "Modify", then tick "py launcher".
-
-**3. Install Ollama** from [ollama.com/download](https://ollama.com/download), then open the Ollama app once. It keeps running in the background and starts with Windows.
-
-**4. Get the code.** The repository is private, so ask Roaa to add you as a collaborator, and accept the email invitation. Then:
-```powershell
-cd $HOME\Documents
-git clone https://github.com/Roaa0Ibrahim/AquaMaa.git
-cd AquaMaa
-```
-
-**5. Download the two AI models,** about 10 GB in total:
-```powershell
-ollama pull qwen3:14b
-ollama pull bge-m3
-```
-- **If `ollama` isn't recognised,** close and reopen PowerShell, or use the full path: `& "$env:LOCALAPPDATA\Programs\Ollama\ollama.exe" pull qwen3:14b`
-- **On a laptop without a 12 GB GPU,** also download the smaller model with `ollama pull qwen3:8b`, and use it as shown in "Run it". It's faster but a little less accurate.
-
-**6. Create the project's Python environment and install the packages:**
-```powershell
-py -3.13 -m venv .venv
-.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-```
-- **If PowerShell blocks `Activate.ps1`,** run `Set-ExecutionPolicy -Scope Process Bypass` first. It only affects that window.
-- After activating, the prompt starts with `(.venv)`. Run `(Get-Command python).Source`: it must end in `.venv\Scripts\python.exe`. If it shows another Python (for example MSYS2 or Anaconda), use `.venv\Scripts\python.exe` instead of `python` in every command.
-
-**7. Build the knowledge base,** about 1 minute:
-```powershell
-python build_kb.py
+ probes (TDS, pH, temperature, turbidity, water level)
+   -> ESP32 (Wi-Fi, no cable)  -> database (Supabase: every reading with its time)
+   -> website (Node/Express dashboard, officer + farmer views, alerts, Telegram)
+   -> AquaMaa AI service (Python, FastAPI, on the laptop)  <-  Pepper app (Android, QiSDK) on the same Wi-Fi
 ```
 
-**8. Check everything:**
-```powershell
-python check_setup.py
-```
-It checks Python, the packages, Ollama, the two models and the knowledge base, and for anything missing, prints exactly how to fix it. When it says "Everything is ready", the setup is done.
+## Repository layout
 
-To get later changes from the team, run `git pull` in the folder, then `python build_kb.py` again if `database/` changed.
+| Where | What |
+|---|---|
+| **this branch** (`main` / `milestone-6`) | The **AquaMaa AI** (`agent.py`, `api.py`, `fastpath/`, `steps/`), the knowledge base (`database/`), the **Pepper app** (`pepper/PepperWaterQuality`), the **sensor firmware** (`sensor/AquaNova.ino`), tests, scripts and guides |
+| branch **`deema-development`** | The **website**: dashboard, farmer view, alerts, Telegram bot, Supabase schema (`server/`, `public/`, `config/thresholds.json`, `supabase/`) |
+| **Release** `v1.0-submission` | One zip with everything: AI, website, Pepper app (APK) and sensor firmware |
+
+## The AI, briefly
+
+- **Local open models** through Ollama: `qwen3:14b` for answers, `qwen2.5:3b` for quick English farm answers,
+  `bge-m3` for search (Arabic and English). Nothing leaves the laptop except optional Fanar and voice calls.
+- **Fast path (most questions, about 1-7 s):** the question type is found by meaning; Python builds the facts and the
+  verdicts from live data and the knowledge base (e.g. FAO 29 crop tolerance -> "date palms: no yield loss"); one
+  short model call words them; a check keeps only the facts' numbers and sources.
+- **Deep path (open questions):** a LangGraph ReAct agent (search, tables, dashboard, calculator), then a verifier that
+  repairs or removes unsupported sentences.
+- **Understanding the question:** Qatari dialect rewritten to standard Arabic (Fanar), misheard speech corrected
+  from AquaMaa's own vocabulary, and questions that look unrelated re-read as the relevant question they probably are.
+- **Two readers:** the account's role picks the farmer or officer answer style; Arabic questions get Arabic-only answers.
+- **Voice:** speech-to-text with Fanar (Gulf Arabic), natural Qatari Arabic voice for spoken answers.
+- Based on the LangGraph agentic RAG tutorial (MIT), extended in milestones documented in [AquaMaa.md](AquaMaa.md).
+
+## Results (measured)
+
+| What | Result |
+|---|---|
+| Common questions (fast path) | about 4-7 s; farm verdicts about 1-2 s; Pepper's live reading about 0.1 s |
+| Answer in the question's language | 21 of 21 test questions (English, Arabic, Qatari dialect) |
+| Right source in the top 3 | 26 of 27 labelled questions |
+| Forced failures (bad tool, missing evidence, model down, invented number or citation...) | 11 of 11 handled with no invented answer |
+| Dashboard figures read by the AI | 5 of 5 charts exactly |
+| Dashboard refresh | every 5 s from the database |
+
+Test scripts: `scripts/run_regression.ps1`, `eval_personas.py`, `eval_errors.py`, `test_pepper_topics.py`; outputs in `logs/`.
 
 ## Run it
-Every time you open a new PowerShell window, go to the folder and activate the environment first:
-```powershell
-cd $HOME\Documents\AquaMaa
-.venv\Scripts\Activate.ps1
+
+**Windows (one click):** double-click **Start AquaMaa demo** (`scripts/start_demo.ps1`): it starts the model, the
+website and AquaMaa for Pepper, loads the model and opens the website. Full guide: [DEMO_DAY_SETUP.md](DEMO_DAY_SETUP.md).
+
+**Mac:** `bash scripts/setup_mac.sh` once, then `bash scripts/start_demo_mac.sh` ([SETUP_FOR_DEEMA_MAC.md](SETUP_FOR_DEEMA_MAC.md)).
+
+**By hand:**
 ```
-
-**Ask the agent a question,** and watch each step it takes:
-```powershell
-python agent.py "How much rain recharges Qatar's aquifers each year?"
+python -m pip install -r requirements.txt        # Python 3.13; Ollama with qwen3:14b, qwen2.5:3b, bge-m3
+python build_kb.py                               # builds the knowledge base (vector_store.json, chunks.jsonl)
+python api.py                                    # AquaMaa at http://127.0.0.1:8000 (AQUAMAA_API_HOST=0.0.0.0 for Pepper)
 ```
-To use the smaller model, set it for that window first: `$env:AQUAMAA_MODEL = "qwen3:8b"`. The model names live in `config.py`.
+The website (branch `deema-development`): `npm install`, `npm run seed`, `node server/index.js` -> http://localhost:3000
+(demo accounts `officer@aquamaa.demo` and `farmer@aquamaa.demo`). Settings go in `.env` files that are not in the
+repository: `FANAR_API_KEY` (optional) here; the Supabase URL and publishable key for the website.
 
-| Step | Command | What it does | Time |
-|---|---|---|---|
-| Check the setup | `python check_setup.py` | Checks everything is installed and running | Seconds |
-| Ask the agent | `python agent.py "question"` | Milestone 4: the agent answers, with live logs of each step | 10–20 seconds |
-| Run a question set | `python eval_agent.py tests/dev_real_questions.csv` | Runs 30 real questions through the agent and saves every answer in `runs/` | About 10 minutes |
-| See a run | `python show_run.py` | Lists the latest run's answers with their checks | Seconds |
-| Start the dashboard | `powershell -ExecutionPolicy Bypass -File scripts\start_dashboard.ps1` | Runs Deema's dashboard at http://localhost:3000. Sign in with any demo account on the login page; the password is `AquaMaa-Demo-2026` | About 1 minute |
-| Check the dashboard answers | `python eval_dashboard.py` | Milestone 8 check: 5 dashboard charts, the agent's numbers must match exactly (needs the dashboard running) | About 3 minutes |
-| Start the website chat | `python api.py`, then start the dashboard from the `chat-widget` branch | Runs the agent as a service at http://127.0.0.1:8000. The dashboard's **Ask AquaMaa** button (bottom corner, after signing in) sends questions to it. Leave this window open | Seconds to start; 10–30 seconds per answer |
-| Check the agent service | `python test_api.py` | Health check, one real question, and a rejected empty question (needs `api.py` running) | About 20 seconds |
-| Check the website chat | `python test_website_chat.py` | Signs in to the dashboard and asks through its chat route: checks sign-in is required, the agent is reachable, and an answer comes back with sources (needs both running) | About 20 seconds |
-| Check the error routes | `python eval_errors.py` (add `--live` for the tests that need Ollama) | Milestone 5 check: forces each failure and checks its route | Seconds; a few minutes with `--live` |
-| 1. Build the knowledge base | `python build_kb.py` | Reads `database/`, cleans and splits every document, and saves the searchable store (`vector_store.json` and `chunks.jsonl`) | About 1 minute |
-| 2. Check the knowledge base | `python eval_kb.py` | Milestone 2 check: 10 questions, one in Arabic. Each should find its right file | About 30 seconds |
-| 3. Compare search methods | `python compare_retrieval.py` | Compares keyword, meaning and hybrid search, and tries the table lookup | About 30 seconds |
-| 4. Check routing and retrieval | `python eval_routing.py` | Milestone 3 check: 27 questions, 3 per question type. Saves `eval_routing_v3.json` | About 2 minutes |
-| 5. Try the router | `python routing.py` | Shows the question type and search methods chosen for 10 sample questions | About 30 seconds |
+**Pepper:** install `AquaMaa_Pepper.apk` (`adb install -r`), switch ADB off, open AquaMaa; it finds the laptop on the
+Wi-Fi by itself ([pepper/INSTALL_FOR_MUNIRA.txt](pepper/INSTALL_FOR_MUNIRA.txt)).
 
-**Run step 1 first.** The other steps need the files it creates. Those files aren't in Git, because they're large and rebuild from `database/` in about a minute. Run step 1 again whenever `database/` changes.
+## Limits (honest)
 
-To save a script's output to a file without broken characters, run this first in the same window:
-```powershell
-[Console]::OutputEncoding = [Text.Encoding]::UTF8
-python eval_routing.py > results.txt
-```
+- One sensor kit on a test sample, not yet a farm well; the farm view uses one example farm.
+- Turbidity has no validated NTU calibration (shown as an index); pH needs regular buffer calibration.
+- The registered-wells map, extraction and water-level history are demonstration data until the official feeds are
+  connected; they are labelled as such.
+- Pepper's speech recognition works by keywords in English (the robot's recognizer needs a vocabulary); the website
+  takes any wording in Arabic or English.
+- Fanar and the natural voice need internet; without it AquaMaa falls back to its local model and the browser voice.
+- Forecasting is not built yet; alerts are thresholds, unusual-change detection and the water quality index.
 
-## What's in this folder
-| Path | What it is |
+## Team
+
+| Member | Contribution |
 |---|---|
-| `AquaMaa.md` | The plan: milestones, decisions, problem statement, key facts |
-| `database/` | The knowledge base sources: 46 sources in 10 folders, catalogued in `database/sources.json`. Read `database/README.md` before reusing any data |
-| `check_setup.py` | Checks the setup and says how to fix anything missing |
-| `config.py` | The model names, in one place |
-| `agent.py` | The agent: connects the steps into one graph, and runs it with `ask()` |
-| `steps/` | The graph's steps, one file per stage: `route.py`, `figures.py` (key statistics), `react.py` (the ReAct loop), `verify.py` (checks, repair, conflict notes) |
-| `tools.py`, `key_stats.py`, `verifier.py` | The logic behind the steps: the agent's tools, choosing key statistics, and the answer checks (Milestones 4 and 5) |
-| `prompts.py`, `state.py`, `agent_log.py` | Every prompt in one place, the graph's state, and the live logs |
-| `database/11-key-statistics/`, `database/12-known-conflicts/` | The 20 verified headline figures, and the known disagreements between sources |
-| `api.py`, `test_api.py`, `test_website_chat.py` | The agent as a web service for the website chat, and its two checks. The chat panel itself lives in Deema's dashboard, branch `chat-widget` (`server/chat.js`, `public/chat.js`, `public/chat.css`) |
-| `eval_agent.py`, `checks.py`, `show_run.py` | Run a question set through the agent, check the answers, and list a run |
-| `tests/dev_real_questions.csv` | 30 real development questions, with sources |
-| `requirements.txt` | The packages the code needs. `requirements-full.txt` lists everything on the build laptop |
-| `build_kb.py` | Builds the knowledge base (Milestone 2) |
-| `retrieval.py` | The search methods: keyword (BM25), meaning (vector), hybrid, and exact table lookup (Milestone 3) |
-| `routing.py` | Labels each question's type, then picks the search methods for it (Milestone 3) |
-| `eval_kb.py`, `eval_routing.py`, `compare_retrieval.py` | The checks for Milestones 2 and 3 |
-| `eval_kb_v2.txt`, `eval_routing_v3.txt`, `eval_routing_v3.json` | Saved check results |
-| `agentic_rag.py`, `run_v1*.txt`, `agent.log` | Milestone 1: the LangGraph tutorial on local Qwen, with its results |
-| `similar-projects.md` | Review of eight similar projects |
-| `context/` | Background material: research notes, sources, datasets and documents |
+| **Roaa** | AquaMaa AI (agent, fast path, checks, Arabic and dialect, voice), Pepper app integration, alerts service |
+| **Deema** | Website: officer and farmer dashboards, database schema, water quality index, Water Card, alerts, Telegram bot |
+| **Munira** | Sensors and ESP32 firmware, wiring and calibration, Pepper robot setup |
+| **Mais** | Knowledge and data: national statistics, crop tolerance, answer checks |
 
-## Results so far
-| Milestone | Version | Result |
-|---|---|---|
-| 1. Open-source code on Qwen | `v1` | LangGraph agentic RAG tutorial running locally, with three of its faults fixed |
-| 2. Knowledge base | `v2` | 1,406 chunks from 34 text sources. All 10 test questions find their right file in the top 10, and 9 in the top 3 |
-| 3. Routing and retrieval | `v3` | Question type right for 26 of 27. Right file in the top 3 for 26 of 27. Context recall 0.96, context precision 0.83. Baseline faithfulness 0.854 |
-| 4. Agent loop | in progress | On 30 real questions, invented citations fell from 7 to 0 between prompt v1 and v2 |
-
-To see the code exactly as it was at a version, run `git checkout v2`, for example. Run `git checkout main` to return.
-
-## When something goes wrong
-| Message | Cause | Fix |
-|---|---|---|
-| `ModuleNotFoundError: No module named ...` | The environment isn't active, or a different Python is running | Activate it with `.venv\Scripts\Activate.ps1`, or use `.venv\Scripts\python.exe` instead of `python` |
-| `can't open file ... No such file or directory` | You're in the wrong folder | `cd` into the `AquaMaa` folder first |
-| `Connection refused` or `httpx.ConnectError` | Ollama isn't running | Open the Ollama app |
-| `model "..." not found` | That model isn't downloaded | `ollama pull <model name>` |
-| `The knowledge base hasn't been built yet` | `vector_store.json` is missing (it isn't in Git) | `python build_kb.py` |
-| Answers take over a minute | The model is running on the CPU | Use the smaller model: `$env:AQUAMAA_MODEL = "qwen3:8b"` |
-| Chat says "The assistant is offline" | `api.py` isn't running | `python api.py` in this folder, and leave it open |
-| `[Errno 10048] ... address ('127.0.0.1', 8000)` | Something else is using port 8000 (for example an old copy of `api.py`) | Close the other one, or use another port: `$env:AQUAMAA_API_PORT = "8001"` here and `$env:AQUAMAA_AGENT_URL = "http://127.0.0.1:8001"` for the dashboard |
-| Broken characters like `ΓÇö` in a saved file | PowerShell's file encoding | Run `[Console]::OutputEncoding = [Text.Encoding]::UTF8` before saving output |
-
-If it's still not working, run `python check_setup.py` and send Roaa what it prints.
-
-## Known issues
-- **Chroma doesn't run on these laptops.** Windows Application Control blocks one of its DLLs, so the knowledge base uses LangChain's built-in vector store instead.
-- **The first question after starting is slow,** about 5–10 seconds, while Ollama loads the model.
-
-## Data use
-Some of the data in `database/` has **no open licence**: the 201-well survey files from the Qatar_MWDVF repository, originally from Shomar and Sankaran (2024). They're for private team use only, and must be cited. Each source's licence is listed in `database/sources.json`. **Don't make this repository public** without first removing those files.
+Acknowledgements: LangGraph (MIT), Ollama, Qwen, BGE-M3, Fanar (QCRI), edge-tts, QiSDK (Aldebaran).
