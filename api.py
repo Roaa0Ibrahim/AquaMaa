@@ -169,6 +169,30 @@ async def speak_answer(s: Spoken):
     return Response(content=audio, media_type="audio/mpeg")
 
 
+def drink_answer(g):
+    """'Is the water drinkable?' from the live salinity, by code: the value, the verdict, and the safety caveat."""
+    live = (g or {}).get("live") or {}
+    devices = live.get("devices") or []
+    d = next((x for x in devices if x.get("online")), devices[0] if devices else {})
+    v = ((d.get("latestFresh") or {}).get("tds_ppm") or {}).get("value")
+    if v is None:
+        return "I have no salinity reading from the sensor right now, so I can't judge if the water is drinkable."
+    limit = ((((g.get("thresholds") or {}).get("tds_ppm") or {}).get("reference")) or {}).get("max") or 1000
+    fresh = d.get("latestFresh") or {}
+    ph = (fresh.get("ph") or {}).get("value")
+    temp = (fresh.get("temperature") or {}).get("value")
+    when = "The readings now" if d.get("online") else f"The sensor's last readings, {d.get('minutesAgo')} minutes ago"
+    # All the readings first (15 Nov, Roaa: "make it say the readings"), then the verdict
+    readings = [f"salinity {round(v):,} parts per million"] + ([f"pH {round(ph, 1):g}"] if ph is not None else []) + \
+               ([f"temperature {round(temp, 1):g} degrees"] if temp is not None else [])
+    said = f"{when}: " + ", ".join(readings[:-1]) + (f", and {readings[-1]}" if len(readings) > 1 else readings[0]) + "."
+    if v > limit:
+        return (f"{said} No, the water is not drinkable: above {limit:g} parts per million it is too salty to drink "
+                f"without treatment.")
+    return (f"{said} By salinity, the water is drinkable, below the limit of {limit:g}. A laboratory test is still "
+            f"needed to confirm it is safe.")
+
+
 @app.get("/pepper/now")
 async def pepper_now(what: str = "temperature"):
     """A live reading said at once, built by code from the sensor's latest value, no AI (15 Nov: Pepper's temperature
@@ -177,6 +201,8 @@ async def pepper_now(what: str = "temperature"):
         g = await live_data()
     except Exception:
         return {"answer": "I can't reach the sensor data right now."}
+    if what == "drink":                                        # 15 Nov: the filmed question, short and about drinking only
+        return {"answer": drink_answer(g)}
     live = g.get("live") or {}
     devices = live.get("devices") or []
     d = next((x for x in devices if x.get("online")), devices[0] if devices else {})

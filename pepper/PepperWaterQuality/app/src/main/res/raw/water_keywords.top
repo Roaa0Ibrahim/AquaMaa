@@ -1,27 +1,8 @@
 topic: ~water_keywords()
 
-# Pepper for the demo (15 Nov): connected and always speaking.
-# - salinity, drinking, temperature, pH: the LIVE sensor reading and its meaning, built by code on the laptop
-#   (^execute(ask, now:...), about 0.1 s); crops: AquaMaa's AI (about 5 s)
-# - the conversation itself speaks the answer ($answer after ^execute)
-# - if the laptop can't be reached, AskExecutor puts a fixed answer in $answer, so Pepper never stays silent
-# Any sentence containing one of the words triggers the rule.
+# Filming version (15 Nov, Roaa: "only make it answer to is the water drinkable"): one question, live from the sensor.
+# Any sentence with drink / drinking / drinkable / potable -> the live salinity and the drinking verdict, built by
+# code on the laptop (about 0.1 s) and spoken by the conversation ($answer). If the laptop can't be reached,
+# AskExecutor says a fixed answer instead of nothing.
 
-concept:(hello) [hello hi hey "good morning" "good afternoon" "good evening" salam]
-concept:(bye) [thanks "thank you" bye goodbye]
-
-u:({*} ~hello {*}) Hello, I am AquaMaa. Qatar's wells can't speak, so I give them a voice. I watch every sensor live, and I tell you what the water means and what to do. Ask me about the salinity, the temperature, or if the water is safe to drink.
-
-u:({*} [temperature temperatures hot cold warm degrees] {*}) ^execute(ask, now:temperature) $answer
-
-u:({*} [pH "P H" acid acidic acidity alkaline] {*}) ^execute(ask, now:ph) $answer
-
-u:({*} [drink drinking drinkable potable safe] {*}) ^execute(ask, now:salinity) $answer
-
-u:({*} [crops crop palms palm dates irrigate irrigation farm farming plants] {*}) Let me check which crops suit this water. ^execute(ask, Which crops can be irrigated with the water right now) $answer
-
-u:({*} [alert alerts problem problems attention offline] {*}) When a well gets too salty, the pH goes out of range, or a sensor stops sending, I announce it right away, with what it means and what to do.
-
-u:({*} [salt salty saltiness salinity TDS "T D S" quality reading sensor water] {*}) ^execute(ask, now:salinity) $answer
-
-u:({*} ~bye {*}) You are welcome. I will keep watching the wells. Goodbye!
+u:({*} [drink drinking drinkable potable] {*}) ^execute(ask, now:drink) $answer

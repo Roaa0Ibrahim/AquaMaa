@@ -43,7 +43,9 @@ class AskExecutor(
             "The normal range for well water temperature is 15 to 35 degrees Celsius. I can't read the live sensor right now."
         question.contains("ph") ->
             "A healthy pH for well water is between 6.5 and 8.5. Outside that range, the water and the sensor should be checked. I can't read the live sensor right now."
-        question.contains("salinity") || question.contains("drink") ->
+        question.contains("drink") ->
+            "Above 1000 parts per million, water is too salty to drink without treatment. I can't read the live sensor right now."
+        question.contains("salinity") ->
             "Above 1000 parts per million, water is too salty to drink without treatment, but date palms, barley and wheat can still use it. I can't read the live sensor right now."
         question.contains("crops") ->
             "Salty water suits tolerant crops like date palms, barley and wheat; tomatoes, cucumbers and lettuce lose part of their harvest. I can't read the live sensor right now."
