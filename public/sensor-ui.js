@@ -9,7 +9,8 @@
   const S = window.AquaMaaSensors;
   let H = null; // helpers supplied by app.js: esc, icon, fmt, api, sparkline, ring, animateIn, setContext
 
-  const COLS = 'id,device_id,well_id,ph,temperature,tds_ppm,created_at,ph_raw,ph_voltage,turbidity_raw,turbidity_voltage';
+  // All columns, whatever the readings table has now (15 Nov: removed columns made every query fail); missing = empty
+  const COLS = '*';
   const AST = 'Asia/Qatar';
   const fTime = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: AST });
   const fHM = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: AST });

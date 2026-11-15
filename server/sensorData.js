@@ -6,7 +6,9 @@
 const { createClient } = require('@supabase/supabase-js');
 const { getSupabasePublic } = require('./sensorConfig');
 
-const COLUMNS = 'id,device_id,well_id,ph,temperature,tds_ppm,created_at,ph_raw,ph_voltage,turbidity_raw,turbidity_voltage';
+// All columns, whatever the table has now (15 Nov: ph_raw and others were removed from readings and every query failed
+// with "column does not exist"); a missing column is simply empty in the rows
+const COLUMNS = '*';
 
 class SensorDataError extends Error {
   constructor(status, code, message, hint) { super(message); this.status = status; this.code = code; this.hint = hint; }
