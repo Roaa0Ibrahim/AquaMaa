@@ -18,6 +18,7 @@ import asyncio
 import json
 import os
 import re
+import time
 from typing import Optional
 
 import httpx
@@ -50,7 +51,7 @@ app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:3000", "http
                    allow_methods=["GET", "POST"], allow_headers=["Content-Type"])
 one_at_a_time = asyncio.Lock()
 watcher = AlertWatcher(lang=ALERT_LANGUAGE)
-latest = {"grounding": None}                           # the dashboard's live data, refreshed by the alert watcher
+latest = {"grounding": None, "at": 0.0}                           # the dashboard's live data, refreshed by the alert watcher
 
 
 async def watch_alerts():
@@ -59,7 +60,7 @@ async def watch_alerts():
     while True:
         try:
             grounding = await asyncio.to_thread(dashboard.grounding)
-            latest["grounding"] = grounding                # for Pepper's tablet page (/live)
+            latest["grounding"], latest["at"] = grounding, time.time()   # shared with every question (live_data)
             for m in watcher.process(grounding):
                 log.info("ALERT     %s %s: %s", m["kind"], m["id"], m["text"])
             failed = False
@@ -68,6 +69,16 @@ async def watch_alerts():
                 log.info("ALERT     can't read the dashboard's live data (%s); will keep trying", error)
             failed = True
         await asyncio.sleep(ALERT_POLL_SECONDS)
+
+
+async def live_data():
+    """The dashboard's live data, shared: the alert watcher's copy if it is a few seconds old, else fetched once.
+    (15 Nov: Deema's server allows 20 data requests a minute; separate fetches for every question hit the limit.)"""
+    if latest["grounding"] is not None and time.time() - latest["at"] < 3 * ALERT_POLL_SECONDS:
+        return dict(latest["grounding"])
+    g = await asyncio.to_thread(dashboard.grounding)
+    latest["grounding"], latest["at"] = g, time.time()
+    return dict(g)
 
 
 @app.on_event("startup")
@@ -179,14 +190,18 @@ async def pepper_ask(t: PepperTopic):
     question = entry.get(mode) or entry.get("officer")
     log.info("PEPPER    %s mode, topic '%s': %s", mode, t.topic, question)
     try:
-        grounding = await asyncio.to_thread(dashboard.grounding)
-        if mode == "farmer":
-            grounding["clientContext"] = await asyncio.to_thread(dashboard.farm_context, grounding)
+        grounding = await live_data()
     except Exception as error:
         log.info("PEPPER    no live data (%s)", error)
         grounding = None
+    if grounding is not None and mode == "farmer":
+        try:
+            grounding["clientContext"] = await asyncio.to_thread(dashboard.farm_context, grounding)
+        except Exception as error:
+            log.info("PEPPER    no farm wells (%s)", error)
+    intent = entry.get("intent")                          # the topic decides the type of answer: fast and predictable
     async with one_at_a_time:
-        r = await asyncio.to_thread(ask, question, True, mode, grounding)
+        r = await asyncio.to_thread(lambda: ask(question, True, mode, grounding, intent=intent))
     return {"answer": r["answer"], "question": question}
 
 
@@ -222,7 +237,7 @@ async def ask_endpoint(q: Question, x_aquamaa_key: Optional[str] = Header(defaul
     grounding = q.grounding
     if grounding is None and q.live:
         try:
-            grounding = await asyncio.to_thread(dashboard.grounding)
+            grounding = await live_data()
         except Exception as error:                         # no live data: the agent says there is no current reading
             log.info("API       couldn't fetch the dashboard's live data for this question: %s", error)
     async with one_at_a_time:                              # one model job at a time

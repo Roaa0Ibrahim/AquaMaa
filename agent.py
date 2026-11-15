@@ -66,7 +66,7 @@ app = graph.compile()
 
 
 def ask(question: str, save_trace: bool = True, role: str | None = None, grounding: dict | None = None,
-        _reread: bool = True) -> dict:
+        _reread: bool = True, intent: str | None = None) -> dict:
     """role: the website account's role; it picks the reader persona (farmer or officer, see steps/simplify.py).
     grounding: live sensor data from Deema's dashboard, given to the agent by steps/live.py."""
     start = time.time()
@@ -93,7 +93,7 @@ def ask(question: str, save_trace: bool = True, role: str | None = None, groundi
         question = asked
     if FAST:
         try:
-            fast = fast_answer(question, persona, grounding)
+            fast = fast_answer(question, persona, grounding, intent)
         except (ConnectionError, OSError, httpx.HTTPError, ollama.ResponseError) as error:
             log.info("FAST      skipped, the model didn't respond: %s", error)
             fast = None

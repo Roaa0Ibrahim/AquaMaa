@@ -78,10 +78,13 @@ def check(answer, facts_text, question):
     return reasons
 
 
-def fast_answer(question, persona, grounding):
-    """A fast answer dict, or None to use the deep path."""
+def fast_answer(question, persona, grounding, intent=None):
+    """A fast answer dict, or None to use the deep path. intent: given by Pepper's topic (15 Nov), else detected."""
     start = time.time()
-    intent, score, example = detect(question)
+    if intent:
+        score, example = 1.0, "(given)"
+    else:
+        intent, score, example = detect(question)
     if not intent:
         log.info("FAST      no fast intent (closest %.2f: %s): deep path", score, example)
         return None

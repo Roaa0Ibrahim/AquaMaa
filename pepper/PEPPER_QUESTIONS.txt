@@ -1,50 +1,9 @@
-QUESTIONS TO ASK PEPPER (for the demo and for testing)
-=====================================================
-Pepper's app version: the zip from 4:56 PM or later. Check: the yellow text at the bottom right says
-"Listening (keywords)...". Speak in English, about 1 m in front of Pepper, after its eyes turn blue, one short
-sentence at a time. Pepper says a short line at once ("Let me check the sensor"), then AquaMaa's answer (5-15 s).
-The answers are never written in advance: they come live from the sensor, the dashboard and AquaMaa's sources.
+﻿TWO QUESTIONS PEPPER ANSWERS (live, from the sensor)
 
-THE DEMO, IN ORDER (best questions)
-1. Hello Pepper.                                        -> greeting
-2. What is the salinity now?                            -> the current salinity and what it means
-3. Is the water safe to drink?                          -> drinking, from the live reading
-4. Can farmers use this water for date palms?           -> irrigation and which crops tolerate it
-5. What is the pH of the water?                         -> pH now and what it means
-6. Are there any problems with the wells?               -> which sensors need attention or are offline
-7. Thank you, Pepper.                                   -> goodbye
+1. What is the salinity now?      (any sentence with: salt, salty, salinity, TDS, water, sensor, reading, quality)
+2. Is the water safe to drink?     (any sentence with: drink, drinking, drinkable, safe)
 
-MORE QUESTIONS THAT WORK (each has a keyword Pepper listens for, in CAPITALS)
-Salinity:      How SALTY is the WATER today? . What is the SALINITY? . What does the SENSOR say?
-Temperature:   What is the water TEMPERATURE? . Is the water HOT?
-pH:            Is the water ACIDIC? . What is the PH?
-All readings:  What are the current READINGS? . Tell me the STATUS.
-Drinking:      Can people DRINK this water? . Is it DRINKABLE?
-Irrigation:    Is it good for IRRIGATION? . Can I water my PALMS? . Is it OK for my FARM? . What about TOMATOES?
-Trend:         Is the water getting SALTIER? . Is it getting WORSE? . Is salinity RISING?
-Why:           WHY are the wells getting salty?
-Alerts:        Any ALERTS? . Any PROBLEMS? . Give me the BRIEFING. . Which sensors are OFFLINE?
-Dashboard:     What does the DASHBOARD show? . What is on the SCREEN?
-Law:           Do farmers need a LICENCE? . What is the FINE for an illegal well? . Is a PERMIT needed?
+Also: 'Hello' (Pepper tells the AquaMaa story) and 'Thank you' (goodbye).
+Speak English, about 1 m in front of Pepper, after its eyes turn blue. First answer about 5-10 s.
+The yellow text must say 'Listening (keywords)...'. If it says 'Starting...', turn ADB OFF and reopen the app.
 
-KEYWORDS PEPPER LISTENS FOR (any sentence with one of them works)
-greeting:     hello, hi, hey, good morning, salam
-salinity:     salt, salty, salinity, TDS, quality, reading, sensor, water
-temperature:  temperature, hot, cold, warm, degrees
-pH:           pH, acid, acidic, acidity, alkaline
-all readings: readings, values, everything, status, situation
-drinking:     drink, drinking, drinkable, potable
-irrigation:   irrigate, irrigation, crops, palms, dates, farm, farming, tomatoes, plants
-trend:        saltier, trend, rising, increasing, worse, changing
-why:          why, reason, cause
-alerts:       alert, problem, wrong, attention, offline, briefing
-dashboard:    dashboard, screen, page, show
-law:          licence, license, permit, law, fine, penalty, legal
-goodbye:      thanks, thank you, bye, goodbye
-
-TIPS
-- If the strip says "Heard something, but did not understand", the sentence had no keyword: try one from the list.
-- If the yellow text says "Starting...", ADB is still on: switch ADB OFF and reopen the app.
-- With the sensor offline, Pepper honestly says there is no current reading and gives the last known value.
-  For the demo, Munira's sensor must be sending.
-- Alerts (salty water, pH too high or low, sensor offline for 30 min) are spoken by Pepper without being asked.

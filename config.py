@@ -39,7 +39,7 @@ SIMPLIFY = os.environ.get("AQUAMAA_SIMPLIFY", "1") != "0"
 FAST = os.environ.get("AQUAMAA_FAST", "1") != "0"
 # Spoken alerts (alerts.py): on or off, how often the live data is checked, and the language of the messages
 ALERTS = os.environ.get("AQUAMAA_ALERTS", "1") != "0"
-ALERT_POLL_SECONDS = float(os.environ.get("AQUAMAA_ALERT_POLL_SECONDS", "3"))
+ALERT_POLL_SECONDS = float(os.environ.get("AQUAMAA_ALERT_POLL_SECONDS", "5"))   # 15 Nov: 3 s used up the dashboard's 20 requests a minute
 ALERT_LANGUAGE = os.environ.get("AQUAMAA_ALERT_LANGUAGE", "en")
 EMBED_MODEL = os.environ.get("AQUAMAA_EMBED_MODEL", "bge-m3")
 OLLAMA_URL = os.environ.get("OLLAMA_HOST", "http://127.0.0.1:11434")
