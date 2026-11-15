@@ -325,6 +325,7 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
         alertThread = Thread {
             var last = -1
             var reported = false
+            var lastSearch = 0L
             while (running) {
                 try {
                     val (messages, newest) = AgentClient.alerts(if (last < 0) 0 else last)
@@ -338,7 +339,10 @@ class MainActivity : RobotActivity(), RobotLifecycleCallbacks {
                     }
                     reported = false
                 } catch (e: Exception) {
-                    if (!reported) { status("Can't reach AquaMaa for alerts: ${e.message}"); findLaptop() }
+                    if (!reported) status("Can't reach AquaMaa for alerts: ${e.message}")
+                    // Look for the laptop again every 30 s while it can't be reached (15 Nov: it searched only once,
+                    // so after the laptop changed Wi-Fi and came back, Pepper never found it again)
+                    if (System.currentTimeMillis() - lastSearch > 30000) { lastSearch = System.currentTimeMillis(); findLaptop() }
                     reported = true
                 }
                 try { Thread.sleep(3000) } catch (e: InterruptedException) { break }
