@@ -134,12 +134,21 @@ def no_reading(grounding, arabic):
     else:
         lines = ["[live sensors] لا تتوفر الآن قراءة مباشرة من حساس البئر." if arabic
                  else "[live sensors] No live reading from the well sensor is available right now."]
-    tds = live_value(grounding, "tds")
-    if tds is not None and isinstance(ago, (int, float)):
-        when = f"{round(ago / 60)} ساعة" if ago >= 90 else f"{ago} دقيقة"
-        lines.append(f"[live sensors] آخر قراءة معروفة للملوحة كانت {_fmt(tds)} جزء في المليون، قبل حوالي {when}."
-                     if arabic else f"[live sensors] The last known salinity reading was {_fmt(tds)} ppm, about "
-                     + (f"{round(ago / 60)} hours" if ago >= 90 else f"{ago} minutes") + " ago.")
+    # The last known salinity, pH and temperature, whichever was asked (15 Nov: a pH question got only the salinity)
+    fresh = (devices[0].get("latestFresh") or {}) if devices else {}
+    val = lambda f: (fresh.get(f) or {}).get("value") if isinstance(fresh.get(f), dict) else None
+    tds, ph, temp = val("tds_ppm") or live_value(grounding, "tds"), val("ph"), val("temperature")
+    if any(v is not None for v in (tds, ph, temp)) and isinstance(ago, (int, float)):
+        when_ar = f"{round(ago / 60)} ساعة" if ago >= 90 else f"{ago} دقيقة"
+        when_en = f"{round(ago / 60)} hours" if ago >= 90 else f"{ago} minutes"
+        parts_ar = ([f"الملوحة {_fmt(tds)} جزء في المليون"] if tds is not None else []) + \
+                   ([f"درجة الحموضة {_fmt(ph)}"] if ph is not None else []) + \
+                   ([f"الحرارة {_fmt(temp)} درجة مئوية"] if temp is not None else [])
+        parts_en = ([f"salinity {_fmt(tds)} ppm"] if tds is not None else []) + \
+                   ([f"pH {_fmt(ph)}"] if ph is not None else []) + \
+                   ([f"temperature {_fmt(temp)} °C"] if temp is not None else [])
+        lines.append(f"[live sensors] آخر قراءات معروفة، قبل حوالي {when_ar}: {'، '.join(parts_ar)}." if arabic
+                     else f"[live sensors] The last known readings, about {when_en} ago: {', '.join(parts_en)}.")
     if devices:
         lines.append("[live sensors] تأكد أن الحساس موصول بالكهرباء وبشبكة الواي فاي." if arabic
                      else "[live sensors] Check that the sensor has power and is connected to Wi-Fi.")
