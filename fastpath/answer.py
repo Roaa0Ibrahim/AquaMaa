@@ -66,7 +66,11 @@ def check(answer, facts_text, question):
     if added:
         reasons.append(f"numbers not in the facts: {added}")
     # Only the facts' own source tags (13 Nov: the model invented "[no current sensor reading]")
-    invented = sorted(set(CITATION.findall(answer)) - set(CITATION.findall(facts_text)))
+    # A label counts as the facts' own if each of its sources (split on ";") is one of the facts' sources (15 Nov: the
+    # model shortened "[A; B; C]" to "[A; B]", which failed as invented and sent a live question the slow way)
+    parts = lambda tag: {p.strip(" []").lower() for p in tag.split(";") if p.strip(" []")}
+    known_parts = set().union(*(parts(t) for t in CITATION.findall(facts_text))) if CITATION.findall(facts_text) else set()
+    invented = sorted(t for t in set(CITATION.findall(answer)) if not parts(t) <= known_parts)
     if invented:
         reasons.append(f"source tags not in the facts: {invented}")
     if wrong_language(answer, question):
