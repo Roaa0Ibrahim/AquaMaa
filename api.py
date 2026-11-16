@@ -29,6 +29,8 @@ from pydantic import BaseModel, Field
 
 from clean_transcript import clean
 from tablet import PAGE, live_summary
+from pepper_mic import PAGE as MIC_PAGE
+from arabic_text import speakable_ar
 from transcribe import transcribe
 from voice import speak
 from fastpath.answer import warm as warm_fast
@@ -272,6 +274,41 @@ async def pepper_ask(t: PepperTopic):
     async with one_at_a_time:
         r = await asyncio.to_thread(lambda: ask(question, True, mode, grounding, intent=intent))
     return {"answer": r["answer"], "question": question}
+
+
+SOURCES_AR = "\n\nالمصادر:"   # arabic_text.py puts the sources here; not spoken
+
+
+class Voiced(BaseModel):
+    question: str = Field(min_length=3, max_length=MAX_QUESTION)
+    role: Optional[str] = Field(default="officer", max_length=40)
+
+
+@app.get("/mic", response_class=HTMLResponse)
+def mic_page():
+    """Talk to Pepper through the laptop's microphone (pepper_mic.py)."""
+    return MIC_PAGE
+
+
+@app.post("/pepper/voice")
+async def pepper_voice(v: Voiced):
+    """A question spoken into the laptop: AquaMaa answers with the live data; an English answer is put in the alert
+    messages Pepper reads every 3 s, so Pepper says it; an Arabic one is spoken by the laptop (Pepper's voice is
+    English only). -> {"answer", "spoken_by": "pepper" | "laptop", "speak"}"""
+    question = re.sub(r"\s+", " ", v.question).strip()
+    log.info("MIC       question for Pepper (role=%s): %s", v.role or "-", question)
+    try:
+        grounding = await live_data()
+    except Exception as error:
+        log.info("MIC       no live data for this question: %s", error)
+        grounding = None
+    async with one_at_a_time:
+        r = await asyncio.to_thread(ask, question, True, v.role, grounding)
+    answer = r["answer"]
+    if re.search(r"[\u0600-\u06FF]", question):
+        return {"answer": answer, "spoken_by": "laptop", "speak": speakable_ar(answer.split(SOURCES_AR)[0])}
+    watcher._add({"id": "voice", "severity": "info"}, answer, "spoken")
+    return {"answer": answer, "spoken_by": "pepper", "speak": answer}
 
 
 @app.get("/tablet", response_class=HTMLResponse)
